@@ -13,23 +13,38 @@ Bora voar.
 
 ## Ligando o sistema
 
-1. Abre o VS Code em qualquer pasta (ex: Desktop)
-2. Abre o terminal e roda `claude`
-3. Cola o prompt:
+Dois caminhos. Escolhe o que combina contigo.
+
+### Pelo Claude (mais rápido)
+
+Abre o Claude Code em qualquer pasta e cola:
 
 ```
-Clona o https://github.com/mazzeoia/MazyOS.git aqui ao lado
-(vai criar uma subpasta MazyOS) e me orienta a abrir essa
-subpasta numa nova janela do VS Code pra rodar o /instalar.
+Clona o https://github.com/mazzeoia/MazyOS.git na pasta atual,
+entra nela e roda o /instalar.
 ```
 
-4. O Claude clona e te avisa pra abrir a pasta `MazyOS/` numa nova janela
-5. Na nova janela: terminal → `claude` → `/instalar`
+Ele clona, entra na pasta nova e dispara a entrevista de setup. Você
+só responde.
 
-O `/instalar` é a única coisa que você precisa rodar uma vez. Ele
-entrevista você sobre o negócio, monta a memória, configura o sistema
-e no final sugere renomear a pasta pro nome do teu negócio. Depois
-disso, é só usar.
+### Pelo terminal (mais previsível)
+
+```
+git clone https://github.com/mazzeoia/MazyOS.git
+cd MazyOS
+code .
+```
+
+Na janela do VS Code que abrir: terminal integrado → `claude` → `/instalar`.
+
+---
+
+Quando o `/instalar` terminar, renomeia a pasta `MazyOS/` pro nome do teu
+negócio (fecha o VS Code, renomeia no Explorer/Finder, abre de novo). A
+pasta não fica como "MazyOS" — ela é o teu negócio agora.
+
+O `/instalar` roda uma vez só. Te entrevista sobre o negócio, monta a
+memória e configura o sistema. Depois disso, é só usar.
 
 ---
 
