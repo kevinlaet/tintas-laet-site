@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: 'Poppins', sans-serif; color: #212529; background: #fff; overflow-x: hidden; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
@@ -316,11 +316,12 @@
       .sim-controls { flex-direction: row; flex-wrap: wrap; }
     }
     @media (max-width: 768px) {
+      .hero { padding-bottom: 52px; }
       .hero-inner { grid-template-columns: 1fr; text-align: center; }
       .hero-desc { margin: 0 auto 28px; }
       .hero-btns { justify-content: center; }
       .hero-social-proof { justify-content: center; }
-      .hero-stats { justify-content: center; }
+      .hero-stats { justify-content: center; margin-top: 32px; }
       .hero-stat:first-child { padding-left: 16px; }
       .hero-visual { order: -1; }
       .hero-mascote { max-height: 280px; }
@@ -531,9 +532,9 @@
         <div class="seller-body">
           <div class="seller-name">Tinta Emborrachada</div>
           <div class="seller-desc">Líquido que vira borracha. Protege contra sol, chuva e microfissuras.</div>
-          <span class="seller-price-from">a partir de</span>
-          <div class="seller-price">R$ 99<small>,90</small></div>
-          <div class="seller-price-detail">3,6L branca R$ 99,90 · 18L branca R$ 399,90</div>
+          <span class="seller-price-from">balde 18L — a partir de</span>
+          <div class="seller-price">R$ 399<small>,90</small></div>
+          <div class="seller-price-detail">Branca R$ 399,90 · Cores médias R$ 449,90<br>Também em 3,6L a partir de R$ 99,90</div>
           <div class="seller-actions">
             <a href="produto.html?id=emborrachada" class="seller-view">Ver produto completo →</a>
             <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Emborrachada Laet.','_blank')">💬 Comprar no WhatsApp</button>
@@ -550,9 +551,9 @@
         <div class="seller-body">
           <div class="seller-name">Tinta Piso e Fachada Premium</div>
           <div class="seller-desc">Alta resistência a tráfego e intempéries. Anti-mofo, lavável e super aderente.</div>
-          <span class="seller-price-from">a partir de</span>
-          <div class="seller-price">R$ 59<small>,90</small></div>
-          <div class="seller-price-detail">3,4L cores R$ 59,90 · 17L cores R$ 219,90 · 18L branca R$ 299,90</div>
+          <span class="seller-price-from">balde — a partir de</span>
+          <div class="seller-price">R$ 219<small>,90</small></div>
+          <div class="seller-price-detail">17L cores R$ 219,90 · 18L branca R$ 299,90<br>Também em 3,4L a partir de R$ 59,90</div>
           <div class="seller-actions">
             <a href="produto.html?id=piso-fachada" class="seller-view">Ver produto completo →</a>
             <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Piso e Fachada Premium Laet.','_blank')">💬 Comprar no WhatsApp</button>
@@ -588,9 +589,9 @@
         <div class="seller-body">
           <div class="seller-name">Tinta Super Profissional</div>
           <div class="seller-desc">Acrílica super profissional. Até 300m² por demão. Anti-mofo e baixíssimo odor.</div>
-          <span class="seller-price-from">a partir de</span>
-          <div class="seller-price">R$ 39<small>,90</small></div>
-          <div class="seller-price-detail">3,6L branca R$ 39,90 · 3,4L cores R$ 49,90<br>18L branca R$ 139,90 · 17L cores R$ 149,90</div>
+          <span class="seller-price-from">balde 18L — a partir de</span>
+          <div class="seller-price">R$ 139<small>,90</small></div>
+          <div class="seller-price-detail">18L branca R$ 139,90 · 17L cores R$ 149,90<br>Também em 3,6L a partir de R$ 39,90</div>
           <div class="seller-actions">
             <a href="produto.html?id=super-profissional" class="seller-view">Ver produto completo →</a>
             <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Super Profissional Laet.','_blank')">💬 Comprar no WhatsApp</button>
