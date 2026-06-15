@@ -125,7 +125,7 @@
     .seller-card:hover .seller-img img { transform: scale(1.07) translateY(-4px); }
     .seller-badge { position: absolute; top: 10px; left: 10px; background: var(--yellow); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px; padding: 3px 10px; border-radius: 100px; }
     .seller-body { padding: 16px; background: #fff; display: flex; flex-direction: column; flex: 1; }
-    .seller-btn { margin-top: auto; }
+    .seller-actions { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
     .seller-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: var(--graphite); margin-bottom: 10px; }
     .seller-price-from { font-size: 11px; color: #aaa; display: block; margin-bottom: 2px; }
     .seller-price { font-family: 'Bebas Neue', sans-serif; font-size: 30px; color: var(--blue); line-height: 1; margin-bottom: 12px; }
@@ -136,6 +136,9 @@
     .seller-price small { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; vertical-align: super; line-height: 0; }
     .seller-img-empty { height: 148px; background: linear-gradient(135deg, #f0f2f5, #e5e9f0); display: flex; align-items: center; justify-content: center; font-size: 40px; }
     .sellers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .seller-actions { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+    .seller-view { display: flex; align-items: center; justify-content: center; gap: 6px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 12px; color: var(--blue); padding: 8px; border-radius: 6px; border: 1.5px solid rgba(13,71,161,.2); transition: background .2s, border-color .2s; }
+    .seller-view:hover { background: rgba(13,71,161,.06); border-color: var(--blue); }
 
     /* ──────── POR QUE ──────── */
     .why { background: var(--blue); }
@@ -531,7 +534,10 @@
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 99<small>,90</small></div>
           <div class="seller-price-detail">3,6L branca R$ 99,90 · 18L branca R$ 399,90</div>
-          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Emborrachada Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          <div class="seller-actions">
+            <a href="produto.html?id=emborrachada" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Emborrachada Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          </div>
         </div>
       </div>
 
@@ -547,7 +553,10 @@
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 59<small>,90</small></div>
           <div class="seller-price-detail">3,6L cores R$ 59,90 · 18L cores R$ 219,90 · 18L branca R$ 299,90</div>
-          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Piso e Fachada Premium Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          <div class="seller-actions">
+            <a href="produto.html?id=piso-fachada" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Piso e Fachada Premium Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          </div>
         </div>
       </div>
 
@@ -563,7 +572,10 @@
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 37<small>,90</small></div>
           <div class="seller-price-detail">Saco R$ 37,90 · Barrica 25kg R$ 45,80</div>
-          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Massa Corrida Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          <div class="seller-actions">
+            <a href="produto.html?id=massa-corrida" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Massa Corrida Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          </div>
         </div>
       </div>
 
@@ -579,7 +591,10 @@
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 39<small>,90</small></div>
           <div class="seller-price-detail">3,6L branca R$ 39,90 · 3,6L cores R$ 49,90<br>18L branca R$ 139,90 · 18L cores R$ 149,90</div>
-          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Super Profissional Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          <div class="seller-actions">
+            <a href="produto.html?id=super-profissional" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Super Profissional Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          </div>
         </div>
       </div>
 
@@ -595,7 +610,10 @@
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 219<small>,90</small></div>
           <div class="seller-price-detail">18L branca R$ 219,90 · 18L cores R$ 229,90 (a partir)</div>
-          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Standard Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          <div class="seller-actions">
+            <a href="produto.html?id=standard" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Standard Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          </div>
         </div>
       </div>
 
@@ -611,7 +629,10 @@
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 79<small>,90</small></div>
           <div class="seller-price-detail">18L branca R$ 79,90 · 18L cores R$ 99,90</div>
-          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Latex Vinil Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          <div class="seller-actions">
+            <a href="produto.html?id=latex-vinil" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Latex Vinil Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          </div>
         </div>
       </div>
 
@@ -627,7 +648,10 @@
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 299<small>,90</small></div>
           <div class="seller-price-detail">18L branca R$ 299,90 · 18L cores R$ 329,90 (a partir)</div>
-          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Premium Lavável Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          <div class="seller-actions">
+            <a href="produto.html?id=premium-lavavel" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Premium Lavável Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          </div>
         </div>
       </div>
 
@@ -640,7 +664,10 @@
           <span class="seller-price-from">por apenas</span>
           <div class="seller-price">R$ 35<small>,00</small></div>
           <div class="seller-price-detail">Kit completo — consulte disponibilidade</div>
-          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Kit Pintura Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          <div class="seller-actions">
+            <a href="produto.html?id=kit-pintura" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Kit Pintura Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          </div>
         </div>
       </div>
 
