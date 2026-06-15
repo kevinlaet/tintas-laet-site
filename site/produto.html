@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produto — Tintas Laet</title>
+  <meta name="description" content="Tintas e materiais de pintura com os melhores preços do ABC e Zona Leste.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; color: #212529; background: #fff; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --blue: #0D47A1;
+      --blue-dark: #062B63;
+      --blue-mid: #1565C0;
+      --yellow: #FFC107;
+      --white: #FFFFFF;
+      --gray: #F0F2F5;
+      --graphite: #212529;
+      --radius: 8px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.12);
+      --shadow-sm: 0 2px 10px rgba(0,0,0,0.07);
+    }
+
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAVBAR */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 14px 0; background: rgba(6,43,99,.97); backdrop-filter: blur(16px); box-shadow: 0 2px 20px rgba(0,0,0,.25); }
+    .navbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .navbar-logo img { height: 60px; }
+    .navbar-back { display: flex; align-items: center; gap: 8px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: rgba(255,255,255,.85); transition: color .2s; }
+    .navbar-back:hover { color: var(--yellow); }
+    .navbar-back svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; }
+    .navbar-wa { display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; padding: 9px 18px; border-radius: var(--radius); transition: filter .2s; }
+    .navbar-wa:hover { filter: brightness(1.1); }
+
+    /* PRODUCT HERO */
+    .prod-hero { background: linear-gradient(140deg, var(--blue-dark) 0%, var(--blue) 60%, var(--blue-mid) 100%); padding: 110px 0 64px; min-height: 520px; display: flex; align-items: center; position: relative; overflow: hidden; }
+    .prod-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(255,193,7,.07) 0%, transparent 70%); pointer-events: none; }
+    .prod-hero-dots { position: absolute; top: 40px; right: 0; width: 260px; height: 260px; opacity: .05; background-image: radial-gradient(circle, white 1.5px, transparent 1.5px); background-size: 20px 20px; pointer-events: none; }
+    .prod-hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; position: relative; z-index: 1; width: 100%; }
+    .prod-hero-img-wrap { display: flex; justify-content: center; align-items: center; }
+    .prod-hero-img { max-height: 380px; object-fit: contain; filter: drop-shadow(0 24px 48px rgba(0,0,0,.35)); animation: float 5s ease-in-out infinite; }
+    .prod-hero-img-placeholder { width: 280px; height: 280px; background: rgba(255,255,255,.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 80px; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .prod-badge { display: inline-flex; align-items: center; background: var(--yellow); color: var(--graphite); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; }
+    .prod-category { font-size: 12px; color: rgba(255,255,255,.55); font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+    .prod-nome { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(26px, 4vw, 44px); color: #fff; line-height: 1.1; margin-bottom: 16px; }
+    .prod-desc-curta { font-size: 16px; color: rgba(255,255,255,.8); line-height: 1.7; margin-bottom: 28px; max-width: 480px; }
+    .prod-price-block { margin-bottom: 28px; }
+    .prod-price-label { font-size: 12px; color: rgba(255,255,255,.55); margin-bottom: 4px; }
+    .prod-price-from { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--yellow); line-height: 1; }
+    .prod-price-from small { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600; vertical-align: super; line-height: 0; }
+    .prod-hero-cta { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; padding: 14px 28px; border-radius: var(--radius); box-shadow: 0 4px 20px rgba(37,211,102,.4); transition: filter .2s, transform .2s; }
+    .prod-hero-cta:hover { filter: brightness(1.08); transform: translateY(-2px); }
+
+    /* PRODUCT BODY */
+    .prod-body { padding: 64px 0; }
+    .prod-body-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start; }
+
+    /* DESCRIPTION + BENEFITS */
+    .prod-section-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: var(--blue); margin-bottom: 16px; }
+    .prod-descricao { font-size: 15px; color: #444; line-height: 1.8; margin-bottom: 36px; }
+    .prod-beneficios { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .prod-beneficios li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #333; line-height: 1.5; }
+    .prod-beneficios li::before { content: ''; width: 18px; height: 18px; background: var(--blue); border-radius: 50%; flex-shrink: 0; margin-top: 1px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-size: 11px; background-repeat: no-repeat; background-position: center; }
+
+    /* PRICE TABLE */
+    .prod-price-card { background: var(--gray); border-radius: 16px; padding: 28px; position: sticky; top: 100px; }
+    .prod-price-card-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 16px; color: var(--graphite); margin-bottom: 20px; }
+    .prod-price-table { width: 100%; border-collapse: collapse; }
+    .prod-price-table tr { border-bottom: 1px solid #e0e4ec; }
+    .prod-price-table tr:last-child { border-bottom: none; }
+    .prod-price-table td { padding: 12px 0; font-size: 14px; }
+    .prod-price-table td:first-child { color: #555; }
+    .prod-price-table td:last-child { text-align: right; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--blue); font-size: 15px; }
+    .prod-cta-box { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+    .prod-btn-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25D366; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; padding: 14px; border-radius: var(--radius); transition: filter .2s; }
+    .prod-btn-wa:hover { filter: brightness(1.08); }
+    .prod-btn-back { display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: var(--blue); font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; padding: 10px; border-radius: var(--radius); border: 1.5px solid rgba(13,71,161,.25); transition: background .2s, border-color .2s; }
+    .prod-btn-back:hover { background: rgba(13,71,161,.06); border-color: var(--blue); }
+    .prod-note { margin-top: 16px; font-size: 11px; color: #999; text-align: center; line-height: 1.5; }
+
+    /* NOT FOUND */
+    .not-found { text-align: center; padding: 120px 24px; }
+    .not-found h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 28px; color: var(--blue); margin-bottom: 12px; }
+    .not-found p { color: #666; margin-bottom: 28px; }
+
+    /* FLOAT WA */
+    .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 300; display: flex; align-items: center; gap: 10px; background: #25D366; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; padding: 12px 20px; border-radius: 100px; box-shadow: 0 4px 20px rgba(37,211,102,.45); transition: transform .2s; }
+    .wa-float:hover { transform: scale(1.05); }
+    .wa-float svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .prod-hero-inner { grid-template-columns: 1fr; gap: 32px; }
+      .prod-hero-img-wrap { order: -1; }
+      .prod-hero-img { max-height: 240px; }
+      .prod-body-inner { grid-template-columns: 1fr; }
+      .prod-price-card { position: static; }
+    }
+    @media (max-width: 560px) {
+      .navbar-back span { display: none; }
+      .prod-hero { padding: 90px 0 48px; min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="images/logo-branco.png" alt="Tintas Laet">
+      </a>
+      <a href="index.html#produtos" class="navbar-back">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Voltar aos produtos</span>
+      </a>
+      <a href="https://wa.me/5511977140964?text=Olá! Vim pelo site da Tintas Laet." class="navbar-wa" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- CONTEÚDO (preenchido por JS) -->
+<div id="app"></div>
+
+<!-- FLOAT BUTTON -->
+<a href="#" class="wa-float" id="wa-float" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  Comprar no WhatsApp
+</a>
+
+<script>
+const produtos = {
+  'emborrachada': {
+    nome: 'Tinta Emborrachada',
+    categoria: 'Tintas',
+    badge: 'IMPERMEÁVEL',
+    imagem: 'images/embalagens/emborrachada-remove-bg-io.png',
+    desc_curta: 'Líquido que vira borracha. Protege contra sol, chuva e microfissuras.',
+    descricao: 'A Tinta Emborrachada Laet é um produto único que ao secar forma uma membrana elástica impermeável, protegendo sua superfície contra infiltrações, sol, chuva e microfissuras. Ideal para telhados, lajes, calhas, muros, paredes e paredões.',
+    beneficios: ['Líquido que vira borracha', 'Impermeável', 'Proteção contra sol e chuva', 'Reduz absorção de calor em telhados e lajes', 'Proteção contra microfissuras', 'Hidrorrepelente', 'Produto lavável', 'Anti-mofo e fungos', 'Excelente cobertura (cobre até cores fortes)'],
+    precos: [
+      { desc: '3,6L — Branca', valor: 'R$ 99,90' },
+      { desc: '3,6L — Cores médias', valor: 'R$ 119,90' },
+      { desc: '3,6L — Cores fortes', valor: 'R$ 139,90' },
+      { desc: '18L — Branca', valor: 'R$ 399,90' },
+      { desc: '18L — Cores médias', valor: 'R$ 449,90' },
+      { desc: '18L — Cores fortes', valor: 'R$ 549,90' },
+    ],
+    preco_from: 'R$ 99<small>,90</small>',
+    wa: 'Olá! Quero comprar Tinta Emborrachada Laet. Pode me passar mais informações?'
+  },
+  'piso-fachada': {
+    nome: 'Tinta Piso e Fachada Premium',
+    categoria: 'Tintas',
+    badge: 'ATÉ 300m²',
+    imagem: 'images/embalagens/pisos efachadas-remove-bg-io.png',
+    desc_curta: 'Alta resistência a tráfego e intempéries. Anti-mofo, lavável e super aderente.',
+    descricao: 'A Tinta Piso e Fachada Premium Laet é uma tinta acrílica de alta performance desenvolvida para suportar tráfego de automóveis, chuva e intempéries. Acabamento fosco disponível em 13 cores, com rendimento de até 300m² por demão.',
+    beneficios: ['Rendimento de até 300m² por demão', 'Alta resistência a tráfego de automóveis', 'Resistência a chuvas e intempéries', 'Anti-mofo e fungos', 'Totalmente lavável', 'Super aderente', 'Acabamento fosco', '13 cores disponíveis'],
+    precos: [
+      { desc: '3,6L — Cores', valor: 'R$ 59,90' },
+      { desc: '3,6L — Branca', valor: 'R$ 79,90' },
+      { desc: '18L — Cores', valor: 'R$ 219,90' },
+      { desc: '18L — Branca', valor: 'R$ 299,90' },
+    ],
+    preco_from: 'R$ 59<small>,90</small>',
+    wa: 'Olá! Quero comprar Tinta Piso e Fachada Premium Laet. Pode me passar mais informações?'
+  },
+  'massa-corrida': {
+    nome: 'Massa Corrida',
+    categoria: 'Massa Corrida / Acrílica',
+    badge: 'USO INTERNO',
+    imagem: 'images/embalagens/barrica-remove-bg-io.png',
+    desc_curta: 'Lixamento fácil, acabamento de alto nível. Anti-mofo e odor quase zero.',
+    descricao: 'A Massa Corrida Laet é indicada para uso interno, proporcionando acabamento de alto nível com fácil aplicação e lixamento. Possui propriedades anti-mofo e odor quase zero, ideal para preparar paredes antes de pintar.',
+    beneficios: ['Lixamento fácil', 'Uso interno', 'Acabamento de alto nível', 'Anti-mofo', 'Odor quase zero', 'Rendimento médio de até 50m²'],
+    precos: [
+      { desc: 'Saco 25kg', valor: 'R$ 37,90' },
+      { desc: 'Barrica 25kg', valor: 'R$ 45,80' },
+    ],
+    preco_from: 'R$ 37<small>,90</small>',
+    wa: 'Olá! Quero comprar Massa Corrida Laet. Pode me passar mais informações?'
+  },
+  'super-profissional': {
+    nome: 'Tinta Super Profissional',
+    categoria: 'Tintas',
+    badge: 'PROFISSIONAL',
+    imagem: 'images/embalagens/profissional-remove-bg-io.png',
+    desc_curta: 'Acrílica super profissional. Até 300m² por demão. Anti-mofo e baixíssimo odor.',
+    descricao: 'A Tinta Super Profissional Laet é uma tinta acrílica de altíssima qualidade, com cobertura superior à linha Vinil Acrílico. Rendimento de até 300m² por demão, propriedades anti-mofo e baixíssimo odor. Indicada para uso interno.',
+    beneficios: ['Rendimento de até 300m² por demão', 'Ótima qualidade e resistência', 'Anti-mofo', 'Baixíssimo odor', 'Cobre com 2 demãos', 'Uso interno', 'Custo-benefício especial', 'Linha acima do Vinil Acrílico'],
+    precos: [
+      { desc: '3,6L — Branca', valor: 'R$ 39,90' },
+      { desc: '3,6L — Cores', valor: 'R$ 49,90' },
+      { desc: '18L — Branca', valor: 'R$ 139,90' },
+      { desc: '18L — Cores', valor: 'R$ 149,90' },
+    ],
+    preco_from: 'R$ 39<small>,90</small>',
+    wa: 'Olá! Quero comprar Tinta Super Profissional Laet. Pode me passar mais informações?'
+  },
+  'standard': {
+    nome: 'Tinta 1ª Linha Standard',
+    categoria: 'Tintas',
+    badge: '+100 CORES',
+    imagem: 'images/embalagens/standard-remove-bg-io.png',
+    desc_curta: 'Concentrada, pode ser diluída em até 20%. Para dentro e fora de casa.',
+    descricao: 'A Tinta Standard Laet é uma tinta acrílica concentrada de primeira linha, favorita de quem busca cobertura e rendimento. Pode ser diluída em até 20% (a critério do cliente) e está disponível em mais de 100 cores.',
+    beneficios: ['Cobre fácil até cores fortes', 'Baixo odor', 'Para dentro e fora de casa', 'Alta qualidade', 'Anti-mofo', 'Rendimento de até 300m² por demão (18L)', 'Mais de 100 cores disponíveis', 'Pode ser diluída em até 20%'],
+    precos: [
+      { desc: '18L — Branca', valor: 'R$ 219,90' },
+      { desc: '18L — Cores (a partir)', valor: 'R$ 229,90' },
+    ],
+    preco_from: 'R$ 219<small>,90</small>',
+    wa: 'Olá! Quero comprar Tinta 1ª Linha Standard Laet. Pode me passar mais informações?'
+  },
+  'latex-vinil': {
+    nome: 'Latex Vinil 18L',
+    categoria: 'Tintas',
+    badge: 'NOVA EMBALAGEM',
+    imagem: 'images/embalagens/semibrilho-remove-bg-io.png',
+    desc_curta: 'Anti-mofo, acabamento fosco. Ideal para pintura interna. Cobertura seca.',
+    descricao: 'O Latex Vinil Laet é uma tinta básica com propriedades anti-mofo, acabamento fosco e cobertura satisfatória quando aplicada corretamente. Indicada somente para uso interno. Não deve ser aplicada em parede úmida ou ambiente que receba diretamente chuva.',
+    beneficios: ['Anti-mofo', 'Acabamento fosco', 'Cobertura seca satisfatória', 'Uso interno', 'Nova embalagem', 'Aguardar 8h entre demãos para melhor resultado'],
+    precos: [
+      { desc: '18L — Branca', valor: 'R$ 79,90' },
+      { desc: '18L — Cores', valor: 'R$ 99,90' },
+    ],
+    preco_from: 'R$ 79<small>,90</small>',
+    wa: 'Olá! Quero comprar Latex Vinil Laet. Pode me passar mais informações?'
+  },
+  'premium-lavavel': {
+    nome: 'Tinta Premium Lavável',
+    categoria: 'Tintas',
+    badge: 'LAVÁVEL',
+    imagem: 'images/embalagens/premiumlavavel-remove-bg-io.png',
+    desc_curta: 'Mega qualidade, excelente cobertura. Anti-mofo e anti-fungos. Limpa com facilidade.',
+    descricao: 'A Tinta Premium Lavável Laet é uma tinta de mega qualidade com excelente cobertura e facilidade de limpeza. Contém propriedades anti-mofo e anti-fungos. Acabamento fosco. Cobre com apenas 2 demãos.',
+    beneficios: ['Mega qualidade e excelente cobertura', 'Lavável — limpe com facilidade', 'Anti-mofo e anti-fungos', 'Acabamento fosco', 'Cobre com 2 demãos', 'Baixo odor'],
+    precos: [
+      { desc: '18L — Branca', valor: 'R$ 299,90' },
+      { desc: '18L — Cores (a partir)', valor: 'R$ 329,90' },
+    ],
+    preco_from: 'R$ 299<small>,90</small>',
+    wa: 'Olá! Quero comprar Tinta Premium Lavável Laet. Pode me passar mais informações?'
+  },
+  'kit-pintura': {
+    nome: 'Kit Pintura 5 itens',
+    categoria: 'Ferramentas',
+    badge: 'KIT COMPLETO',
+    imagem: null,
+    desc_curta: 'Rolo 23cm, cabo, rolo P, pincel M e bandeja G. Tudo pra começar sua pintura.',
+    descricao: 'O Kit Pintura Laet traz tudo que você precisa para começar a pintar. Kit completo com 5 itens de qualidade selecionados pela equipe Laet para garantir uma pintura limpa e profissional.',
+    beneficios: ['Rolo 23cm', 'Cabo para rolo de 23cm', 'Rolo com cabo tamanho P', 'Pincel tamanho M', 'Bandeja tamanho G'],
+    precos: [
+      { desc: 'Kit 5 itens', valor: 'R$ 35,00' },
+    ],
+    preco_from: 'R$ 35<small>,00</small>',
+    wa: 'Olá! Quero comprar o Kit Pintura Laet. Pode me passar mais informações?'
+  }
+};
+
+function render() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const p = produtos[id];
+  const app = document.getElementById('app');
+
+  if (!p) {
+    app.innerHTML = `
+      <div style="padding-top:100px">
+        <div class="container">
+          <div class="not-found">
+            <h2>Produto não encontrado</h2>
+            <p>O produto que você procura não existe ou foi removido.</p>
+            <a href="index.html#produtos" style="display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;padding:12px 24px;border-radius:8px;">← Ver todos os produtos</a>
+          </div>
+        </div>
+      </div>`;
+    return;
+  }
+
+  document.title = p.nome + ' — Tintas Laet';
+
+  const imgHtml = p.imagem
+    ? `<img class="prod-hero-img" src="${p.imagem}" alt="${p.nome}">`
+    : `<div class="prod-hero-img-placeholder">🖌️</div>`;
+
+  const beneficiosHtml = p.beneficios.map(b => `<li>${b}</li>`).join('');
+
+  const precosHtml = p.precos.map(pr => `
+    <tr>
+      <td>${pr.desc}</td>
+      <td>${pr.valor}</td>
+    </tr>`).join('');
+
+  const waUrl = `https://wa.me/5511977140964?text=${encodeURIComponent(p.wa)}`;
+  document.getElementById('wa-float').href = waUrl;
+
+  app.innerHTML = `
+    <!-- HERO -->
+    <section class="prod-hero">
+      <div class="prod-hero-dots"></div>
+      <div class="container">
+        <div class="prod-hero-inner">
+          <div class="prod-hero-info">
+            <div class="prod-category">${p.categoria}</div>
+            <span class="prod-badge">${p.badge}</span>
+            <h1 class="prod-nome">${p.nome}</h1>
+            <p class="prod-desc-curta">${p.desc_curta}</p>
+            <div class="prod-price-block">
+              <div class="prod-price-label">a partir de</div>
+              <div class="prod-price-from">${p.preco_from}</div>
+            </div>
+            <a href="${waUrl}" class="prod-hero-cta" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Comprar no WhatsApp
+            </a>
+          </div>
+          <div class="prod-hero-img-wrap">${imgHtml}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BODY -->
+    <section class="prod-body">
+      <div class="container">
+        <div class="prod-body-inner">
+          <div>
+            <h2 class="prod-section-title">Sobre o produto</h2>
+            <p class="prod-descricao">${p.descricao}</p>
+            <h2 class="prod-section-title">Benefícios</h2>
+            <ul class="prod-beneficios">${beneficiosHtml}</ul>
+          </div>
+          <div>
+            <div class="prod-price-card">
+              <div class="prod-price-card-title">Tabela de preços</div>
+              <table class="prod-price-table">${precosHtml}</table>
+              <div class="prod-cta-box">
+                <a href="${waUrl}" class="prod-btn-wa" target="_blank" rel="noopener">
+                  💬 Comprar no WhatsApp
+                </a>
+                <a href="index.html#produtos" class="prod-btn-back">
+                  ← Ver todos os produtos
+                </a>
+              </div>
+              <p class="prod-note">⚠️ Preços sujeitos a alteração. Consulte disponibilidade de cores na sua loja.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>`;
+}
+
+render();
+</script>
+</body>
+</html>
