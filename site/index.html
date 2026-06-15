@@ -118,13 +118,14 @@
     .bestsellers { background: #fff; }
     .bestsellers-header { text-align: center; }
     .bestsellers-header .section-title { color: var(--blue); }
-    .seller-card { background: var(--gray); border-radius: 12px; overflow: hidden; transition: transform .22s, box-shadow .22s; border: 1px solid transparent; }
+    .seller-card { background: var(--gray); border-radius: 12px; overflow: hidden; transition: transform .22s, box-shadow .22s; border: 1px solid transparent; display: flex; flex-direction: column; }
     .seller-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(13,71,161,.1); }
-    .seller-img { height: 148px; background: linear-gradient(135deg, #dce3f0, #c8d4e8); display: flex; align-items: center; justify-content: center; font-size: 58px; position: relative; overflow: hidden; }
+    .seller-img { height: 148px; background: linear-gradient(135deg, #dce3f0, #c8d4e8); display: flex; align-items: center; justify-content: center; font-size: 58px; position: relative; overflow: hidden; flex-shrink: 0; }
     .seller-img img { height: 130px; width: auto; object-fit: contain; filter: drop-shadow(0 6px 14px rgba(0,0,0,.18)); transition: transform .3s; }
     .seller-card:hover .seller-img img { transform: scale(1.07) translateY(-4px); }
     .seller-badge { position: absolute; top: 10px; left: 10px; background: var(--yellow); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px; padding: 3px 10px; border-radius: 100px; }
-    .seller-body { padding: 16px; background: #fff; }
+    .seller-body { padding: 16px; background: #fff; display: flex; flex-direction: column; flex: 1; }
+    .seller-btn { margin-top: auto; }
     .seller-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: var(--graphite); margin-bottom: 10px; }
     .seller-price-from { font-size: 11px; color: #aaa; display: block; margin-bottom: 2px; }
     .seller-price { font-family: 'Bebas Neue', sans-serif; font-size: 30px; color: var(--blue); line-height: 1; margin-bottom: 12px; }
@@ -545,7 +546,7 @@
           <div class="seller-desc">Alta resistência a tráfego e intempéries. Anti-mofo, lavável e super aderente.</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 59<small>,90</small></div>
-          <div class="seller-price-detail">3,6L cores R$ 59,90 · 18L cores R$ 219,90<br>18L branca R$ 299,90</div>
+          <div class="seller-price-detail">3,6L cores R$ 59,90 · 18L cores R$ 219,90 · 18L branca R$ 299,90</div>
           <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Piso e Fachada Premium Laet.','_blank')">💬 Comprar no WhatsApp</button>
         </div>
       </div>
@@ -566,19 +567,80 @@
         </div>
       </div>
 
-      <!-- Tinta Profissional Boa Cobertura -->
+      <!-- Tinta Super Profissional -->
       <div class="seller-card">
         <div class="seller-img">
-          <img src="images/embalagens/premiumlavavel-remove-bg-io.png" alt="Tinta Profissional Boa Cobertura Laet">
+          <img src="images/embalagens/profissional-remove-bg-io.png" alt="Tinta Super Profissional Laet">
           <span class="seller-badge">PROFISSIONAL</span>
         </div>
         <div class="seller-body">
-          <div class="seller-name">Tinta Profissional Boa Cobertura</div>
-          <div class="seller-desc">Acrílica super profissional. Até 300m² por demão. Baixíssimo odor, uso interno.</div>
+          <div class="seller-name">Tinta Super Profissional</div>
+          <div class="seller-desc">Acrílica super profissional. Até 300m² por demão. Anti-mofo e baixíssimo odor.</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 39<small>,90</small></div>
-          <div class="seller-price-detail">3,6L branca R$ 39,90 · 18L branca R$ 139,90</div>
-          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Profissional Boa Cobertura Laet.','_blank')">💬 Comprar no WhatsApp</button>
+          <div class="seller-price-detail">3,6L branca R$ 39,90 · 3,6L cores R$ 49,90<br>18L branca R$ 139,90 · 18L cores R$ 149,90</div>
+          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Super Profissional Laet.','_blank')">💬 Comprar no WhatsApp</button>
+        </div>
+      </div>
+
+      <!-- Tinta 1ª Linha Standard -->
+      <div class="seller-card">
+        <div class="seller-img">
+          <img src="images/embalagens/standard-remove-bg-io.png" alt="Tinta Standard Laet">
+          <span class="seller-badge">+100 CORES</span>
+        </div>
+        <div class="seller-body">
+          <div class="seller-name">Tinta 1ª Linha Standard</div>
+          <div class="seller-desc">Concentrada, pode ser diluída em até 20%. Para dentro e fora de casa.</div>
+          <span class="seller-price-from">a partir de</span>
+          <div class="seller-price">R$ 219<small>,90</small></div>
+          <div class="seller-price-detail">18L branca R$ 219,90 · 18L cores R$ 229,90 (a partir)</div>
+          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Standard Laet.','_blank')">💬 Comprar no WhatsApp</button>
+        </div>
+      </div>
+
+      <!-- Latex Vinil -->
+      <div class="seller-card">
+        <div class="seller-img">
+          <img src="images/embalagens/semibrilho-remove-bg-io.png" alt="Latex Vinil Laet">
+          <span class="seller-badge">NOVA EMBALAGEM</span>
+        </div>
+        <div class="seller-body">
+          <div class="seller-name">Latex Vinil 18L</div>
+          <div class="seller-desc">Anti-mofo, acabamento fosco. Ideal para pintura interna. Cobertura seca.</div>
+          <span class="seller-price-from">a partir de</span>
+          <div class="seller-price">R$ 79<small>,90</small></div>
+          <div class="seller-price-detail">18L branca R$ 79,90 · 18L cores R$ 99,90</div>
+          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Latex Vinil Laet.','_blank')">💬 Comprar no WhatsApp</button>
+        </div>
+      </div>
+
+      <!-- Tinta Premium Lavável -->
+      <div class="seller-card">
+        <div class="seller-img">
+          <img src="images/embalagens/premiumlavavel-remove-bg-io.png" alt="Tinta Premium Lavável Laet">
+          <span class="seller-badge">LAVÁVEL</span>
+        </div>
+        <div class="seller-body">
+          <div class="seller-name">Tinta Premium Lavável</div>
+          <div class="seller-desc">Mega qualidade, excelente cobertura. Anti-mofo e anti-fungos. Limpa com facilidade.</div>
+          <span class="seller-price-from">a partir de</span>
+          <div class="seller-price">R$ 299<small>,90</small></div>
+          <div class="seller-price-detail">18L branca R$ 299,90 · 18L cores R$ 329,90 (a partir)</div>
+          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Premium Lavável Laet.','_blank')">💬 Comprar no WhatsApp</button>
+        </div>
+      </div>
+
+      <!-- Kit Pintura -->
+      <div class="seller-card">
+        <div class="seller-img seller-img-empty">🖌️</div>
+        <div class="seller-body">
+          <div class="seller-name">Kit Pintura 5 itens</div>
+          <div class="seller-desc">Rolo 23cm, cabo, rolo P, pincel M e bandeja G. Tudo pra começar sua pintura.</div>
+          <span class="seller-price-from">por apenas</span>
+          <div class="seller-price">R$ 35<small>,00</small></div>
+          <div class="seller-price-detail">Kit completo — consulte disponibilidade</div>
+          <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Kit Pintura Laet.','_blank')">💬 Comprar no WhatsApp</button>
         </div>
       </div>
 
