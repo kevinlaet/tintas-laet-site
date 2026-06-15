@@ -159,7 +159,8 @@ const produtos = {
       { desc: '17L — Cores médias', valor: 'R$ 449,90' },
       { desc: '17L — Cores fortes', valor: 'R$ 549,90' },
     ],
-    preco_from: 'R$ 99<small>,90</small>',
+    preco_from: 'R$ 399<small>,90</small>',
+    preco_label: 'balde 18L — a partir de',
     wa: 'Olá! Quero comprar Tinta Emborrachada Laet. Pode me passar mais informações?'
   },
   'piso-fachada': {
@@ -176,7 +177,8 @@ const produtos = {
       { desc: '17L — Cores', valor: 'R$ 219,90' },
       { desc: '18L — Branca', valor: 'R$ 299,90' },
     ],
-    preco_from: 'R$ 59<small>,90</small>',
+    preco_from: 'R$ 219<small>,90</small>',
+    preco_label: 'balde — a partir de',
     wa: 'Olá! Quero comprar Tinta Piso e Fachada Premium Laet. Pode me passar mais informações?'
   },
   'massa-corrida': {
@@ -208,7 +210,8 @@ const produtos = {
       { desc: '18L — Branca', valor: 'R$ 139,90' },
       { desc: '17L — Cores', valor: 'R$ 149,90' },
     ],
-    preco_from: 'R$ 39<small>,90</small>',
+    preco_from: 'R$ 139<small>,90</small>',
+    preco_label: 'balde 18L — a partir de',
     wa: 'Olá! Quero comprar Tinta Super Profissional Laet. Pode me passar mais informações?'
   },
   'standard': {
@@ -321,7 +324,7 @@ function render() {
             <h1 class="prod-nome">${p.nome}</h1>
             <p class="prod-desc-curta">${p.desc_curta}</p>
             <div class="prod-price-block">
-              <div class="prod-price-label">a partir de</div>
+              <div class="prod-price-label">${p.preco_label || 'a partir de'}</div>
               <div class="prod-price-from">${p.preco_from}</div>
             </div>
             <a href="${waUrl}" class="prod-hero-cta" target="_blank" rel="noopener">
