@@ -45,8 +45,8 @@
     .prod-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(255,193,7,.07) 0%, transparent 70%); pointer-events: none; }
     .prod-hero-dots { position: absolute; top: 40px; right: 0; width: 260px; height: 260px; opacity: .05; background-image: radial-gradient(circle, white 1.5px, transparent 1.5px); background-size: 20px 20px; pointer-events: none; }
     .prod-hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; position: relative; z-index: 1; width: 100%; }
-    .prod-hero-img-wrap { display: flex; justify-content: center; align-items: center; }
-    .prod-hero-img { max-height: 380px; object-fit: contain; filter: drop-shadow(0 24px 48px rgba(0,0,0,.35)); animation: float 5s ease-in-out infinite; }
+    .prod-hero-img-wrap { display: flex; justify-content: center; align-items: center; background: #fff; border-radius: 20px; overflow: hidden; cursor: crosshair; padding: 28px; box-shadow: 0 8px 32px rgba(0,0,0,.2); min-height: 340px; }
+    .prod-hero-img { max-height: 280px; object-fit: contain; transition: transform 0.06s ease; transform-origin: center center; pointer-events: none; display: block; }
     .prod-hero-img-placeholder { width: 280px; height: 280px; background: rgba(255,255,255,.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 80px; }
     @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     .prod-badge { display: inline-flex; align-items: center; background: var(--yellow); color: var(--graphite); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; }
@@ -153,11 +153,11 @@ const produtos = {
     beneficios: ['Líquido que vira borracha', 'Impermeável', 'Proteção contra sol e chuva', 'Reduz absorção de calor em telhados e lajes', 'Proteção contra microfissuras', 'Hidrorrepelente', 'Produto lavável', 'Anti-mofo e fungos', 'Excelente cobertura (cobre até cores fortes)'],
     precos: [
       { desc: '3,6L — Branca', valor: 'R$ 99,90' },
-      { desc: '3,6L — Cores médias', valor: 'R$ 119,90' },
-      { desc: '3,6L — Cores fortes', valor: 'R$ 139,90' },
+      { desc: '3,4L — Cores médias', valor: 'R$ 119,90' },
+      { desc: '3,4L — Cores fortes', valor: 'R$ 139,90' },
       { desc: '18L — Branca', valor: 'R$ 399,90' },
-      { desc: '18L — Cores médias', valor: 'R$ 449,90' },
-      { desc: '18L — Cores fortes', valor: 'R$ 549,90' },
+      { desc: '17L — Cores médias', valor: 'R$ 449,90' },
+      { desc: '17L — Cores fortes', valor: 'R$ 549,90' },
     ],
     preco_from: 'R$ 99<small>,90</small>',
     wa: 'Olá! Quero comprar Tinta Emborrachada Laet. Pode me passar mais informações?'
@@ -171,9 +171,9 @@ const produtos = {
     descricao: 'A Tinta Piso e Fachada Premium Laet é uma tinta acrílica de alta performance desenvolvida para suportar tráfego de automóveis, chuva e intempéries. Acabamento fosco disponível em 13 cores, com rendimento de até 300m² por demão.',
     beneficios: ['Rendimento de até 300m² por demão', 'Alta resistência a tráfego de automóveis', 'Resistência a chuvas e intempéries', 'Anti-mofo e fungos', 'Totalmente lavável', 'Super aderente', 'Acabamento fosco', '13 cores disponíveis'],
     precos: [
-      { desc: '3,6L — Cores', valor: 'R$ 59,90' },
+      { desc: '3,4L — Cores', valor: 'R$ 59,90' },
       { desc: '3,6L — Branca', valor: 'R$ 79,90' },
-      { desc: '18L — Cores', valor: 'R$ 219,90' },
+      { desc: '17L — Cores', valor: 'R$ 219,90' },
       { desc: '18L — Branca', valor: 'R$ 299,90' },
     ],
     preco_from: 'R$ 59<small>,90</small>',
@@ -204,9 +204,9 @@ const produtos = {
     beneficios: ['Rendimento de até 300m² por demão', 'Ótima qualidade e resistência', 'Anti-mofo', 'Baixíssimo odor', 'Cobre com 2 demãos', 'Uso interno', 'Custo-benefício especial', 'Linha acima do Vinil Acrílico'],
     precos: [
       { desc: '3,6L — Branca', valor: 'R$ 39,90' },
-      { desc: '3,6L — Cores', valor: 'R$ 49,90' },
+      { desc: '3,4L — Cores', valor: 'R$ 49,90' },
       { desc: '18L — Branca', valor: 'R$ 139,90' },
-      { desc: '18L — Cores', valor: 'R$ 149,90' },
+      { desc: '17L — Cores', valor: 'R$ 149,90' },
     ],
     preco_from: 'R$ 39<small>,90</small>',
     wa: 'Olá! Quero comprar Tinta Super Profissional Laet. Pode me passar mais informações?'
@@ -221,7 +221,7 @@ const produtos = {
     beneficios: ['Cobre fácil até cores fortes', 'Baixo odor', 'Para dentro e fora de casa', 'Alta qualidade', 'Anti-mofo', 'Rendimento de até 300m² por demão (18L)', 'Mais de 100 cores disponíveis', 'Pode ser diluída em até 20%'],
     precos: [
       { desc: '18L — Branca', valor: 'R$ 219,90' },
-      { desc: '18L — Cores (a partir)', valor: 'R$ 229,90' },
+      { desc: '17L — Cores (a partir)', valor: 'R$ 229,90' },
     ],
     preco_from: 'R$ 219<small>,90</small>',
     wa: 'Olá! Quero comprar Tinta 1ª Linha Standard Laet. Pode me passar mais informações?'
@@ -365,6 +365,25 @@ function render() {
 }
 
 render();
+
+function initZoom() {
+  const wrap = document.querySelector('.prod-hero-img-wrap');
+  const img = wrap && wrap.querySelector('img');
+  if (!wrap || !img) return;
+  wrap.addEventListener('mousemove', (e) => {
+    const r = wrap.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * 100;
+    const y = ((e.clientY - r.top) / r.height) * 100;
+    img.style.transformOrigin = `${x}% ${y}%`;
+    img.style.transform = 'scale(2.4)';
+    wrap.style.cursor = 'zoom-in';
+  });
+  wrap.addEventListener('mouseleave', () => {
+    img.style.transform = 'scale(1)';
+    img.style.transformOrigin = 'center center';
+  });
+}
+setTimeout(initZoom, 50);
 </script>
 </body>
 </html>
