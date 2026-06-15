@@ -229,6 +229,14 @@
     .step-num { width: 44px; height: 44px; border-radius: 50%; background: var(--yellow); color: var(--graphite); font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(255,193,7,.4); flex-shrink: 0; }
     .step-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: var(--graphite); margin-bottom: 8px; line-height: 1.3; }
     .step-desc { font-size: 12px; color: #888; line-height: 1.6; }
+    .steps-note { font-size: 11px; color: rgba(255,255,255,.5); margin-top: 6px; }
+    .pickup-box { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 44px; }
+    .pickup-card { background: var(--gray); border-radius: 14px; padding: 24px; display: flex; gap: 16px; align-items: flex-start; border: 1.5px solid transparent; transition: border-color .2s, box-shadow .2s; }
+    .pickup-card:hover { border-color: var(--blue); box-shadow: var(--shadow-sm); }
+    .pickup-icon { font-size: 32px; flex-shrink: 0; }
+    .pickup-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: var(--blue); margin-bottom: 6px; }
+    .pickup-desc { font-size: 13px; color: #555; line-height: 1.6; }
+    @media (max-width: 560px) { .pickup-box { grid-template-columns: 1fr; } }
 
     /* ──────── POR QUE — SPLIT ──────── */
     .why { background: var(--blue); }
@@ -422,11 +430,13 @@
     <span class="strip-item">🚚 Entrega no ABC e Zona Leste</span><span class="strip-dot"></span>
     <span class="strip-item">💰 Menor preço do mercado</span><span class="strip-dot"></span>
     <span class="strip-item">💳 Até 12x sem juros no cartão</span><span class="strip-dot"></span>
+    <span class="strip-item">💧 100% tintas base água</span><span class="strip-dot"></span>
     <span class="strip-item">🤝 Atendimento humano</span><span class="strip-dot"></span>
     <span class="strip-item">🏠 Pague só na entrega</span><span class="strip-dot"></span>
     <span class="strip-item">🚚 Entrega no ABC e Zona Leste</span><span class="strip-dot"></span>
     <span class="strip-item">💰 Menor preço do mercado</span><span class="strip-dot"></span>
     <span class="strip-item">💳 Até 12x sem juros no cartão</span><span class="strip-dot"></span>
+    <span class="strip-item">💧 100% tintas base água</span><span class="strip-dot"></span>
     <span class="strip-item">🤝 Atendimento humano</span><span class="strip-dot"></span>
     <span class="strip-item">🏠 Pague só na entrega</span><span class="strip-dot"></span>
   </div>
@@ -481,7 +491,7 @@
     <div class="steps-header">
       <span class="section-label">Passo a passo</span>
       <h2 class="section-title">Como comprar na Tintas Laet?</h2>
-      <p class="section-sub" style="margin-bottom:0">Simples assim — entrega na sua porta sem complicação.</p>
+      <p class="section-sub" style="margin-bottom:0">Simples assim — na sua porta ou na loja mais perto de você.</p>
     </div>
     <div class="steps-track">
       <div class="step-card">
@@ -501,13 +511,31 @@
       </div>
       <div class="step-card">
         <div class="step-num">4</div>
-        <div class="step-title">Combinamos a entrega</div>
-        <div class="step-desc">Frete justo pra sua região, prazo médio de 48h úteis</div>
+        <div class="step-title">Entrega ou retirada</div>
+        <div class="step-desc">Receba em casa ou retire na loja — você escolhe!</div>
       </div>
       <div class="step-card">
         <div class="step-num">5</div>
         <div class="step-title">Pague na entrega</div>
-        <div class="step-desc">Pix, cartão ou dinheiro — só paga quando chegar</div>
+        <div class="step-desc">Pix, cartão ou dinheiro — só paga quando chegar*</div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:11px;color:#aaa;margin-top:16px">* Válido para produtos sem coloração. Produtos coloridos são encomendas e podem exigir sinal antecipado.</p>
+
+    <div class="pickup-box">
+      <div class="pickup-card">
+        <div class="pickup-icon">🏪</div>
+        <div>
+          <div class="pickup-title">Venha até a loja</div>
+          <div class="pickup-desc">Passe em qualquer uma das nossas 4 unidades no ABC e Zona Leste. Sem precisar agendar — é só chegar!</div>
+        </div>
+      </div>
+      <div class="pickup-card">
+        <div class="pickup-icon">🚗</div>
+        <div>
+          <div class="pickup-title">Mande um Uber buscar</div>
+          <div class="pickup-desc">Combina pelo WhatsApp, escolhe o horário e manda um motorista retirar na loja pra você. Prático demais!</div>
+        </div>
       </div>
     </div>
   </div>
@@ -527,7 +555,7 @@
       <div class="seller-card">
         <div class="seller-img">
           <img src="images/embalagens/emborrachada-remove-bg-io.png" alt="Tinta Emborrachada Laet">
-          <span class="seller-badge">IMPERMEÁVEL</span>
+          <span class="seller-badge">RESOLVA UMIDADE!</span>
         </div>
         <div class="seller-body">
           <div class="seller-name">Tinta Emborrachada</div>
@@ -546,7 +574,7 @@
       <div class="seller-card">
         <div class="seller-img">
           <img src="images/embalagens/pisos efachadas-remove-bg-io.png" alt="Tinta Piso Premium Laet">
-          <span class="seller-badge">ATÉ 300m²</span>
+          <span class="seller-badge">SUPER RESISTÊNCIA</span>
         </div>
         <div class="seller-body">
           <div class="seller-name">Tinta Piso e Fachada Premium</div>
@@ -565,7 +593,7 @@
       <div class="seller-card">
         <div class="seller-img">
           <img src="images/embalagens/barrica-remove-bg-io.png" alt="Massa Corrida Laet">
-          <span class="seller-badge">USO INTERNO</span>
+          <span class="seller-badge">ÓTIMA QUALIDADE!</span>
         </div>
         <div class="seller-body">
           <div class="seller-name">Massa Corrida</div>
@@ -584,7 +612,7 @@
       <div class="seller-card">
         <div class="seller-img">
           <img src="images/embalagens/profissional-remove-bg-io.png" alt="Tinta Super Profissional Laet">
-          <span class="seller-badge">PROFISSIONAL</span>
+          <span class="seller-badge">ECONOMIA E QUALIDADE</span>
         </div>
         <div class="seller-body">
           <div class="seller-name">Tinta Super Profissional</div>
@@ -603,7 +631,7 @@
       <div class="seller-card">
         <div class="seller-img">
           <img src="images/embalagens/standard-remove-bg-io.png" alt="Tinta Standard Laet">
-          <span class="seller-badge">+100 CORES</span>
+          <span class="seller-badge">VÁRIAS CORES PRA VOCÊ</span>
         </div>
         <div class="seller-body">
           <div class="seller-name">Tinta 1ª Linha Standard</div>
@@ -622,7 +650,7 @@
       <div class="seller-card">
         <div class="seller-img">
           <img src="images/embalagens/vinil-remove-bg-io.png" alt="Latex Vinil Laet">
-          <span class="seller-badge">NOVA EMBALAGEM</span>
+          <span class="seller-badge">O MENOR PREÇO!</span>
         </div>
         <div class="seller-body">
           <div class="seller-name">Latex Vinil 18L</div>
@@ -641,7 +669,7 @@
       <div class="seller-card">
         <div class="seller-img">
           <img src="images/embalagens/premiumlavavel-remove-bg-io.png" alt="Tinta Premium Lavável Laet">
-          <span class="seller-badge">LAVÁVEL</span>
+          <span class="seller-badge">FACILIDADE PRA VOCÊ!</span>
         </div>
         <div class="seller-body">
           <div class="seller-name">Tinta Premium Lavável</div>
@@ -660,7 +688,7 @@
       <div class="seller-card">
         <div class="seller-img">
           <img src="images/ferramentas/kit-5-itens.jfif" alt="Kit Pintura Laet">
-          <span class="seller-badge">KIT COMPLETO</span>
+          <span class="seller-badge">PRATICIDADE</span>
         </div>
         <div class="seller-body">
           <div class="seller-name">Kit Pintura 5 itens</div>
