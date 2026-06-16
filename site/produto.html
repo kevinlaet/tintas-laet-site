@@ -83,6 +83,13 @@
     .prod-cta-box { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
     .prod-btn-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25D366; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; padding: 14px; border-radius: var(--radius); transition: filter .2s; }
     .prod-btn-wa:hover { filter: brightness(1.08); }
+    .prod-cart-box { background: #fff; border: 1.5px solid #E0E4EC; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .prod-cart-field { margin-bottom: 12px; }
+    .prod-cart-field label { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: var(--graphite); margin-bottom: 6px; }
+    .prod-cart-field select, .prod-cart-field input { width: 100%; padding: 10px 12px; border: 1.5px solid #DCE1EA; border-radius: 7px; font-size: 13px; font-family: 'Poppins', sans-serif; background: #fff; }
+    .prod-cart-field select:focus, .prod-cart-field input:focus { outline: none; border-color: var(--blue); }
+    .prod-btn-cart { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: var(--blue); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; padding: 13px; border-radius: var(--radius); border: none; cursor: pointer; transition: filter .2s; }
+    .prod-btn-cart:hover { filter: brightness(1.15); }
     .prod-btn-back { display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: var(--blue); font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; padding: 10px; border-radius: var(--radius); border: 1.5px solid rgba(13,71,161,.25); transition: background .2s, border-color .2s; }
     .prod-btn-back:hover { background: rgba(13,71,161,.06); border-color: var(--blue); }
     .prod-note { margin-top: 16px; font-size: 11px; color: #999; text-align: center; line-height: 1.5; }
@@ -445,6 +452,9 @@ function render() {
       <td>${pr.valor}</td>
     </tr>`).join('');
 
+  const tamanhoOptionsHtml = p.precos.map(pr => `<option value="${pr.desc}|${pr.valor}">${pr.desc} — ${pr.valor}</option>`).join('');
+  const coresOptionsHtml = p.cores ? p.cores.map(c => `<option value="${c.nome}">${c.nome}</option>`).join('') : '';
+
   const waUrl = `https://wa.me/5511977140964?text=${encodeURIComponent(p.wa)}`;
   document.getElementById('wa-float').href = waUrl;
 
@@ -487,6 +497,26 @@ function render() {
             <div class="prod-price-card">
               <div class="prod-price-card-title">Tabela de preços</div>
               <table class="prod-price-table">${precosHtml}</table>
+
+              <div class="prod-cart-box">
+                <div class="prod-cart-field">
+                  <label>Tamanho</label>
+                  <select id="cart-tamanho">${tamanhoOptionsHtml}</select>
+                </div>
+                ${p.cores ? `
+                <div class="prod-cart-field">
+                  <label>Cor</label>
+                  <select id="cart-cor">${coresOptionsHtml}</select>
+                </div>` : ''}
+                <div class="prod-cart-field">
+                  <label>Quantidade</label>
+                  <input type="number" id="cart-qty" value="1" min="1">
+                </div>
+                <button class="prod-btn-cart" onclick="addToCartFromProduct('${id}')">
+                  🛒 Adicionar ao carrinho
+                </button>
+              </div>
+
               <div class="prod-cta-box">
                 <a href="${waUrl}" class="prod-btn-wa" target="_blank" rel="noopener">
                   💬 Comprar no WhatsApp
@@ -540,6 +570,18 @@ function render() {
 
 render();
 
+function addToCartFromProduct(id) {
+  const p = produtos[id];
+  if (!p) return;
+  const tamanhoSel = document.getElementById('cart-tamanho');
+  const corSel = document.getElementById('cart-cor');
+  const qtyInput = document.getElementById('cart-qty');
+  const [tamanho, valor] = tamanhoSel.value.split('|');
+  const cor = corSel ? corSel.value : null;
+  const qty = parseInt(qtyInput.value, 10) || 1;
+  LaetCart.add({ produtoId: id, nome: p.nome, tamanho, valor, cor, qty });
+}
+
 function initZoom() {
   const wrap = document.querySelector('.prod-hero-img-wrap');
   const img = wrap && wrap.querySelector('img');
@@ -559,5 +601,6 @@ function initZoom() {
 }
 setTimeout(initZoom, 50);
 </script>
+<script src="cart.js"></script>
 </body>
 </html>
