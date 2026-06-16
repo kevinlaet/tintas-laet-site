@@ -87,6 +87,28 @@
     .prod-btn-back:hover { background: rgba(13,71,161,.06); border-color: var(--blue); }
     .prod-note { margin-top: 16px; font-size: 11px; color: #999; text-align: center; line-height: 1.5; }
 
+    /* COLOR CATALOG */
+    .prod-cores { background: #F8F9FC; padding: 60px 0; border-top: 1px solid #E8ECF4; }
+    .prod-cores-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+    .prod-cores-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; color: var(--blue); }
+    .prod-cores-count { font-size: 13px; color: #888; margin-top: 4px; }
+    .prod-cores-pdf { display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; padding: 10px 18px; border-radius: var(--radius); transition: filter .2s; flex-shrink: 0; }
+    .prod-cores-pdf:hover { filter: brightness(1.15); }
+    .prod-cores-pdf svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .cores-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .core-card { border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.07); border: 1px solid #E0E4EC; transition: transform .2s, box-shadow .2s; }
+    .core-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+    .core-swatch { height: 90px; }
+    .core-swatch-branco { border-bottom: 1px solid #E0E4EC; }
+    .core-info { padding: 10px 12px; background: #fff; }
+    .core-nome { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; color: var(--graphite); line-height: 1.3; margin-bottom: 3px; }
+    .core-hex { font-size: 10px; color: #bbb; font-family: monospace; }
+    .cores-aviso { margin-top: 28px; background: #fff; border: 1px solid #E0E4EC; border-left: 4px solid var(--yellow); border-radius: 10px; padding: 18px 20px; font-size: 13px; color: #555; line-height: 1.75; }
+    .cores-aviso strong { color: var(--graphite); }
+    @media (max-width: 900px) { .cores-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 600px) { .cores-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; } .core-swatch { height: 72px; } }
+    @media (max-width: 380px) { .cores-grid { grid-template-columns: repeat(2, 1fr); } }
+
     /* NOT FOUND */
     .not-found { text-align: center; padding: 120px 24px; }
     .not-found h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 28px; color: var(--blue); margin-bottom: 12px; }
@@ -212,7 +234,45 @@ const produtos = {
     ],
     preco_from: 'R$ 139<small>,90</small>',
     preco_label: 'balde 18L — a partir de',
-    wa: 'Olá! Quero comprar Tinta Super Profissional Laet. Pode me passar mais informações?'
+    wa: 'Olá! Quero comprar Tinta Super Profissional Laet. Pode me passar mais informações?',
+    catalogo_pdf: 'catalogo/super-profissional.html',
+    cores: [
+      { nome: 'Linho Americano',      hex: '#DBC8A8' },
+      { nome: 'Areia',                hex: '#C8BCA4' },
+      { nome: 'Palha',                hex: '#EDEC98' },
+      { nome: 'Madeira Enfumaçada',   hex: '#8C887C' },
+      { nome: 'Bambu Tropical',       hex: '#78964A' },
+      { nome: 'Camurça',              hex: '#C4AA7C' },
+      { nome: 'Rosado',               hex: '#F0B8C4' },
+      { nome: 'Rosas Híbridas',       hex: '#EC70AC' },
+      { nome: 'Caixa Mágica',         hex: '#8268CC' },
+      { nome: 'Azul Laet',            hex: '#5898E0' },
+      { nome: 'Lagoa Azul',           hex: '#4070D4' },
+      { nome: 'Azul Rei',             hex: '#2858C8' },
+      { nome: 'Mergulho Tranquilo',   hex: '#18B8D8' },
+      { nome: 'Olhar Encantador',     hex: '#18A8BC' },
+      { nome: 'Verde Piscina',        hex: '#5CC8C0' },
+      { nome: 'Paraíso Secreto',      hex: '#60D4AC' },
+      { nome: 'Refresco de Menta',    hex: '#48C490' },
+      { nome: 'Folha de Trevo',       hex: '#42B860' },
+      { nome: 'Hortelã Crespa',       hex: '#38BC70' },
+      { nome: 'Névoa',                hex: '#C4C8C8' },
+      { nome: 'Trevo da Sorte',       hex: '#389A4A' },
+      { nome: 'Amarelo Laet',         hex: '#F2E878' },
+      { nome: 'Compota de Abacaxi',   hex: '#EDEDA0' },
+      { nome: 'Vitamina',             hex: '#F4C490' },
+      { nome: 'Amêndoa Confeitada',   hex: '#D4C8B4' },
+      { nome: 'Conto Infantil',       hex: '#F4A898' },
+      { nome: 'Camponesa',            hex: '#EE9060' },
+      { nome: 'Papel de Bala',        hex: '#F8B8D0' },
+      { nome: 'Rosa Gloss',           hex: '#EC60A4' },
+      { nome: 'A 04',                 hex: '#8C8884' },
+      { nome: 'Perfume de Figo',      hex: '#C898D8' },
+      { nome: 'Mousse de Uva',        hex: '#A878CC' },
+      { nome: 'Cinza Medieval',       hex: '#909898' },
+      { nome: 'Tubarão Cinza',        hex: '#626870' },
+      { nome: 'Branco',               hex: '#FFFFFF', borda: true },
+    ]
   },
   'standard': {
     nome: 'Tinta 1ª Linha Standard',
@@ -242,7 +302,83 @@ const produtos = {
       { desc: '18L — Cores', valor: 'R$ 99,90' },
     ],
     preco_from: 'R$ 79<small>,90</small>',
-    wa: 'Olá! Quero comprar Latex Vinil Laet. Pode me passar mais informações?'
+    wa: 'Olá! Quero comprar Latex Vinil Laet. Pode me passar mais informações?',
+    catalogo_pdf: 'catalogo/latex-vinil.html',
+    cores: [
+      { nome: 'Cinza A',               hex: '#C5C5C5' },
+      { nome: 'Cinza B',               hex: '#929292' },
+      { nome: 'Cinza C',               hex: '#686868' },
+      { nome: 'Marfim',                hex: '#F5E9B0' },
+      { nome: 'Amarelo Laet',          hex: '#F2E168' },
+      { nome: 'Compota de Abacaxi',    hex: '#EDEDA0' },
+      { nome: 'Areia',                 hex: '#D0AA84' },
+      { nome: 'Pêssego',               hex: '#F0C09A' },
+      { nome: 'Sapatilha',             hex: '#EEBCBC' },
+      { nome: 'Rosa Vinho',            hex: '#CC8080' },
+      { nome: 'Coma de Mascar',        hex: '#EFA8BB' },
+      { nome: 'Cacto Dália',           hex: '#E8729A' },
+      { nome: 'Rosado',                hex: '#F2A0B8' },
+      { nome: 'Templo da Sabedoria',   hex: '#C4AADC' },
+      { nome: 'Chiffon Azul',          hex: '#88C0DC' },
+      { nome: 'Paisagem Leve',         hex: '#A4D8D4' },
+      { nome: 'Fresco Marítimo',       hex: '#6ABFBC' },
+      { nome: 'Fonte da Sorte',        hex: '#9ACE9A' },
+      { nome: 'Branco',                hex: '#FFFFFF', borda: true },
+    ]
+  },
+  'direto-no-gesso': {
+    nome: 'Tinta Direto no Gesso',
+    categoria: 'Tintas',
+    badge: 'ECONÔMICA E PRÁTICA!',
+    imagem: 'images/embalagens/direto no gesso-remove-bg-io.png',
+    desc_curta: 'Vai direto no gesso e drywall sem precisar de fundo preparado. Econômica, anti-mofo e baixo odor.',
+    descricao: 'A Tinta Direto no Gesso Laet foi desenvolvida especialmente para aplicação em gesso e drywall, dispensando o uso de fundo preparado. Ideal para quem busca praticidade, economia e um acabamento bonito. Possui baixo odor, ação anti-mofo e excelente cobertura para ambientes internos.',
+    beneficios: ['Vai direto no gesso e drywall', 'Dispensa uso de fundo preparado', 'Sem cheiro forte', 'Anti-mofo', 'Ótimo acabamento', 'Econômica', 'Uso interno'],
+    precos: [
+      { desc: '18L — Branca', valor: 'R$ 179,90' },
+      { desc: '18L — Cores', valor: 'R$ 189,90' },
+    ],
+    preco_from: 'R$ 179<small>,90</small>',
+    preco_label: 'balde 18L — a partir de',
+    wa: 'Olá! Quero comprar Tinta Direto no Gesso Laet. Pode me passar mais informações?',
+    catalogo_pdf: 'catalogo/super-profissional.html',
+    cores: [
+      { nome: 'Linho Americano',      hex: '#DBC8A8' },
+      { nome: 'Areia',                hex: '#C8BCA4' },
+      { nome: 'Palha',                hex: '#EDEC98' },
+      { nome: 'Madeira Enfumaçada',   hex: '#8C887C' },
+      { nome: 'Bambu Tropical',       hex: '#78964A' },
+      { nome: 'Camurça',              hex: '#C4AA7C' },
+      { nome: 'Rosado',               hex: '#F0B8C4' },
+      { nome: 'Rosas Híbridas',       hex: '#EC70AC' },
+      { nome: 'Caixa Mágica',         hex: '#8268CC' },
+      { nome: 'Azul Laet',            hex: '#5898E0' },
+      { nome: 'Lagoa Azul',           hex: '#4070D4' },
+      { nome: 'Azul Rei',             hex: '#2858C8' },
+      { nome: 'Mergulho Tranquilo',   hex: '#18B8D8' },
+      { nome: 'Olhar Encantador',     hex: '#18A8BC' },
+      { nome: 'Verde Piscina',        hex: '#5CC8C0' },
+      { nome: 'Paraíso Secreto',      hex: '#60D4AC' },
+      { nome: 'Refresco de Menta',    hex: '#48C490' },
+      { nome: 'Folha de Trevo',       hex: '#42B860' },
+      { nome: 'Hortelã Crespa',       hex: '#38BC70' },
+      { nome: 'Névoa',                hex: '#C4C8C8' },
+      { nome: 'Trevo da Sorte',       hex: '#389A4A' },
+      { nome: 'Amarelo Laet',         hex: '#F2E878' },
+      { nome: 'Compota de Abacaxi',   hex: '#EDEDA0' },
+      { nome: 'Vitamina',             hex: '#F4C490' },
+      { nome: 'Amêndoa Confeitada',   hex: '#D4C8B4' },
+      { nome: 'Conto Infantil',       hex: '#F4A898' },
+      { nome: 'Camponesa',            hex: '#EE9060' },
+      { nome: 'Papel de Bala',        hex: '#F8B8D0' },
+      { nome: 'Rosa Gloss',           hex: '#EC60A4' },
+      { nome: 'A 04',                 hex: '#8C8884' },
+      { nome: 'Perfume de Figo',      hex: '#C898D8' },
+      { nome: 'Mousse de Uva',        hex: '#A878CC' },
+      { nome: 'Cinza Medieval',       hex: '#909898' },
+      { nome: 'Tubarão Cinza',        hex: '#626870' },
+      { nome: 'Branco',               hex: '#FFFFFF', borda: true },
+    ]
   },
   'premium-lavavel': {
     nome: 'Tinta Premium Lavável',
@@ -364,7 +500,42 @@ function render() {
           </div>
         </div>
       </div>
-    </section>`;
+    </section>
+
+    ${p.cores ? `
+    <!-- CATÁLOGO DE CORES -->
+    <section class="prod-cores" id="cores">
+      <div class="container">
+        <div class="prod-cores-header">
+          <div>
+            <div class="prod-cores-title">Catálogo de Cores</div>
+            <div class="prod-cores-count">${p.cores.length} cores disponíveis</div>
+          </div>
+          ${p.catalogo_pdf ? `
+          <a href="${p.catalogo_pdf}" class="prod-cores-pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Ver catálogo completo / PDF
+          </a>` : ''}
+        </div>
+
+        <div class="cores-grid">
+          ${p.cores.map(c => `
+          <div class="core-card">
+            <div class="core-swatch${c.borda ? ' core-swatch-branco' : ''}" style="background:${c.hex}"></div>
+            <div class="core-info">
+              <div class="core-nome">${c.nome}</div>
+              <div class="core-hex">${c.hex}</div>
+            </div>
+          </div>`).join('')}
+        </div>
+
+        <div class="cores-aviso">
+          ⚠️ <strong>Atenção sobre as cores:</strong> Cada tela — celular, computador ou tablet — exibe as cores de um jeito diferente dependendo do brilho, configuração e modelo do aparelho. As cores aqui são uma referência visual, mas podem não representar 100% o tom real da tinta.<br><br>
+          Para ter certeza antes de comprar, <strong>recomendamos visitar uma de nossas lojas</strong> e consultar pessoalmente as cartelas de cor que ficam expostas na loja. Assim você vê o tom real da tinta e escolhe sem surpresa. Nossas lojas ficam no <strong>ABC e Zona Leste de SP</strong> — qualquer dúvida, é só chamar no WhatsApp! 😊
+        </div>
+      </div>
+    </section>` : ''}
+`;
 }
 
 render();
