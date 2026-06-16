@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Cores — Laet Super Profissional Acrílico | Tintas Laet</title>
+  <meta name="description" content="Veja todas as 35 cores disponíveis na linha Laet Super Profissional Acrílico. Escolha a cor certa e peça pelo WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; color: #212529; background: #fff; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --blue: #0D47A1;
+      --blue-dark: #062B63;
+      --blue-mid: #1565C0;
+      --yellow: #FFC107;
+      --white: #FFFFFF;
+      --gray: #F0F2F5;
+      --graphite: #212529;
+      --radius: 8px;
+      --shadow-sm: 0 2px 10px rgba(0,0,0,0.07);
+      --shadow: 0 4px 24px rgba(0,0,0,0.12);
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAVBAR ── */
+    .navbar { background: var(--blue-dark); padding: 14px 0; }
+    .navbar-inner { display: flex; align-items: center; justify-content: space-between; }
+    .navbar-logo img { height: 62px; }
+    .navbar-back { display: flex; align-items: center; gap: 8px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; color: rgba(255,255,255,.75); transition: color .2s; }
+    .navbar-back:hover { color: var(--yellow); }
+    .navbar-back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+    /* ── HERO ── */
+    .cat-hero { background: linear-gradient(140deg, var(--blue-dark) 0%, var(--blue) 100%); padding: 52px 0 44px; text-align: center; }
+    .cat-tag { display: inline-block; background: rgba(255,193,7,.18); border: 1px solid rgba(255,193,7,.4); color: var(--yellow); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 14px; }
+    .cat-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(26px, 5vw, 50px); color: #fff; line-height: 1.1; margin-bottom: 10px; }
+    .cat-title span { color: var(--yellow); }
+    .cat-subtitle { font-size: 15px; color: rgba(255,255,255,.75); margin-bottom: 28px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .cat-hero-actions { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 24px; border-radius: var(--radius); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; border: none; transition: transform .18s, box-shadow .18s; line-height: 1; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-yellow { background: var(--yellow); color: var(--graphite); box-shadow: 0 4px 14px rgba(255,193,7,.35); }
+    .btn-yellow:hover { box-shadow: 0 8px 24px rgba(255,193,7,.5); }
+    .btn-ghost { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.45); }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.8); }
+
+    /* ── CATÁLOGO ── */
+    .catalog-section { padding: 60px 0; background: #fff; }
+    .catalog-intro { text-align: center; margin-bottom: 44px; }
+    .catalog-intro h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(18px, 2.5vw, 26px); color: var(--blue); margin-bottom: 8px; }
+    .catalog-intro p { font-size: 14px; color: #777; }
+
+    .colors-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+    .color-card { border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid #E8ECF2; transition: transform .2s, box-shadow .2s; cursor: default; }
+    .color-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .color-swatch { height: 110px; width: 100%; }
+    .color-swatch-branco { border-bottom: 1px solid #E8ECF2; }
+    .color-info { padding: 12px 14px; background: #fff; }
+    .color-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: var(--graphite); line-height: 1.3; margin-bottom: 4px; }
+    .color-hex { font-size: 11px; color: #aaa; font-family: monospace; }
+
+    /* ── AVISO ── */
+    .catalog-note { margin-top: 44px; background: #FFF8E8; border: 1px solid #FFE082; border-left: 4px solid var(--yellow); border-radius: 12px; padding: 20px 24px; font-size: 13px; color: #555; line-height: 1.8; }
+    .catalog-note strong { color: var(--graphite); }
+
+    /* ── CTA ── */
+    .catalog-cta { background: var(--blue); padding: 60px 0; text-align: center; }
+    .catalog-cta h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(20px, 3vw, 32px); color: #fff; margin-bottom: 10px; }
+    .catalog-cta p { color: rgba(255,255,255,.75); font-size: 15px; margin-bottom: 28px; }
+    .cta-btns { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-white { background: #fff; color: var(--blue); box-shadow: 0 4px 14px rgba(0,0,0,.2); }
+    .btn-white:hover { box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--blue-dark); padding: 28px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+    .footer-text { font-size: 12px; color: rgba(255,255,255,.45); }
+    .footer-link { font-size: 12px; color: rgba(255,255,255,.55); transition: color .2s; }
+    .footer-link:hover { color: var(--yellow); }
+
+    /* ── WA FLOAT ── */
+    .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 999; display: flex; align-items: center; gap: 10px; background: #25D366; color: #fff; padding: 12px 20px 12px 16px; border-radius: 50px; box-shadow: 0 4px 22px rgba(37,211,102,.55); transition: transform .2s; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; }
+    .wa-float:hover { transform: translateY(-3px); }
+    .wa-float svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) { .colors-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 640px) { .colors-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; } .color-swatch { height: 86px; } }
+    @media (max-width: 420px) { .colors-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .navbar-logo img { height: 48px; } }
+
+    /* ── PRINT / PDF ── */
+    @media print {
+      .navbar, .wa-float, .catalog-cta, .footer, .cat-hero-actions { display: none !important; }
+      .cat-hero { padding: 28px 0 22px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .color-swatch { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .colors-grid { grid-template-columns: repeat(5, 1fr); gap: 12px; }
+      .color-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+      body { font-size: 12px; }
+      .catalog-section { padding: 24px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/5511977140964?text=Olá! Quero pedir uma cor da linha Super Profissional Acrílico." class="wa-float" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  Pedir pelo WhatsApp
+</a>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="../index.html" class="navbar-logo">
+      <img src="../images/logo-branco.png" alt="Tintas Laet">
+    </a>
+    <a href="../produto.html?id=super-profissional" class="navbar-back">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Ver produto
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="cat-hero">
+  <div class="container">
+    <span class="cat-tag">Catálogo de Cores</span>
+    <h1 class="cat-title">Laet Super Profissional <span>Acrílico</span></h1>
+    <p class="cat-subtitle">35 cores disponíveis. Escolha a sua e peça pelo WhatsApp — entregamos no ABC e Zona Leste.</p>
+    <div class="cat-hero-actions">
+      <button class="btn btn-yellow" onclick="window.print()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Baixar / Imprimir PDF
+      </button>
+      <a href="https://wa.me/5511977140964?text=Olá! Tenho interesse na linha Super Profissional Acrílico e quero escolher uma cor." class="btn btn-ghost" target="_blank" rel="noopener">
+        💬 Falar com atendente
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GRADES DE CORES -->
+<section class="catalog-section">
+  <div class="container">
+
+    <div class="catalog-intro">
+      <h2>35 cores disponíveis</h2>
+      <p>Informe o nome da cor desejada ao falar com nosso atendimento.</p>
+    </div>
+
+    <div class="colors-grid">
+
+      <!-- PÁGINA 1 -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#DBC8A8"></div>
+        <div class="color-info"><div class="color-name">Linho Americano</div><div class="color-hex">#DBC8A8</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C8BCA4"></div>
+        <div class="color-info"><div class="color-name">Areia</div><div class="color-hex">#C8BCA4</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#EDEC98"></div>
+        <div class="color-info"><div class="color-name">Palha</div><div class="color-hex">#EDEC98</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#8C887C"></div>
+        <div class="color-info"><div class="color-name">Madeira Enfumaçada</div><div class="color-hex">#8C887C</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#78964A"></div>
+        <div class="color-info"><div class="color-name">Bambu Tropical</div><div class="color-hex">#78964A</div></div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C4AA7C"></div>
+        <div class="color-info"><div class="color-name">Camurça</div><div class="color-hex">#C4AA7C</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F0B8C4"></div>
+        <div class="color-info"><div class="color-name">Rosado</div><div class="color-hex">#F0B8C4</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#EC70AC"></div>
+        <div class="color-info"><div class="color-name">Rosas Híbridas</div><div class="color-hex">#EC70AC</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#8268CC"></div>
+        <div class="color-info"><div class="color-name">Caixa Mágica</div><div class="color-hex">#8268CC</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#5898E0"></div>
+        <div class="color-info"><div class="color-name">Azul Laet</div><div class="color-hex">#5898E0</div></div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#4070D4"></div>
+        <div class="color-info"><div class="color-name">Lagoa Azul</div><div class="color-hex">#4070D4</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#2858C8"></div>
+        <div class="color-info"><div class="color-name">Azul Rei</div><div class="color-hex">#2858C8</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#18B8D8"></div>
+        <div class="color-info"><div class="color-name">Mergulho Tranquilo</div><div class="color-hex">#18B8D8</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#18A8BC"></div>
+        <div class="color-info"><div class="color-name">Olhar Encantador</div><div class="color-hex">#18A8BC</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#5CC8C0"></div>
+        <div class="color-info"><div class="color-name">Verde Piscina</div><div class="color-hex">#5CC8C0</div></div>
+      </div>
+
+      <!-- PÁGINA 2 -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#60D4AC"></div>
+        <div class="color-info"><div class="color-name">Paraíso Secreto</div><div class="color-hex">#60D4AC</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#48C490"></div>
+        <div class="color-info"><div class="color-name">Refresco de Menta</div><div class="color-hex">#48C490</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#42B860"></div>
+        <div class="color-info"><div class="color-name">Folha de Trevo</div><div class="color-hex">#42B860</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#38BC70"></div>
+        <div class="color-info"><div class="color-name">Hortelã Crespa</div><div class="color-hex">#38BC70</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C4C8C8"></div>
+        <div class="color-info"><div class="color-name">Névoa</div><div class="color-hex">#C4C8C8</div></div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#389A4A"></div>
+        <div class="color-info"><div class="color-name">Trevo da Sorte</div><div class="color-hex">#389A4A</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F2E878"></div>
+        <div class="color-info"><div class="color-name">Amarelo Laet</div><div class="color-hex">#F2E878</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#EDEDA0"></div>
+        <div class="color-info"><div class="color-name">Compota de Abacaxi</div><div class="color-hex">#EDEDA0</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F4C490"></div>
+        <div class="color-info"><div class="color-name">Vitamina</div><div class="color-hex">#F4C490</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#D4C8B4"></div>
+        <div class="color-info"><div class="color-name">Amêndoa Confeitada</div><div class="color-hex">#D4C8B4</div></div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F4A898"></div>
+        <div class="color-info"><div class="color-name">Conto Infantil</div><div class="color-hex">#F4A898</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#EE9060"></div>
+        <div class="color-info"><div class="color-name">Camponesa</div><div class="color-hex">#EE9060</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F8B8D0"></div>
+        <div class="color-info"><div class="color-name">Papel de Bala</div><div class="color-hex">#F8B8D0</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#EC60A4"></div>
+        <div class="color-info"><div class="color-name">Rosa Gloss</div><div class="color-hex">#EC60A4</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#8C8884"></div>
+        <div class="color-info"><div class="color-name">A 04</div><div class="color-hex">#8C8884</div></div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C898D8"></div>
+        <div class="color-info"><div class="color-name">Perfume de Figo</div><div class="color-hex">#C898D8</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A878CC"></div>
+        <div class="color-info"><div class="color-name">Mousse de Uva</div><div class="color-hex">#A878CC</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#909898"></div>
+        <div class="color-info"><div class="color-name">Cinza Medieval</div><div class="color-hex">#909898</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#626870"></div>
+        <div class="color-info"><div class="color-name">Tubarão Cinza</div><div class="color-hex">#626870</div></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch color-swatch-branco" style="background:#FFFFFF"></div>
+        <div class="color-info"><div class="color-name">Branco</div><div class="color-hex">#FFFFFF</div></div>
+      </div>
+
+    </div>
+
+    <div class="catalog-note">
+      ⚠️ <strong>Atenção sobre as cores:</strong> Cada tela — celular, computador ou tablet — exibe as cores de um jeito diferente dependendo do brilho, configuração e modelo do aparelho. As cores aqui são uma referência visual, mas podem não representar 100% o tom real da tinta.<br><br>
+      Para ter certeza antes de comprar, <strong>recomendamos visitar uma de nossas lojas</strong> e consultar pessoalmente as cartelas de cor que ficam expostas na loja. Assim você vê o tom real da tinta e escolhe sem surpresa. Nossas lojas ficam no <strong>ABC e Zona Leste de SP</strong> — qualquer dúvida, é só chamar no WhatsApp! 😊
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="catalog-cta">
+  <div class="container">
+    <h2>Encontrou a cor ideal?</h2>
+    <p>Manda o nome da cor no WhatsApp e a gente prepara o seu pedido na hora.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/5511977140964?text=Olá! Quero fazer um pedido da linha Super Profissional Acrílico." class="btn btn-white" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pedir pelo WhatsApp
+      </a>
+      <a href="https://wa.me/5511977140964?text=Olá! Gostaria de um orçamento para a linha Super Profissional Acrílico." class="btn btn-ghost" target="_blank" rel="noopener">
+        Pedir orçamento
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <a href="../index.html">
+      <img src="../images/logo-branco.png" alt="Tintas Laet" style="height:48px">
+    </a>
+    <span class="footer-text">© 2026 Tintas Laet — A tinta nobre da comunidade</span>
+    <a href="../produto.html?id=super-profissional" class="footer-link">← Ver produto</a>
+  </div>
+</footer>
+
+</body>
+</html>
