@@ -84,6 +84,31 @@
     .hero-badge-txt { font-size: 10px; color: #999; margin-top: 2px; }
     @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
+    /* ──────── BANNER CAROUSEL ──────── */
+    .hero-banners { position: relative; overflow: hidden; width: 100%; background: var(--blue-dark); margin-top: 70px; }
+    .banner-carousel { display: flex; transition: transform .55s cubic-bezier(.4,0,.2,1); will-change: transform; }
+    .banner-slide { min-width: 100%; position: relative; flex-shrink: 0; }
+    .banner-img { width: 100%; display: block; height: auto; }
+    .banner-cta-zone { position: absolute; display: block; border-radius: 8px; cursor: pointer; }
+    .banner-cta-zone:hover { background: rgba(255,255,255,.15); outline: 2px solid rgba(255,255,255,.3); }
+    .banner-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+    .banner-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.4); border: 2px solid rgba(255,255,255,.6); cursor: pointer; padding: 0; transition: background .2s, transform .2s; }
+    .banner-dot.active { background: #fff; transform: scale(1.25); }
+    .banner-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.25); border: none; color: #fff; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 26px; z-index: 10; transition: background .2s; display: flex; align-items: center; justify-content: center; }
+    .banner-arrow:hover { background: rgba(0,0,0,.48); }
+    .banner-prev { left: 16px; }
+    .banner-next { right: 16px; }
+
+    /* ──────── STATS BAR ──────── */
+    .stats-bar { background: var(--blue-dark); padding: 22px 0; border-top: 1px solid rgba(255,255,255,.1); }
+    .stats-bar-inner { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .stats-bar-item { display: flex; flex-direction: column; align-items: center; padding: 6px 36px; }
+    .stats-bar-num { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--yellow); line-height: 1; }
+    .stats-bar-txt { font-size: 11px; color: rgba(255,255,255,.6); text-align: center; margin-top: 2px; }
+    .stats-bar-sep { width: 1px; height: 44px; background: rgba(255,255,255,.15); }
+    @media (max-width: 768px) { .stats-bar-sep { display: none; } .stats-bar-item { padding: 8px 20px; } .banner-arrow { width: 36px; height: 36px; font-size: 20px; } }
+    @media (max-width: 560px) { .banner-arrow { display: none; } .stats-bar-item { padding: 6px 14px; } .stats-bar-num { font-size: 28px; } }
+
     /* ──────── STRIP ──────── */
     .strip { background: var(--yellow); padding: 14px 0; overflow: hidden; }
     .strip-track { display: flex; gap: 48px; align-items: center; white-space: nowrap; animation: ticker 22s linear infinite; padding-right: 48px; }
@@ -410,53 +435,66 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="inicio">
-  <div class="hero-dots"></div>
-  <div class="hero-color-bar" aria-hidden="true">
-    <span style="background:#E74C3C"></span><span style="background:#E67E22"></span><span style="background:#F1C40F"></span><span style="background:#A8D5A2"></span><span style="background:#2ECC71"></span><span style="background:#1ABC9C"></span><span style="background:#3498DB"></span><span style="background:#9B59B6"></span><span style="background:#ECF0F1"></span><span style="background:#F5CBA7"></span>
-  </div>
-  <div class="container hero-inner">
-    <div>
-      <span class="hero-eyebrow">✦ A tinta nobre da comunidade</span>
-      <h1 class="hero-title">Compre<br><span class="accent">sem sair</span><br>de casa!</h1>
-      <p class="hero-desc">Atendimento humano, frete justo e parcelamento em até 12x sem juros. A Tintas Laet entrega na sua porta com o menor preço do ABC.</p>
-      <div class="hero-btns">
-        <a href="https://wa.me/5511977140964?text=Olá! Quero fazer um pedido." class="btn btn-yellow" target="_blank" rel="noopener">💬 Fazer pedido agora</a>
-        <a href="https://wa.me/5511977140964?text=Olá! Gostaria de um orçamento." class="btn btn-ghost" target="_blank" rel="noopener">📋 Pedir orçamento</a>
-      </div>
-      <a href="https://wa.me/5511977140964?text=Olá! Não sei quanto de tinta preciso. Pode me ajudar a calcular?" class="hero-offer" target="_blank" rel="noopener">🧮 Não sabe quanto de tinta precisa? <strong>A gente calcula pra você</strong></a>
-      <div class="hero-social-proof">
-        <div class="hero-avatars">
-          <div class="hero-avatar">😊</div>
-          <div class="hero-avatar">😄</div>
-          <div class="hero-avatar">🙂</div>
-          <div class="hero-avatar">😃</div>
-          <div class="hero-avatar">😁</div>
-        </div>
-        <div class="hero-proof-text">
-          <strong>+300 mil vendas realizadas</strong>
-          <span>⭐⭐⭐⭐⭐ Atendimento 5 estrelas</span>
-        </div>
-      </div>
+<!-- HERO BANNERS -->
+<section class="hero-banners" id="inicio">
+  <div class="banner-carousel" id="bannerCarousel">
+
+    <!-- Slide 1: Linha de produtos -->
+    <div class="banner-slide">
+      <img src="images/hero%20banners/hero%20banner%201.png" alt="A tinta certa para cada projeto — Tintas Laet" class="banner-img">
+      <a href="#produtos" class="banner-cta-zone" style="top:71%;left:4%;width:15%;height:10%" aria-label="Ver Catálogo"></a>
     </div>
-    <div class="hero-visual">
-      <div class="hero-visual-bg"></div>
-      <div class="hero-mascote-wrap">
-        <img src="images/mascote.png" alt="Mascote Tintas Laet" class="hero-mascote">
-        <div class="hero-mascote-glow"></div>
-        <div class="hero-badge hero-badge-top">
-          <div class="hero-badge-val">até 12x</div>
-          <div class="hero-badge-txt">sem juros</div>
-        </div>
-        <div class="hero-badge hero-badge-bottom">
-          <div class="hero-badge-val">⭐ 4.9</div>
-          <div class="hero-badge-txt">no Google</div>
-        </div>
-      </div>
+
+    <!-- Slide 2: Entregas rápidas -->
+    <div class="banner-slide">
+      <img src="images/hero%20banners/hero%20banner%202.png" alt="Entregas Rápidas — Tintas Laet" class="banner-img">
+      <a href="https://wa.me/5511977140964?text=Olá! Quero saber sobre entrega e frete." class="banner-cta-zone" target="_blank" rel="noopener" style="top:79%;left:7%;width:15%;height:9%" aria-label="Consultar entrega"></a>
     </div>
+
+    <!-- Slide 3: 4 lojas -->
+    <div class="banner-slide">
+      <img src="images/hero%20banners/hero%20banner%203.png" alt="4 Lojas Perto de Você — Tintas Laet" class="banner-img">
+      <a href="#enderecos" class="banner-cta-zone" style="top:79%;left:4%;width:26%;height:8%" aria-label="Encontrar loja mais próxima"></a>
+    </div>
+
   </div>
+
+  <!-- Dots de navegação -->
+  <div class="banner-dots" id="bannerDots">
+    <button class="banner-dot active" onclick="bannerGo(0)" aria-label="Slide 1"></button>
+    <button class="banner-dot" onclick="bannerGo(1)" aria-label="Slide 2"></button>
+    <button class="banner-dot" onclick="bannerGo(2)" aria-label="Slide 3"></button>
+  </div>
+
+  <!-- Setas -->
+  <button class="banner-arrow banner-prev" onclick="bannerPrev()" aria-label="Anterior">&#8249;</button>
+  <button class="banner-arrow banner-next" onclick="bannerNext()" aria-label="Próximo">&#8250;</button>
 </section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container stats-bar-inner">
+    <div class="stats-bar-item">
+      <span class="stats-bar-num">+300mil</span>
+      <span class="stats-bar-txt">vendas realizadas</span>
+    </div>
+    <div class="stats-bar-sep"></div>
+    <div class="stats-bar-item">
+      <span class="stats-bar-num">12x</span>
+      <span class="stats-bar-txt">sem juros no cartão</span>
+    </div>
+    <div class="stats-bar-sep"></div>
+    <div class="stats-bar-item">
+      <span class="stats-bar-num">4</span>
+      <span class="stats-bar-txt">lojas no ABC e Zona Leste</span>
+    </div>
+    <div class="stats-bar-sep"></div>
+    <div class="stats-bar-item">
+      <span class="stats-bar-num">⭐ 4.9</span>
+      <span class="stats-bar-txt">avaliação Google</span>
+    </div>
+  </div>
+</div>
 
 <!-- STRIP -->
 <div class="strip" aria-hidden="true">
@@ -1175,6 +1213,39 @@ document.querySelectorAll('.product-card,.why-card,.location-card,.seller-card,.
   el.style.cssText += 'opacity:0;transform:translateY(20px);transition:opacity .45s ease,transform .45s ease;';
   io.observe(el);
 });
+
+/* ── Banner Carousel ── */
+(function() {
+  let cur = 0;
+  const carousel = document.getElementById('bannerCarousel');
+  if (!carousel) return;
+  const slides = carousel.querySelectorAll('.banner-slide');
+  const dots = document.querySelectorAll('.banner-dot');
+  const total = slides.length;
+
+  function goTo(n) {
+    dots[cur].classList.remove('active');
+    cur = (n + total) % total;
+    dots[cur].classList.add('active');
+    carousel.style.transform = 'translateX(-' + (cur * 100) + '%)';
+  }
+
+  window.bannerGo = goTo;
+  window.bannerNext = function() { goTo(cur + 1); };
+  window.bannerPrev = function() { goTo(cur - 1); };
+
+  let timer = setInterval(function() { goTo(cur + 1); }, 5000);
+  const section = carousel.closest('.hero-banners');
+  section.addEventListener('mouseenter', function() { clearInterval(timer); });
+  section.addEventListener('mouseleave', function() { timer = setInterval(function() { goTo(cur + 1); }, 5000); });
+
+  let startX = 0;
+  carousel.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+  carousel.addEventListener('touchend', function(e) {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) dx < 0 ? goTo(cur + 1) : goTo(cur - 1);
+  });
+})();
 
 /* ── Back to top ── */
 const btt = document.getElementById('backToTop');
