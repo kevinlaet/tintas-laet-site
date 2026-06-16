@@ -85,9 +85,10 @@
     @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
     /* ──────── BANNER CAROUSEL ──────── */
-    .hero-banners { position: relative; overflow: hidden; width: 100%; background: var(--blue-dark); margin-top: 70px; }
-    .banner-carousel { display: flex; transition: transform .55s cubic-bezier(.4,0,.2,1); will-change: transform; }
-    .banner-slide { min-width: 100%; position: relative; flex-shrink: 0; }
+    .hero-banners { position: relative; width: 100%; background: var(--blue-dark); margin-top: 70px; overflow: hidden; }
+    .banner-carousel { display: flex; overflow-x: scroll; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
+    .banner-carousel::-webkit-scrollbar { display: none; }
+    .banner-slide { flex: 0 0 100%; width: 100%; position: relative; scroll-snap-align: start; }
     .banner-img { width: 100%; display: block; height: auto; }
     .banner-cta-zone { position: absolute; display: block; border-radius: 8px; cursor: pointer; }
     .banner-cta-zone:hover { background: rgba(255,255,255,.15); outline: 2px solid rgba(255,255,255,.3); }
@@ -1219,15 +1220,14 @@ document.querySelectorAll('.product-card,.why-card,.location-card,.seller-card,.
   let cur = 0;
   const carousel = document.getElementById('bannerCarousel');
   if (!carousel) return;
-  const slides = carousel.querySelectorAll('.banner-slide');
   const dots = document.querySelectorAll('.banner-dot');
-  const total = slides.length;
+  const total = dots.length;
 
   function goTo(n) {
     dots[cur].classList.remove('active');
     cur = (n + total) % total;
     dots[cur].classList.add('active');
-    carousel.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    carousel.scrollTo({ left: cur * carousel.offsetWidth, behavior: 'smooth' });
   }
 
   window.bannerGo = goTo;
@@ -1239,11 +1239,10 @@ document.querySelectorAll('.product-card,.why-card,.location-card,.seller-card,.
   section.addEventListener('mouseenter', function() { clearInterval(timer); });
   section.addEventListener('mouseleave', function() { timer = setInterval(function() { goTo(cur + 1); }, 5000); });
 
-  let startX = 0;
-  carousel.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
-  carousel.addEventListener('touchend', function(e) {
-    const dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 50) dx < 0 ? goTo(cur + 1) : goTo(cur - 1);
+  /* Sync dot on manual swipe */
+  carousel.addEventListener('scrollend', function() {
+    const idx = Math.round(carousel.scrollLeft / carousel.offsetWidth);
+    if (idx !== cur) { dots[cur].classList.remove('active'); cur = idx; dots[cur].classList.add('active'); }
   });
 })();
 
