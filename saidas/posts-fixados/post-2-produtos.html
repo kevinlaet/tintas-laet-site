@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Tintas Laet — Produtos</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1080px;overflow:hidden}
+
+@keyframes bgPulse{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes barSlide{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes shimmerBar{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes cardShine{0%{left:-100%}100%{left:200%}}
+@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+@keyframes pricePop{0%{opacity:0;transform:scale(.6) translateY(10px)}60%{transform:scale(1.1)}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes lineGrow{from{width:0;opacity:0}to{width:100%;opacity:1}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 30px rgba(255,193,7,.2)}50%{box-shadow:0 0 60px rgba(255,193,7,.4)}}
+@keyframes dotFloat{0%,100%{transform:translateY(0) scale(1);opacity:.5}50%{transform:translateY(-10px) scale(1.4);opacity:1}}
+
+.canvas{
+  width:1080px;height:1080px;
+  background:linear-gradient(145deg,#062B63,#0D47A1,#0A3580);
+  background-size:400% 400%;
+  animation:bgPulse 12s ease infinite;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+
+/* Diagonal yellow shape top-right */
+.yellow-shape{
+  position:absolute;
+  width:600px;height:600px;
+  background:linear-gradient(135deg,rgba(255,193,7,.18) 0%,transparent 60%);
+  top:-200px;right:-100px;
+  clip-path:polygon(30% 0%,100% 0%,100% 70%,0% 100%);
+  animation:fadeIn 1.5s both .3s;
+}
+
+/* Corner arc top right */
+.arc-corner{
+  position:absolute;
+  width:500px;height:500px;border-radius:50%;
+  border:2px solid rgba(255,193,7,.14);
+  top:-200px;right:-150px;
+  animation:rotate 35s linear infinite,fadeIn 1s both .5s;
+}
+.arc-corner-2{
+  position:absolute;
+  width:340px;height:340px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.06);
+  top:-100px;right:-50px;
+  animation:rotate 20s linear infinite reverse,fadeIn 1s both .7s;
+}
+
+/* Dot grid */
+.dot-grid{
+  position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,.06) 1.5px,transparent 1.5px);
+  background-size:36px 36px;
+  pointer-events:none;animation:fadeIn 2s both .3s;
+}
+
+/* Floating dots */
+.fdot{position:absolute;border-radius:50%;background:#FFC107}
+.fdot-1{width:8px;height:8px;right:90px;top:200px;animation:dotFloat 3s ease-in-out infinite 0s,fadeIn 1s both 1s}
+.fdot-2{width:5px;height:5px;right:60px;top:350px;animation:dotFloat 3s ease-in-out infinite .8s,fadeIn 1s both 1.2s}
+.fdot-3{width:10px;height:10px;right:110px;top:500px;animation:dotFloat 3s ease-in-out infinite 1.6s,fadeIn 1s both 1.4s}
+
+/* ── Top section ── */
+.top{
+  padding:60px 72px 0;
+  position:relative;z-index:2;flex-shrink:0;
+}
+.logo-top{
+  width:155px;display:block;
+  mix-blend-mode:screen;
+  animation:fadeLeft .8s ease both .4s;
+  margin-bottom:28px;
+}
+.title-1{
+  font-family:'Bebas Neue',cursive;
+  font-size:96px;line-height:.9;
+  color:#FFC107;letter-spacing:4px;
+  animation:fadeLeft .9s cubic-bezier(.22,.61,.36,1) both .7s;
+  text-shadow:0 0 40px rgba(255,193,7,.25);
+}
+.title-2{
+  font-family:'Bebas Neue',cursive;
+  font-size:72px;line-height:.9;
+  color:#FFFFFF;letter-spacing:3px;margin-top:4px;
+  animation:fadeLeft .9s cubic-bezier(.22,.61,.36,1) both .95s;
+}
+/* Underline accent */
+.title-line{
+  height:4px;background:#FFC107;border-radius:2px;margin-top:20px;
+  animation:lineGrow .8s ease both 1.4s;
+  box-shadow:0 0 15px rgba(255,193,7,.5);
+}
+
+/* ── Cards ── */
+.cards{
+  flex:1;display:flex;align-items:center;
+  padding:24px 55px;gap:22px;position:relative;z-index:2;
+}
+.card{
+  flex:1;
+  background:rgba(255,255,255,.08);
+  border:1.5px solid rgba(255,255,255,.15);
+  border-radius:22px;padding:26px 20px 24px;
+  display:flex;flex-direction:column;align-items:flex-start;
+  backdrop-filter:blur(8px);
+  position:relative;overflow:hidden;
+  animation:scaleIn .7s cubic-bezier(.22,.61,.36,1) both;
+}
+.card:nth-child(1){animation-delay:1.2s}
+.card:nth-child(2){animation-delay:1.45s}
+.card:nth-child(3){animation-delay:1.7s}
+
+/* Card shine on entrance */
+.card::before{
+  content:'';
+  position:absolute;top:-50%;left:-100%;
+  width:60%;height:200%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.18),transparent);
+  animation:cardShine 1s ease both;
+}
+.card:nth-child(1)::before{animation-delay:1.8s}
+.card:nth-child(2)::before{animation-delay:2s}
+.card:nth-child(3)::before{animation-delay:2.2s}
+
+/* Top yellow bar on card */
+.card-accent{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,#FFC107,rgba(255,193,7,.3));
+  border-radius:22px 22px 0 0;
+}
+
+.card-icon{
+  width:50px;height:50px;
+  background:linear-gradient(135deg,#FFC107,#FFD54F);
+  border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;margin-bottom:16px;
+  box-shadow:0 4px 20px rgba(255,193,7,.35);
+}
+.card-name{
+  font-family:'Montserrat',sans-serif;
+  font-weight:900;font-size:20px;color:#FFFFFF;
+  line-height:1.1;text-transform:uppercase;letter-spacing:.5px;
+}
+.card-detail{
+  font-family:'Poppins',sans-serif;font-size:13px;
+  color:rgba(255,255,255,.55);margin-top:6px;font-weight:400;
+}
+.card-price{
+  margin-top:16px;
+  font-family:'Bebas Neue',cursive;
+  font-size:38px;color:#FFC107;letter-spacing:1px;line-height:1;
+  text-shadow:0 0 20px rgba(255,193,7,.4);
+  animation:pricePop .6s cubic-bezier(.34,1.56,.64,1) both;
+}
+.card:nth-child(1) .card-price{animation-delay:2s}
+.card:nth-child(2) .card-price{animation-delay:2.2s}
+.card:nth-child(3) .card-price{animation-delay:2.4s}
+.card-price-note{
+  font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;
+  color:rgba(255,255,255,.45);margin-top:4px;
+  text-transform:uppercase;letter-spacing:.5px;
+}
+
+/* ── Bottom bar ── */
+.bottom-bar{
+  height:84px;background:#062B63;
+  display:flex;align-items:center;justify-content:space-around;
+  border-top:2px solid rgba(255,193,7,.3);
+  position:relative;z-index:2;
+  animation:barSlide .9s cubic-bezier(.22,.61,.36,1) both 2.2s;
+  overflow:hidden;
+}
+.bottom-bar::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,193,7,.08),transparent);
+  background-size:200%;animation:shimmerBar 5s linear infinite 4s;
+}
+.benefit{display:flex;align-items:center;gap:12px;padding:0 16px}
+.benefit-sep{width:1px;height:32px;background:rgba(255,255,255,.15)}
+.benefit-ico{
+  width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,#FFC107,#FFD54F);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;flex-shrink:0;
+  box-shadow:0 2px 12px rgba(255,193,7,.3);
+}
+.benefit-text{
+  font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;color:#FFFFFF;
+}
+.benefit-sub{
+  font-family:'Poppins',sans-serif;font-size:11px;color:rgba(255,255,255,.5);font-weight:400;
+}
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="dot-grid"></div>
+  <div class="yellow-shape"></div>
+  <div class="arc-corner"></div>
+  <div class="arc-corner-2"></div>
+  <div class="fdot fdot-1"></div>
+  <div class="fdot fdot-2"></div>
+  <div class="fdot fdot-3"></div>
+
+  <div class="top">
+    <img class="logo-top" src="../../identidade/logotipo branco.jpg" alt="Tintas Laet">
+    <div class="title-1">REFORMA SUA CASA</div>
+    <div class="title-2">SEM QUEBRAR O BOLSO</div>
+    <div class="title-line"></div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-icon">🎨</div>
+      <div class="card-name">Tinta<br>Látex</div>
+      <div class="card-detail">18 litros · Base água</div>
+      <!-- ATUALIZAR PREÇO -->
+      <div class="card-price">R$ --,--</div>
+      <div class="card-price-note">a partir de</div>
+    </div>
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-icon">🖌️</div>
+      <div class="card-name">Tinta<br>Acrílica</div>
+      <div class="card-detail">18 litros · Base água</div>
+      <!-- ATUALIZAR PREÇO -->
+      <div class="card-price">R$ --,--</div>
+      <div class="card-price-note">a partir de</div>
+    </div>
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-icon">🏠</div>
+      <div class="card-name">Emborra-<br>chada</div>
+      <div class="card-detail">18 litros · Alta dureza</div>
+      <!-- ATUALIZAR PREÇO -->
+      <div class="card-price">R$ --,--</div>
+      <div class="card-price-note">a partir de</div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="benefit">
+      <div class="benefit-ico">✓</div>
+      <div>
+        <div class="benefit-text">12x sem juros</div>
+        <div class="benefit-sub">no cartão</div>
+      </div>
+    </div>
+    <div class="benefit-sep"></div>
+    <div class="benefit">
+      <div class="benefit-ico">🚚</div>
+      <div>
+        <div class="benefit-text">Frete justo</div>
+        <div class="benefit-sub">ABC e Zona Leste</div>
+      </div>
+    </div>
+    <div class="benefit-sep"></div>
+    <div class="benefit">
+      <div class="benefit-ico">📍</div>
+      <div>
+        <div class="benefit-text">4 lojas</div>
+        <div class="benefit-sub">@Tintaslaet</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
