@@ -277,6 +277,22 @@
     .wa-float:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(37,211,102,.65); }
     .wa-float svg { width: 26px; height: 26px; fill: white; flex-shrink: 0; }
     .wa-float-label { white-space: nowrap; }
+    /* ── HERO ENHANCEMENTS ── */
+    .hero-color-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 5px; display: flex; z-index: 3; }
+    .hero-color-bar span { flex: 1; }
+    .hero-visual-bg { position: absolute; inset: 40px -10px 0 50px; background: linear-gradient(145deg, rgba(255,193,7,.09) 0%, rgba(255,255,255,.03) 100%); border: 1px solid rgba(255,193,7,.16); border-radius: 28px; z-index: 0; }
+    .hero-mascote-wrap { position: relative; z-index: 1; }
+    .hero-offer { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 9px 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); border-radius: 50px; font-size: 12.5px; color: rgba(255,255,255,.88); transition: background .2s; text-decoration: none; width: fit-content; }
+    .hero-offer:hover { background: rgba(255,255,255,.15); color: #fff; }
+    .hero-offer strong { color: var(--yellow); }
+
+    /* ── CONVERSION ── */
+    .seller-urgent { display: inline-flex; align-items: center; gap: 4px; background: #FFF3CD; border: 1px solid #FFCA2C; color: #856404; font-size: 10px; font-weight: 700; font-family: 'Montserrat', sans-serif; padding: 3px 8px; border-radius: 100px; margin-bottom: 8px; letter-spacing: .4px; width: fit-content; }
+    .seller-anchor { font-size: 11px; color: #bbb; text-decoration: line-through; margin-top: 2px; }
+    .seller-saving { display: inline-block; font-size: 11px; color: #2e7d32; font-weight: 700; background: #E8F5E9; padding: 1px 6px; border-radius: 4px; margin-top: 3px; }
+    .products-proof { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; margin-bottom: 0; font-size: 13px; color: #666; }
+    .products-proof strong { color: var(--blue); }
+
     .back-to-top { position: fixed; bottom: 88px; right: 24px; z-index: 998; width: 44px; height: 44px; border-radius: 50%; background: var(--blue); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(13,71,161,.35); transition: opacity .25s, transform .25s; opacity: 0; pointer-events: none; }
     .back-to-top.visible { opacity: 1; pointer-events: auto; }
     .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(13,71,161,.45); }
@@ -397,6 +413,9 @@
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-dots"></div>
+  <div class="hero-color-bar" aria-hidden="true">
+    <span style="background:#E74C3C"></span><span style="background:#E67E22"></span><span style="background:#F1C40F"></span><span style="background:#A8D5A2"></span><span style="background:#2ECC71"></span><span style="background:#1ABC9C"></span><span style="background:#3498DB"></span><span style="background:#9B59B6"></span><span style="background:#ECF0F1"></span><span style="background:#F5CBA7"></span>
+  </div>
   <div class="container hero-inner">
     <div>
       <span class="hero-eyebrow">✦ A tinta nobre da comunidade</span>
@@ -406,6 +425,7 @@
         <a href="https://wa.me/5511977140964?text=Olá! Quero fazer um pedido." class="btn btn-yellow" target="_blank" rel="noopener">💬 Fazer pedido agora</a>
         <a href="https://wa.me/5511977140964?text=Olá! Gostaria de um orçamento." class="btn btn-ghost" target="_blank" rel="noopener">📋 Pedir orçamento</a>
       </div>
+      <a href="https://wa.me/5511977140964?text=Olá! Não sei quanto de tinta preciso. Pode me ajudar a calcular?" class="hero-offer" target="_blank" rel="noopener">🧮 Não sabe quanto de tinta precisa? <strong>A gente calcula pra você</strong></a>
       <div class="hero-social-proof">
         <div class="hero-avatars">
           <div class="hero-avatar">😊</div>
@@ -421,12 +441,17 @@
       </div>
     </div>
     <div class="hero-visual">
+      <div class="hero-visual-bg"></div>
       <div class="hero-mascote-wrap">
         <img src="images/mascote.png" alt="Mascote Tintas Laet" class="hero-mascote">
         <div class="hero-mascote-glow"></div>
         <div class="hero-badge hero-badge-top">
           <div class="hero-badge-val">até 12x</div>
           <div class="hero-badge-txt">sem juros</div>
+        </div>
+        <div class="hero-badge hero-badge-bottom">
+          <div class="hero-badge-val">⭐ 4.9</div>
+          <div class="hero-badge-txt">no Google</div>
         </div>
       </div>
     </div>
@@ -562,6 +587,7 @@
       <span class="section-label">Nosso portfólio</span>
       <h2 class="section-title" style="color:var(--blue)">Produtos em destaque</h2>
       <p class="section-sub">Os mais procurados — preço justo, qualidade comprovada.</p>
+      <p class="products-proof">⭐⭐⭐⭐⭐ &nbsp;<strong>+300 clientes satisfeitos só esse mês</strong> &nbsp;·&nbsp; Avaliação 4.9 no Google</p>
     </div>
     <div class="sellers-grid">
 
@@ -572,6 +598,7 @@
           <span class="seller-badge">RESOLVA UMIDADE!</span>
         </div>
         <div class="seller-body">
+          <div class="seller-urgent">🔥 Mais pedida da semana</div>
           <div class="seller-name">Tinta Emborrachada</div>
           <div class="seller-desc">Líquido que vira borracha. Protege contra sol, chuva e microfissuras.</div>
           <span class="seller-price-from">balde 18L — a partir de</span>
@@ -579,7 +606,7 @@
           <div class="seller-price-detail">Branca R$ 399,90 · Cores médias R$ 449,90<br>Também em 3,6L a partir de R$ 99,90</div>
           <div class="seller-actions">
             <a href="produto.html?id=emborrachada" class="seller-view">Ver produto completo →</a>
-            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Emborrachada Laet.','_blank')">💬 Comprar no WhatsApp</button>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Emborrachada Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
@@ -598,7 +625,7 @@
           <div class="seller-price-detail">17L cores R$ 219,90 · 18L branca R$ 299,90<br>Também em 3,4L a partir de R$ 59,90</div>
           <div class="seller-actions">
             <a href="produto.html?id=piso-fachada" class="seller-view">Ver produto completo →</a>
-            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Piso e Fachada Premium Laet.','_blank')">💬 Comprar no WhatsApp</button>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Piso e Fachada Premium Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
@@ -617,7 +644,7 @@
           <div class="seller-price-detail">Saco R$ 37,90 · Barrica 25kg R$ 45,80</div>
           <div class="seller-actions">
             <a href="produto.html?id=massa-corrida" class="seller-view">Ver produto completo →</a>
-            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Massa Corrida Laet.','_blank')">💬 Comprar no WhatsApp</button>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Massa Corrida Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
@@ -629,14 +656,17 @@
           <span class="seller-badge">ECONOMIA E QUALIDADE</span>
         </div>
         <div class="seller-body">
+          <div class="seller-urgent">⚡ Melhor custo-benefício</div>
           <div class="seller-name">Tinta Super Profissional</div>
           <div class="seller-desc">Acrílica super profissional. Até 300m² por demão. Anti-mofo e baixíssimo odor.</div>
           <span class="seller-price-from">balde 18L — a partir de</span>
           <div class="seller-price">R$ 139<small>,90</small></div>
-          <div class="seller-price-detail">18L branca R$ 139,90 · 17L cores R$ 149,90<br>Também em 3,6L a partir de R$ 39,90</div>
+          <div class="seller-anchor">Concorrente: R$ 189,00+</div>
+          <div class="seller-saving">Economize até R$ 49,00</div>
+          <div class="seller-price-detail" style="margin-top:8px">18L branca R$ 139,90 · 17L cores R$ 149,90<br>Também em 3,6L a partir de R$ 39,90</div>
           <div class="seller-actions">
             <a href="produto.html?id=super-profissional" class="seller-view">Ver produto completo →</a>
-            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Super Profissional Laet.','_blank')">💬 Comprar no WhatsApp</button>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Super Profissional Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
@@ -655,7 +685,7 @@
           <div class="seller-price-detail">18L branca R$ 219,90 · 17L cores R$ 229,90 (a partir)</div>
           <div class="seller-actions">
             <a href="produto.html?id=standard" class="seller-view">Ver produto completo →</a>
-            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Standard Laet.','_blank')">💬 Comprar no WhatsApp</button>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Standard Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
@@ -671,10 +701,12 @@
           <div class="seller-desc">Anti-mofo, acabamento fosco. Ideal para pintura interna. Cobertura seca.</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 79<small>,90</small></div>
-          <div class="seller-price-detail">18L branca R$ 79,90 · 18L cores R$ 99,90</div>
+          <div class="seller-anchor">Concorrente: R$ 110,00+</div>
+          <div class="seller-saving">Economize até R$ 30,00</div>
+          <div class="seller-price-detail" style="margin-top:8px">18L branca R$ 79,90 · 18L cores R$ 99,90</div>
           <div class="seller-actions">
             <a href="produto.html?id=latex-vinil" class="seller-view">Ver produto completo →</a>
-            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Latex Vinil Laet.','_blank')">💬 Comprar no WhatsApp</button>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Latex Vinil Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
@@ -693,7 +725,7 @@
           <div class="seller-price-detail">18L branca R$ 299,90 · 18L cores R$ 329,90 (a partir)</div>
           <div class="seller-actions">
             <a href="produto.html?id=premium-lavavel" class="seller-view">Ver produto completo →</a>
-            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Premium Lavável Laet.','_blank')">💬 Comprar no WhatsApp</button>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Premium Lavável Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
@@ -712,7 +744,7 @@
           <div class="seller-price-detail">Kit completo — consulte disponibilidade</div>
           <div class="seller-actions">
             <a href="produto.html?id=kit-pintura" class="seller-view">Ver produto completo →</a>
-            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Kit Pintura Laet.','_blank')">💬 Comprar no WhatsApp</button>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Kit Pintura Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
