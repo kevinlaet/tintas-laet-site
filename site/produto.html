@@ -111,6 +111,8 @@
     .core-nome { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; color: var(--graphite); line-height: 1.3; margin-bottom: 3px; }
     .core-hex { font-size: 10px; color: #bbb; font-family: monospace; }
     .core-preco { font-size: 10px; color: var(--blue); font-weight: 600; margin-top: 4px; line-height: 1.4; }
+    .cores-load-more { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; max-width: 280px; margin: 24px auto 0; background: var(--blue); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; padding: 13px; border-radius: var(--radius); border: none; cursor: pointer; transition: filter .2s; }
+    .cores-load-more:hover { filter: brightness(1.15); }
     .cores-aviso { margin-top: 28px; background: #fff; border: 1px solid #E0E4EC; border-left: 4px solid var(--yellow); border-radius: 10px; padding: 18px 20px; font-size: 13px; color: #555; line-height: 1.75; }
     .cores-aviso strong { color: var(--graphite); }
     @media (max-width: 900px) { .cores-grid { grid-template-columns: repeat(4, 1fr); } }
@@ -191,6 +193,7 @@ const produtos = {
     catalogo_pdf: 'catalogo/emborrachada.html',
     cores_precificadas: true,
     cores: [
+      { nome: 'Branco', hex: '#FFFFFF', borda: true, preco_balde: 'R$ 399,90', preco_galao: 'R$ 99,90', tam_balde: '18L', tam_galao: '3,6L' },
       { nome: 'Crômio', hex: '#DDDDDD', preco_balde: 'R$ 419,90', preco_galao: 'R$ 119,90' },
       { nome: 'Cinza A', hex: '#C2C2C1', preco_balde: 'R$ 419,90', preco_galao: 'R$ 119,90' },
       { nome: 'Cinza B', hex: '#A8A8A4', preco_balde: 'R$ 429,90', preco_galao: 'R$ 119,90' },
@@ -301,7 +304,6 @@ const produtos = {
       { nome: 'Cinza C 04', hex: '#828282', preco_balde: 'R$ 439,90', preco_galao: 'R$ 119,90' },
       { nome: 'Cinza', hex: '#9B9D98', preco_balde: 'R$ 439,90', preco_galao: 'R$ 124,90' },
       { nome: 'Céu Sagrado', hex: '#5AADFA', preco_balde: 'R$ 449,90', preco_galao: 'R$ 129,90' },
-      { nome: 'Branco', hex: '#FFFFFF', borda: true },
     ]
   },
   'piso-fachada': {
@@ -530,7 +532,33 @@ const produtos = {
   }
 };
 
+let coresShown = 20;
+
+function coreCardHtml(c) {
+  return `
+  <div class="core-card">
+    <div class="core-swatch${c.borda ? ' core-swatch-branco' : ''}" style="background:${c.hex}"></div>
+    <div class="core-info">
+      <div class="core-nome">${c.nome}</div>
+      <div class="core-hex">${c.hex}</div>
+      ${c.preco_balde ? `<div class="core-preco">Balde ${c.tam_balde || '17L'} ${c.preco_balde}<br>Galão ${c.tam_galao || '3,4L'} ${c.preco_galao}</div>` : ''}
+    </div>
+  </div>`;
+}
+
+function appendMoreCores(id) {
+  const p = produtos[id];
+  const grid = document.getElementById('cores-grid');
+  if (!p || !p.cores || !grid) return;
+  const next = p.cores.slice(coresShown, coresShown + 20);
+  grid.insertAdjacentHTML('beforeend', next.map(coreCardHtml).join(''));
+  coresShown += 20;
+  const btn = document.getElementById('cores-load-more');
+  if (btn) btn.style.display = coresShown >= p.cores.length ? 'none' : 'flex';
+}
+
 function render() {
+  coresShown = 20;
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
   const p = produtos[id];
@@ -676,17 +704,14 @@ function render() {
           </a>` : ''}
         </div>
 
-        <div class="cores-grid">
-          ${p.cores.map(c => `
-          <div class="core-card">
-            <div class="core-swatch${c.borda ? ' core-swatch-branco' : ''}" style="background:${c.hex}"></div>
-            <div class="core-info">
-              <div class="core-nome">${c.nome}</div>
-              <div class="core-hex">${c.hex}</div>
-              ${c.preco_balde ? `<div class="core-preco">Balde 17L ${c.preco_balde}<br>Galão 3,4L ${c.preco_galao}</div>` : ''}
-            </div>
-          </div>`).join('')}
+        <div class="cores-grid" id="cores-grid">
+          ${p.cores.slice(0, coresShown).map(coreCardHtml).join('')}
         </div>
+
+        ${p.cores.length > coresShown ? `
+        <button class="cores-load-more" id="cores-load-more" onclick="appendMoreCores('${id}')">
+          Carregar mais cores ↓
+        </button>` : ''}
 
         <div class="cores-aviso">
           ⚠️ <strong>Atenção sobre as cores:</strong> Cada tela — celular, computador ou tablet — exibe as cores de um jeito diferente dependendo do brilho, configuração e modelo do aparelho. As cores aqui são uma referência visual, mas podem não representar 100% o tom real da tinta.<br><br>
