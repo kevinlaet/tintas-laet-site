@@ -125,12 +125,39 @@
     <div class="card">
       <div class="card-title">Dados do orçamento</div>
       <div class="field-row">
-        <div class="field"><label>Vendedor</label><input id="f-vendedor" placeholder="Seu nome"></div>
-        <div class="field"><label>Data</label><input type="date" id="f-data"></div>
+        <div class="field">
+          <label>Vendedor</label>
+          <select id="f-vendedor">
+            <option value="">Selecione...</option>
+            <option>Kevin</option>
+            <option>Fábio</option>
+            <option>Júlio</option>
+            <option>Anderson</option>
+            <option>Robson</option>
+            <option>Clenice</option>
+            <option>Filipy</option>
+            <option>Allan</option>
+            <option>Felipe</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Loja</label>
+          <select id="f-loja">
+            <option value="">Selecione...</option>
+            <option>Loja 1 — Sapopemba</option>
+            <option>Loja 2 — São João</option>
+            <option>Loja 3 — Ayrton Senna</option>
+            <option>Loja 4 — Santo André</option>
+            <option>Loja Online</option>
+          </select>
+        </div>
       </div>
       <div class="field-row">
+        <div class="field"><label>Data</label><input type="date" id="f-data"></div>
         <div class="field"><label>Cliente</label><input id="f-cliente" placeholder="Nome do cliente"></div>
-        <div class="field"><label>WhatsApp</label><input id="f-whatsapp" placeholder="(11) 90000-0000"></div>
+      </div>
+      <div class="field-row">
+        <div class="field" style="grid-column:1/3"><label>WhatsApp</label><input id="f-whatsapp" placeholder="(11) 90000-0000"></div>
       </div>
       <div class="field-row">
         <div class="field" style="grid-column:1/3"><label>Endereço</label><input id="f-endereco" placeholder="Rua, número, bairro - cidade"></div>
@@ -347,6 +374,7 @@ function escapeHtml(str) {
 
 function gerarPDF() {
   const vendedor = escapeHtml(document.getElementById('f-vendedor').value) || '—';
+  const loja = escapeHtml(document.getElementById('f-loja').value) || '—';
   const cliente = escapeHtml(document.getElementById('f-cliente').value) || '—';
   const whatsapp = escapeHtml(document.getElementById('f-whatsapp').value) || '—';
   const endereco = escapeHtml(document.getElementById('f-endereco').value) || '—';
@@ -397,6 +425,7 @@ function gerarPDF() {
         <div class="pdf-info-row"><span class="pdf-info-icon">📍</span><span><strong>Endereço:</strong> ${endereco}</span></div>
         <div class="pdf-info-row"><span class="pdf-info-icon">💬</span><span><strong>WhatsApp:</strong> ${whatsapp}</span></div>
         <div class="pdf-info-row"><span class="pdf-info-icon">🧑‍🔧</span><span><strong>Vendedor:</strong> ${vendedor}</span></div>
+        <div class="pdf-info-row"><span class="pdf-info-icon">🏬</span><span><strong>Loja:</strong> ${loja}</span></div>
       </div>
       <table class="pdf-table">
         <thead><tr><th>Produto</th><th>Quantidade</th><th>Valor Unitário</th><th>Subtotal</th></tr></thead>
