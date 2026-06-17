@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Cores — Laet Flexível Emborrachada | Tintas Laet</title>
+  <meta name="description" content="Veja todas as 110 cores disponíveis na linha Laet Flexível Emborrachada. Escolha a cor certa e peça pelo WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; color: #212529; background: #fff; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --blue: #0D47A1;
+      --blue-dark: #062B63;
+      --blue-mid: #1565C0;
+      --yellow: #FFC107;
+      --white: #FFFFFF;
+      --gray: #F0F2F5;
+      --graphite: #212529;
+      --radius: 8px;
+      --shadow-sm: 0 2px 10px rgba(0,0,0,0.07);
+      --shadow: 0 4px 24px rgba(0,0,0,0.12);
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAVBAR ── */
+    .navbar { background: var(--blue-dark); padding: 14px 0; }
+    .navbar-inner { display: flex; align-items: center; justify-content: space-between; }
+    .navbar-logo img { height: 62px; }
+    .navbar-back { display: flex; align-items: center; gap: 8px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; color: rgba(255,255,255,.75); transition: color .2s; }
+    .navbar-back:hover { color: var(--yellow); }
+    .navbar-back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+    /* ── HERO ── */
+    .cat-hero { background: linear-gradient(140deg, var(--blue-dark) 0%, var(--blue) 100%); padding: 52px 0 44px; text-align: center; }
+    .cat-tag { display: inline-block; background: rgba(255,193,7,.18); border: 1px solid rgba(255,193,7,.4); color: var(--yellow); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 14px; }
+    .cat-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(26px, 5vw, 50px); color: #fff; line-height: 1.1; margin-bottom: 10px; }
+    .cat-title span { color: var(--yellow); }
+    .cat-subtitle { font-size: 15px; color: rgba(255,255,255,.75); margin-bottom: 28px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .cat-hero-actions { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 24px; border-radius: var(--radius); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; border: none; transition: transform .18s, box-shadow .18s; line-height: 1; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-yellow { background: var(--yellow); color: var(--graphite); box-shadow: 0 4px 14px rgba(255,193,7,.35); }
+    .btn-yellow:hover { box-shadow: 0 8px 24px rgba(255,193,7,.5); }
+    .btn-ghost { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.45); }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.8); }
+
+    /* ── CATÁLOGO ── */
+    .catalog-section { padding: 60px 0; background: #fff; }
+    .catalog-intro { text-align: center; margin-bottom: 28px; }
+    .catalog-intro h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(18px, 2.5vw, 26px); color: var(--blue); margin-bottom: 8px; }
+    .catalog-intro p { font-size: 14px; color: #777; }
+    .catalog-legend { text-align: center; font-size: 12px; color: #888; margin-bottom: 32px; }
+
+    .colors-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+    .color-card { border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid #E8ECF2; transition: transform .2s, box-shadow .2s; cursor: default; }
+    .color-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .color-swatch { height: 90px; width: 100%; }
+    .color-swatch-branco { border-bottom: 1px solid #E8ECF2; }
+    .color-info { padding: 12px 14px; background: #fff; }
+    .color-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: var(--graphite); line-height: 1.3; margin-bottom: 4px; }
+    .color-hex { font-size: 11px; color: #aaa; font-family: monospace; margin-bottom: 6px; }
+    .color-price { font-size: 11px; color: var(--blue); font-weight: 600; line-height: 1.5; }
+
+    /* ── AVISO ── */
+    .catalog-note { margin-top: 44px; background: #FFF8E8; border: 1px solid #FFE082; border-left: 4px solid var(--yellow); border-radius: 12px; padding: 20px 24px; font-size: 13px; color: #555; line-height: 1.8; }
+    .catalog-note strong { color: var(--graphite); }
+
+    /* ── CTA ── */
+    .catalog-cta { background: var(--blue); padding: 60px 0; text-align: center; }
+    .catalog-cta h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(20px, 3vw, 32px); color: #fff; margin-bottom: 10px; }
+    .catalog-cta p { color: rgba(255,255,255,.75); font-size: 15px; margin-bottom: 28px; }
+    .cta-btns { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-white { background: #fff; color: var(--blue); box-shadow: 0 4px 14px rgba(0,0,0,.2); }
+    .btn-white:hover { box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--blue-dark); padding: 28px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+    .footer-text { font-size: 12px; color: rgba(255,255,255,.45); }
+    .footer-link { font-size: 12px; color: rgba(255,255,255,.55); transition: color .2s; }
+    .footer-link:hover { color: var(--yellow); }
+
+    /* ── WA FLOAT ── */
+    .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 999; display: flex; align-items: center; gap: 10px; background: #25D366; color: #fff; padding: 12px 20px 12px 16px; border-radius: 50px; box-shadow: 0 4px 22px rgba(37,211,102,.55); transition: transform .2s; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; }
+    .wa-float:hover { transform: translateY(-3px); }
+    .wa-float svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) { .colors-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 640px) { .colors-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; } .color-swatch { height: 76px; } }
+    @media (max-width: 420px) { .colors-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .navbar-logo img { height: 48px; } }
+
+    /* ── PRINT / PDF ── */
+    @media print {
+      .navbar, .wa-float, .catalog-cta, .footer, .cat-hero-actions { display: none !important; }
+      .cat-hero { padding: 28px 0 22px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .color-swatch { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .colors-grid { grid-template-columns: repeat(5, 1fr); gap: 12px; }
+      .color-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+      body { font-size: 12px; }
+      .catalog-section { padding: 24px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/5511977140964?text=Olá! Quero pedir uma cor da linha Flexível Emborrachada." class="wa-float" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  Pedir pelo WhatsApp
+</a>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="../index.html" class="navbar-logo">
+      <img src="../images/logo-branco.png" alt="Tintas Laet">
+    </a>
+    <a href="../produto.html?id=emborrachada" class="navbar-back">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Ver produto
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="cat-hero">
+  <div class="container">
+    <span class="cat-tag">Catálogo de Cores</span>
+    <h1 class="cat-title">Laet Flexível <span>Emborrachada</span></h1>
+    <p class="cat-subtitle">110 cores disponíveis. Escolha a sua e peça pelo WhatsApp — entregamos no ABC e Zona Leste.</p>
+    <div class="cat-hero-actions">
+      <button class="btn btn-yellow" onclick="window.print()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Baixar / Imprimir PDF
+      </button>
+      <a href="https://wa.me/5511977140964?text=Olá! Tenho interesse na linha Flexível Emborrachada e quero escolher uma cor." class="btn btn-ghost" target="_blank" rel="noopener">
+        💬 Falar com atendente
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GRADES DE CORES -->
+<section class="catalog-section">
+  <div class="container">
+
+    <div class="catalog-intro">
+      <h2>110 cores disponíveis</h2>
+      <p>Informe o nome da cor desejada ao falar com nosso atendimento.</p>
+    </div>
+    <div class="catalog-legend">Preço de cor: Balde 17L e Galão 3,4L. Branca (sem pigmento): Balde 18L e Galão 3,6L.</div>
+
+    <div class="colors-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#DDDDDD"></div>
+        <div class="color-info">
+          <div class="color-name">Crômio</div>
+          <div class="color-hex">#DDDDDD</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C2C2C1"></div>
+        <div class="color-info">
+          <div class="color-name">Cinza A</div>
+          <div class="color-hex">#C2C2C1</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A8A8A4"></div>
+        <div class="color-info">
+          <div class="color-name">Cinza B</div>
+          <div class="color-hex">#A8A8A4</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#B4B499"></div>
+        <div class="color-info">
+          <div class="color-name">Cinza Elefante</div>
+          <div class="color-hex">#B4B499</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#959BA2"></div>
+        <div class="color-info">
+          <div class="color-name">Cinza Wick</div>
+          <div class="color-hex">#959BA2</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A6B6AE"></div>
+        <div class="color-info">
+          <div class="color-name">Pitada Casual</div>
+          <div class="color-hex">#A6B6AE</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#81959F"></div>
+        <div class="color-info">
+          <div class="color-name">Cinza Fumaça</div>
+          <div class="color-hex">#81959F</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#8F949F"></div>
+        <div class="color-info">
+          <div class="color-name">Penhasco</div>
+          <div class="color-hex">#8F949F</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#707070"></div>
+        <div class="color-info">
+          <div class="color-name">Cinza D 04</div>
+          <div class="color-hex">#707070</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FFF2C8"></div>
+        <div class="color-info">
+          <div class="color-name">Gelo</div>
+          <div class="color-hex">#FFF2C8</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F4ECD7"></div>
+        <div class="color-info">
+          <div class="color-name">Algodão Egípcio</div>
+          <div class="color-hex">#F4ECD7</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F1E0C2"></div>
+        <div class="color-info">
+          <div class="color-name">Porcelana Egípcia</div>
+          <div class="color-hex">#F1E0C2</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#EBE4C5"></div>
+        <div class="color-info">
+          <div class="color-name">Palha</div>
+          <div class="color-hex">#EBE4C5</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#CBC4A2"></div>
+        <div class="color-info">
+          <div class="color-name">Bege Mineral</div>
+          <div class="color-hex">#CBC4A2</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#B8B396"></div>
+        <div class="color-info">
+          <div class="color-name">Pantanal</div>
+          <div class="color-hex">#B8B396</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A9EFDC"></div>
+        <div class="color-info">
+          <div class="color-name">Verde Piscina</div>
+          <div class="color-hex">#A9EFDC</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#82BBBD"></div>
+        <div class="color-info">
+          <div class="color-name">Mar de Arruda</div>
+          <div class="color-hex">#82BBBD</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FFFEB3"></div>
+        <div class="color-info">
+          <div class="color-name">Amarelo Laet</div>
+          <div class="color-hex">#FFFEB3</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FFF994"></div>
+        <div class="color-info">
+          <div class="color-name">Amarelo B 07</div>
+          <div class="color-hex">#FFF994</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FFF46A"></div>
+        <div class="color-info">
+          <div class="color-name">Amarelo C 07</div>
+          <div class="color-hex">#FFF46A</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FAE554"></div>
+        <div class="color-info">
+          <div class="color-name">Amarelo Albertino</div>
+          <div class="color-hex">#FAE554</div>
+          <div class="color-price">Balde 17L R$ 459,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FCCF6F"></div>
+        <div class="color-info">
+          <div class="color-name">Amarelo Dourado</div>
+          <div class="color-hex">#FCCF6F</div>
+          <div class="color-price">Balde 17L R$ 499,90<br>Galão 3,4L R$ 134,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#D5E7E3"></div>
+        <div class="color-info">
+          <div class="color-name">Chuva Suave</div>
+          <div class="color-hex">#D5E7E3</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#D9D9D9"></div>
+        <div class="color-info">
+          <div class="color-name">Chuva</div>
+          <div class="color-hex">#D9D9D9</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C7C4CB"></div>
+        <div class="color-info">
+          <div class="color-name">Sombra Lunar</div>
+          <div class="color-hex">#C7C4CB</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#D5D1E6"></div>
+        <div class="color-info">
+          <div class="color-name">Ana Maria</div>
+          <div class="color-hex">#D5D1E6</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#B1AED8"></div>
+        <div class="color-info">
+          <div class="color-name">Lilás Laet</div>
+          <div class="color-hex">#B1AED8</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A3A0DD"></div>
+        <div class="color-info">
+          <div class="color-name">Caixa Seca</div>
+          <div class="color-hex">#A3A0DD</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FFD5F7"></div>
+        <div class="color-info">
+          <div class="color-name">Lilás Delicado</div>
+          <div class="color-hex">#FFD5F7</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C7A8D6"></div>
+        <div class="color-info">
+          <div class="color-name">Lilás Primata</div>
+          <div class="color-hex">#C7A8D6</div>
+          <div class="color-price">Balde 17L R$ 479,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FF3C00"></div>
+        <div class="color-info">
+          <div class="color-name">Fogo Violeta</div>
+          <div class="color-hex">#FF3C00</div>
+          <div class="color-price">Balde 17L R$ 599,90<br>Galão 3,4L R$ 174,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#503459"></div>
+        <div class="color-info">
+          <div class="color-name">Aurora Serena</div>
+          <div class="color-hex">#503459</div>
+          <div class="color-price">Balde 17L R$ 599,90<br>Galão 3,4L R$ 174,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#E8EFCC"></div>
+        <div class="color-info">
+          <div class="color-name">Erva Doce</div>
+          <div class="color-hex">#E8EFCC</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#E1E4D2"></div>
+        <div class="color-info">
+          <div class="color-name">Pitada de Alecrim</div>
+          <div class="color-hex">#E1E4D2</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#D0EFC9"></div>
+        <div class="color-info">
+          <div class="color-name">Lagoa dos Lírios</div>
+          <div class="color-hex">#D0EFC9</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#BFDBB3"></div>
+        <div class="color-info">
+          <div class="color-name">Suave Kiwi</div>
+          <div class="color-hex">#BFDBB3</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#B3D4C6"></div>
+        <div class="color-info">
+          <div class="color-name">Bitigui</div>
+          <div class="color-hex">#B3D4C6</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A4D4CE"></div>
+        <div class="color-info">
+          <div class="color-name">Capim Cheiroso</div>
+          <div class="color-hex">#A4D4CE</div>
+          <div class="color-price">Balde 17L R$ 434,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A3A66C"></div>
+        <div class="color-info">
+          <div class="color-name">Azeitona</div>
+          <div class="color-hex">#A3A66C</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#929B74"></div>
+        <div class="color-info">
+          <div class="color-name">Verde Musgo</div>
+          <div class="color-hex">#929B74</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A29379"></div>
+        <div class="color-info">
+          <div class="color-name">Disfarce</div>
+          <div class="color-hex">#A29379</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A89888"></div>
+        <div class="color-info">
+          <div class="color-name">Marrom Suave</div>
+          <div class="color-hex">#A89888</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A6937E"></div>
+        <div class="color-info">
+          <div class="color-name">Média Visão</div>
+          <div class="color-hex">#A6937E</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A47B69"></div>
+        <div class="color-info">
+          <div class="color-name">Cobre Suave</div>
+          <div class="color-hex">#A47B69</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#9F7A5C"></div>
+        <div class="color-info">
+          <div class="color-name">Terra Nossa</div>
+          <div class="color-hex">#9F7A5C</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#BD876F"></div>
+        <div class="color-info">
+          <div class="color-name">Magia</div>
+          <div class="color-hex">#BD876F</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#966565"></div>
+        <div class="color-info">
+          <div class="color-name">Vermelho D 10</div>
+          <div class="color-hex">#966565</div>
+          <div class="color-price">Balde 17L R$ 459,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#BCF770"></div>
+        <div class="color-info">
+          <div class="color-name">Verde Fluorescente</div>
+          <div class="color-hex">#BCF770</div>
+          <div class="color-price">Balde 17L R$ 499,90<br>Galão 3,4L R$ 174,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#91E867"></div>
+        <div class="color-info">
+          <div class="color-name">Verde Limão</div>
+          <div class="color-hex">#91E867</div>
+          <div class="color-price">Balde 17L R$ 499,90<br>Galão 3,4L R$ 174,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#7EA448"></div>
+        <div class="color-info">
+          <div class="color-name">Jogo de Golfe</div>
+          <div class="color-hex">#7EA448</div>
+          <div class="color-price">Balde 17L R$ 499,90<br>Galão 3,4L R$ 174,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#DD5047"></div>
+        <div class="color-info">
+          <div class="color-name">Romã</div>
+          <div class="color-hex">#DD5047</div>
+          <div class="color-price">Balde 17L R$ 599,90<br>Galão 3,4L R$ 174,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#B8423E"></div>
+        <div class="color-info">
+          <div class="color-name">Rosa Vermelha</div>
+          <div class="color-hex">#B8423E</div>
+          <div class="color-price">Balde 17L R$ 599,90<br>Galão 3,4L R$ 174,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#AD3233"></div>
+        <div class="color-info">
+          <div class="color-name">Intensa Sedução</div>
+          <div class="color-hex">#AD3233</div>
+          <div class="color-price">Balde 17L R$ 699,90<br>Galão 3,4L R$ 174,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#415464"></div>
+        <div class="color-info">
+          <div class="color-name">Semente Urbana</div>
+          <div class="color-hex">#415464</div>
+          <div class="color-price">Balde 17L R$ 599,90<br>Galão 3,4L R$ 139,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FFF0CF"></div>
+        <div class="color-info">
+          <div class="color-name">Marfim</div>
+          <div class="color-hex">#FFF0CF</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#E8CEAF"></div>
+        <div class="color-info">
+          <div class="color-name">Doce da Vovó</div>
+          <div class="color-hex">#E8CEAF</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F2D0AE"></div>
+        <div class="color-info">
+          <div class="color-name">Pêssego</div>
+          <div class="color-hex">#F2D0AE</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FFB880"></div>
+        <div class="color-info">
+          <div class="color-name">Laranja Turco</div>
+          <div class="color-hex">#FFB880</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F8A868"></div>
+        <div class="color-info">
+          <div class="color-name">Tangerina</div>
+          <div class="color-hex">#F8A868</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FAA628"></div>
+        <div class="color-info">
+          <div class="color-name">Lícor de Laranja</div>
+          <div class="color-hex">#FAA628</div>
+          <div class="color-price">Balde 17L R$ 499,90<br>Galão 3,4L R$ 174,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#BB7782"></div>
+        <div class="color-info">
+          <div class="color-name">Rosa Açaí</div>
+          <div class="color-hex">#BB7782</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#D66CAC"></div>
+        <div class="color-info">
+          <div class="color-name">Bordô</div>
+          <div class="color-hex">#D66CAC</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 139,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#DDDDD8"></div>
+        <div class="color-info">
+          <div class="color-name">Papel Picado</div>
+          <div class="color-hex">#DDDDD8</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A776DB"></div>
+        <div class="color-info">
+          <div class="color-name">Uva Doce</div>
+          <div class="color-hex">#A776DB</div>
+          <div class="color-price">Balde 17L R$ 489,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#42295B"></div>
+        <div class="color-info">
+          <div class="color-name">Suntuoso</div>
+          <div class="color-hex">#42295B</div>
+          <div class="color-price">Balde 17L R$ 529,90<br>Galão 3,4L R$ 149,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C3B6C9"></div>
+        <div class="color-info">
+          <div class="color-name">Lilás Enevoado</div>
+          <div class="color-hex">#C3B6C9</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#DBC863"></div>
+        <div class="color-info">
+          <div class="color-name">Tripla Corda</div>
+          <div class="color-hex">#DBC863</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#D1B74F"></div>
+        <div class="color-info">
+          <div class="color-name">Curry Dourado</div>
+          <div class="color-hex">#D1B74F</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#DCD6CF"></div>
+        <div class="color-info">
+          <div class="color-name">Areia</div>
+          <div class="color-hex">#DCD6CF</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#64718F"></div>
+        <div class="color-info">
+          <div class="color-name">Valsa Azul</div>
+          <div class="color-hex">#64718F</div>
+          <div class="color-price">Balde 17L R$ 499,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#485659"></div>
+        <div class="color-info">
+          <div class="color-name">Estadual</div>
+          <div class="color-hex">#485659</div>
+          <div class="color-price">Balde 17L R$ 529,90<br>Galão 3,4L R$ 149,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A79F8D"></div>
+        <div class="color-info">
+          <div class="color-name">Areia Encharcada</div>
+          <div class="color-hex">#A79F8D</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#D2DDBA"></div>
+        <div class="color-info">
+          <div class="color-name">Verde Primavera</div>
+          <div class="color-hex">#D2DDBA</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A5B6AE"></div>
+        <div class="color-info">
+          <div class="color-name">Expedição Marítima</div>
+          <div class="color-hex">#A5B6AE</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C6AE9F"></div>
+        <div class="color-info">
+          <div class="color-name">Lícor Doce</div>
+          <div class="color-hex">#C6AE9F</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#EDB946"></div>
+        <div class="color-info">
+          <div class="color-name">Mistura de Mostarda</div>
+          <div class="color-hex">#EDB946</div>
+          <div class="color-price">Balde 17L R$ 499,90<br>Galão 3,4L R$ 139,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#99D1F4"></div>
+        <div class="color-info">
+          <div class="color-name">Azul Laet</div>
+          <div class="color-hex">#99D1F4</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#3C93F8"></div>
+        <div class="color-info">
+          <div class="color-name">Paraíso do Mar</div>
+          <div class="color-hex">#3C93F8</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#497AE7"></div>
+        <div class="color-info">
+          <div class="color-name">Mar Aberto</div>
+          <div class="color-hex">#497AE7</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#4881B6"></div>
+        <div class="color-info">
+          <div class="color-name">Planetário</div>
+          <div class="color-hex">#4881B6</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#3D5F98"></div>
+        <div class="color-info">
+          <div class="color-name">Azul Jazz</div>
+          <div class="color-hex">#3D5F98</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#435D7D"></div>
+        <div class="color-info">
+          <div class="color-name">Oceano Tranquilo</div>
+          <div class="color-hex">#435D7D</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 149,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#3F4A54"></div>
+        <div class="color-info">
+          <div class="color-name">Selva Escura</div>
+          <div class="color-hex">#3F4A54</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 149,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#997667"></div>
+        <div class="color-info">
+          <div class="color-name">Peça de Teatro</div>
+          <div class="color-hex">#997667</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#DAAE8C"></div>
+        <div class="color-info">
+          <div class="color-name">Doce da Bisa</div>
+          <div class="color-hex">#DAAE8C</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#CFA47C"></div>
+        <div class="color-info">
+          <div class="color-name">Chá Quente</div>
+          <div class="color-hex">#CFA47C</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#927259"></div>
+        <div class="color-info">
+          <div class="color-name">Chá da Tarde</div>
+          <div class="color-hex">#927259</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#EED1CD"></div>
+        <div class="color-info">
+          <div class="color-name">Rosé Suave</div>
+          <div class="color-hex">#EED1CD</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FD7E98"></div>
+        <div class="color-info">
+          <div class="color-name">Flamingo Real</div>
+          <div class="color-hex">#FD7E98</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F7AFB0"></div>
+        <div class="color-info">
+          <div class="color-name">Rosa Gloss</div>
+          <div class="color-hex">#F7AFB0</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#DBABAB"></div>
+        <div class="color-info">
+          <div class="color-name">Rosa Irlandesa</div>
+          <div class="color-hex">#DBABAB</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A26667"></div>
+        <div class="color-info">
+          <div class="color-name">Vermelho C 09</div>
+          <div class="color-hex">#A26667</div>
+          <div class="color-price">Balde 17L R$ 499,90<br>Galão 3,4L R$ 159,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#4FAF65"></div>
+        <div class="color-info">
+          <div class="color-name">Ilha de Esmeralda</div>
+          <div class="color-hex">#4FAF65</div>
+          <div class="color-price">Balde 17L R$ 599,90<br>Galão 3,4L R$ 169,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#418D8D"></div>
+        <div class="color-info">
+          <div class="color-name">Pavão</div>
+          <div class="color-hex">#418D8D</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 139,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#588D82"></div>
+        <div class="color-info">
+          <div class="color-name">Espaço Verde</div>
+          <div class="color-hex">#588D82</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#BDD6DD"></div>
+        <div class="color-info">
+          <div class="color-name">Gota Serena</div>
+          <div class="color-hex">#BDD6DD</div>
+          <div class="color-price">Balde 17L R$ 419,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#79A1C2"></div>
+        <div class="color-info">
+          <div class="color-name">Pena Azul</div>
+          <div class="color-hex">#79A1C2</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#598B6C"></div>
+        <div class="color-info">
+          <div class="color-name">Verde B 10</div>
+          <div class="color-hex">#598B6C</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#9FA28F"></div>
+        <div class="color-info">
+          <div class="color-name">Concreto</div>
+          <div class="color-hex">#9FA28F</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A19182"></div>
+        <div class="color-info">
+          <div class="color-name">Camurça</div>
+          <div class="color-hex">#A19182</div>
+          <div class="color-price">Balde 17L R$ 429,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#7188AE"></div>
+        <div class="color-info">
+          <div class="color-name">Petúnia Roxa</div>
+          <div class="color-hex">#7188AE</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#E7E8DB"></div>
+        <div class="color-info">
+          <div class="color-name">Pergaminho</div>
+          <div class="color-hex">#E7E8DB</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#D9D9D9"></div>
+        <div class="color-info">
+          <div class="color-name">Ovelha</div>
+          <div class="color-hex">#D9D9D9</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#744B4B"></div>
+        <div class="color-info">
+          <div class="color-name">Marrom Burguês</div>
+          <div class="color-hex">#744B4B</div>
+          <div class="color-price">Balde 17L R$ 499,90<br>Galão 3,4L R$ 159,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#675E6A"></div>
+        <div class="color-info">
+          <div class="color-name">Profundidade</div>
+          <div class="color-hex">#675E6A</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#202020"></div>
+        <div class="color-info">
+          <div class="color-name">Preto</div>
+          <div class="color-hex">#202020</div>
+          <div class="color-price">Balde 17L R$ 599,90<br>Galão 3,4L R$ 174,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#626260"></div>
+        <div class="color-info">
+          <div class="color-name">Chumbo</div>
+          <div class="color-hex">#626260</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#828282"></div>
+        <div class="color-info">
+          <div class="color-name">Cinza C 04</div>
+          <div class="color-hex">#828282</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 119,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#9B9D98"></div>
+        <div class="color-info">
+          <div class="color-name">Cinza</div>
+          <div class="color-hex">#9B9D98</div>
+          <div class="color-price">Balde 17L R$ 439,90<br>Galão 3,4L R$ 124,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#5AADFA"></div>
+        <div class="color-info">
+          <div class="color-name">Céu Sagrado</div>
+          <div class="color-hex">#5AADFA</div>
+          <div class="color-price">Balde 17L R$ 449,90<br>Galão 3,4L R$ 129,90</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch color-swatch-branco" style="background:#FFFFFF"></div>
+        <div class="color-info">
+          <div class="color-name">Branca (sem pigmento)</div>
+          <div class="color-hex">#FFFFFF</div>
+          <div class="color-price">Balde 18L R$ 399,90<br>Galão 3,6L R$ 99,90</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="catalog-note">
+      ⚠️ <strong>Atenção sobre as cores:</strong> Cada tela — celular, computador ou tablet — exibe as cores de um jeito diferente dependendo do brilho, configuração e modelo do aparelho. As cores aqui são uma referência visual, mas podem não representar 100% o tom real da tinta.<br><br>
+      Para ter certeza antes de comprar, <strong>recomendamos visitar uma de nossas lojas</strong> e consultar pessoalmente as cartelas de cor que ficam expostas na loja. Assim você vê o tom real da tinta e escolhe sem surpresa. Nossas lojas ficam no <strong>ABC e Zona Leste de SP</strong> — qualquer dúvida, é só chamar no WhatsApp! 😊
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="catalog-cta">
+  <div class="container">
+    <h2>Encontrou a cor ideal?</h2>
+    <p>Manda o nome da cor no WhatsApp e a gente prepara o seu pedido na hora.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/5511977140964?text=Olá! Quero fazer um pedido da linha Flexível Emborrachada." class="btn btn-white" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pedir pelo WhatsApp
+      </a>
+      <a href="https://wa.me/5511977140964?text=Olá! Gostaria de um orçamento para a linha Flexível Emborrachada." class="btn btn-ghost" target="_blank" rel="noopener">
+        Pedir orçamento
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <a href="../index.html">
+      <img src="../images/logo-branco.png" alt="Tintas Laet" style="height:48px">
+    </a>
+    <span class="footer-text">© 2026 Tintas Laet — A tinta nobre da comunidade</span>
+    <a href="../produto.html?id=emborrachada" class="footer-link">← Ver produto</a>
+  </div>
+</footer>
+
+</body>
+</html>
