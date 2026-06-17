@@ -180,9 +180,6 @@
         <div class="field" style="grid-column:1/3"><label>Endereço do cliente</label><input id="f-endereco" placeholder="Rua, número, bairro - cidade"></div>
       </div>
       <div class="field-row">
-        <div class="field" style="grid-column:1/3"><label>Data</label><input type="date" id="f-data"></div>
-      </div>
-      <div class="field-row">
         <div class="field" style="grid-column:1/3">
           <label>Forma de pagamento</label>
           <select id="f-pagamento">
@@ -313,8 +310,6 @@ function flattenOptions(p) {
 }
 
 async function initTool() {
-  document.getElementById('f-data').value = new Date().toISOString().slice(0, 10);
-
   document.getElementById('addItemBtn').addEventListener('click', addItemRow);
   document.getElementById('genPdfBtn').addEventListener('click', gerarPDF);
   document.getElementById('clearBtn').addEventListener('click', () => {
@@ -411,8 +406,7 @@ function gerarPDF() {
   const endereco = escapeHtml(document.getElementById('f-endereco').value) || '—';
   const validade = '7';
   const pagamento = escapeHtml(document.getElementById('f-pagamento').value);
-  const dataVal = document.getElementById('f-data').value;
-  const dataFmt = dataVal ? dataVal.split('-').reverse().join('/') : new Date().toLocaleDateString('pt-BR');
+  const dataFmt = new Date().toLocaleDateString('pt-BR');
   const frete = parseFloat(document.getElementById('f-frete').value) || 0;
   const desconto = parseFloat(document.getElementById('f-desconto').value) || 0;
 
