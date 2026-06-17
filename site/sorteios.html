@@ -215,7 +215,7 @@
     .winner-row--latest .winner-name-friend { font-size: clamp(17px, 4vw, 21px); }
 
     /* ── RULES ── */
-    .rules-section { padding: 88px 0; background: linear-gradient(160deg, #020d1a 0%, var(--blue-dark) 55%, #1565C0 100%); position: relative; overflow: hidden; }
+    .rules-section { padding: 88px 0; background: linear-gradient(160deg, #020d1a 0%, var(--blue-dark) 55%, #1565C0 100%); position: relative; overflow: hidden; scroll-margin-top: 80px; }
     .rules-section::before { content: ''; position: absolute; bottom: -120px; right: -80px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(255,193,7,.07) 0%, transparent 65%); pointer-events: none; }
     .rules-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
     .rules-content h2 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(24px, 3vw, 40px); color: #fff; line-height: 1.15; margin-bottom: 14px; }
@@ -472,7 +472,7 @@
 </section>
 
 <!-- REGULAMENTO -->
-<section class="rules-section">
+<section class="rules-section" id="regulamento">
   <div class="container">
     <div class="rules-inner">
       <div class="rules-content reveal">
@@ -489,6 +489,8 @@
           <li><span class="rule-check">✓</span>O prêmio é retirado na loja indicada pela empresa</li>
           <li><span class="rule-check">✓</span>Apenas um prêmio por CPF por sorteio</li>
           <li><span class="rule-check">✓</span>Cupons ilegíveis, incompletos ou rasurados são desclassificados</li>
+          <li><span class="rule-check">✓</span>A Tintas Laet pode solicitar comprovante de compra a qualquer momento; cupons com dados falsos, duplicados ou obtidos de forma fraudulenta serão desclassificados sem aviso prévio</li>
+          <li><span class="rule-check">✓</span>Este regulamento pode ser alterado, suspenso ou cancelado pela Tintas Laet a qualquer momento e sem aviso prévio, especialmente em casos de fraude, uso indevido ou tentativa de burlar as regras</li>
         </ul>
       </div>
 
