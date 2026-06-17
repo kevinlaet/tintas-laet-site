@@ -704,11 +704,128 @@ const produtos = {
     descricao: 'A Tinta Premium Lavável Laet é uma tinta de mega qualidade com excelente cobertura e facilidade de limpeza. Contém propriedades anti-mofo e anti-fungos. Acabamento fosco. Cobre com apenas 2 demãos.',
     beneficios: ['Mega qualidade e excelente cobertura', 'Lavável — limpe com facilidade', 'Anti-mofo e anti-fungos', 'Acabamento fosco', 'Cobre com 2 demãos', 'Baixo odor'],
     precos: [
-      { desc: '18L — Branca', valor: 'R$ 299,90' },
-      { desc: '18L — Cores (a partir)', valor: 'R$ 329,90' },
+      { desc: 'Balde — Branca', valor: 'R$ 299,90' },
     ],
     preco_from: 'R$ 299<small>,90</small>',
-    wa: 'Olá! Quero comprar Tinta Premium Lavável Laet. Pode me passar mais informações?'
+    wa: 'Olá! Quero comprar Tinta Premium Lavável Laet. Pode me passar mais informações?',
+    catalogo_pdf: 'catalogo/premium-lavavel.html',
+    cores_precificadas: true,
+    tem_branca: true,
+    tam_balde_default: 'Balde',
+    tam_galao_default: 'Galão',
+    tam_quarto_default: '1/4',
+    cores: [
+      { nome: 'Crômio', hex: '#DDDDDD', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Cinza A', hex: '#C2C2C1', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Cinza B', hex: '#A8A8A4', preco_balde: 'R$ 329,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Cinza Elefante', hex: '#B4B499', preco_balde: 'R$ 329,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Cinza Wick', hex: '#959BA2', preco_balde: 'R$ 339,90', preco_galao: 'R$ 94,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Pitada Casual', hex: '#A6B6AE', preco_balde: 'R$ 339,90', preco_galao: 'R$ 94,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Cinza Fumaça', hex: '#81959F', preco_balde: 'R$ 339,90', preco_galao: 'R$ 94,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Penhasco', hex: '#8F949F', preco_balde: 'R$ 349,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Cinza D 04', hex: '#707070', preco_balde: 'R$ 339,90', preco_galao: 'R$ 94,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Gelo', hex: '#FFF2C8', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Algodão Egípcio', hex: '#F4ECD7', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Porcelana Egípcia', hex: '#F1E0C2', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Palha', hex: '#EBE4C5', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Bege Mineral', hex: '#CBC4A2', preco_balde: 'R$ 339,90', preco_galao: 'R$ 94,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Pantanal', hex: '#B8B396', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Verde Piscina', hex: '#A9EFDC', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Mar de Arruda', hex: '#82BBBD', preco_balde: 'R$ 349,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Amarelo Laet', hex: '#FFFEB3', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Amarelo B 07', hex: '#FFF994', preco_balde: 'R$ 329,90', preco_galao: 'R$ 94,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Amarelo C 07', hex: '#FFF46A', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 35,90' },
+      { nome: 'Amarelo Albertino', hex: '#FAE554', preco_balde: 'R$ 359,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Amarelo Dourado', hex: '#FCCF6F', preco_balde: 'R$ 399,90', preco_galao: 'R$ 119,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Chuva Suave', hex: '#D5E7E3', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Chuva', hex: '#D9D9D9', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Sombra Lunar', hex: '#C7C4CB', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Ana Maria', hex: '#D5D1E6', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Lilás Laet', hex: '#B1AED8', preco_balde: 'R$ 329,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Caixa Seca', hex: '#A3A0DD', preco_balde: 'R$ 349,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Lilás Delicado', hex: '#FFD5F7', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Lilás Primata', hex: '#C7A8D6', preco_balde: 'R$ 379,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Fogo Violeta', hex: '#FF3C00', preco_balde: 'R$ 499,90', preco_galao: 'R$ 149,90', preco_quarto: 'R$ 44,90' },
+      { nome: 'Aurora Serena', hex: '#503459', preco_balde: 'R$ 499,90', preco_galao: 'R$ 149,90', preco_quarto: 'R$ 44,90' },
+      { nome: 'Erva Doce', hex: '#E8EFCC', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Pitada de Alecrim', hex: '#E1E4D2', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Lagoa dos Lírios', hex: '#D0EFC9', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Suave Kiwi', hex: '#BFDBB3', preco_balde: 'R$ 329,90', preco_galao: 'R$ 94,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Bitigui', hex: '#B3D4C6', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Capim Cheiroso', hex: '#A4D4CE', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Azeitona', hex: '#A3A66C', preco_balde: 'R$ 349,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Verde Musgo', hex: '#929B74', preco_balde: 'R$ 349,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Disfarce', hex: '#A29379', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Marrom Suave', hex: '#A89888', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Média Visão', hex: '#A6937E', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Cobre Suave', hex: '#A47B69', preco_balde: 'R$ 349,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Terra Nossa', hex: '#9F7A5C', preco_balde: 'R$ 349,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Magia', hex: '#BD876F', preco_balde: 'R$ 349,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Vermelho D 10', hex: '#966565', preco_balde: 'R$ 329,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Verde Fluorescente', hex: '#BCF770', preco_balde: 'R$ 399,90', preco_galao: 'R$ 149,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Verde Limão', hex: '#91E867', preco_balde: 'R$ 399,90', preco_galao: 'R$ 149,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Jogo de Golfe', hex: '#7EA448', preco_balde: 'R$ 399,90', preco_galao: 'R$ 149,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Romã', hex: '#DD5047', preco_balde: 'R$ 499,90', preco_galao: 'R$ 149,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Rosa Vermelha', hex: '#B8423E', preco_balde: 'R$ 499,90', preco_galao: 'R$ 149,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Intensa Sedução', hex: '#AD3233', preco_balde: 'R$ 599,90', preco_galao: 'R$ 169,90', preco_quarto: 'R$ 44,90' },
+      { nome: 'Semente Urbana', hex: '#415464', preco_balde: 'R$ 499,90', preco_galao: 'R$ 149,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Marfim', hex: '#FFF0CF', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Doce da Vovó', hex: '#E8CEAF', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Pêssego', hex: '#F2D0AE', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Laranja Turco', hex: '#FFB880', preco_balde: 'R$ 329,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Tangerina', hex: '#F8A868', preco_balde: 'R$ 329,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Lícor de Laranja', hex: '#FAA628', preco_balde: 'R$ 399,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Rosa Açaí', hex: '#BB7782', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Bordô', hex: '#D66CAC', preco_balde: 'R$ 429,90', preco_galao: 'R$ 119,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Papel Picado', hex: '#DDDDD8', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Uva Doce', hex: '#A776DB', preco_balde: 'R$ 389,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Suntuoso', hex: '#42295B', preco_balde: 'R$ 429,90', preco_galao: 'R$ 129,90', preco_quarto: 'R$ 37,90' },
+      { nome: 'Lilás Enevoado', hex: '#C3B6C9', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Tripla Coroa', hex: '#DBC863', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Curry Dourado', hex: '#D1B74F', preco_balde: 'R$ 389,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Areia', hex: '#DCD6CF', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Valsa Azul', hex: '#64718F', preco_balde: 'R$ 399,90', preco_galao: 'R$ 119,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Estadual', hex: '#485659', preco_balde: 'R$ 429,90', preco_galao: 'R$ 129,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Areia Encharcada', hex: '#A79F8D', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Verde Primavera', hex: '#D2DDBA', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Expedição Marítima', hex: '#A5B6AE', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Lícor Doce', hex: '#C6AE9F', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Mistura de Mostarda', hex: '#EDB946', preco_balde: 'R$ 399,90', preco_galao: 'R$ 119,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Azul Laet', hex: '#99D1F4', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Paraíso do Mar', hex: '#3C93F8', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Mar Aberto', hex: '#497AE7', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Planetário', hex: '#4881B6', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Azul Jazz', hex: '#3D5F98', preco_balde: 'R$ 349,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Oceano Tranquilo', hex: '#435D7D', preco_balde: 'R$ 349,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Selva Escura', hex: '#3F4A54', preco_balde: 'R$ 349,90', preco_galao: 'R$ 129,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Peça de Teatro', hex: '#997667', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Doce da Bisa', hex: '#DAAE8C', preco_balde: 'R$ 329,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Chá Quente', hex: '#CFA47C', preco_balde: 'R$ 339,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Chá da Tarde', hex: '#927259', preco_balde: 'R$ 349,90', preco_galao: 'R$ 109,90', preco_quarto: 'R$ 36,90' },
+      { nome: 'Rosé Suave', hex: '#EED1CD', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Flamingo Real', hex: '#FD7E98', preco_balde: 'R$ 329,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 35,90' },
+      { nome: 'Rosa Gloss', hex: '#F7AFB0', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Rosa Irlandesa', hex: '#DBABAB', preco_balde: 'R$ 329,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Vermelho C 09', hex: '#A26667', preco_balde: 'R$ 399,90', preco_galao: 'R$ 139,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Ilha de Esmeralda', hex: '#4FAF65', preco_balde: 'R$ 499,90', preco_galao: 'R$ 149,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Pavão', hex: '#418D8D', preco_balde: 'R$ 349,90', preco_galao: 'R$ 119,90', preco_quarto: 'R$ 36,90' },
+      { nome: 'Espaço Verde', hex: '#588D82', preco_balde: 'R$ 329,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Gota Serena', hex: '#BDD6DD', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Pena Azul', hex: '#79A1C2', preco_balde: 'R$ 329,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Verde B 10', hex: '#598B6C', preco_balde: 'R$ 329,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Concreto', hex: '#9FA28F', preco_balde: 'R$ 329,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Camurça', hex: '#A19182', preco_balde: 'R$ 329,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Petúnia Roxa', hex: '#7188AE', preco_balde: 'R$ 349,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Pergaminho', hex: '#E7E8DB', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Ovelha', hex: '#D9D9D9', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Marrom Burguês', hex: '#744B4B', preco_balde: 'R$ 499,90', preco_galao: 'R$ 149,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Profundidade', hex: '#675E6A', preco_balde: 'R$ 349,90', preco_galao: 'R$ 119,90', preco_quarto: 'R$ 36,90' },
+      { nome: 'Preto', hex: '#202020', preco_balde: 'R$ 429,90', preco_galao: 'R$ 139,90', preco_quarto: 'R$ 39,90' },
+      { nome: 'Chumbo', hex: '#626260', preco_balde: 'R$ 349,90', preco_galao: 'R$ 119,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Cinza C 04', hex: '#828282', preco_balde: 'R$ 349,90', preco_galao: 'R$ 119,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Cinza', hex: '#9B9D98', preco_balde: 'R$ 329,90', preco_galao: 'R$ 99,90', preco_quarto: 'R$ 34,90' },
+      { nome: 'Céu Sagrado', hex: '#5AADFA', preco_balde: 'R$ 319,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 34,90' },
+    ]
   },
   'kit-pintura': {
     nome: 'Kit Pintura 5 itens',
@@ -731,13 +848,14 @@ let coresShown = 20;
 function coreCardHtml(c, p) {
   const tamBalde = c.tam_balde || (p && p.tam_balde_default) || '17L';
   const tamGalao = c.tam_galao || (p && p.tam_galao_default) || '3,4L';
+  const tamQuarto = c.tam_quarto || (p && p.tam_quarto_default) || '1/4';
   return `
   <div class="core-card">
     <div class="core-swatch${c.borda ? ' core-swatch-branco' : ''}" style="background:${c.hex}"></div>
     <div class="core-info">
       <div class="core-nome">${c.nome}</div>
       <div class="core-hex">${c.hex}</div>
-      ${c.preco_balde ? `<div class="core-preco">${tamBalde} ${c.preco_balde}<br>${tamGalao} ${c.preco_galao}</div>` : ''}
+      ${c.preco_balde ? `<div class="core-preco">${tamBalde} ${c.preco_balde}<br>${tamGalao} ${c.preco_galao}${c.preco_quarto ? `<br>${tamQuarto} ${c.preco_quarto}` : ''}</div>` : ''}
     </div>
   </div>`;
 }
@@ -952,8 +1070,10 @@ function updateTamanhoPrecificado(id) {
     if (cor) {
       const tamBalde = cor.tam_balde || p.tam_balde_default || '17L';
       const tamGalao = cor.tam_galao || p.tam_galao_default || '3,4L';
+      const tamQuarto = cor.tam_quarto || p.tam_quarto_default || '1/4';
       opts.push(`<option value="${tamBalde}|${cor.preco_balde}">${tamBalde} — ${cor.preco_balde}</option>`);
       opts.push(`<option value="${tamGalao}|${cor.preco_galao}">${tamGalao} — ${cor.preco_galao}</option>`);
+      if (cor.preco_quarto) opts.push(`<option value="${tamQuarto}|${cor.preco_quarto}">${tamQuarto} — ${cor.preco_quarto}</option>`);
     }
   }
   tamanhoSel.innerHTML = opts.join('');
