@@ -180,8 +180,7 @@
         <div class="field" style="grid-column:1/3"><label>Endereço do cliente</label><input id="f-endereco" placeholder="Rua, número, bairro - cidade"></div>
       </div>
       <div class="field-row">
-        <div class="field"><label>Data</label><input type="date" id="f-data"></div>
-        <div class="field"><label>Válido por (dias)</label><input type="number" id="f-validade" value="7" min="1"></div>
+        <div class="field" style="grid-column:1/3"><label>Data</label><input type="date" id="f-data"></div>
       </div>
       <div class="field-row">
         <div class="field" style="grid-column:1/3">
@@ -272,9 +271,10 @@ let produtosData = null;
 async function loadProdutos() {
   if (produtosData) return produtosData;
   const res = await fetch('produto.html');
+  if (!res.ok) throw new Error('produto.html retornou status ' + res.status);
   const text = await res.text();
   const match = text.match(/const produtos = (\{[\s\S]*?\n\});/);
-  if (!match) { produtosData = {}; return produtosData; }
+  if (!match) throw new Error('Não encontrou o objeto "produtos" dentro de produto.html');
   produtosData = (new Function('return ' + match[1]))();
   return produtosData;
 }
@@ -314,8 +314,7 @@ function flattenOptions(p) {
 
 async function initTool() {
   document.getElementById('f-data').value = new Date().toISOString().slice(0, 10);
-  await loadProdutos();
-  addItemRow();
+
   document.getElementById('addItemBtn').addEventListener('click', addItemRow);
   document.getElementById('genPdfBtn').addEventListener('click', gerarPDF);
   document.getElementById('clearBtn').addEventListener('click', () => {
@@ -326,6 +325,15 @@ async function initTool() {
     document.getElementById('f-desconto').value = 0;
     recalcTotal();
   });
+
+  try {
+    await loadProdutos();
+  } catch (e) {
+    console.error('Falha ao carregar produtos de produto.html:', e);
+    produtosData = produtosData || {};
+    alert('Não foi possível carregar a lista de produtos automaticamente. Recarregue a página (Ctrl+Shift+R). Se persistir, avise o Kevin.');
+  }
+  addItemRow();
 }
 
 function addItemRow() {
@@ -401,7 +409,7 @@ function gerarPDF() {
   const cliente = escapeHtml(document.getElementById('f-cliente').value) || '—';
   const whatsapp = escapeHtml(document.getElementById('f-whatsapp').value) || '—';
   const endereco = escapeHtml(document.getElementById('f-endereco').value) || '—';
-  const validade = document.getElementById('f-validade').value || '7';
+  const validade = '7';
   const pagamento = escapeHtml(document.getElementById('f-pagamento').value);
   const dataVal = document.getElementById('f-data').value;
   const dataFmt = dataVal ? dataVal.split('-').reverse().join('/') : new Date().toLocaleDateString('pt-BR');
