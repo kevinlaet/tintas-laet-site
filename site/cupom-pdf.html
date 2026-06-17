@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de PDF — Sorteio Tintas Laet</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; color: #212529; background: #F0F2F5; padding: 24px; }
+    img { max-width: 100%; display: block; }
+    :root { --blue: #0D47A1; --blue-dark: #062B63; --yellow: #FFC107; }
+
+    .wrap { max-width: 880px; margin: 0 auto; }
+    .tool-header { margin-bottom: 22px; }
+    .tool-header h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 22px; color: var(--blue-dark); margin-bottom: 6px; }
+    .tool-header p { font-size: 13px; color: #777; }
+
+    .title-field { margin-bottom: 18px; }
+    .title-field label { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: #555; margin-bottom: 6px; }
+    .title-field input { width: 100%; padding: 12px 14px; border: 1.5px solid #DCE1EA; border-radius: 9px; font-size: 15px; font-family: 'Montserrat', sans-serif; font-weight: 700; }
+
+    .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 11px 18px; border-radius: 9px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; border: none; }
+    .btn-yellow { background: var(--yellow); color: #1a1000; }
+    .btn-blue { background: var(--blue); color: #fff; }
+    .btn-ghost { background: #fff; color: #C62828; border: 1.5px solid #F3CBCB; }
+
+    .entries { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+    .entry-card { background: #fff; border-radius: 14px; padding: 16px 18px; box-shadow: 0 2px 12px rgba(0,0,0,.05); position: relative; }
+    .entry-num { position: absolute; top: -10px; left: -10px; width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+    .entry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .entry-grid input, .entry-grid select { padding: 9px 10px; border: 1.5px solid #DCE1EA; border-radius: 7px; font-size: 13px; font-family: 'Poppins', sans-serif; width: 100%; }
+    .entry-card textarea { width: 100%; padding: 9px 10px; border: 1.5px solid #DCE1EA; border-radius: 7px; font-size: 13px; font-family: 'Poppins', sans-serif; resize: vertical; min-height: 40px; }
+    .entry-card .field-label { display: block; font-size: 11px; color: #999; margin-bottom: 4px; }
+    .entry-remove { position: absolute; top: -10px; right: -10px; width: 26px; height: 26px; border-radius: 50%; background: #FBEAEA; border: 1.5px solid #F3CBCB; color: #C62828; cursor: pointer; font-size: 13px; }
+
+    .print-only { display: none; }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .tool-header, .title-field, .toolbar, .entries { display: none !important; }
+      .print-only { display: block !important; }
+      .print-header { text-align: center; margin-bottom: 28px; padding-bottom: 18px; border-bottom: 3px solid var(--blue); }
+      .print-header img { height: 44px; margin: 0 auto 12px; }
+      .print-header h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 22px; color: var(--blue-dark); margin-bottom: 4px; }
+      .print-header p { font-size: 12px; color: #777; }
+      .print-list { list-style: none; counter-reset: item; }
+      .print-list li { counter-increment: item; padding: 12px 0; border-bottom: 1px solid #eee; padding-left: 34px; position: relative; break-inside: avoid; }
+      .print-list li::before { content: counter(item); position: absolute; left: 0; top: 12px; width: 22px; height: 22px; border-radius: 50%; background: var(--blue); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+      .print-list strong { font-family: 'Montserrat', sans-serif; font-size: 14px; }
+      .print-list .meta { font-size: 11px; color: #777; }
+      .print-footer { margin-top: 30px; font-size: 10px; color: #999; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="tool-header">
+    <h1>🎟️ Gerador de PDF — Lista do Sorteio</h1>
+    <p>Uso interno. Preencha os participantes (manualmente ou copiando do painel de envios) e clique em "Gerar PDF". Os dados ficam salvos neste navegador.</p>
+  </div>
+
+  <div class="title-field">
+    <label>Título do sorteio</label>
+    <input type="text" id="pdfTitle" placeholder="Sorteio Julho Premiado — 06/07/2026" value="Sorteio Julho Premiado — 06/07/2026">
+  </div>
+
+  <div class="toolbar">
+    <button class="btn btn-blue" id="addEntryBtn">+ Adicionar participante</button>
+    <button class="btn btn-yellow" id="genPdfBtn">🖨️ Gerar PDF</button>
+    <button class="btn btn-ghost" id="clearAllBtn">🗑️ Limpar tudo</button>
+  </div>
+
+  <div class="entries" id="entriesList"></div>
+
+  <div class="print-only" id="printArea"></div>
+</div>
+
+<template id="entryTemplate">
+  <div class="entry-card">
+    <div class="entry-num"></div>
+    <button type="button" class="entry-remove" aria-label="Remover">✕</button>
+    <div class="entry-grid">
+      <div>
+        <span class="field-label">Nome</span>
+        <input type="text" data-f="nome" placeholder="Nome do participante">
+      </div>
+      <div>
+        <span class="field-label">WhatsApp</span>
+        <input type="text" data-f="whatsapp" placeholder="(11) 90000-0000">
+      </div>
+      <div>
+        <span class="field-label">Loja</span>
+        <select data-f="loja">
+          <option value="">Selecione...</option>
+          <option>Loja 1 — Sapopemba</option>
+          <option>Loja 2 — São João</option>
+          <option>Loja 3 — Ayrton Senna</option>
+          <option>Loja 4 — Santo André</option>
+        </select>
+      </div>
+      <div>
+        <span class="field-label">Forma de compra</span>
+        <select data-f="forma">
+          <option>Na loja</option>
+          <option>Pelo WhatsApp</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <span class="field-label">Amigos indicados (nome — whatsapp, separados por vírgula)</span>
+      <textarea data-f="amigos" placeholder="Ex: Reinaldo — (11) 90000-0000"></textarea>
+    </div>
+  </div>
+</template>
+
+<script>
+(function () {
+  var STORAGE_KEY = 'laet_cupom_pdf_v1';
+  var TITLE_KEY = 'laet_cupom_pdf_title_v1';
+  var list = document.getElementById('entriesList');
+  var template = document.getElementById('entryTemplate');
+  var titleInput = document.getElementById('pdfTitle');
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  function renumber() {
+    list.querySelectorAll('.entry-card').forEach(function (card, i) {
+      card.querySelector('.entry-num').textContent = i + 1;
+    });
+  }
+
+  function saveAll() {
+    var data = [];
+    list.querySelectorAll('.entry-card').forEach(function (card) {
+      data.push({
+        nome: card.querySelector('[data-f="nome"]').value,
+        whatsapp: card.querySelector('[data-f="whatsapp"]').value,
+        loja: card.querySelector('[data-f="loja"]').value,
+        forma: card.querySelector('[data-f="forma"]').value,
+        amigos: card.querySelector('[data-f="amigos"]').value
+      });
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    localStorage.setItem(TITLE_KEY, titleInput.value);
+  }
+
+  function addEntry(values) {
+    var node = template.content.cloneNode(true);
+    var card = node.querySelector('.entry-card');
+    if (values) {
+      card.querySelector('[data-f="nome"]').value = values.nome || '';
+      card.querySelector('[data-f="whatsapp"]').value = values.whatsapp || '';
+      card.querySelector('[data-f="loja"]').value = values.loja || '';
+      card.querySelector('[data-f="forma"]').value = values.forma || 'Na loja';
+      card.querySelector('[data-f="amigos"]').value = values.amigos || '';
+    }
+    card.querySelector('.entry-remove').addEventListener('click', function () {
+      card.remove();
+      renumber();
+      saveAll();
+    });
+    card.querySelectorAll('input, select, textarea').forEach(function (el) {
+      el.addEventListener('input', saveAll);
+      el.addEventListener('change', saveAll);
+    });
+    list.appendChild(card);
+    renumber();
+  }
+
+  function buildPrintArea() {
+    var title = titleInput.value || 'Sorteio Tintas Laet';
+    var html = '<div class="print-header">' +
+      '<img src="images/logo-azul.png" alt="Tintas Laet">' +
+      '<h1>' + escapeHtml(title) + '</h1>' +
+      '<p>Lista de participantes — gerada em ' + new Date().toLocaleDateString('pt-BR') + '</p>' +
+      '</div><ol class="print-list">';
+    list.querySelectorAll('.entry-card').forEach(function (card) {
+      var nome = escapeHtml(card.querySelector('[data-f="nome"]').value) || '(sem nome)';
+      var wa = escapeHtml(card.querySelector('[data-f="whatsapp"]').value);
+      var loja = escapeHtml(card.querySelector('[data-f="loja"]').value);
+      var forma = escapeHtml(card.querySelector('[data-f="forma"]').value);
+      var amigos = escapeHtml(card.querySelector('[data-f="amigos"]').value);
+      html += '<li><strong>' + nome + '</strong>' + (wa ? ' — ' + wa : '') + '<br>' +
+        '<span class="meta">' + [loja, forma].filter(Boolean).join(' · ') + '</span>' +
+        (amigos ? '<br><span class="meta">Indicou: ' + amigos + '</span>' : '') +
+        '</li>';
+    });
+    html += '</ol><div class="print-footer">Tintas Laet — gerado automaticamente pela ferramenta interna do sorteio</div>';
+    document.getElementById('printArea').innerHTML = html;
+  }
+
+  document.getElementById('addEntryBtn').addEventListener('click', function () {
+    addEntry();
+    saveAll();
+  });
+
+  document.getElementById('genPdfBtn').addEventListener('click', function () {
+    saveAll();
+    buildPrintArea();
+    window.print();
+  });
+
+  document.getElementById('clearAllBtn').addEventListener('click', function () {
+    if (!confirm('Limpar todos os participantes da lista?')) return;
+    list.innerHTML = '';
+    addEntry();
+    saveAll();
+  });
+
+  titleInput.addEventListener('input', saveAll);
+
+  /* Load saved state */
+  var saved = [];
+  try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch (e) { saved = []; }
+  var savedTitle = localStorage.getItem(TITLE_KEY);
+  if (savedTitle) titleInput.value = savedTitle;
+  if (saved.length) {
+    saved.forEach(function (v) { addEntry(v); });
+  } else {
+    addEntry();
+  }
+})();
+</script>
+
+</body>
+</html>
