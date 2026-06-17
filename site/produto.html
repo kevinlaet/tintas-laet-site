@@ -199,6 +199,7 @@ const produtos = {
     wa: 'Olá! Quero comprar Tinta Emborrachada Laet. Pode me passar mais informações?',
     catalogo_pdf: 'catalogo/emborrachada.html',
     cores_precificadas: true,
+    tem_branca: true,
     cores: [
       { nome: 'Branco', hex: '#FFFFFF', borda: true, preco_balde: 'R$ 399,90', preco_galao: 'R$ 99,90', tam_balde: '18L', tam_galao: '3,6L' },
       { nome: 'Crômio', hex: '#DDDDDD', preco_balde: 'R$ 419,90', preco_galao: 'R$ 119,90' },
@@ -362,6 +363,85 @@ const produtos = {
     ],
     preco_from: 'R$ 69<small>,90</small>',
     wa: 'Olá! Quero comprar Massa Acrílica Laet. Pode me passar mais informações?'
+  },
+  'epoxi-base-agua': {
+    nome: 'Tinta Epóxi Base Água',
+    categoria: 'Tintas Premium',
+    badge: 'SEM CHEIRO FORTE!',
+    imagem: 'images/embalagens/epoxibaseagua.png',
+    desc_curta: 'Renove sem quebrar. Secagem rápida, alta resistência e totalmente lavável. Para azulejos, banheiros e metais.',
+    descricao: 'A Tinta Epóxi Base Água Laet é ideal para renovar azulejos, cozinhas, banheiros, metais e galvanizados sem precisar quebrar nada. Tem secagem rápida, alta resistência, é totalmente lavável e não solta cheiro forte — sem solventes agressivos. Disponível somente na cor branca; se quiser outra cor, é só adicionar o nosso corante separadamente.',
+    beneficios: ['Secagem rápida', 'Alta resistência', 'Totalmente lavável', 'Sem cheiro forte / sem solventes agressivos', 'Indicada para azulejos, cozinhas, banheiros, metais e galvanizados', 'Super cobertura e alta durabilidade'],
+    precos: [
+      { desc: '3,6L — Branca', valor: 'R$ 129,90' },
+    ],
+    preco_from: 'R$ 129<small>,90</small>',
+    preco_label: '3,6L branca — único tamanho',
+    wa: 'Olá! Quero comprar Tinta Epóxi Base Água Laet. Pode me passar mais informações?'
+  },
+  'efeito-cimento-queimado': {
+    nome: 'Efeito Cimento Queimado',
+    categoria: 'Texturizados',
+    badge: 'ACABAMENTO DECORATIVO!',
+    imagem: 'images/embalagens/efeitocimentoqueimado.png',
+    desc_curta: 'Acabamento decorativo tipo cimento queimado. Uso interno e externo, para paredes e tetos. 15 cores disponíveis.',
+    descricao: 'O Efeito Cimento Queimado Laet dá um acabamento perfeito e moderno, com aplicação fácil e propriedades anti-mofo. Indicado para paredes e tetos, tanto em ambientes internos quanto externos. Disponível em 15 cores diferentes.',
+    beneficios: ['Acabamento perfeito tipo cimento queimado', 'Fácil aplicação', 'Anti-mofo', 'Uso interno e externo', 'Indicado para paredes e tetos', '15 cores disponíveis'],
+    precos: [
+      { desc: '5kg — a partir de', valor: 'R$ 69,90' },
+      { desc: '25kg — a partir de', valor: 'R$ 199,90' },
+    ],
+    preco_from: 'R$ 69<small>,90</small>',
+    preco_label: '5kg — a partir de',
+    wa: 'Olá! Quero comprar o Efeito Cimento Queimado Laet. Pode me passar mais informações?',
+    catalogo_pdf: 'catalogo/efeito-cimento-queimado.html',
+    cores_precificadas: true,
+    tem_branca: false,
+    tam_balde_default: '5kg',
+    tam_galao_default: '25kg',
+    cores: [
+      { nome: 'Cinza Claro', hex: '#B4B4AA', preco_balde: 'R$ 69,90', preco_galao: 'R$ 199,90' },
+      { nome: 'Cinza Padrão', hex: '#898883', preco_balde: 'R$ 74,90', preco_galao: 'R$ 199,90' },
+      { nome: 'Chumbo', hex: '#605F5A', preco_balde: 'R$ 79,90', preco_galao: 'R$ 229,90' },
+      { nome: 'Concreto', hex: '#92927A', preco_balde: 'R$ 74,90', preco_galao: 'R$ 199,90' },
+      { nome: 'Azeitona Passada', hex: '#8E7B43', preco_balde: 'R$ 79,90', preco_galao: 'R$ 229,90' },
+      { nome: 'Marrom Turco', hex: '#423529', preco_balde: 'R$ 89,90', preco_galao: 'R$ 259,90' },
+      { nome: 'Rosé', hex: '#FCEBD9', preco_balde: 'R$ 69,90', preco_galao: 'R$ 199,90' },
+      { nome: 'Bala de Iogurte', hex: '#F6ACCF', preco_balde: 'R$ 69,90', preco_galao: 'R$ 199,90' },
+      { nome: 'Dois Amores', hex: '#A63A3B', preco_balde: 'R$ 89,90', preco_galao: 'R$ 259,90' },
+      { nome: 'Amarelo Laet 2', hex: '#FAF29D', preco_balde: 'R$ 69,90', preco_galao: 'R$ 199,90' },
+      { nome: 'Verde Uva', hex: '#8BAD8A', preco_balde: 'R$ 74,90', preco_galao: 'R$ 229,90' },
+      { nome: 'Pavão', hex: '#318889', preco_balde: 'R$ 84,90', preco_galao: 'R$ 224,90' },
+      { nome: 'Caixa Mágica', hex: '#8586C6', preco_balde: 'R$ 69,90', preco_galao: 'R$ 199,90' },
+      { nome: 'Azul Céu', hex: '#719DBA', preco_balde: 'R$ 74,90', preco_galao: 'R$ 219,90' },
+      { nome: 'Jeans', hex: '#606D73', preco_balde: 'R$ 74,90', preco_galao: 'R$ 219,90' },
+    ]
+  },
+  'corante': {
+    nome: 'Corante Premium',
+    categoria: 'Complementos',
+    badge: 'PERSONALIZE SUA TINTA!',
+    imagem: 'images/embalagens/Corantesbisnaga.webp',
+    desc_curta: 'Corante premium base água, 50ml. Fácil de homogeneizar e com alto poder de tingimento.',
+    descricao: 'O Corante Premium é usado pra colorir tintas base água — como a nossa Epóxi Base Água — na cor que você quiser. É fácil de homogeneizar e tem alto poder de tingimento. Vem em bisnaga de 50ml.',
+    beneficios: ['Fácil de homogeneizar', 'Alto poder de tingimento', 'Base água', 'Bisnaga com 50ml'],
+    precos: [
+      { desc: 'Bisnaga 50ml', valor: 'R$ 5,50' },
+    ],
+    preco_from: 'R$ 5<small>,50</small>',
+    preco_label: 'cada bisnaga',
+    wa: 'Olá! Quero comprar Corante Premium Laet. Pode me passar mais informações?',
+    cores: [
+      { nome: 'Laranja', hex: '#F2402E' },
+      { nome: 'Caramelo', hex: '#B97038' },
+      { nome: 'Preto', hex: '#212121' },
+      { nome: 'Verde Petróleo', hex: '#013A3B' },
+      { nome: 'Vermelho', hex: '#A01512' },
+      { nome: 'Violeta', hex: '#793966' },
+      { nome: 'Amarelo Ouro', hex: '#F89F08' },
+      { nome: 'Azul Marinho', hex: '#11166A' },
+      { nome: 'Marrom', hex: '#553A26' },
+    ]
   },
   'super-profissional': {
     nome: 'Tinta Super Profissional',
@@ -558,14 +638,16 @@ const produtos = {
 
 let coresShown = 20;
 
-function coreCardHtml(c) {
+function coreCardHtml(c, p) {
+  const tamBalde = c.tam_balde || (p && p.tam_balde_default) || '17L';
+  const tamGalao = c.tam_galao || (p && p.tam_galao_default) || '3,4L';
   return `
   <div class="core-card">
     <div class="core-swatch${c.borda ? ' core-swatch-branco' : ''}" style="background:${c.hex}"></div>
     <div class="core-info">
       <div class="core-nome">${c.nome}</div>
       <div class="core-hex">${c.hex}</div>
-      ${c.preco_balde ? `<div class="core-preco">Balde ${c.tam_balde || '17L'} ${c.preco_balde}<br>Galão ${c.tam_galao || '3,4L'} ${c.preco_galao}</div>` : ''}
+      ${c.preco_balde ? `<div class="core-preco">${tamBalde} ${c.preco_balde}<br>${tamGalao} ${c.preco_galao}</div>` : ''}
     </div>
   </div>`;
 }
@@ -575,7 +657,7 @@ function appendMoreCores(id) {
   const grid = document.getElementById('cores-grid');
   if (!p || !p.cores || !grid) return;
   const next = p.cores.slice(coresShown, coresShown + 20);
-  grid.insertAdjacentHTML('beforeend', next.map(coreCardHtml).join(''));
+  grid.insertAdjacentHTML('beforeend', next.map(c => coreCardHtml(c, p)).join(''));
   coresShown += 20;
   const btn = document.getElementById('cores-load-more');
   if (btn) btn.style.display = coresShown >= p.cores.length ? 'none' : 'flex';
@@ -630,7 +712,7 @@ function render() {
     <div class="prod-cart-field">
       <label>Cor</label>
       <select id="cart-cor" onchange="updateTamanhoPrecificado('${id}')">
-        <option value="Branca">Branca</option>
+        ${p.tem_branca ? '<option value="Branca">Branca</option>' : ''}
         ${p.cores.filter(c => !c.borda).map(c => `<option value="${c.nome}">${c.nome}</option>`).join('')}
       </select>
     </div>
@@ -740,7 +822,7 @@ function render() {
         </div>
 
         <div class="cores-grid" id="cores-grid">
-          ${p.cores.slice(0, coresShown).map(coreCardHtml).join('')}
+          ${p.cores.slice(0, coresShown).map(c => coreCardHtml(c, p)).join('')}
         </div>
 
         ${p.cores.length > coresShown ? `
@@ -778,8 +860,10 @@ function updateTamanhoPrecificado(id) {
   } else {
     const cor = p.cores.find(c => c.nome === corNome);
     if (cor) {
-      opts.push(`<option value="17L|${cor.preco_balde}">17L (balde) — ${cor.preco_balde}</option>`);
-      opts.push(`<option value="3,4L|${cor.preco_galao}">3,4L (galão) — ${cor.preco_galao}</option>`);
+      const tamBalde = cor.tam_balde || p.tam_balde_default || '17L';
+      const tamGalao = cor.tam_galao || p.tam_galao_default || '3,4L';
+      opts.push(`<option value="${tamBalde}|${cor.preco_balde}">${tamBalde} — ${cor.preco_balde}</option>`);
+      opts.push(`<option value="${tamGalao}|${cor.preco_galao}">${tamGalao} — ${cor.preco_galao}</option>`);
     }
   }
   tamanhoSel.innerHTML = opts.join('');
