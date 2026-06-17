@@ -74,7 +74,7 @@
     @media print {
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       body { background: #fff; }
-      .navbar, .wrap { display: none !important; }
+      .navbar, .tool-hero, .wrap { display: none !important; }
       .print-only { display: block !important; }
       .pdf-page { max-width: 100%; margin: 0 auto; padding: 0; }
 
@@ -82,11 +82,9 @@
       .pdf-band::after { content: ''; position: absolute; top: -50%; right: -8%; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(255,193,7,.22) 0%, transparent 70%); }
       .pdf-band-top { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
       .pdf-band-logo { display: flex; align-items: center; gap: 10px; }
-      .pdf-band-logo img.pdf-mascote { width: 46px; }
-      .pdf-band-logo img.pdf-logo { width: 150px; }
+      .pdf-band-logo img.pdf-logo { width: 160px; }
       .pdf-validade-pill { background: var(--yellow); color: #1a1000; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10.5px; letter-spacing: .3px; padding: 7px 14px; border-radius: 100px; white-space: nowrap; }
       .pdf-band-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 34px; color: #fff; letter-spacing: .5px; margin-top: 18px; position: relative; z-index: 1; }
-      .pdf-band-title span { color: var(--yellow); }
 
       .pdf-info { background: #F4F8FE; border: 1px solid #E1EAFA; border-radius: 16px; padding: 18px 22px; margin-bottom: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; }
       .pdf-info-row { display: flex; align-items: center; gap: 10px; font-size: 13px; }
@@ -205,6 +203,7 @@
 
       <div class="field-row" style="margin-top:18px">
         <div class="field"><label>Valor do frete</label><input type="number" id="f-frete" value="0" step="0.01" min="0" oninput="recalcTotal()"></div>
+        <div class="field"><label>Desconto (R$)</label><input type="number" id="f-desconto" value="0" step="0.01" min="0" oninput="recalcTotal()"></div>
       </div>
 
       <div class="total-row">
@@ -324,6 +323,7 @@ async function initTool() {
     document.getElementById('itemsList').innerHTML = '';
     addItemRow();
     document.getElementById('f-frete').value = 0;
+    document.getElementById('f-desconto').value = 0;
     recalcTotal();
   });
 }
@@ -384,6 +384,8 @@ function recalcTotal() {
     total += qty * valor;
   });
   total += parseFloat(document.getElementById('f-frete').value) || 0;
+  total -= parseFloat(document.getElementById('f-desconto').value) || 0;
+  if (total < 0) total = 0;
   document.getElementById('totalDisplay').textContent = formatPrice(total);
 }
 
@@ -404,6 +406,7 @@ function gerarPDF() {
   const dataVal = document.getElementById('f-data').value;
   const dataFmt = dataVal ? dataVal.split('-').reverse().join('/') : new Date().toLocaleDateString('pt-BR');
   const frete = parseFloat(document.getElementById('f-frete').value) || 0;
+  const desconto = parseFloat(document.getElementById('f-desconto').value) || 0;
 
   let total = frete;
   let rowsHtml = '';
@@ -427,18 +430,22 @@ function gerarPDF() {
   if (frete > 0) {
     rowsHtml += `<tr><td>Valor do frete</td><td>1</td><td>${formatPrice(frete)}</td><td>${formatPrice(frete)}</td></tr>`;
   }
+  if (desconto > 0) {
+    total -= desconto;
+    rowsHtml += `<tr><td>Desconto</td><td>—</td><td>—</td><td>-${formatPrice(desconto)}</td></tr>`;
+  }
+  if (total < 0) total = 0;
 
   const html = `
     <div class="pdf-page">
       <div class="pdf-band">
         <div class="pdf-band-top">
           <div class="pdf-band-logo">
-            <img src="images/mascote.png" class="pdf-mascote" alt="">
             <img src="images/logo-branco.png" class="pdf-logo" alt="Tintas Laet">
           </div>
           <div class="pdf-validade-pill">Válido por ${validade} dias</div>
         </div>
-        <div class="pdf-band-title">ORÇ<span>A</span>MENTO</div>
+        <div class="pdf-band-title">ORÇAMENTO</div>
       </div>
 
       <div class="pdf-info">
