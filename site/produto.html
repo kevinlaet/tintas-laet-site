@@ -97,6 +97,19 @@
     .prod-cart-field select:focus, .prod-cart-field input:focus { outline: none; border-color: var(--blue); }
     .prod-btn-cart { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: var(--blue); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; padding: 13px; border-radius: var(--radius); border: none; cursor: pointer; transition: filter .2s; }
     .prod-btn-cart:hover { filter: brightness(1.15); }
+
+    .upsell-box { background: #FFF9E8; border: 1.5px solid rgba(255,193,7,.45); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+    .upsell-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12.5px; color: #8a6300; margin-bottom: 12px; }
+    .upsell-card { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 9px; padding: 10px; border: 1px solid #F0E2B8; }
+    .upsell-card + .upsell-card { margin-top: 8px; }
+    .upsell-img { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
+    .upsell-info { flex: 1; min-width: 0; }
+    .upsell-nome { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12.5px; color: var(--graphite); }
+    .upsell-preco { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: var(--blue); margin-top: 1px; }
+    .upsell-cor { margin-top: 6px; width: 100%; padding: 6px 8px; border: 1.5px solid #DCE1EA; border-radius: 6px; font-size: 11.5px; font-family: 'Poppins', sans-serif; }
+    .upsell-btn { flex-shrink: 0; background: var(--yellow); color: #1a1000; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11.5px; padding: 9px 12px; border-radius: 7px; border: none; cursor: pointer; white-space: nowrap; transition: filter .2s; }
+    .upsell-btn:hover { filter: brightness(1.08); }
+    .upsell-btn.added { background: #25D366; color: #fff; }
     .prod-btn-back { display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: var(--blue); font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; padding: 10px; border-radius: var(--radius); border: 1.5px solid rgba(13,71,161,.25); transition: background .2s, border-color .2s; }
     .prod-btn-back:hover { background: rgba(13,71,161,.06); border-color: var(--blue); }
     .prod-note { margin-top: 16px; font-size: 11px; color: #999; text-align: center; line-height: 1.5; }
@@ -843,6 +856,66 @@ const produtos = {
   }
 };
 
+const upsellMap = {
+  'epoxi-base-agua': ['corante'],
+  'emborrachada': ['kit-pintura'],
+  'piso-fachada': ['kit-pintura'],
+  'massa-corrida': ['kit-pintura'],
+  'massa-acrilica': ['kit-pintura'],
+  'efeito-cimento-queimado': ['kit-pintura'],
+  'super-profissional': ['kit-pintura'],
+  'standard': ['kit-pintura'],
+  'latex-vinil': ['kit-pintura'],
+  'direto-no-gesso': ['kit-pintura'],
+  'premium-lavavel': ['kit-pintura']
+};
+
+function upsellCardHtml(upId) {
+  const up = produtos[upId];
+  if (!up) return '';
+  const preco = up.precos[0];
+  const corHtml = up.cores ? `
+      <select class="upsell-cor" id="upsell-cor-${upId}">
+        ${up.cores.map(c => `<option value="${c.nome}">${c.nome}</option>`).join('')}
+      </select>` : '';
+  return `
+  <div class="upsell-card">
+    <img src="${up.imagem}" alt="${up.nome}" class="upsell-img">
+    <div class="upsell-info">
+      <div class="upsell-nome">${up.nome}</div>
+      <div class="upsell-preco">${preco.valor}</div>
+      ${corHtml}
+    </div>
+    <button class="upsell-btn" id="upsell-btn-${upId}" onclick="addUpsellToCart('${upId}', this)">+ Adicionar</button>
+  </div>`;
+}
+
+function upsellBoxHtml(id) {
+  const ids = (upsellMap[id] || []).filter(upId => upId !== id);
+  if (!ids.length) return '';
+  const titulo = id === 'epoxi-base-agua' ? '🎨 Quer colorir? Adicione o corante' : '🛒 Complete sua compra e economize no frete';
+  return `
+  <div class="upsell-box">
+    <div class="upsell-title">${titulo}</div>
+    ${ids.map(upsellCardHtml).join('')}
+  </div>`;
+}
+
+function addUpsellToCart(upId, btn) {
+  const up = produtos[upId];
+  if (!up) return;
+  const corSel = document.getElementById('upsell-cor-' + upId);
+  const cor = corSel ? corSel.value : null;
+  const preco = up.precos[0];
+  LaetCart.add({ produtoId: upId, nome: up.nome, tamanho: preco.desc, valor: preco.valor, cor, qty: 1 });
+  if (btn) {
+    const original = btn.textContent;
+    btn.textContent = '✓ Adicionado';
+    btn.classList.add('added');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('added'); }, 1800);
+  }
+}
+
 let coresShown = 20;
 
 function coreCardHtml(c, p) {
@@ -997,6 +1070,8 @@ function render() {
                   🛒 Adicionar ao carrinho
                 </button>
               </div>
+
+              ${upsellBoxHtml(id)}
 
               <div class="prod-cta-box">
                 <a href="${waUrl}" class="prod-btn-wa" target="_blank" rel="noopener">
