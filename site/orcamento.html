@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Orçamento — Tintas Laet</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; color: #212529; background: #F0F2F5; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    :root { --blue: #0D47A1; --blue-dark: #062B63; --yellow: #FFC107; }
+
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 12px 20px; border-radius: 9px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13.5px; cursor: pointer; border: none; }
+    .btn-blue { background: var(--blue); color: #fff; }
+    .btn-yellow { background: var(--yellow); color: #1a1000; }
+    .btn-ghost { background: #fff; color: #C62828; border: 1.5px solid #F3CBCB; }
+
+    /* GATE */
+    .gate { position: fixed; inset: 0; background: linear-gradient(160deg, var(--blue-dark), var(--blue)); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 24px; }
+    .gate-box { background: #fff; border-radius: 18px; padding: 36px 30px; max-width: 360px; width: 100%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+    .gate-logo { width: 140px; margin: 0 auto 18px; }
+    .gate-box h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: var(--blue-dark); margin-bottom: 6px; }
+    .gate-box p { font-size: 13px; color: #888; margin-bottom: 18px; line-height: 1.5; }
+    .gate-box input { width: 100%; padding: 12px 14px; border: 1.5px solid #DCE1EA; border-radius: 9px; font-size: 14px; margin-bottom: 12px; text-align: center; }
+    .gate-box input:focus { outline: none; border-color: var(--blue); }
+    .gate-error { color: #C62828; font-size: 12.5px; margin-top: 10px; }
+
+    /* TOOL */
+    .navbar { background: var(--blue-dark); padding: 14px 0; }
+    .navbar-inner { max-width: 880px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+    .navbar-logo img { height: 36px; }
+    .navbar-back { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: rgba(255,255,255,.75); }
+    .navbar-back:hover { color: var(--yellow); }
+
+    .wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 80px; }
+    .tool-header h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 22px; color: var(--blue-dark); margin-bottom: 6px; }
+    .tool-header p { font-size: 13px; color: #777; margin-bottom: 26px; }
+
+    .card { background: #fff; border-radius: 16px; padding: 22px; box-shadow: 0 2px 14px rgba(0,0,0,.06); margin-bottom: 18px; }
+    .card-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; color: var(--blue); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 16px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .field label { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: #555; margin-bottom: 6px; }
+    .field input, .field select { width: 100%; padding: 11px 12px; border: 1.5px solid #DCE1EA; border-radius: 8px; font-size: 13.5px; font-family: 'Poppins', sans-serif; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--blue); }
+
+    .item-card { background: #F7F9FC; border: 1px solid #E5E9F0; border-radius: 12px; padding: 16px; margin-bottom: 12px; position: relative; }
+    .item-grid { display: grid; grid-template-columns: 2fr 1.4fr .7fr 1fr; gap: 10px; align-items: end; }
+    .item-grid .field { margin: 0; }
+    .item-subtotal { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; color: var(--blue); text-align: right; padding: 11px 4px; }
+    .item-remove { position: absolute; top: -10px; right: -10px; width: 26px; height: 26px; border-radius: 50%; background: #FBEAEA; border: 1.5px solid #F3CBCB; color: #C62828; cursor: pointer; font-size: 13px; }
+    .add-item-btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; background: #EFF4FF; border: 1.5px dashed rgba(13,71,161,.35); border-radius: 9px; padding: 13px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: var(--blue); cursor: pointer; }
+    .add-item-btn:hover { background: rgba(13,71,161,.08); }
+
+    .total-row { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; margin-top: 8px; border-top: 1.5px solid #E5E9F0; }
+    .total-row span:first-child { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: #555; }
+    .total-row span:last-child { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 24px; color: var(--blue); }
+
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .print-only { display: none; }
+
+    @media print {
+      body { background: #fff; }
+      .navbar, .wrap { display: none !important; }
+      .print-only { display: block !important; }
+      .pdf-page { max-width: 720px; margin: 0 auto; padding: 10px; }
+      .pdf-header { text-align: center; margin-bottom: 18px; }
+      .pdf-header img.pdf-mascote { width: 110px; margin: 0 auto 6px; }
+      .pdf-header img.pdf-logo { width: 230px; margin: 0 auto; }
+      .pdf-title-row { display: flex; align-items: center; gap: 16px; margin: 22px 0 26px; }
+      .pdf-title-row .line { flex: 1; height: 2px; background: var(--blue); }
+      .pdf-title-row h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 30px; color: var(--blue); white-space: nowrap; }
+      .pdf-validade { text-align: right; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: var(--blue); margin-bottom: 10px; }
+      .pdf-info { margin-bottom: 18px; }
+      .pdf-info-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13.5px; }
+      .pdf-info-icon { width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+      .pdf-info-row strong { font-family: 'Montserrat', sans-serif; }
+      .pdf-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; }
+      .pdf-table th { background: var(--blue); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12.5px; padding: 10px; text-align: left; }
+      .pdf-table th:not(:first-child) { text-align: center; }
+      .pdf-table td { padding: 10px; font-size: 13px; border-bottom: 1px solid #E5E9F0; }
+      .pdf-table td:not(:first-child) { text-align: center; }
+      .pdf-total-box { border: 2px solid var(--blue); border-radius: 10px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+      .pdf-total-box span:first-child { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 20px; color: var(--blue); }
+      .pdf-total-box span:last-child { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 26px; color: var(--blue); }
+      .pdf-pagamento { display: flex; align-items: center; gap: 10px; font-size: 13.5px; }
+      .pdf-footer { margin-top: 30px; text-align: center; font-size: 10.5px; color: #999; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- GATE -->
+<div class="gate" id="gate">
+  <div class="gate-box">
+    <img src="images/logo-azul.png" class="gate-logo" alt="Tintas Laet">
+    <h1>Acesso restrito</h1>
+    <p>Ferramenta interna pra vendedores Tintas Laet gerarem orçamentos.</p>
+    <input type="password" id="gatePass" placeholder="Senha" onkeydown="if(event.key==='Enter') checkPassword()">
+    <button class="btn btn-blue" style="width:100%;justify-content:center" onclick="checkPassword()">Entrar</button>
+    <p class="gate-error" id="gateError" style="display:none">Senha incorreta.</p>
+  </div>
+</div>
+
+<!-- TOOL -->
+<div id="tool" style="display:none">
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo"><img src="images/logo-branco.png" alt="Tintas Laet"></a>
+      <a href="index.html" class="navbar-back">← Voltar ao site</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="tool-header">
+      <h1>🧾 Gerador de Orçamento</h1>
+      <p>Monte o orçamento com os produtos reais do catálogo e gere o PDF pro cliente.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Dados do orçamento</div>
+      <div class="field-row">
+        <div class="field"><label>Vendedor</label><input id="f-vendedor" placeholder="Seu nome"></div>
+        <div class="field"><label>Data</label><input type="date" id="f-data"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Cliente</label><input id="f-cliente" placeholder="Nome do cliente"></div>
+        <div class="field"><label>WhatsApp</label><input id="f-whatsapp" placeholder="(11) 90000-0000"></div>
+      </div>
+      <div class="field-row">
+        <div class="field" style="grid-column:1/3"><label>Endereço</label><input id="f-endereco" placeholder="Rua, número, bairro - cidade"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Válido por (dias)</label><input type="number" id="f-validade" value="7" min="1"></div>
+        <div class="field">
+          <label>Forma de pagamento</label>
+          <select id="f-pagamento">
+            <option>A receber</option>
+            <option>Pix</option>
+            <option>Cartão</option>
+            <option>Dinheiro</option>
+            <option>Parcelado em até 12x sem juros</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Produtos</div>
+      <div id="itemsList"></div>
+      <button class="add-item-btn" id="addItemBtn">+ Adicionar produto</button>
+
+      <div class="field-row" style="margin-top:18px">
+        <div class="field"><label>Frete</label><input type="number" id="f-frete" value="0" step="0.01" min="0" oninput="recalcTotal()"></div>
+      </div>
+
+      <div class="total-row">
+        <span>TOTAL</span>
+        <span id="totalDisplay">R$ 0,00</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-yellow" id="genPdfBtn">🖨️ Gerar PDF</button>
+      <button class="btn btn-ghost" id="clearBtn">🗑️ Limpar tudo</button>
+    </div>
+  </div>
+</div>
+
+<div class="print-only" id="printArea"></div>
+
+<template id="itemTemplate">
+  <div class="item-card">
+    <button type="button" class="item-remove" aria-label="Remover">✕</button>
+    <div class="item-grid">
+      <div class="field">
+        <label>Produto</label>
+        <select data-f="produto"></select>
+      </div>
+      <div class="field">
+        <label>Variante</label>
+        <select data-f="variante"></select>
+      </div>
+      <div class="field">
+        <label>Qtd</label>
+        <input type="number" data-f="qty" value="1" min="1">
+      </div>
+      <div class="field">
+        <label>Valor unit.</label>
+        <input type="number" data-f="valor" step="0.01" min="0">
+      </div>
+    </div>
+    <div class="item-subtotal" data-f="subtotal">R$ 0,00</div>
+  </div>
+</template>
+
+<script>
+const SENHA = 'laet2026';
+
+function checkPassword() {
+  const input = document.getElementById('gatePass').value;
+  if (input === SENHA) {
+    sessionStorage.setItem('laet_orcamento_unlocked', '1');
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('tool').style.display = 'block';
+    initTool();
+  } else {
+    document.getElementById('gateError').style.display = 'block';
+  }
+}
+
+if (sessionStorage.getItem('laet_orcamento_unlocked') === '1') {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('tool').style.display = 'block';
+  initTool();
+}
+
+let produtosData = null;
+
+async function loadProdutos() {
+  if (produtosData) return produtosData;
+  const res = await fetch('produto.html');
+  const text = await res.text();
+  const match = text.match(/const produtos = (\{[\s\S]*?\n\});/);
+  if (!match) { produtosData = {}; return produtosData; }
+  produtosData = (new Function('return ' + match[1]))();
+  return produtosData;
+}
+
+function parsePrice(str) {
+  if (!str) return 0;
+  const n = String(str).replace(/[^\d,]/g, '').replace(',', '.');
+  return parseFloat(n) || 0;
+}
+function formatPrice(n) {
+  return 'R$ ' + (n || 0).toFixed(2).replace('.', ',');
+}
+
+function flattenOptions(p) {
+  const opts = [];
+  const corPrecificada = p.cores && p.cores.some(c => c.preco_balde);
+  if (corPrecificada) {
+    p.cores.forEach(c => {
+      const tamBalde = c.tam_balde || p.tam_balde_default || '17L';
+      const tamGalao = c.tam_galao || p.tam_galao_default || '3,4L';
+      opts.push({ label: `${c.nome} — ${tamBalde}`, valor: c.preco_balde });
+      opts.push({ label: `${c.nome} — ${tamGalao}`, valor: c.preco_galao });
+      if (c.preco_quarto) {
+        const tamQuarto = c.tam_quarto || p.tam_quarto_default || '1/4';
+        opts.push({ label: `${c.nome} — ${tamQuarto}`, valor: c.preco_quarto });
+      }
+    });
+  } else if (p.cores && p.precos) {
+    p.cores.forEach(c => {
+      p.precos.forEach(pr => opts.push({ label: `${pr.desc} — ${c.nome}`, valor: pr.valor }));
+    });
+  } else if (p.precos) {
+    p.precos.forEach(pr => opts.push({ label: pr.desc, valor: pr.valor }));
+  }
+  return opts;
+}
+
+async function initTool() {
+  document.getElementById('f-data').value = new Date().toISOString().slice(0, 10);
+  await loadProdutos();
+  addItemRow();
+  document.getElementById('addItemBtn').addEventListener('click', addItemRow);
+  document.getElementById('genPdfBtn').addEventListener('click', gerarPDF);
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    if (!confirm('Limpar todos os dados do orçamento?')) return;
+    document.getElementById('itemsList').innerHTML = '';
+    addItemRow();
+    document.getElementById('f-frete').value = 0;
+    recalcTotal();
+  });
+}
+
+function addItemRow() {
+  const template = document.getElementById('itemTemplate');
+  const node = template.content.cloneNode(true);
+  const card = node.querySelector('.item-card');
+  const produtoSel = card.querySelector('[data-f="produto"]');
+  const varianteSel = card.querySelector('[data-f="variante"]');
+  const qtyInput = card.querySelector('[data-f="qty"]');
+  const valorInput = card.querySelector('[data-f="valor"]');
+
+  produtoSel.innerHTML = '<option value="">Selecione...</option>' +
+    Object.keys(produtosData).map(id => `<option value="${id}">${produtosData[id].nome}</option>`).join('');
+
+  produtoSel.addEventListener('change', () => {
+    const p = produtosData[produtoSel.value];
+    const opts = p ? flattenOptions(p) : [];
+    varianteSel.innerHTML = opts.map((o, i) => `<option value="${i}" data-valor="${parsePrice(o.valor)}">${o.label}</option>`).join('');
+    if (opts.length) {
+      valorInput.value = parsePrice(opts[0].valor).toFixed(2);
+    } else {
+      valorInput.value = '';
+    }
+    recalcRow(card);
+  });
+
+  varianteSel.addEventListener('change', () => {
+    const selected = varianteSel.options[varianteSel.selectedIndex];
+    if (selected) valorInput.value = parseFloat(selected.getAttribute('data-valor')).toFixed(2);
+    recalcRow(card);
+  });
+
+  qtyInput.addEventListener('input', () => recalcRow(card));
+  valorInput.addEventListener('input', () => recalcRow(card));
+
+  card.querySelector('.item-remove').addEventListener('click', () => {
+    card.remove();
+    recalcTotal();
+  });
+
+  document.getElementById('itemsList').appendChild(card);
+}
+
+function recalcRow(card) {
+  const qty = parseFloat(card.querySelector('[data-f="qty"]').value) || 0;
+  const valor = parseFloat(card.querySelector('[data-f="valor"]').value) || 0;
+  card.querySelector('[data-f="subtotal"]').textContent = formatPrice(qty * valor);
+  recalcTotal();
+}
+
+function recalcTotal() {
+  let total = 0;
+  document.querySelectorAll('.item-card').forEach(card => {
+    const qty = parseFloat(card.querySelector('[data-f="qty"]').value) || 0;
+    const valor = parseFloat(card.querySelector('[data-f="valor"]').value) || 0;
+    total += qty * valor;
+  });
+  total += parseFloat(document.getElementById('f-frete').value) || 0;
+  document.getElementById('totalDisplay').textContent = formatPrice(total);
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str || '';
+  return div.innerHTML;
+}
+
+function gerarPDF() {
+  const vendedor = escapeHtml(document.getElementById('f-vendedor').value) || '—';
+  const cliente = escapeHtml(document.getElementById('f-cliente').value) || '—';
+  const whatsapp = escapeHtml(document.getElementById('f-whatsapp').value) || '—';
+  const endereco = escapeHtml(document.getElementById('f-endereco').value) || '—';
+  const validade = document.getElementById('f-validade').value || '7';
+  const pagamento = escapeHtml(document.getElementById('f-pagamento').value);
+  const dataVal = document.getElementById('f-data').value;
+  const dataFmt = dataVal ? dataVal.split('-').reverse().join('/') : new Date().toLocaleDateString('pt-BR');
+  const frete = parseFloat(document.getElementById('f-frete').value) || 0;
+
+  let total = frete;
+  let rowsHtml = '';
+  document.querySelectorAll('.item-card').forEach(card => {
+    const produtoSel = card.querySelector('[data-f="produto"]');
+    const varianteSel = card.querySelector('[data-f="variante"]');
+    const qty = parseFloat(card.querySelector('[data-f="qty"]').value) || 0;
+    const valor = parseFloat(card.querySelector('[data-f="valor"]').value) || 0;
+    const p = produtosData[produtoSel.value];
+    if (!p || qty <= 0) return;
+    const variante = varianteSel.options[varianteSel.selectedIndex] ? varianteSel.options[varianteSel.selectedIndex].textContent : '';
+    const subtotal = qty * valor;
+    total += subtotal;
+    rowsHtml += `<tr>
+      <td>${escapeHtml(p.nome)}${variante ? ' — ' + escapeHtml(variante) : ''}</td>
+      <td>${qty}</td>
+      <td>${formatPrice(valor)}</td>
+      <td>${formatPrice(subtotal)}</td>
+    </tr>`;
+  });
+  if (frete > 0) {
+    rowsHtml += `<tr><td>Frete</td><td>1</td><td>${formatPrice(frete)}</td><td>${formatPrice(frete)}</td></tr>`;
+  }
+
+  const html = `
+    <div class="pdf-page">
+      <div class="pdf-header">
+        <img src="images/mascote.png" class="pdf-mascote" alt="">
+        <img src="images/logo-azul.png" class="pdf-logo" alt="Tintas Laet">
+      </div>
+      <div class="pdf-title-row">
+        <div class="line"></div>
+        <h1>ORÇAMENTO</h1>
+        <div class="line"></div>
+      </div>
+      <div class="pdf-validade">Válido por ${validade} dias.</div>
+      <div class="pdf-info">
+        <div class="pdf-info-row"><span class="pdf-info-icon">📅</span><span><strong>Data:</strong> ${dataFmt}</span></div>
+        <div class="pdf-info-row"><span class="pdf-info-icon">👤</span><span><strong>Cliente:</strong> ${cliente}</span></div>
+        <div class="pdf-info-row"><span class="pdf-info-icon">📍</span><span><strong>Endereço:</strong> ${endereco}</span></div>
+        <div class="pdf-info-row"><span class="pdf-info-icon">💬</span><span><strong>WhatsApp:</strong> ${whatsapp}</span></div>
+        <div class="pdf-info-row"><span class="pdf-info-icon">🧑‍🔧</span><span><strong>Vendedor:</strong> ${vendedor}</span></div>
+      </div>
+      <table class="pdf-table">
+        <thead><tr><th>Produto</th><th>Quantidade</th><th>Valor Unitário</th><th>Subtotal</th></tr></thead>
+        <tbody>${rowsHtml}</tbody>
+      </table>
+      <div class="pdf-total-box">
+        <span>TOTAL:</span>
+        <span>${formatPrice(total)}</span>
+      </div>
+      <div class="pdf-pagamento">💲 <strong>Pagamento:</strong> ${pagamento}</div>
+      <div class="pdf-footer">Tintas Laet — orçamento gerado em ${new Date().toLocaleDateString('pt-BR')}. Sujeito a confirmação de estoque.</div>
+    </div>
+  `;
+  document.getElementById('printArea').innerHTML = html;
+  window.print();
+}
+</script>
+
+</body>
+</html>
