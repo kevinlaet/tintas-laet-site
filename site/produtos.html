@@ -61,12 +61,12 @@
     .page-hero p { font-size: 15px; color: rgba(255,255,255,.75); max-width: 560px; line-height: 1.7; }
 
     /* CATEGORY JUMP NAV */
-    .cat-jump { display: flex; flex-wrap: wrap; gap: 10px; padding: 22px 0; background: #F8F9FC; border-bottom: 1px solid #E8ECF4; position: sticky; top: 0; z-index: 50; }
+    .cat-jump { display: flex; flex-wrap: wrap; gap: 10px; padding: 22px 0; background: #F8F9FC; border-bottom: 1px solid #E8ECF4; position: sticky; top: 78px; z-index: 50; }
     .cat-jump a { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 12.5px; color: var(--blue); background: #fff; border: 1.5px solid rgba(13,71,161,.18); padding: 8px 16px; border-radius: 100px; transition: background .2s, border-color .2s; white-space: nowrap; }
     .cat-jump a:hover { background: rgba(13,71,161,.06); border-color: var(--blue); }
 
     /* CATEGORY SECTIONS */
-    .cat-section { border-bottom: 1px solid #eef0f4; }
+    .cat-section { border-bottom: 1px solid #eef0f4; scroll-margin-top: 160px; }
     .cat-section:nth-child(odd) { background: #fff; }
     .cat-section:nth-child(even) { background: #FAFBFD; }
     .cat-header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
@@ -78,8 +78,9 @@
     .sellers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
     .seller-card { background: var(--gray); border-radius: 12px; overflow: hidden; transition: transform .22s, box-shadow .22s; border: 1px solid transparent; display: flex; flex-direction: column; }
     .seller-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(13,71,161,.1); }
-    .seller-img { height: 148px; background: linear-gradient(135deg, #dce3f0, #c8d4e8); display: flex; align-items: center; justify-content: center; font-size: 58px; position: relative; overflow: hidden; flex-shrink: 0; }
+    .seller-img { height: 170px; background: linear-gradient(135deg, #dce3f0, #c8d4e8); display: flex; align-items: center; justify-content: center; font-size: 58px; position: relative; overflow: hidden; flex-shrink: 0; }
     .seller-img img { height: 130px; width: auto; object-fit: contain; filter: drop-shadow(0 6px 14px rgba(0,0,0,.18)); transition: transform .3s; }
+    .seller-img img.img-tall { height: 168px; }
     .seller-card:hover .seller-img img { transform: scale(1.07) translateY(-4px); }
     .seller-badge { position: absolute; top: 10px; left: 10px; background: var(--yellow); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px; padding: 3px 10px; border-radius: 100px; }
     .seller-body { padding: 16px; background: #fff; display: flex; flex-direction: column; flex: 1; }
@@ -395,7 +396,7 @@
       <!-- Massa Corrida -->
       <div class="seller-card">
         <div class="seller-img">
-          <img src="images/embalagens/barrica+plastico.png" alt="Massa Corrida Laet">
+          <img src="images/embalagens/barrica+plastico.png" alt="Massa Corrida Laet" class="img-tall">
           <span class="seller-badge">ÓTIMA QUALIDADE!</span>
         </div>
         <div class="seller-body">
@@ -414,7 +415,7 @@
       <!-- Massa Acrílica -->
       <div class="seller-card">
         <div class="seller-img">
-          <img src="images/embalagens/barrica+plastico.png" alt="Massa Acrílica Laet">
+          <img src="images/embalagens/barrica+plastico.png" alt="Massa Acrílica Laet" class="img-tall">
           <span class="seller-badge">INTERNA E EXTERNA!</span>
         </div>
         <div class="seller-body">
