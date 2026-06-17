@@ -98,16 +98,17 @@
     .prod-btn-cart { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: var(--blue); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; padding: 13px; border-radius: var(--radius); border: none; cursor: pointer; transition: filter .2s; }
     .prod-btn-cart:hover { filter: brightness(1.15); }
 
-    .upsell-box { background: #FFF9E8; border: 1.5px solid rgba(255,193,7,.45); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
-    .upsell-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12.5px; color: #8a6300; margin-bottom: 12px; }
-    .upsell-card { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 9px; padding: 10px; border: 1px solid #F0E2B8; }
-    .upsell-card + .upsell-card { margin-top: 8px; }
-    .upsell-img { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
+    .upsell-box { background: #FFF9E8; border: 1.5px solid rgba(255,193,7,.45); border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; }
+    .upsell-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px; color: #8a6300; margin-bottom: 8px; }
+    .upsell-card { display: flex; align-items: center; gap: 8px; background: #fff; border-radius: 8px; padding: 6px 8px; border: 1px solid #F0E2B8; cursor: pointer; transition: background .15s; }
+    .upsell-card:hover { background: #FFFDF5; }
+    .upsell-card + .upsell-card { margin-top: 6px; }
+    .upsell-img { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
     .upsell-info { flex: 1; min-width: 0; }
-    .upsell-nome { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12.5px; color: var(--graphite); }
-    .upsell-preco { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: var(--blue); margin-top: 1px; }
-    .upsell-cor { margin-top: 6px; width: 100%; padding: 6px 8px; border: 1.5px solid #DCE1EA; border-radius: 6px; font-size: 11.5px; font-family: 'Poppins', sans-serif; }
-    .upsell-btn { flex-shrink: 0; background: var(--yellow); color: #1a1000; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11.5px; padding: 9px 12px; border-radius: 7px; border: none; cursor: pointer; white-space: nowrap; transition: filter .2s; }
+    .upsell-nome { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11.5px; color: var(--graphite); }
+    .upsell-preco { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; color: var(--blue); margin-top: 1px; }
+    .upsell-cor { margin-top: 5px; width: 100%; padding: 4px 6px; border: 1.5px solid #DCE1EA; border-radius: 5px; font-size: 11px; font-family: 'Poppins', sans-serif; }
+    .upsell-btn { flex-shrink: 0; background: var(--yellow); color: #1a1000; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; padding: 7px 10px; border-radius: 6px; border: none; cursor: pointer; white-space: nowrap; transition: filter .2s; }
     .upsell-btn:hover { filter: brightness(1.08); }
     .upsell-btn.added { background: #25D366; color: #fff; }
     .prod-btn-back { display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: var(--blue); font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; padding: 10px; border-radius: var(--radius); border: 1.5px solid rgba(13,71,161,.25); transition: background .2s, border-color .2s; }
@@ -879,7 +880,7 @@ function upsellCardHtml(upId) {
         ${up.cores.map(c => `<option value="${c.nome}">${c.nome}</option>`).join('')}
       </select>` : '';
   return `
-  <div class="upsell-card">
+  <div class="upsell-card" onclick="goToUpsellProduct(event, '${upId}')">
     <img src="${up.imagem}" alt="${up.nome}" class="upsell-img">
     <div class="upsell-info">
       <div class="upsell-nome">${up.nome}</div>
@@ -914,6 +915,11 @@ function addUpsellToCart(upId, btn) {
     btn.classList.add('added');
     setTimeout(() => { btn.textContent = original; btn.classList.remove('added'); }, 1800);
   }
+}
+
+function goToUpsellProduct(e, upId) {
+  if (e.target.closest('.upsell-btn') || e.target.closest('.upsell-cor')) return;
+  window.location.href = 'produto.html?id=' + upId;
 }
 
 let coresShown = 20;
