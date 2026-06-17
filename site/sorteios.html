@@ -144,6 +144,8 @@
     .tag-blue { background: rgba(255,255,255,.14); color: rgba(255,255,255,.88); }
     .prize-icon { font-size: 72px; display: block; margin-bottom: 22px; filter: drop-shadow(0 4px 20px rgba(255,193,7,.5)); }
     .prize-main .prize-icon { animation: trophy-float 3s ease-in-out infinite; }
+    .prize-photo { width: 130px; height: 130px; object-fit: contain; display: block; margin: 0 auto 22px; filter: drop-shadow(0 4px 20px rgba(255,193,7,.5)); }
+    .prize-main .prize-photo { animation: trophy-float 3s ease-in-out infinite; }
     .prize-name { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(20px, 2.8vw, 32px); line-height: 1.15; margin-bottom: 10px; }
     .prize-main .prize-name { color: var(--yellow); }
     .prize-secondary .prize-name { color: #fff; }
@@ -186,17 +188,19 @@
 
     /* ── WINNERS ── */
     .winners-section { padding: 88px 0; background: var(--gray); }
-    .winners-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .winner-card { border-radius: 22px; overflow: hidden; background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,.07); transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s; }
-    .winner-card:hover { transform: translateY(-10px) scale(1.01); box-shadow: 0 24px 48px rgba(0,0,0,.13); }
-    .winner-img { aspect-ratio: 1; overflow: hidden; position: relative; }
-    .winner-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s; }
-    .winner-card:hover .winner-img img { transform: scale(1.09); }
-    .winner-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,43,99,.75) 0%, transparent 55%); }
-    .winner-badge { position: absolute; bottom: 14px; left: 14px; background: var(--yellow); color: #1a1000; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 11px; padding: 5px 13px; border-radius: 100px; display: inline-flex; align-items: center; gap: 5px; }
-    .winner-body { padding: 20px; }
-    .winner-prize { font-size: 13px; color: #666; line-height: 1.55; }
-    .winner-stars { color: #FFC107; font-size: 15px; letter-spacing: 2px; margin-top: 8px; }
+    .winners-list { display: flex; flex-direction: column; gap: 18px; max-width: 720px; margin: 0 auto; }
+    .winner-row { background: #fff; border-radius: 18px; padding: 24px 28px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,.06); border: 1px solid rgba(0,0,0,.04); }
+    .winner-row-month { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: .5px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .winner-row-names { display: flex; align-items: baseline; justify-content: center; gap: 10px; flex-wrap: wrap; font-family: 'Montserrat', sans-serif; font-weight: 800; margin-bottom: 10px; }
+    .winner-name-main { font-size: clamp(20px, 4vw, 26px); color: #1a1000; }
+    .winner-name-sep { font-size: 16px; color: #ccc; font-weight: 600; }
+    .winner-name-friend { font-size: clamp(15px, 3vw, 18px); color: #555; }
+    .winner-name-friend small { font-weight: 600; font-size: 11px; color: #999; }
+    .winner-row-store { font-size: 13px; color: #777; }
+    .winner-row--latest { border: 2px solid var(--yellow); box-shadow: 0 10px 32px rgba(255,193,7,.2); }
+    .winner-row--latest .winner-row-month { font-size: 13px; }
+    .winner-row--latest .winner-name-main { font-size: clamp(26px, 6vw, 36px); color: var(--blue); }
+    .winner-row--latest .winner-name-friend { font-size: clamp(17px, 4vw, 21px); }
 
     /* ── RULES ── */
     .rules-section { padding: 88px 0; background: linear-gradient(160deg, #020d1a 0%, var(--blue-dark) 55%, #1565C0 100%); position: relative; overflow: hidden; }
@@ -236,11 +240,10 @@
     @media (max-width: 768px) {
       .how-steps { grid-template-columns: repeat(2, 1fr); }
       .how-steps::before { display: none; }
-      .winners-grid { grid-template-columns: 1fr 1fr; }
       .easy-banner { padding: 24px 22px; }
     }
     @media (max-width: 560px) {
-      .winners-grid { grid-template-columns: 1fr; }
+      .winner-row { padding: 20px 16px; }
       .how-steps { grid-template-columns: 1fr; }
       .stats-inner { flex-wrap: wrap; gap: 20px 0; }
       .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: 20px; }
@@ -316,7 +319,7 @@
         <div class="prize-shine"></div>
         <div class="prize-inner">
           <div class="prize-tag tag-gold">🏆 Prêmio Principal</div>
-          <span class="prize-icon">🔊</span>
+          <img src="images/sorteios/caixa-de-som-mondial-250w.jpg" alt="Caixa de Som Mondial 250W" class="prize-photo">
           <div class="prize-name">Caixa de Som Mondial 250W</div>
           <div class="prize-who">Para o ganhador do cupom sorteado</div>
           <div class="prize-desc">Som potente, qualidade garantida. O ganhador é sorteado ao vivo no Instagram entre todos os cupons válidos do mês.</div>
@@ -406,66 +409,35 @@
       <h2>Quem já levou prêmio pra casa</h2>
       <p>Clientes reais que compraram, preencheram o cupom e ganharam. O próximo pode ser você.</p>
     </div>
-    <div class="winners-grid">
-      <div class="winner-card reveal d1">
-        <div class="winner-img">
-          <img src="images/prova-social/8641a464-b3f6-4cd5-86ba-b423eb4abc82.jfif" alt="Ganhador" loading="lazy">
-          <div class="winner-overlay"></div>
+    <div class="winners-list">
+      <div class="winner-row winner-row--latest reveal d1">
+        <div class="winner-row-month">Sorteio de Junho</div>
+        <div class="winner-row-names">
+          <span class="winner-name-main">🏆 David Gabriel</span>
+          <span class="winner-name-sep">+</span>
+          <span class="winner-name-friend">Reinaldo <small>(amigo indicado)</small></span>
         </div>
-        <div class="winner-body">
-          <div class="winner-prize">Caixa de Som Mondial 250W</div>
-          <div class="winner-stars">★★★★★</div>
-        </div>
+        <div class="winner-row-store">📍 Compra realizada na Loja 1 — Sapopemba</div>
       </div>
-      <div class="winner-card reveal d2">
-        <div class="winner-img">
-          <img src="images/prova-social/8011f310-7838-4239-a9e8-cb2bea9ce79e.jfif" alt="Ganhador" loading="lazy">
-          <div class="winner-overlay"></div>
+
+      <div class="winner-row reveal d2">
+        <div class="winner-row-month">Sorteio de Maio</div>
+        <div class="winner-row-names">
+          <span class="winner-name-main">🏆 Angela Maria</span>
+          <span class="winner-name-sep">+</span>
+          <span class="winner-name-friend">Tom <small>(amigo indicado)</small></span>
         </div>
-        <div class="winner-body">
-          <div class="winner-prize">Caixa de Som Mondial 250W</div>
-          <div class="winner-stars">★★★★★</div>
-        </div>
+        <div class="winner-row-store">📍 Compra realizada na Loja 1 — Sapopemba</div>
       </div>
-      <div class="winner-card reveal d3">
-        <div class="winner-img">
-          <img src="images/prova-social/10375512-1a51-4754-88c5-108418b233e5.jfif" alt="Ganhador" loading="lazy">
-          <div class="winner-overlay"></div>
+
+      <div class="winner-row reveal d3">
+        <div class="winner-row-month">Sorteio de Abril</div>
+        <div class="winner-row-names">
+          <span class="winner-name-main">🏆 Israel</span>
+          <span class="winner-name-sep">+</span>
+          <span class="winner-name-friend">Aparecido <small>(amigo indicado)</small></span>
         </div>
-        <div class="winner-body">
-          <div class="winner-prize">Caixa de Som Mondial 250W</div>
-          <div class="winner-stars">★★★★★</div>
-        </div>
-      </div>
-      <div class="winner-card reveal d1">
-        <div class="winner-img">
-          <img src="images/prova-social/48af8b9f-e93d-43ee-8887-8c20f6ab1444.jfif" alt="Ganhador" loading="lazy">
-          <div class="winner-overlay"></div>
-        </div>
-        <div class="winner-body">
-          <div class="winner-prize">Caixa de Som Mondial 250W</div>
-          <div class="winner-stars">★★★★★</div>
-        </div>
-      </div>
-      <div class="winner-card reveal d2">
-        <div class="winner-img">
-          <img src="images/prova-social/2cbfd59f-0ee0-49a5-8c13-375674806a3d.jfif" alt="Ganhador" loading="lazy">
-          <div class="winner-overlay"></div>
-        </div>
-        <div class="winner-body">
-          <div class="winner-prize">Caixa de Som Mondial 250W</div>
-          <div class="winner-stars">★★★★★</div>
-        </div>
-      </div>
-      <div class="winner-card reveal d3">
-        <div class="winner-img">
-          <img src="images/prova-social/bceb0f35-3b23-428d-b8fe-c13ddd6a11e2.jfif" alt="Ganhador" loading="lazy">
-          <div class="winner-overlay"></div>
-        </div>
-        <div class="winner-body">
-          <div class="winner-prize">Caixa de Som Mondial 250W</div>
-          <div class="winner-stars">★★★★★</div>
-        </div>
+        <div class="winner-row-store">📍 Compra realizada na Loja 1 — Sapopemba</div>
       </div>
     </div>
     <div style="text-align:center;margin-top:44px" class="reveal">
