@@ -48,6 +48,11 @@
     .prod-hero-img-wrap { display: flex; justify-content: center; align-items: center; background: #fff; border-radius: 20px; overflow: hidden; cursor: crosshair; padding: 28px; box-shadow: 0 8px 32px rgba(0,0,0,.2); min-height: 340px; }
     .prod-hero-img { max-height: 280px; object-fit: contain; transition: transform 0.06s ease; transform-origin: center center; pointer-events: none; display: block; }
     .prod-hero-img-placeholder { width: 280px; height: 280px; background: rgba(255,255,255,.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 80px; }
+    .prod-thumbs { display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
+    .prod-thumb { width: 56px; height: 56px; border-radius: 10px; background: #fff; border: 2px solid transparent; padding: 4px; cursor: pointer; overflow: hidden; transition: border-color .2s, transform .2s; }
+    .prod-thumb img { width: 100%; height: 100%; object-fit: contain; }
+    .prod-thumb:hover { transform: translateY(-2px); }
+    .prod-thumb.active { border-color: var(--yellow); }
     @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     .prod-badge { display: inline-flex; align-items: center; background: var(--yellow); color: var(--graphite); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; }
     .prod-category { font-size: 12px; color: rgba(255,255,255,.55); font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
@@ -328,16 +333,33 @@ const produtos = {
     nome: 'Massa Corrida',
     categoria: 'Massa Corrida / Acrílica',
     badge: 'ÓTIMA QUALIDADE!',
-    imagem: 'images/embalagens/barrica-remove-bg-io.png',
+    imagem: 'images/embalagens/barrica+plastico.png',
+    imagens: ['images/embalagens/barrica+plastico.png', 'images/embalagens/barrica-remove-bg-io.png', 'images/embalagens/massaplastico.png'],
     desc_curta: 'Lixamento fácil, acabamento de alto nível. Anti-mofo e odor quase zero.',
     descricao: 'A Massa Corrida Laet é indicada para uso interno, proporcionando acabamento de alto nível com fácil aplicação e lixamento. Possui propriedades anti-mofo e odor quase zero, ideal para preparar paredes antes de pintar.',
     beneficios: ['Lixamento fácil', 'Uso interno', 'Acabamento de alto nível', 'Anti-mofo', 'Odor quase zero', 'Rendimento médio de até 50m²'],
     precos: [
       { desc: 'Saco 25kg', valor: 'R$ 37,90' },
-      { desc: 'Barrica 25kg', valor: 'R$ 45,80' },
+      { desc: 'Barrica 25kg', valor: 'R$ 45,90' },
     ],
     preco_from: 'R$ 37<small>,90</small>',
     wa: 'Olá! Quero comprar Massa Corrida Laet. Pode me passar mais informações?'
+  },
+  'massa-acrilica': {
+    nome: 'Massa Acrílica',
+    categoria: 'Massa Corrida / Acrílica',
+    badge: 'INTERNA E EXTERNA!',
+    imagem: 'images/embalagens/barrica+plastico.png',
+    imagens: ['images/embalagens/barrica+plastico.png', 'images/embalagens/barrica-remove-bg-io.png', 'images/embalagens/massaplastico.png'],
+    desc_curta: 'Fácil de lixar, qualidade excelente. Para uso interno e externo, anti-mofo e baixíssimo odor.',
+    descricao: 'A Massa Acrílica Laet é indicada para uso interno e externo, proporcionando acabamento de qualidade excelente com fácil aplicação e lixamento. Possui propriedades anti-mofo, baixíssimo odor e ótimo rendimento, ideal para preparar paredes antes de pintar tanto dentro quanto fora de casa.',
+    beneficios: ['Fácil de lixar', 'Qualidade excelente', 'Uso interno e externo', 'Anti-mofo', 'Baixíssimo odor', 'Ótimo rendimento'],
+    precos: [
+      { desc: 'Saco 25kg', valor: 'R$ 59,90' },
+      { desc: 'Barrica 25kg', valor: 'R$ 67,90' },
+    ],
+    preco_from: 'R$ 59<small>,90</small>',
+    wa: 'Olá! Quero comprar Massa Acrílica Laet. Pode me passar mais informações?'
   },
   'super-profissional': {
     nome: 'Tinta Super Profissional',
@@ -580,9 +602,16 @@ function render() {
 
   document.title = p.nome + ' — Tintas Laet';
 
-  const imgHtml = p.imagem
-    ? `<img class="prod-hero-img" src="${p.imagem}" alt="${p.nome}">`
+  const imagensArr = p.imagens || (p.imagem ? [p.imagem] : []);
+  const imgHtml = imagensArr.length
+    ? `<img class="prod-hero-img" id="prod-main-img" src="${imagensArr[0]}" alt="${p.nome}">`
     : `<div class="prod-hero-img-placeholder">🖌️</div>`;
+  const thumbsHtml = imagensArr.length > 1
+    ? `<div class="prod-thumbs">${imagensArr.map((src, i) => `
+        <button class="prod-thumb${i === 0 ? ' active' : ''}" onclick="setMainImage(this,'${src}')">
+          <img src="${src}" alt="${p.nome} — foto ${i + 1}">
+        </button>`).join('')}</div>`
+    : '';
 
   const beneficiosHtml = p.beneficios.map(b => `<li>${b}</li>`).join('');
 
@@ -642,7 +671,10 @@ function render() {
               Comprar no WhatsApp
             </a>
           </div>
-          <div class="prod-hero-img-wrap">${imgHtml}</div>
+          <div>
+            <div class="prod-hero-img-wrap">${imgHtml}</div>
+            ${thumbsHtml}
+          </div>
         </div>
       </div>
     </section>
@@ -748,6 +780,13 @@ function updateTamanhoPrecificado(id) {
     }
   }
   tamanhoSel.innerHTML = opts.join('');
+}
+
+function setMainImage(btn, src) {
+  const img = document.getElementById('prod-main-img');
+  if (img) img.src = src;
+  document.querySelectorAll('.prod-thumb').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
 }
 
 function addToCartFromProduct(id) {
