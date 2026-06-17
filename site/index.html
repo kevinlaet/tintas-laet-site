@@ -143,8 +143,9 @@
     .bestsellers-header .section-title { color: var(--blue); }
     .seller-card { background: var(--gray); border-radius: 12px; overflow: hidden; transition: transform .22s, box-shadow .22s; border: 1px solid transparent; display: flex; flex-direction: column; }
     .seller-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(13,71,161,.1); }
-    .seller-img { height: 148px; background: linear-gradient(135deg, #dce3f0, #c8d4e8); display: flex; align-items: center; justify-content: center; font-size: 58px; position: relative; overflow: hidden; flex-shrink: 0; }
+    .seller-img { height: 170px; background: linear-gradient(135deg, #dce3f0, #c8d4e8); display: flex; align-items: center; justify-content: center; font-size: 58px; position: relative; overflow: hidden; flex-shrink: 0; }
     .seller-img img { height: 130px; width: auto; object-fit: contain; filter: drop-shadow(0 6px 14px rgba(0,0,0,.18)); transition: transform .3s; }
+    .seller-img img.img-tall { height: 168px; }
     .seller-card:hover .seller-img img { transform: scale(1.07) translateY(-4px); }
     .seller-badge { position: absolute; top: 10px; left: 10px; background: var(--yellow); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px; padding: 3px 10px; border-radius: 100px; }
     .seller-body { padding: 16px; background: #fff; display: flex; flex-direction: column; flex: 1; }
@@ -500,37 +501,37 @@
       <p class="section-sub">Escolha uma categoria e a gente te indica o produto certo.</p>
     </div>
     <div class="surfaces-grid">
-      <a href="https://wa.me/5511977140964?text=Olá! Quero saber mais sobre as Tintas Econômicas." target="_blank" rel="noopener" class="surface-card">
+      <a href="produtos.html#cat-economicas" class="surface-card">
         <div class="surface-icon" style="background:rgba(46,125,50,.1)">🏷️</div>
         <div class="surface-name">Tintas Econômicas</div>
         <div class="surface-sub">Látex, vinil, standard</div>
       </a>
-      <a href="https://wa.me/5511977140964?text=Olá! Quero saber mais sobre as Tintas Premium." target="_blank" rel="noopener" class="surface-card">
+      <a href="produtos.html#cat-premium" class="surface-card">
         <div class="surface-icon" style="background:rgba(255,193,7,.15)">⭐</div>
         <div class="surface-name">Tintas Premium</div>
         <div class="surface-sub">Lavável, acrílica, emborrachada</div>
       </a>
-      <a href="https://wa.me/5511977140964?text=Olá! Quero saber mais sobre Massas." target="_blank" rel="noopener" class="surface-card">
+      <a href="produtos.html#cat-massas" class="surface-card">
         <div class="surface-icon" style="background:rgba(96,125,139,.1)">🪣</div>
         <div class="surface-name">Massas</div>
         <div class="surface-sub">Massa corrida, niveladora</div>
       </a>
-      <a href="https://wa.me/5511977140964?text=Olá! Quero saber mais sobre Texturizados." target="_blank" rel="noopener" class="surface-card">
+      <a href="produtos.html#cat-texturizados" class="surface-card">
         <div class="surface-icon" style="background:rgba(103,58,183,.1)">🎨</div>
         <div class="surface-name">Texturizados</div>
         <div class="surface-sub">Textura acrílica, rústica</div>
       </a>
-      <a href="https://wa.me/5511977140964?text=Olá! Quero saber mais sobre Complementos." target="_blank" rel="noopener" class="surface-card">
+      <a href="produtos.html#cat-complementos" class="surface-card">
         <div class="surface-icon" style="background:rgba(13,71,161,.1)">🔧</div>
         <div class="surface-name">Complementos</div>
         <div class="surface-sub">Selador, primer, impermeabilizante</div>
       </a>
-      <a href="https://wa.me/5511977140964?text=Olá! Quero saber mais sobre Esmaltes." target="_blank" rel="noopener" class="surface-card">
+      <a href="produtos.html#cat-esmaltes" class="surface-card">
         <div class="surface-icon" style="background:rgba(0,150,136,.1)">✨</div>
         <div class="surface-name">Esmaltes</div>
         <div class="surface-sub">Brilhante, acetinado, sintético</div>
       </a>
-      <a href="https://wa.me/5511977140964?text=Olá! Quero saber mais sobre as Ferramentas disponíveis." target="_blank" rel="noopener" class="surface-card">
+      <a href="produtos.html#cat-ferramentas" class="surface-card">
         <div class="surface-icon" style="background:rgba(230,81,0,.1)">🛠️</div>
         <div class="surface-name">Ferramentas</div>
         <div class="surface-sub">Rolos, pincéis, bandejas, kits</div>
@@ -648,7 +649,7 @@
       <!-- Massa Corrida -->
       <div class="seller-card">
         <div class="seller-img">
-          <img src="images/embalagens/barrica+plastico.png" alt="Massa Corrida Laet">
+          <img src="images/embalagens/barrica+plastico.png" alt="Massa Corrida Laet" class="img-tall">
           <span class="seller-badge">ÓTIMA QUALIDADE!</span>
         </div>
         <div class="seller-body">
@@ -783,7 +784,7 @@
       <!-- Massa Acrílica -->
       <div class="seller-card">
         <div class="seller-img">
-          <img src="images/embalagens/barrica+plastico.png" alt="Massa Acrílica Laet">
+          <img src="images/embalagens/barrica+plastico.png" alt="Massa Acrílica Laet" class="img-tall">
           <span class="seller-badge">INTERNA E EXTERNA!</span>
         </div>
         <div class="seller-body">
@@ -892,7 +893,7 @@
       </div>
       <div class="why-visual">
         <div class="why-photo">
-          <img src="images/lojas/loja1-sapopemba.jpg" alt="Loja Tintas Laet" style="width:100%;height:100%;object-fit:cover;border-radius:16px;display:block;">
+          <img src="images/prova-social/equipe-tintas-laet.jpg" alt="Equipe Tintas Laet" style="width:100%;height:100%;object-fit:cover;border-radius:16px;display:block;">
         </div>
         <div class="why-float-card">
           <div class="why-float-num" style="font-size:26px">300mil+</div>
