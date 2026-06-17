@@ -193,16 +193,25 @@
     </div>
 
     <div class="section-divider"><span>Amigos indicados</span></div>
-    <p class="section-note">Indique até 10 amigos. Se você ganhar o prêmio principal, um deles é sorteado pro 2º prêmio — mesmo sem ter comprado nada!</p>
+    <p class="section-note">Indique de 3 a 10 amigos (mínimo obrigatório: 3). Se você ganhar o prêmio principal, um deles é sorteado pro 2º prêmio — mesmo sem ter comprado nada!</p>
 
     <div id="friendsList">
       <div class="friend-row">
         <input type="text" name="amigo_nome" placeholder="Nome do amigo">
         <input type="tel" name="amigo_whatsapp" placeholder="WhatsApp">
       </div>
+      <div class="friend-row">
+        <input type="text" name="amigo_nome" placeholder="Nome do amigo">
+        <input type="tel" name="amigo_whatsapp" placeholder="WhatsApp">
+      </div>
+      <div class="friend-row">
+        <input type="text" name="amigo_nome" placeholder="Nome do amigo">
+        <input type="tel" name="amigo_whatsapp" placeholder="WhatsApp">
+      </div>
     </div>
     <button type="button" class="add-friend-btn" id="addFriendBtn">+ Adicionar amigo</button>
-    <div class="friend-count" id="friendCount">1 de 10 amigos</div>
+    <div class="friend-count" id="friendCount">3 de 10 amigos (mínimo 3)</div>
+    <p class="friend-error" id="friendError" style="display:none;color:#C62828;font-size:13px;margin-top:8px">Preencha nome e WhatsApp de pelo menos 3 amigos antes de enviar.</p>
 
     <div class="declaration-box">
       Declaro que as informações fornecidas são verdadeiras e que possuo autorização para compartilhar os contatos indicados neste cupom. Autorizo a Tintas Laet a utilizar meus dados para contato sobre promoções, campanhas, sorteios e novidades da empresa. Caso seja contemplado(a), autorizo a utilização de meu nome, imagem, voz e depoimento para divulgação institucional e promocional da empresa.
@@ -237,11 +246,14 @@
   var list = document.getElementById('friendsList');
   var addBtn = document.getElementById('addFriendBtn');
   var countLabel = document.getElementById('friendCount');
+  var friendError = document.getElementById('friendError');
+  var form = document.querySelector('.form-card');
+  var MIN = 3;
   var MAX = 10;
 
   function updateCount() {
     var rows = list.querySelectorAll('.friend-row').length;
-    countLabel.textContent = rows + ' de ' + MAX + ' amigos';
+    countLabel.textContent = rows + ' de ' + MAX + ' amigos (mínimo ' + MIN + ')';
     addBtn.style.display = rows >= MAX ? 'none' : 'flex';
   }
 
@@ -259,6 +271,28 @@
     });
     updateCount();
   }
+
+  function filledFriendCount() {
+    var rows = list.querySelectorAll('.friend-row');
+    var filled = 0;
+    rows.forEach(function (row) {
+      var inputs = row.querySelectorAll('input');
+      var nome = inputs[0].value.trim();
+      var whatsapp = inputs[1].value.trim();
+      if (nome && whatsapp) filled++;
+    });
+    return filled;
+  }
+
+  form.addEventListener('submit', function (e) {
+    if (filledFriendCount() < MIN) {
+      e.preventDefault();
+      friendError.style.display = 'block';
+      friendError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      friendError.style.display = 'none';
+    }
+  });
 
   addBtn.addEventListener('click', addRow);
   updateCount();
