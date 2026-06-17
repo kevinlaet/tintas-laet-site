@@ -156,7 +156,7 @@
     .prize-icon { font-size: 72px; display: block; margin-bottom: 22px; filter: drop-shadow(0 4px 20px rgba(255,193,7,.5)); }
     .prize-main .prize-icon { animation: trophy-float 3s ease-in-out infinite; }
     .prize-photo { width: clamp(180px, 26vw, 260px); height: clamp(180px, 26vw, 260px); object-fit: contain; display: block; margin: 0 auto 22px; }
-    .prize-main .prize-photo { animation: trophy-float 3s ease-in-out infinite; mix-blend-mode: multiply; filter: drop-shadow(0 4px 20px rgba(255,193,7,.35)); }
+    .prize-main .prize-photo { animation: trophy-float 3s ease-in-out infinite; filter: drop-shadow(0 4px 20px rgba(255,193,7,.35)); }
     .prize-secondary .prize-photo { filter: drop-shadow(0 4px 24px rgba(0,0,0,.35)); }
     .prize-name { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(20px, 2.8vw, 32px); line-height: 1.15; margin-bottom: 10px; }
     .prize-main .prize-name { color: var(--yellow); }
@@ -230,6 +230,7 @@
     .prize-preview-box ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .prize-preview-box li { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.82); font-size: 14px; }
     .prize-preview-box li span { font-size: 20px; }
+    .prize-preview-box li img { width: 30px; height: 30px; object-fit: contain; flex-shrink: 0; }
     .rules-box h3 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 22px; color: #fff; margin-bottom: 10px; }
     .rules-box p.sub { color: rgba(255,255,255,.62); font-size: 14px; line-height: 1.75; margin-bottom: 24px; }
     .rules-box .btn { width: 100%; margin-bottom: 12px; }
@@ -291,7 +292,7 @@
     <div class="hero-badge">🎁 Sorteio Mensal Tintas Laet</div>
     <span class="hero-trophy">🏆</span>
     <h1>Comprou na Tintas Laet?<span class="accent">preencha o cupom e concorra!</span></h1>
-    <p class="hero-desc">Todo mês alguém sai de uma das nossas lojas com um prêmio incrível nas mãos. É simples: faça uma compra de qualquer valor, preencha o cupom na loja — e aguarde o sorteio ao vivo no final do mês.</p>
+    <p class="hero-desc">Todo mês alguém sai com um prêmio incrível nas mãos. É simples: faça uma compra de qualquer valor — na loja ou pelo WhatsApp — preencha o cupom (físico ou digital) e aguarde o sorteio ao vivo no final do mês.</p>
     <div class="countdown-wrap">
       <div class="countdown-label">⏰ Falta pouco pro <strong>Sorteio Julho Premiado</strong></div>
       <div class="countdown-clock" id="countdownClock">
@@ -304,6 +305,7 @@
     </div>
     <div class="hero-btns">
       <a href="https://wa.me/5511977140964?text=Olá! Quero fazer uma compra e participar do sorteio da Tintas Laet!" class="btn btn-yellow" target="_blank" rel="noopener">🛒 Comprar e participar</a>
+      <a href="cupom.html" class="btn btn-blue">📝 Já comprei, preencher cupom</a>
       <a href="https://www.instagram.com/tintaslaet" class="btn btn-ghost" target="_blank" rel="noopener">▶ Ver sorteio ao vivo</a>
     </div>
   </div>
@@ -341,7 +343,7 @@
         <div class="prize-shine"></div>
         <div class="prize-inner">
           <div class="prize-tag tag-gold">🏆 Prêmio Principal</div>
-          <img src="images/sorteios/caixa-de-som-mondial-250w.jpg" alt="Caixa de Som Mondial 250W" class="prize-photo">
+          <img src="images/sorteios/caixa-de-som-mondial-250w.png" alt="Caixa de Som Mondial 250W" class="prize-photo">
           <div class="prize-name">Caixa de Som Mondial 250W</div>
           <div class="prize-who">Para o ganhador do cupom sorteado</div>
           <div class="prize-desc">Som potente, qualidade garantida. O ganhador é sorteado ao vivo no Instagram entre todos os cupons válidos do mês.</div>
@@ -373,7 +375,7 @@
 
     <div class="easy-banner reveal">
       <h3>✅ Comprou qualquer valor? Você já pode participar.</h3>
-      <p>Não precisa ser um valor mínimo. <strong>Qualquer compra</strong> em qualquer loja Tintas Laet já te dá direito ao cupom. É só isso.</p>
+      <p>Não precisa ser um valor mínimo. <strong>Qualquer compra</strong> — na loja ou pelo WhatsApp — já te dá direito ao cupom. É só isso.</p>
     </div>
 
     <div class="how-steps">
@@ -383,7 +385,7 @@
           <span class="step-emoji">🛒</span>
         </div>
         <h3>Faça uma compra</h3>
-        <p>De qualquer valor, em qualquer loja física da Tintas Laet. Não precisa de um valor mínimo.</p>
+        <p>De qualquer valor, em qualquer loja ou pelo WhatsApp. Não precisa de um valor mínimo.</p>
       </div>
       <div class="how-step reveal d2">
         <div class="step-icon-wrap si-2">
@@ -391,7 +393,7 @@
           <span class="step-emoji">📝</span>
         </div>
         <h3>Preencha o cupom</h3>
-        <p>Na própria loja, preencha o cupom físico com nome, WhatsApp e cidade. É rápido!</p>
+        <p>Na loja (físico) ou <a href="cupom.html" style="color:inherit;text-decoration:underline">online pelo site</a> — com nome, WhatsApp e cidade. É rápido!</p>
       </div>
       <div class="how-step reveal d3">
         <div class="step-icon-wrap si-3">
@@ -413,12 +415,12 @@
 
     <div class="how-note reveal">
       <span class="how-note-icon">📌</span>
-      <div><strong>Atenção:</strong> o cupom é <strong>físico</strong> e está disponível em todas as nossas lojas. Não existe versão digital. Venha até uma das lojas, faça sua compra e já sai de lá concorrendo!</div>
+      <div><strong>Atenção:</strong> o cupom está disponível em todas as nossas lojas (físico) ou aqui pelo site (digital). Comprou pelo WhatsApp? Sem problema — preencha o cupom online e já está concorrendo!</div>
     </div>
 
     <div class="how-cta reveal">
       <a href="https://wa.me/5511977140964?text=Olá! Quero fazer uma compra e participar do sorteio!" class="btn btn-green" target="_blank" rel="noopener">💬 Comprar pelo WhatsApp</a>
-      <a href="index.html#lojas" class="btn btn-blue">Ver as lojas →</a>
+      <a href="cupom.html" class="btn btn-blue">📝 Preencher cupom online</a>
     </div>
   </div>
 </section>
@@ -477,9 +479,9 @@
         <h2>Regulamento<br>do sorteio</h2>
         <p class="rules-subtitle">Tudo transparente, sem pegadinha. O sorteio é feito ao vivo no Instagram para você acompanhar em tempo real.</p>
         <ul class="rules-list">
-          <li><span class="rule-check">✓</span>Realizar uma compra de qualquer valor em loja física da Tintas Laet</li>
-          <li><span class="rule-check">✓</span>Preencher o cupom físico disponível nas nossas lojas (não existe cupom digital)</li>
-          <li><span class="rule-check">✓</span>Depositar o cupom preenchido na urna oficial da campanha</li>
+          <li><span class="rule-check">✓</span>Realizar uma compra de qualquer valor em loja ou pelo WhatsApp da Tintas Laet</li>
+          <li><span class="rule-check">✓</span>Preencher o cupom — físico (nas lojas) ou <a href="cupom.html" style="color:inherit;text-decoration:underline">digital (pelo site)</a></li>
+          <li><span class="rule-check">✓</span>Depositar o cupom físico na urna da loja, ou enviar o cupom digital pelo site</li>
           <li><span class="rule-check">✓</span>Informar nome completo, WhatsApp e cidade no cupom</li>
           <li><span class="rule-check">✓</span>É possível indicar até 10 amigos (WhatsApp) no cupom — cada um concorre ao 2º prêmio</li>
           <li><span class="rule-check">✓</span>O sorteio é realizado ao vivo no Instagram (@tintaslaet) no último dia do mês</li>
@@ -494,15 +496,15 @@
         <div class="prize-preview-box">
           <h4>🎁 Prêmios deste mês</h4>
           <ul>
-            <li><span>🔊</span><div><strong style="color:#fff">Caixa de Som Mondial 250W</strong><br><span style="font-size:12px;color:rgba(255,255,255,.55)">Prêmio principal — ganhador do cupom</span></div></li>
-            <li><span>🪣</span><div><strong style="color:#fff">Tinta Cobertura Absoluta 3,6L Branca</strong><br><span style="font-size:12px;color:rgba(255,255,255,.55)">Prêmio das indicações — amigo indicado</span></div></li>
+            <li><img src="images/sorteios/caixa-de-som-mondial-250w.png" alt="Caixa de Som Mondial 250W"><div><strong style="color:#fff">Caixa de Som Mondial 250W</strong><br><span style="font-size:12px;color:rgba(255,255,255,.55)">Prêmio principal — ganhador do cupom</span></div></li>
+            <li><img src="images/sorteios/tinta-cobertura-absoluta-36l-branca.png" alt="Tinta Cobertura Absoluta 3,6L Branca"><div><strong style="color:#fff">Tinta Cobertura Absoluta 3,6L Branca</strong><br><span style="font-size:12px;color:rgba(255,255,255,.55)">Prêmio das indicações — amigo indicado</span></div></li>
           </ul>
         </div>
 
         <h3>Quer participar?</h3>
-        <p class="sub">Compre qualquer produto nas nossas lojas, preencha o cupom e pronto — você já está na urna concorrendo ao prêmio do mês!</p>
+        <p class="sub">Compre qualquer produto na loja ou pelo WhatsApp, preencha o cupom (físico ou digital) e pronto — você já está concorrendo ao prêmio do mês!</p>
         <a href="https://wa.me/5511977140964?text=Olá! Quero comprar e participar do sorteio da Tintas Laet!" class="btn btn-yellow btn-full" target="_blank" rel="noopener">🛒 Comprar agora pelo WhatsApp</a>
-        <a href="https://www.instagram.com/tintaslaet" class="btn btn-ghost btn-full" target="_blank" rel="noopener" style="border-color:rgba(255,255,255,.3)">▶ Seguir o Instagram para ver o sorteio</a>
+        <a href="cupom.html" class="btn btn-blue btn-full">📝 Preencher cupom online</a>
         <p class="rules-fine">Ao participar, o ganhador autoriza o uso de nome e imagem para divulgação do resultado nos canais da Tintas Laet. Dúvidas: (11) 97714-0964.</p>
       </div>
     </div>
