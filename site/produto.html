@@ -75,6 +75,8 @@
     .prod-beneficios { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .prod-beneficios li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #333; line-height: 1.5; }
     .prod-beneficios li::before { content: ''; width: 18px; height: 18px; background: var(--blue); border-radius: 50%; flex-shrink: 0; margin-top: 1px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-size: 11px; background-repeat: no-repeat; background-position: center; }
+    .prod-aviso { margin-top: 24px; background: #FFF8E8; border: 1px solid #FFE082; border-left: 4px solid var(--yellow); border-radius: 10px; padding: 16px 18px; font-size: 13px; color: #555; line-height: 1.7; }
+    .prod-aviso strong { color: var(--graphite); }
 
     /* PRICE TABLE */
     .prod-price-card { background: var(--gray); border-radius: 16px; padding: 28px; position: sticky; top: 100px; }
@@ -355,10 +357,10 @@ const produtos = {
     descricao: 'A Massa Acrílica Laet é indicada para uso interno e externo, proporcionando acabamento de qualidade excelente com fácil aplicação e lixamento. Possui propriedades anti-mofo, baixíssimo odor e ótimo rendimento, ideal para preparar paredes antes de pintar tanto dentro quanto fora de casa.',
     beneficios: ['Fácil de lixar', 'Qualidade excelente', 'Uso interno e externo', 'Anti-mofo', 'Baixíssimo odor', 'Ótimo rendimento'],
     precos: [
-      { desc: 'Saco 25kg', valor: 'R$ 59,90' },
-      { desc: 'Barrica 25kg', valor: 'R$ 67,90' },
+      { desc: 'Saco 25kg', valor: 'R$ 69,90' },
+      { desc: 'Barrica 25kg', valor: 'R$ 77,90' },
     ],
-    preco_from: 'R$ 59<small>,90</small>',
+    preco_from: 'R$ 69<small>,90</small>',
     wa: 'Olá! Quero comprar Massa Acrílica Laet. Pode me passar mais informações?'
   },
   'super-profissional': {
@@ -435,11 +437,11 @@ const produtos = {
   'latex-vinil': {
     nome: 'Latex Vinil 18L',
     categoria: 'Tintas',
-    badge: 'O MENOR PREÇO!',
     imagem: 'images/embalagens/vinil-remove-bg-io.png',
-    desc_curta: 'Anti-mofo, acabamento fosco. Ideal para pintura interna. Cobertura seca.',
-    descricao: 'O Latex Vinil Laet é uma tinta básica com propriedades anti-mofo, acabamento fosco e cobertura satisfatória quando aplicada corretamente. Indicada somente para uso interno. Não deve ser aplicada em parede úmida ou ambiente que receba diretamente chuva.',
-    beneficios: ['Anti-mofo', 'Acabamento fosco', 'Cobertura seca satisfatória', 'Uso interno', 'Nova embalagem', 'Aguardar 8h entre demãos para melhor resultado'],
+    desc_curta: 'Tinta básica e econômica para uso interno. Veja as recomendações de uso antes de comprar.',
+    descricao: 'O Latex Vinil Laet é uma tinta de entrada, mais simples e econômica da nossa linha. Pra ela funcionar bem, é importante seguir 2 cuidados: espere pelo menos 8 horas entre uma demão e outra, e não aplique em paredes úmidas, banheiros, áreas externas ou qualquer lugar que pegue chuva direto — ela não foi feita pra isso e pode descascar ou manchar. Sendo usada do jeito certo (parede seca, uso interno), ela cobre bem e tem ótimo custo.',
+    beneficios: ['Opção mais econômica da nossa linha', 'Indicada apenas para uso interno', 'Aguardar no mínimo 8h entre demãos', 'Não aplicar em paredes úmidas ou áreas externas', 'Acabamento fosco'],
+    aviso: '💡 <strong>Bom te explicar antes de comprar:</strong> o Latex Vinil é nossa tinta de entrada — simples e em conta. Pra ficar bonita, espere <strong>8 horas entre uma demão e outra</strong> e <strong>não use em parede úmida, banheiro ou área externa</strong>. Se sua parede pega chuva ou tem umidade, fala com a gente no WhatsApp que indicamos uma linha melhor pra esse caso. 😊',
     precos: [
       { desc: '18L — Branca', valor: 'R$ 79,90' },
       { desc: '18L — Cores', valor: 'R$ 99,90' },
@@ -659,7 +661,7 @@ function render() {
         <div class="prod-hero-inner">
           <div class="prod-hero-info">
             <div class="prod-category">${p.categoria}</div>
-            <span class="prod-badge">${p.badge}</span>
+            ${p.badge ? `<span class="prod-badge">${p.badge}</span>` : ''}
             <h1 class="prod-nome">${p.nome}</h1>
             <p class="prod-desc-curta">${p.desc_curta}</p>
             <div class="prod-price-block">
@@ -688,6 +690,7 @@ function render() {
             <p class="prod-descricao">${p.descricao}</p>
             <h2 class="prod-section-title">Benefícios</h2>
             <ul class="prod-beneficios">${beneficiosHtml}</ul>
+            ${p.aviso ? `<div class="prod-aviso">${p.aviso}</div>` : ''}
           </div>
           <div>
             <div class="prod-price-card">
