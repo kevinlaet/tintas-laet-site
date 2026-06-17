@@ -73,6 +73,9 @@
     .checkbox-field { display: flex; align-items: flex-start; gap: 10px; margin: 22px 0; }
     .checkbox-field input { margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; }
     .checkbox-field label { font-size: 13px; color: #555; line-height: 1.5; }
+    .checkbox-field a { color: var(--blue); font-weight: 700; text-decoration: underline; }
+
+    .declaration-box { background: #F7F9FC; border: 1px solid #E5E9F0; border-radius: 10px; padding: 14px 16px; font-size: 11.5px; color: #777; line-height: 1.6; margin-top: 24px; }
 
     .hidden-field { position: absolute; left: -9999px; }
 
@@ -122,6 +125,11 @@
     </div>
 
     <div class="field">
+      <label>Cidade</label>
+      <input type="text" name="cidade" placeholder="Sua cidade" required>
+    </div>
+
+    <div class="field">
       <label>Loja onde comprou</label>
       <select name="loja" required>
         <option value="">Selecione...</option>
@@ -146,6 +154,44 @@
       </div>
     </div>
 
+    <div class="field">
+      <label>Número do pedido <span class="opt">(opcional, se tiver a nota em mãos)</span></label>
+      <input type="text" name="numero_pedido" placeholder="Ex: 12345">
+    </div>
+
+    <div class="section-divider"><span>Sobre seu próximo projeto</span></div>
+
+    <div class="field">
+      <label>Em quanto tempo você pretende pintar ou reformar?</label>
+      <select name="prazo_projeto">
+        <option value="">Selecione...</option>
+        <option>Já estou pintando/reformando</option>
+        <option>Nos próximos 30 dias</option>
+        <option>Entre 1 e 3 meses</option>
+        <option>Entre 3 e 6 meses</option>
+        <option>Mais de 6 meses</option>
+        <option>Ainda não tenho previsão</option>
+      </select>
+    </div>
+
+    <div class="section-divider"><span>Como conheceu a Tintas Laet?</span></div>
+
+    <div class="field">
+      <select name="como_conheceu" id="comoConheceu">
+        <option value="">Selecione...</option>
+        <option>Instagram</option>
+        <option>Facebook</option>
+        <option>Google</option>
+        <option>Indicação de amigo</option>
+        <option>Indicação de pintor</option>
+        <option>Passei em frente à loja</option>
+        <option>Cliente antigo</option>
+        <option>Outdoor/Faixa</option>
+        <option value="Outro">Outro</option>
+      </select>
+      <input type="text" name="como_conheceu_outro" id="comoConheceuOutro" placeholder="Qual?" style="display:none;margin-top:8px">
+    </div>
+
     <div class="section-divider"><span>Amigos indicados</span></div>
     <p class="section-note">Indique até 10 amigos. Se você ganhar o prêmio principal, um deles é sorteado pro 2º prêmio — mesmo sem ter comprado nada!</p>
 
@@ -158,9 +204,13 @@
     <button type="button" class="add-friend-btn" id="addFriendBtn">+ Adicionar amigo</button>
     <div class="friend-count" id="friendCount">1 de 10 amigos</div>
 
+    <div class="declaration-box">
+      Declaro que as informações fornecidas são verdadeiras e que possuo autorização para compartilhar os contatos indicados neste cupom. Autorizo a Tintas Laet a utilizar meus dados para contato sobre promoções, campanhas, sorteios e novidades da empresa. Caso seja contemplado(a), autorizo a utilização de meu nome, imagem, voz e depoimento para divulgação institucional e promocional da empresa.
+    </div>
+
     <div class="checkbox-field">
-      <input type="checkbox" id="confirma" name="confirma_compra" value="Sim" required>
-      <label for="confirma">Confirmo que realizei uma compra na Tintas Laet e os dados acima são verdadeiros.</label>
+      <input type="checkbox" id="aceiteRegras" name="aceite_regras" value="Sim" required>
+      <label for="aceiteRegras">Li <a href="sorteios.html#regulamento" target="_blank" rel="noopener">todas as regras do sorteio</a> e autorizo.</label>
     </div>
 
     <button type="submit" class="btn btn-yellow btn-full">🎟️ Enviar cupom</button>
@@ -175,6 +225,14 @@
 </div>
 
 <script>
+(function () {
+  var comoConheceu = document.getElementById('comoConheceu');
+  var comoConheceuOutro = document.getElementById('comoConheceuOutro');
+  comoConheceu.addEventListener('change', function () {
+    comoConheceuOutro.style.display = comoConheceu.value === 'Outro' ? 'block' : 'none';
+  });
+})();
+
 (function () {
   var list = document.getElementById('friendsList');
   var addBtn = document.getElementById('addFriendBtn');
