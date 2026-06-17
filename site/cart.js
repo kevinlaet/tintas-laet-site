@@ -56,7 +56,7 @@
 
   function injectStyles() {
     const css = `
-      #laet-cart-float { position: fixed; bottom: 96px; right: 24px; z-index: 301; width: 56px; height: 56px; border-radius: 50%; background: #0D47A1; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(13,71,161,.45); cursor: pointer; transition: transform .2s; border: none; }
+      #laet-cart-float { position: fixed; bottom: 144px; right: 24px; z-index: 301; width: 56px; height: 56px; border-radius: 50%; background: #0D47A1; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(13,71,161,.45); cursor: pointer; transition: transform .2s; border: none; }
       #laet-cart-float:hover { transform: scale(1.07); }
       #laet-cart-float svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2; }
       #laet-cart-badge { position: absolute; top: -4px; right: -4px; background: #FFC107; color: #212529; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px; min-width: 20px; height: 20px; border-radius: 10px; display: none; align-items: center; justify-content: center; padding: 0 4px; }

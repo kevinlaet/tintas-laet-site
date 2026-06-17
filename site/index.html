@@ -101,9 +101,6 @@
       .banner-cta-zone--desktop { display: none; }
       .banner-cta-zone--mobile { display: block; }
     }
-    .banner-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
-    .banner-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.4); border: 2px solid rgba(255,255,255,.6); cursor: pointer; padding: 0; transition: background .2s, transform .2s; }
-    .banner-dot.active { background: #fff; transform: scale(1.25); }
     .banner-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.25); border: none; color: #fff; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 26px; z-index: 10; transition: background .2s; display: flex; align-items: center; justify-content: center; }
     .banner-arrow:hover { background: rgba(0,0,0,.48); }
     .banner-prev { left: 16px; }
@@ -472,11 +469,6 @@
 
   </div>
 
-  <div class="banner-dots" id="bannerDots">
-    <button class="banner-dot active" onclick="bannerGo(0)" aria-label="Slide 1"></button>
-    <button class="banner-dot" onclick="bannerGo(1)" aria-label="Slide 2"></button>
-    <button class="banner-dot" onclick="bannerGo(2)" aria-label="Slide 3"></button>
-  </div>
   <button class="banner-arrow banner-prev" onclick="bannerPrev()" aria-label="Anterior">&#8249;</button>
   <button class="banner-arrow banner-next" onclick="bannerNext()" aria-label="Próximo">&#8250;</button>
 </section>
@@ -1223,13 +1215,10 @@ document.querySelectorAll('.product-card,.why-card,.location-card,.seller-card,.
   let cur = 0;
   const carousel = document.getElementById('bannerCarousel');
   if (!carousel) return;
-  const dots = document.querySelectorAll('.banner-dot');
-  const total = dots.length;
+  const total = carousel.querySelectorAll('.banner-slide').length;
 
   function goTo(n) {
-    dots[cur].classList.remove('active');
     cur = (n + total) % total;
-    dots[cur].classList.add('active');
     carousel.scrollTo({ left: cur * carousel.offsetWidth, behavior: 'smooth' });
   }
 
@@ -1245,7 +1234,7 @@ document.querySelectorAll('.product-card,.why-card,.location-card,.seller-card,.
   /* Sync dot on manual swipe */
   carousel.addEventListener('scrollend', function() {
     const idx = Math.round(carousel.scrollLeft / carousel.offsetWidth);
-    if (idx !== cur) { dots[cur].classList.remove('active'); cur = idx; dots[cur].classList.add('active'); }
+    if (idx !== cur) { cur = idx; }
   });
 })();
 
