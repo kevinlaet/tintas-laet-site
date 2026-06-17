@@ -1142,10 +1142,10 @@ function updateTamanhoPrecificado(id) {
   const corNome = corSel.value;
   let opts = [];
   if (corNome === 'Branca') {
-    const branca18 = p.precos.find(pr => pr.desc.includes('18L'));
-    const branca36 = p.precos.find(pr => pr.desc.includes('3,6L'));
-    if (branca18) opts.push(`<option value="18L|${branca18.valor}">18L — ${branca18.valor}</option>`);
-    if (branca36) opts.push(`<option value="3,6L|${branca36.valor}">3,6L — ${branca36.valor}</option>`);
+    p.precos.forEach(pr => {
+      const tam = pr.desc.replace(/\s*—\s*Branca$/i, '').trim();
+      opts.push(`<option value="${tam}|${pr.valor}">${tam} — ${pr.valor}</option>`);
+    });
   } else {
     const cor = p.cores.find(c => c.nome === corNome);
     if (cor) {
