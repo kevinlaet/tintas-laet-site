@@ -276,7 +276,7 @@ let produtosData = null;
 
 async function loadProdutos() {
   if (produtosData) return produtosData;
-  const res = await fetch('produto.html');
+  const res = await fetch('produto.html?v=' + Date.now(), { cache: 'no-store' });
   if (!res.ok) throw new Error('produto.html retornou status ' + res.status);
   const text = await res.text();
   const match = text.match(/const produtos = (\{[\s\S]*?\n\});/);
@@ -352,9 +352,14 @@ async function initTool() {
   try {
     await loadProdutos();
   } catch (e) {
-    console.error('Falha ao carregar produtos de produto.html:', e);
-    produtosData = produtosData || {};
-    alert('Não foi possível carregar a lista de produtos automaticamente. Recarregue a página (Ctrl+Shift+R). Se persistir, avise o Kevin.');
+    console.error('Falha ao carregar produtos de produto.html (1a tentativa):', e);
+    try {
+      await loadProdutos();
+    } catch (e2) {
+      console.error('Falha ao carregar produtos de produto.html (2a tentativa):', e2);
+      produtosData = produtosData || {};
+      alert('Não foi possível carregar a lista de produtos automaticamente. Recarregue a página (Ctrl+Shift+R). Se persistir, avise o Kevin.');
+    }
   }
   addItemRow();
 }
