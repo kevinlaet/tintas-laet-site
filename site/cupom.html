@@ -193,25 +193,34 @@
     </div>
 
     <div class="section-divider"><span>Amigos indicados</span></div>
-    <p class="section-note">Indique de 3 a 10 amigos (mínimo obrigatório: 3). Se você ganhar o prêmio principal, um deles é sorteado pro 2º prêmio — mesmo sem ter comprado nada!</p>
+    <p class="section-note">Indique de 5 a 10 amigos (mínimo obrigatório: 5). Se você ganhar o prêmio principal, um deles é sorteado pro 2º prêmio — mesmo sem ter comprado nada! Não vale se indicar.</p>
 
     <div id="friendsList">
       <div class="friend-row">
-        <input type="text" name="amigo_nome" placeholder="Nome do amigo">
-        <input type="tel" name="amigo_whatsapp" placeholder="WhatsApp">
+        <input type="text" name="amigo_nome[]" placeholder="Nome do amigo">
+        <input type="tel" name="amigo_whatsapp[]" placeholder="WhatsApp">
       </div>
       <div class="friend-row">
-        <input type="text" name="amigo_nome" placeholder="Nome do amigo">
-        <input type="tel" name="amigo_whatsapp" placeholder="WhatsApp">
+        <input type="text" name="amigo_nome[]" placeholder="Nome do amigo">
+        <input type="tel" name="amigo_whatsapp[]" placeholder="WhatsApp">
       </div>
       <div class="friend-row">
-        <input type="text" name="amigo_nome" placeholder="Nome do amigo">
-        <input type="tel" name="amigo_whatsapp" placeholder="WhatsApp">
+        <input type="text" name="amigo_nome[]" placeholder="Nome do amigo">
+        <input type="tel" name="amigo_whatsapp[]" placeholder="WhatsApp">
+      </div>
+      <div class="friend-row">
+        <input type="text" name="amigo_nome[]" placeholder="Nome do amigo">
+        <input type="tel" name="amigo_whatsapp[]" placeholder="WhatsApp">
+      </div>
+      <div class="friend-row">
+        <input type="text" name="amigo_nome[]" placeholder="Nome do amigo">
+        <input type="tel" name="amigo_whatsapp[]" placeholder="WhatsApp">
       </div>
     </div>
     <button type="button" class="add-friend-btn" id="addFriendBtn">+ Adicionar amigo</button>
-    <div class="friend-count" id="friendCount">3 de 10 amigos (mínimo 3)</div>
-    <p class="friend-error" id="friendError" style="display:none;color:#C62828;font-size:13px;margin-top:8px">Preencha nome e WhatsApp de pelo menos 3 amigos antes de enviar.</p>
+    <div class="friend-count" id="friendCount">5 de 10 amigos (mínimo 5)</div>
+    <p class="friend-error" id="friendError" style="display:none;color:#C62828;font-size:13px;margin-top:8px">Preencha nome e WhatsApp de pelo menos 5 amigos antes de enviar.</p>
+    <p class="friend-error" id="selfReferralError" style="display:none;color:#C62828;font-size:13px;margin-top:8px">Você não pode se indicar como amigo. Confira a lista de indicados.</p>
 
     <div class="declaration-box">
       Declaro que as informações fornecidas são verdadeiras e que possuo autorização para compartilhar os contatos indicados neste cupom. Autorizo a Tintas Laet a utilizar meus dados para contato sobre promoções, campanhas, sorteios e novidades da empresa. Caso seja contemplado(a), autorizo a utilização de meu nome, imagem, voz e depoimento para divulgação institucional e promocional da empresa.
@@ -248,9 +257,15 @@
   var addBtn = document.getElementById('addFriendBtn');
   var countLabel = document.getElementById('friendCount');
   var friendError = document.getElementById('friendError');
+  var selfReferralError = document.getElementById('selfReferralError');
   var form = document.querySelector('.form-card');
-  var MIN = 3;
+  var ownWhatsapp = form.querySelector('input[name="whatsapp"]');
+  var ownNome = form.querySelector('input[name="nome"]');
+  var MIN = 5;
   var MAX = 10;
+
+  function onlyDigits(v) { return (v || '').replace(/\D/g, ''); }
+  function normalizeName(v) { return (v || '').trim().toLowerCase(); }
 
   function updateCount() {
     var rows = list.querySelectorAll('.friend-row').length;
@@ -262,8 +277,8 @@
     if (list.querySelectorAll('.friend-row').length >= MAX) return;
     var row = document.createElement('div');
     row.className = 'friend-row';
-    row.innerHTML = '<input type="text" name="amigo_nome" placeholder="Nome do amigo">' +
-      '<input type="tel" name="amigo_whatsapp" placeholder="WhatsApp">' +
+    row.innerHTML = '<input type="text" name="amigo_nome[]" placeholder="Nome do amigo">' +
+      '<input type="tel" name="amigo_whatsapp[]" placeholder="WhatsApp">' +
       '<button type="button" class="friend-remove" aria-label="Remover">✕</button>';
     list.appendChild(row);
     row.querySelector('.friend-remove').addEventListener('click', function () {
@@ -285,14 +300,39 @@
     return filled;
   }
 
+  function hasSelfReferral() {
+    var ownWhatsappDigits = onlyDigits(ownWhatsapp.value);
+    var ownNomeNorm = normalizeName(ownNome.value);
+    var rows = list.querySelectorAll('.friend-row');
+    var found = false;
+    rows.forEach(function (row) {
+      var inputs = row.querySelectorAll('input');
+      var amigoNome = normalizeName(inputs[0].value);
+      var amigoWhatsapp = onlyDigits(inputs[1].value);
+      if ((ownWhatsappDigits && amigoWhatsapp && amigoWhatsapp === ownWhatsappDigits) ||
+          (ownNomeNorm && amigoNome && amigoNome === ownNomeNorm)) {
+        found = true;
+      }
+    });
+    return found;
+  }
+
   form.addEventListener('submit', function (e) {
     if (filledFriendCount() < MIN) {
       e.preventDefault();
+      selfReferralError.style.display = 'none';
       friendError.style.display = 'block';
       friendError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    } else {
-      friendError.style.display = 'none';
+      return;
     }
+    friendError.style.display = 'none';
+    if (hasSelfReferral()) {
+      e.preventDefault();
+      selfReferralError.style.display = 'block';
+      selfReferralError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    selfReferralError.style.display = 'none';
   });
 
   addBtn.addEventListener('click', addRow);
