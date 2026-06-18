@@ -374,7 +374,9 @@ function addItemRow() {
   const valorInput = card.querySelector('[data-f="valor"]');
 
   produtoSel.innerHTML = '<option value="">Selecione...</option>' +
-    Object.keys(produtosData).map(id => `<option value="${id}">${produtosData[id].nome}</option>`).join('');
+    Object.keys(produtosData)
+      .sort((a, b) => produtosData[a].nome.localeCompare(produtosData[b].nome, 'pt-BR'))
+      .map(id => `<option value="${id}">${produtosData[id].nome}</option>`).join('');
 
   produtoSel.addEventListener('change', () => {
     const p = produtosData[produtoSel.value];

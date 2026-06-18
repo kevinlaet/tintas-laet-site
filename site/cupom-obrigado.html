@@ -21,6 +21,7 @@
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; margin: 6px; }
     .btn-yellow { background: var(--yellow); color: #1a1000; }
     .btn-ghost { border: 2px solid rgba(255,255,255,.5); color: #fff; }
+    @media print { .btn { display: none !important; } }
   </style>
 </head>
 <body>
@@ -30,6 +31,7 @@
     <p>Seu cupom já está concorrendo ao sorteio deste mês. Acompanhe o resultado ao vivo no Instagram — e boa sorte!</p>
     <a href="https://www.instagram.com/tintaslaet" class="btn btn-yellow" target="_blank" rel="noopener">📷 Seguir @TintasLaet</a>
     <a href="sorteios.html" class="btn btn-ghost">← Voltar pro sorteio</a>
+    <button type="button" class="btn btn-ghost" onclick="window.print()">🖨️ Imprimir / Baixar</button>
   </div>
 </body>
 </html>
