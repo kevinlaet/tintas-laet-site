@@ -98,21 +98,34 @@
 
     .link-arrow { font-size: 18px; opacity: .5; flex-shrink: 0; }
 
-    .socials {
-      display: flex; justify-content: center; gap: 14px;
-      margin-top: 34px;
+    .follow-cta {
+      margin-top: 32px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 16px;
+      padding: 24px 18px 22px;
     }
-    .social-icon {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: rgba(255,255,255,.10);
-      border: 1px solid rgba(255,255,255,.18);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 19px;
-      transition: transform .18s, background .18s;
+    .follow-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: 17px; color: #fff; margin-bottom: 6px;
     }
-    .social-icon:hover { transform: translateY(-3px); background: rgba(255,255,255,.18); }
+    .follow-title span { color: #FFC107; }
+    .follow-sub {
+      font-size: 12.5px; color: rgba(255,255,255,.7);
+      line-height: 1.5; max-width: 280px; margin: 0 auto 20px;
+    }
+    .follow-icons { display: flex; justify-content: center; gap: 20px; }
+    .follow-icon { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+    .follow-icon img {
+      width: 50px; height: 50px; border-radius: 14px;
+      background: #fff; padding: 7px;
+      box-shadow: 0 8px 18px rgba(0,0,0,.22);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .follow-icon:hover img { transform: translateY(-4px) scale(1.06); box-shadow: 0 12px 22px rgba(0,0,0,.3); }
+    .follow-icon span { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 11px; color: rgba(255,255,255,.8); }
 
-    footer { margin-top: 36px; font-size: 11px; color: rgba(255,255,255,.45); }
+    footer { margin-top: 28px; font-size: 11px; color: rgba(255,255,255,.45); }
   </style>
 </head>
 <body>
@@ -165,10 +178,23 @@
       </a>
     </div>
 
-    <div class="socials">
-      <a href="https://www.instagram.com/tintaslaet" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">📸</a>
-      <a href="https://www.tiktok.com/@tintaslaet" target="_blank" rel="noopener" class="social-icon" aria-label="TikTok">🎵</a>
-      <a href="https://wa.me/5511977140964" target="_blank" rel="noopener" class="social-icon" aria-label="WhatsApp">📱</a>
+    <div class="follow-cta">
+      <div class="follow-title">Não fica de fora! <span>🎨</span></div>
+      <div class="follow-sub">Segue a gente e seja o primeiro a ver promoções, sorteios e o mascote em ação</div>
+      <div class="follow-icons">
+        <a href="https://www.instagram.com/tintaslaet" target="_blank" rel="noopener" class="follow-icon">
+          <img src="images/social/instagram.png" alt="Instagram">
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@tintaslaet" target="_blank" rel="noopener" class="follow-icon">
+          <img src="images/social/tiktok.png" alt="TikTok">
+          <span>TikTok</span>
+        </a>
+        <a href="https://wa.me/5511977140964" target="_blank" rel="noopener" class="follow-icon">
+          <img src="images/social/whatsapp.png" alt="WhatsApp">
+          <span>WhatsApp</span>
+        </a>
+      </div>
     </div>
 
     <footer>Tintas Laet — ABC e Zona Leste de SP</footer>
