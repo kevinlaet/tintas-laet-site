@@ -31,9 +31,9 @@
     .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
 
     /* NAVBAR */
-    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 14px 0; background: rgba(6,43,99,.97); backdrop-filter: blur(16px); box-shadow: 0 2px 20px rgba(0,0,0,.25); }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 6px 0; background: rgba(6,43,99,.97); backdrop-filter: blur(16px); box-shadow: 0 2px 20px rgba(0,0,0,.25); }
     .navbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .navbar-logo img { height: 60px; }
+    .navbar-logo img { height: 80px; }
     .navbar-back { display: flex; align-items: center; gap: 8px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: rgba(255,255,255,.85); transition: color .2s; }
     .navbar-back:hover { color: var(--yellow); }
     .navbar-back svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; }
@@ -126,12 +126,11 @@
     .cores-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
     .core-card { border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.07); border: 1px solid #E0E4EC; transition: transform .2s, box-shadow .2s; }
     .core-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
-    .core-swatch { height: 90px; }
+    .core-swatch { height: 76px; }
     .core-swatch-branco { border-bottom: 1px solid #E0E4EC; }
-    .core-info { padding: 10px 12px; background: #fff; }
-    .core-nome { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; color: var(--graphite); line-height: 1.3; margin-bottom: 3px; }
-    .core-hex { font-size: 10px; color: #bbb; font-family: monospace; }
-    .core-preco { font-size: 10px; color: var(--blue); font-weight: 600; margin-top: 4px; line-height: 1.4; }
+    .core-info { padding: 8px 10px; background: #fff; }
+    .core-nome { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; color: var(--graphite); line-height: 1.3; margin-bottom: 4px; }
+    .core-preco { font-size: 10px; color: var(--blue); font-weight: 600; margin-top: 2px; line-height: 1.4; }
     .cores-load-more { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; max-width: 280px; margin: 24px auto 0; background: var(--blue); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; padding: 13px; border-radius: var(--radius); border: none; cursor: pointer; transition: filter .2s; }
     .cores-load-more:hover { filter: brightness(1.15); }
     .cores-aviso { margin-top: 28px; background: #fff; border: 1px solid #E0E4EC; border-left: 4px solid var(--yellow); border-radius: 10px; padding: 18px 20px; font-size: 13px; color: #555; line-height: 1.75; }
@@ -337,14 +336,30 @@ const produtos = {
     descricao: 'A Tinta Piso e Fachada Premium Laet é uma tinta acrílica de alta performance desenvolvida para suportar tráfego de automóveis, chuva e intempéries. Acabamento fosco disponível em 13 cores, com rendimento de até 300m² por demão.',
     beneficios: ['Rendimento de até 300m² por demão', 'Alta resistência a tráfego de automóveis', 'Resistência a chuvas e intempéries', 'Anti-mofo e fungos', 'Totalmente lavável', 'Super aderente', 'Acabamento fosco', '13 cores disponíveis'],
     precos: [
-      { desc: '3,4L — Cores', valor: 'R$ 59,90' },
-      { desc: '3,6L — Branca', valor: 'R$ 79,90' },
-      { desc: '17L — Cores', valor: 'R$ 219,90' },
-      { desc: '18L — Branca', valor: 'R$ 299,90' },
+      { desc: '3,6L — Cores', valor: 'R$ 59,90' },
+      { desc: '3,6L — Branca', valor: 'R$ 69,90' },
+      { desc: '18L — Cores', valor: 'R$ 219,90' },
+      { desc: '18L — Branca', valor: 'R$ 279,90' },
     ],
     preco_from: 'R$ 219<small>,90</small>',
     preco_label: 'balde — a partir de',
-    wa: 'Olá! Quero comprar Tinta Piso e Fachada Premium Laet. Pode me passar mais informações?'
+    wa: 'Olá! Quero comprar Tinta Piso e Fachada Premium Laet. Pode me passar mais informações?',
+    catalogo_pdf: 'catalogo/piso-fachada.html',
+    cores: [
+      { nome: 'Cinza', hex: '#9C9D99' },
+      { nome: 'Cinza C-04', hex: '#868685' },
+      { nome: 'Chumbo', hex: '#626260' },
+      { nome: 'Concreto', hex: '#BDBBAC' },
+      { nome: 'Profundidade', hex: '#665E6B' },
+      { nome: 'Preto', hex: '#2A2B2B' },
+      { nome: 'Camurça', hex: '#A4948C' },
+      { nome: 'Vermelho', hex: '#926262' },
+      { nome: 'Vermelho C-09', hex: '#874C4A' },
+      { nome: 'Azul', hex: '#465C82' },
+      { nome: 'Espaço Verde', hex: '#587771' },
+      { nome: 'Verde B-10', hex: '#5B7660' },
+      { nome: 'Amarelo Piso', hex: '#E4B859' },
+    ]
   },
   'massa-corrida': {
     nome: 'Massa Corrida',
@@ -925,16 +940,12 @@ function goToUpsellProduct(e, upId) {
 let coresShown = 20;
 
 function coreCardHtml(c, p) {
-  const tamBalde = c.tam_balde || (p && p.tam_balde_default) || '17L';
-  const tamGalao = c.tam_galao || (p && p.tam_galao_default) || '3,4L';
-  const tamQuarto = c.tam_quarto || (p && p.tam_quarto_default) || '1/4';
   return `
   <div class="core-card">
     <div class="core-swatch${c.borda ? ' core-swatch-branco' : ''}" style="background:${c.hex}"></div>
     <div class="core-info">
       <div class="core-nome">${c.nome}</div>
-      <div class="core-hex">${c.hex}</div>
-      ${c.preco_balde ? `<div class="core-preco">${tamBalde} ${c.preco_balde}<br>${tamGalao} ${c.preco_galao}${c.preco_quarto ? `<br>${tamQuarto} ${c.preco_quarto}` : ''}</div>` : ''}
+      ${c.preco_balde ? `<div class="core-preco">Balde ${c.preco_balde}<br>Galão ${c.preco_galao}${c.preco_quarto ? `<br>Pote 1/4 ${c.preco_quarto}` : ''}</div>` : ''}
     </div>
   </div>`;
 }
@@ -1141,20 +1152,20 @@ function updateTamanhoPrecificado(id) {
   if (!p || !corSel || !tamanhoSel) return;
   const corNome = corSel.value;
   let opts = [];
+  const tamLabels = ['Balde', 'Galão', 'Pote 1/4'];
+  const parsePreco = v => parseFloat(String(v).replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
   if (corNome === 'Branca') {
-    p.precos.forEach(pr => {
-      const tam = pr.desc.replace(/\s*—\s*Branca$/i, '').trim();
+    const ordenado = p.precos.slice().sort((a, b) => parsePreco(b.valor) - parsePreco(a.valor));
+    ordenado.forEach((pr, i) => {
+      const tam = tamLabels[i] || pr.desc;
       opts.push(`<option value="${tam}|${pr.valor}">${tam} — ${pr.valor}</option>`);
     });
   } else {
     const cor = p.cores.find(c => c.nome === corNome);
     if (cor) {
-      const tamBalde = cor.tam_balde || p.tam_balde_default || '17L';
-      const tamGalao = cor.tam_galao || p.tam_galao_default || '3,4L';
-      const tamQuarto = cor.tam_quarto || p.tam_quarto_default || '1/4';
-      opts.push(`<option value="${tamBalde}|${cor.preco_balde}">${tamBalde} — ${cor.preco_balde}</option>`);
-      opts.push(`<option value="${tamGalao}|${cor.preco_galao}">${tamGalao} — ${cor.preco_galao}</option>`);
-      if (cor.preco_quarto) opts.push(`<option value="${tamQuarto}|${cor.preco_quarto}">${tamQuarto} — ${cor.preco_quarto}</option>`);
+      opts.push(`<option value="Balde|${cor.preco_balde}">Balde — ${cor.preco_balde}</option>`);
+      opts.push(`<option value="Galão|${cor.preco_galao}">Galão — ${cor.preco_galao}</option>`);
+      if (cor.preco_quarto) opts.push(`<option value="Pote 1/4|${cor.preco_quarto}">Pote 1/4 — ${cor.preco_quarto}</option>`);
     }
   }
   tamanhoSel.innerHTML = opts.join('');
