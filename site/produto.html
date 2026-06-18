@@ -929,23 +929,73 @@ const produtos = {
     preco_from: 'R$ 35<small>,00</small>',
     wa: 'Olá! Quero comprar o Kit Pintura Laet. Pode me passar mais informações?'
   },
-  'rolo-refil': {
-    nome: 'Rolo (Refil)',
+  'rolo-anti-respingo': {
+    nome: 'Rolo Anti Respingo (Refil)',
     categoria: 'Ferramentas',
-    badge: 'VÁRIOS TIPOS',
-    imagens: ['images/ferramentas/rolo-anti-respingo.png', 'images/ferramentas/rolo-poliester-15cm.jfif', 'images/ferramentas/rolo-poliester-9cm.png'],
-    desc_curta: 'Refil de rolo em vários tipos: anti respingo, lã de carneiro, lã super e poliéster.',
-    descricao: 'Refis de rolo Laet em diversos tipos pra cada necessidade de pintura: anti respingo, lã de carneiro, lã super e poliéster preto (9cm e 15cm). Escolha o tipo na hora de comprar.',
-    beneficios: ['Vários tipos disponíveis', 'Compatível com cabo padrão', 'Boa absorção e cobertura'],
+    badge: 'ANTI RESPINGO',
+    imagem: 'images/ferramentas/rolo-anti-respingo.png',
+    desc_curta: 'Refil de rolo anti respingo. Precisa de cabo (vendido separado).',
+    descricao: 'Refil de rolo anti respingo Laet, reduz os respingos durante a aplicação. Não inclui cabo — é necessário ter ou comprar um cabo separado.',
+    beneficios: ['Reduz respingos na aplicação', 'Precisa de cabo (vendido separado)', 'Boa absorção e cobertura'],
     precos: [
-      { desc: 'Anti Respingo', valor: 'R$ 9,99' },
-      { desc: 'Lã de Carneiro', valor: 'R$ 14,99' },
-      { desc: 'Lã Super', valor: 'R$ 32,99' },
-      { desc: 'Poliéster Preto 15cm', valor: 'R$ 7,99' },
-      { desc: 'Poliéster Preto 9cm', valor: 'R$ 5,99' },
+      { desc: 'Refil', valor: 'R$ 9,99' },
+    ],
+    preco_from: 'R$ 9<small>,99</small>',
+    wa: 'Olá! Quero comprar o Rolo Anti Respingo Laet. Pode me passar mais informações?'
+  },
+  'rolo-la-carneiro': {
+    nome: 'Rolo Lã de Carneiro (Refil)',
+    categoria: 'Ferramentas',
+    badge: 'LÃ DE CARNEIRO',
+    desc_curta: 'Refil de rolo lã de carneiro. Precisa de cabo (vendido separado).',
+    descricao: 'Refil de rolo lã de carneiro Laet, ótima absorção e cobertura. Não inclui cabo — é necessário ter ou comprar um cabo separado.',
+    beneficios: ['Ótima absorção e cobertura', 'Precisa de cabo (vendido separado)'],
+    precos: [
+      { desc: 'Refil', valor: 'R$ 14,99' },
+    ],
+    preco_from: 'R$ 14<small>,99</small>',
+    wa: 'Olá! Quero comprar o Rolo Lã de Carneiro Laet. Pode me passar mais informações?'
+  },
+  'rolo-la-super': {
+    nome: 'Rolo Lã Super (Refil)',
+    categoria: 'Ferramentas',
+    badge: 'LÃ SUPER',
+    desc_curta: 'Refil de rolo lã super, alta qualidade. Precisa de cabo (vendido separado).',
+    descricao: 'Refil de rolo lã super Laet, qualidade superior de absorção e cobertura. Não inclui cabo — é necessário ter ou comprar um cabo separado.',
+    beneficios: ['Qualidade superior de absorção', 'Precisa de cabo (vendido separado)'],
+    precos: [
+      { desc: 'Refil', valor: 'R$ 32,99' },
+    ],
+    preco_from: 'R$ 32<small>,99</small>',
+    wa: 'Olá! Quero comprar o Rolo Lã Super Laet. Pode me passar mais informações?'
+  },
+  'rolo-poliester-15cm': {
+    nome: 'Rolo Poliéster Preto 15cm',
+    categoria: 'Ferramentas',
+    badge: 'CABO EMBUTIDO',
+    imagem: 'images/ferramentas/rolo-poliester-15cm.jfif',
+    desc_curta: 'Rolo poliéster preto 15cm, já vem com cabo embutido — pronto pra usar.',
+    descricao: 'Rolo poliéster preto Laet de 15cm, já vem com cabo embutido — não precisa comprar cabo separado, pronto pra usar.',
+    beneficios: ['Cabo já embutido', 'Pronto pra usar', 'Tamanho 15cm'],
+    precos: [
+      { desc: '15cm', valor: 'R$ 7,99' },
+    ],
+    preco_from: 'R$ 7<small>,99</small>',
+    wa: 'Olá! Quero comprar o Rolo Poliéster Preto 15cm Laet. Pode me passar mais informações?'
+  },
+  'rolo-poliester-9cm': {
+    nome: 'Rolo Poliéster Preto 9cm',
+    categoria: 'Ferramentas',
+    badge: 'CABO EMBUTIDO',
+    imagem: 'images/ferramentas/rolo-poliester-9cm.png',
+    desc_curta: 'Rolo poliéster preto 9cm, já vem com cabo embutido — pronto pra usar.',
+    descricao: 'Rolo poliéster preto Laet de 9cm, já vem com cabo embutido — não precisa comprar cabo separado, pronto pra usar. Ideal pra cantos e detalhes.',
+    beneficios: ['Cabo já embutido', 'Pronto pra usar', 'Ideal para cantos e detalhes'],
+    precos: [
+      { desc: '9cm', valor: 'R$ 5,99' },
     ],
     preco_from: 'R$ 5<small>,99</small>',
-    wa: 'Olá! Quero comprar Rolo (Refil) Laet. Pode me passar mais informações?'
+    wa: 'Olá! Quero comprar o Rolo Poliéster Preto 9cm Laet. Pode me passar mais informações?'
   },
   'cabo-rolo': {
     nome: 'Cabo para Rolo (Reforçado)',
@@ -1050,20 +1100,33 @@ const upsellMap = {
   'standard': ['kit-pintura'],
   'latex-vinil': ['kit-pintura'],
   'direto-no-gesso': ['kit-pintura'],
-  'premium-lavavel': ['kit-pintura']
+  'premium-lavavel': ['kit-pintura'],
+  'grafiato': ['kit-pintura'],
+  'textura-lisa': ['kit-pintura'],
+  'textura-design': ['kit-pintura'],
+  'rolo-anti-respingo': ['cabo-rolo'],
+  'rolo-la-carneiro': ['cabo-rolo'],
+  'rolo-la-super': ['cabo-rolo'],
+  'cabo-rolo': ['rolo-anti-respingo'],
+  'trincha': ['aguarras'],
+  'aguarras': ['trincha'],
+  'thinner': ['trincha']
 };
 
 function upsellCardHtml(upId) {
   const up = produtos[upId];
   if (!up) return '';
   const preco = up.precos[0];
+  const imgHtml = up.imagem
+    ? `<img src="${up.imagem}" alt="${up.nome}" class="upsell-img">`
+    : `<div class="upsell-img upsell-img-placeholder">🛠️</div>`;
   const corHtml = up.cores ? `
       <select class="upsell-cor" id="upsell-cor-${upId}">
         ${up.cores.map(c => `<option value="${c.nome}">${c.nome}</option>`).join('')}
       </select>` : '';
   return `
   <div class="upsell-card" onclick="goToUpsellProduct(event, '${upId}')">
-    <img src="${up.imagem}" alt="${up.nome}" class="upsell-img">
+    ${imgHtml}
     <div class="upsell-info">
       <div class="upsell-nome">${up.nome}</div>
       <div class="upsell-preco">${preco.valor}</div>
