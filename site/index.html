@@ -56,6 +56,8 @@
     .navbar-links a:hover { color: var(--yellow); }
     .navbar-actions { display: flex; gap: 10px; }
     .navbar-actions .btn { padding: 9px 16px; font-size: 13px; }
+    .navbar-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-shrink: 0; }
+    .navbar-toggle svg { width: 26px; height: 26px; stroke: #fff; }
 
     /* ──────── HERO ──────── */
     .hero { min-height: 100vh; background: linear-gradient(140deg, var(--blue-dark) 0%, var(--blue) 55%, var(--blue-mid) 100%); position: relative; overflow: hidden; display: flex; align-items: center; padding-top: 70px; }
@@ -382,6 +384,7 @@
       .hero-mascote { max-height: 280px; }
       .hero-badge { display: none; }
       .navbar-links { display: none; }
+      .navbar-toggle { display: flex; }
       .steps-track { flex-direction: column; align-items: center; gap: 24px; }
       .steps-track::before { display: none; }
       .step-card { max-width: 280px; }
@@ -402,6 +405,14 @@
       .location-btns { flex-direction: column; }
       .loc-btn { flex: unset; }
       .navbar-actions { display: none; }
+    }
+    .navbar.nav-open .navbar-links,
+    .navbar.nav-open .navbar-actions { display: flex !important; }
+    @media (max-width: 768px) {
+      .navbar.nav-open .navbar-inner { flex-wrap: wrap; }
+      .navbar.nav-open .navbar-links { flex-direction: column; width: 100%; gap: 16px; padding-top: 18px; order: 3; }
+      .navbar.nav-open .navbar-actions { flex-direction: column; width: 100%; gap: 10px; padding: 14px 0 16px; order: 4; }
+      .navbar.nav-open .navbar-actions .btn { width: 100%; }
     }
   </style>
 </head>
@@ -434,6 +445,9 @@
       <a href="https://wa.me/5511977140964?text=Olá! Gostaria de um orçamento." class="btn btn-ghost" target="_blank" rel="noopener">Orçamento grátis</a>
       <a href="https://wa.me/5511977140964" class="btn btn-yellow" target="_blank" rel="noopener">💬 WhatsApp</a>
     </div>
+    <button class="navbar-toggle" onclick="document.getElementById('navbar').classList.toggle('nav-open')" aria-label="Abrir menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -1277,6 +1291,11 @@ const navbar = document.getElementById('navbar');
 const onScroll = () => navbar.classList.toggle('solid', window.scrollY > 60);
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
+
+/* ── NAVBAR mobile menu: close on link click ── */
+navbar.querySelectorAll('.navbar-links a, .navbar-actions a').forEach(a => {
+  a.addEventListener('click', () => navbar.classList.remove('nav-open'));
+});
 
 /* ── Smooth scroll ── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
