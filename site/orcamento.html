@@ -308,6 +308,25 @@ function flattenOptions(p) {
         opts.push({ label: `${c.nome} — ${tamQuarto}`, valor: c.preco_quarto });
       }
     });
+  } else if (p.cor_preco_unico && p.cores) {
+    p.cores.forEach(c => {
+      opts.push({ label: c.nome, valor: c.preco });
+    });
+  } else if (p.cores && p.precos && p.precos.length > 1) {
+    // Cor decorativa com preco fixo por tamanho (ex: Branca tem um preco, as
+    // demais cores compartilham outro) - nao cruzar toda cor com todo preco.
+    const stripSuffix = desc => desc.replace(/\s*—\s*(cores|branca)\s*$/i, '');
+    const brancaEntries = p.precos.filter(pr => /branca/i.test(pr.desc));
+    const coresEntries = p.precos.filter(pr => !/branca/i.test(pr.desc));
+    const whiteColor = p.cores.find(c => c.borda);
+    p.cores.filter(c => !c.borda).forEach(c => {
+      coresEntries.forEach(pr => opts.push({ label: `${c.nome} — ${stripSuffix(pr.desc)}`, valor: pr.valor }));
+    });
+    if (whiteColor) {
+      brancaEntries.forEach(pr => opts.push({ label: `${whiteColor.nome} — ${stripSuffix(pr.desc)}`, valor: pr.valor }));
+    } else {
+      brancaEntries.forEach(pr => opts.push({ label: pr.desc, valor: pr.valor }));
+    }
   } else if (p.cores && p.precos) {
     p.cores.forEach(c => {
       p.precos.forEach(pr => opts.push({ label: `${pr.desc} — ${c.nome}`, valor: pr.valor }));
