@@ -365,6 +365,8 @@ const produtos = {
     nome: 'Massa Corrida',
     categoria: 'Massa Corrida / Acrílica',
     badge: 'ÓTIMA QUALIDADE!',
+    badge_bg: '#1A1A1A',
+    badge_color: '#fff',
     imagem: 'images/embalagens/barrica+plastico.png',
     imagens: ['images/embalagens/barrica+plastico.png', 'images/embalagens/barrica-remove-bg-io.png', 'images/embalagens/massaplastico.png'],
     desc_curta: 'Lixamento fácil, acabamento de alto nível. Anti-mofo e odor quase zero.',
@@ -381,6 +383,8 @@ const produtos = {
     nome: 'Massa Acrílica',
     categoria: 'Massa Corrida / Acrílica',
     badge: 'INTERNA E EXTERNA!',
+    badge_bg: '#0D47A1',
+    badge_color: '#fff',
     imagem: 'images/embalagens/barrica+plastico.png',
     imagens: ['images/embalagens/barrica+plastico.png', 'images/embalagens/barrica-remove-bg-io.png', 'images/embalagens/massaplastico.png'],
     desc_curta: 'Fácil de lixar, qualidade excelente. Para uso interno e externo, anti-mofo e baixíssimo odor.',
@@ -392,6 +396,61 @@ const produtos = {
     ],
     preco_from: 'R$ 69<small>,90</small>',
     wa: 'Olá! Quero comprar Massa Acrílica Laet. Pode me passar mais informações?'
+  },
+  'grafiato': {
+    nome: 'Grafiato',
+    categoria: 'Texturizados',
+    badge: 'ACABAMENTO RÚSTICO!',
+    badge_bg: '#FFFFFF',
+    badge_color: '#333',
+    badge_border: '#ccc',
+    imagem: 'images/embalagens/barrica+plastico.png',
+    imagens: ['images/embalagens/barrica+plastico.png', 'images/embalagens/barrica-remove-bg-io.png', 'images/embalagens/massaplastico.png'],
+    desc_curta: 'Textura grafiato branca, acabamento rústico decorativo para paredes internas e externas.',
+    descricao: 'O Grafiato Laet é uma textura decorativa que dá um acabamento rústico e moderno às paredes, indicado para uso interno e externo. Fácil aplicação, com ótima durabilidade.',
+    beneficios: ['Acabamento rústico decorativo', 'Uso interno e externo', 'Fácil aplicação', 'Ótima durabilidade'],
+    precos: [
+      { desc: 'Saco 25kg', valor: 'R$ 54,90' },
+      { desc: 'Barrica 25kg', valor: 'R$ 62,90' },
+    ],
+    preco_from: 'R$ 54<small>,90</small>',
+    wa: 'Olá! Quero comprar Grafiato Laet. Pode me passar mais informações?'
+  },
+  'textura-lisa': {
+    nome: 'Textura Lisa',
+    categoria: 'Texturizados',
+    badge: 'ACABAMENTO LISO!',
+    badge_bg: '#C62828',
+    badge_color: '#fff',
+    imagem: 'images/embalagens/barrica+plastico.png',
+    imagens: ['images/embalagens/barrica+plastico.png', 'images/embalagens/barrica-remove-bg-io.png', 'images/embalagens/massaplastico.png'],
+    desc_curta: 'Textura lisa para acabamento decorativo uniforme em paredes internas e externas.',
+    descricao: 'A Textura Lisa Laet proporciona um acabamento decorativo liso e uniforme, indicada para uso interno e externo. Consulte disponibilidade e preço com nosso atendimento.',
+    beneficios: ['Acabamento liso e uniforme', 'Uso interno e externo', 'Fácil aplicação'],
+    precos: [
+      { desc: 'Saco 25kg', valor: 'Consulte' },
+      { desc: 'Barrica 25kg', valor: 'Consulte' },
+    ],
+    preco_from: 'Consulte',
+    wa: 'Olá! Quero saber o preço da Textura Lisa Laet.'
+  },
+  'textura-design': {
+    nome: 'Textura Design',
+    categoria: 'Texturizados',
+    badge: 'EFEITO DECORATIVO!',
+    badge_bg: '#2E7D32',
+    badge_color: '#fff',
+    imagem: 'images/embalagens/barrica+plastico.png',
+    imagens: ['images/embalagens/barrica+plastico.png', 'images/embalagens/barrica-remove-bg-io.png', 'images/embalagens/massaplastico.png'],
+    desc_curta: 'Textura design com efeito decorativo diferenciado para paredes internas e externas.',
+    descricao: 'A Textura Design Laet traz um efeito decorativo diferenciado para suas paredes, indicada para uso interno e externo. Fácil aplicação e acabamento de destaque.',
+    beneficios: ['Efeito decorativo diferenciado', 'Uso interno e externo', 'Fácil aplicação'],
+    precos: [
+      { desc: 'Saco 25kg', valor: 'R$ 69,90' },
+      { desc: 'Barrica 25kg', valor: 'R$ 87,90' },
+    ],
+    preco_from: 'R$ 69<small>,90</small>',
+    wa: 'Olá! Quero comprar Textura Design Laet. Pode me passar mais informações?'
   },
   'epoxi-base-agua': {
     nome: 'Tinta Epóxi Base Água',
@@ -869,6 +928,114 @@ const produtos = {
     ],
     preco_from: 'R$ 35<small>,00</small>',
     wa: 'Olá! Quero comprar o Kit Pintura Laet. Pode me passar mais informações?'
+  },
+  'rolo-refil': {
+    nome: 'Rolo (Refil)',
+    categoria: 'Ferramentas',
+    badge: 'VÁRIOS TIPOS',
+    imagens: ['images/ferramentas/rolo-anti-respingo.png', 'images/ferramentas/rolo-poliester-15cm.jfif', 'images/ferramentas/rolo-poliester-9cm.png'],
+    desc_curta: 'Refil de rolo em vários tipos: anti respingo, lã de carneiro, lã super e poliéster.',
+    descricao: 'Refis de rolo Laet em diversos tipos pra cada necessidade de pintura: anti respingo, lã de carneiro, lã super e poliéster preto (9cm e 15cm). Escolha o tipo na hora de comprar.',
+    beneficios: ['Vários tipos disponíveis', 'Compatível com cabo padrão', 'Boa absorção e cobertura'],
+    precos: [
+      { desc: 'Anti Respingo', valor: 'R$ 9,99' },
+      { desc: 'Lã de Carneiro', valor: 'R$ 14,99' },
+      { desc: 'Lã Super', valor: 'R$ 32,99' },
+      { desc: 'Poliéster Preto 15cm', valor: 'R$ 7,99' },
+      { desc: 'Poliéster Preto 9cm', valor: 'R$ 5,99' },
+    ],
+    preco_from: 'R$ 5<small>,99</small>',
+    wa: 'Olá! Quero comprar Rolo (Refil) Laet. Pode me passar mais informações?'
+  },
+  'cabo-rolo': {
+    nome: 'Cabo para Rolo (Reforçado)',
+    categoria: 'Ferramentas',
+    badge: 'REFORÇADO',
+    desc_curta: 'Cabo reforçado para rolo de pintura.',
+    descricao: 'Cabo reforçado Laet, compatível com os rolos de refil. Resistente e confortável de usar.',
+    beneficios: ['Reforçado', 'Compatível com refis padrão'],
+    precos: [
+      { desc: 'Cabo reforçado', valor: 'R$ 9,99' },
+    ],
+    preco_from: 'R$ 9<small>,99</small>',
+    wa: 'Olá! Quero comprar o Cabo para Rolo Laet. Pode me passar mais informações?'
+  },
+  'trincha': {
+    nome: 'Trincha',
+    categoria: 'Ferramentas',
+    badge: 'VÁRIOS TAMANHOS',
+    imagens: ['images/ferramentas/trincha-2pol.jfif', 'images/ferramentas/trincha-3pol.jfif'],
+    desc_curta: 'Trincha em 3 tamanhos: 2, 3 e 4 polegadas.',
+    descricao: 'Trincha Laet disponível em 3 tamanhos pra cada tipo de acabamento e detalhe na pintura.',
+    beneficios: ['3 tamanhos disponíveis', 'Boa retenção de tinta', 'Cabo confortável'],
+    precos: [
+      { desc: '2 polegadas', valor: 'R$ 5,90' },
+      { desc: '3 polegadas', valor: 'R$ 9,90' },
+      { desc: '4 polegadas', valor: 'R$ 12,90' },
+    ],
+    preco_from: 'R$ 5<small>,90</small>',
+    wa: 'Olá! Quero comprar Trincha Laet. Pode me passar mais informações?'
+  },
+  'aguarras': {
+    nome: 'Aguarrás',
+    categoria: 'Ferramentas',
+    badge: 'SOLVENTE',
+    imagens: ['images/ferramentas/aguarras-900ml.png', 'images/ferramentas/aguarras-5l.png'],
+    desc_curta: 'Aguarrás Laet em 900ml e 5L.',
+    descricao: 'Aguarrás Laet, ideal para diluição e limpeza de pincéis, rolos e ferramentas após o uso.',
+    beneficios: ['Disponível em 900ml e 5L', 'Ideal para diluição e limpeza'],
+    precos: [
+      { desc: '900ml', valor: 'R$ 19,90' },
+      { desc: '5L', valor: 'R$ 89,90' },
+    ],
+    preco_from: 'R$ 19<small>,90</small>',
+    wa: 'Olá! Quero comprar Aguarrás Laet. Pode me passar mais informações?'
+  },
+  'thinner': {
+    nome: 'Thinner',
+    categoria: 'Ferramentas',
+    badge: 'SOLVENTE',
+    imagens: ['images/ferramentas/thinner-900ml.jfif', 'images/ferramentas/thinner-5l.jfif'],
+    desc_curta: 'Thinner Laet em 900ml e 5L.',
+    descricao: 'Thinner Laet, ideal para diluição e limpeza de pincéis, rolos e ferramentas após o uso.',
+    beneficios: ['Disponível em 900ml e 5L', 'Ideal para diluição e limpeza'],
+    precos: [
+      { desc: '900ml', valor: 'R$ 19,90' },
+      { desc: '5L', valor: 'R$ 89,90' },
+    ],
+    preco_from: 'R$ 19<small>,90</small>',
+    wa: 'Olá! Quero comprar Thinner Laet. Pode me passar mais informações?'
+  },
+  'spray': {
+    nome: 'Tinta Spray',
+    categoria: 'Ferramentas',
+    badge: 'VÁRIAS CORES',
+    imagem: 'images/ferramentas/sprays.jfif',
+    desc_curta: 'Tinta spray em várias cores — fosco, brilho e metálico.',
+    descricao: 'Tinta Spray Laet em diversas cores e acabamentos (fosco, brilho e metálico), ideal para retoques e pequenos projetos.',
+    beneficios: ['Várias cores e acabamentos', 'Secagem rápida', 'Ideal para retoques e pequenos projetos'],
+    precos: [
+      { desc: 'A partir de', valor: 'R$ 19,90' },
+      { desc: 'Até', valor: 'R$ 24,90' },
+    ],
+    preco_from: 'R$ 19<small>,90</small>',
+    wa: 'Olá! Quero comprar Tinta Spray Laet. Pode me passar mais informações?',
+    cor_preco_unico: true,
+    cores: [
+      { nome: 'Azul', hex: '#1565C0', preco: 'R$ 19,90' },
+      { nome: 'Cinza', hex: '#9E9E9E', preco: 'R$ 19,90' },
+      { nome: 'Alumínio', hex: '#C7C7C7', preco: 'R$ 19,90' },
+      { nome: 'Branco Brilho', hex: '#FFFFFF', borda: true, preco: 'R$ 19,90' },
+      { nome: 'Branco Fosco', hex: '#F2F2EE', borda: true, preco: 'R$ 19,90' },
+      { nome: 'Preto Brilho', hex: '#0A0A0A', preco: 'R$ 19,90' },
+      { nome: 'Preto Fosco', hex: '#1C1C1C', preco: 'R$ 19,90' },
+      { nome: 'Verde', hex: '#2E7D32', preco: 'R$ 19,90' },
+      { nome: 'Laranja', hex: '#F57C00', preco: 'R$ 24,90' },
+      { nome: 'Dourado', hex: '#C9A227', preco: 'R$ 24,90' },
+      { nome: 'Cromado', hex: '#E0E0E0', preco: 'R$ 24,90' },
+      { nome: 'Vermelho', hex: '#C62828', preco: 'R$ 24,90' },
+      { nome: 'Rosa', hex: '#EC407A', preco: 'R$ 22,90' },
+    ]
   }
 };
 
@@ -946,6 +1113,7 @@ function coreCardHtml(c, p) {
     <div class="core-info">
       <div class="core-nome">${c.nome}</div>
       ${c.preco_balde ? `<div class="core-preco">Balde ${c.preco_balde}<br>Galão ${c.preco_galao}${c.preco_quarto ? `<br>Pote 1/4 ${c.preco_quarto}` : ''}</div>` : ''}
+      ${c.preco ? `<div class="core-preco">${c.preco}</div>` : ''}
     </div>
   </div>`;
 }
@@ -1006,7 +1174,14 @@ function render() {
   const tamanhoOptionsHtml = p.precos.map(pr => `<option value="${pr.desc}|${pr.valor}">${pr.desc} — ${pr.valor}</option>`).join('');
   const coresOptionsHtml = p.cores ? p.cores.map(c => `<option value="${c.nome}">${c.nome}</option>`).join('') : '';
 
-  const cartSelectionHtml = p.cores_precificadas ? `
+  const cartSelectionHtml = p.cor_preco_unico ? `
+    <div class="prod-cart-field">
+      <label>Cor</label>
+      <select id="cart-cor">
+        ${p.cores.map(c => `<option value="${c.nome}|${c.preco}">${c.nome} — ${c.preco}</option>`).join('')}
+      </select>
+    </div>
+  ` : p.cores_precificadas ? `
     <div class="prod-cart-field">
       <label>Cor</label>
       <select id="cart-cor" onchange="updateTamanhoPrecificado('${id}')">
@@ -1041,7 +1216,7 @@ function render() {
         <div class="prod-hero-inner">
           <div class="prod-hero-info">
             <div class="prod-category">${p.categoria}</div>
-            ${p.badge ? `<span class="prod-badge">${p.badge}</span>` : ''}
+            ${p.badge ? `<span class="prod-badge"${p.badge_bg ? ` style="background:${p.badge_bg};color:${p.badge_color || '#fff'}${p.badge_border ? `;border:1px solid ${p.badge_border}` : ''}"` : ''}>${p.badge}</span>` : ''}
             <h1 class="prod-nome">${p.nome}</h1>
             <p class="prod-desc-curta">${p.desc_curta}</p>
             <div class="prod-price-block">
@@ -1181,12 +1356,18 @@ function setMainImage(btn, src) {
 function addToCartFromProduct(id) {
   const p = produtos[id];
   if (!p) return;
+  const qtyInput = document.getElementById('cart-qty');
+  const qty = parseInt(qtyInput.value, 10) || 1;
+  if (p.cor_preco_unico) {
+    const corSel = document.getElementById('cart-cor');
+    const [cor, valor] = corSel.value.split('|');
+    LaetCart.add({ produtoId: id, nome: p.nome, tamanho: '', valor, cor, qty });
+    return;
+  }
   const tamanhoSel = document.getElementById('cart-tamanho');
   const corSel = document.getElementById('cart-cor');
-  const qtyInput = document.getElementById('cart-qty');
   const [tamanho, valor] = tamanhoSel.value.split('|');
   const cor = corSel ? corSel.value : null;
-  const qty = parseInt(qtyInput.value, 10) || 1;
   LaetCart.add({ produtoId: id, nome: p.nome, tamanho, valor, cor, qty });
 }
 
