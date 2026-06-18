@@ -26,18 +26,34 @@
     .navbar-back { display: flex; align-items: center; gap: 8px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; color: rgba(255,255,255,.75); transition: color .2s; }
     .navbar-back:hover { color: var(--yellow); }
     .navbar-back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; }
-    .cat-hero { background: linear-gradient(140deg, var(--blue-dark) 0%, var(--blue) 100%); padding: 52px 0 44px; text-align: center; }
+    .cat-hero { background: linear-gradient(140deg, var(--blue-dark) 0%, var(--blue) 100%); padding: 44px 0; }
+    .cat-hero-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .cat-hero-text { flex: 1; min-width: 0; text-align: left; }
     .cat-tag { display: inline-block; background: rgba(255,193,7,.18); border: 1px solid rgba(255,193,7,.4); color: var(--yellow); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 14px; }
     .cat-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(26px, 5vw, 50px); color: #fff; line-height: 1.1; margin-bottom: 10px; }
     .cat-title span { color: var(--yellow); }
-    .cat-subtitle { font-size: 15px; color: rgba(255,255,255,.75); margin-bottom: 28px; max-width: 520px; margin-left: auto; margin-right: auto; }
-    .cat-hero-actions { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .cat-subtitle { font-size: 15px; color: rgba(255,255,255,.75); margin-bottom: 20px; max-width: 480px; }
+    .cat-phone { display: inline-flex; align-items: center; gap: 8px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 22px; background: rgba(255,255,255,.1); padding: 8px 16px; border-radius: 100px; }
+    .cat-phone svg { width: 16px; height: 16px; fill: #25D366; flex-shrink: 0; }
+    .cat-hero-actions { display: flex; align-items: center; justify-content: flex-start; gap: 12px; flex-wrap: wrap; }
+    .cat-hero-photo { flex-shrink: 0; width: 190px; height: 190px; background: #fff; border-radius: 24px; display: flex; align-items: center; justify-content: center; padding: 18px; box-shadow: 0 14px 40px rgba(0,0,0,.28); }
+    .cat-hero-photo img { max-width: 100%; max-height: 100%; object-fit: contain; }
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 24px; border-radius: var(--radius); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; border: none; transition: transform .18s, box-shadow .18s; line-height: 1; }
     .btn:hover { transform: translateY(-2px); }
     .btn-yellow { background: var(--yellow); color: var(--graphite); box-shadow: 0 4px 14px rgba(255,193,7,.35); }
     .btn-yellow:hover { box-shadow: 0 8px 24px rgba(255,193,7,.5); }
     .btn-ghost { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.45); }
     .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.8); }
+    .btn-whatsapp { background: #25D366; color: #fff; box-shadow: 0 4px 16px rgba(37,211,102,.4); }
+    .btn-whatsapp:hover { box-shadow: 0 8px 26px rgba(37,211,102,.6); }
+    .btn-whatsapp svg { width: 17px; height: 17px; fill: #fff; }
+    @media (max-width: 760px) {
+      .cat-hero-inner { flex-direction: column-reverse; text-align: center; gap: 22px; }
+      .cat-hero-text { text-align: center; }
+      .cat-subtitle { margin-left: auto; margin-right: auto; }
+      .cat-hero-actions { justify-content: center; }
+      .cat-hero-photo { width: 150px; height: 150px; }
+    }
     .catalog-section { padding: 60px 0; background: #fff; }
     .catalog-intro { text-align: center; margin-bottom: 28px; }
     .catalog-intro h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(18px, 2.5vw, 26px); color: var(--blue); margin-bottom: 8px; }
@@ -48,8 +64,7 @@
     .color-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
     .color-swatch { height: 90px; width: 100%; }
     .color-info { padding: 12px 14px; background: #fff; }
-    .color-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: var(--graphite); line-height: 1.3; margin-bottom: 4px; }
-    .color-hex { font-size: 11px; color: #aaa; font-family: monospace; margin-bottom: 6px; }
+    .color-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: var(--graphite); line-height: 1.3; margin-bottom: 6px; }
     .color-price { font-size: 11px; color: var(--blue); font-weight: 600; line-height: 1.5; }
     .catalog-note { margin-top: 44px; background: #FFF8E8; border: 1px solid #FFE082; border-left: 4px solid var(--yellow); border-radius: 12px; padding: 20px 24px; font-size: 13px; color: #555; line-height: 1.8; }
     .catalog-note strong { color: var(--graphite); }
@@ -73,7 +88,7 @@
     @media (max-width: 560px) { .navbar-logo img { height: 48px; } }
     @media print {
       .navbar, .wa-float, .catalog-cta, .footer, .cat-hero-actions { display: none !important; }
-      .cat-hero { padding: 28px 0 22px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .cat-hero { padding: 22px 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .color-swatch { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .colors-grid { grid-template-columns: repeat(5, 1fr); gap: 12px; }
       .color-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
@@ -103,17 +118,29 @@
 
 <section class="cat-hero">
   <div class="container">
-    <span class="cat-tag">Catálogo de Cores</span>
-    <h1 class="cat-title">Laet Efeito <span>Cimento Queimado</span></h1>
-    <p class="cat-subtitle">15 cores disponíveis. Escolha a sua e peça pelo WhatsApp — entregamos no ABC e Zona Leste.</p>
-    <div class="cat-hero-actions">
-      <button class="btn btn-yellow" onclick="window.print()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        Baixar / Imprimir PDF
-      </button>
-      <a href="https://wa.me/5511977140964?text=Olá! Tenho interesse no Efeito Cimento Queimado e quero escolher uma cor." class="btn btn-ghost" target="_blank" rel="noopener">
-        💬 Falar com atendente
-      </a>
+    <div class="cat-hero-inner">
+      <div class="cat-hero-text">
+        <span class="cat-tag">Catálogo de Cores</span>
+        <h1 class="cat-title">Laet Efeito <span>Cimento Queimado</span></h1>
+        <p class="cat-subtitle">15 cores disponíveis. Escolha a sua e peça pelo WhatsApp — entregamos no ABC e Zona Leste.</p>
+        <div class="cat-phone">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          (11) 97714-0964
+        </div>
+        <div class="cat-hero-actions">
+          <a href="https://wa.me/5511977140964?text=Olá! Quero pedir uma cor do Efeito Cimento Queimado." class="btn btn-whatsapp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Peça já pelo WhatsApp
+          </a>
+          <button class="btn btn-ghost" onclick="window.print()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Baixar / Imprimir PDF
+          </button>
+        </div>
+      </div>
+      <div class="cat-hero-photo">
+        <img src="../images/embalagens/efeitocimentoqueimado.png" alt="Efeito Cimento Queimado Laet">
+      </div>
     </div>
   </div>
 </section>
@@ -131,7 +158,6 @@
         <div class="color-swatch" style="background:#B4B4AA"></div>
         <div class="color-info">
           <div class="color-name">Cinza Claro</div>
-          <div class="color-hex">#B4B4AA</div>
           <div class="color-price">5kg R$ 69,90<br>25kg R$ 199,90</div>
         </div>
       </div>
@@ -139,7 +165,6 @@
         <div class="color-swatch" style="background:#898883"></div>
         <div class="color-info">
           <div class="color-name">Cinza Padrão</div>
-          <div class="color-hex">#898883</div>
           <div class="color-price">5kg R$ 74,90<br>25kg R$ 199,90</div>
         </div>
       </div>
@@ -147,7 +172,6 @@
         <div class="color-swatch" style="background:#605F5A"></div>
         <div class="color-info">
           <div class="color-name">Chumbo</div>
-          <div class="color-hex">#605F5A</div>
           <div class="color-price">5kg R$ 79,90<br>25kg R$ 229,90</div>
         </div>
       </div>
@@ -155,7 +179,6 @@
         <div class="color-swatch" style="background:#92927A"></div>
         <div class="color-info">
           <div class="color-name">Concreto</div>
-          <div class="color-hex">#92927A</div>
           <div class="color-price">5kg R$ 74,90<br>25kg R$ 199,90</div>
         </div>
       </div>
@@ -163,7 +186,6 @@
         <div class="color-swatch" style="background:#8E7B43"></div>
         <div class="color-info">
           <div class="color-name">Azeitona Passada</div>
-          <div class="color-hex">#8E7B43</div>
           <div class="color-price">5kg R$ 79,90<br>25kg R$ 229,90</div>
         </div>
       </div>
@@ -171,7 +193,6 @@
         <div class="color-swatch" style="background:#423529"></div>
         <div class="color-info">
           <div class="color-name">Marrom Turco</div>
-          <div class="color-hex">#423529</div>
           <div class="color-price">5kg R$ 89,90<br>25kg R$ 259,90</div>
         </div>
       </div>
@@ -179,7 +200,6 @@
         <div class="color-swatch" style="background:#FCEBD9"></div>
         <div class="color-info">
           <div class="color-name">Rosé</div>
-          <div class="color-hex">#FCEBD9</div>
           <div class="color-price">5kg R$ 69,90<br>25kg R$ 199,90</div>
         </div>
       </div>
@@ -187,7 +207,6 @@
         <div class="color-swatch" style="background:#F6ACCF"></div>
         <div class="color-info">
           <div class="color-name">Bala de Iogurte</div>
-          <div class="color-hex">#F6ACCF</div>
           <div class="color-price">5kg R$ 69,90<br>25kg R$ 199,90</div>
         </div>
       </div>
@@ -195,7 +214,6 @@
         <div class="color-swatch" style="background:#A63A3B"></div>
         <div class="color-info">
           <div class="color-name">Dois Amores</div>
-          <div class="color-hex">#A63A3B</div>
           <div class="color-price">5kg R$ 89,90<br>25kg R$ 259,90</div>
         </div>
       </div>
@@ -203,7 +221,6 @@
         <div class="color-swatch" style="background:#FAF29D"></div>
         <div class="color-info">
           <div class="color-name">Amarelo Laet 2</div>
-          <div class="color-hex">#FAF29D</div>
           <div class="color-price">5kg R$ 69,90<br>25kg R$ 199,90</div>
         </div>
       </div>
@@ -211,7 +228,6 @@
         <div class="color-swatch" style="background:#8BAD8A"></div>
         <div class="color-info">
           <div class="color-name">Verde Uva</div>
-          <div class="color-hex">#8BAD8A</div>
           <div class="color-price">5kg R$ 74,90<br>25kg R$ 229,90</div>
         </div>
       </div>
@@ -219,7 +235,6 @@
         <div class="color-swatch" style="background:#318889"></div>
         <div class="color-info">
           <div class="color-name">Pavão</div>
-          <div class="color-hex">#318889</div>
           <div class="color-price">5kg R$ 84,90<br>25kg R$ 224,90</div>
         </div>
       </div>
@@ -227,7 +242,6 @@
         <div class="color-swatch" style="background:#8586C6"></div>
         <div class="color-info">
           <div class="color-name">Caixa Mágica</div>
-          <div class="color-hex">#8586C6</div>
           <div class="color-price">5kg R$ 69,90<br>25kg R$ 199,90</div>
         </div>
       </div>
@@ -235,7 +249,6 @@
         <div class="color-swatch" style="background:#719DBA"></div>
         <div class="color-info">
           <div class="color-name">Azul Céu</div>
-          <div class="color-hex">#719DBA</div>
           <div class="color-price">5kg R$ 74,90<br>25kg R$ 219,90</div>
         </div>
       </div>
@@ -243,7 +256,6 @@
         <div class="color-swatch" style="background:#606D73"></div>
         <div class="color-info">
           <div class="color-name">Jeans</div>
-          <div class="color-hex">#606D73</div>
           <div class="color-price">5kg R$ 74,90<br>25kg R$ 219,90</div>
         </div>
       </div>
