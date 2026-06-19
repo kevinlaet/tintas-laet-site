@@ -222,11 +222,13 @@
     .rules-section { padding: 88px 0; background: linear-gradient(160deg, #020d1a 0%, var(--blue-dark) 55%, #1565C0 100%); position: relative; overflow: hidden; scroll-margin-top: 80px; }
     .rules-section::before { content: ''; position: absolute; bottom: -120px; right: -80px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(255,193,7,.07) 0%, transparent 65%); pointer-events: none; }
     .rules-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .rules-content, .rules-box { min-width: 0; }
     .rules-content h2 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(24px, 3vw, 40px); color: #fff; line-height: 1.15; margin-bottom: 14px; }
     .rules-subtitle { color: rgba(255,255,255,.65); font-size: 15px; line-height: 1.8; margin-bottom: 36px; }
     .rules-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
     .rules-list li { display: flex; align-items: flex-start; gap: 14px; color: rgba(255,255,255,.82); font-size: 14px; line-height: 1.7; }
     .rule-check { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; background: var(--yellow); color: #0e0800; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; flex-shrink: 0; }
+    .rule-text { flex: 1; min-width: 0; overflow-wrap: break-word; }
 
     .rules-box { background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.13); border-radius: 28px; padding: 40px 36px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
     .prize-preview-box { background: rgba(255,193,7,.1); border: 1px solid rgba(255,193,7,.28); border-radius: 18px; padding: 22px; margin-bottom: 32px; }
@@ -283,7 +285,7 @@
     <a href="index.html" class="navbar-logo">
       <img src="images/logo-branco.png" alt="Tintas Laet">
     </a>
-    <a href="index.html" class="navbar-back">← Voltar ao site</a>
+    <a href="index.html" class="navbar-back" onclick="if(window.history.length>1){event.preventDefault();history.back();}">← Voltar</a>
   </div>
 </nav>
 
@@ -485,20 +487,20 @@
         <h2>Regulamento<br>do sorteio</h2>
         <p class="rules-subtitle">O sorteio é feito ao vivo no Instagram para você acompanhar em tempo real na data indicada.</p>
         <ul class="rules-list">
-          <li><span class="rule-check">✓</span>Realizar uma compra de qualquer valor em loja ou pelo WhatsApp da Tintas Laet</li>
-          <li><span class="rule-check">✓</span>Preencher o cupom — físico (nas lojas) ou <a href="cupom.html" style="color:inherit;text-decoration:underline">digital (pelo site)</a></li>
-          <li><span class="rule-check">✓</span>Depositar o cupom físico na urna da loja, ou enviar o cupom digital pelo site</li>
-          <li><span class="rule-check">✓</span>Informar nome completo, WhatsApp e cidade no cupom</li>
-          <li><span class="rule-check">✓</span>É obrigatório indicar no mínimo 5 amigos (WhatsApp) no cupom, podendo indicar até 10 — cada um concorre ao 2º prêmio</li>
-          <li><span class="rule-check">✓</span>Cupons com menos de 5 amigos indicados não serão aceitos</li>
-          <li><span class="rule-check">✓</span>Não é permitido se autoindicar como amigo — cupons com autoindicação serão desclassificados</li>
-          <li><span class="rule-check">✓</span>O sorteio é realizado ao vivo no Instagram (@tintaslaet), na data indicada pela Tintas Laet em seus canais de comunicação oficiais</li>
-          <li><span class="rule-check">✓</span>O ganhador é contatado pelo WhatsApp e tem 48h para responder</li>
-          <li><span class="rule-check">✓</span>O prêmio é retirado na loja indicada pela empresa</li>
-          <li><span class="rule-check">✓</span>Apenas um prêmio por CPF por sorteio</li>
-          <li><span class="rule-check">✓</span>Cupons ilegíveis, incompletos ou rasurados são desclassificados</li>
-          <li><span class="rule-check">✓</span>A Tintas Laet pode solicitar comprovante de compra a qualquer momento; cupons com dados falsos, duplicados ou obtidos de forma fraudulenta serão desclassificados sem aviso prévio</li>
-          <li><span class="rule-check">✓</span>Este regulamento pode ser alterado, suspenso ou cancelado pela Tintas Laet a qualquer momento e sem aviso prévio, especialmente em casos de fraude, uso indevido ou tentativa de burlar as regras</li>
+          <li><span class="rule-check">✓</span><span class="rule-text">Realizar uma compra de qualquer valor em loja ou pelo WhatsApp da Tintas Laet</span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">Preencher o cupom — físico (nas lojas) ou <a href="cupom.html" style="color:inherit;text-decoration:underline">digital (pelo site)</a></span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">Depositar o cupom físico na urna da loja, ou enviar o cupom digital pelo site</span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">Informar nome completo, WhatsApp e cidade no cupom</span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">É obrigatório indicar no mínimo 5 amigos (WhatsApp) no cupom, podendo indicar até 10 — cada um concorre ao 2º prêmio</span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">Cupons com menos de 5 amigos indicados não serão aceitos</span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">Não é permitido se autoindicar como amigo — cupons com autoindicação serão desclassificados</span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">O sorteio é realizado ao vivo no Instagram (@tintaslaet), na data indicada pela Tintas Laet em seus canais de comunicação oficiais</span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">O ganhador é contatado pelo WhatsApp e tem 48h para responder</span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">O prêmio é retirado na loja indicada pela empresa</span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">Apenas um prêmio por CPF por sorteio</span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">Cupons ilegíveis, incompletos ou rasurados são desclassificados</span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">A Tintas Laet pode solicitar comprovante de compra a qualquer momento; cupons com dados falsos, duplicados ou obtidos de forma fraudulenta serão desclassificados sem aviso prévio</span></li>
+          <li><span class="rule-check">✓</span><span class="rule-text">Este regulamento pode ser alterado, suspenso ou cancelado pela Tintas Laet a qualquer momento e sem aviso prévio, especialmente em casos de fraude, uso indevido ou tentativa de burlar as regras</span></li>
         </ul>
       </div>
 

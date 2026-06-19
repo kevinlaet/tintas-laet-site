@@ -139,7 +139,7 @@
   <nav class="navbar">
     <div class="navbar-inner">
       <a href="index.html" class="navbar-logo"><img src="images/logo-branco.png" alt="Tintas Laet"></a>
-      <a href="index.html" class="navbar-back">← Voltar ao site</a>
+      <a href="index.html" class="navbar-back" onclick="if(window.history.length>1){event.preventDefault();history.back();}">← Voltar</a>
     </div>
   </nav>
 
