@@ -319,14 +319,14 @@ function flattenOptions(p) {
     const brancaEntries = p.precos.filter(pr => /branca/i.test(pr.desc));
     const coresEntries = p.precos.filter(pr => !/branca/i.test(pr.desc));
     const whiteColor = p.cores.find(c => c.borda);
-    p.cores.filter(c => !c.borda).forEach(c => {
-      coresEntries.forEach(pr => opts.push({ label: `${c.nome} — ${stripSuffix(pr.desc)}`, valor: pr.valor }));
-    });
     if (whiteColor) {
       brancaEntries.forEach(pr => opts.push({ label: `${whiteColor.nome} — ${stripSuffix(pr.desc)}`, valor: pr.valor }));
     } else {
       brancaEntries.forEach(pr => opts.push({ label: pr.desc, valor: pr.valor }));
     }
+    p.cores.filter(c => !c.borda).forEach(c => {
+      coresEntries.forEach(pr => opts.push({ label: `${c.nome} — ${stripSuffix(pr.desc)}`, valor: pr.valor }));
+    });
   } else if (p.cores && p.precos) {
     p.cores.forEach(c => {
       p.precos.forEach(pr => opts.push({ label: `${pr.desc} — ${c.nome}`, valor: pr.valor }));
