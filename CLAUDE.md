@@ -15,6 +15,8 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 - `saidas/` — documentos e peças gerados
 - `scripts/` — scripts e automações
 - `templates/` — modelos reutilizáveis
+- `site/` — código do site (tintaslaet.com, staging em tintas-laet-staging.netlify.app)
+- `netlify/` — funções serverless do site (ex: notificação de WhatsApp pro cupom de sorteio)
 
 ## Sobre a empresa
 

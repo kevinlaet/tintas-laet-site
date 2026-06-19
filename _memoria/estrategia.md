@@ -9,9 +9,9 @@ Início do marketing digital — construindo base do zero. Kevin está sozinho n
 ## Prioridade principal
 
 Melhorar a identidade visual e presença digital da empresa, uma frente por vez:
-1. Design (padronização visual) ← estamos aqui
-2. Instagram
-3. Site
+1. Design (padronização visual) ✓
+2. Instagram ✓
+3. Site ← estamos aqui (catálogos, orçamento, cupom de sorteio e checkout funcionando em tintaslaet.com)
 4. Embalagens
 
 ## O que pode esperar
