@@ -21,6 +21,7 @@ Skill orquestradora. Pega um tema → entrega artigo no blog + carrossel + 3 leg
 - **Site (blog):** `site/` — destino dos artigos. Estrutura comum: Astro em `site/astro-site/src/content/blog/`, ou WordPress, ou outro. Se ainda não tiver site, perguntar antes
 - **Tom de voz:** `_memoria/preferencias.md`
 - **Contexto:** `_memoria/empresa.md`, `identidade/design-guide.md`
+- **Pauta:** `_memoria/dores-clientes.md` — usar como ângulo real do artigo/blog (a dor do cliente, não só a ficha do produto)
 
 ---
 

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — Stories cheiro forte</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#020A18;
+  display:flex; flex-direction:column; align-items:center;
+  gap:56px; padding:56px 0;
+  font-family:'Montserrat',sans-serif;
+}
+
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; flex-shrink:0; }
+
+.bg { position:absolute; inset:0; z-index:0; }
+.bg img { width:100%; height:100%; object-fit:cover; object-position:center 30%; }
+
+.topscrim { position:absolute; left:0; right:0; top:0; height:46%; z-index:3; pointer-events:none;
+  background:linear-gradient(180deg, rgba(245,236,215,.92) 0%, rgba(245,236,215,.78) 55%, rgba(245,236,215,0) 100%); }
+
+.top { position:absolute; top:96px; left:0; right:0; display:flex; flex-direction:column; align-items:center; z-index:10; padding:0 92px; text-align:center; }
+.top img { height:300px; object-fit:contain; margin-bottom:30px; }
+.ey { font:800 26px/1 'Poppins',sans-serif; color:#0D47A1; letter-spacing:.22em; text-transform:uppercase; margin-bottom:24px; display:flex; align-items:center; gap:18px; }
+.ey::before,.ey::after { content:''; width:38px; height:3px; background:rgba(13,71,161,.5); display:block; }
+h1 { font:400 86px/1.1 'Bebas Neue',sans-serif; color:#062B63; letter-spacing:.005em; }
+h1 .chip { background:#FFC107; color:#062B63; padding:4px 24px; border-radius:16px; display:inline-block; transform:rotate(-2deg); margin-top:8px; }
+
+.scrim { position:absolute; left:0; right:0; bottom:0; height:64%; z-index:4; pointer-events:none;
+  background:linear-gradient(180deg, rgba(4,16,35,0) 0%, rgba(4,16,35,.5) 36%, rgba(4,16,35,.85) 64%, rgba(2,10,24,.97) 100%); }
+
+.sticker-area { position:absolute; left:92px; right:92px; bottom:330px; height:300px; z-index:8; border:2.5px dashed rgba(255,255,255,.4); border-radius:28px; background:rgba(255,255,255,.06); display:flex; align-items:center; justify-content:center; }
+.sticker-area span { font:700 23px/1.5 'Poppins',sans-serif; color:rgba(255,255,255,.6); text-align:center; max-width:560px; }
+
+.bot { position:absolute; bottom:64px; left:92px; right:92px; display:flex; flex-direction:column; align-items:center; gap:18px; z-index:10; text-align:center; border-top:1.5px solid rgba(255,255,255,.3); padding-top:24px; }
+.bot .tg { font:700 28px/1.4 'Poppins',sans-serif; color:#fff; max-width:780px; }
+.bot .hd { font:700 19px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.05em; }
+
+/* slide 2 — foto espelhada pra dar variação visual */
+.s2 .bg img { transform:scaleX(-1); object-position:center 30%; }
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     SLIDE 1 — ENQUETE
+══════════════════════════════════ -->
+<div class="slide s1">
+  <div class="bg"><img src="foto-cheiro-forte.png" alt="Quarto recém-pintado com janela aberta e lata da Tintas Laet"></div>
+  <div class="topscrim"></div>
+
+  <div class="top">
+    <img src="../../../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
+    <div class="ey">Enquete rápida</div>
+    <h1>JÁ COMPROU TINTA<br>QUE FEDIA<br><span class="chip">A CHULÉ?</span></h1>
+  </div>
+
+  <div class="scrim"></div>
+
+  <div class="sticker-area"><span>Responde aí 👆<br>(coloca a enquete da Tintas — Sim / Não)</span></div>
+
+  <div class="bot">
+    <p class="tg">A gente resolveu isso. Vê no post do feed 📌</p>
+    <span class="hd">@Tintaslaet</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 2 — CAIXINHA DE PERGUNTA
+══════════════════════════════════ -->
+<div class="slide s2">
+  <div class="bg"><img src="foto-cheiro-forte.png" alt="Quarto recém-pintado com janela aberta e lata da Tintas Laet"></div>
+  <div class="topscrim"></div>
+
+  <div class="top">
+    <img src="../../../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
+    <div class="ey">Manda sua dúvida</div>
+    <h1>SUA PIOR<br>EXPERIÊNCIA COM<br><span class="chip">CHEIRO DE TINTA?</span></h1>
+  </div>
+
+  <div class="scrim"></div>
+
+  <div class="sticker-area"><span>Manda aqui 👆<br>(coloca a caixinha de pergunta)</span></div>
+
+  <div class="bot">
+    <p class="tg">Conta pra gente — a gente responde no story 👃</p>
+    <span class="hd">@Tintaslaet</span>
+  </div>
+</div>
+
+</body>
+</html>

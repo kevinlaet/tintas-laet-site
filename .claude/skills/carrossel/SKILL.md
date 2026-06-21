@@ -17,9 +17,10 @@ Skill central de criação de conteúdo visual. Pega um tema → entrega HTMLs e
 - **Identidade visual:** `identidade/design-guide.md` — LER ANTES de criar qualquer visual
 - **Contexto do negócio:** `_memoria/empresa.md`
 - **Tom de voz:** `_memoria/preferencias.md`
+- **Pauta:** `_memoria/dores-clientes.md` — fonte preferencial de tema. Se o usuário não trouxer um tema específico, sugerir a próxima dor não usada ainda dessa lista (em vez de inventar um ângulo de produto solto)
 - **Playwright:** pra renderizar HTML em PNG (`npx playwright screenshot` ou via `render.js`)
 - **OpenAI API (opcional):** pra gerar fotos realistas — só se o cliente tiver chave configurada
-- **Outputs vão em:** `marketing/conteudo/<tipo>-<tema>-<YYYY-MM-DD>/`
+- **Outputs vão em:** `marketing/conteudo/<tipo>-<tema>-<YYYY-MM-DD>/` — **exceto stories**, que vão em `marketing/stories/<YYYY-MM>/<DD>-<slug>/` (ver Passo 5)
 
 ---
 
@@ -33,18 +34,24 @@ Ao receber um pedido, identificar qual tipo se encaixa:
 - **Estilo:** tipografia clean, cores da marca alternadas, sem fotos
 
 ### 2. CARROSSEL COM FOTO
-- **Quando usar:** apresentação visual, conteúdo aspiracional, capa com personagem
+- **Quando usar:** é o **default** pra capa de qualquer carrossel — só pular foto se o tema for puramente uma lista/comparativo onde foto não ajuda
 - **Formato:** 1080x1350 (4:5)
 - **Estilo:** foto como capa com gradient overlay + slides internos no padrão alternado
-- **Foto:** pode ser IA (gerada por OpenAI) ou real (passada pelo usuário)
+- **Foto:** ordem de prioridade — real já existente (`site/images/prova-social/`, `marketing/imagem das lojas/`, `site/images/lojas/`) → real nova pedida à loja → gerada por IA (`scripts/gerar-imagem.js`) só quando as anteriores não cobrirem o tema. Ver `identidade/design-guide.md` → "Direção visual 2.0"
 
 ### 3. POST ÚNICO
 - **Quando usar:** frase de impacto, dado/estatística, depoimento, bastidores
 - **Formato:** 1080x1350
 - **Estilo:** varia conforme o conteúdo (citação, número grande, foto com overlay)
 
+### 4. STORY
+- **Quando usar:** peça rápida pro Stories do Instagram (meta: mínimo 2/dia) — enquete, caixinha de pergunta, lembrete, promoção do dia, repost de carrossel já publicado
+- **Formato:** 1080x1920 (9:16) — sempre
+- **Estilo:** reaproveitar o mesmo template HTML/render.js entre stories, só trocando foto e texto — não recriar do zero a cada peça
+- **Pasta:** `marketing/stories/<YYYY-MM>/<DD>-<slug>/` (ver Passo 5) — nunca em `marketing/conteudo/`
+
 Se o tipo não estiver claro, perguntar:
-> "Que tipo de conteúdo? (1) carrossel texto, (2) carrossel com foto, (3) post único"
+> "Que tipo de conteúdo? (1) carrossel texto, (2) carrossel com foto, (3) post único, (4) story"
 
 ---
 
@@ -93,6 +100,7 @@ Vocabulário de layout — cada slide tem um nome. Variar entre eles pra criar r
 - **NÚMERO** — numeral gigante (200-320px, weight 800, cor de destaque) como elemento gráfico + h2 + parágrafo de apoio
 - **CITAÇÃO** — aspas grandes em watermark + frase em h2 + atribuição
 - **CTA FINAL** — fundo na cor de destaque, logo centralizado, headline curta, botão/CTA, telefone/@handle
+- **TIPO IMPACTO** — título gigante ocupando a peça inteira como elemento gráfico (estilo arquitetônico, não só texto informativo) — fundo sólido ou foto discreta atrás, tipografia é o protagonista do slide. Usar em peças de declaração/destaque, não em todo slide
 
 **Ritmo de slide a slide:** alternar fundo escuro ↔ claro ↔ destaque. Nunca dois slides seguidos com o mesmo fundo.
 
@@ -158,11 +166,13 @@ Escrever o conteúdo seguindo as regras de tom:
 
 **CHECKPOINT:** Mostrar o texto completo. Esperar aprovação antes do visual.
 
-### Passo 3 — Gerar fotos (se tipo 2)
+### Passo 3 — Foto da capa (default)
 
-Só se o usuário pediu carrossel com foto IA.
+Antes de gerar qualquer foto por IA, checar `site/images/prova-social/`, `marketing/imagem das lojas/` e `site/images/lojas/` — se tiver foto real que sirva pro tema, usar ela e pular pro Passo 4. Só gerar por IA quando não tiver nada real adequado.
 
-1. Montar prompt em inglês (a API funciona melhor em inglês)
+**Fluxo atual: manual, via ChatGPT (plano Go do Kevin)** — sem orçamento pra API da OpenAI (precisa de créditos pré-pagos separados do plano de chat).
+
+1. Montar prompt em inglês (modelos de imagem funcionam melhor em inglês)
 2. Padrão genérico de prompt:
 
 ```
@@ -173,16 +183,14 @@ shot from [ÂNGULO], [ESTILO/ESTÉTICA],
 editorial quality
 ```
 
-3. Gerar via script (se `scripts/gerar-imagem.js` existir):
-```bash
-node --env-file=.env scripts/gerar-imagem.js "PROMPT" "marketing/conteudo/<pasta>/foto-<nome>.png"
-```
+3. Entregar o prompt pronto pro usuário colar no ChatGPT (já tem geração de imagem incluída no plano Go) e pedir pra ele mandar a imagem gerada de volta aqui no chat.
+4. Salvar a imagem recebida em `marketing/conteudo/<pasta>/foto-<nome>.png` e seguir.
 
-Se não tiver o script ainda, instruir o usuário a configurar `OPENAI_API_KEY` no `.env` e criar o script (ou usar outra ferramenta de geração de imagem).
+**Regra da embalagem:** se o prompt incluir lata/embalagem de tinta no quadro, **sempre avisar o usuário pra enviar junto a foto real da embalagem da Laet** (`identidade/embalagens/<linha>-remove-bg-io.png`) quando for colar o prompt no ChatGPT. Sem a referência, o ChatGPT inventa um produto genérico/aleatório em vez da embalagem real da marca.
 
-4. Mostrar a foto pro usuário antes de continuar.
+**CHECKPOINT:** Foto aprovada → seguir. Se não, ajustar prompt e pedir nova geração.
 
-**CHECKPOINT:** Foto aprovada → seguir. Se não, ajustar prompt e regenerar.
+> Nota: existe `scripts/gerar-imagem.js`, que automatiza isso via API da OpenAI — só usar se o Kevin confirmar que já tem créditos de API configurados em `.env`. Por padrão, seguir o fluxo manual acima.
 
 ### Passo 4 — Criar visuais (HTML + PNG)
 
@@ -214,6 +222,7 @@ NODE_PATH="<pasta-com-node_modules>/node_modules" node render.js
 
 ### Passo 5 — Salvar e organizar
 
+**Carrossel / post único (feed):**
 ```
 marketing/conteudo/<tipo>-<tema>-<YYYY-MM-DD>/
   texto.md              ← texto aprovado + legenda
@@ -226,6 +235,15 @@ marketing/conteudo/<tipo>-<tema>-<YYYY-MM-DD>/
     slide-01.png → ...
   legenda.md            ← legenda Insta+FB
   legenda-linkedin.md   ← (se pedido, mais formal)
+```
+
+**Story:** sempre em `marketing/stories/<YYYY-MM>/<DD>-<slug>/` (mês como pasta-mãe, nunca solto em `conteudo/` — com 2 stories/dia isso vira bagunça rápido):
+```
+marketing/stories/2026-06/20-parcelamento/
+  story.html
+  render.js
+  instagram/
+    slide-01.png (1080x1920)
 ```
 
 ### Passo 6 — Conexão com blog (opcional)
