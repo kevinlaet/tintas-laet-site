@@ -10,6 +10,8 @@ A marca fala com quem mora na periferia e quer economizar. Esse público não te
 
 Kevin quer evoluir de "responder bem" para "conduzir a venda" — ou seja, os textos precisam ser persuasivos sem perder a naturalidade.
 
+**Linguagem levemente popular:** usar um tom mais coloquial e regional pra o cliente se identificar mais fácil e mais emocionalmente — não é só "simples", é "fala como a vizinhança fala". Sempre que possível, ancorar em frases reais de cliente de `_memoria/dores-clientes.md` (ex: "fedia a chulé") em vez de reescrever a dor de forma mais "limpa"/formal — a fala real do cliente vende mais que a versão polida.
+
 ## O que evitar
 
 - Textos com cara de IA (frases genéricas, estrutura previsível, vocabulário inflado)

@@ -11,6 +11,9 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 - `_memoria/` — quem é a empresa, como falamos, foco atual
 - `identidade/` — marca aplicada em tudo que o sistema gera
 - `marketing/` — campanhas, conteúdo, mídia paga
+  - `conteudo/<slug>-<data>/` — carrosséis e posts de feed de Instagram/Facebook
+  - `stories/<YYYY-MM>/<DD>-<slug>/` — stories de Instagram, agrupados por mês (meta é 2/dia, então nunca soltar story direto em `conteudo/`)
+  - `status-whatsapp/<slug>-<data>/` — peças no formato 9:16 pra Status do WhatsApp
 - `dados/` — relatórios, planilhas, métricas para análise
 - `saidas/` — documentos e peças gerados
 - `scripts/` — scripts e automações

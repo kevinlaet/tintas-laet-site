@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — Status WhatsApp</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#020A18;
+  display:flex; flex-direction:column; align-items:center;
+  gap:56px; padding:56px 0;
+  font-family:'Montserrat',sans-serif;
+}
+
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; flex-shrink:0; }
+
+.hg-dark {
+  position:absolute; inset:0; pointer-events:none; z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='104'%3E%3Cpolygon points='45,4 86,27 86,77 45,100 4,77 4,27' fill='none' stroke='%23163475' stroke-opacity='0.18' stroke-width='1'/%3E%3C/svg%3E");
+  background-size:90px 104px;
+}
+
+.bunting {
+  position:absolute; top:0; left:0; right:0; height:46px; z-index:4; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='46'%3E%3Cline x1='0' y1='4' x2='240' y2='4' stroke='%23FFC107' stroke-opacity='0.35' stroke-width='2'/%3E%3Cpolygon points='4,4 60,4 32,38' fill='%23009739'/%3E%3Cpolygon points='64,4 120,4 92,38' fill='%23FFC107'/%3E%3Cpolygon points='124,4 180,4 152,38' fill='%23FFFFFF'/%3E%3Cpolygon points='184,4 240,4 212,38' fill='%230D47A1'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;
+  background-size:240px 46px;
+}
+
+@keyframes float { 0%,100% { transform:translateY(0) rotate(.25deg); } 50% { transform:translateY(-22px) rotate(-.25deg); } }
+
+/* logo bar */
+.lb { position:absolute; top:84px; left:108px; right:108px; display:flex; align-items:center; justify-content:space-between; z-index:10; }
+.lb img { height:170px; object-fit:contain; }
+.ct { font:500 18px/1 'Poppins',sans-serif; color:rgba(255,255,255,.35); letter-spacing:.2em; }
+
+/* footer */
+.bot { position:absolute; bottom:80px; left:92px; right:92px; display:flex; align-items:center; justify-content:space-between; z-index:10; padding-top:20px; border-top:1px solid rgba(255,255,255,.18); }
+.bot .hd { font:600 18px/1 'Poppins',sans-serif; color:rgba(255,255,255,.6); letter-spacing:.05em; }
+.bot .cd { font:500 14px/1 'Poppins',sans-serif; color:rgba(255,255,255,.42); letter-spacing:.14em; text-transform:uppercase; }
+
+/* ══════════════════════════════════════════
+   STATUS 1 — CAPA (foto + tema memórias)
+══════════════════════════════════════════ */
+.st1 {
+  background-image:
+    linear-gradient(180deg, rgba(2,10,24,.12) 0%, rgba(2,10,24,.32) 40%, rgba(2,10,24,.86) 100%),
+    url('../../prova social/foto familia pintando com tinta piso laet.png');
+  background-size:cover;
+  background-position:center;
+}
+
+.st1 .txt { position:absolute; bottom:230px; left:92px; width:580px; z-index:8; }
+.st1 .ey { display:flex; align-items:center; gap:12px; font:700 15px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.24em; text-transform:uppercase; margin-bottom:22px; }
+.st1 .ey::before { content:''; width:32px; height:2.5px; background:#FFC107; display:block; flex-shrink:0; }
+.st1 h1 { font:400 68px/1 'Bebas Neue',sans-serif; color:#fff; letter-spacing:.005em; margin-bottom:24px; }
+.st1 h1 .chip { display:inline-block; background:#009739; color:#fff; padding:6px 22px; border-radius:10px; transform:rotate(-2deg); margin-top:10px; }
+.st1 .tg { font:600 28px/1.45 'Poppins',sans-serif; color:rgba(255,255,255,.92); margin-bottom:28px; border-left:5px solid #FFC107; padding-left:20px; max-width:480px; }
+.st1 .badges { display:flex; gap:14px; flex-wrap:wrap; }
+.st1 .badge { background:rgba(255,255,255,.12); border:1.5px solid rgba(255,255,255,.32); border-radius:100px; padding:14px 26px; font:700 19px/1 'Poppins',sans-serif; color:#fff; backdrop-filter:blur(6px); }
+.st1 .badge.green { background:rgba(0,151,57,.35); border-color:rgba(0,151,57,.6); color:#fff; }
+
+/* ══════════════════════════════════════════
+   STATUS 2 — A TINTA DA COPA + convite pra conversar
+══════════════════════════════════════════ */
+.st2 { background:linear-gradient(165deg,#11529c 0%,#0D47A1 40%,#062B63 100%); }
+.st2 .ga1 { position:absolute; left:-120px; top:680px; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle,rgba(0,151,57,.22) 0%,transparent 70%); pointer-events:none; z-index:1; }
+
+.st2 .txt { position:absolute; top:300px; left:92px; width:560px; z-index:8; }
+.st2 .ey { display:flex; align-items:center; gap:12px; font:700 15px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.2em; text-transform:uppercase; margin-bottom:24px; }
+.st2 .ey::before { content:''; width:32px; height:2.5px; background:#FFC107; display:block; flex-shrink:0; }
+.st2 h2 { font:400 100px/.92 'Bebas Neue',sans-serif; color:#fff; letter-spacing:.005em; margin-bottom:26px; }
+.st2 h2 .g { color:#2ED573; }
+.st2 .tg { font:600 28px/1.5 'Poppins',sans-serif; color:rgba(255,255,255,.9); margin-bottom:34px; max-width:520px; }
+
+.st2 .badges { display:flex; flex-direction:column; gap:14px; max-width:560px; }
+.st2 .badge { display:flex; align-items:center; gap:16px; background:rgba(255,255,255,.08); border:1.5px solid rgba(255,255,255,.2); border-left:4px solid #009739; border-radius:14px; padding:18px 24px; }
+.st2 .bico { width:30px; height:30px; flex-shrink:0; }
+.st2 .btx { font:700 21px/1.3 'Poppins',sans-serif; color:#fff; }
+
+.st2 .chat { position:absolute; top:1020px; left:92px; right:92px; z-index:8; background:rgba(255,255,255,.96); border-radius:24px; padding:30px 36px; box-shadow:0 14px 50px rgba(0,0,0,.3); }
+.st2 .chat::before { content:''; position:absolute; top:-14px; left:48px; width:28px; height:28px; background:rgba(255,255,255,.96); transform:rotate(45deg); border-radius:4px; }
+.st2 .chat .ctx { font:700 13px/1 'Poppins',sans-serif; color:#00682b; letter-spacing:.16em; text-transform:uppercase; margin-bottom:10px; }
+.st2 .chat .cmsg { font:700 27px/1.35 'Montserrat',sans-serif; color:#062B63; }
+
+.st2 .mc { position:absolute; bottom:0; right:-10px; width:560px; z-index:6; animation:float 5s ease-in-out infinite; filter:drop-shadow(0 28px 48px rgba(2,10,24,.45)); }
+
+</style>
+</head>
+<body>
+
+<!-- STATUS 1 -->
+<div class="slide st1">
+  <div class="bunting"></div>
+
+  <div class="lb">
+    <img src="../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+    <span class="ct">1 / 2</span>
+  </div>
+
+  <div class="txt">
+    <div class="ey">
+      <svg width="40" height="28" viewBox="0 0 48 34"><rect width="48" height="34" rx="3" fill="#009739"/><polygon points="24,4 44,17 24,30 4,17" fill="#FFC107"/><circle cx="24" cy="17" r="7" fill="#0D47A1"/></svg>
+      Clima de Copa
+    </div>
+    <h1>ESTÁ<br>COMEMORANDO<br>COM O BRASIL<br><span class="chip">TODO?</span></h1>
+    <p class="tg">A Tintas Laet está aqui pra te ajudar a criar memórias!</p>
+    <div class="badges">
+      <div class="badge green">Verde e amarelo</div>
+      <div class="badge">Loja aberta até as 18h</div>
+    </div>
+  </div>
+
+  <div class="bot">
+    <span class="hd">@Tintaslaet</span>
+    <span class="cd">4 lojas · ABC e Zona Leste · SP</span>
+  </div>
+</div>
+
+<!-- STATUS 2 -->
+<div class="slide st2">
+  <div class="hg-dark"></div>
+  <div class="bunting"></div>
+  <div class="ga1"></div>
+
+  <div class="lb">
+    <img src="../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+    <span class="ct">2 / 2</span>
+  </div>
+
+  <div class="txt">
+    <div class="ey">⚽ Tinta Premium Pisos e Fachadas</div>
+    <h2>A TINTA<br><span class="g">DA COPA!</span></h2>
+    <p class="tg">A Tinta Premium Pisos e Fachadas da Tintas Laet é a tinta da copa!!</p>
+    <div class="badges">
+      <div class="badge">
+        <svg class="bico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#062B63" stroke-width="1.4"/><polygon points="12,7 15,9.5 14,13 10,13 9,9.5" fill="#062B63"/></svg>
+        <div class="btx">Resistente a tráfego de carros e pessoas</div>
+      </div>
+      <div class="badge">
+        <svg class="bico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#062B63" stroke-width="1.4"/><polygon points="12,7 15,9.5 14,13 10,13 9,9.5" fill="#062B63"/></svg>
+        <div class="btx">Resiste a chuva e sol!</div>
+      </div>
+      <div class="badge">
+        <svg class="bico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#062B63" stroke-width="1.4"/><polygon points="12,7 15,9.5 14,13 10,13 9,9.5" fill="#062B63"/></svg>
+        <div class="btx">Rende e cobre muito bem!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat">
+    <div class="ctx">Bora trocar uma ideia?</div>
+    <div class="cmsg">Responde esse status e conta pra gente qual cor você quer pintar 💬</div>
+  </div>
+
+  <img class="mc" src="../../../identidade/mascote alta qualidade-remove-bg-io.png" alt="Mascote Tintas Laet">
+</div>
+
+</body>
+</html>

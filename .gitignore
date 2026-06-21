@@ -17,6 +17,9 @@ Thumbs.db
 # Dependências
 node_modules/
 
+# Segredos
+.env
+
 # Arquivos temporários
 *.log
 *.tmp

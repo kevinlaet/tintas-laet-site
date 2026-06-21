@@ -22,6 +22,27 @@
 
 **Produtos:** Tintas acrílicas base água, emborrachadas, esmalte base água, epoxi base água, massa corrida, massa acrílica, látex, tintas para piso/madeira/ferro, rolos, pincéis, lixas, corantes, desempenadeiras, espátulas, kit pintura, lona, fita crepe, papelão para piso.
 
+**Uso interno/externo por produto** (sempre checar antes de criar conteúdo ou descrição — claim errado é risco de reclamação/devolução):
+- Vinil — interna
+- Profissional — interna
+- Standard — interna/externa
+- Premium Pisos e Fachadas — interna/externa
+- Premium Lavável — interna/externa
+- Emborrachada — interna/externa
+- Semibrilho — interna/externa
+- Cobertura Absoluta — interna/externa
+- Epóxi — interna/externa
+- Esmalte — interna/externa
+- Textura Lisa — interna
+- Textura Design — interna/externa
+- Grafiato — interna/externa
+- Efeito Cimento Queimado — interna/externa
+- Massa Corrida — interna
+- Massa Acrílica — interna/externa
+- Seladora — interna/externa
+- Fundo Preparador — interna/externa
+- Direto no Gesso — interna (não estava na lista original, já confirmado com Kevin)
+
 ## Contexto adicional
 
 Empresa familiar estabelecida. Kevin está construindo o braço digital do zero — sozinho por enquanto. Sócios são conservadores: liberam mais espaço conforme aparecer resultado. Isso significa que as primeiras entregas precisam ser visíveis e mensuráveis.

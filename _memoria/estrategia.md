@@ -27,3 +27,16 @@ Definição do gargalo principal de crescimento — aguardando dados reais (~15 
 ## Candidata a skill (/mapear-rotinas)
 
 Kevin repete toda semana: atendimento e respostas no WhatsApp. Vale transformar em skill de respostas persuasivas padronizadas.
+
+## Cadência de conteúdo (Instagram)
+
+Meta atual, vigente sem ramp-up — Kevin tem tempo disponível e marketing é prioridade #1 nessa fase:
+
+- **Stories:** mínimo 2 por dia
+- **Feed:** mínimo 1 post por semana (carrossel, vídeo ou post único)
+
+Operação do dia a dia (datas comemorativas, banco de ângulos de conteúdo, pedido de material às lojas, checklist de cumprimento) fica em `_memoria/calendario-editorial.md` — esse arquivo aqui é só a visão de prioridade geral. Pra sugestão semanal pronta, usar a skill `/pauta-semana`.
+
+- Pauta sempre nasce de uma dor real (`_memoria/dores-clientes.md`), não de produto solto — já tem 7 pautas prontas pra usar
+- Gargalo real fica em Kevin revisar e postar, não em criar — vale reservar um horário fixo na semana só pra isso
+- Próximo passo natural depois do feed ganhar ritmo: vídeo com o mascote (skill `/video`, ferramentas gratuitas)
