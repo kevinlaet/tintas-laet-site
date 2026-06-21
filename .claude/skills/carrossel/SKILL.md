@@ -188,6 +188,8 @@ editorial quality
 
 **Regra da embalagem:** se o prompt incluir lata/embalagem de tinta no quadro, **sempre avisar o usuário pra enviar junto a foto real da embalagem da Laet** (`identidade/embalagens/<linha>-remove-bg-io.png`) quando for colar o prompt no ChatGPT. Sem a referência, o ChatGPT inventa um produto genérico/aleatório em vez da embalagem real da marca.
 
+**Checklist de enquadramento (antes de gerar, ver `identidade/design-guide.md` → "Template padrão de peça"):** se vai ter embalagem/produto em cena, checar mentalmente onde caem os scrims do template (claro no topo, escuro na base) antes de escrever o prompt. Pedir enquadramento aberto ("de longe", com folga em volta) **e** posição estratégica explícita do produto no prompt (ex: terço inferior, totalmente visível, sem tocar as bordas) — as duas coisas juntas, não só uma.
+
 **CHECKPOINT:** Foto aprovada → seguir. Se não, ajustar prompt e pedir nova geração.
 
 > Nota: existe `scripts/gerar-imagem.js`, que automatiza isso via API da OpenAI — só usar se o Kevin confirmar que já tem créditos de API configurados em `.env`. Por padrão, seguir o fluxo manual acima.
