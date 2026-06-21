@@ -71,6 +71,11 @@ Fundo de cor sólida/gradiente com mascote flutuando do lado (sem foto) ficou co
 
 Cards de ícone em fundo sólido sem foto (como o slide de bullets claro que foi feito antes desse ajuste) só valem como **slide de apoio dentro do carrossel** (explicação, comparativo), nunca como capa — e mesmo esses slides de apoio devem incluir a foto real quando possível (layout SOLO: foto de um lado, texto do outro), não ficar 100% sem imagem.
 
+**Checklist de enquadramento (checar ANTES de gerar a foto, não depois):** se a foto vai ter embalagem/produto em cena, mapear mentalmente onde caem o scrim claro (topo, ~38-50% da peça) e o scrim escuro (base, ~55-65% da peça) antes de montar o prompt — esses dois trechos ficam escurecidos/clareados por cima e qualquer elemento importante preso ali perde legibilidade. Pra isso:
+- Pedir um enquadramento **mais aberto** ("de longe", com folga generosa em volta do produto) — isso dá margem pra crop diferente em carrossel (4:5) e story (9:16) sem cortar o produto na borda
+- Especificar no prompt uma **posição estratégica explícita** pro produto (ex: "positioned in the lower-third of the frame, fully visible, not touching the edges, with clear space above for text overlay") — não deixar a composição genérica e só ajustar depois
+- As duas coisas juntas, não uma ou outra: enquadramento aberto sem posição definida ainda pode jogar o produto pra zona de scrim; posição definida sem folga ainda corta nas bordas ao trocar a proporção
+
 ---
 
 ## Elementos-chave
