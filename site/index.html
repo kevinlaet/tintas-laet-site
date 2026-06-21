@@ -87,7 +87,7 @@
     @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
     /* ──────── HERO BANNERS ──────── */
-    .hero-banners { position: relative; width: 100%; margin-top: 70px; background: var(--blue-dark); }
+    .hero-banners { position: relative; width: 100%; margin-top: 100px; background: var(--blue-dark); }
     .banner-carousel { display: flex; overflow-x: scroll; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
     .banner-carousel::-webkit-scrollbar { display: none; }
     .banner-slide { flex: 0 0 100%; position: relative; scroll-snap-align: start; height: clamp(240px, 46vw, 580px); }
@@ -303,6 +303,29 @@
     .wa-float:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(37,211,102,.65); }
     .wa-float svg { width: 26px; height: 26px; fill: white; flex-shrink: 0; }
     .wa-float-label { white-space: nowrap; }
+
+    /* ──────── CHAT WIDGET ──────── */
+    .chat-fab { position: fixed; bottom: 24px; left: 24px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: var(--blue); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 22px rgba(13,71,161,.45); transition: transform .2s, box-shadow .2s; }
+    .chat-fab:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(13,71,161,.55); }
+    .chat-fab svg { width: 26px; height: 26px; }
+    .chat-fab .chat-fab-close { display: none; }
+    .chat-fab.open .chat-fab-chat { display: none; }
+    .chat-fab.open .chat-fab-close { display: block; }
+    .chat-panel { position: fixed; bottom: 92px; left: 24px; z-index: 999; width: 320px; max-width: calc(100vw - 32px); background: #fff; border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,.25); overflow: hidden; display: none; flex-direction: column; font-family: 'Poppins', sans-serif; }
+    .chat-panel.open { display: flex; }
+    .chat-panel-head { background: var(--blue); color: #fff; padding: 16px 18px; }
+    .chat-panel-head strong { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; display: block; }
+    .chat-panel-head span { font-size: 12px; color: rgba(255,255,255,.8); }
+    .chat-panel-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .chat-panel-body p { font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 4px; }
+    .chat-panel-body input, .chat-panel-body textarea { width: 100%; border: 1.5px solid #e0e0e0; border-radius: 8px; padding: 9px 12px; font-family: 'Poppins', sans-serif; font-size: 13.5px; resize: none; }
+    .chat-panel-body input:focus, .chat-panel-body textarea:focus { outline: none; border-color: var(--blue); }
+    .chat-panel-body button { margin-top: 4px; }
+    .chat-panel-success { padding: 24px 18px; text-align: center; }
+    .chat-panel-success .ok-icon { font-size: 32px; margin-bottom: 8px; }
+    .chat-panel-success p { font-size: 13.5px; color: #444; line-height: 1.6; margin-bottom: 14px; }
+    .chat-panel-error { font-size: 12px; color: #c62828; display: none; }
+
     /* ── HERO ENHANCEMENTS ── */
     .hero-color-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 5px; display: flex; z-index: 3; }
     .hero-color-bar span { flex: 1; }
@@ -428,6 +451,29 @@
 <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
+
+<!-- CHAT WIDGET -->
+<button class="chat-fab" id="chatFab" aria-label="Abrir chat" onclick="toggleChat()">
+  <svg class="chat-fab-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  <svg class="chat-fab-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+</button>
+
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-panel-head">
+    <strong>Fale com a Tintas Laet</strong>
+    <span>Respondemos pelo WhatsApp, rapidinho</span>
+  </div>
+  <div id="chatPanelContent">
+    <form class="chat-panel-body" id="chatForm" onsubmit="return enviarChat(event)">
+      <p>Manda sua dúvida ou pedido que a gente te chama no WhatsApp.</p>
+      <input type="text" id="chatNome" placeholder="Seu nome" required>
+      <input type="text" id="chatContato" placeholder="Seu WhatsApp" required>
+      <textarea id="chatMensagem" rows="3" placeholder="Sua mensagem" required></textarea>
+      <span class="chat-panel-error" id="chatError">Não conseguimos enviar. Tenta de novo ou fala direto no WhatsApp.</span>
+      <button type="submit" class="btn btn-blue" id="chatSubmitBtn">Enviar mensagem</button>
+    </form>
+  </div>
+</div>
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
@@ -1305,6 +1351,17 @@ document.querySelectorAll('.product-card,.why-card,.location-card,.seller-card,.
   io.observe(el);
 });
 
+/* ── Card do produto inteiro clicável → página do produto ── */
+document.querySelectorAll('.seller-card').forEach(card => {
+  const link = card.querySelector('.seller-view');
+  if (!link) return;
+  card.style.cursor = 'pointer';
+  card.addEventListener('click', e => {
+    if (e.target.closest('.seller-btn') || e.target.closest('a')) return;
+    window.location.href = link.href;
+  });
+});
+
 /* ── Banner Carousel ── */
 (function() {
   let cur = 0;
@@ -1338,6 +1395,47 @@ const btt = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
   btt.classList.toggle('visible', window.scrollY > 400);
 }, { passive: true });
+
+/* ── Chat widget ── */
+function toggleChat() {
+  document.getElementById('chatFab').classList.toggle('open');
+  document.getElementById('chatPanel').classList.toggle('open');
+}
+
+async function enviarChat(event) {
+  event.preventDefault();
+  const nome = document.getElementById('chatNome').value.trim();
+  const contato = document.getElementById('chatContato').value.trim();
+  const mensagem = document.getElementById('chatMensagem').value.trim();
+  const erro = document.getElementById('chatError');
+  const btn = document.getElementById('chatSubmitBtn');
+
+  erro.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  try {
+    const res = await fetch('/.netlify/functions/chat-message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome, contato, mensagem }),
+    });
+    const data = await res.json();
+    if (!res.ok || !data.ok) throw new Error('falha no envio');
+
+    document.getElementById('chatPanelContent').innerHTML = `
+      <div class="chat-panel-success">
+        <div class="ok-icon">✅</div>
+        <p>Mensagem enviada! A Tintas Laet vai te chamar no WhatsApp em breve.</p>
+        <a href="https://wa.me/5511977140964" target="_blank" rel="noopener" class="btn btn-blue">Continuar no WhatsApp</a>
+      </div>`;
+  } catch (err) {
+    erro.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Enviar mensagem';
+  }
+  return false;
+}
 
 /* ── FAQ ── */
 function toggleFaq(btn) {

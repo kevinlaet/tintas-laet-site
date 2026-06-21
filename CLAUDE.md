@@ -19,7 +19,7 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 - `scripts/` — scripts e automações
 - `templates/` — modelos reutilizáveis
 - `site/` — código do site (tintaslaet.com, staging em tintas-laet-staging.netlify.app)
-- `netlify/` — funções serverless do site (ex: notificação de WhatsApp pro cupom de sorteio)
+- `netlify/` — funções serverless do site: notificação push pro celular do Kevin (via ntfy.sh, tópico `tintaslaet-18e3366de0`) quando chega cupom de sorteio (`submission-created.js`) ou mensagem do widget de chat do site (`chat-message.js`). Falta configurar a env var `NTFY_TOPIC` no painel do Netlify antes do próximo deploy.
 
 ## Sobre a empresa
 
