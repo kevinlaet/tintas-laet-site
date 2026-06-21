@@ -94,7 +94,8 @@
       .cat-hero { padding: 22px 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .color-swatch { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .colors-grid { grid-template-columns: repeat(5, 1fr); gap: 12px; }
-      .color-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+      .color-card { break-inside: avoid; page-break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+      .color-info, .color-name { break-inside: avoid; page-break-inside: avoid; }
       body { font-size: 12px; }
       .catalog-section { padding: 24px 0; }
     }
