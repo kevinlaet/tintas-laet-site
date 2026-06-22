@@ -294,6 +294,11 @@ function formatPrice(n) {
   return 'R$ ' + (n || 0).toFixed(2).replace('.', ',');
 }
 
+function displayNome(id, p) {
+  if (id === 'standard') return 'Tinta Standard';
+  return p.nome;
+}
+
 function flattenOptions(p) {
   const opts = [];
   const corPrecificada = p.cores && p.cores.some(c => c.preco_balde);
@@ -375,8 +380,8 @@ function addItemRow() {
 
   produtoSel.innerHTML = '<option value="">Selecione...</option>' +
     Object.keys(produtosData)
-      .sort((a, b) => produtosData[a].nome.localeCompare(produtosData[b].nome, 'pt-BR'))
-      .map(id => `<option value="${id}">${produtosData[id].nome}</option>`).join('');
+      .sort((a, b) => displayNome(a, produtosData[a]).localeCompare(displayNome(b, produtosData[b]), 'pt-BR'))
+      .map(id => `<option value="${id}">${displayNome(id, produtosData[id])}</option>`).join('');
 
   produtoSel.addEventListener('change', () => {
     const p = produtosData[produtoSel.value];
@@ -458,7 +463,7 @@ function gerarPDF() {
     const subtotal = qty * valor;
     total += subtotal;
     rowsHtml += `<tr>
-      <td>${escapeHtml(p.nome)}${variante ? ' — ' + escapeHtml(variante) : ''}</td>
+      <td>${escapeHtml(displayNome(produtoSel.value, p))}${variante ? ' — ' + escapeHtml(variante) : ''}</td>
       <td>${qty}</td>
       <td>${formatPrice(valor)}</td>
       <td>${formatPrice(subtotal)}</td>
