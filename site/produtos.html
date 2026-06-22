@@ -95,6 +95,7 @@
     .seller-btn:hover { filter: brightness(1.15); }
     .seller-desc { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 10px; }
     .seller-price-detail { font-size: 11px; color: #999; margin-bottom: 12px; line-height: 1.6; }
+    .seller-variant-tag { display: inline-flex; align-items: center; gap: 4px; background: rgba(13,71,161,.08); color: var(--blue); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; padding: 4px 10px; border-radius: 100px; margin-bottom: 8px; }
     .seller-urgent { display: inline-flex; align-items: center; gap: 4px; background: #FFF3CD; border: 1px solid #FFCA2C; color: #856404; font-size: 10px; font-weight: 700; font-family: 'Montserrat', sans-serif; padding: 3px 8px; border-radius: 100px; margin-bottom: 8px; letter-spacing: .4px; width: fit-content; }
     .seller-anchor { font-size: 11px; color: #bbb; text-decoration: line-through; margin-top: 2px; }
     .seller-saving { display: inline-block; font-size: 11px; color: #2e7d32; font-weight: 700; background: #E8F5E9; padding: 1px 6px; border-radius: 4px; margin-top: 3px; }
@@ -199,7 +200,7 @@
 <nav class="cat-jump">
   <div class="container" style="display:flex;flex-wrap:wrap;gap:10px">
     <a href="#cat-economicas">🏷️ Tintas Econômicas</a>
-    <a href="#cat-premium">⭐ Tintas Premium</a>
+    <a href="#cat-alta-qualidade">⭐ Tintas Alta Qualidade</a>
     <a href="#cat-texturizados">🎨 Texturizados</a>
     <a href="#cat-complementos">🔧 Complementos</a>
     <a href="#cat-esmaltes">✨ Esmaltes</a>
@@ -214,7 +215,7 @@
       <div class="cat-icon" style="background:rgba(46,125,50,.1)">🏷️</div>
       <div>
         <div class="cat-name">Tintas Econômicas</div>
-        <div class="cat-sub">Látex, vinil, standard — o melhor preço sem perder qualidade</div>
+        <div class="cat-sub">Látex, vinil, profissional — o melhor preço sem perder qualidade</div>
       </div>
     </div>
     <div class="sellers-grid">
@@ -225,6 +226,7 @@
           <img src="images/embalagens/vinil-remove-bg-io.png" alt="Latex Vinil Laet">
         </div>
         <div class="seller-body">
+          <div class="seller-variant-tag">🎨 18 cores</div>
           <div class="seller-name">Latex Vinil 18L</div>
           <div class="seller-desc">Tinta básica e econômica para uso interno. Veja as recomendações de uso antes de comprar.</div>
           <span class="seller-price-from">a partir de</span>
@@ -233,25 +235,6 @@
           <div class="seller-actions">
             <a href="produto.html?id=latex-vinil" class="seller-view">Ver produto completo →</a>
             <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Latex Vinil Laet.','_blank')">💬 Quero esse produto</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tinta 1ª Linha Standard -->
-      <div class="seller-card">
-        <div class="seller-img">
-          <img src="images/embalagens/standard-remove-bg-io.png" alt="Tinta Standard Laet">
-          <span class="seller-badge">VÁRIAS CORES PRA VOCÊ</span>
-        </div>
-        <div class="seller-body">
-          <div class="seller-name">Tinta 1ª Linha Standard</div>
-          <div class="seller-desc">Concentrada, pode ser diluída em até 20%. Para dentro e fora de casa.</div>
-          <span class="seller-price-from">a partir de</span>
-          <div class="seller-price">R$ 219<small>,90</small></div>
-          <div class="seller-price-detail">18L branca R$ 219,90 · 17L cores R$ 229,90 (a partir)<br>Também em 3,6L a partir de R$ 59,90</div>
-          <div class="seller-actions">
-            <a href="produto.html?id=standard" class="seller-view">Ver produto completo →</a>
-            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Standard Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
@@ -266,6 +249,7 @@
           <div class="seller-urgent">⚡ Melhor custo-benefício</div>
           <div class="seller-name">Tinta Super Profissional</div>
           <div class="seller-desc">Acrílica super profissional. Até 300m² por demão. Anti-mofo e baixíssimo odor.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">balde 18L — a partir de</span>
           <div class="seller-price">R$ 139<small>,90</small></div>
           <div class="seller-anchor">Concorrente: R$ 189,00+</div>
@@ -287,6 +271,7 @@
         <div class="seller-body">
           <div class="seller-name">Tinta Direto no Gesso</div>
           <div class="seller-desc">Vai direto no gesso e drywall sem precisar de fundo preparado. Sem cheiro forte e anti-mofo.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">balde 18L — a partir de</span>
           <div class="seller-price">R$ 179<small>,90</small></div>
           <div class="seller-price-detail">18L branca R$ 179,90 · 18L cores R$ 189,90<br>Também em 3,6L a partir de R$ 49,90</div>
@@ -301,17 +286,37 @@
   </div>
 </section>
 
-<!-- TINTAS PREMIUM -->
-<section class="section cat-section" id="cat-premium">
+<!-- TINTAS ALTA QUALIDADE -->
+<section class="section cat-section" id="cat-alta-qualidade">
   <div class="container">
     <div class="cat-header">
       <div class="cat-icon" style="background:rgba(255,193,7,.15)">⭐</div>
       <div>
-        <div class="cat-name">Tintas Premium</div>
-        <div class="cat-sub">Lavável, acrílica, emborrachada — alta performance e durabilidade</div>
+        <div class="cat-name">Tintas Alta Qualidade</div>
+        <div class="cat-sub">Standard, lavável, acrílica, emborrachada — alta performance e durabilidade</div>
       </div>
     </div>
     <div class="sellers-grid">
+
+      <!-- Tinta 1ª Linha Standard -->
+      <div class="seller-card">
+        <div class="seller-img">
+          <img src="images/embalagens/standard-remove-bg-io.png" alt="Tinta Standard Laet">
+          <span class="seller-badge">VÁRIAS CORES PRA VOCÊ</span>
+        </div>
+        <div class="seller-body">
+          <div class="seller-name">Tinta 1ª Linha Standard</div>
+          <div class="seller-desc">Concentrada, pode ser diluída em até 20%. Para dentro e fora de casa.</div>
+          <div class="seller-variant-tag">🎨 +100 cores</div>
+          <span class="seller-price-from">a partir de</span>
+          <div class="seller-price">R$ 219<small>,90</small></div>
+          <div class="seller-price-detail">18L branca R$ 219,90 · 17L cores R$ 229,90 (a partir)<br>Também em 3,6L a partir de R$ 59,90</div>
+          <div class="seller-actions">
+            <a href="produto.html?id=standard" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Tinta Standard Laet.','_blank')">💬 Quero esse produto</button>
+          </div>
+        </div>
+      </div>
 
       <!-- Tinta Emborrachada -->
       <div class="seller-card">
@@ -323,6 +328,7 @@
           <div class="seller-urgent">🔥 Mais pedida da semana</div>
           <div class="seller-name">Tinta Emborrachada</div>
           <div class="seller-desc">Líquido que vira borracha. Protege contra sol, chuva e microfissuras.</div>
+          <div class="seller-variant-tag">🎨 111 cores</div>
           <span class="seller-price-from">balde 18L — a partir de</span>
           <div class="seller-price">R$ 399<small>,90</small></div>
           <div class="seller-price-detail">Branca R$ 399,90 · Cores médias R$ 449,90<br>Também em 3,6L a partir de R$ 99,90</div>
@@ -342,6 +348,7 @@
         <div class="seller-body">
           <div class="seller-name">Tinta Piso e Fachada Premium</div>
           <div class="seller-desc">Alta resistência a tráfego e intempéries. Anti-mofo, lavável e super aderente.</div>
+          <div class="seller-variant-tag">🎨 13 cores</div>
           <span class="seller-price-from">balde — a partir de</span>
           <div class="seller-price">R$ 219<small>,90</small></div>
           <div class="seller-price-detail">18L cores R$ 219,90 · 18L branca R$ 299,90<br>Também em 3,6L a partir de R$ 59,90</div>
@@ -361,6 +368,7 @@
         <div class="seller-body">
           <div class="seller-name">Tinta Premium Lavável</div>
           <div class="seller-desc">Mega qualidade, excelente cobertura. Para dentro e fora de casa. Anti-mofo e anti-fungos.</div>
+          <div class="seller-variant-tag">🎨 111 cores</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 299<small>,90</small></div>
           <div class="seller-price-detail">18L branca R$ 299,90 · Balde cores R$ 319,90 (a partir)<br>Também em 3,6L R$ 79,90 e 900ml R$ 29,90</div>
@@ -380,6 +388,7 @@
         <div class="seller-body">
           <div class="seller-name">Tinta Epóxi Base Água</div>
           <div class="seller-desc">Renove sem quebrar. Secagem rápida, alta resistência e totalmente lavável.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">branca — a partir de</span>
           <div class="seller-price">R$ 35<small>,90</small></div>
           <div class="seller-price-detail">900ml R$ 35,90 · 3,6L R$ 129,90 — só branca, corante vendido separado</div>
@@ -415,6 +424,7 @@
         <div class="seller-body">
           <div class="seller-name">Efeito Cimento Queimado</div>
           <div class="seller-desc">Acabamento decorativo tipo cimento queimado. Uso interno e externo, 15 cores disponíveis.</div>
+          <div class="seller-variant-tag">🎨 15 cores</div>
           <span class="seller-price-from">5kg — a partir de</span>
           <div class="seller-price">R$ 69<small>,90</small></div>
           <div class="seller-price-detail">5kg a partir de R$ 69,90 · 25kg a partir de R$ 199,90</div>
@@ -434,6 +444,7 @@
         <div class="seller-body">
           <div class="seller-name">Grafiato</div>
           <div class="seller-desc">Textura grafiato branca, acabamento rústico decorativo para uso interno e externo.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 54<small>,90</small></div>
           <div class="seller-price-detail">Saco R$ 54,90 · Barrica 23kg R$ 62,90</div>
@@ -453,6 +464,7 @@
         <div class="seller-body">
           <div class="seller-name">Textura Lisa</div>
           <div class="seller-desc">Acabamento decorativo liso e uniforme para uso interno. Cor branca.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 54<small>,90</small></div>
           <div class="seller-price-detail">Saco R$ 54,90 · Barrica 23kg R$ 62,90</div>
@@ -472,6 +484,7 @@
         <div class="seller-body">
           <div class="seller-name">Textura Design</div>
           <div class="seller-desc">Efeito decorativo diferenciado para uso interno e externo. Cor branca.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 69<small>,90</small></div>
           <div class="seller-price-detail">Saco R$ 69,90 · Barrica 23kg R$ 87,90</div>
@@ -507,6 +520,7 @@
         <div class="seller-body">
           <div class="seller-name">Massa Corrida</div>
           <div class="seller-desc">Lixamento fácil, acabamento de alto nível. Anti-mofo e odor quase zero.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 37<small>,90</small></div>
           <div class="seller-price-detail">Saco R$ 37,90 · Barrica 23kg R$ 45,90</div>
@@ -526,6 +540,7 @@
         <div class="seller-body">
           <div class="seller-name">Massa Acrílica</div>
           <div class="seller-desc">Fácil de lixar, qualidade excelente. Para uso interno e externo, anti-mofo e baixíssimo odor.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 69<small>,90</small></div>
           <div class="seller-price-detail">Saco R$ 69,90 · Barrica 23kg R$ 77,90</div>
@@ -545,6 +560,7 @@
         <div class="seller-body">
           <div class="seller-name">Corante Premium</div>
           <div class="seller-desc">Base água, 50ml. Fácil de homogeneizar e com alto poder de tingimento.</div>
+          <div class="seller-variant-tag">🎨 9 cores</div>
           <span class="seller-price-from">cada bisnaga</span>
           <div class="seller-price">R$ 5<small>,50</small></div>
           <div class="seller-price-detail">Bisnaga 50ml · várias cores disponíveis</div>
@@ -564,6 +580,7 @@
         <div class="seller-body">
           <div class="seller-name">Fundo Preparador</div>
           <div class="seller-desc">Melhora aderência e rendimento da tinta. 18L em promoção por tempo limitado.</div>
+          <div class="seller-variant-tag">📏 3 tamanhos</div>
           <span class="seller-price-from">18L em promoção</span>
           <div class="seller-price">R$ 219<small>,90</small></div>
           <div class="seller-price-detail">3,6L R$ 69,90 · 900ml R$ 29,90</div>
@@ -583,6 +600,7 @@
         <div class="seller-body">
           <div class="seller-name">Seladora</div>
           <div class="seller-desc">Melhora aderência e uniformidade do acabamento.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">18L</span>
           <div class="seller-price">R$ 79<small>,90</small></div>
           <div class="seller-price-detail">3,6L R$ 29,90</div>
@@ -604,7 +622,7 @@
       <div class="cat-icon" style="background:rgba(0,150,136,.1)">✨</div>
       <div>
         <div class="cat-name">Esmaltes</div>
-        <div class="cat-sub">Brilhante, acetinado, sintético</div>
+        <div class="cat-sub">Brilhante, acetinado</div>
       </div>
     </div>
     <div class="sellers-grid">
@@ -618,6 +636,7 @@
         <div class="seller-body">
           <div class="seller-name">Tinta Epóxi Base Água</div>
           <div class="seller-desc">Renove sem quebrar. Secagem rápida, alta resistência e totalmente lavável.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">branca — a partir de</span>
           <div class="seller-price">R$ 35<small>,90</small></div>
           <div class="seller-price-detail">900ml R$ 35,90 · 3,6L R$ 129,90 — só branca, corante vendido separado</div>
@@ -628,21 +647,22 @@
         </div>
       </div>
 
-      <!-- Esmalte Ecológico Base Água -->
+      <!-- Tinta Esmalte Ecológico Base Água -->
       <div class="seller-card">
         <div class="seller-img">
-          <img src="images/embalagens/esmalte-ecologico.png" alt="Esmalte Ecológico Base Água Laet">
+          <img src="images/embalagens/esmalte-ecologico.png" alt="Tinta Esmalte Ecológico Base Água Laet">
           <span class="seller-badge">BASE ÁGUA</span>
         </div>
         <div class="seller-body">
-          <div class="seller-name">Esmalte Ecológico Base Água</div>
+          <div class="seller-name">Tinta Esmalte Ecológico Base Água</div>
           <div class="seller-desc">Baixíssimo odor e excelente cobertura. Uso interno e externo. 32 cores disponíveis.</div>
+          <div class="seller-variant-tag">🎨 32 cores</div>
           <span class="seller-price-from">900ml branca — a partir de</span>
           <div class="seller-price">R$ 29<small>,90</small></div>
-          <div class="seller-price-detail">Cor branca, claras, médias e fortes — preço varia por cor</div>
+          <div class="seller-price-detail">900ml branca R$ 29,90 · 3,6L branca R$ 89,90 · 18L branca R$ 399,90<br>Cores claras, médias e fortes — preço varia por cor</div>
           <div class="seller-actions">
             <a href="produto.html?id=esmalte-ecologico" class="seller-view">Ver produto completo →</a>
-            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Esmalte Ecológico Base Água Laet.','_blank')">💬 Quero esse produto</button>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar a Tinta Esmalte Ecológico Base Água Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
@@ -739,40 +759,61 @@
         </div>
       </div>
 
-      <!-- Rolo Poliéster 15cm -->
+      <!-- Rolo Poliéster Preto -->
       <div class="seller-card">
         <div class="seller-img">
-          <img src="images/ferramentas/rolo-poliester-15cm.png" alt="Rolo Poliéster Preto 15cm Laet">
+          <img src="images/ferramentas/rolo-poliester-15cm.png" alt="Rolo Poliéster Preto Laet">
           <span class="seller-badge">CABO EMBUTIDO</span>
         </div>
         <div class="seller-body">
-          <div class="seller-name">Rolo Poliéster Preto 15cm</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
+          <div class="seller-name">Rolo Poliéster Preto</div>
           <div class="seller-desc">Já vem com cabo embutido, pronto pra usar.</div>
-          <span class="seller-price-from">por apenas</span>
-          <div class="seller-price">R$ 7<small>,99</small></div>
-          <div class="seller-price-detail">Cabo embutido — não precisa comprar separado</div>
+          <span class="seller-price-from">a partir de</span>
+          <div class="seller-price">R$ 5<small>,99</small></div>
+          <div class="seller-price-detail">9cm R$ 5,99 · 15cm R$ 7,99</div>
           <div class="seller-actions">
-            <a href="produto.html?id=rolo-poliester-15cm" class="seller-view">Ver produto completo →</a>
-            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Rolo Poliéster Preto 15cm Laet.','_blank')">💬 Quero esse produto</button>
+            <a href="produto.html?id=rolo-poliester" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Rolo Poliéster Preto Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
 
-      <!-- Rolo Poliéster 9cm -->
+      <!-- Rolo Anti-Respingo Completo -->
       <div class="seller-card">
         <div class="seller-img">
-          <img src="images/ferramentas/rolo-poliester-9cm.png" alt="Rolo Poliéster Preto 9cm Laet">
-          <span class="seller-badge">CABO EMBUTIDO</span>
+          <img src="images/ferramentas/rolo-anti-respingo-15cm.png" alt="Rolo Anti-Respingo Completo Laet">
+          <span class="seller-badge">2 TAMANHOS</span>
         </div>
         <div class="seller-body">
-          <div class="seller-name">Rolo Poliéster Preto 9cm</div>
-          <div class="seller-desc">Já vem com cabo embutido, pronto pra usar.</div>
-          <span class="seller-price-from">por apenas</span>
-          <div class="seller-price">R$ 5<small>,99</small></div>
-          <div class="seller-price-detail">Cabo embutido — não precisa comprar separado</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
+          <div class="seller-name">Rolo Anti-Respingo (Completo)</div>
+          <div class="seller-desc">Já vem com cabo, pronto pra usar. Reduz bastante os respingos.</div>
+          <span class="seller-price-from">a partir de</span>
+          <div class="seller-price">R$ 5<small>,90</small></div>
+          <div class="seller-price-detail">9cm R$ 5,90 · 15cm R$ 7,90</div>
           <div class="seller-actions">
-            <a href="produto.html?id=rolo-poliester-9cm" class="seller-view">Ver produto completo →</a>
-            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Rolo Poliéster Preto 9cm Laet.','_blank')">💬 Quero esse produto</button>
+            <a href="produto.html?id=rolo-anti-respingo-completo" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Rolo Anti-Respingo Completo Laet.','_blank')">💬 Quero esse produto</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rolo de Espuma POP -->
+      <div class="seller-card">
+        <div class="seller-img">
+          <img src="images/ferramentas/rolo-espuma-pop.png" alt="Rolo de Espuma POP Laet">
+          <span class="seller-badge">CUSTO BAIXO</span>
+        </div>
+        <div class="seller-body">
+          <div class="seller-name">Rolo de Espuma POP</div>
+          <div class="seller-desc">23cm, opção econômica pra tintas à base de água.</div>
+          <span class="seller-price-from">por apenas</span>
+          <div class="seller-price">R$ 9<small>,90</small></div>
+          <div class="seller-price-detail">23cm</div>
+          <div class="seller-actions">
+            <a href="produto.html?id=rolo-espuma-pop" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Rolo de Espuma POP Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
@@ -796,6 +837,44 @@
         </div>
       </div>
 
+      <!-- Lona Preta -->
+      <div class="seller-card">
+        <div class="seller-img">
+          <img src="images/ferramentas/lona-preta.png" alt="Lona Preta Laet">
+          <span class="seller-badge">PROTEÇÃO</span>
+        </div>
+        <div class="seller-body">
+          <div class="seller-name">Lona Preta</div>
+          <div class="seller-desc">1x4m, vendida por metro. Protege móveis e piso na hora de pintar.</div>
+          <span class="seller-price-from">o metro — a partir de</span>
+          <div class="seller-price">R$ 5<small>,00</small></div>
+          <div class="seller-price-detail">Medida 1x4m</div>
+          <div class="seller-actions">
+            <a href="produto.html?id=lona-preta" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Lona Preta Laet.','_blank')">💬 Quero esse produto</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Papelão Protege-Piso -->
+      <div class="seller-card">
+        <div class="seller-img">
+          <img src="images/ferramentas/papelao-protege-piso.png" alt="Papelão Protege-Piso Laet">
+          <span class="seller-badge">PROTEÇÃO</span>
+        </div>
+        <div class="seller-body">
+          <div class="seller-name">Papelão Protege-Piso</div>
+          <div class="seller-desc">1x1,20m, vendido por metro. Prático pra proteger o piso na hora de pintar.</div>
+          <span class="seller-price-from">o metro — a partir de</span>
+          <div class="seller-price">R$ 4<small>,50</small></div>
+          <div class="seller-price-detail">Medida 1x1,20m</div>
+          <div class="seller-actions">
+            <a href="produto.html?id=papelao-protege-piso" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Papelão Protege-Piso Laet.','_blank')">💬 Quero esse produto</button>
+          </div>
+        </div>
+      </div>
+
       <!-- Trincha -->
       <div class="seller-card">
         <div class="seller-img">
@@ -803,6 +882,7 @@
           <span class="seller-badge">VÁRIOS TAMANHOS</span>
         </div>
         <div class="seller-body">
+          <div class="seller-variant-tag">📏 3 tamanhos</div>
           <div class="seller-name">Trincha</div>
           <div class="seller-desc">3 tamanhos: 2, 3 e 4 polegadas.</div>
           <span class="seller-price-from">a partir de</span>
@@ -824,6 +904,7 @@
         <div class="seller-body">
           <div class="seller-name">Aguarrás</div>
           <div class="seller-desc">Diluição e limpeza de pincéis, rolos e ferramentas.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 19<small>,90</small></div>
           <div class="seller-price-detail">900ml R$ 19,90 · 5L R$ 89,90</div>
@@ -843,6 +924,7 @@
         <div class="seller-body">
           <div class="seller-name">Thinner</div>
           <div class="seller-desc">Diluição e limpeza de pincéis, rolos e ferramentas.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 19<small>,90</small></div>
           <div class="seller-price-detail">900ml R$ 19,90 · 5L R$ 89,90</div>
@@ -860,6 +942,7 @@
           <span class="seller-badge">VÁRIAS CORES</span>
         </div>
         <div class="seller-body">
+          <div class="seller-variant-tag">🎨 13 cores</div>
           <div class="seller-name">Tinta Spray</div>
           <div class="seller-desc">Várias cores e acabamentos — fosco, brilho e metálico.</div>
           <span class="seller-price-from">a partir de</span>
@@ -879,6 +962,7 @@
           <span class="seller-badge">2 OU 3 METROS</span>
         </div>
         <div class="seller-body">
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <div class="seller-name">Extensor para Rolo</div>
           <div class="seller-desc">Alcança tetos e paredes altas sem escada.</div>
           <span class="seller-price-from">a partir de</span>
@@ -963,6 +1047,26 @@
           <div class="seller-actions">
             <a href="produto.html?id=pad-pintura" class="seller-view">Ver produto completo →</a>
             <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Pad de Pintura Laet.','_blank')">💬 Quero esse produto</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fita Crepe -->
+      <div class="seller-card">
+        <div class="seller-img">
+          <img src="images/ferramentas/fita-crepe-g.png" alt="Fita Crepe Laet">
+          <span class="seller-badge">2 TAMANHOS</span>
+        </div>
+        <div class="seller-body">
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
+          <div class="seller-name">Fita Crepe</div>
+          <div class="seller-desc">Pra proteger cantos, rodapés e acabamentos durante a pintura.</div>
+          <span class="seller-price-from">a partir de</span>
+          <div class="seller-price">R$ 6<small>,90</small></div>
+          <div class="seller-price-detail">M R$ 6,90 · G R$ 12,90</div>
+          <div class="seller-actions">
+            <a href="produto.html?id=fita-crepe" class="seller-view">Ver produto completo →</a>
+            <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Fita Crepe Laet.','_blank')">💬 Quero esse produto</button>
           </div>
         </div>
       </div>
