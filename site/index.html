@@ -159,6 +159,7 @@
     .seller-btn:hover { filter: brightness(1.15); }
     .seller-desc { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 10px; }
     .seller-price-detail { font-size: 11px; color: #999; margin-bottom: 12px; line-height: 1.6; }
+    .seller-variant-tag { display: inline-flex; align-items: center; gap: 4px; background: rgba(13,71,161,.08); color: var(--blue); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; padding: 4px 10px; border-radius: 100px; margin-bottom: 8px; }
     .seller-price small { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; vertical-align: super; line-height: 0; }
     .seller-img-empty { height: 148px; background: linear-gradient(135deg, #f0f2f5, #e5e9f0); display: flex; align-items: center; justify-content: center; font-size: 40px; }
     .sellers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
@@ -567,12 +568,12 @@
       <a href="produtos.html#cat-economicas" class="surface-card">
         <div class="surface-icon" style="background:rgba(46,125,50,.1)">🏷️</div>
         <div class="surface-name">Tintas Econômicas</div>
-        <div class="surface-sub">Látex, vinil, standard</div>
+        <div class="surface-sub">Látex, vinil, profissional</div>
       </a>
-      <a href="produtos.html#cat-premium" class="surface-card">
+      <a href="produtos.html#cat-alta-qualidade" class="surface-card">
         <div class="surface-icon" style="background:rgba(255,193,7,.15)">⭐</div>
-        <div class="surface-name">Tintas Premium</div>
-        <div class="surface-sub">Lavável, acrílica, emborrachada</div>
+        <div class="surface-name">Tintas Alta Qualidade</div>
+        <div class="surface-sub">Standard, lavável, emborrachada</div>
       </a>
       <a href="produtos.html#cat-texturizados" class="surface-card">
         <div class="surface-icon" style="background:rgba(103,58,183,.1)">🎨</div>
@@ -587,7 +588,7 @@
       <a href="produtos.html#cat-esmaltes" class="surface-card">
         <div class="surface-icon" style="background:rgba(0,150,136,.1)">✨</div>
         <div class="surface-name">Esmaltes</div>
-        <div class="surface-sub">Brilhante, acetinado, sintético</div>
+        <div class="surface-sub">Brilhante, acetinado</div>
       </a>
       <a href="produtos.html#cat-ferramentas" class="surface-card">
         <div class="surface-icon" style="background:rgba(230,81,0,.1)">🛠️</div>
@@ -675,6 +676,7 @@
           <div class="seller-urgent">🔥 Mais pedida da semana</div>
           <div class="seller-name">Tinta Emborrachada</div>
           <div class="seller-desc">Líquido que vira borracha. Protege contra sol, chuva e microfissuras.</div>
+          <div class="seller-variant-tag">🎨 111 cores</div>
           <span class="seller-price-from">balde 18L — a partir de</span>
           <div class="seller-price">R$ 399<small>,90</small></div>
           <div class="seller-price-detail">Branca R$ 399,90 · Cores médias R$ 449,90<br>Também em 3,6L a partir de R$ 99,90</div>
@@ -694,6 +696,7 @@
         <div class="seller-body">
           <div class="seller-name">Tinta Piso e Fachada Premium</div>
           <div class="seller-desc">Alta resistência a tráfego e intempéries. Anti-mofo, lavável e super aderente.</div>
+          <div class="seller-variant-tag">🎨 13 cores</div>
           <span class="seller-price-from">balde — a partir de</span>
           <div class="seller-price">R$ 219<small>,90</small></div>
           <div class="seller-price-detail">18L cores R$ 219,90 · 18L branca R$ 299,90<br>Também em 3,6L a partir de R$ 59,90</div>
@@ -713,6 +716,7 @@
         <div class="seller-body">
           <div class="seller-name">Massa Corrida</div>
           <div class="seller-desc">Lixamento fácil, acabamento de alto nível. Anti-mofo e odor quase zero.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 37<small>,90</small></div>
           <div class="seller-price-detail">Saco R$ 37,90 · Barrica 23kg R$ 45,90</div>
@@ -733,6 +737,7 @@
           <div class="seller-urgent">⚡ Melhor custo-benefício</div>
           <div class="seller-name">Tinta Super Profissional</div>
           <div class="seller-desc">Acrílica super profissional. Até 300m² por demão. Anti-mofo e baixíssimo odor.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">balde 18L — a partir de</span>
           <div class="seller-price">R$ 139<small>,90</small></div>
           <div class="seller-anchor">Concorrente: R$ 189,00+</div>
@@ -754,6 +759,7 @@
         <div class="seller-body">
           <div class="seller-name">Tinta Direto no Gesso</div>
           <div class="seller-desc">Vai direto no gesso e drywall sem precisar de fundo preparado. Sem cheiro forte e anti-mofo.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">balde 18L — a partir de</span>
           <div class="seller-price">R$ 179<small>,90</small></div>
           <div class="seller-price-detail">18L branca R$ 179,90 · 18L cores R$ 189,90<br>Também em 3,6L a partir de R$ 49,90</div>
@@ -773,6 +779,7 @@
         <div class="seller-body">
           <div class="seller-name">Tinta 1ª Linha Standard</div>
           <div class="seller-desc">Concentrada, pode ser diluída em até 20%. Para dentro e fora de casa.</div>
+          <div class="seller-variant-tag">🎨 +100 cores</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 219<small>,90</small></div>
           <div class="seller-price-detail">18L branca R$ 219,90 · 17L cores R$ 229,90 (a partir)<br>Também em 3,6L a partir de R$ 59,90</div>
@@ -789,6 +796,7 @@
           <img src="images/embalagens/vinil-remove-bg-io.png" alt="Latex Vinil Laet">
         </div>
         <div class="seller-body">
+          <div class="seller-variant-tag">🎨 18 cores</div>
           <div class="seller-name">Latex Vinil 18L</div>
           <div class="seller-desc">Tinta básica e econômica para uso interno. Veja as recomendações de uso antes de comprar.</div>
           <span class="seller-price-from">a partir de</span>
@@ -810,6 +818,7 @@
         <div class="seller-body">
           <div class="seller-name">Tinta Premium Lavável</div>
           <div class="seller-desc">Mega qualidade, excelente cobertura. Anti-mofo e anti-fungos. Limpa com facilidade.</div>
+          <div class="seller-variant-tag">🎨 111 cores</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 299<small>,90</small></div>
           <div class="seller-price-detail">18L branca R$ 299,90 · Balde cores R$ 319,90 (a partir)<br>Também em 3,6L R$ 79,90 e 900ml R$ 29,90</div>
@@ -848,6 +857,7 @@
         <div class="seller-body">
           <div class="seller-name">Massa Acrílica</div>
           <div class="seller-desc">Fácil de lixar, qualidade excelente. Para uso interno e externo, anti-mofo e baixíssimo odor.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">a partir de</span>
           <div class="seller-price">R$ 69<small>,90</small></div>
           <div class="seller-price-detail">Saco R$ 69,90 · Barrica 23kg R$ 77,90</div>
@@ -867,6 +877,7 @@
         <div class="seller-body">
           <div class="seller-name">Tinta Epóxi Base Água</div>
           <div class="seller-desc">Renove sem quebrar. Secagem rápida, alta resistência e totalmente lavável.</div>
+          <div class="seller-variant-tag">📏 2 tamanhos</div>
           <span class="seller-price-from">branca — a partir de</span>
           <div class="seller-price">R$ 35<small>,90</small></div>
           <div class="seller-price-detail">900ml R$ 35,90 · 3,6L R$ 129,90 — só branca, corante vendido separado</div>
@@ -886,6 +897,7 @@
         <div class="seller-body">
           <div class="seller-name">Efeito Cimento Queimado</div>
           <div class="seller-desc">Acabamento decorativo tipo cimento queimado. Uso interno e externo, 15 cores disponíveis.</div>
+          <div class="seller-variant-tag">🎨 15 cores</div>
           <span class="seller-price-from">5kg — a partir de</span>
           <div class="seller-price">R$ 69<small>,90</small></div>
           <div class="seller-price-detail">5kg a partir de R$ 69,90 · 25kg a partir de R$ 199,90</div>
