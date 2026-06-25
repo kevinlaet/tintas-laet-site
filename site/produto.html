@@ -1115,6 +1115,26 @@ const produtos = {
     preco_from: 'R$ 12<small>,90</small>',
     wa: 'Olá! Quero comprar a Desempenadeira de Aço 23cm Laet. Pode me passar mais informações?'
   },
+  'desempenadeira-inox': {
+    nome: 'Desempenadeira Decorativa INOX',
+    categoria: 'Ferramentas',
+    badge: '2 MODELOS',
+    imagens: [
+      'images/ferramentas/desempenadeiras-de-inox.png',
+      'images/ferramentas/desempenadeira-trapezio-inox.png',
+      'images/ferramentas/desempenadeira-retangular-inox.png',
+      'images/ferramentas/usando-desempenadeira-inox.png',
+    ],
+    desc_curta: 'Desempenadeira decorativa INOX com cabo ergonômico. Ideal para cimento queimado e texturas decorativas. Disponível em Trapézio e Retangular.',
+    descricao: 'Desempenadeira Decorativa INOX Laet, com cabo ergonômico de borracha e lâmina de aço inox polido. Perfeita para aplicar cimento queimado, massas decorativas e outros acabamentos diferenciados. Disponível em dois modelos: Trapézio (ideal para superfícies grandes) e Retangular.',
+    beneficios: ['Lâmina em aço inox polido', 'Cabo ergonômico antiderrapante', 'Ideal para cimento queimado e texturas decorativas', '2 modelos: Trapézio e Retangular'],
+    precos: [
+      { desc: 'Retangular', valor: 'R$ 54,90' },
+      { desc: 'Trapézio', valor: 'R$ 59,90' },
+    ],
+    preco_from: 'R$ 54<small>,90</small>',
+    wa: 'Olá! Quero comprar a Desempenadeira Decorativa INOX Laet. Pode me passar mais informações?'
+  },
   'desempenadeira-pvc-grafiato': {
     nome: 'Desempenadeira PVC 23cm (Grafiato)',
     categoria: 'Ferramentas',
@@ -1270,7 +1290,8 @@ const upsellMap = {
   'premium-lavavel': ['kit-pintura'],
   'massa-corrida': ['desempenadeira-aco'],
   'massa-acrilica': ['desempenadeira-aco'],
-  'efeito-cimento-queimado': ['espatula-silicone'],
+  'efeito-cimento-queimado': ['desempenadeira-inox', 'espatula-silicone'],
+  'desempenadeira-inox': ['efeito-cimento-queimado'],
   'espatula-silicone': ['efeito-cimento-queimado'],
   'textura-lisa': ['desempenadeira-aco'],
   'textura-design': ['desempenadeira-aco'],
