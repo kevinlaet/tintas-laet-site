@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — Teaser 5ª Loja</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#000;
+  display:flex; flex-direction:column; align-items:center;
+  gap:56px; padding:56px 0;
+  font-family:'Montserrat',sans-serif;
+}
+
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; flex-shrink:0; }
+
+/* ── fundo escuro com textura de ruído ── */
+.bg-dark {
+  position:absolute; inset:0; z-index:0;
+  background: radial-gradient(ellipse 120% 80% at 50% 20%, #0D2857 0%, #062B63 40%, #020A18 100%);
+}
+.bg-dark::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.18) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,.10) 1px, transparent 1px);
+  background-size: 80px 80px, 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+.bg-dark::after {
+  content:'';
+  position:absolute; left:-200px; top:30%; width:1500px; height:2px;
+  background:linear-gradient(90deg, transparent, rgba(255,193,7,.15), rgba(255,193,7,.35), rgba(255,193,7,.15), transparent);
+  transform:rotate(-8deg);
+}
+
+/* ── fundo de foto desfocada ── */
+.bg-foto {
+  position:absolute; inset:0; z-index:0;
+}
+.bg-foto img {
+  width:100%; height:100%;
+  object-fit:cover; object-position:center center;
+  filter: blur(18px) brightness(.45) saturate(1.2);
+  transform: scale(1.08);
+}
+
+/* overlay azul sobre a foto */
+.bg-foto::after {
+  content:'';
+  position:absolute; inset:0;
+  background: rgba(6,43,99,.55);
+}
+
+/* logo */
+.logo-wrap {
+  position:absolute; top:96px; left:0; right:0;
+  display:flex; justify-content:center; z-index:10;
+}
+.logo-wrap img { height:280px; object-fit:contain; filter:drop-shadow(0 4px 24px rgba(0,0,0,.7)); }
+
+/* rodapé */
+.bot {
+  position:absolute; bottom:64px; left:92px; right:92px;
+  display:flex; flex-direction:column; align-items:center; gap:14px; z-index:10;
+  text-align:center; border-top:1.5px solid rgba(255,255,255,.2); padding-top:24px;
+}
+.bot .hd { font:700 26px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.06em; }
+
+/* ──────────────────────────────
+   SLIDE 1 — O NÚMERO 5
+────────────────────────────── */
+.s1 .numeros {
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; z-index:5;
+  padding:0 80px; margin-top:60px;
+}
+.s1 .num {
+  font:400 540px/0.82 'Bebas Neue',sans-serif;
+  color:#FFC107;
+  letter-spacing:-0.02em;
+  text-shadow: 0 0 120px rgba(255,193,7,.3), 0 8px 48px rgba(0,0,0,.8);
+}
+.s1 .linha-abaixo {
+  margin-top:48px;
+  display:flex; flex-direction:column; align-items:center; gap:20px;
+}
+.s1 .tag {
+  font:700 22px/1 'Poppins',sans-serif;
+  color:rgba(255,255,255,.5);
+  letter-spacing:.28em;
+  text-transform:uppercase;
+}
+.s1 .titulo {
+  font:400 96px/1 'Bebas Neue',sans-serif;
+  color:#fff;
+  text-align:center;
+}
+.s1 .sub {
+  font:500 28px/1.5 'Poppins',sans-serif;
+  color:rgba(255,255,255,.65);
+  text-align:center;
+  max-width:680px;
+}
+
+
+/* ──────────────────────────────
+   SLIDE 2 — FOTO DESFOCADA
+────────────────────────────── */
+.s2 .corpo {
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; z-index:5;
+  padding:0 92px; text-align:center; gap:40px;
+  margin-top:40px;
+}
+.s2 .olho {
+  font:400 160px/1 'Bebas Neue',sans-serif;
+  color:rgba(255,193,7,.6);
+  letter-spacing:.1em;
+}
+.s2 .msg-principal {
+  font:400 108px/1.02 'Bebas Neue',sans-serif;
+  color:#fff;
+  letter-spacing:.01em;
+}
+.s2 .divisor {
+  width:80px; height:3px;
+  background:linear-gradient(90deg, transparent, #FFC107, transparent);
+  border-radius:2px;
+}
+.s2 .msg-detalhe {
+  font:500 30px/1.55 'Poppins',sans-serif;
+  color:rgba(255,255,255,.75);
+  max-width:740px;
+}
+.s2 .chip-local {
+  background:rgba(255,193,7,.15);
+  border:2px solid rgba(255,193,7,.5);
+  color:#FFC107;
+  font:700 26px/1 'Poppins',sans-serif;
+  padding:16px 44px;
+  border-radius:100px;
+  letter-spacing:.06em;
+  backdrop-filter:blur(8px);
+}
+
+/* ──────────────────────────────
+   SLIDE 3 — SEGUNDA-FEIRA
+────────────────────────────── */
+.s3 .corpo {
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; z-index:5;
+  padding:0 92px; text-align:center; gap:36px;
+  margin-top:40px;
+}
+.s3 .reticencias {
+  display:flex; gap:28px; align-items:center; justify-content:center;
+}
+.s3 .reticencias span {
+  width:26px; height:26px; border-radius:50%;
+  background:#FFC107; opacity:.7;
+  display:inline-block;
+  box-shadow:0 0 40px rgba(255,193,7,.3);
+}
+.s3 .msg-principal {
+  font:400 110px/1 'Bebas Neue',sans-serif;
+  color:#fff; letter-spacing:.01em;
+}
+.s3 .divisor {
+  width:80px; height:3px;
+  background:linear-gradient(90deg, transparent, #FFC107, transparent);
+  border-radius:2px;
+}
+.s3 .msg-quando {
+  font:600 32px/1.5 'Poppins',sans-serif;
+  color:rgba(255,255,255,.75); max-width:720px;
+}
+.s3 .chip-seg {
+  background:#FFC107; color:#062B63;
+  font:800 34px/1 'Poppins',sans-serif;
+  padding:16px 52px; border-radius:100px;
+  display:inline-block; transform:rotate(-1.5deg);
+  box-shadow:0 8px 40px rgba(255,193,7,.35);
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     SLIDE 1 — O NÚMERO 5 (postar de manhã)
+══════════════════════════════════════ -->
+<div class="slide s1">
+  <div class="bg-dark"></div>
+  <div class="logo-wrap">
+    <img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+  </div>
+  <div class="numeros">
+    <div class="num">5</div>
+    <div class="linha-abaixo">
+      <span class="tag">Tintas Laet</span>
+      <div class="titulo">TÁ CHEGANDO.</div>
+      <p class="sub">Alguma coisa grande tá acontecendo por aqui.</p>
+    </div>
+  </div>
+  <div class="bot">
+    <span class="hd">@Tintaslaet</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 2 — FOTO DESFOCADA (postar à tarde)
+     Precisa do arquivo: loja5-fachada.jpg nessa pasta
+══════════════════════════════════════ -->
+<div class="slide s2">
+  <div class="bg-foto">
+    <img src="loja5-fachada.jpg" alt="Em breve">
+  </div>
+  <div class="logo-wrap">
+    <img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+  </div>
+  <div class="corpo">
+    <svg width="100" height="70" viewBox="0 0 100 70" fill="none" style="opacity:.7;margin-bottom:-10px">
+    <ellipse cx="50" cy="35" rx="48" ry="30" stroke="#FFC107" stroke-width="4"/>
+    <circle cx="50" cy="35" r="14" fill="#FFC107" opacity=".9"/>
+    <circle cx="50" cy="35" r="7" fill="#062B63"/>
+  </svg>
+    <div class="msg-principal">VOCÊ CONHECE<br>ESSE LUGAR?</div>
+    <div class="divisor"></div>
+    <p class="msg-detalhe">Em breve esse espaço vai ser diferente — e vai atender mais gente da comunidade.</p>
+    <div class="chip-local">MAUÁ · SP</div>
+  </div>
+  <div class="bot">
+    <span class="hd">@Tintaslaet</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 3 — SEGUNDA-FEIRA (postar à noite)
+══════════════════════════════════════ -->
+<div class="slide s3">
+  <div class="bg-dark"></div>
+  <div class="logo-wrap">
+    <img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+  </div>
+  <div class="corpo">
+    <div class="reticencias"><span></span><span></span><span></span></div>
+    <div class="msg-principal">NÃO POSSO<br>CONTAR AINDA.</div>
+    <div class="divisor"></div>
+    <p class="msg-quando">Mas terça-feira tem uma novidade oficial — e vai mudar algo em Mauá.</p>
+    <div class="chip-seg">Segunda-feira</div>
+  </div>
+  <div class="bot">
+    <span class="hd">@Tintaslaet</span>
+  </div>
+</div>
+
+</body>
+</html>

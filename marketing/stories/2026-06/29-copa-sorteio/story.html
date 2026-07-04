@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — Stories Copa + Sorteio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#020A18;
+  display:flex; flex-direction:column; align-items:center;
+  gap:56px; padding:56px 0;
+  font-family:'Montserrat',sans-serif;
+}
+
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; flex-shrink:0; }
+
+.bg { position:absolute; inset:0; z-index:0; }
+.bg img { width:100%; height:100%; object-fit:cover; object-position:center 40%; }
+
+.topscrim { position:absolute; left:0; right:0; top:0; height:46%; z-index:3; pointer-events:none;
+  background:linear-gradient(180deg, rgba(245,236,215,.92) 0%, rgba(245,236,215,.78) 55%, rgba(245,236,215,0) 100%); }
+
+.top { position:absolute; top:220px; left:0; right:0; display:flex; flex-direction:column; align-items:center; z-index:10; padding:0 92px; text-align:center; }
+.top img { height:380px; object-fit:contain; margin-bottom:30px; }
+.ey { font:800 26px/1 'Poppins',sans-serif; letter-spacing:.22em; text-transform:uppercase; margin-bottom:24px; display:flex; align-items:center; gap:18px; }
+.ey.copa { color:#009739; }
+.ey.copa::before,.ey.copa::after { content:''; width:38px; height:3px; background:rgba(0,151,57,.5); display:block; }
+.ey.sorteio { color:#0D47A1; }
+.ey.sorteio::before,.ey.sorteio::after { content:''; width:38px; height:3px; background:rgba(13,71,161,.5); display:block; }
+
+h1 { font:400 96px/1.05 'Bebas Neue',sans-serif; color:#062B63; letter-spacing:.005em; }
+h1 .chip { background:#FFC107; color:#062B63; padding:4px 28px; border-radius:16px; display:inline-block; transform:rotate(-2deg); margin-top:8px; }
+h1 .chip.verde { background:#009739; color:#fff; }
+
+.scrim { position:absolute; left:0; right:0; bottom:0; height:62%; z-index:4; pointer-events:none;
+  background:linear-gradient(180deg, rgba(4,16,35,0) 0%, rgba(4,16,35,.5) 36%, rgba(4,16,35,.85) 64%, rgba(2,10,24,.97) 100%); }
+
+/* slide 2: scrim sobe mais alto pra eliminar faixa preta no meio */
+.s2 .scrim { height:80%; background:linear-gradient(180deg, rgba(4,16,35,0) 0%, rgba(4,16,35,.4) 20%, rgba(4,16,35,.82) 55%, rgba(2,10,24,1) 100%); }
+/* slide 2: título e eyebrow em branco pra contrastar com a foto */
+.s2 h1 { color:#fff; text-shadow:0 2px 16px rgba(0,0,0,.6); }
+.s2 .ey.sorteio { color:#fff; }
+.s2 .ey.sorteio::before,.s2 .ey.sorteio::after { background:rgba(255,255,255,.5); }
+
+.cc { position:absolute; left:0; right:0; bottom:300px; z-index:8; display:flex; flex-direction:column; align-items:center; padding:0 92px; }
+.cc .tg { font:600 38px/1.4 'Poppins',sans-serif; color:#fff; max-width:780px; text-align:center; margin-bottom:26px; text-shadow:0 2px 16px rgba(0,0,0,.7); }
+.cc .body { font:500 32px/1.45 'Poppins',sans-serif; color:#fff; max-width:780px; text-align:center; margin-bottom:30px; text-shadow:0 2px 16px rgba(0,0,0,.7); }
+
+.bullets { display:flex; flex-direction:column; gap:14px; width:100%; max-width:780px; }
+.bullet { display:flex; align-items:flex-start; gap:16px; background:rgba(255,255,255,.1); border:1.5px solid rgba(255,255,255,.25); border-radius:14px; padding:18px 24px; }
+.bico { width:28px; height:28px; flex-shrink:0; margin-top:2px; }
+.btx { font:700 20px/1.3 'Poppins',sans-serif; color:#fff; }
+
+.premio { background:rgba(255,193,7,.12); border:2px solid #FFC107; border-radius:18px; padding:24px 32px; text-align:center; max-width:780px; width:100%; }
+.premio .label { font:700 18px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px; }
+.premio .nome { font:400 52px/1 'Bebas Neue',sans-serif; color:#fff; }
+
+.bot { position:absolute; bottom:64px; left:92px; right:92px; display:flex; flex-direction:column; align-items:center; gap:18px; z-index:10; text-align:center; border-top:1.5px solid rgba(255,255,255,.3); padding-top:24px; }
+.bot .tg { font:700 28px/1.4 'Poppins',sans-serif; color:#fff; max-width:780px; }
+.bot .hd { font:700 20px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.05em; }
+
+/* bandeirinhas Copa */
+.bandeirinhas { position:absolute; top:0; left:0; right:0; z-index:20; pointer-events:none; }
+.bandeirinhas svg { display:block; width:100%; }
+
+/* card translúcido atrás do título */
+.titulo-box { background:rgba(245,236,215,.82); border-radius:28px; padding:28px 52px; backdrop-filter:blur(6px); display:flex; flex-direction:column; align-items:center; }
+
+/* estrelas pentacampeão */
+.estrelas { display:flex; gap:16px; justify-content:center; margin-bottom:14px; }
+.estrelas svg { width:36px; height:36px; }
+
+/* bola decorativa */
+.bola-deco { position:absolute; top:580px; right:-60px; z-index:6; opacity:.18; }
+.bola-deco svg { width:380px; height:380px; }
+
+/* faixa diagonal verde no canto inferior esquerdo */
+.faixa-copa { position:absolute; bottom:220px; left:0; z-index:6; opacity:.22; }
+.faixa-copa svg { width:220px; height:220px; }
+
+/* "#BoraBrasil" — fica abaixo do texto no scrim escuro */
+.bora { font:800 38px/1 'Poppins',sans-serif; color:#4ADE80; letter-spacing:.04em; margin-top:16px; text-shadow:0 2px 14px rgba(0,0,0,.6); }
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     SLIDE 1 — COPA + LAET ABERTA
+══════════════════════════════════ -->
+<div class="slide s1">
+  <!-- bandeirinhas Copa verde e amarela -->
+  <div class="bandeirinhas">
+    <svg viewBox="0 0 1080 210" xmlns="http://www.w3.org/2000/svg">
+      <!-- corda -->
+      <path d="M0,52 Q45,44 90,52 Q135,60 180,52 Q225,44 270,52 Q315,60 360,52 Q405,44 450,52 Q495,60 540,52 Q585,44 630,52 Q675,60 720,52 Q765,44 810,52 Q855,60 900,52 Q945,44 990,52 Q1035,60 1080,52" stroke="#7B5C00" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <!-- 12 bandeirinhas alternando verde e amarelo -->
+      <polygon points="0,52 90,52 45,195"   fill="#009739"/>
+      <polygon points="90,52 180,52 135,195"  fill="#FFC107"/>
+      <polygon points="180,52 270,52 225,195" fill="#009739"/>
+      <polygon points="270,52 360,52 315,195" fill="#FFC107"/>
+      <polygon points="360,52 450,52 405,195" fill="#009739"/>
+      <polygon points="450,52 540,52 495,195" fill="#FFC107"/>
+      <polygon points="540,52 630,52 585,195" fill="#009739"/>
+      <polygon points="630,52 720,52 675,195" fill="#FFC107"/>
+      <polygon points="720,52 810,52 765,195" fill="#009739"/>
+      <polygon points="810,52 900,52 855,195" fill="#FFC107"/>
+      <polygon points="900,52 990,52 945,195" fill="#009739"/>
+      <polygon points="990,52 1080,52 1035,195" fill="#FFC107"/>
+    </svg>
+  </div>
+  <div class="bg"><img src="../../../../site/images/lojas/loja-1-interior1.png" alt="Interior da loja Tintas Laet"></div>
+  <div class="topscrim"></div>
+
+  <!-- bola decorativa de fundo -->
+  <div class="bola-deco">
+    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="95" stroke="#009739" stroke-width="4"/>
+      <polygon points="100,18 115,60 158,60 124,85 137,128 100,103 63,128 76,85 42,60 85,60" fill="#009739"/>
+      <circle cx="100" cy="100" r="22" fill="#009739"/>
+      <line x1="100" y1="5" x2="100" y2="195" stroke="#009739" stroke-width="2" stroke-dasharray="8 6"/>
+      <line x1="5" y1="100" x2="195" y2="100" stroke="#009739" stroke-width="2" stroke-dasharray="8 6"/>
+      <ellipse cx="100" cy="100" rx="60" ry="95" stroke="#009739" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="top">
+    <img src="../../../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
+    <div class="titulo-box">
+      <!-- 5 estrelas — pentacampeão -->
+      <div class="estrelas">
+        <svg viewBox="0 0 24 24" fill="#FFC107"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#FFC107"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#FFC107"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#FFC107"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#FFC107"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="ey copa">Copa do Mundo 2026</div>
+      <h1>JOGO DO<br><span class="chip verde">BRASIL HOJE</span></h1>
+    </div>
+  </div>
+
+  <div class="scrim"></div>
+
+  <div class="cc">
+    <p class="tg">A Laet tá aberta antes do apito inicial.</p>
+    <p class="body">Passa na loja, resolve a sua tinta e ainda concorre ao nosso sorteio — tudo antes do jogo começar!</p>
+    <div class="bora">#BoraBrasil</div>
+  </div>
+
+  <div class="bot">
+    <p class="tg">Vem antes do jogo!</p>
+    <span class="hd">@Tintaslaet</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 2 — GANCHO SORTEIO
+══════════════════════════════════ -->
+<div class="slide s2">
+  <div class="bg"><img src="../../../prova%20social/ganhador-caixa-de-som.jpg.jfif" alt="Ganhador da Caixa de Som Mondial 250W Tintas Laet"></div>
+  <div class="topscrim"></div>
+
+  <div class="top">
+    <img src="../../../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
+    <div class="ey sorteio">Última semana</div>
+    <h1>AINDA DÁ<br><span class="chip">TEMPO!</span></h1>
+  </div>
+
+  <div class="scrim"></div>
+
+  <div class="cc">
+    <div class="premio">
+      <div class="label">Prêmio principal</div>
+      <div class="nome">Caixa de Som Mondial 250W</div>
+    </div>
+    <p class="body" style="margin-top:28px;">Qualquer compra na Laet + cupom = você já tá concorrendo. Participação até sábado!</p>
+    <div class="bullets">
+      <div class="bullet">
+        <svg class="bico" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+        <div class="btx">Compra qualquer valor na loja</div>
+      </div>
+      <div class="bullet">
+        <svg class="bico" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+        <div class="btx">Pega o cupom — loja física ou site</div>
+      </div>
+      <div class="bullet">
+        <svg class="bico" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+        <div class="btx">Indica até 10 amigos e multiplica as chances</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bot">
+    <p class="tg">Sorteio ao vivo na segunda, 06/07</p>
+    <span class="hd">@Tintaslaet</span>
+  </div>
+</div>
+
+</body>
+</html>

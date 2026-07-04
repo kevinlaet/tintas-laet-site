@@ -99,10 +99,10 @@ Vocabulário de layout — cada slide tem um nome. Variar entre eles pra criar r
 - **DUO** — texto em cima (kicker + h2 + régua + p) + 2 fotos lado a lado embaixo (ou 1 foto larga)
 - **NÚMERO** — numeral gigante (200-320px, weight 800, cor de destaque) como elemento gráfico + h2 + parágrafo de apoio
 - **CITAÇÃO** — aspas grandes em watermark + frase em h2 + atribuição
-- **CTA FINAL** — fundo na cor de destaque, logo centralizado, headline curta, botão/CTA, telefone/@handle
+- **CTA FINAL** — fundo **azul** (cor principal da marca, nunca amarelo sólido), logo centralizado, headline curta, botão/CTA, telefone/@handle. Amarelo entra só como elemento de destaque (número de telefone, ícone, borda, chip) — nunca como cor de fundo. Vale pra toda peça nova daqui pra frente, sem exceção de "variar pra não repetir fundo".
 - **TIPO IMPACTO** — título gigante ocupando a peça inteira como elemento gráfico (estilo arquitetônico, não só texto informativo) — fundo sólido ou foto discreta atrás, tipografia é o protagonista do slide. Usar em peças de declaração/destaque, não em todo slide
 
-**Ritmo de slide a slide:** alternar fundo escuro ↔ claro ↔ destaque. Nunca dois slides seguidos com o mesmo fundo.
+**Ritmo de slide a slide:** alternar fundo escuro ↔ claro ↔ destaque. Nunca dois slides seguidos com o mesmo fundo — exceto o slide final, que é sempre azul (ver `CTA FINAL` acima) independente do que vier antes; se o slide anterior já for azul, variar a tonalidade/textura, não trocar pra amarelo sólido.
 
 ---
 
@@ -125,6 +125,10 @@ Antes de definir a capa, considerar a **última capa publicada** pra alternar:
 
 Se o usuário não souber qual foi a última, perguntar.
 
+### Quando o gancho usa uma dor/reclamação negativa
+
+Se o carrossel abre com uma reclamação real (ex: "comprei uma tinta que fedia"), o termo negativo só aparece no **slide 1** (capa/gancho) — sempre atribuído a "outra marca"/"outro produto", nunca à Laet (ver regra de claims abaixo). **Do slide 2 em diante, é só afirmação positiva da Laet** — não repetir a palavra negativa nem perto da foto/logo do produto, mesmo que seja pra "explicar a causa" com precisão técnica. Motivo: repetir o termo negativo logo abaixo da foto do produto cria associação indesejada entre a marca e o problema.
+
 ### Linguagem (regra crítica)
 
 Seguir `_memoria/preferencias.md`. Em geral: frases naturais, sem jargão de marketing, sem corporativês. O público real raramente fala "ticket médio", "performance", "B2B". Falar como ele fala.
@@ -137,7 +141,7 @@ Ao terminar de renderizar os PNGs, gerar **automaticamente** a legenda do post e
 2. Contexto (1-2 frases sobre o conteúdo)
 3. CTA pra arrastar ("Arraste pro lado e confere")
 4. Bloco de oferta (diferenciais da empresa, contato)
-5. Hashtags (10-15 — público + nicho + local se aplicável)
+5. Hashtags (**máximo 5** no Instagram — público + nicho + local se aplicável; mais que isso é punido pelo algoritmo/passa por spam)
 
 ---
 
@@ -220,6 +224,16 @@ editorial quality
 NODE_PATH="<pasta-com-node_modules>/node_modules" node render.js
 ```
 
+**Importante:** além do `waitForTimeout` pra fontes, esperar o `img.decode()` de todas as `<img>` antes de tirar os screenshots (não só o evento `load`) — sem isso, slides com foto de fundo às vezes saem com uma faixa preta no lugar da imagem (bug de timing, já visto mais de uma vez). Padrão a copiar:
+```js
+await page.waitForTimeout(1000);
+await page.evaluate(async () => {
+  const imgs = Array.from(document.querySelectorAll('img'));
+  await Promise.all(imgs.map((img) => img.decode ? img.decode().catch(() => {}) : Promise.resolve()));
+});
+await page.waitForTimeout(1000);
+```
+
 3. Mostrar slide 1, 2 e o CTA final renderizados. Se aprovado, mostrar os intermediários.
 
 ### Passo 5 — Salvar e organizar
@@ -267,7 +281,7 @@ Se sim, chamar `/publicar-tema` com o mesmo tema.
 - Sempre gerar legenda automaticamente ao final, salvando em `legenda.md`
 - Fotos IA: sempre pedir aprovação antes de usar no carrossel
 - Fotos IA: prompts em inglês
-- Fotos IA: nunca gerar fotos de pessoas/rostos identificáveis
+- Fotos IA: pode gerar pessoas genéricas (clientes, atendentes) com rosto visível — não são pessoas reais identificáveis, só evitar nomes/rostos de indivíduos específicos reais
 - HTMLs: um único arquivo `carrossel.html` com todos os slides + `render.js` na mesma pasta. Inline CSS
 - Render: reutilizar `node_modules` quando possível (não rodar `npm install` em cada pasta)
 - Não repetir layout entre slides — usar variação visual

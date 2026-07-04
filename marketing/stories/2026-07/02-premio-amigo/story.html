@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — Prêmio do Amigo</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#020A18;
+  display:flex; flex-direction:column; align-items:center;
+  gap:56px; padding:56px 0;
+  font-family:'Montserrat',sans-serif;
+}
+
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; flex-shrink:0; }
+
+.bg { position:absolute; inset:0; z-index:0; }
+.bg img { width:100%; height:100%; object-fit:cover; object-position:center 25%; }
+
+.topscrim { position:absolute; left:0; right:0; top:0; height:46%; z-index:3; pointer-events:none;
+  background:linear-gradient(180deg, rgba(245,236,215,.92) 0%, rgba(245,236,215,.75) 55%, rgba(245,236,215,0) 100%); }
+
+.scrim { position:absolute; left:0; right:0; bottom:0; height:78%; z-index:4; pointer-events:none;
+  background:linear-gradient(180deg, rgba(4,16,35,0) 0%, rgba(4,16,35,.45) 22%, rgba(4,16,35,.88) 55%, rgba(2,10,24,1) 100%); }
+
+/* topo — padrão slide 2 */
+.top { position:absolute; top:96px; left:0; right:0; display:flex; flex-direction:column; align-items:center; z-index:10; padding:0 92px; text-align:center; }
+.top img.logo { height:280px; object-fit:contain; margin-bottom:24px; }
+
+/* topo — slide 1: logo pequeno no canto */
+.s1 .top { top:72px; left:72px; right:auto; padding:0; align-items:flex-start; }
+.s1 .top img.logo { height:110px; margin-bottom:0; filter:drop-shadow(0 2px 12px rgba(0,0,0,.5)); }
+
+/* rodapé */
+.bot { position:absolute; bottom:64px; left:92px; right:92px; display:flex; flex-direction:column; align-items:center; gap:18px; z-index:10; text-align:center; border-top:1.5px solid rgba(255,255,255,.3); padding-top:24px; }
+.bot .cta { font:800 34px/1.3 'Poppins',sans-serif; color:#fff; }
+.bot .hd { font:700 20px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.05em; }
+
+/* ── SLIDE 1 ── */
+.s1 .bg img { object-position:center 15%; }
+/* scrim mais forte pra dar contraste ao texto sem caixa */
+.s1 .scrim { height:72%; background:linear-gradient(180deg,
+  rgba(4,16,35,0) 0%, rgba(4,16,35,.55) 28%, rgba(4,16,35,.92) 58%, rgba(2,10,24,1) 100%); }
+
+.s1 .content { position:absolute; bottom:240px; left:0; right:0; z-index:10;
+  display:flex; flex-direction:column; align-items:flex-start; padding:0 80px; }
+
+.s1 .eyebrow { display:flex; align-items:center; gap:16px; margin-bottom:24px; }
+.s1 .eyebrow::before { content:''; width:48px; height:3px; background:#FFC107; display:block; border-radius:2px; }
+.s1 .eyebrow span { font:700 24px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.16em; text-transform:uppercase; }
+
+.s1 .t-branco { font:400 'Bebas Neue',sans-serif; font-size:120px; line-height:.9;
+  color:#fff; letter-spacing:.02em; text-shadow:0 4px 24px rgba(0,0,0,.6); }
+.s1 .t-amarelo { font:400 'Bebas Neue',sans-serif; font-size:180px; line-height:.85;
+  color:#FFC107; letter-spacing:.01em; text-shadow:0 0 60px rgba(255,193,7,.35), 0 6px 24px rgba(0,0,0,.6); }
+
+.s1 .separador { width:100%; height:2px; background:linear-gradient(90deg, #FFC107 0%, rgba(255,193,7,0) 100%);
+  margin:28px 0; border-radius:2px; }
+
+.s1 .premio-tag { display:flex; flex-direction:column; gap:6px; }
+.s1 .premio-tag .pt-label { font:700 22px/1 'Poppins',sans-serif; color:rgba(255,193,7,.8); letter-spacing:.1em; text-transform:uppercase; }
+.s1 .premio-tag .pt-nome { font:400 52px/1 'Bebas Neue',sans-serif; color:#fff; }
+.s1 .premio-tag .pt-obs { font:400 22px/1.3 'Poppins',sans-serif; color:rgba(255,255,255,.55); margin-top:4px; }
+
+/* ── SLIDE 2 ── */
+.s2 .bg img { object-position:center 30%; }
+.s2 .scrim { height:78%; background:linear-gradient(180deg,
+  rgba(4,16,35,0) 0%, rgba(4,16,35,.5) 24%, rgba(4,16,35,.92) 56%, rgba(2,10,24,1) 100%); }
+
+.s2 .content { position:absolute; bottom:230px; left:0; right:0; z-index:10;
+  display:flex; flex-direction:column; align-items:flex-start; padding:0 80px; gap:0; }
+
+.s2 .eyebrow { display:flex; align-items:center; gap:16px; margin-bottom:22px; }
+.s2 .eyebrow::before { content:''; width:48px; height:3px; background:#FFC107; display:block; border-radius:2px; }
+.s2 .eyebrow span { font:700 24px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.16em; text-transform:uppercase; }
+
+.s2 .titulo { font:800 68px/1.05 'Poppins',sans-serif; color:#fff;
+  text-shadow:0 4px 20px rgba(0,0,0,.6); margin-bottom:32px; }
+.s2 .titulo span { color:#FFC107; }
+
+.passos { display:flex; flex-direction:column; gap:16px; width:100%; }
+.passo { display:flex; align-items:flex-start; gap:22px; padding:4px 0; }
+.num { width:56px; height:56px; border-radius:50%; background:#FFC107; display:flex; align-items:center;
+  justify-content:center; flex-shrink:0; font:800 28px/1 'Poppins',sans-serif; color:#062B63; margin-top:2px; }
+.ptx { font:700 30px/1.3 'Poppins',sans-serif; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,.5); }
+.ptx small { display:block; font:400 22px/1.3 'Poppins',sans-serif; color:rgba(255,255,255,.6); margin-top:4px; }
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     SLIDE 1 — PRÊMIO DO AMIGO
+══════════════════════════════════ -->
+<div class="slide s1">
+  <div class="bg"><img src="../../../../marketing/banco-de-midia/amigos.png" alt="Dois amigos pintores Tintas Laet"></div>
+
+  <div class="top">
+    <img class="logo" src="../../../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
+  </div>
+
+  <div class="scrim"></div>
+
+  <div class="content">
+    <div class="eyebrow"><span>Sorteio Tintas Laet</span></div>
+    <div class="t-branco">INDICA UM</div>
+    <div class="t-branco">AMIGO</div>
+    <div class="t-amarelo">E ELE</div>
+    <div class="t-amarelo">PODE</div>
+    <div class="t-amarelo">GANHAR!</div>
+    <div class="separador"></div>
+    <div class="premio-tag">
+      <div class="pt-label">Prêmio do amigo indicado</div>
+      <div class="pt-nome">Tinta Cobertura Absoluta 3,6L Branca</div>
+      <div class="pt-obs">Sorteado entre os amigos de quem ganhar a caixa de som</div>
+    </div>
+  </div>
+
+  <div class="bot">
+    <p class="cta">Sorteio ao vivo na segunda, 06/07</p>
+    <span class="hd">@Tintaslaet</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 2 — COMO FUNCIONA
+══════════════════════════════════ -->
+<div class="slide s2">
+  <div class="bg"><img src="../../../prova%20social/loja-1-cheia.png" alt="Loja Tintas Laet cheia de clientes"></div>
+  <div class="topscrim"></div>
+
+  <div class="top">
+    <img class="logo" src="../../../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
+  </div>
+
+  <div class="scrim"></div>
+
+  <div class="content">
+    <div class="eyebrow"><span>Como funciona</span></div>
+    <div class="titulo">Como funciona<br><span>a indicação</span></div>
+    <div class="passos">
+      <div class="passo">
+        <div class="num">1</div>
+        <div class="ptx">Compra qualquer valor e pega o cupom<small>Na loja física ou no site</small></div>
+      </div>
+      <div class="passo">
+        <div class="num">2</div>
+        <div class="ptx">Indica até 10 amigos pelo cupom<small>Cada indicação aumenta suas chances</small></div>
+      </div>
+      <div class="passo">
+        <div class="num">3</div>
+        <div class="ptx">Se você ganhar, um amigo também leva!<small>Sorteado entre todos que você indicou</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bot">
+    <p class="cta">Sorteio ao vivo na segunda, 06/07</p>
+    <span class="hd">@Tintaslaet</span>
+  </div>
+</div>
+
+</body>
+</html>

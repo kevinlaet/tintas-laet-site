@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — Stories cores</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#020A18;
+  display:flex; flex-direction:column; align-items:center;
+  gap:56px; padding:56px 0;
+  font-family:'Montserrat',sans-serif;
+}
+
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; flex-shrink:0; background:#020A18; }
+
+.bg { position:absolute; inset:0; z-index:0; overflow:hidden; }
+.bg img { width:100%; height:100%; object-fit:cover; display:block; }
+
+/* leve escurecida geral pra texto sempre legível, sem esconder a foto */
+.dim { position:absolute; inset:0; z-index:2; background:rgba(2,10,24,.18); pointer-events:none; }
+
+/* tag/eyebrow discreta no canto, não compete com a foto */
+.tag { position:absolute; top:64px; left:64px; z-index:10; display:flex; align-items:center; gap:22px; }
+.tag img { height:150px; object-fit:contain; filter:drop-shadow(0 4px 12px rgba(0,0,0,.5)); }
+.tag span { font:800 22px/1 'Poppins',sans-serif; color:#fff; background:rgba(2,10,24,.55); border:1px solid rgba(255,255,255,.35); backdrop-filter:blur(6px); padding:16px 26px; border-radius:100px; letter-spacing:.14em; text-transform:uppercase; }
+
+/* scrim só no terço inferior, sobre pernas/chão da foto — não toca os rostos */
+.scrim { position:absolute; left:0; right:0; bottom:0; height:54%; z-index:4; pointer-events:none;
+  background:linear-gradient(180deg, rgba(4,16,35,0) 0%, rgba(4,16,35,.55) 32%, rgba(4,16,35,.9) 62%, rgba(2,10,24,.98) 100%); }
+
+.cc { position:absolute; left:0; right:0; bottom:0; z-index:10; display:flex; flex-direction:column; align-items:center; padding:0 80px 64px; text-align:center; }
+h1 { font:400 92px/1.05 'Bebas Neue',sans-serif; color:#fff; letter-spacing:.005em; margin-bottom:26px; }
+h1 .chip { background:#FFC107; color:#062B63; padding:6px 26px; border-radius:16px; display:inline-block; transform:rotate(-2deg); margin-top:8px; }
+.body { font:500 27px/1.5 'Poppins',sans-serif; color:rgba(255,255,255,.92); max-width:800px; margin-bottom:32px; }
+
+.cta { display:flex; flex-direction:column; align-items:center; gap:16px; width:100%; border-top:1.5px solid rgba(255,255,255,.25); padding-top:26px; }
+.cta .tg { font:700 31px/1.4 'Poppins',sans-serif; color:#fff; max-width:800px; }
+.cta .hd { font:700 22px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.05em; }
+
+/* ── caixa de WhatsApp (slide 2) ── */
+.ph { background:#FFC107; border-radius:26px; padding:30px 50px; display:flex; flex-direction:column; align-items:center; gap:6px; box-shadow:0 14px 50px rgba(0,0,0,.3); width:100%; max-width:740px; margin-bottom:28px; }
+.phl { font:700 15px/1 'Poppins',sans-serif; color:rgba(6,43,99,.65); letter-spacing:.2em; text-transform:uppercase; }
+.phn { font:400 76px/1.05 'Bebas Neue',sans-serif; color:#062B63; letter-spacing:.04em; }
+.phh { font:500 18px/1 'Poppins',sans-serif; color:rgba(6,43,99,.75); }
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     SLIDE 1 — ATENDIMENTO COM LEQUE DE CORES (foto real, plano geral)
+══════════════════════════════════ -->
+<div class="slide s1">
+  <div class="bg"><img src="../../../prova social/vendedor-e-cliente-loja1.png" alt="Atendente da Tintas Laet mostrando leque de cores pra cliente na loja" style="object-position:center 30%;"></div>
+  <div class="dim"></div>
+
+  <div class="tag">
+    <img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+    <span>Cartela de cores</span>
+  </div>
+
+  <div class="scrim"></div>
+
+  <div class="cc">
+    <h1>TEM A COR QUE A<br><span class="chip">SUA CASA TÁ PEDINDO</span></h1>
+    <p class="body">Dezenas de cores em todas as linhas — do clássico ao ousado, pra cada cômodo da casa.</p>
+    <div class="cta">
+      <p class="tg">Arrasta pra cima e descobre a sua 👆</p>
+      <span class="hd">@Tintaslaet</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 2 — ZOOM NO LEQUE + CTA WHATSAPP (mesma foto, outro enquadramento)
+══════════════════════════════════ -->
+<div class="slide s2">
+  <div class="bg"><img src="../../../prova social/vendedor-e-cliente-loja1.png" alt="Leque de cores da Tintas Laet em destaque" style="object-position:center 55%; transform:scale(1.35); transform-origin:center 55%;"></div>
+  <div class="dim"></div>
+
+  <div class="tag">
+    <img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+    <span>Vem escolher a sua</span>
+  </div>
+
+  <div class="scrim" style="height:66%;"></div>
+
+  <div class="cc">
+    <h1>CARTELA COMPLETA<br><span class="chip">NA LOJA E NO WHATS</span></h1>
+    <div class="ph">
+      <div class="phl">WhatsApp</div>
+      <div class="phn">(11) 97714-0964</div>
+      <div class="phh">Seg a sex 8h-18h · sáb 8h-14h</div>
+    </div>
+    <div class="cta" style="border-top:none; padding-top:0;">
+      <p class="tg">4 lojas — ABC e Zona Leste de SP</p>
+      <span class="hd">@Tintaslaet</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -39,7 +39,7 @@ Identificar a data de hoje e checar a tabela de "Datas comemorativas" em `calend
 
 - Dar 2-3 ideias de story pros próximos dias, variando tipo (não repetir o mesmo tipo dois dias seguidos)
 - Distinguir o que precisa de material das lojas (foto/vídeo bruto) do que pode ser feito só com arte/texto
-- Se o post de feed da semana já está definido, sugerir 1 story que reaproveite esse conteúdo (ex: bastidor da produção, prévia, repost com sticker de enquete)
+- **Padrão, não opção:** Kevin sempre amarra os stories do dia ao tema do post de feed (baixa frequência de criação, não cria pauta de story solta) — se o post de feed da semana já está definido, a sugestão default de story é reaproveitar esse conteúdo (ex: enquete/caixinha de pergunta sobre a mesma dor, bastidor da produção, prévia, repost com sticker)
 
 ### Passo 4 — Lembrete de pedido de material
 

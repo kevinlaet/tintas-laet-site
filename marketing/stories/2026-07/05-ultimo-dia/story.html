@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — Último Dia</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#020A18;
+  display:flex; flex-direction:column; align-items:center;
+  gap:56px; padding:56px 0;
+  font-family:'Montserrat',sans-serif;
+}
+
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; flex-shrink:0; }
+
+.bg { position:absolute; inset:0; z-index:0; }
+.bg img { width:100%; height:100%; object-fit:cover; }
+
+.topscrim { position:absolute; left:0; right:0; top:0; height:46%; z-index:3; pointer-events:none;
+  background:linear-gradient(180deg, rgba(245,236,215,.92) 0%, rgba(245,236,215,.75) 55%, rgba(245,236,215,0) 100%); }
+
+/* topo — padrão */
+.top { position:absolute; top:96px; left:0; right:0; display:flex; flex-direction:column; align-items:center; z-index:10; padding:0 92px; text-align:center; }
+.top img.logo { height:280px; object-fit:contain; margin-bottom:24px; }
+
+/* rodapé */
+.bot { position:absolute; bottom:64px; left:92px; right:92px; display:flex; flex-direction:column; align-items:center; gap:18px; z-index:10; text-align:center; border-top:1.5px solid rgba(255,255,255,.3); padding-top:24px; }
+.bot .cta { font:800 34px/1.3 'Poppins',sans-serif; color:#fff; }
+.bot .hd { font:700 20px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.05em; }
+
+/* ══════════════════════════════════
+   SLIDE 1 — MASCOTE COM CUPOM
+══════════════════════════════════ */
+
+/* fundo: creme em cima (funde o branco do mascote) → azul escuro embaixo */
+.s1 { background:linear-gradient(180deg, #F5ECE7 0%, #F5ECE7 42%, #062B63 62%, #020A18 100%); }
+
+/* logo pequeno canto superior esquerdo */
+.s1 .top { top:72px; left:72px; right:auto; padding:0; align-items:flex-start; }
+.s1 .top img.logo { height:110px; margin-bottom:0; }
+
+/* mascote centralizado, preenche a zona creme */
+.s1 .mascote-wrap { position:absolute; top:40px; left:50%; transform:translateX(-50%);
+  width:940px; z-index:5; }
+.s1 .mascote-wrap img { width:100%; display:block; }
+
+/* gradiente que sela a transição creme → azul sobre o mascote */
+.s1 .mid-fade { position:absolute; left:0; right:0; top:34%; height:28%; z-index:6; pointer-events:none;
+  background:linear-gradient(180deg, rgba(6,43,99,0) 0%, rgba(6,43,99,1) 100%); }
+
+/* conteúdo de texto — começa abaixo do mascote com margem pro acento do Ú */
+.s1 .content { position:absolute; top:1060px; left:0; right:0; z-index:10;
+  display:flex; flex-direction:column; align-items:flex-start; padding:0 80px; }
+
+.s1 .eyebrow { display:flex; align-items:center; gap:16px; margin-bottom:16px; }
+.s1 .eyebrow::before { content:''; width:48px; height:3px; background:#FFC107; display:block; border-radius:2px; }
+.s1 .eyebrow span { font:700 24px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.16em; text-transform:uppercase; }
+
+.s1 .t-hoje { font:800 48px/1 'Poppins',sans-serif; color:rgba(255,255,255,.85);
+  letter-spacing:.04em; text-transform:uppercase; text-shadow:0 2px 16px rgba(0,0,0,.6); margin-bottom:6px; }
+
+.s1 .t-ultimo { font:400 'Bebas Neue',sans-serif; font-size:220px; line-height:.82;
+  color:#FFC107; text-shadow:0 0 100px rgba(255,193,7,.5), 0 8px 32px rgba(0,0,0,.7); }
+
+.s1 .t-dia { font:400 'Bebas Neue',sans-serif; font-size:220px; line-height:.88;
+  color:#fff; text-shadow:0 6px 30px rgba(0,0,0,.7); }
+
+.s1 .separador { width:100%; height:2px; background:linear-gradient(90deg, #FFC107 0%, rgba(255,193,7,0) 100%);
+  margin:22px 0; border-radius:2px; }
+
+.s1 .sub { font:500 30px/1.5 'Poppins',sans-serif; color:rgba(255,255,255,.82);
+  text-shadow:0 2px 12px rgba(0,0,0,.5); }
+.s1 .sub strong { color:#FFC107; font-weight:700; }
+
+/* ══════════════════════════════════
+   SLIDE 2 — ANTECIPAÇÃO + ONLINE
+══════════════════════════════════ */
+.s2 .bg img { object-position:center 25%; }
+/* sem cream topscrim — foto aparece limpa do topo, logo pequeno no canto */
+.s2 .topscrim { display:none; }
+.s2 .top { top:72px; left:72px; right:auto; padding:0; align-items:flex-start; }
+.s2 .top img.logo { height:110px; margin-bottom:0; filter:drop-shadow(0 2px 16px rgba(0,0,0,.7)); }
+.s2 .scrim { position:absolute; left:0; right:0; bottom:0; height:78%; z-index:4; pointer-events:none;
+  background:linear-gradient(180deg, rgba(4,16,35,0) 0%, rgba(4,16,35,.5) 24%, rgba(4,16,35,.92) 56%, rgba(2,10,24,1) 100%); }
+
+.s2 .content { position:absolute; bottom:220px; left:0; right:0; z-index:10;
+  display:flex; flex-direction:column; align-items:flex-start; padding:0 80px; gap:0; }
+
+.s2 .eyebrow { display:flex; align-items:center; gap:16px; margin-bottom:22px; }
+.s2 .eyebrow::before { content:''; width:48px; height:3px; background:#FFC107; display:block; border-radius:2px; }
+.s2 .eyebrow span { font:700 24px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.16em; text-transform:uppercase; }
+
+.s2 .titulo { font:800 76px/1.05 'Poppins',sans-serif; color:#fff;
+  text-shadow:0 4px 20px rgba(0,0,0,.6); margin-bottom:24px; }
+.s2 .titulo span { color:#FFC107; }
+
+.s2 .desc { font:500 30px/1.5 'Poppins',sans-serif; color:rgba(255,255,255,.82);
+  text-shadow:0 2px 12px rgba(0,0,0,.5); margin-bottom:36px; }
+.s2 .desc strong { color:#FFC107; font-weight:700; }
+
+.s2 .pill { display:inline-flex; align-items:center;
+  background:rgba(255,193,7,.15); border:2px solid rgba(255,193,7,.6);
+  border-radius:60px; padding:20px 40px; }
+.s2 .pill span { font:700 28px/1 'Poppins',sans-serif; color:#FFC107; }
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     SLIDE 1 — MASCOTE COM CUPOM
+══════════════════════════════════ -->
+<div class="slide s1">
+
+  <div class="top">
+    <img class="logo" src="../../../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
+  </div>
+
+  <div class="mascote-wrap">
+    <img src="../../../../marketing/banco-de-midia/mascote-com-cupom-gigante.png" alt="Mascote Tintas Laet com cupom">
+  </div>
+
+  <div class="mid-fade"></div>
+
+  <div class="content">
+    <div class="eyebrow"><span>Sorteio ao vivo amanhã, 06/07</span></div>
+    <div class="t-hoje">HOJE É O</div>
+    <div class="t-ultimo">ÚLTIMO</div>
+    <div class="t-dia">DIA!</div>
+    <div class="separador"></div>
+    <div class="sub">Amanhã o sorteio acontece ao vivo.<br><strong>Quem não tem cupom, fica de fora.</strong></div>
+  </div>
+
+  <div class="bot">
+    <p class="cta">Sorteio ao vivo amanhã, 06/07</p>
+    <span class="hd">@Tintaslaet</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 2 — ANTECIPAÇÃO + ONLINE
+══════════════════════════════════ -->
+<div class="slide s2">
+  <div class="bg"><img src="../../../prova%20social/vendedor-entregando-premio-na-caixa.png" alt="Vendedor Tintas Laet entregando prêmio"></div>
+  <div class="topscrim"></div>
+
+  <div class="top">
+    <img class="logo" src="../../../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
+  </div>
+
+  <div class="scrim"></div>
+
+  <div class="content">
+    <div class="eyebrow"><span>Ainda dá tempo</span></div>
+    <div class="titulo">Você já tem<br><span>o seu cupom?</span></div>
+    <div class="desc">Se não tem ainda —<br>manda um WhatsApp agora<br>e a gente resolve rápido.<br><strong>(11) 97714-0964</strong></div>
+    <div class="pill">
+      <span>Sorteio ao vivo amanhã, 06/07</span>
+    </div>
+  </div>
+
+  <div class="bot">
+    <p class="cta">Não fica de fora!</p>
+    <span class="hd">@Tintaslaet</span>
+  </div>
+</div>
+
+</body>
+</html>

@@ -46,9 +46,10 @@ body {
    SLIDE 1 — CAPA (foto real + scrim)
 ══════════════════════════════════════════ */
 .s1 {
-  background-image: url('foto-cheiro-forte.png');
+  background-image: url('foto-cheiro-forte-2.png');
   background-size: cover;
-  background-position: center;
+  background-position: center 30%;
+  background-repeat: no-repeat;
   background-color: #F5ECD7;
 }
 
@@ -80,57 +81,57 @@ body {
 ══════════════════════════════════════════ */
 .s2 { background:#F5F6F8; }
 
-.s2 .photo-col { position:absolute; top:0; left:0; bottom:0; width:46%; overflow:hidden; }
-.s2 .photo-col img { width:100%; height:100%; object-fit:cover; object-position:65% 35%; }
-.s2 .photo-col::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg, transparent 70%, rgba(245,246,248,.5) 100%); }
+.s2 .photo-top { position:absolute; top:0; left:0; right:0; height:600px; overflow:hidden; }
+.s2 .photo-top img { width:100%; height:100%; object-fit:cover; object-position:center 78%; display:block; }
+.s2 .photo-top::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, transparent 78%, rgba(245,246,248,.95) 100%); }
 
-.s2 .lb2 { position:absolute; top:60px; right:90px; z-index:10; }
-.s2 .lb2 img { height:130px; object-fit:contain; }
+.s2 .lb2 { position:absolute; top:48px; left:64px; z-index:10; }
+.s2 .lb2 img { height:140px; object-fit:contain; filter:drop-shadow(0 2px 10px rgba(0,0,0,.35)); }
 
-.s2 .txt { position:absolute; top:400px; left:calc(46% + 64px); right:90px; z-index:8; }
-.s2 .ey { display:flex; align-items:center; gap:12px; font:700 15px/1 'Poppins',sans-serif; color:#0D47A1; letter-spacing:.22em; text-transform:uppercase; margin-bottom:22px; }
+.s2 .txt { position:absolute; top:660px; left:92px; right:92px; z-index:8; }
+.s2 .ey { display:flex; align-items:center; gap:12px; font:700 15px/1 'Poppins',sans-serif; color:#0D47A1; letter-spacing:.22em; text-transform:uppercase; margin-bottom:20px; }
 .s2 .ey::before { content:''; width:32px; height:2.5px; background:#0D47A1; display:block; flex-shrink:0; }
-.s2 h2 { font:400 58px/1.08 'Bebas Neue',sans-serif; color:#212529; letter-spacing:.005em; margin-bottom:24px; }
-.s2 p.body { font:500 21px/1.55 'Poppins',sans-serif; color:#444; margin-bottom:32px; }
+.s2 h2 { font:400 58px/1.08 'Bebas Neue',sans-serif; color:#212529; letter-spacing:.005em; margin-bottom:22px; }
+.s2 p.body { font:500 20px/1.5 'Poppins',sans-serif; color:#444; margin-bottom:26px; max-width:880px; }
 
-.s2 .bullets { display:flex; flex-direction:column; gap:14px; }
-.s2 .bullet { display:flex; align-items:flex-start; gap:16px; background:#fff; border:1.5px solid rgba(6,43,99,.1); border-left:4px solid #0D47A1; border-radius:14px; padding:18px 22px; box-shadow:0 6px 20px rgba(6,43,99,.05); }
-.s2 .bico { width:28px; height:28px; flex-shrink:0; margin-top:2px; }
-.s2 .btx { font:700 18px/1.3 'Poppins',sans-serif; color:#212529; }
+.s2 .bullets { display:flex; flex-direction:column; gap:12px; }
+.s2 .bullet { display:flex; align-items:flex-start; gap:16px; background:#fff; border:1.5px solid rgba(6,43,99,.1); border-left:4px solid #0D47A1; border-radius:14px; padding:16px 22px; box-shadow:0 6px 20px rgba(6,43,99,.05); }
+.s2 .bico { width:26px; height:26px; flex-shrink:0; margin-top:2px; }
+.s2 .btx { font:700 17px/1.3 'Poppins',sans-serif; color:#212529; }
 
-.s2 .bot { left:calc(46% + 64px); border-top:1px solid rgba(6,43,99,.14); }
+.s2 .bot { border-top:1px solid rgba(6,43,99,.14); }
 .s2 .bot .hd { color:rgba(6,43,99,.5); }
 .s2 .bot .cd { color:rgba(6,43,99,.36); }
 
 /* ══════════════════════════════════════════
-   SLIDE 3 — CTA FINAL (fundo amarelo)
+   SLIDE 3 — CTA FINAL (fundo azul, amarelo só de destaque)
 ══════════════════════════════════════════ */
-.s3 { background:#FFC107; }
+.s3 { background:linear-gradient(165deg,#11529c 0%,#0D47A1 45%,#062B63 100%); }
 .s3 .dc { position:absolute; border-radius:50%; pointer-events:none; }
-.s3 .dc1 { top:-200px; right:-130px; width:620px; height:620px; background:rgba(255,255,255,.15); }
-.s3 .dc2 { bottom:-230px; left:-170px; width:660px; height:660px; background:rgba(0,0,0,.07); }
-.s3 .dc3 { top:48%; left:-90px; transform:translateY(-50%); width:300px; height:300px; background:rgba(255,255,255,.1); }
+.s3 .dc1 { top:-200px; right:-130px; width:620px; height:620px; background:rgba(255,255,255,.08); }
+.s3 .dc2 { bottom:-230px; left:-170px; width:660px; height:660px; background:rgba(255,193,7,.08); }
+.s3 .dc3 { top:48%; left:-90px; transform:translateY(-50%); width:300px; height:300px; background:rgba(255,255,255,.06); }
 
-.s3 .lb .ct { color:rgba(6,43,99,.42); }
+.s3 .lb .ct { color:rgba(255,255,255,.35); }
 
-.s3 .cc { position:absolute; top:400px; left:0; right:0; display:flex; flex-direction:column; align-items:center; padding:0 92px; z-index:5; }
-.s3 .ey { font:700 15px/1 'Poppins',sans-serif; color:rgba(6,43,99,.62); letter-spacing:.26em; text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:14px; }
-.s3 .ey::before,.s3 .ey::after { content:''; width:28px; height:2px; background:rgba(6,43,99,.45); display:block; }
-.s3 h2 { font:400 108px/.9 'Bebas Neue',sans-serif; color:#062B63; text-align:center; margin-bottom:32px; letter-spacing:.01em; }
+.s3 .cc { position:absolute; top:380px; left:0; right:0; display:flex; flex-direction:column; align-items:center; padding:0 92px; z-index:5; }
+.s3 .ey { font:700 15px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.26em; text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:14px; }
+.s3 .ey::before,.s3 .ey::after { content:''; width:28px; height:2px; background:rgba(255,193,7,.6); display:block; }
+.s3 h2 { font:400 86px/1.02 'Bebas Neue',sans-serif; color:#fff; text-align:center; margin-bottom:32px; letter-spacing:.01em; max-width:880px; }
 
-.s3 .ph { background:#062B63; border-radius:26px; padding:28px 52px; display:flex; flex-direction:column; align-items:center; gap:6px; margin-bottom:26px; box-shadow:0 14px 60px rgba(0,0,0,.2); width:100%; }
-.s3 .phl { font:700 13px/1 'Poppins',sans-serif; color:rgba(255,193,7,.7); letter-spacing:.2em; text-transform:uppercase; }
-.s3 .phn { font:400 78px/1.05 'Bebas Neue',sans-serif; color:#FFC107; letter-spacing:.04em; }
-.s3 .phh { font:500 17px/1 'Poppins',sans-serif; color:rgba(255,255,255,.7); }
+.s3 .ph { background:#FFC107; border-radius:26px; padding:28px 52px; display:flex; flex-direction:column; align-items:center; gap:6px; margin-bottom:26px; box-shadow:0 14px 60px rgba(0,0,0,.25); width:100%; }
+.s3 .phl { font:700 13px/1 'Poppins',sans-serif; color:rgba(6,43,99,.65); letter-spacing:.2em; text-transform:uppercase; }
+.s3 .phn { font:400 78px/1.05 'Bebas Neue',sans-serif; color:#062B63; letter-spacing:.04em; }
+.s3 .phh { font:500 17px/1 'Poppins',sans-serif; color:rgba(6,43,99,.75); }
 
 .s3 .bens { display:flex; flex-direction:column; gap:13px; width:100%; }
-.s3 .ben { display:flex; align-items:center; gap:18px; background:rgba(255,255,255,.4); border:1.5px solid rgba(255,255,255,.55); border-radius:18px; padding:18px 26px; }
-.s3 .bico { width:46px; height:46px; background:#062B63; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.s3 .btx { font:700 21px/1.25 'Montserrat',sans-serif; color:#062B63; }
+.s3 .ben { display:flex; align-items:center; gap:18px; background:rgba(255,255,255,.1); border:1.5px solid rgba(255,255,255,.25); border-radius:18px; padding:18px 26px; }
+.s3 .bico { width:46px; height:46px; background:#FFC107; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.s3 .btx { font:700 21px/1.25 'Montserrat',sans-serif; color:#fff; }
 
-.s3 .bot { border-top:1.5px solid rgba(6,43,99,.2); }
-.s3 .bot .hd { color:rgba(6,43,99,.5); }
-.s3 .bot .cd { color:rgba(6,43,99,.37); }
+.s3 .bot { border-top:1.5px solid rgba(255,255,255,.2); }
+.s3 .bot .hd { color:rgba(255,255,255,.6); }
+.s3 .bot .cd { color:#FFC107; }
 
 </style>
 </head>
@@ -144,14 +145,14 @@ body {
 
   <div class="top">
     <img src="../../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
-    <div class="ey">Cheiro de tinta</div>
-    <h1>TINTA NÃO PRECISA<br><span class="chip">FEDER</span></h1>
+    <div class="ey">Sua reforma</div>
+    <h1>REFORMA SEM<br><span class="chip">DOR DE CABEÇA</span></h1>
   </div>
 
   <div class="scrim"></div>
 
   <div class="cc">
-    <p class="tg">Tem cliente que já chegou aqui dizendo: "fedia a chulé!" A gente resolveu isso.</p>
+    <p class="tg">Tinta com cheiro forte ficou no passado. Pinte com tranquilidade!</p>
     <div class="badges">
       <div class="badge">Fórmula base água</div>
       <div class="badge">Sem solvente forte</div>
@@ -168,28 +169,28 @@ body {
      SLIDE 2 — POR QUE ACONTECE
 ══════════════════════════════════ -->
 <div class="slide s2">
-  <div class="photo-col"><img src="foto-cheiro-forte.png" alt="Quarto recém-pintado com janela aberta e lata da Tintas Laet"></div>
+  <div class="photo-top"><img src="foto-cheiro-forte-2.png" alt="Lata da Tintas Laet e rolo de pintura num quarto recém-pintado"></div>
 
   <div class="lb2">
-    <img src="../../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
+    <img src="../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
   </div>
 
   <div class="txt">
-    <div class="ey">Por que acontece</div>
-    <h2>MAU CHEIRO É<br>PROBLEMA NA FÓRMULA</h2>
-    <p class="body">Tem cliente que já chegou aqui dizendo: "comprei uma tinta que fedia, fedia a chulé!" Geralmente é solvente forte que faz mal de verdade. A linha da Laet é à base de água: fica só aquele cheirinho fraquinho de tinta nova, tipo móvel novo — sem o solvente que dá dor de cabeça.</p>
+    <div class="ey">A fórmula certa</div>
+    <h2>SEM CHEIRO<br>FORTE!</h2>
+    <p class="body">Base água com fórmula caprichada: a cobertura e o rendimento que a obra pede, sem cheiro forte que incomoda sua família!</p>
     <div class="bullets">
       <div class="bullet">
         <svg class="bico" viewBox="0 0 24 24" fill="none" stroke="#0D47A1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-        <div class="btx">Cheirinho fraquinho de "tinta nova", nada de produto químico forte</div>
+        <div class="btx">Alta cobertura, alta qualidade!</div>
       </div>
       <div class="bullet">
         <svg class="bico" viewBox="0 0 24 24" fill="none" stroke="#0D47A1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-        <div class="btx">Sem o solvente que deixa quem é mais sensível enjoado</div>
+        <div class="btx">Cheiro de casa nova, sem dor de cabeça</div>
       </div>
       <div class="bullet">
         <svg class="bico" viewBox="0 0 24 24" fill="none" stroke="#0D47A1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-        <div class="btx">Boa opção pra quem não consegue abrir muita janela pra ventilar</div>
+        <div class="btx">Pintura tranquila do começo ao fim</div>
       </div>
     </div>
   </div>
@@ -209,13 +210,13 @@ body {
   <div class="dc dc3"></div>
 
   <div class="lb">
-    <img src="../../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
+    <img src="../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
     <span class="ct">3 / 3</span>
   </div>
 
   <div class="cc">
     <div class="ey">Chama no WhatsApp</div>
-    <h2>PINTA SEM<br>ENJOAR</h2>
+    <h2>O PRODUTO QUE SUA CASA PRECISA ESTÁ AQUI, COM O MELHOR PREÇO!</h2>
     <div class="ph">
       <div class="phl">WhatsApp</div>
       <div class="phn">(11) 97714-0964</div>
@@ -224,19 +225,19 @@ body {
     <div class="bens">
       <div class="ben">
         <div class="bico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#062B63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.34a2 2 0 0 0-.59-1.42L18 9h-3v8h1"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="17.5" cy="17.5" r="1.5"/></svg>
         </div>
-        <span class="btx">Fórmula base água, sem solvente forte</span>
+        <span class="btx">Entregas disponíveis, consulte!</span>
       </div>
       <div class="ben">
         <div class="bico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#062B63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
         </div>
         <span class="btx">Parcelamos em até 12x sem juros</span>
       </div>
       <div class="ben">
         <div class="bico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#062B63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <span class="btx">4 lojas — ABC e Zona Leste</span>
       </div>

@@ -18,6 +18,8 @@
 
 **Proporção de uso:** 60% Azul Principal · 20% Azul Escuro · 10% Amarelo Destaque · 10% Neutros
 
+**Atenção ao slide final/CTA:** esse slide é o que mais lembra a marca (geralmente o que fica mais tempo na tela) — fundo **sempre azul**, nunca amarelo sólido. Amarelo entra só como elemento de destaque (caixa do telefone, ícone, número, chip), nunca como cor de fundo dominante. Vale pra carrossel, post único e story, em toda peça nova.
+
 **Exceção — datas comemorativas:** em campanhas de datas comemorativas (Copa do Mundo, Natal, Dia das Crianças, etc.), pode-se usar a cor que representa o evento (ex: verde `#009739` na Copa) como destaque pontual, somada ao azul/amarelo da marca. Fora dessas datas, manter só a paleta oficial.
 
 ---
@@ -99,14 +101,17 @@ Cards de ícone em fundo sólido sem foto (como o slide de bullets claro que foi
 
 ## Logo
 
-- **Arquivo principal:** `identidade/logo tipo original.jpg`
-- **Versão fundo escuro:** `identidade/logotipo branco.jpg`
-- **Mascote:** `identidade/mascote oficial pose 1.jpg`
+- **Arquivo principal:** `identidade/logo tipo original-remove-bg-io.png`
+- **Versão fundo escuro:** `identidade/logotipo branco-remove-bg-io.png`
+- **Mascote principal:** `identidade/mascote alta qualidade-remove-bg-io.png`
+- **Mascote com cupom:** `marketing/banco-de-midia/mascote-com-cupom-gigante.png`
 - **Onde usar:** slide final de carrossel (CTA), header de propostas, posts institucionais
 - **Tamanho mínimo (atualizado):** o logo estava saindo pequeno demais nas peças — aumentar em pelo menos 50% sobre o padrão antigo (120–200px de largura / ~180px de altura) a partir de agora:
   - Carrossel/post (1080px largura): altura mínima de **270px**
-  - Stories (1080x1920): altura mínima de **300px**
-  - O logo precisa ter presença visual clara, nunca discreto/pequeno no canto
+  - Stories — dois modos consolidados:
+    - **Centralizado** (com cream scrim no topo): **280px** — padrão quando não há foto importante no topo
+    - **Canto superior esquerdo** (quando a foto não pode ser tampada, ex: rostos): **110px** com `filter: drop-shadow(0 2px 12px rgba(0,0,0,.5))`
+  - O logo precisa ter presença visual clara — nunca discreto no centro; o modo canto é exceção justificada, não padrão
 
 ---
 

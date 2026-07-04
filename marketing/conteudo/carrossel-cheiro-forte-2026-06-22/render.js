@@ -14,8 +14,13 @@ const fs = require('fs');
   const fileUrl = 'file:///' + path.resolve(__dirname, 'carrossel.html').replace(/\\/g, '/');
   await page.goto(fileUrl, { waitUntil: 'networkidle' });
 
-  // Aguarda fontes carregarem
-  await page.waitForTimeout(2500);
+  // Aguarda fontes e imagens carregarem de fato (decode completo, não só o evento load)
+  await page.waitForTimeout(1000);
+  await page.evaluate(async () => {
+    const imgs = Array.from(document.querySelectorAll('img'));
+    await Promise.all(imgs.map((img) => img.decode ? img.decode().catch(() => {}) : Promise.resolve()));
+  });
+  await page.waitForTimeout(1000);
 
   const slides = await page.$$('.slide');
   console.log(`\n${slides.length} slides encontrados.\n`);

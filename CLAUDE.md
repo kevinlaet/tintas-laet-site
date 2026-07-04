@@ -10,11 +10,19 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 **Estrutura de pastas:**
 - `_memoria/` — quem é a empresa, como falamos, foco atual
 - `identidade/` — marca aplicada em tudo que o sistema gera
+  - `ferramentas/` — fotos e renders de ferramentas e acessórios vendidos nas lojas
+  - `embalagens/` — renders de produtos (tintas, solventes) + label da Proteção Emborrachada (em desenvolvimento)
 - `marketing/` — campanhas, conteúdo, mídia paga
   - `conteudo/<slug>-<data>/` — carrosséis e posts de feed de Instagram/Facebook
   - `stories/<YYYY-MM>/<DD>-<slug>/` — stories de Instagram, agrupados por mês (meta é 2/dia, então nunca soltar story direto em `conteudo/`)
   - `status-whatsapp/<slug>-<data>/` — peças no formato 9:16 pra Status do WhatsApp
+  - `banco-de-midia/` — banco de imagens avulsas reutilizáveis (mascote, cimento queimado, sorteio, etc.)
+  - `prova social/` — fotos reais de eventos, ganhadores de sorteio, equipe e clientes (uso em feed/stories de humanização)
+  - `imagem das lojas/` — fotos das 4 lojas (fachada e interior, uma por loja)
+  - `sorteio/` — dossiê e material do sorteio mensal
+  - `logotipos de redessociais/` — logos da Laet adaptados para cada plataforma
 - `dados/` — relatórios, planilhas, métricas para análise
+  - `dados/gestao/` — ferramentas de gestão operacional das lojas (tarefas, checklists)
 - `saidas/` — documentos e peças gerados
 - `scripts/` — scripts e automações
 - `templates/` — modelos reutilizáveis
@@ -23,9 +31,9 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 
 ## Sobre a empresa
 
-Tintas Laet é um comércio de tintas e materiais de pintura com 4 lojas na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado, parcelamento em 12x sem juros e frete justo.
+Tintas Laet é um comércio de tintas e materiais de pintura com 4 lojas (5ª em contrato, jul/2026) na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado, parcelamento em 12x sem juros e frete justo.
 
-Fundada por Anderson Laet e Robson Laet. Kevin cuida do marketing digital, sozinho por enquanto.
+Fundada por Anderson Laet e Robson Laet. Kevin cuida do marketing digital e da gestão operacional das 4 lojas, sozinho por enquanto.
 
 ## Instagram
 

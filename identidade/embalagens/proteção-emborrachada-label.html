@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proteção Emborrachada — Label</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #D0D0D0;
+      font-family: 'Montserrat', sans-serif;
+      padding: 40px;
+    }
+
+    /* ── LABEL ── */
+    .label {
+      width: 620px;
+      background: #2A1466;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+    }
+
+    /* ── HEADER ── */
+    .label-header {
+      padding: 28px 36px 0;
+      text-align: center;
+    }
+
+    .brand-tintas {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 7px;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .fan-icon {
+      width: 58px;
+      height: 72px;
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-size: 76px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .gold-wave {
+      height: 4px;
+      background: linear-gradient(to right, transparent 0%, #A07800 10%, #F0C830 30%, #F8E060 50%, #F0C830 70%, #A07800 90%, transparent 100%);
+      margin: 16px 0 0;
+    }
+
+    /* ── PRODUCT NAME ── */
+    .product-section {
+      padding: 18px 36px 0;
+    }
+
+    .product-type {
+      font-size: 16px;
+      font-weight: 700;
+      color: #F0C030;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .product-name {
+      font-size: 56px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -1.5px;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .product-subtitle-bar {
+      background: #1A0C42;
+      border-top: 2.5px solid #C8950A;
+      border-bottom: 2.5px solid #C8950A;
+      padding: 9px 18px;
+      margin-bottom: 0;
+    }
+
+    .product-subtitle-bar span {
+      font-size: 15px;
+      font-weight: 800;
+      color: #F0D050;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    /* ── MIDDLE CONTENT ── */
+    .content-row {
+      display: flex;
+      gap: 20px;
+      padding: 20px 36px 22px;
+      align-items: flex-start;
+    }
+
+    /* Benefits */
+    .benefits {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .benefit-icon {
+      width: 38px;
+      height: 38px;
+      border: 2px solid rgba(255,255,255,0.55);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .benefit-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .benefit-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      line-height: 1.2;
+    }
+
+    .benefit-desc {
+      font-size: 9.5px;
+      color: rgba(255,255,255,0.60);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+      margin-top: 1px;
+    }
+
+    /* Coverage info */
+    .coverage {
+      width: 155px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .coverage-badge {
+      background: #C8950A;
+      border-radius: 8px;
+      padding: 12px 10px 10px;
+      text-align: center;
+    }
+
+    .coverage-rende {
+      font-size: 10px;
+      font-weight: 700;
+      color: #1A0C42;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .coverage-area {
+      font-size: 46px;
+      font-weight: 900;
+      color: #1A0C42;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .coverage-acabado {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1A0C42;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .coverage-small {
+      background: rgba(0,0,0,0.20);
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.80);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
+
+    .building-photo {
+      width: 100%;
+      height: 88px;
+      background: linear-gradient(135deg, #8FA8B8 0%, #6B8899 50%, #90A8B0 100%);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .building-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .building-placeholder {
+      font-size: 9px;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ── BOTTOM ICONS STRIP ── */
+    .bottom-strip {
+      background: #1A0C42;
+      display: flex;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .strip-item {
+      flex: 1;
+      padding: 14px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .strip-item + .strip-item {
+      border-left: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .strip-icon {
+      width: 34px;
+      height: 34px;
+      border: 1.5px solid rgba(255,255,255,0.45);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .strip-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .strip-text {
+      font-size: 8.5px;
+      color: rgba(255,255,255,0.80);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+      line-height: 1.5;
+    }
+
+    /* ── FOOTER STRIPE ── */
+    .footer-stripe {
+      background: #C8950A;
+      padding: 11px 20px;
+      text-align: center;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #1A0C42;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+<div class="label">
+
+  <!-- HEADER: Logo Laet -->
+  <div class="label-header">
+    <div class="brand-tintas">Tintas</div>
+    <div class="brand-logo">
+      <!-- Fan icon (leque de cores) -->
+      <svg class="fan-icon" viewBox="0 0 70 84">
+        <polygon points="0,0  70,42 0,14" fill="#CC2020"/>
+        <polygon points="0,14 70,42 0,28" fill="#E07020"/>
+        <polygon points="0,28 70,42 0,42" fill="#D4A400"/>
+        <polygon points="0,42 70,42 0,56" fill="#3AA030"/>
+        <polygon points="0,56 70,42 0,70" fill="#1E60C0"/>
+        <polygon points="0,70 70,42 0,84" fill="#1240A0"/>
+      </svg>
+      <div class="brand-name">LAET</div>
+    </div>
+    <div class="gold-wave"></div>
+  </div>
+
+  <!-- PRODUCT NAME -->
+  <div class="product-section">
+    <div class="product-type">Proteção</div>
+    <div class="product-name">EMBORRACHADA</div>
+    <div class="product-subtitle-bar">
+      <span>Fundo &amp; Acabamento</span>
+    </div>
+  </div>
+
+  <!-- MIDDLE: Benefits + Coverage -->
+  <div class="content-row">
+
+    <!-- Benefits list -->
+    <div class="benefits">
+
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <!-- Water drop -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C12 2 5 10 5 15a7 7 0 0014 0C19 10 12 2 12 2z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="benefit-title">Impermeabilizante</div>
+          <div class="benefit-desc">Protege contra a chuva e umidade</div>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <!-- Sun / temperatura -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2"  x2="12" y2="5"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+            <line x1="2"  y1="12" x2="5"  y2="12"/>
+            <line x1="19" y1="12" x2="22" y2="12"/>
+            <line x1="4.93" y1="4.93" x2="7.05" y2="7.05"/>
+            <line x1="16.95" y1="16.95" x2="19.07" y2="19.07"/>
+            <line x1="4.93" y1="19.07" x2="7.05" y2="16.95"/>
+            <line x1="16.95" y1="7.05" x2="19.07" y2="4.93"/>
+          </svg>
+        </div>
+        <div>
+          <div class="benefit-title">Reduz a Temperatura</div>
+          <div class="benefit-desc">Mais conforto térmico</div>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <!-- Shield / fissuras -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L4 6v6c0 5.25 3.5 10.16 8 11.5C16.5 22.16 20 17.25 20 12V6l-8-4z"/>
+            <polyline points="9,12 11,14 15,10"/>
+          </svg>
+        </div>
+        <div>
+          <div class="benefit-title">Previne e Combate Fissuras</div>
+          <div class="benefit-desc">Maior proteção e durabilidade</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Coverage info -->
+    <div class="coverage">
+
+      <div class="coverage-badge">
+        <div class="coverage-rende">Rende até</div>
+        <div class="coverage-area">90m²</div>
+        <div class="coverage-acabado">Acabado</div>
+      </div>
+
+      <div class="coverage-small">
+        Galão 3,6kg<br>
+        Até 18m²<br>
+        Acabado
+      </div>
+
+      <!-- Foto da fachada -->
+      <div class="building-photo">
+        <!-- Trocar src pela foto real da fachada -->
+        <!-- <img src="foto-fachada.jpg" alt="Fachada impermeabilizada"> -->
+        <div class="building-placeholder">foto<br>fachada</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM ICONS STRIP -->
+  <div class="bottom-strip">
+
+    <div class="strip-item">
+      <div class="strip-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2C12 2 5 10 5 15a7 7 0 0014 0C19 10 12 2 12 2z"/>
+        </svg>
+      </div>
+      <div class="strip-text">Impermeabiliza<br>lajes, telhados<br>e fachadas</div>
+    </div>
+
+    <div class="strip-item">
+      <div class="strip-icon">
+        <!-- Thermometer -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/>
+        </svg>
+      </div>
+      <div class="strip-text">Diminui a<br>temperatura<br>interna</div>
+    </div>
+
+    <div class="strip-item">
+      <div class="strip-icon">
+        <!-- Brick / wall -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4"  width="20" height="5"/>
+          <rect x="2" y="13" width="20" height="5"/>
+          <line x1="7"  y1="9"  x2="7"  y2="13"/>
+          <line x1="17" y1="9"  x2="17" y2="13"/>
+        </svg>
+      </div>
+      <div class="strip-text">Previne mofo<br>e infiltrações</div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER GOLD STRIPE -->
+  <div class="footer-stripe">
+    Excelente cobertura &bull; Alta elasticidade &bull; Anti-mofo
+  </div>
+
+</div>
+
+</body>
+</html>
