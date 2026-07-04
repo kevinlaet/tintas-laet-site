@@ -60,7 +60,7 @@ Direto, simples, acolhedor. Fala com a comunidade como vizinho — sem jargão d
 - [x] Meta Ads (tráfego pago)
 - [x] Instagram @Tintaslaet
 - [ ] Google Ads
-- [ ] Google Analytics
+- [x] Google Analytics (G-V8RP9PV579 — ativo desde 04/07/2026)
 
 ---
 
