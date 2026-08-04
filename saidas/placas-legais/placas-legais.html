@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Placas Legais — Tintas Laet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #e8e8e8;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: white;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 18mm 20mm;
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        margin: 0;
+        padding: 15mm 18mm;
+        page-break-after: always;
+        break-after: page;
+        min-height: 0;
+        height: 297mm;
+      }
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+    }
+
+    /* ── CARD ── */
+    .sign-card {
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 3px solid #0D47A1;
+      box-shadow: 0 6px 28px rgba(0,0,0,0.13);
+    }
+
+    .sign-header {
+      background: #0D47A1;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sign-header img {
+      height: 52px;
+      display: block;
+    }
+
+    .sign-body {
+      background: white;
+      padding: 36px 32px 28px;
+      text-align: center;
+    }
+
+    .icon-wrap {
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 28px;
+    }
+
+    .sign-title {
+      font-family: 'Montserrat', Arial Black, sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .sign-title.proibido { color: #b71c1c; }
+    .sign-title.camera   { color: #0D47A1; }
+
+    .sign-subtitle {
+      font-size: 14.5px;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .sign-law {
+      font-size: 11.5px;
+      color: #777;
+      border-top: 1px solid #e5e5e5;
+      padding-top: 16px;
+      line-height: 1.7;
+    }
+
+    .sign-footer {
+      background: #FFC107;
+      padding: 11px 20px;
+      text-align: center;
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #212529;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── decorative stripe ── */
+    .stripe {
+      height: 6px;
+      background: linear-gradient(90deg, #0D47A1 60%, #FFC107 100%);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     PÁGINA 1 — PROIBIDO FUMAR
+═══════════════════════════════════════════ -->
+<div class="page">
+  <div class="sign-card">
+
+    <div class="sign-header">
+      <img src="../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+    </div>
+
+    <div class="sign-body">
+
+      <!-- Ícone: proibido fumar (SVG puro) -->
+      <div class="icon-wrap">
+        <svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+          <!-- Fundo do círculo -->
+          <circle cx="65" cy="65" r="60" fill="#ffebee"/>
+          <!-- Borda vermelha -->
+          <circle cx="65" cy="65" r="60" fill="none" stroke="#c62828" stroke-width="9"/>
+
+          <!-- Corpo do cigarro -->
+          <rect x="22" y="57" width="56" height="16" rx="5" fill="#6d4c41"/>
+          <!-- Filtro -->
+          <rect x="78" y="57" width="28" height="16" rx="4" fill="#f5f5f5" stroke="#ccc" stroke-width="1.5"/>
+          <!-- Brasa -->
+          <ellipse cx="78" cy="65" rx="4" ry="5" fill="#ff6f00" opacity="0.9"/>
+
+          <!-- Fumaça -->
+          <path d="M90 50 C93 43 88 38 91 31" stroke="#bdbdbd" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M100 48 C104 41 99 36 103 28" stroke="#bdbdbd" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+          <!-- Linha de proibição -->
+          <line x1="16" y1="105" x2="105" y2="16" stroke="#c62828" stroke-width="10" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="sign-title proibido">PROIBIDO FUMAR</div>
+
+      <div class="sign-subtitle">
+        É proibido fumar neste estabelecimento.<br>
+        A proibição inclui cigarros, cigarrilhas, charutos,<br>
+        cachimbos, narguilé e cigarros eletrônicos.
+      </div>
+
+      <div class="sign-law">
+        Lei Federal nº 9.294/1996 &nbsp;·&nbsp; Lei Federal nº 12.546/2011<br>
+        Infratores estão sujeitos a multa e demais penalidades previstas em lei.
+      </div>
+    </div>
+
+    <div class="stripe"></div>
+    <div class="sign-footer">
+      tintaslaet.com &nbsp;&nbsp;|&nbsp;&nbsp; (11) 97714-0964 &nbsp;&nbsp;|&nbsp;&nbsp; @tintaslaet
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     PÁGINA 2 — VOCÊ ESTÁ SENDO FILMADO
+═══════════════════════════════════════════ -->
+<div class="page">
+  <div class="sign-card">
+
+    <div class="sign-header">
+      <img src="../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+    </div>
+
+    <div class="sign-body">
+
+      <!-- Ícone: câmera (SVG puro) -->
+      <div class="icon-wrap">
+        <svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+          <!-- Fundo do círculo -->
+          <circle cx="65" cy="65" r="60" fill="#e3f2fd"/>
+          <circle cx="65" cy="65" r="60" fill="none" stroke="#0D47A1" stroke-width="9"/>
+
+          <!-- Corpo da câmera -->
+          <rect x="18" y="48" width="88" height="52" rx="10" fill="#0D47A1"/>
+
+          <!-- Saliência (corcunda) -->
+          <rect x="30" y="36" width="26" height="15" rx="6" fill="#0D47A1"/>
+
+          <!-- Lente — camadas -->
+          <circle cx="62" cy="74" r="20" fill="#062B63"/>
+          <circle cx="62" cy="74" r="14" fill="#1565C0"/>
+          <circle cx="62" cy="74" r="8"  fill="#42A5F5"/>
+          <circle cx="62" cy="74" r="3"  fill="#0D47A1"/>
+          <!-- Reflexo lente -->
+          <circle cx="57" cy="69" r="3" fill="white" opacity="0.35"/>
+
+          <!-- Indicador de gravação (ponto vermelho) -->
+          <circle cx="95" cy="57" r="7" fill="#e53935"/>
+          <circle cx="93" cy="55" r="2.5" fill="#ff8a80" opacity="0.6"/>
+        </svg>
+      </div>
+
+      <div class="sign-title camera">VOCÊ ESTÁ<br>SENDO FILMADO</div>
+
+      <div class="sign-subtitle">
+        Este ambiente é monitorado por câmeras de segurança<br>
+        para proteção de clientes, funcionários e patrimônio.
+      </div>
+
+      <div class="sign-law">
+        Imagens tratadas em conformidade com a LGPD — Lei nº 13.709/2018.<br>
+        Responsável: Tintas Laet Comércio de Tintas Ltda.
+      </div>
+    </div>
+
+    <div class="stripe"></div>
+    <div class="sign-footer">
+      tintaslaet.com &nbsp;&nbsp;|&nbsp;&nbsp; (11) 97714-0964 &nbsp;&nbsp;|&nbsp;&nbsp; @tintaslaet
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

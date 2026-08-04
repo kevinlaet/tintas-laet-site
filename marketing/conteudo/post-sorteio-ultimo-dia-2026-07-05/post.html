@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Sorteio — Último Dia</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#000;
+  display:flex; align-items:center; justify-content:center;
+  min-height:100vh;
+}
+
+.post {
+  width:1080px; height:1350px;
+  position:relative; overflow:hidden; flex-shrink:0;
+  background:#062B63;
+  font-family:'Poppins',sans-serif;
+}
+
+/* textura de pontos */
+.post::before {
+  content:'';
+  position:absolute; inset:0; z-index:0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size:52px 52px;
+}
+
+/* faixa diagonal amarela */
+.faixa {
+  position:absolute;
+  top:0; right:-80px;
+  width:480px; height:100%;
+  background:linear-gradient(135deg, #FFC107 0%, #FFE082 100%);
+  transform:skewX(-8deg);
+  z-index:1;
+  opacity:.07;
+}
+
+/* mascote */
+.mascote-wrap {
+  position:absolute;
+  right:-40px; bottom:0;
+  z-index:3;
+  width:620px;
+}
+.mascote-wrap img {
+  width:100%; object-fit:contain;
+  filter:drop-shadow(-8px 0 40px rgba(0,0,0,.5));
+}
+
+/* logo */
+.logo {
+  position:absolute; top:72px; left:80px;
+  z-index:10;
+}
+.logo img { height:72px; object-fit:contain; }
+
+/* tag topo */
+.tag {
+  position:absolute; top:80px; right:80px;
+  z-index:10;
+  display:inline-block;
+  background:rgba(255,193,7,.18);
+  border:2px solid rgba(255,193,7,.5);
+  color:#FFC107;
+  font:700 20px/1 'Poppins',sans-serif;
+  padding:10px 22px;
+  border-radius:100px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+/* bloco de texto principal */
+.texto {
+  position:absolute;
+  top:200px; left:80px;
+  z-index:10;
+  max-width:620px;
+}
+
+.urgencia {
+  font:700 24px/1 'Poppins',sans-serif;
+  color:#FFC107;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:24px;
+  display:flex; align-items:center; gap:12px;
+}
+.urgencia::before {
+  content:'';
+  display:inline-block;
+  width:10px; height:10px;
+  background:#FFC107;
+  border-radius:50%;
+  box-shadow:0 0 16px #FFC107;
+  animation:none;
+}
+
+.headline {
+  font:400 168px/.84 'Bebas Neue',sans-serif;
+  color:#fff;
+  letter-spacing:.01em;
+  text-shadow:0 4px 48px rgba(0,0,0,.5);
+  margin-bottom:36px;
+}
+.headline span { color:#FFC107; }
+
+.divisor {
+  width:72px; height:5px;
+  background:linear-gradient(90deg, #FFC107, rgba(255,193,7,.2));
+  border-radius:4px;
+  margin-bottom:36px;
+}
+
+.premio-box {
+  background:rgba(255,193,7,.10);
+  border:1.5px solid rgba(255,193,7,.35);
+  border-radius:16px;
+  padding:28px 36px;
+  margin-bottom:36px;
+}
+.premio-label {
+  font:600 18px/1 'Poppins',sans-serif;
+  color:rgba(255,255,255,.55);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.premio-nome {
+  font:800 30px/1.2 'Poppins',sans-serif;
+  color:#fff;
+}
+.premio-nome span { color:#FFC107; }
+
+.como {
+  font:500 26px/1.6 'Poppins',sans-serif;
+  color:rgba(255,255,255,.75);
+  margin-bottom:40px;
+}
+.como strong { color:#fff; }
+
+/* rodapé */
+.rodape {
+  position:absolute;
+  bottom:0; left:0; right:0;
+  z-index:10;
+  padding:28px 80px;
+  background:rgba(255,193,7,.10);
+  border-top:1.5px solid rgba(255,193,7,.25);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.draw-info {
+  display:flex; flex-direction:column; gap:4px;
+}
+.draw-label {
+  font:600 18px/1 'Poppins',sans-serif;
+  color:rgba(255,255,255,.5);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.draw-data {
+  font:700 26px/1 'Poppins',sans-serif;
+  color:#FFC107;
+}
+.wpp {
+  font:700 26px/1 'Poppins',sans-serif;
+  color:#fff;
+  text-align:right;
+}
+.wpp small {
+  display:block;
+  font:500 18px/1 'Poppins',sans-serif;
+  color:rgba(255,255,255,.5);
+  margin-top:4px;
+  letter-spacing:.04em;
+}
+</style>
+</head>
+<body>
+<div class="post">
+  <div class="faixa"></div>
+
+  <div class="logo">
+    <img src="../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+  </div>
+
+  <div class="tag">Sorteio Laet</div>
+
+  <div class="texto">
+    <div class="urgencia">🔴 HOJE É O ÚLTIMO DIA</div>
+    <div class="headline">AINDA<br>DÁ <span>TEMPO.</span></div>
+    <div class="divisor"></div>
+
+    <div class="premio-box">
+      <div class="premio-label">Prêmio principal</div>
+      <div class="premio-nome"><span>Caixa de Som Mondial</span> 250W</div>
+    </div>
+
+    <p class="como">
+      <strong>Qualquer compra</strong> na Tintas Laet dá direito a 1 cupom.<br>
+      Preenche, indica um amigo e concorre.
+    </p>
+  </div>
+
+  <div class="mascote-wrap">
+    <img src="../../banco-de-midia/mascote-com-cupom-gigante.png" alt="Mascote Laet com cupom">
+  </div>
+
+  <div class="rodape">
+    <div class="draw-info">
+      <div class="draw-label">Draw ao vivo</div>
+      <div class="draw-data">Segunda-feira · @Tintaslaet</div>
+    </div>
+    <div class="wpp">
+      (11) 97714-0964
+      <small>WhatsApp</small>
+    </div>
+  </div>
+</div>
+</body>
+</html>

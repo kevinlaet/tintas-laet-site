@@ -1,6 +1,7 @@
 [build]
   publish = "site"
   functions = "netlify/functions"
+  ignore = "bash scripts/netlify-ignore-branch.sh"
 
 [[headers]]
   for = "/*.html"

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, height=1920">
+  <title>Tintas Laet — Revelação Loja 5</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #062B63; }
+
+    #root {
+      position: relative;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+    }
+
+    .clip {
+      position: absolute;
+      inset: 0;
+    }
+
+    /* ─────────────────────────────────────────
+       SCENE 1 — ERA 4  (0–8s)
+    ───────────────────────────────────────── */
+    #s1 { background: #062B63; }
+
+    #s1-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 55%, rgba(13,71,161,0.7) 0%, transparent 68%);
+    }
+
+    #s1-ghost {
+      position: absolute;
+      top: 50%;
+      left: -10%;
+      transform: translateY(-50%);
+      font-family: 'League Gothic', 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: 580px;
+      line-height: 1;
+      color: rgba(13,71,161,0.5);
+      pointer-events: none;
+      white-space: nowrap;
+      letter-spacing: -0.02em;
+    }
+
+    .reg-mark {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      opacity: 0;
+    }
+    .reg-mark::before, .reg-mark::after {
+      content: '';
+      position: absolute;
+      background: rgba(255,193,7,0.4);
+    }
+    .reg-mark::before { left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%); }
+    .reg-mark::after  { top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); }
+    #reg1 { top: 72px; left: 72px; }
+    #reg2 { top: 72px; right: 72px; }
+
+    #s1-meta {
+      position: absolute;
+      top: 168px;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      opacity: 0;
+    }
+    #s1-meta .lbl {
+      font-family: 'Space Mono', monospace;
+      font-size: 20px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    #s1-meta .dot {
+      width: 5px; height: 5px;
+      background: #FFC107;
+      border-radius: 50%;
+    }
+
+    #s1-center {
+      position: absolute;
+      top: 580px;
+      left: 0; right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #s1-era {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 78px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0;
+    }
+    #s1-num {
+      font-family: 'League Gothic', 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: 420px;
+      line-height: 0.82;
+      color: #FFC107;
+      letter-spacing: -0.02em;
+      opacity: 0;
+    }
+    #s1-lojas {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 44px;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin-top: 14px;
+      opacity: 0;
+    }
+
+    #s1-photos {
+      position: absolute;
+      bottom: 390px;
+      left: 50px; right: 50px;
+      display: flex;
+      gap: 16px;
+    }
+    .photo-card {
+      position: relative;
+      flex: 1;
+      height: 262px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.16);
+      opacity: 0;
+    }
+    .photo-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.62) saturate(0.45);
+    }
+    .photo-card .p-num {
+      position: absolute;
+      bottom: 5px; right: 9px;
+      font-family: 'League Gothic', 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: 58px;
+      color: #FFC107;
+      line-height: 1;
+    }
+    .photo-card .p-city {
+      position: absolute;
+      bottom: 10px; left: 9px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.4;
+    }
+
+    /* Rule: no CSS transform — GSAP owns it via fromTo */
+    #s1-rule {
+      position: absolute;
+      bottom: 354px;
+      left: 50px; right: 50px;
+      height: 1px;
+      background: rgba(255,193,7,0.2);
+      transform-origin: left;
+    }
+
+    #s1-btm {
+      position: absolute;
+      bottom: 196px;
+      left: 0; right: 0;
+      text-align: center;
+      opacity: 0;
+    }
+    #s1-btm p {
+      font-family: 'Space Mono', monospace;
+      font-size: 24px;
+      color: rgba(255,255,255,0.34);
+      letter-spacing: 0.06em;
+      font-style: italic;
+    }
+
+    /* ─────────────────────────────────────────
+       SCENE 2 — AGORA SÃO 5  (8–22s)
+    ───────────────────────────────────────── */
+    #s2 { background: #062B63; }
+
+    #s2-photo {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+    }
+    #s2-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.70) saturate(0.75);
+    }
+
+    #s2-scrim-t {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 52%;
+      background: linear-gradient(to bottom, rgba(245,236,215,0.92) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    #s2-scrim-b {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(6,43,99,0.97) 0%, rgba(6,43,99,0.68) 52%, transparent 100%);
+      pointer-events: none;
+    }
+
+    #s2-logo {
+      position: absolute;
+      top: 68px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 156px;
+      opacity: 0;
+    }
+
+    #s2-reveal {
+      position: absolute;
+      top: 720px;
+      left: 58px; right: 58px;
+    }
+    #s2-agora {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 70px;
+      color: white;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 28px rgba(0,0,0,0.75);
+      opacity: 0;
+      margin-bottom: -14px;
+    }
+    #s2-cinco {
+      font-family: 'League Gothic', 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: 370px;
+      line-height: 0.82;
+      color: #FFC107;
+      letter-spacing: -0.01em;
+      text-shadow: 0 8px 64px rgba(0,0,0,0.5);
+      opacity: 0;
+    }
+    #s2-chip {
+      display: inline-block;
+      background: #FFC107;
+      color: #062B63;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 33px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 10px 30px;
+      border-radius: 4px;
+      opacity: 0;
+      margin-top: 14px;
+    }
+
+    #s2-addr {
+      position: absolute;
+      bottom: 184px;
+      left: 58px; right: 58px;
+    }
+    /* Rule: no CSS transform — GSAP owns it via fromTo */
+    #s2-aline {
+      width: 100%;
+      height: 3px;
+      background: #FFC107;
+      border-radius: 2px;
+      margin-bottom: 22px;
+      transform-origin: left;
+    }
+    #s2-a1 {
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+      font-size: 36px;
+      color: white;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      opacity: 0;
+    }
+    #s2-a2 {
+      font-family: 'Space Mono', monospace;
+      font-weight: 400;
+      font-size: 23px;
+      color: #FFE082;
+      letter-spacing: 0.07em;
+      line-height: 1.35;
+      margin-bottom: 20px;
+      opacity: 0;
+    }
+    #s2-badge {
+      display: inline-block;
+      border: 2px solid rgba(255,255,255,0.52);
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      padding: 8px 28px;
+      border-radius: 100px;
+      opacity: 0;
+    }
+
+    #s2-foot {
+      position: absolute;
+      bottom: 76px;
+      left: 58px; right: 58px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      opacity: 0;
+    }
+    #s2-foot .ft {
+      font-family: 'Space Mono', monospace;
+      font-size: 20px;
+      color: rgba(255,255,255,0.42);
+      letter-spacing: 0.1em;
+    }
+    #s2-foot .sep { flex: 1; height: 1px; background: rgba(255,255,255,0.17); }
+
+    /* ─────────────────────────────────────────
+       SCENE 3 — CTA  (22–30s)
+    ───────────────────────────────────────── */
+    #s3 { background: #0D47A1; }
+
+    #s3-bg-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 45%, rgba(13,71,161,0) 0%, rgba(6,43,99,0.8) 100%);
+    }
+
+    /* No CSS transform — GSAP owns xPercent/yPercent via fromTo */
+    #s3-acc-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      top: 40%; left: 50%;
+      background: radial-gradient(circle, rgba(255,193,7,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    #s3-ghost {
+      position: absolute;
+      bottom: 28%;
+      left: -20px;
+      font-family: 'League Gothic', 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: 280px;
+      color: rgba(6,43,99,0.85);
+      pointer-events: none;
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+    }
+
+    .corner {
+      position: absolute;
+      width: 70px; height: 70px;
+      opacity: 0;
+    }
+    .corner::before, .corner::after {
+      content: '';
+      position: absolute;
+      background: rgba(255,193,7,0.4);
+    }
+    #c1 { top: 70px; left: 70px; }
+    #c1::before { left:0; top:0; width: 3px; height: 70px; }
+    #c1::after  { left:0; top:0; height: 3px; width: 70px; }
+    #c2 { top: 70px; right: 70px; }
+    #c2::before { right:0; top:0; width: 3px; height: 70px; }
+    #c2::after  { right:0; top:0; height: 3px; width: 70px; }
+    #c3 { bottom: 70px; left: 70px; }
+    #c3::before { left:0; bottom:0; width: 3px; height: 70px; }
+    #c3::after  { left:0; bottom:0; height: 3px; width: 70px; }
+    #c4 { bottom: 70px; right: 70px; }
+    #c4::before { right:0; bottom:0; width: 3px; height: 70px; }
+    #c4::after  { right:0; bottom:0; height: 3px; width: 70px; }
+
+    .acc-dot {
+      position: absolute;
+      width: 9px; height: 9px;
+      background: #FFC107;
+      border-radius: 50%;
+      opacity: 0;
+    }
+    #d1 { top: 188px; left: 188px; }
+    #d2 { top: 188px; right: 188px; }
+    #d3 { bottom: 188px; left: 188px; }
+    #d4 { bottom: 188px; right: 188px; }
+
+    #s3-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 160px 100px;
+    }
+    #s3-logo {
+      height: 234px;
+      opacity: 0;
+      margin-bottom: 62px;
+    }
+    /* Rule: no CSS transform — GSAP owns it via fromTo */
+    #s3-rule {
+      width: 560px;
+      height: 3px;
+      background: #FFC107;
+      border-radius: 2px;
+      transform-origin: center;
+      margin-bottom: 58px;
+    }
+    #s3-slogan {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 50px;
+      color: white;
+      text-align: center;
+      letter-spacing: 0.03em;
+      line-height: 1.38;
+      opacity: 0;
+      margin-bottom: 36px;
+    }
+    #s3-handle {
+      font-family: 'Space Mono', monospace;
+      font-weight: 400;
+      font-size: 30px;
+      color: #FFE082;
+      letter-spacing: 0.09em;
+      opacity: 0;
+    }
+
+    #s3-cities {
+      position: absolute;
+      bottom: 114px;
+      left: 0; right: 0;
+      text-align: center;
+      opacity: 0;
+    }
+    #s3-cities p {
+      font-family: 'Space Mono', monospace;
+      font-size: 20px;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div data-hf-id="hf-coex" id="root" data-composition-id="main" data-width="1080" data-height="1920" data-duration="30" data-start="0">
+
+    <!-- ════════════ CENA 1: ERA 4 (0–8s) ════════════ -->
+    <section data-hf-id="hf-ay5d" id="s1" class="clip" data-start="0" data-duration="8" data-track-index="1">
+      <div data-hf-id="hf-4z5d" id="s1-glow"></div>
+      <div data-hf-id="hf-nv75" id="s1-ghost">LAET</div>
+
+      <div data-hf-id="hf-4oc1" class="reg-mark" id="reg1"></div>
+      <div data-hf-id="hf-8mg2" class="reg-mark" id="reg2"></div>
+
+      <div data-hf-id="hf-nenl" id="s1-meta">
+        <span data-hf-id="hf-gjks" class="lbl">Tintas</span>
+        <div data-hf-id="hf-lu65" class="dot"></div>
+        <span data-hf-id="hf-y4an" class="lbl">Laet</span>
+        <div data-hf-id="hf-ww7l" class="dot"></div>
+        <span data-hf-id="hf-cmpv" class="lbl">2026</span>
+      </div>
+
+      <div data-hf-id="hf-mkzt" id="s1-center">
+        <div data-hf-id="hf-rvtm" id="s1-era">ERA</div>
+        <div data-hf-id="hf-928q" id="s1-num">4</div>
+        <div data-hf-id="hf-0ffq" id="s1-lojas">LOJAS</div>
+      </div>
+
+      <div data-hf-id="hf-szjh" id="s1-photos">
+        <div data-hf-id="hf-txbr" class="photo-card">
+          <img data-hf-id="hf-arae" src="assets/lojas/loja1.jfif" alt="Loja Sapopemba">
+          <span data-hf-id="hf-whuw" class="p-city">Sapopemba<br data-hf-id="hf-x5px">SP</span>
+          <span data-hf-id="hf-1maz" class="p-num">1</span>
+        </div>
+        <div data-hf-id="hf-xkaf" class="photo-card">
+          <img data-hf-id="hf-t6st" src="assets/lojas/loja2.jfif" alt="Loja Jd. São João">
+          <span data-hf-id="hf-n4sd" class="p-city">Jd. São João<br data-hf-id="hf-rsrt">Mauá</span>
+          <span data-hf-id="hf-17zy" class="p-num">2</span>
+        </div>
+        <div data-hf-id="hf-x5ze" class="photo-card">
+          <img data-hf-id="hf-656s" src="assets/lojas/loja3.jfif" alt="Loja Ayrton Senna">
+          <span data-hf-id="hf-vr2r" class="p-city">Ayrton Senna<br data-hf-id="hf-szow">Mauá</span>
+          <span data-hf-id="hf-0tox" class="p-num">3</span>
+        </div>
+        <div data-hf-id="hf-wrod" class="photo-card">
+          <img data-hf-id="hf-jqb0" src="assets/lojas/loja4.jfif" alt="Loja Vila Luzita">
+          <span data-hf-id="hf-h2se" class="p-city">Vila Luzita<br data-hf-id="hf-sldv">Sto. André</span>
+          <span data-hf-id="hf-0fdw" class="p-num">4</span>
+        </div>
+      </div>
+
+      <div data-hf-id="hf-7r4g" id="s1-rule"></div>
+
+      <div data-hf-id="hf-mp0l" id="s1-btm">
+        <p data-hf-id="hf-cxzp">mas a história continua...</p>
+      </div>
+    </section>
+
+    <!-- ════════════ CENA 2: AGORA SÃO 5 (8–22s) ════════════ -->
+    <section data-hf-id="hf-qt89" id="s2" class="clip" data-start="8" data-duration="14" data-track-index="1">
+      <div data-hf-id="hf-hcq1" id="s2-photo">
+        <img data-hf-id="hf-1gi5" src="assets/lojas/loja4.jfif" alt="">
+      </div>
+      <div data-hf-id="hf-pxiw" id="s2-scrim-t"></div>
+      <div data-hf-id="hf-wyhy" id="s2-scrim-b"></div>
+
+      <img data-hf-id="hf-yycg" id="s2-logo" src="assets/logo-branco.png" alt="Tintas Laet">
+
+      <div data-hf-id="hf-k2mo" id="s2-reveal">
+        <div data-hf-id="hf-qitw" id="s2-agora">AGORA SÃO</div>
+        <div data-hf-id="hf-9btk" id="s2-cinco">5</div>
+        <div data-hf-id="hf-7akh" id="s2-chip">NOVA LOJA</div>
+      </div>
+
+      <div data-hf-id="hf-shdi" id="s2-addr">
+        <div data-hf-id="hf-uqsi" id="s2-aline"></div>
+        <div data-hf-id="hf-m503" id="s2-a1">AV. ITAPARK, 4377</div>
+        <div data-hf-id="hf-uv7r" id="s2-a2">JD. ITAPARK · MAUÁ · SP</div>
+        <div data-hf-id="hf-j900" id="s2-badge">EM BREVE</div>
+      </div>
+
+      <div data-hf-id="hf-55uj" id="s2-foot">
+        <span data-hf-id="hf-aqoq" class="ft">@tintaslaet</span>
+        <div data-hf-id="hf-kpqk" class="sep"></div>
+        <span data-hf-id="hf-rrqv" class="ft">tintaslaet.com</span>
+      </div>
+    </section>
+
+    <!-- ════════════ CENA 3: CTA (22–30s) ════════════ -->
+    <section data-hf-id="hf-mckr" id="s3" class="clip" data-start="22" data-duration="8" data-track-index="1">
+      <div data-hf-id="hf-p291" id="s3-bg-glow"></div>
+      <div data-hf-id="hf-qz4n" id="s3-acc-glow"></div>
+      <div data-hf-id="hf-3ng9" id="s3-ghost">5 LOJAS</div>
+
+      <div data-hf-id="hf-y8fl" class="corner" id="c1"></div>
+      <div data-hf-id="hf-26jm" class="corner" id="c2"></div>
+      <div data-hf-id="hf-64nn" class="corner" id="c3"></div>
+      <div data-hf-id="hf-in64" class="corner" id="c4"></div>
+      <div data-hf-id="hf-wejq" class="acc-dot" id="d1"></div>
+      <div data-hf-id="hf-sgfp" class="acc-dot" id="d2"></div>
+      <div data-hf-id="hf-rorw" class="acc-dot" id="d3"></div>
+      <div data-hf-id="hf-f69f" class="acc-dot" id="d4"></div>
+
+      <div data-hf-id="hf-xqrz" id="s3-content">
+        <img data-hf-id="hf-yk3t" id="s3-logo" src="assets/logo-branco.png" alt="Tintas Laet">
+        <div data-hf-id="hf-9bga" id="s3-rule"></div>
+        <div data-hf-id="hf-ytol" id="s3-slogan">A tinta nobre<br data-hf-id="hf-qluq">da comunidade</div>
+        <div data-hf-id="hf-qjq5" id="s3-handle">@tintaslaet</div>
+      </div>
+
+      <div data-hf-id="hf-4frh" id="s3-cities">
+        <p data-hf-id="hf-4vyw">MAUÁ · SANTO ANDRÉ · SÃO PAULO</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    /* ── CENA 1: ERA 4 (t=0…8) ─────────────────────── */
+
+    tl.fromTo('#s1-ghost', { x: 0 }, { x: 90, duration: 8, ease: 'none' }, 0);
+    tl.to('#s1-glow', { opacity: 0.5, duration: 3, ease: 'sine.inOut', yoyo: true, repeat: 1 }, 1);
+    tl.to(['#reg1', '#reg2'], { opacity: 1, duration: 0.35, stagger: 0.12, ease: 'power2.out' }, 0.2);
+    tl.fromTo('#s1-meta', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.35);
+    tl.fromTo('#s1-era', { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' }, 0.6);
+    tl.fromTo('#s1-num',
+      { opacity: 0, scale: 2.5, filter: 'blur(18px)' },
+      { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.52, ease: 'power4.out' },
+      0.95);
+    tl.fromTo('#s1-lojas', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 1.32);
+    tl.fromTo('.photo-card',
+      { opacity: 0, y: 30, scale: 0.9 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.4, stagger: 0.1, ease: 'back.out(1.5)' },
+      2.1);
+    /* fromTo exempts the gsap_css_transform_conflict rule */
+    tl.fromTo('#s1-rule', { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: 'power2.inOut' }, 2.65);
+    tl.fromTo('#s1-btm', { opacity: 0 }, { opacity: 1, duration: 0.55, ease: 'power2.out' }, 3.3);
+
+    /* ── CENA 2: AGORA SÃO 5 (t=8…22) ─────────────── */
+
+    tl.fromTo('#s2-photo', { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 1.1, ease: 'power2.out' }, 8);
+    tl.fromTo('#s2-logo', { opacity: 0, y: -28 }, { opacity: 1, y: 0, duration: 0.58, ease: 'power2.out' }, 8.5);
+    tl.fromTo('#s2-agora', { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out' }, 9.1);
+    tl.fromTo('#s2-cinco',
+      { opacity: 0, scale: 3.2, filter: 'blur(26px)' },
+      { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.62, ease: 'power4.out' },
+      9.65);
+    tl.fromTo('#s2-chip',
+      { opacity: 0, scale: 0.4, rotation: -14 },
+      { opacity: 1, scale: 1, rotation: -2, duration: 0.48, ease: 'back.out(2.2)' },
+      10.38);
+    tl.to('#s2-photo img',
+      { filter: 'brightness(0.80) saturate(0.85)', duration: 2.5, ease: 'sine.inOut', yoyo: true, repeat: 2 },
+      11);
+    tl.fromTo('#s2-addr', { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, 11.2);
+    /* fromTo exempts the gsap_css_transform_conflict rule */
+    tl.fromTo('#s2-aline', { scaleX: 0 }, { scaleX: 1, duration: 0.48, ease: 'power2.inOut' }, 11.45);
+    tl.fromTo('#s2-a1', { opacity: 0, x: -22 }, { opacity: 1, x: 0, duration: 0.4, ease: 'power2.out' }, 11.82);
+    tl.fromTo('#s2-a2', { opacity: 0, x: -22 }, { opacity: 1, x: 0, duration: 0.4, ease: 'power2.out' }, 12.08);
+    tl.fromTo('#s2-badge', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.38, ease: 'power2.out' }, 12.5);
+    tl.fromTo('#s2-foot', { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out' }, 13.2);
+
+    /* ── CENA 3: CTA (t=22…30) ──────────────────────── */
+
+    tl.fromTo('#s3-ghost', { x: -28 }, { x: 55, duration: 8, ease: 'none' }, 22);
+    /* fromTo with xPercent/yPercent exempts the gsap_css_transform_conflict rule */
+    tl.fromTo('#s3-acc-glow',
+      { xPercent: -50, yPercent: -50, scale: 1 },
+      { xPercent: -50, yPercent: -50, scale: 1.3, duration: 2.5, ease: 'sine.inOut', yoyo: true, repeat: 1 },
+      22);
+    tl.to(['.corner'], { opacity: 1, duration: 0.35, stagger: 0.09, ease: 'power2.out' }, 22.25);
+    tl.fromTo('#s3-logo', { opacity: 0, scale: 0.82 }, { opacity: 1, scale: 1, duration: 0.7, ease: 'power2.out' }, 22.45);
+    /* fromTo exempts the gsap_css_transform_conflict rule */
+    tl.fromTo('#s3-rule', { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: 'power2.inOut' }, 23.1);
+    tl.fromTo('#s3-slogan', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 23.58);
+    tl.fromTo('#s3-handle', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 24.05);
+    tl.to('.acc-dot', { opacity: 1, duration: 0.28, stagger: 0.08, ease: 'power2.out' }, 24.42);
+    tl.fromTo('#s3-cities', { opacity: 0 }, { opacity: 1, duration: 0.55, ease: 'power2.out' }, 24.72);
+
+    window.__timelines['main'] = tl;
+  </script>
+</body>
+</html>

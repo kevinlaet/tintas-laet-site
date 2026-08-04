@@ -1,0 +1,550 @@
+<title>Roteiro do Dia — Gravação 4 Lojas</title>
+<style>
+  :root{
+    --blue:#0D47A1;
+    --blue-dark:#062B63;
+    --yellow:#FFC107;
+    --yellow-soft:#FFE082;
+    --cream:#F7F3E8;
+    --graphite:#212529;
+    --white:#FFFFFF;
+
+    --bg: var(--cream);
+    --surface: #FFFFFF;
+    --text: var(--graphite);
+    --text-soft:#5A5F66;
+    --header-bg: var(--blue);
+    --header-text: #FFFFFF;
+    --rule: rgba(13,71,161,0.14);
+    --chip-text: var(--blue-dark);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#081B3D;
+      --surface:#0D2757;
+      --text:#F2F4F8;
+      --text-soft:#B9C4DA;
+      --header-bg:#062B63;
+      --header-text:#FFFFFF;
+      --rule: rgba(255,255,255,0.12);
+      --chip-text: var(--blue-dark);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#081B3D;
+    --surface:#0D2757;
+    --text:#F2F4F8;
+    --text-soft:#B9C4DA;
+    --header-bg:#062B63;
+    --header-text:#FFFFFF;
+    --rule: rgba(255,255,255,0.12);
+    --chip-text: var(--blue-dark);
+  }
+  :root[data-theme="light"]{
+    --bg: var(--cream);
+    --surface: #FFFFFF;
+    --text: var(--graphite);
+    --text-soft:#5A5F66;
+    --header-bg: var(--blue);
+    --header-text: #FFFFFF;
+    --rule: rgba(13,71,161,0.14);
+    --chip-text: var(--blue-dark);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:640px; margin:0 auto; padding:0 0 80px;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:var(--header-bg);
+    color:var(--header-text);
+    padding:10px 18px;
+    display:flex; gap:8px; overflow-x:auto;
+    box-shadow:0 2px 14px rgba(0,0,0,0.18);
+  }
+  .topbar a{
+    color:var(--header-text);
+    text-decoration:none;
+    font-size:12.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    white-space:nowrap;
+    padding:7px 12px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.18);
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    background: linear-gradient(180deg, var(--blue) 0%, var(--blue-dark) 100%);
+    color:#fff;
+    padding:38px 22px 34px;
+  }
+  .eyebrow{
+    font-size:12.5px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--yellow-soft); margin:0 0 10px;
+  }
+  .hero h1{
+    font-size:clamp(28px,7vw,38px);
+    line-height:1.08;
+    margin:0 0 14px;
+    font-weight:800;
+    text-wrap:balance;
+    letter-spacing:-.01em;
+  }
+  .chip{
+    display:inline-block;
+    background:var(--yellow);
+    color:var(--chip-text);
+    font-weight:800;
+    padding:5px 14px;
+    border-radius:4px;
+    transform:rotate(-2deg);
+    font-size:14px;
+  }
+  .hero p.lede{
+    font-size:16px;
+    color:#DCE6F7;
+    max-width:46ch;
+    margin:0;
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:30px 22px 6px;}
+  h2{
+    font-size:12.5px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--blue);
+    margin:0 0 4px;
+  }
+  @media (prefers-color-scheme: dark){ h2{color:var(--yellow);} }
+  :root[data-theme="dark"] h2{color:var(--yellow);}
+  :root[data-theme="light"] h2{color:var(--blue);}
+
+  h3.section-title{
+    font-size:22px;
+    font-weight:800;
+    margin:0 0 16px;
+    letter-spacing:-.01em;
+  }
+
+  .lead{color:var(--text-soft); font-size:15px; margin:0 0 18px; max-width:56ch;}
+
+  /* ---------- objective duo ---------- */
+  .duo{display:grid; grid-template-columns:1fr; gap:12px; margin-bottom:6px;}
+  @media(min-width:520px){ .duo{grid-template-columns:1fr 1fr;} }
+  .duo-card{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:10px;
+    padding:16px 16px 18px;
+  }
+  .duo-card .tag{
+    font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--yellow); background:var(--blue-dark); display:inline-block;
+    padding:3px 9px; border-radius:4px; margin-bottom:10px;
+  }
+  .duo-card p{margin:0; font-size:14.5px; color:var(--text-soft);}
+  .duo-card strong{color:var(--text); font-weight:700;}
+
+  /* ---------- deliverables list ---------- */
+  .deliv{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .deliv li{
+    background:var(--surface); border:1px solid var(--rule); border-radius:10px;
+    padding:13px 14px; display:flex; gap:12px; align-items:flex-start;
+  }
+  .deliv .num{
+    font-weight:800; font-size:13px; color:var(--blue-dark); background:var(--yellow-soft);
+    min-width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  :root[data-theme="dark"] .deliv .num, @media (prefers-color-scheme:dark){ .deliv .num{color:var(--blue-dark);} }
+  .deliv b{display:block; font-size:14.5px; margin-bottom:2px;}
+  .deliv span{font-size:13.5px; color:var(--text-soft);}
+
+  /* ---------- beat sheet (timeline) ---------- */
+  .beats{position:relative; margin-top:10px;}
+  .beat{
+    display:grid; grid-template-columns:64px 1fr; gap:14px;
+    padding-bottom:22px; position:relative;
+  }
+  .beat::before{
+    content:""; position:absolute; left:31px; top:26px; bottom:-4px; width:2px;
+    background:var(--rule);
+  }
+  .beat:last-child::before{display:none;}
+  .beat .t{
+    font-weight:800; font-size:13px; color:var(--blue-dark); background:var(--yellow);
+    border-radius:4px; padding:4px 0; text-align:center; height:fit-content;
+    font-variant-numeric:tabular-nums; transform:rotate(-2deg);
+  }
+  .beat .card{
+    background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:12px 14px;
+  }
+  .beat .card b{display:block; font-size:14.5px; margin-bottom:4px;}
+  .beat .card p{margin:0; font-size:13.5px; color:var(--text-soft);}
+  .beat .card p + p{margin-top:6px;}
+  .beat .card .say{
+    font-style:italic; color:var(--text); border-left:2px solid var(--yellow); padding-left:8px; margin-top:8px;
+  }
+
+  /* ---------- store cards ---------- */
+  .store{
+    background:var(--surface); border:1px solid var(--rule); border-radius:12px;
+    padding:18px; margin-bottom:16px; scroll-margin-top:64px;
+  }
+  .store-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:2px; flex-wrap:wrap;}
+  .store-head h4{margin:0; font-size:18px; font-weight:800;}
+  .store-head .order{font-size:12px; font-weight:800; color:var(--blue-dark); background:var(--yellow-soft); padding:2px 8px; border-radius:4px;}
+  .store .addr{font-size:13px; color:var(--text-soft); margin:0 0 12px;}
+  .checklist{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px;}
+  .checklist li{display:flex; align-items:flex-start; gap:9px; font-size:14px;}
+  .checklist input[type="checkbox"]{
+    appearance:none; -webkit-appearance:none; width:18px; height:18px; border-radius:5px;
+    border:2px solid var(--blue); flex-shrink:0; margin-top:1px; cursor:pointer; position:relative;
+  }
+  .checklist input[type="checkbox"]:checked{background:var(--blue); }
+  .checklist input[type="checkbox"]:checked::after{
+    content:""; position:absolute; left:4px; top:0px; width:5px; height:9px;
+    border:solid white; border-width:0 2px 2px 0; transform:rotate(40deg);
+  }
+  .checklist label span.note{display:block; color:var(--text-soft); font-size:12.5px; margin-top:1px;}
+  .store .note-box{
+    margin-top:12px; font-size:13px; background:var(--bg); border:1px dashed var(--rule);
+    border-radius:8px; padding:9px 11px; color:var(--text-soft);
+  }
+
+  /* ---------- logistics table ---------- */
+  .route{display:flex; flex-direction:column; gap:0;}
+  .route .stop{display:flex; align-items:center; gap:12px; padding:9px 0;}
+  .route .dot{width:10px; height:10px; border-radius:50%; background:var(--blue); flex-shrink:0;}
+  .route .stop:not(:last-child){border-bottom:1px dashed var(--rule);}
+  .route .stop b{font-size:14.5px;}
+  .route .stop span{display:block; font-size:12.5px; color:var(--text-soft);}
+  .route .arrow{font-size:12px; color:var(--text-soft); padding-left:5px;}
+
+  .grid2{display:grid; grid-template-columns:1fr; gap:14px;}
+  @media(min-width:520px){ .grid2{grid-template-columns:1fr 1fr;} }
+  .box{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:15px 16px;}
+  .box h5{margin:0 0 8px; font-size:13.5px; font-weight:800;}
+  .box ul{margin:0; padding-left:18px; font-size:13.5px; color:var(--text-soft); display:flex; flex-direction:column; gap:5px;}
+  .box ul li::marker{color:var(--yellow);}
+
+  .tips{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px;}
+  .tips li{
+    background:var(--surface); border:1px solid var(--rule); border-radius:10px;
+    padding:11px 14px; font-size:14px; display:flex; gap:10px;
+  }
+  .tips li .ico{flex-shrink:0; font-weight:800; color:var(--blue-dark); background:var(--yellow); border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:12px;}
+
+  /* ---------- video tags (D / V) ---------- */
+  .vtag{
+    display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:.03em;
+    padding:1px 6px; border-radius:4px; margin-left:6px; vertical-align:middle;
+  }
+  .vtag.d{background:var(--blue); color:#fff;}
+  .vtag.v{background:var(--yellow); color:var(--chip-text);}
+  .legend{display:flex; gap:16px; align-items:center; font-size:12.5px; color:var(--text-soft); margin:0 0 16px; flex-wrap:wrap;}
+  .legend b{display:inline-flex; align-items:center; gap:5px; font-weight:600;}
+
+  /* ---------- video section headers ---------- */
+  .vhead{
+    display:flex; align-items:center; gap:10px; margin-bottom:4px;
+  }
+  .vhead .pill{
+    font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em;
+    padding:4px 10px; border-radius:20px;
+  }
+  .vhead .pill.d{background:var(--blue-dark); color:var(--yellow-soft);}
+  .vhead .pill.v{background:var(--yellow); color:var(--chip-text);}
+  .video-meta{font-size:13px; color:var(--text-soft); margin:0 0 18px;}
+
+  footer{padding:26px 22px 10px; text-align:center;}
+  footer p{font-size:12.5px; color:var(--text-soft); margin:0;}
+
+  ::selection{background:var(--yellow); color:var(--chip-text);}
+</style>
+
+<div class="wrap">
+
+  <nav class="topbar">
+    <a href="#objetivo">Objetivo</a>
+    <a href="#video-d">Vídeo 1 · Donos</a>
+    <a href="#video-v">Vídeo 2 · Viral</a>
+    <a href="#loja1">Loja 1</a>
+    <a href="#loja2">Loja 2</a>
+    <a href="#loja3">Loja 3</a>
+    <a href="#loja4">Loja 4</a>
+    <a href="#logistica">Logística</a>
+    <a href="#dicas">Dicas</a>
+  </nav>
+
+  <div class="hero">
+    <p class="eyebrow">Tintas Laet · dia de gravação</p>
+    <h1>Amanhã a Laet mostra serviço.<br><span class="chip">10 de julho</span></h1>
+    <p class="lede">Um dia, 4 lojas, uma amiga com a câmera. No fim: dois vídeos com objetivos diferentes — um pra encher os olhos do seu pai e do seu tio, outro pra rodar o Instagram.</p>
+  </div>
+
+  <section id="objetivo">
+    <h2>Objetivo do dia</h2>
+    <h3 class="section-title">2 vídeos, 2 propósitos</h3>
+    <p class="lead">Não são a mesma peça cortada diferente — são roteiros diferentes, gravados no mesmo dia com a mesma equipe. Cada um puxa um tipo de plano diferente, por isso os dois roteiros ficam separados abaixo.</p>
+    <div class="duo">
+      <div class="duo-card">
+        <span class="tag">Vídeo 1 — Demonstrativo</span>
+        <p><strong>Pra encher o olho do Robson e do Anderson.</strong> Ritmo mais pausado, mostra escala e controle: as 4 lojas com o mesmo padrão, organização, atendimento treinado. É prova de serviço, não conteúdo de feed.</p>
+      </div>
+      <div class="duo-card">
+        <span class="tag">Vídeo 2 — Viral</span>
+        <p><strong>Pra rodar no Instagram.</strong> Curto, ritmo acelerado, gancho nos 2 primeiros segundos. Não precisa "provar" nada — precisa prender atenção e fazer parar o scroll.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>O que sai desse dia</h2>
+    <h3 class="section-title">2 vídeos + estoque de sobra</h3>
+    <ul class="deliv">
+      <li>
+        <span class="num">1</span>
+        <div><b>Vídeo 1 — Demonstrativo (~75-90s)</b><span>Tour completo e pausado pelas 4 lojas. Mostrado direto ao Robson e ao Anderson antes do acordo do fim do mês — pode ou não ir pro Instagram também.</span></div>
+      </li>
+      <li>
+        <span class="num">2</span>
+        <div><b>Vídeo 2 — Viral (~15-25s)</b><span>Formato contador rápido das 4 lojas, feito pra Reels. Prioriza alcance, não institucional.</span></div>
+      </li>
+      <li>
+        <span class="num">3</span>
+        <div><b>Sobra vira estoque</b><span>Todo plano extra que não entrar em nenhum dos dois cortes vira Stories e "Dúvida do balcão" nas próximas semanas — dia de gravação é raro, filma mais do que precisa.</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="video-d">
+    <h2>Roteiro 1</h2>
+    <div class="vhead"><h3 class="section-title" style="margin-bottom:0;">Demonstrativo</h3><span class="pill d">Pros donos</span></div>
+    <p class="video-meta">~75-90s · ritmo pausado · vertical 9:16 (funciona também mostrado direto no celular, não precisa ser postado)</p>
+    <p class="lead">Aqui o objetivo é diferente do Instagram: não é prender scroll, é passar confiança e escala. Cada loja ganha tempo de tela pra se mostrar por inteiro.</p>
+
+    <div class="beats">
+      <div class="beat">
+        <div class="t">0-8s</div>
+        <div class="card">
+          <b>Abertura institucional</b>
+          <p>Logo Tintas Laet sobre um plano aberto da Loja 1. Texto na tela, sem pressa.</p>
+          <p class="say">"4 lojas. Um padrão só."</p>
+        </div>
+      </div>
+      <div class="beat">
+        <div class="t">8-45s</div>
+        <div class="card">
+          <b>Tour completo pelas 4 lojas</b>
+          <p>8-10s por loja — bem mais tempo que no vídeo viral. Fachada, corredor organizado, atendimento, detalhe de produto. O ritmo pausado é proposital: aqui a mensagem é "olha o tanto de coisa que já está certa", não velocidade.</p>
+        </div>
+      </div>
+      <div class="beat">
+        <div class="t">45-60s</div>
+        <div class="card">
+          <b>Prova concreta</b>
+          <p>Depoimento mais desenvolvido — deixa o cliente ou balconista falar por 10-15s, sem cortar cedo. Se o Robson ou o Anderson estiverem em alguma loja, um bite deles comentando a mudança tem peso extra aqui.</p>
+        </div>
+      </div>
+      <div class="beat">
+        <div class="t">60-80s</div>
+        <div class="card">
+          <b>O que mudou</b>
+          <p>Bloco de texto na tela, tipo "relatório rápido": Instagram ativo, site com orçamento e sorteio funcionando, 5ª loja em contrato. Se tiver 1-2 números prontos (seguidores, resultado do sorteio), esse é o lugar — não precisa forçar se não tiver.</p>
+        </div>
+      </div>
+      <div class="beat">
+        <div class="t">80-90s</div>
+        <div class="card">
+          <b>Fechamento</b>
+          <p>Logo, fundo azul.</p>
+          <p class="say">"E isso é só o começo."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="video-v">
+    <h2>Roteiro 2</h2>
+    <div class="vhead"><h3 class="section-title" style="margin-bottom:0;">Viral</h3><span class="pill v">Pro Instagram</span></div>
+    <p class="video-meta">~15-25s · ritmo acelerado · vertical 9:16 · áudio em alta no Reels ajuda</p>
+    <p class="lead">Curto de propósito — o que mais engaja no seu feed até hoje é gente real em momento genuíno (não design bonito), então o corte aqui é rápido e sem enrolação. Sem introdução, sem logo abrindo — o gancho vem primeiro.</p>
+
+    <div class="beats">
+      <div class="beat">
+        <div class="t">0-2s</div>
+        <div class="card">
+          <b>Gancho seco</b>
+          <p>Corte direto num plano de ação — mão pegando lata, tinta sendo mexida, alguém entrando andando rápido. Texto grande já na tela, sem esperar.</p>
+          <p class="say">"Aposto que você não sabia que a Laet tem 4 lojas."</p>
+        </div>
+      </div>
+      <div class="beat">
+        <div class="t">2-14s</div>
+        <div class="card">
+          <b>Contador das 4 lojas</b>
+          <p>Corte na batida da música, ~3s por loja. Texto sobre cada plano: "LOJA 1" · "LOJA 2" · "LOJA 3" · "LOJA 4". Sempre um plano de ação — nunca uma fachada parada. É o plano marcado como <span class="vtag v">V</span> na lista de cada loja.</p>
+        </div>
+      </div>
+      <div class="beat">
+        <div class="t">14-20s</div>
+        <div class="card">
+          <b>Virada emocional</b>
+          <p>O momento que separa esse vídeo de qualquer post genérico de loja.</p>
+          <p class="say">"Começou numa garagem. Hoje são 4 lojas — e a 5ª tá vindo."</p>
+          <p>Se você tiver alguma foto antiga real da garagem ou da primeira loja, é aqui que ela entra. Se não tiver, o texto sozinho sobre um plano forte da Loja 1 já funciona — não trava o vídeo por causa disso.</p>
+        </div>
+      </div>
+      <div class="beat">
+        <div class="t">20-25s</div>
+        <div class="card">
+          <b>CTA seco</b>
+          <p>@tintaslaet na tela, "segue pra acompanhar". Um segundo, sem discurso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Ordem sugerida</h2>
+    <h3 class="section-title">Rota do dia</h3>
+    <p class="lead">Sapopemba → Mauá → Santo André segue o caminho geográfico mais lógico. Confirma o trânsito real no Maps de manhã antes de sair — só a ordem das paradas, o resto se ajusta na hora.</p>
+    <div class="box" style="scroll-margin-top:64px;">
+      <div class="route">
+        <div class="stop"><div class="dot"></div><div><b>Loja 1 — Vila Bela</b><span>Av. Sapopemba, 25.723, SP · a loja principal, começa por ela com luz e energia de manhã</span></div></div>
+        <div class="stop"><div class="dot"></div><div><b>Loja 2 — Jd. São João</b><span>Rua do Britador, 2, Mauá</span></div></div>
+        <div class="stop"><div class="dot"></div><div><b>Loja 3 — Jd. Santa Cecília</b><span>Av. Ayrton Senna da Silva, 235, Mauá · atenção: iluminação interna fraca, compensa com plano mais fechado ou reforço de luz</span></div></div>
+        <div class="stop"><div class="dot"></div><div><b>Loja 4 — Vila Luzita</b><span>Av. São Bernardo do Campo, 757, Santo André</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Por loja</h2>
+    <h3 class="section-title">Lista de planos</h3>
+    <p class="lead">Uns 20-25 min por loja, contando setup — agora cada parada alimenta os dois vídeos. Marca o que já foi pegando durante o dia.</p>
+    <div class="legend">
+      <b><span class="vtag d">D</span> entra no Demonstrativo</b>
+      <b><span class="vtag v">V</span> entra no Viral</b>
+      <b><span class="vtag d">D</span><span class="vtag v">V</span> serve pros dois</b>
+    </div>
+
+    <div class="store" id="loja1">
+      <div class="store-head"><h4>Loja 1 — Vila Bela</h4><span class="order">1ª parada</span></div>
+      <p class="addr">Av. Sapopemba, 25.723 — SP</p>
+      <ul class="checklist">
+        <li><input type="checkbox" id="l1-1"><label for="l1-1">Fachada — evitar contraluz, ajustar ângulo se o sol estiver atrás da loja <span class="vtag d">D</span><span class="vtag v">V</span></label></li>
+        <li><input type="checkbox" id="l1-2"><label for="l1-2">Plano geral do corredor organizado <span class="vtag d">D</span></label></li>
+        <li><input type="checkbox" id="l1-3"><label for="l1-3">Close de atendimento real no balcão <span class="vtag d">D</span><span class="vtag v">V</span></label></li>
+        <li><input type="checkbox" id="l1-4"><label for="l1-4">Detalhe: placa de preço / lata da Tinta Piso <span class="vtag d">D</span></label></li>
+        <li><input type="checkbox" id="l1-5"><label for="l1-5">Depoimento espontâneo, 10-15s (cliente ou balconista) <span class="vtag d">D</span><span class="note">pergunta simples: "por que você compra aqui?"</span></label></li>
+        <li><input type="checkbox" id="l1-6"><label for="l1-6">Plano de ação rápido pro gancho/contador (mão pegando lata, tinta sendo mexida) <span class="vtag v">V</span></label></li>
+      </ul>
+      <div class="note-box">É a loja principal — abre o Demonstrativo e também é a candidata natural pro momento "começou numa garagem" do Viral, já que é a loja mais antiga.</div>
+    </div>
+
+    <div class="store" id="loja2">
+      <div class="store-head"><h4>Loja 2 — Jd. São João</h4><span class="order">2ª parada</span></div>
+      <p class="addr">Rua do Britador, 2 — Mauá</p>
+      <ul class="checklist">
+        <li><input type="checkbox" id="l2-1"><label for="l2-1">Fachada <span class="vtag d">D</span><span class="vtag v">V</span></label></li>
+        <li><input type="checkbox" id="l2-2"><label for="l2-2">Plano geral do interior <span class="vtag d">D</span></label></li>
+        <li><input type="checkbox" id="l2-3"><label for="l2-3">Close de atendimento <span class="vtag d">D</span></label></li>
+        <li><input type="checkbox" id="l2-4"><label for="l2-4">Detalhe de prateleira/organização <span class="vtag d">D</span></label></li>
+        <li><input type="checkbox" id="l2-5"><label for="l2-5">Plano de ação rápido pro contador <span class="vtag v">V</span></label></li>
+        <li><input type="checkbox" id="l2-6"><label for="l2-6">Depoimento, se aparecer alguém à vontade <span class="vtag d">D</span></label></li>
+      </ul>
+    </div>
+
+    <div class="store" id="loja3">
+      <div class="store-head"><h4>Loja 3 — Jd. Santa Cecília</h4><span class="order">3ª parada</span></div>
+      <p class="addr">Av. Ayrton Senna da Silva, 235 — Mauá</p>
+      <ul class="checklist">
+        <li><input type="checkbox" id="l3-1"><label for="l3-1">Fachada <span class="vtag d">D</span><span class="vtag v">V</span></label></li>
+        <li><input type="checkbox" id="l3-2"><label for="l3-2">Plano geral do interior <span class="vtag d">D</span><span class="note">loja mais escura — prioriza plano mais fechado, evita plano aberto que fica "apagado" no vídeo</span></label></li>
+        <li><input type="checkbox" id="l3-3"><label for="l3-3">Close de atendimento <span class="vtag d">D</span></label></li>
+        <li><input type="checkbox" id="l3-4"><label for="l3-4">Detalhe de produto em destaque <span class="vtag d">D</span></label></li>
+        <li><input type="checkbox" id="l3-5"><label for="l3-5">Plano de ação rápido pro contador <span class="vtag v">V</span></label></li>
+      </ul>
+      <div class="note-box">Essa é a loja com a tarefa de iluminação pendente — se der pra levar uma luz de apoio (ring light, lanterna de celular de reforço) melhora bastante o plano interno. No Viral o corte é rápido (~3s), então a luz fraca incomoda menos aqui do que no Demonstrativo.</div>
+    </div>
+
+    <div class="store" id="loja4">
+      <div class="store-head"><h4>Loja 4 — Vila Luzita</h4><span class="order">4ª parada</span></div>
+      <p class="addr">Av. São Bernardo do Campo, 757 — Santo André</p>
+      <ul class="checklist">
+        <li><input type="checkbox" id="l4-1"><label for="l4-1">Fachada <span class="vtag d">D</span><span class="vtag v">V</span></label></li>
+        <li><input type="checkbox" id="l4-2"><label for="l4-2">Plano geral do interior <span class="vtag d">D</span></label></li>
+        <li><input type="checkbox" id="l4-3"><label for="l4-3">Close de atendimento <span class="vtag d">D</span></label></li>
+        <li><input type="checkbox" id="l4-4"><label for="l4-4">Detalhe de organização/produto <span class="vtag d">D</span></label></li>
+        <li><input type="checkbox" id="l4-5"><label for="l4-5">Plano de ação rápido pro contador <span class="vtag v">V</span></label></li>
+        <li><input type="checkbox" id="l4-6"><label for="l4-6">Fechamento — plano final de encerramento pros dois vídeos, se a luz ainda estiver boa <span class="vtag d">D</span><span class="vtag v">V</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="logistica">
+    <h2>Antes de sair</h2>
+    <h3 class="section-title">Checklist de logística</h3>
+    <div class="grid2">
+      <div class="box">
+        <h5>Levar</h5>
+        <ul>
+          <li>Celular 100% carregado + power bank</li>
+          <li>Espaço livre de armazenamento (vídeo em 9:16 pesa)</li>
+          <li>Estabilizador ou tripé de celular, se tiver</li>
+          <li>Trava de rotação da tela ligada — grava tudo vertical</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h5>Combinar antes</h5>
+        <ul>
+          <li>Avisar o responsável de cada loja do horário de chegada</li>
+          <li>Pedir pra loja estar arrumada quando você chegar</li>
+          <li>Time de uniforme azul da marca</li>
+          <li>Sem obrigar cliente a depoimento — só quem topar de boa</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="dicas">
+    <h2>Pra quem filma</h2>
+    <h3 class="section-title">Dicas rápidas pra sua amiga</h3>
+    <ul class="tips">
+      <li><span class="ico">1</span> Vertical (9:16) em tudo — é pra Reels e Stories, não pra YouTube.</li>
+      <li><span class="ico">2</span> Vários takes curtos de cada plano em vez de um plano longo só — sobra material pra escolher na edição.</li>
+      <li><span class="ico">3</span> Deixa uns 3 segundos parada no início e no fim de cada clipe — dá folga pro corte.</li>
+      <li><span class="ico">4</span> Luz de frente pro rosto de quem fala, nunca de trás (contraluz apaga o rosto).</li>
+      <li><span class="ico">5</span> De cada momento importante: um plano geral (a cena toda) e um close (o detalhe) — dá opção na hora de montar.</li>
+      <li><span class="ico">6</span> Grava um pouco de som ambiente da loja em cada parada — ajuda a costurar a trilha depois.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Depois da gravação</h2>
+    <h3 class="section-title">Edição e publicação</h3>
+    <p class="lead">O Demonstrativo você mostra direto pro Robson e Anderson assim que ficar pronto — não precisa esperar a sessão de quinta/sexta, esse tem prazo próprio (a conversa do acordo é fim de julho). Já o Viral entra na pauta normal da semana pra decidir o melhor dia de postar. Se sobrar plano bom dos dois roteiros, isso vira estoque pra Stories e "Dúvida do balcão".</p>
+  </section>
+
+  <footer>
+    <p>Tintas Laet — roteiro de gravação · 10 de julho de 2026</p>
+  </footer>
+
+</div>

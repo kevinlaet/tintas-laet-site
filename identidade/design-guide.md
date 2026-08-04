@@ -45,9 +45,9 @@ Azul Royal Premium — forte, vibrante e confiável. Transmite qualidade, modern
 O card com ícone dentro de círculo (badge SVG) é genérico — qualquer loja de tinta usa esse formato. A partir de agora, **fotografia real em alta definição (ou gerada por IA quando não houver foto real adequada) é a base visual padrão** de capa e de pelo menos um slide interno em qualquer peça — não é mais uma opção condicional, é o default. Os cards de ícone continuam existindo, mas como apoio (lista de benefícios, diferenciais), nunca como elemento principal da peça.
 
 **Ordem de prioridade da foto:**
-1. Foto real já existente em `site/images/prova-social/`, `marketing/imagem das lojas/`, `site/images/lojas/` — sempre que servir pro tema
+1. Foto real já existente em `marketing/prova social/`, `marketing/imagem das lojas/`, `site/images/lojas/` — sempre que servir pro tema
 2. Foto real nova (pedida à loja, ver `_memoria/calendario-editorial.md`)
-3. Foto gerada por IA — só quando as opções acima não cobrirem o tema. **Fluxo atual: manual**, sem orçamento pra API da OpenAI (precisa de créditos pré-pagos separados do plano ChatGPT). Montar o prompt (template abaixo), entregar pro Kevin colar no ChatGPT (plano Go, já tem geração de imagem incluída), e ele manda a imagem gerada de volta pra seguir o carrossel/story. `scripts/gerar-imagem.js` já existe e fica pronto pra automatizar isso quando houver orçamento de API — não usar por enquanto.
+3. Foto gerada por IA — só quando as opções acima não cobrirem o tema. **Fluxo atual: automatizado.** API da OpenAI configurada (07/2026) com crédito pré-pago ativo — usar `scripts/gerar-imagem.js` (modelo `gpt-image-1.5`, qualidade `medium`) direto: `node --env-file=.env scripts/gerar-imagem.js "prompt" "destino.png"`.
 
 **Regra de qualidade:** nunca usar foto de baixa resolução, desfocada, pixelada ou com watermark. Sem foto boa disponível → gerar por IA em vez de usar uma fraca.
 

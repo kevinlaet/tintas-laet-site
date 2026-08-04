@@ -5,24 +5,27 @@
 
 ## O que é esse workspace
 
-Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, métricas, identidade visual e tudo que envolve a presença digital das 4 lojas.
+Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, métricas, identidade visual e tudo que envolve a presença digital das 6 lojas (5 funcionando + 1 em abertura).
 
 **Estrutura de pastas:**
 - `_memoria/` — quem é a empresa, como falamos, foco atual
 - `identidade/` — marca aplicada em tudo que o sistema gera
   - `ferramentas/` — fotos e renders de ferramentas e acessórios vendidos nas lojas
-  - `embalagens/` — renders de produtos (tintas, solventes) + label da Proteção Emborrachada (em desenvolvimento)
+  - `embalagens/` — renders de produtos (tintas, solventes) + label da Proteção Emborrachada (em stand-by — foco atual são as aberturas de loja)
+  - `placas-lojas/` — templates de placas de loja (tabela de preço, avisos legais, vaga preferencial, proibido fumar, etc.)
 - `marketing/` — campanhas, conteúdo, mídia paga
+  - `catalogos/` — PDFs de catálogo de produtos (Cobertura Absoluta, Flex Emborrachada, Standard, Premium Lavável, Semibrilho)
   - `conteudo/<slug>-<data>/` — carrosséis e posts de feed de Instagram/Facebook
   - `stories/<YYYY-MM>/<DD>-<slug>/` — stories de Instagram, agrupados por mês (meta é 2/dia, então nunca soltar story direto em `conteudo/`)
   - `status-whatsapp/<slug>-<data>/` — peças no formato 9:16 pra Status do WhatsApp
   - `banco-de-midia/` — banco de imagens avulsas reutilizáveis (mascote, cimento queimado, sorteio, etc.)
   - `prova social/` — fotos reais de eventos, ganhadores de sorteio, equipe e clientes (uso em feed/stories de humanização)
-  - `imagem das lojas/` — fotos das 4 lojas (fachada e interior, uma por loja)
+  - `imagem das lojas/` — fotos das lojas (fachada e interior, uma por loja)
   - `sorteio/` — dossiê e material do sorteio mensal
   - `logotipos de redessociais/` — logos da Laet adaptados para cada plataforma
 - `dados/` — relatórios, planilhas, métricas para análise
   - `dados/gestao/` — ferramentas de gestão operacional das lojas (tarefas, checklists)
+  - `dados/preços de tintas/` — fotos de listas de preço reais enviadas pelos balconistas (preço praticado de fato na loja), usadas pra corrigir divergências entre o site e o preço real de loja
 - `saidas/` — documentos e peças gerados
 - `scripts/` — scripts e automações
 - `templates/` — modelos reutilizáveis
@@ -31,9 +34,9 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 
 ## Sobre a empresa
 
-Tintas Laet é um comércio de tintas e materiais de pintura com 4 lojas (5ª em contrato, jul/2026) na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado, parcelamento em 12x sem juros e frete justo.
+Tintas Laet é um comércio de tintas e materiais de pintura com 6 lojas — 5 já funcionando (a Loja 5 com festa de inauguração marcada pra 08/08/2026) e a 6ª ainda vazia (sem estoque), com contrato assinado, entrando em manutenção do salão (pintura e reparos) antes de abrir —, na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado, parcelamento em 12x sem juros e frete justo.
 
-Fundada por Anderson Laet e Robson Laet. Kevin cuida do marketing digital e da gestão operacional das 4 lojas, sozinho por enquanto.
+Fundada por Anderson Laet e Robson Laet. Kevin cuida do marketing digital e da gestão operacional das lojas, sozinho por enquanto.
 
 ## Instagram
 
@@ -60,7 +63,8 @@ Direto, simples, acolhedor. Fala com a comunidade como vizinho — sem jargão d
 - [x] Meta Ads (tráfego pago)
 - [x] Instagram @Tintaslaet
 - [ ] Google Ads
-- [x] Google Analytics (G-V8RP9PV579 — ativo desde 04/07/2026)
+- [x] Google Analytics (G-V8RP9PV579 — ativo desde 15/07/2026 — script adicionado em todos os HTMLs do site)
+- [x] API de imagem OpenAI (ativa desde 29/07/2026 — `scripts/gerar-imagem.js`, modelo `gpt-image-1.5`, qualidade `medium`, crédito pré-pago configurado)
 
 ---
 

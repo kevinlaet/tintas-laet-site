@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Panfleto Geral — Tintas Laet</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background:#111;
+  display:flex; flex-direction:column; align-items:center;
+  padding:48px 0;
+  font-family:'Poppins',sans-serif;
+}
+
+.panfleto {
+  width:1080px;
+  display:flex;
+  flex-direction:column;
+  background:#0D47A1;
+}
+
+/* ── TOPO ── */
+.topo {
+  background:#0D47A1;
+  padding:28px 80px 22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.topo img { height:200px; object-fit:contain; }
+.topo .tagline {
+  font:700 18px/1 'Poppins',sans-serif;
+  color:rgba(255,255,255,.75);
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+
+/* ── FAIXA DE PREÇO (2 produtos) ── */
+.precos {
+  background:#062B63;
+  padding:26px 72px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.preco-item {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  padding:0 20px;
+}
+.preco-item .produto {
+  font:700 17px/1.25 'Poppins',sans-serif;
+  color:#fff;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  text-align:center;
+}
+.preco-item .valor {
+  font:400 92px/0.85 'Bebas Neue',sans-serif;
+  color:#FFC107;
+  letter-spacing:.01em;
+}
+.preco-item .valor .rs {
+  font-size:40px;
+  vertical-align:top;
+  margin-top:10px;
+  display:inline-block;
+  letter-spacing:0;
+}
+.preco-item .valor .centavos {
+  font-size:50px;
+  vertical-align:top;
+  margin-top:8px;
+}
+.preco-divider-v {
+  width:3px;
+  height:148px;
+  background:rgba(255,255,255,.15);
+  border-radius:2px;
+  flex-shrink:0;
+}
+
+/* ── FAIXA DE BENEFÍCIOS (entrega + parcelamento) ── */
+.beneficios {
+  background:#0D47A1;
+  padding:16px 72px 24px;
+  display:flex;
+  gap:16px;
+  justify-content:center;
+}
+.beneficio-chip {
+  flex:1;
+  max-width:460px;
+  background:#FFC107;
+  border-radius:12px;
+  padding:14px 22px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.beneficio-chip .icon {
+  width:40px; height:40px;
+  border-radius:50%;
+  background:#062B63;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.beneficio-chip .txt {
+  font:800 17px/1.25 'Poppins',sans-serif;
+  color:#062B63;
+  text-transform:uppercase;
+  letter-spacing:.01em;
+}
+
+/* ── FOTO ── */
+.foto {
+  position:relative;
+  overflow:hidden;
+  height:360px;
+}
+.foto img {
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:center 65%;
+  display:block;
+}
+.foto-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,
+    rgba(6,43,99,.15) 0%,
+    rgba(6,43,99,0) 30%,
+    rgba(6,43,99,0) 55%,
+    rgba(6,43,99,.85) 100%
+  );
+}
+.foto-msg {
+  position:absolute;
+  bottom:32px; left:72px; right:72px;
+  font:800 38px/1.2 'Poppins',sans-serif;
+  color:#fff;
+  text-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.foto-msg em { color:#FFC107; font-style:normal; }
+
+/* ── LOJAS ── */
+.lojas {
+  background:#fff;
+  padding:20px 72px 18px;
+}
+.lojas-titulo {
+  font:400 44px/1 'Bebas Neue',sans-serif;
+  color:#0D47A1;
+  letter-spacing:.06em;
+  text-align:center;
+  margin-bottom:14px;
+  position:relative;
+}
+.lojas-titulo::before,
+.lojas-titulo::after {
+  content:'';
+  position:absolute;
+  top:50%; width:160px; height:2px;
+  background:#FFC107;
+  transform:translateY(-50%);
+}
+.lojas-titulo::before { left:0; }
+.lojas-titulo::after { right:0; }
+
+.lojas-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:14px;
+}
+.loja-card {
+  border:2px solid #E8EDF5;
+  border-radius:12px;
+  padding:16px 18px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  background:#F7F9FC;
+  position:relative;
+}
+.loja-card.breve {
+  border-color:#FFC107;
+  background:#FFFBF0;
+}
+.loja-num-row {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.pin-icon {
+  width:22px; height:22px;
+  background:#0D47A1;
+  border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);
+  flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+}
+.pin-icon::after {
+  content:'';
+  width:8px; height:8px;
+  background:#fff;
+  border-radius:50%;
+  display:block;
+}
+.loja-card.breve .pin-icon { background:#FFC107; }
+.loja-num {
+  font:800 14px/1 'Poppins',sans-serif;
+  color:#0D47A1;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.loja-card.breve .loja-num { color:#B8860B; }
+.loja-end {
+  font:700 15px/1.35 'Poppins',sans-serif;
+  color:#1a1a1a;
+}
+.loja-bairro {
+  font:400 13px/1.2 'Poppins',sans-serif;
+  color:#666;
+}
+.breve-tag {
+  display:inline-block;
+  align-self:flex-start;
+  background:#FFC107;
+  color:#062B63;
+  font:800 10px/1 'Poppins',sans-serif;
+  padding:3px 10px;
+  border-radius:100px;
+  letter-spacing:.1em;
+  margin-top:4px;
+  text-transform:uppercase;
+}
+
+/* ── RODAPÉ ── */
+.rodape {
+  background:#FFC107;
+  padding:22px 72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  margin-top:auto;
+}
+.rod-item {
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.rod-item .label {
+  font:700 14px/1 'Poppins',sans-serif;
+  color:#062B63;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.rod-item .valor {
+  font:800 28px/1 'Poppins',sans-serif;
+  color:#062B63;
+}
+.rod-divider {
+  width:2px; height:56px;
+  background:rgba(6,43,99,.2);
+  border-radius:2px;
+}
+.rod-horario {
+  font:600 16px/1.5 'Poppins',sans-serif;
+  color:#062B63;
+  text-align:right;
+}
+.rod-horario strong { font-weight:800; }
+
+</style>
+</head>
+<body>
+<div class="panfleto">
+
+  <!-- TOPO -->
+  <div class="topo">
+    <img src="../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+    <div class="tagline">A tinta nobre da comunidade</div>
+  </div>
+
+  <!-- PREÇO (2 produtos) -->
+  <div class="precos">
+    <div class="preco-item">
+      <span class="produto">Massa Corrida<br>Refil 23kg</span>
+      <div class="valor"><span class="rs">R$</span>37<span class="centavos">,90</span></div>
+    </div>
+
+    <div class="preco-divider-v"></div>
+
+    <div class="preco-item">
+      <span class="produto">Tinta Interna 18L<br>Branca</span>
+      <div class="valor"><span class="rs">R$</span>79<span class="centavos">,90</span></div>
+    </div>
+  </div>
+
+  <!-- BENEFÍCIOS -->
+  <div class="beneficios">
+    <div class="beneficio-chip">
+      <div class="icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="10" width="6" height="4" rx="1" fill="#FFC107"/><circle cx="5" cy="14" r="2" stroke="#FFC107" stroke-width="1.5"/><circle cx="15" cy="14" r="2" stroke="#FFC107" stroke-width="1.5"/><path d="M2 10V7l4-4h7l3 4v3" stroke="#FFC107" stroke-width="1.5"/></svg>
+      </div>
+      <span class="txt">Entregamos em média<br>de 48h úteis!</span>
+    </div>
+    <div class="beneficio-chip">
+      <div class="icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="12" rx="2" stroke="#FFC107" stroke-width="1.5"/><path d="M2 9h16" stroke="#FFC107" stroke-width="1.5"/></svg>
+      </div>
+      <span class="txt">Parcelamos em até<br>12x sem juros!</span>
+    </div>
+  </div>
+
+  <!-- FOTO -->
+  <div class="foto">
+    <img src="../../marketing/prova social/loja-1-cheia.png" alt="Loja Tintas Laet cheia de clientes">
+    <div class="foto-overlay"></div>
+    <div class="foto-msg">
+      Qualidade pra <em>sua casa.</em><br>
+      Preço pra <em>seu bolso.</em>
+    </div>
+  </div>
+
+  <!-- LOJAS -->
+  <div class="lojas">
+    <div class="lojas-titulo">NOSSAS LOJAS</div>
+    <div class="lojas-grid">
+
+      <div class="loja-card">
+        <div class="loja-num-row"><div class="pin-icon"></div><span class="loja-num">Loja 1</span></div>
+        <span class="loja-end">Av. Sapopemba, 25.723</span>
+        <span class="loja-bairro">Vila Bela, São Paulo</span>
+      </div>
+
+      <div class="loja-card">
+        <div class="loja-num-row"><div class="pin-icon"></div><span class="loja-num">Loja 2</span></div>
+        <span class="loja-end">Rua do Britador, 2</span>
+        <span class="loja-bairro">Jd. São João, Mauá</span>
+      </div>
+
+      <div class="loja-card">
+        <div class="loja-num-row"><div class="pin-icon"></div><span class="loja-num">Loja 3</span></div>
+        <span class="loja-end">Av. Ayrton Senna da Silva, 235</span>
+        <span class="loja-bairro">Jd. Santa Cecília, Mauá</span>
+      </div>
+
+      <div class="loja-card">
+        <div class="loja-num-row"><div class="pin-icon"></div><span class="loja-num">Loja 4</span></div>
+        <span class="loja-end">Av. São Bernardo do Campo, 757</span>
+        <span class="loja-bairro">Vila Luzita, Santo André</span>
+      </div>
+
+      <div class="loja-card breve">
+        <div class="loja-num-row"><div class="pin-icon"></div><span class="loja-num">Loja 5</span></div>
+        <span class="loja-end">Av. Itapark, 4377</span>
+        <span class="loja-bairro">Jd. Itapark, Mauá</span>
+        <span class="breve-tag">Em breve</span>
+      </div>
+
+      <div class="loja-card breve">
+        <div class="loja-num-row"><div class="pin-icon"></div><span class="loja-num">Loja 6</span></div>
+        <span class="loja-end">Av. Luiz Pechini, 1260</span>
+        <span class="loja-bairro">Jd. Santa Terezinha, SBC</span>
+        <span class="breve-tag">Em breve</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RODAPÉ -->
+  <div class="rodape">
+    <div class="rod-item">
+      <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="#062B63"/><path d="M30.5 27.5c-.8-.8-2.5-1.6-3.4-1.6-.4 0-1 .3-1.7 1-.7.7-1.2 1-1.5 1-.5 0-1.3-.5-2.4-1.6l-2.8-2.8C17.6 22.4 17 21.5 17 21c0-.3.3-.8 1-1.5.7-.7 1-1.3 1-1.7 0-.9-.8-2.6-1.6-3.4-.7-.7-1.5-.9-2.1-.4l-1 .8c-1 .8-1.5 1.8-1.3 3 .3 2 1.8 4.5 4.3 7l2 2c2.5 2.5 5 4 7 4.3 1.2.2 2.2-.3 3-1.3l.8-1c.5-.6.3-1.4-.4-2.1z" fill="#FFC107"/></svg>
+      <div>
+        <div class="label">WhatsApp</div>
+        <div class="valor">(11) 97714-0964</div>
+      </div>
+    </div>
+
+    <div class="rod-divider"></div>
+
+    <div class="rod-item">
+      <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="#062B63"/><rect x="13" y="13" width="18" height="18" rx="5" stroke="#FFC107" stroke-width="2"/><circle cx="22" cy="22" r="4.5" stroke="#FFC107" stroke-width="2"/><circle cx="28" cy="16" r="1.5" fill="#FFC107"/></svg>
+      <div>
+        <div class="label">Instagram</div>
+        <div class="valor">@Tintaslaet</div>
+      </div>
+    </div>
+
+    <div class="rod-divider"></div>
+
+    <div class="rod-horario">
+      <strong>Seg–Sex</strong> 8h às 18h<br>
+      <strong>Sábado</strong> 8h às 14h
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

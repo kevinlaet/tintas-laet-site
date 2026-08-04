@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabela de Preços — Tintas Laet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', Arial, sans-serif; background: #ccc; }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: white;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      padding: 7mm 8mm;
+    }
+
+    @media print {
+      body { background: white; }
+      .page { margin: 0; padding: 6mm 7mm; height: 297mm; min-height: 0; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+    }
+
+    .card {
+      border: 2.5px solid #0D47A1;
+      border-radius: 10px;
+      overflow: hidden;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: #0D47A1;
+      padding: 9px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header img { height: 38px; }
+    .header-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 11px;
+      color: rgba(255,255,255,0.80);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── STRIPE ── */
+    .stripe { height: 4px; background: linear-gradient(90deg, #0D47A1 65%, #FFC107 100%); }
+
+    /* ── BODY ── */
+    .body { flex: 1; display: flex; flex-direction: column; }
+
+    /* ── SECTION HEADER ── */
+    .sec {
+      padding: 4px 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 8.5px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: white;
+    }
+    .sec-blue  { background: #0D47A1; }
+    .sec-dark  { background: #062B63; }
+    .sec-gold  { background: #7B6000; }
+
+    /* ── PRICE TABLE ── */
+    table.pt {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table.pt tr { border-bottom: 1px solid #EEF0F6; }
+    table.pt tr:last-child { border-bottom: none; }
+    table.pt tr:nth-child(even) { background: #FAFBFD; }
+
+    table.pt td {
+      padding: 3px 10px;
+      font-size: 8px;
+      vertical-align: middle;
+      line-height: 1.45;
+      color: #444;
+    }
+    table.pt td:first-child {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 8px;
+      color: #1a1a2e;
+      width: 30%;
+      border-right: 1px solid #EEF0F6;
+    }
+
+    /* Preço em destaque */
+    .pr {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: #0D47A1;
+    }
+
+    /* Badge de cores variáveis */
+    .cv {
+      display: inline-block;
+      background: #FFF3CD;
+      color: #7B6000;
+      font-size: 6.5px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      padding: 1px 4px;
+      border-radius: 3px;
+      border: 1px solid #FFC107;
+      vertical-align: middle;
+      white-space: nowrap;
+      margin-left: 2px;
+    }
+
+    /* Promo badge */
+    .promo {
+      display: inline-block;
+      background: #FFF3E0;
+      color: #E65100;
+      font-size: 6.5px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      padding: 1px 4px;
+      border-radius: 3px;
+      border: 1px solid #FF9800;
+      vertical-align: middle;
+      margin-left: 2px;
+    }
+
+    /* separadores inline */
+    .pipe { color: #ccc; padding: 0 4px; }
+    .dot  { color: #bbb; padding: 0 3px; }
+
+    /* ── RODAPÉ NOTA ── */
+    .nota {
+      padding: 4px 12px;
+      font-size: 7px;
+      color: #999;
+      border-top: 1px dashed #E0E4EC;
+      font-style: italic;
+      margin-top: auto;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #FFC107;
+      padding: 7px 16px;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 600;
+      color: #212529;
+      letter-spacing: 0.2px;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+<div class="card">
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+    <span class="header-title">Tabela de Preços</span>
+  </div>
+  <div class="stripe"></div>
+
+  <div class="body">
+
+    <!-- ══════════════════════════════
+         TINTAS DE PAREDE
+    ══════════════════════════════ -->
+    <div class="sec sec-blue">Tintas de Parede</div>
+    <table class="pt">
+      <tr>
+        <td>Látex Vinil</td>
+        <td>18L: <span class="pr">Branca R$79,90</span> <span class="dot">·</span> Cores a partir de <span class="pr">R$99,90</span> <span class="cv">CORES VARIAM*</span></td>
+      </tr>
+      <tr>
+        <td>Super Profissional</td>
+        <td>3,6L: <span class="pr">Branca R$39,90</span> · Cores a partir de <span class="pr">R$49,90</span> <span class="cv">CORES VARIAM*</span>
+        <span class="pipe">|</span>
+        18L: <span class="pr">Branca R$139,90</span> · Cores a partir de <span class="pr">R$149,90</span> <span class="cv">CORES VARIAM*</span></td>
+      </tr>
+      <tr>
+        <td>Direto no Gesso</td>
+        <td>3,6L: <span class="pr">Branca R$49,90</span> · Cores a partir de <span class="pr">R$59,90</span> <span class="cv">CORES VARIAM*</span>
+        <span class="pipe">|</span>
+        18L: <span class="pr">Branca R$179,90</span> · Cores a partir de <span class="pr">R$189,90</span> <span class="cv">CORES VARIAM*</span></td>
+      </tr>
+      <tr>
+        <td>Standard 1ª Linha</td>
+        <td>3,6L: <span class="pr">Branca R$59,90</span> · Cores a partir de <span class="pr">R$69,90</span> <span class="cv">CORES VARIAM*</span>
+        <span class="pipe">|</span>
+        18L: <span class="pr">Branca R$219,90</span> · Cores a partir de <span class="pr">R$229,90</span> <span class="cv">CORES VARIAM*</span></td>
+      </tr>
+      <tr>
+        <td>Premium Lavável</td>
+        <td>900ml: <span class="pr">Branca R$29,90</span> <span class="cv">CORES VARIAM*</span>
+        <span class="pipe">|</span>
+        3,6L: <span class="pr">Branca R$79,90</span> <span class="cv">CORES VARIAM*</span>
+        <span class="pipe">|</span>
+        18L: <span class="pr">Branca R$299,90</span> <span class="cv">CORES VARIAM*</span></td>
+      </tr>
+      <tr>
+        <td>Emborrachada</td>
+        <td>3,6L: <span class="pr">Branca R$99,90</span> · Cores a partir de <span class="pr">R$119,90</span> <span class="cv">CORES VARIAM*</span>
+        <span class="pipe">|</span>
+        18L: <span class="pr">Branca R$399,90</span> · Cores a partir de <span class="pr">R$419,90</span> <span class="cv">CORES VARIAM*</span></td>
+      </tr>
+      <tr>
+        <td>Piso e Fachada</td>
+        <td>3,6L: <span class="pr">Branca R$79,90</span> · Cores <span class="pr">R$59,90</span>
+        <span class="pipe">|</span>
+        18L: <span class="pr">Branca R$299,90</span> · Cores <span class="pr">R$219,90</span></td>
+      </tr>
+    </table>
+
+    <!-- ══════════════════════════════
+         TINTAS ESPECIAIS
+    ══════════════════════════════ -->
+    <div class="sec sec-dark">Tintas Especiais</div>
+    <table class="pt">
+      <tr>
+        <td>Epóxi Base Água</td>
+        <td>900ml: <span class="pr">R$35,90</span> <span class="pipe">|</span> 3,6L: <span class="pr">R$129,90</span></td>
+      </tr>
+      <tr>
+        <td>Esmalte Ecológico</td>
+        <td>900ml: <span class="pr">Branca R$29,90</span> <span class="cv">CORES VARIAM*</span>
+        <span class="pipe">|</span>
+        3,6L: <span class="pr">Branca R$89,90</span> <span class="cv">CORES VARIAM*</span>
+        <span class="pipe">|</span>
+        18L: <span class="pr">Branca R$399,90</span> <span class="cv">CORES VARIAM*</span></td>
+      </tr>
+      <tr>
+        <td>Efeito Cimento Queimado</td>
+        <td>5kg: a partir de <span class="pr">R$69,90</span> <span class="cv">CORES VARIAM*</span>
+        <span class="pipe">|</span>
+        25kg: a partir de <span class="pr">R$199,90</span> <span class="cv">CORES VARIAM*</span></td>
+      </tr>
+    </table>
+
+    <!-- ══════════════════════════════
+         MASSAS, TEXTURAS E COMPLEMENTOS
+    ══════════════════════════════ -->
+    <div class="sec sec-gold">Massas, Texturas e Complementos</div>
+    <table class="pt">
+      <tr>
+        <td>Massa Corrida</td>
+        <td>Saco 23kg: <span class="pr">R$37,90</span> <span class="pipe">|</span> Barrica 23kg: <span class="pr">R$45,90</span></td>
+      </tr>
+      <tr>
+        <td>Massa Acrílica</td>
+        <td>Saco 23kg: <span class="pr">R$69,90</span> <span class="pipe">|</span> Barrica 23kg: <span class="pr">R$77,90</span></td>
+      </tr>
+      <tr>
+        <td>Grafiato / Textura Lisa</td>
+        <td>Saco 23kg: <span class="pr">R$54,90</span> <span class="pipe">|</span> Barrica 23kg: <span class="pr">R$62,90</span></td>
+      </tr>
+      <tr>
+        <td>Textura Design</td>
+        <td>Saco 23kg: <span class="pr">R$69,90</span> <span class="pipe">|</span> Barrica 23kg: <span class="pr">R$87,90</span></td>
+      </tr>
+      <tr>
+        <td>Seladora</td>
+        <td>3,6L: <span class="pr">R$29,90</span> <span class="pipe">|</span> 18L: <span class="pr">R$79,90</span></td>
+      </tr>
+      <tr>
+        <td>Fundo Preparador</td>
+        <td>900ml: <span class="pr">R$29,90</span>
+        <span class="pipe">|</span>
+        3,6L: <span class="pr">R$69,90</span>
+        <span class="pipe">|</span>
+        18L: <span class="pr">R$219,90</span> <span class="promo">PROMO</span></td>
+      </tr>
+      <tr>
+        <td>Corante Premium</td>
+        <td>Bisnaga 50ml: <span class="pr">R$5,50</span></td>
+      </tr>
+    </table>
+
+    <div class="nota">* O preço das cores varia conforme a tonalidade escolhida — consulte na loja ou pelo WhatsApp (11) 97714-0964</div>
+
+  </div><!-- /body -->
+
+  <div class="stripe"></div>
+  <div class="footer">
+    tintaslaet.com &nbsp;·&nbsp; (11) 97714-0964 &nbsp;·&nbsp; @tintaslaet &nbsp;·&nbsp; 12x sem juros no cartão
+  </div>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Placas das Lojas — Tintas Laet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #d0d0d0;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: white;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      padding: 12mm 14mm;
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        margin: 0;
+        padding: 10mm 12mm;
+        page-break-after: always;
+        break-after: page;
+        min-height: 0;
+        height: 297mm;
+      }
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+    }
+
+    /* ── PARTES COMUNS ── */
+    .header {
+      background: #0D47A1;
+      border-radius: 10px 10px 0 0;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header img { height: 44px; }
+    .header-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer {
+      background: #FFC107;
+      border-radius: 0 0 10px 10px;
+      padding: 9px 20px;
+      text-align: center;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #212529;
+    }
+
+    .stripe {
+      height: 5px;
+      background: linear-gradient(90deg, #0D47A1 65%, #FFC107 100%);
+    }
+
+    .card {
+      border: 2.5px solid #0D47A1;
+      border-radius: 10px;
+      overflow: hidden;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .body {
+      padding: 16px 20px;
+      flex: 1;
+    }
+
+    /* ── TABELA DE PREÇOS ── */
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 17px;
+      color: #0D47A1;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 3px solid #FFC107;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+
+    .price-table { width: 100%; border-collapse: collapse; }
+
+    .price-table tr { border-bottom: 1px solid #EEF0F5; }
+    .price-table tr:last-child { border-bottom: none; }
+
+    .price-table td {
+      padding: 6px 4px;
+      font-size: 12.5px;
+      vertical-align: middle;
+    }
+
+    .prod-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 13px;
+      color: #062B63;
+      padding-right: 8px;
+      width: 38%;
+    }
+
+    .prod-size {
+      color: #666;
+      font-size: 11.5px;
+      width: 35%;
+    }
+
+    .prod-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      color: #0D47A1;
+      text-align: right;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .prod-price.destaque {
+      color: #c62828;
+    }
+
+    .section-gap { height: 14px; }
+
+    /* grupo com fundo alternado suave */
+    .group-row td { background: #F8F9FC; }
+
+    /* ── ESTACIONAMENTO ── */
+    .parking-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .parking-icon { width: 110px; height: 110px; margin: 0 auto 22px; }
+
+    .parking-main {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 30px;
+      color: #0D47A1;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .parking-sub {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .parking-badge {
+      display: inline-block;
+      background: #FFC107;
+      color: #212529;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 13px;
+      padding: 7px 22px;
+      border-radius: 100px;
+      letter-spacing: 1px;
+    }
+
+    .obs-note {
+      font-size: 10px;
+      color: #aaa;
+      margin-top: 6px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     PÁGINA 1 — TABELA DE PREÇOS: TINTAS DE PAREDE
+═══════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="card">
+
+    <div class="header">
+      <img src="../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+      <span class="header-title">Tabela de Preços</span>
+    </div>
+
+    <div class="body">
+      <div class="section-title">Tintas de Parede</div>
+
+      <table class="price-table">
+
+        <!-- LÁTEX VINIL -->
+        <tr class="group-row">
+          <td class="prod-name" rowspan="2">Látex Vinil</td>
+          <td class="prod-size">18L — Branca</td>
+          <td class="prod-price">R$ 79,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">18L — Cores</td>
+          <td class="prod-price">R$ 99,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:8px;background:white;border:none;"></td></tr>
+
+        <!-- SUPER PROFISSIONAL -->
+        <tr>
+          <td class="prod-name" rowspan="4">Super Profissional</td>
+          <td class="prod-size">3,6L — Branca</td>
+          <td class="prod-price">R$ 39,90</td>
+        </tr>
+        <tr>
+          <td class="prod-size">3,6L — Cores</td>
+          <td class="prod-price">R$ 49,90</td>
+        </tr>
+        <tr>
+          <td class="prod-size">18L — Branca</td>
+          <td class="prod-price">R$ 139,90</td>
+        </tr>
+        <tr>
+          <td class="prod-size">18L — Cores</td>
+          <td class="prod-price">R$ 149,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:8px;background:white;border:none;"></td></tr>
+
+        <!-- DIRETO NO GESSO -->
+        <tr class="group-row">
+          <td class="prod-name" rowspan="4">Direto no Gesso</td>
+          <td class="prod-size">3,6L — Branca</td>
+          <td class="prod-price">R$ 49,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">3,6L — Cores</td>
+          <td class="prod-price">R$ 59,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">18L — Branca</td>
+          <td class="prod-price">R$ 179,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">18L — Cores</td>
+          <td class="prod-price">R$ 189,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:8px;background:white;border:none;"></td></tr>
+
+        <!-- STANDARD 1ª LINHA -->
+        <tr>
+          <td class="prod-name" rowspan="2">Standard 1ª Linha</td>
+          <td class="prod-size">3,6L — Branca</td>
+          <td class="prod-price">R$ 59,90</td>
+        </tr>
+        <tr>
+          <td class="prod-size">18L — Branca</td>
+          <td class="prod-price">R$ 219,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:8px;background:white;border:none;"></td></tr>
+
+        <!-- PREMIUM LAVÁVEL -->
+        <tr class="group-row">
+          <td class="prod-name" rowspan="3">Premium Lavável</td>
+          <td class="prod-size">900ml — Branca</td>
+          <td class="prod-price">R$ 29,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">3,6L — Branca</td>
+          <td class="prod-price">R$ 79,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">18L — Branca</td>
+          <td class="prod-price">R$ 299,90</td>
+        </tr>
+
+      </table>
+
+      <p class="obs-note">* Cores têm variação de preço. Consulte disponibilidade. Preços sujeitos a alteração.</p>
+    </div>
+
+    <div class="stripe"></div>
+    <div class="footer">tintaslaet.com &nbsp;|&nbsp; (11) 97714-0964 &nbsp;|&nbsp; @tintaslaet &nbsp;|&nbsp; 12x sem juros</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PÁGINA 2 — TABELA DE PREÇOS: TINTAS ESPECIAIS
+═══════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="card">
+
+    <div class="header">
+      <img src="../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+      <span class="header-title">Tabela de Preços</span>
+    </div>
+
+    <div class="body">
+      <div class="section-title">Tintas Especiais</div>
+
+      <table class="price-table">
+
+        <!-- EMBORRACHADA -->
+        <tr class="group-row">
+          <td class="prod-name" rowspan="2">Emborrachada</td>
+          <td class="prod-size">3,6L — Branca</td>
+          <td class="prod-price">R$ 99,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">18L — Branca</td>
+          <td class="prod-price">R$ 399,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:8px;background:white;border:none;"></td></tr>
+
+        <!-- PISO E FACHADA -->
+        <tr>
+          <td class="prod-name" rowspan="4">Piso e Fachada Premium</td>
+          <td class="prod-size">3,6L — Cores</td>
+          <td class="prod-price">R$ 59,90</td>
+        </tr>
+        <tr>
+          <td class="prod-size">3,6L — Branca</td>
+          <td class="prod-price">R$ 79,90</td>
+        </tr>
+        <tr>
+          <td class="prod-size">18L — Cores</td>
+          <td class="prod-price">R$ 219,90</td>
+        </tr>
+        <tr>
+          <td class="prod-size">18L — Branca</td>
+          <td class="prod-price">R$ 299,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:8px;background:white;border:none;"></td></tr>
+
+        <!-- EPÓXI BASE ÁGUA -->
+        <tr class="group-row">
+          <td class="prod-name" rowspan="2">Epóxi Base Água</td>
+          <td class="prod-size">900ml — Branca</td>
+          <td class="prod-price">R$ 35,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">3,6L — Branca</td>
+          <td class="prod-price">R$ 129,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:8px;background:white;border:none;"></td></tr>
+
+        <!-- ESMALTE ECOLÓGICO -->
+        <tr>
+          <td class="prod-name" rowspan="3">Esmalte Ecológico Base Água</td>
+          <td class="prod-size">900ml — Branca</td>
+          <td class="prod-price">R$ 29,90</td>
+        </tr>
+        <tr>
+          <td class="prod-size">3,6L — Branca</td>
+          <td class="prod-price">R$ 89,90</td>
+        </tr>
+        <tr>
+          <td class="prod-size">18L — Branca</td>
+          <td class="prod-price">R$ 399,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:8px;background:white;border:none;"></td></tr>
+
+        <!-- CIMENTO QUEIMADO -->
+        <tr class="group-row">
+          <td class="prod-name" rowspan="2">Efeito Cimento Queimado</td>
+          <td class="prod-size">5kg — a partir de</td>
+          <td class="prod-price">R$ 69,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">25kg — a partir de</td>
+          <td class="prod-price">R$ 199,90</td>
+        </tr>
+
+      </table>
+
+      <p class="obs-note">* Preços da Emborrachada variam por cor. Consulte disponibilidade. Preços sujeitos a alteração.</p>
+    </div>
+
+    <div class="stripe"></div>
+    <div class="footer">tintaslaet.com &nbsp;|&nbsp; (11) 97714-0964 &nbsp;|&nbsp; @tintaslaet &nbsp;|&nbsp; 12x sem juros</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PÁGINA 3 — MASSAS, TEXTURAS E COMPLEMENTOS
+═══════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="card">
+
+    <div class="header">
+      <img src="../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+      <span class="header-title">Tabela de Preços</span>
+    </div>
+
+    <div class="body">
+
+      <!-- MASSAS E TEXTURAS -->
+      <div class="section-title">Massas e Texturas</div>
+
+      <table class="price-table">
+
+        <tr class="group-row">
+          <td class="prod-name" rowspan="2">Massa Corrida</td>
+          <td class="prod-size">Saco 23kg</td>
+          <td class="prod-price">R$ 37,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">Barrica 23kg</td>
+          <td class="prod-price">R$ 45,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:6px;background:white;border:none;"></td></tr>
+
+        <tr>
+          <td class="prod-name" rowspan="2">Massa Acrílica</td>
+          <td class="prod-size">Saco 23kg</td>
+          <td class="prod-price">R$ 69,90</td>
+        </tr>
+        <tr>
+          <td class="prod-size">Barrica 23kg</td>
+          <td class="prod-price">R$ 77,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:6px;background:white;border:none;"></td></tr>
+
+        <tr class="group-row">
+          <td class="prod-name" rowspan="2">Grafiato</td>
+          <td class="prod-size">Saco 23kg</td>
+          <td class="prod-price">R$ 54,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">Barrica 23kg</td>
+          <td class="prod-price">R$ 62,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:6px;background:white;border:none;"></td></tr>
+
+        <tr>
+          <td class="prod-name" rowspan="2">Textura Lisa</td>
+          <td class="prod-size">Saco 23kg</td>
+          <td class="prod-price">R$ 54,90</td>
+        </tr>
+        <tr>
+          <td class="prod-size">Barrica 23kg</td>
+          <td class="prod-price">R$ 62,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:6px;background:white;border:none;"></td></tr>
+
+        <tr class="group-row">
+          <td class="prod-name" rowspan="2">Textura Design</td>
+          <td class="prod-size">Saco 23kg</td>
+          <td class="prod-price">R$ 69,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">Barrica 23kg</td>
+          <td class="prod-price">R$ 87,90</td>
+        </tr>
+
+      </table>
+
+      <div class="section-gap"></div>
+
+      <!-- COMPLEMENTOS -->
+      <div class="section-title">Complementos</div>
+
+      <table class="price-table">
+
+        <tr>
+          <td class="prod-name" rowspan="2">Seladora</td>
+          <td class="prod-size">3,6L</td>
+          <td class="prod-price">R$ 29,90</td>
+        </tr>
+        <tr>
+          <td class="prod-size">18L</td>
+          <td class="prod-price">R$ 79,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:6px;background:white;border:none;"></td></tr>
+
+        <tr class="group-row">
+          <td class="prod-name" rowspan="3">Fundo Preparador</td>
+          <td class="prod-size">900ml</td>
+          <td class="prod-price">R$ 29,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">3,6L</td>
+          <td class="prod-price">R$ 69,90</td>
+        </tr>
+        <tr class="group-row">
+          <td class="prod-size">18L (promoção)</td>
+          <td class="prod-price destaque">R$ 219,90</td>
+        </tr>
+
+        <tr><td colspan="3" style="height:6px;background:white;border:none;"></td></tr>
+
+        <tr>
+          <td class="prod-name">Corante Premium</td>
+          <td class="prod-size">Bisnaga 50ml</td>
+          <td class="prod-price">R$ 5,50</td>
+        </tr>
+
+      </table>
+
+      <p class="obs-note">* Preços sujeitos a alteração sem aviso prévio.</p>
+    </div>
+
+    <div class="stripe"></div>
+    <div class="footer">tintaslaet.com &nbsp;|&nbsp; (11) 97714-0964 &nbsp;|&nbsp; @tintaslaet &nbsp;|&nbsp; 12x sem juros</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PÁGINA 4 — ESTACIONAMENTO (LOJA 2 — MAUÁ)
+═══════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="card">
+
+    <div class="header">
+      <img src="../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+      <span class="header-title">Loja 2 — Mauá</span>
+    </div>
+
+    <div class="parking-body">
+
+      <!-- Logo maior no centro -->
+      <img src="../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet"
+           style="height:90px; margin-bottom:24px;">
+
+      <!-- Ícone P estacionamento -->
+      <div class="parking-icon" style="width:100px;height:100px;margin-bottom:20px;">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="58" fill="#E3F2FD"/>
+          <circle cx="60" cy="60" r="58" fill="none" stroke="#0D47A1" stroke-width="7"/>
+          <rect x="33" y="22" width="13" height="76" rx="4" fill="#0D47A1"/>
+          <path d="M46 22 Q80 22 80 50 Q80 78 46 78 L46 22" fill="#0D47A1"/>
+          <path d="M46 34 Q66 34 66 50 Q66 66 46 66 L46 34" fill="#E3F2FD"/>
+        </svg>
+      </div>
+
+      <div class="parking-main">Estacione aqui</div>
+
+      <div class="parking-sub">
+        Esta vaga é exclusiva para<br>
+        <strong>clientes da Tintas Laet.</strong><br>
+        Agradecemos a preferência!
+      </div>
+
+      <div class="parking-badge">CLIENTE TINTAS LAET</div>
+
+    </div>
+
+    <div class="stripe"></div>
+    <div class="footer">Rua do Britador, 2 — Jd. São João, Mauá &nbsp;|&nbsp; (11) 97714-0964</div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PÁGINA 5 — VAGA PREFERENCIAL (LOJA 2 — MAUÁ)
+═══════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="card">
+
+    <div class="header">
+      <img src="../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+      <span class="header-title">Loja 2 — Mauá</span>
+    </div>
+
+    <div class="parking-body">
+
+      <!-- Logo -->
+      <img src="../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet"
+           style="height:80px; margin-bottom:20px;">
+
+      <!-- Ícone cadeirante (ISA) -->
+      <div style="width:96px;height:96px;margin:0 auto 18px;">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="58" fill="#1565C0"/>
+          <circle cx="60" cy="60" r="58" fill="none" stroke="#0D47A1" stroke-width="4"/>
+          <!-- Cabeça -->
+          <circle cx="60" cy="23" r="9" fill="white"/>
+          <!-- Tronco -->
+          <rect x="55" y="34" width="10" height="22" rx="4" fill="white"/>
+          <!-- Braço esticado segurando roda -->
+          <line x1="55" y1="44" x2="35" y2="52" stroke="white" stroke-width="5" stroke-linecap="round"/>
+          <!-- Perna dobrada -->
+          <line x1="60" y1="56" x2="60" y2="72" stroke="white" stroke-width="5" stroke-linecap="round"/>
+          <line x1="60" y1="72" x2="78" y2="80" stroke="white" stroke-width="5" stroke-linecap="round"/>
+          <!-- Cadeira de rodas (aro) -->
+          <circle cx="55" cy="83" r="16" fill="none" stroke="white" stroke-width="5"/>
+          <!-- Roda menor (traseira) -->
+          <circle cx="40" cy="75" r="7" fill="none" stroke="white" stroke-width="4"/>
+        </svg>
+      </div>
+
+      <div class="parking-main" style="font-size:26px;">VAGA PREFERENCIAL</div>
+
+      <div class="parking-sub" style="margin-top:14px; font-size:13.5px;">
+        Esta vaga é reservada para:
+      </div>
+
+      <!-- Lista de beneficiários -->
+      <div style="display:flex;flex-direction:column;gap:8px;margin:14px 0 18px;text-align:left;width:100%;max-width:260px;">
+
+        <div style="display:flex;align-items:center;gap:10px;background:#E3F2FD;border-radius:8px;padding:9px 14px;">
+          <span style="font-size:22px;">👴</span>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#062B63;">Idosos (60 anos ou mais)</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;background:#E3F2FD;border-radius:8px;padding:9px 14px;">
+          <span style="font-size:22px;">🤰</span>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#062B63;">Gestantes e Lactantes</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;background:#E3F2FD;border-radius:8px;padding:9px 14px;">
+          <span style="font-size:22px;">♿</span>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#062B63;">Pessoas com Deficiência</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;background:#E3F2FD;border-radius:8px;padding:9px 14px;">
+          <span style="font-size:22px;">👶</span>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#062B63;">Pessoas com criança de colo</span>
+        </div>
+
+      </div>
+
+      <div style="font-size:10.5px;color:#888;text-align:center;line-height:1.6;">
+        Lei Federal nº 10.048/2000 — Atendimento prioritário obrigatório.
+      </div>
+
+    </div>
+
+    <div class="stripe"></div>
+    <div class="footer">Rua do Britador, 2 — Jd. São João, Mauá &nbsp;|&nbsp; (11) 97714-0964</div>
+
+  </div>
+</div>
+
+</body>
+</html>

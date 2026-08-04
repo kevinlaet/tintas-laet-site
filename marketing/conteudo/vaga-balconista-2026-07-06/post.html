@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — Vaga Balconista</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#020A18;
+  display:flex; align-items:center; justify-content:center;
+  min-height:100vh;
+  font-family:'Montserrat',sans-serif;
+}
+
+.post {
+  width:1080px; height:1350px;
+  position:relative; overflow:hidden; flex-shrink:0;
+  background-image: url('../../prova social/equipe tintas laet.jpg');
+  background-size: cover;
+  background-position: center 65%;
+}
+
+/* scrim claro no topo */
+.topscrim {
+  position:absolute; left:0; right:0; top:0; height:52%; z-index:3; pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(245,236,215,.98) 0%,
+    rgba(245,236,215,.95) 45%,
+    rgba(245,236,215,0) 100%
+  );
+}
+
+/* topo */
+.top {
+  position:absolute; top:60px; left:0; right:0;
+  display:flex; flex-direction:column; align-items:center;
+  z-index:10; padding:0 80px; text-align:center;
+}
+.top img { height:220px; object-fit:contain; margin-bottom:18px; }
+.eyebrow {
+  font:800 20px/1 'Poppins',sans-serif;
+  color:#0D47A1; letter-spacing:.22em; text-transform:uppercase;
+  display:flex; align-items:center; gap:16px; margin-bottom:16px;
+}
+.eyebrow::before,.eyebrow::after {
+  content:''; width:30px; height:3px;
+  background:rgba(13,71,161,.35); display:block;
+}
+.headline {
+  font:400 132px/.92 'Bebas Neue',sans-serif;
+  color:#062B63; letter-spacing:.01em;
+  line-height:.92;
+}
+.headline .chip {
+  background:#FFC107; color:#062B63;
+  padding:4px 22px; border-radius:12px;
+  display:inline-block; transform:rotate(-2deg);
+}
+
+/* scrim escuro */
+.scrim {
+  position:absolute; left:0; right:0; bottom:0; height:64%; z-index:4; pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(4,16,35,0) 0%,
+    rgba(4,16,35,.72) 28%,
+    rgba(4,16,35,.94) 55%,
+    rgba(2,10,24,.99) 100%
+  );
+}
+
+/* conteúdo inferior */
+.cc {
+  position:absolute; left:80px; right:80px; bottom:120px;
+  z-index:8;
+  display:flex; flex-direction:column; align-items:center;
+}
+
+.cargo-row {
+  display:flex; flex-direction:column; align-items:center;
+  margin-bottom:28px;
+}
+.cargo-label {
+  font:600 18px/1 'Poppins',sans-serif;
+  color:rgba(255,255,255,.45);
+  letter-spacing:.18em; text-transform:uppercase;
+  margin-bottom:10px;
+}
+.cargo-nome {
+  font:800 46px/1 'Montserrat',sans-serif;
+  color:#fff; text-align:center;
+}
+
+.cards {
+  display:flex; flex-direction:column; gap:13px;
+  width:100%; margin-bottom:26px;
+}
+.card {
+  display:flex; align-items:center; gap:18px;
+  background:rgba(13,47,102,.82);
+  border:1.5px solid rgba(255,255,255,.22);
+  border-radius:14px; padding:20px 26px;
+}
+.icon {
+  width:44px; height:44px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.icon.yellow { background:#FFC107; }
+.icon.green  { background:#2E7D32; }
+.icon.blue   { background:#1565C0; }
+.card-text {
+  font:700 24px/1.25 'Montserrat',sans-serif; color:#fff;
+}
+.card-text small {
+  display:block;
+  font:500 16px/1 'Poppins',sans-serif;
+  color:rgba(255,255,255,.5); margin-top:4px;
+}
+
+.requisitos {
+  font:600 19px/1.7 'Poppins',sans-serif;
+  color:rgba(255,255,255,.55); text-align:center;
+}
+.requisitos strong { color:rgba(255,255,255,.82); }
+
+/* rodapé */
+.bot {
+  position:absolute; bottom:38px; left:80px; right:80px;
+  display:flex; align-items:center; justify-content:space-between;
+  z-index:10;
+  padding-top:16px; border-top:1.5px solid rgba(255,255,255,.18);
+}
+.bot .handle {
+  font:700 18px/1 'Poppins',sans-serif;
+  color:#fff; letter-spacing:.05em;
+}
+.bot .cta {
+  font:700 21px/1 'Poppins',sans-serif;
+  color:#FFC107; text-align:right;
+}
+.bot .cta small {
+  display:block;
+  font:500 15px/1 'Poppins',sans-serif;
+  color:rgba(255,255,255,.45); margin-top:5px; letter-spacing:.04em;
+}
+</style>
+</head>
+<body>
+<div class="post">
+
+  <div class="topscrim"></div>
+
+  <div class="top">
+    <img src="../../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
+    <div class="eyebrow">Trabalhe Conosco</div>
+    <div class="headline">
+      VAGAS<br><span class="chip">ABERTAS</span>
+    </div>
+  </div>
+
+  <div class="scrim"></div>
+
+  <div class="cc">
+    <div class="cargo-row">
+      <div class="cargo-label">Cargo</div>
+      <div class="cargo-nome">Balconista de Loja</div>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="icon yellow">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#062B63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <div class="card-text">
+          R$ 1.804 fixo + 1% de comissão
+          <small>Salário + incentivo por vendas</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2"/>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+        </div>
+        <div class="card-text">
+          Vale Transporte · CLT registrado
+          <small>Todos os direitos garantidos</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="card-text">
+          Vila Bela (SP) · Jd. São João (Mauá)
+          <small>Morar próximo à região é requisito</small>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="requisitos">
+      <strong>Masculino · Maior de 18 anos</strong><br>
+      Ser comunicativo é um diferencial
+    </div>
+  </div>
+
+  <div class="bot">
+    <span class="handle">@Tintaslaet</span>
+    <div class="cta">
+      (11) 97714-0964
+      <small>Manda mensagem no WhatsApp</small>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

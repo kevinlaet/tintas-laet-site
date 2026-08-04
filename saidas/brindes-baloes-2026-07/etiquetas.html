@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Etiquetas Brindes — Tintas Laet</title>
+<style>
+@page { size: A4 portrait; margin: 7mm 9mm; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; background: #ccc; padding: 12px; }
+@media print { body { background: white; padding: 0; } }
+
+.info {
+  font-size: 9pt; color: #333; margin-bottom: 10px;
+  padding: 6px 10px; background: #fff; border-left: 3px solid #0D47A1;
+}
+@media print { .info { display: none; } }
+
+.grid { display: grid; grid-template-columns: repeat(3, 64mm); width: 192mm; }
+.page2 { page-break-before: always; margin-top: 10mm; }
+@media print { .page2 { margin-top: 0; } }
+
+.label {
+  width: 64mm; height: 35mm;
+  border: 0.4pt dashed #aaa;
+  padding: 2mm 3mm 1.5mm 6mm;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  background: white; position: relative; overflow: hidden;
+}
+.label::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; width: 2.8mm; height: 100%;
+}
+.cat-100::before { background: #0D47A1; }
+.cat-500::before { background: #C49700; }
+.cat-1000::before { background: #062B63; }
+
+.cat-badge { font-size: 4.8pt; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+.cat-100 .cat-badge { color: #0D47A1; }
+.cat-500 .cat-badge { color: #7A5F00; }
+.cat-1000 .cat-badge { color: #062B63; }
+
+.prize { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 0.4mm; }
+.prize-name { font-size: 9pt; font-weight: 800; color: #111; line-height: 1.2; }
+.prize-sub { font-size: 7pt; font-weight: 700; color: #222; }
+.prize-detail { font-size: 5.8pt; color: #555; line-height: 1.3; }
+
+.bottom-row { display: flex; justify-content: space-between; align-items: flex-end; border-top: 0.3pt solid #eee; padding-top: 1mm; }
+.brand { font-size: 5pt; font-weight: 800; color: #0D47A1; text-transform: uppercase; letter-spacing: 0.04em; }
+.legal { font-size: 5pt; color: #888; font-style: italic; text-align: right; line-height: 1.3; }
+
+@media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+
+<div class="info">
+  Etiquetas Brindes — Inauguração Loja 5 · Imprimir em A4 e recortar. 30 etiquetas (2 de cada prêmio). Pág. 2 tem R$1.000+.
+</div>
+
+<!-- PÁGINA 1 (24 etiquetas) -->
+<div class="grid">
+
+  <!-- ── R$ 100 a R$ 499,99 · 5 prêmios × 2 = 10 balões ── -->
+
+  <div class="label cat-100"><div class="cat-badge">Brinde · R$ 100,00 a R$ 499,99</div><div class="prize"><div class="prize-name">Vale R$ 5</div><div class="prize-sub">de desconto</div><div class="prize-detail">Válido em qualquer compra · Prazo: 1 mês</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Não cumulativo<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-100"><div class="cat-badge">Brinde · R$ 100,00 a R$ 499,99</div><div class="prize"><div class="prize-name">Vale R$ 5</div><div class="prize-sub">de desconto</div><div class="prize-detail">Válido em qualquer compra · Prazo: 1 mês</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Não cumulativo<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-100"><div class="cat-badge">Brinde · R$ 100,00 a R$ 499,99</div><div class="prize"><div class="prize-name">Rolo de Espuma</div><div class="prize-sub">15cm</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-100"><div class="cat-badge">Brinde · R$ 100,00 a R$ 499,99</div><div class="prize"><div class="prize-name">Rolo de Espuma</div><div class="prize-sub">15cm</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-100"><div class="cat-badge">Brinde · R$ 100,00 a R$ 499,99</div><div class="prize"><div class="prize-name">1 Corante</div><div class="prize-sub">Escolha a cor</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-100"><div class="cat-badge">Brinde · R$ 100,00 a R$ 499,99</div><div class="prize"><div class="prize-name">1 Corante</div><div class="prize-sub">Escolha a cor</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-100"><div class="cat-badge">Brinde · R$ 100,00 a R$ 499,99</div><div class="prize"><div class="prize-name">Kit Pincel P</div><div class="prize-sub">+ Fita Crepe P</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-100"><div class="cat-badge">Brinde · R$ 100,00 a R$ 499,99</div><div class="prize"><div class="prize-name">Kit Pincel P</div><div class="prize-sub">+ Fita Crepe P</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-100"><div class="cat-badge">Brinde · R$ 100,00 a R$ 499,99</div><div class="prize"><div class="prize-name">Espátula de Aço</div><div class="prize-sub">6cm</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-100"><div class="cat-badge">Brinde · R$ 100,00 a R$ 499,99</div><div class="prize"><div class="prize-name">Espátula de Aço</div><div class="prize-sub">6cm</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <!-- ── R$ 500 a R$ 999,99 · 5 prêmios × 2 = 10 balões ── -->
+
+  <div class="label cat-500"><div class="cat-badge">Brinde · R$ 500,00 a R$ 999,99</div><div class="prize"><div class="prize-name">Vale R$ 25</div><div class="prize-sub">de desconto</div><div class="prize-detail">Válido na próxima compra · Prazo: 1 mês</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Não cumulativo<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-500"><div class="cat-badge">Brinde · R$ 500,00 a R$ 999,99</div><div class="prize"><div class="prize-name">Vale R$ 25</div><div class="prize-sub">de desconto</div><div class="prize-detail">Válido na próxima compra · Prazo: 1 mês</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Não cumulativo<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-500"><div class="cat-badge">Brinde · R$ 500,00 a R$ 999,99</div><div class="prize"><div class="prize-name">Tinta Spray</div><div class="prize-sub">Qualquer cor</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-500"><div class="cat-badge">Brinde · R$ 500,00 a R$ 999,99</div><div class="prize"><div class="prize-name">Tinta Spray</div><div class="prize-sub">Qualquer cor</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-500"><div class="cat-badge">Brinde · R$ 500,00 a R$ 999,99</div><div class="prize"><div class="prize-name">Tinta Epoxi</div><div class="prize-sub">900ml Branca</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-500"><div class="cat-badge">Brinde · R$ 500,00 a R$ 999,99</div><div class="prize"><div class="prize-name">Tinta Epoxi</div><div class="prize-sub">900ml Branca</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-500"><div class="cat-badge">Brinde · R$ 500,00 a R$ 999,99</div><div class="prize"><div class="prize-name">Kit Ferramentas</div><div class="prize-sub">Básico (Rolo + Cabo + Pincel P)</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-500"><div class="cat-badge">Brinde · R$ 500,00 a R$ 999,99</div><div class="prize"><div class="prize-name">Kit Ferramentas</div><div class="prize-sub">Básico (Rolo + Cabo + Pincel P)</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-500"><div class="cat-badge">Brinde · R$ 500,00 a R$ 999,99</div><div class="prize"><div class="prize-name">Pad de Pintura</div><div class="prize-sub">Compel</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-500"><div class="cat-badge">Brinde · R$ 500,00 a R$ 999,99</div><div class="prize"><div class="prize-name">Pad de Pintura</div><div class="prize-sub">Compel</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <!-- ── R$ 1.000+ · primeiros 4 slots da página 1 ── -->
+
+  <div class="label cat-1000"><div class="cat-badge">Brinde · Compra acima de R$ 1.000,00</div><div class="prize"><div class="prize-name">Vale R$ 50</div><div class="prize-sub">de desconto</div><div class="prize-detail">Válido na próxima compra · Prazo: 1 mês</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Não cumulativo<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-1000"><div class="cat-badge">Brinde · Compra acima de R$ 1.000,00</div><div class="prize"><div class="prize-name">Vale R$ 50</div><div class="prize-sub">de desconto</div><div class="prize-detail">Válido na próxima compra · Prazo: 1 mês</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Não cumulativo<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-1000"><div class="cat-badge">Brinde · Compra acima de R$ 1.000,00</div><div class="prize"><div class="prize-name">Tinta Piso Lavável</div><div class="prize-sub">3,4L · Qualquer cor</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-1000"><div class="cat-badge">Brinde · Compra acima de R$ 1.000,00</div><div class="prize"><div class="prize-name">Tinta Piso Lavável</div><div class="prize-sub">3,4L · Qualquer cor</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+</div>
+
+<!-- PÁGINA 2 (10 etiquetas — R$ 1.000+) -->
+<div class="grid page2">
+
+  <div class="label cat-1000"><div class="cat-badge">Brinde · Compra acima de R$ 1.000,00</div><div class="prize"><div class="prize-name">Tinta Standard</div><div class="prize-sub">3,6L · Cores claras</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-1000"><div class="cat-badge">Brinde · Compra acima de R$ 1.000,00</div><div class="prize"><div class="prize-name">Tinta Standard</div><div class="prize-sub">3,6L · Cores claras</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-1000"><div class="cat-badge">Brinde · Compra acima de R$ 1.000,00</div><div class="prize"><div class="prize-name">Frete Grátis</div><div class="prize-sub">em 3 Pedidos</div><div class="prize-detail">Válido por 3 meses a partir desta data</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-1000"><div class="cat-badge">Brinde · Compra acima de R$ 1.000,00</div><div class="prize"><div class="prize-name">Frete Grátis</div><div class="prize-sub">em 3 Pedidos</div><div class="prize-detail">Válido por 3 meses a partir desta data</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-1000"><div class="cat-badge">Brinde · Compra acima de R$ 1.000,00</div><div class="prize"><div class="prize-name">Seladora Acrílica</div><div class="prize-sub">18L Branca</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+  <div class="label cat-1000"><div class="cat-badge">Brinde · Compra acima de R$ 1.000,00</div><div class="prize"><div class="prize-name">Seladora Acrílica</div><div class="prize-sub">18L Branca</div><div class="prize-detail">Retire na loja na próxima visita</div></div><div class="bottom-row"><span class="brand">Tintas Laet · Loja 5</span><span class="legal">Sujeito à disponibilidade<br>Não trocável por dinheiro</span></div></div>
+
+</div>
+</body>
+</html>

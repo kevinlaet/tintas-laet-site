@@ -47,6 +47,13 @@ Identificar a data de hoje e checar a tabela de "Datas comemorativas" em `calend
 - Se for, lembrar o usuário de mandar a mensagem-modelo pros vendedores, já preenchendo o "[algo específico]" com o tema da semana definido no Passo 2
 - Se tem data comemorativa chegando em breve, lembrar do reforço pontual também
 
+### Passo 4.5 — Sorteio mensal (sempre perguntar)
+
+- Ler a seção "Sorteio mensal — recorrente" em `calendario-editorial.md`, que registra qual foi o último sorteio já colocado no site (`site/sorteios.html`)
+- Perguntar ao usuário se já teve sorteio novo desde essa última atualização
+- Se sim: pedir nome do ganhador principal, nome do amigo indicado, loja da compra e data do sorteio; atualizar `site/sorteios.html` (lista de ganhadores + rótulo "Prêmios de [mês]") e atualizar o registro em `calendario-editorial.md`
+- Se não: só confirmar que está em dia, sem mexer em nada
+
 ### Passo 5 — Resumo
 
 Entregar em formato direto, sem enrolação:
@@ -67,6 +74,8 @@ STORIES (mín. 2/dia):
 - <ideia 3>
 
 📨 Pedido às lojas essa semana: <texto já preenchido, se for dia da rotina>
+
+🎉 Sorteio: <em dia / pergunta sobre sorteio novo>
 ```
 
 ## Regras

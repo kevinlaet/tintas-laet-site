@@ -22,10 +22,10 @@ if (!apiKey) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'gpt-image-1',
+      model: 'gpt-image-1.5',
       prompt,
       size: '1024x1536',
-      quality: 'high',
+      quality: 'medium',
     }),
   });
 

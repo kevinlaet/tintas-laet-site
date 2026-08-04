@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de Cores — Tintas Laet (base para impressão)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Poppins',sans-serif;color:#212529;background:#e8ebef}
+  img{max-width:100%;display:block}
+
+  :root{
+    --blue:#0D47A1; --blue-dark:#062B63; --yellow:#FFC107;
+    --gray:#F0F2F5; --graphite:#212529;
+  }
+
+  .page{ width:21cm; min-height:29.7cm; margin:0 auto 24px; background:#fff; padding:1.4cm 1.6cm; box-shadow:0 4px 24px rgba(0,0,0,.15); position:relative; }
+
+  /* ── CAPA ── */
+  .capa{ background:linear-gradient(150deg,var(--blue-dark) 0%,var(--blue) 100%); color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:22px; }
+  .capa img.logo{ height:120px; margin-bottom:10px; }
+  .capa .tag{ display:inline-block; background:rgba(255,193,7,.18); border:1px solid rgba(255,193,7,.45); color:var(--yellow); font-family:'Montserrat',sans-serif; font-weight:700; font-size:12px; letter-spacing:3px; text-transform:uppercase; padding:6px 18px; border-radius:100px; }
+  .capa h1{ font-family:'Montserrat',sans-serif; font-weight:900; font-size:56px; line-height:1.05; }
+  .capa h1 span{ color:var(--yellow); }
+  .capa p.sub{ max-width:520px; font-size:15px; color:rgba(255,255,255,.8); line-height:1.6; }
+  .capa .instrucao{ margin-top:28px; max-width:560px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-radius:14px; padding:20px 26px; font-size:13px; line-height:1.8; color:rgba(255,255,255,.9); text-align:left; }
+  .capa .instrucao strong{ color:var(--yellow); }
+  .capa .rodape{ position:absolute; bottom:1.4cm; font-size:11px; color:rgba(255,255,255,.5); }
+
+  /* ── SUMÁRIO ── */
+  .sumario h2{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:26px; color:var(--blue); margin-bottom:6px; }
+  .sumario p.lead{ font-size:13px; color:#777; margin-bottom:28px; }
+  .sumario-lista{ list-style:none; }
+  .sumario-lista li{ display:flex; justify-content:space-between; align-items:baseline; padding:14px 0; border-bottom:1px dashed #ddd; font-family:'Montserrat',sans-serif; }
+  .sumario-lista li b{ font-size:15px; color:var(--graphite); }
+  .sumario-lista li span{ font-size:13px; color:var(--blue); font-weight:700; }
+  .sumario-lista .num{ display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:var(--blue); color:#fff; font-size:12px; font-weight:800; margin-right:12px; }
+
+  /* ── HEADER DE SEÇÃO (linha de produto) ── */
+  .linha-header{ background:linear-gradient(120deg,var(--blue-dark),var(--blue)); color:#fff; border-radius:14px; padding:22px 26px; margin-bottom:22px; }
+  .linha-header .tag{ display:inline-block; background:rgba(255,193,7,.2); border:1px solid rgba(255,193,7,.45); color:var(--yellow); font-family:'Montserrat',sans-serif; font-weight:700; font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border-radius:100px; margin-bottom:8px; }
+  .linha-header h2{ font-family:'Montserrat',sans-serif; font-weight:900; font-size:26px; }
+  .linha-header p{ font-size:12.5px; color:rgba(255,255,255,.8); margin-top:4px; }
+  .linha-header .contagem{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:12px; color:var(--yellow); margin-top:8px; }
+
+  .grupo-titulo{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:14px; color:var(--blue); margin:18px 0 10px; padding-bottom:4px; border-bottom:2px solid var(--gray); }
+
+  /* ── GRID DE CORES ── */
+  .cores-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px 10px; margin-bottom:6px; }
+  .chip{ border:1px solid #E4E8EE; border-radius:10px; overflow:hidden; break-inside:avoid; page-break-inside:avoid; }
+  .chip .cola-aqui{ height:2.3cm; width:100%; background:repeating-linear-gradient(45deg,#fafbfc,#fafbfc 8px,#f1f3f6 8px,#f1f3f6 16px); border-bottom:1.5px dashed #c7cedb; display:flex; align-items:center; justify-content:center; }
+  .chip .cola-aqui span{ font-size:8px; color:#a9b2c2; font-family:'Montserrat',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.5px; text-align:center; padding:0 4px; }
+  .chip .nome{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:10.5px; color:var(--graphite); padding:6px 7px; line-height:1.25; text-align:center; background:#fff; }
+
+  /* ── PRODUTOS SEM COR ── */
+  .semcor-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .semcor-card{ border:1px solid #E4E8EE; border-radius:12px; padding:16px 18px; break-inside:avoid; }
+  .semcor-card .nome{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:14px; color:var(--blue); margin-bottom:6px; }
+  .semcor-card .desc{ font-size:12px; color:#666; line-height:1.6; }
+
+  /* ── RODAPÉ DE PÁGINA (tela) ── */
+  .folio{ position:absolute; bottom:0.7cm; right:1.6cm; font-size:10px; color:#aaa; font-family:'Montserrat',sans-serif; }
+
+  .print-btn{ position:fixed; top:16px; right:16px; z-index:50; background:var(--blue); color:#fff; border:none; padding:12px 20px; border-radius:8px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.25); }
+
+  @media print{
+    body{ background:#fff; }
+    .print-btn{ display:none !important; }
+    .page{ box-shadow:none; margin:0; width:auto; min-height:auto; page-break-after:always; }
+    .page:last-child{ page-break-after:auto; }
+    @page{ size:A4; margin:1.2cm 1.4cm; }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Baixar / Imprimir PDF</button>
+
+<!-- CAPA -->
+<section class="page capa">
+  <span class="tag">Uso interno — expor na loja</span>
+  <h1>Catálogo de<br><span>Cores</span></h1>
+  <p class="sub">Base impressa de todas as linhas de tinta com opção de cor da Tintas Laet — cole a amostra real em cada quadro.</p>
+  <div class="instrucao">
+    <strong>Como usar este catálogo:</strong><br>
+    Cada cor tem um quadro pontilhado abaixo do nome. Pinte um pedaço de papel/cartão com a tinta real daquela cor e cole por cima do quadro pontilhado — assim o cliente vê o tom exato, sem depender de tela ou impressora.<br><br>
+    As linhas <strong>Emborrachada</strong>, <strong>Premium Lavável</strong> e <strong>1ª Linha Standard</strong> compartilham a mesma paleta principal — a mesma amostra colada pode ser reaproveitada (fotocopiada/reimpressa) entre essas seções.
+  </div>
+  <div class="rodape">Tintas Laet — A tinta nobre da comunidade · Catálogo gerado a partir dos dados oficiais do site (tintaslaet.com)</div>
+</section>
+
+<!-- SUMÁRIO -->
+<section class="page sumario">
+  <h2>Sumário</h2>
+  <p class="lead">9 linhas com opção de cor + 1 seção de produtos sem cor (textura, massa, epóxi e complementos).</p>
+  <ul class="sumario-lista" id="sumario-lista"></ul>
+</section>
+
+<div id="linhas-container"></div>
+
+<!-- PRODUTOS SEM COR -->
+<section class="page">
+  <div class="linha-header">
+    <span class="tag">Referência de loja</span>
+    <h2>Produtos sem opção de cor</h2>
+    <p>Vendidos apenas na cor branca (ou incolor) — não entram no catálogo de amostras coladas.</p>
+  </div>
+  <div class="semcor-grid" id="semcor-grid"></div>
+</section>
+
+<script>
+// ── DADOS: linhas com cor (extraídos do site oficial, site/catalogo/*.html e site/produto.html) ──
+const linhas = [
+  {
+    nome: 'Latex Vinil 18L',
+    desc: 'Para paredes internas — economia e praticidade.',
+    cores: ['Marfim','Compota de Abacaxi','Amarelo Laet','Sapatilha','Pêssego','Paisagem Leve','Cinza A','Coma de Mascar','Rosado','Fonte da Sorte','Templo da Sabedoria','Chiffon Azul','Areia','Fresco Marítimo','Cacto Dália','Rosa Vinho','Cinza B','Cinza C']
+  },
+  {
+    nome: 'Tinta Emborrachada',
+    desc: 'Para áreas externas — telhados, lajes, muros e paredões.',
+    cores: ['Branco','Amarelo Laet','Gelo','Marfim','Amarelo B 07','Algodão Egípcio','Erva Doce','Amarelo C 07','Pergaminho','Lilás Delicado','Palha','Porcelana Egípcia','Lagoa dos Lírios','Chuva Suave','Pitada de Alecrim','Crômio','Papel Picado','Amarelo Albertino','Rosé Suave','Chuva','Ovelha','Verde Piscina','Areia','Pêssego','Verde Fluorescente','Verde Primavera','Ana Maria','Doce da Vovó','Amarelo Dourado','Gota Serena','Suave Kiwi','Bitigui','Laranja Turco','Sombra Lunar','Capim Cheiroso','Rosa Gloss','Azul Laet','Bege Mineral','Tripla Coroa','Cinza A','Verde Limão','Lilás Enevoado','Mistura de Mostarda','Rosa Irlandesa','Tangerina','Doce da Bisa','Lilás Primata','Lilás Laet','Lícor Doce','Curry Dourado','Pantanal','Cinza Elefante','Lícor de Laranja','Pitada Casual','Expedição Marítima','Chá Quente','Mar de Arruda','Caixa Seca','Cinza B','Flamingo Real','Areia Encharcada','Concreto','Azeitona','Céu Sagrado','Cinza','Marrom Suave','Cinza Wick','Pena Azul','Média Visão','Disfarce','Magia','Camurça','Verde Musgo','Penhasco','Bordô','Uva Doce','Cinza Fumaça','Jogo de Golfe','Rosa Açaí','Ilha de Esmeralda','Petúnia Roxa','Cobre Suave','Paraíso do Mar','Cinza C 04','Terra Nossa','Peça de Teatro','Espaço Verde','Romã','Chá da Tarde','Verde B 10','Vermelho C 09','Mar Aberto','Pavão','Planetário','Vermelho D 10','Valsa Azul','Cinza D 04','Fogo Violeta','Rosa Vermelha','Profundidade','Chumbo','Azul Jazz','Oceano Tranquilo','Marrom Burguês','Intensa Sedução','Estadual','Semente Urbana','Selva Escura','Aurora Serena','Suntuoso','Preto']
+  },
+  {
+    nome: '1ª Linha Standard',
+    desc: 'Para dentro e fora de casa — melhor custo-benefício.',
+    cores: ['Branco','Amarelo Laet','Gelo','Marfim','Amarelo B 07','Palha','Algodão Egípcio','Erva Doce','Amarelo C 07','Lilás Delicado','Chuva Suave','Porcelana Egípcia','Lagoa dos Lírios','Pitada de Alecrim','Pergaminho','Papel Picado','Crômio','Amarelo Albertino','Chuva','Rosé Suave','Ovelha','Verde Piscina','Pêssego','Ana Maria','Areia','Verde Primavera','Doce da Vovó','Gota Serena','Suave Kiwi','Bitigui','Laranja Turco','Sombra Lunar','Capim Cheiroso','Rosa Gloss','Azul Laet','Bege Mineral','Tripla Coroa','Cinza A','Mistura de Mostarda','Lilás Enevoado','Rosa Irlandesa','Tangerina','Doce da Bisa','Lilás Primata','Lilás Laet','Lícor Doce','Pantanal','Cinza Elefante','Pitada Casual','Expedição Marítima','Chá Quente','Mar de Arruda','Caixa Seca','Cinza B','Flamingo Real','Azeitona','Concreto','Céu Sagrado','Cinza','Areia Encharcada','Marrom Suave','Cinza Wick','Pena Azul','Média Visão','Disfarce','Magia','Camurça','Verde Musgo','Penhasco','Bordô','Uva Doce','Cinza Fumaça','Rosa Açaí','Cobre Suave','Paraíso do Mar','Petúnia Roxa','Cinza C 04','Peça de Teatro','Espaço Verde','Verde B 10','Planetário','Mar Aberto','Vermelho D 10','Valsa Azul','Cinza D 04']
+  },
+  {
+    nome: 'Premium Lavável',
+    desc: 'Para dentro e fora de casa — alta lavabilidade.',
+    cores: null // mesma paleta da Tinta Emborrachada (111 cores) — ver nota na capa
+  },
+  {
+    nome: 'Super Profissional',
+    desc: 'Para uso interno.',
+    cores: ['Branco','Compota de Abacaxi','Palha','Amarelo Laet','Papel de Bala','Vitamina','Rosado','Linho Americano','Amêndoa Confeitada','Perfume de Figo','Névoa','Paraíso Secreto','Camponesa','Rosas Híbridas','Verde Piscina','Madeira Enfumaçada','Conto Infantil','Areia','Bambu Tropical','Rosa Gloss','Refresco de Menta','Mergulho Tranquilo','Mousse de Uva','Azul Laet','Caixa Mágica','Folha de Trevo','Hortelã Crespa','Camurça','Olhar Encantador','Lagoa Azul','Trevo da Sorte','Cinza Medieval','Azul Rei','Tubarão Cinza']
+  },
+  {
+    nome: 'Direto no Gesso',
+    desc: 'Vai direto no gesso e drywall, sem precisar de fundo preparador.',
+    cores: ['Branco','Compota de Abacaxi','Palha','Amarelo Laet','Papel de Bala','Vitamina','Rosado','Linho Americano','Amêndoa Confeitada','Perfume de Figo','Névoa','Paraíso Secreto','Camponesa','Rosas Híbridas','Verde Piscina','Madeira Enfumaçada','Conto Infantil','Areia','Bambu Tropical','Rosa Gloss','Refresco de Menta','Mergulho Tranquilo','Mousse de Uva','Azul Laet','Caixa Mágica','Folha de Trevo','Hortelã Crespa','Camurça','Olhar Encantador','Lagoa Azul','Trevo da Sorte','Cinza Medieval','Azul Rei','A 04','Tubarão Cinza']
+  },
+  {
+    nome: 'Esmalte Ecológico Base Água',
+    desc: 'Para ferros, madeiras, paredes e tetos — uso interno e externo.',
+    grupos: [
+      { titulo: 'Branca', cores: ['Branco'] },
+      { titulo: 'Cores Claras', cores: ['Azul Celeste','Pérola','Marfim','Rosa Bebê','Gelo','Platina','Cinza Claro','Crômio'] },
+      { titulo: 'Cores Médias', cores: ['Conhaque','Camurça','Argila','Rosa Big-Big','Verde Caribe','Jeans','Azul Cadeirante','Verde Uva','Verde Casual','Amarelo','Laranja Suave','Cinza Médio'] },
+      { titulo: 'Cores Fortes', cores: ['Azul França','Tabaco','Vermelho Goya','Azul Del Rey','Roxo','Verde Folha','Floresta Amazônica','Verde Colonial','Vermelho','Laranja Cítrico','Cinza Escuro','Escuridão'] }
+    ]
+  },
+  {
+    nome: 'Pisos e Fachadas Premium',
+    desc: 'Resiste a tráfego de carro, chuva e sol.',
+    cores: ['Concreto','Amarelo Piso','Cinza','Camurça','Cinza C-04','Vermelho','Espaço Verde','Verde B-10','Profundidade','Chumbo','Vermelho C-09','Azul','Preto']
+  },
+  {
+    nome: 'Efeito Cimento Queimado',
+    desc: 'Acabamento decorativo para paredes e tetos, uso interno e externo.',
+    cores: ['Rosé','Amarelo Laet 2','Bala de Iogurte','Cinza Claro','Verde Uva','Azul Céu','Concreto','Caixa Mágica','Cinza Padrão','Azeitona Passada','Pavão','Jeans','Chumbo','Dois Amores','Marrom Turco']
+  }
+];
+// Premium Lavável reaproveita a paleta da Emborrachada (confirmado nos dois arquivos-fonte)
+linhas[3].cores = linhas[1].cores;
+
+const semCor = [
+  { nome:'Massa Corrida', desc:'Nivelamento e correção de superfícies internas. Somente na cor branca.' },
+  { nome:'Massa Acrílica', desc:'Nivelamento e correção de superfícies internas e externas. Somente na cor branca.' },
+  { nome:'Grafiato', desc:'Textura rústica decorativa, uso interno e externo. Somente na cor branca.' },
+  { nome:'Textura Lisa', desc:'Acabamento liso e uniforme, uso interno. Somente na cor branca.' },
+  { nome:'Textura Design', desc:'Efeito decorativo diferenciado, uso interno e externo. Somente na cor branca.' },
+  { nome:'Tinta Epóxi Base Água', desc:'Renova azulejos, cozinhas, banheiros, metais e galvanizados. Somente branca — para outra cor, usar o Corante Premium.' },
+  { nome:'Corante Premium', desc:'Adiciona cor a produtos de base neutra, como o Epóxi Base Água.' },
+  { nome:'Fundo Preparador', desc:'Trata e uniformiza a absorção da superfície antes da pintura.' },
+  { nome:'Seladora', desc:'Sela e uniformiza a absorção do reboco antes da pintura.' },
+];
+
+function chipHtml(nome){
+  return `<div class="chip"><div class="cola-aqui"><span>cole a amostra real</span></div><div class="nome">${nome}</div></div>`;
+}
+
+function renderGrupo(cores){
+  return `<div class="cores-grid">${cores.map(chipHtml).join('')}</div>`;
+}
+
+const container = document.getElementById('linhas-container');
+const sumario = document.getElementById('sumario-lista');
+
+linhas.forEach((linha, i) => {
+  const totalCores = linha.grupos ? linha.grupos.reduce((s,g)=>s+g.cores.length,0) : linha.cores.length;
+
+  // sumário
+  const li = document.createElement('li');
+  li.innerHTML = `<span><span class="num">${i+1}</span><b>${linha.nome}</b></span><span>${totalCores} cores</span>`;
+  sumario.appendChild(li);
+
+  // página da linha
+  const section = document.createElement('section');
+  section.className = 'page';
+  let corpo = '';
+  if (linha.grupos) {
+    corpo = linha.grupos.map(g => `<div class="grupo-titulo">${g.titulo}</div>${renderGrupo(g.cores)}`).join('');
+  } else {
+    corpo = renderGrupo(linha.cores);
+  }
+  section.innerHTML = `
+    <div class="linha-header">
+      <span class="tag">Linha ${i+1} de ${linhas.length}</span>
+      <h2>${linha.nome}</h2>
+      <p>${linha.desc}</p>
+      <div class="contagem">${totalCores} cores disponíveis</div>
+    </div>
+    ${corpo}
+  `;
+  container.appendChild(section);
+});
+
+// produtos sem cor
+const semCorGrid = document.getElementById('semcor-grid');
+semCorGrid.innerHTML = semCor.map(p => `
+  <div class="semcor-card">
+    <div class="nome">${p.nome}</div>
+    <div class="desc">${p.desc}</div>
+  </div>
+`).join('');
+</script>
+
+</body>
+</html>
