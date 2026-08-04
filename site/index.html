@@ -96,6 +96,13 @@
 
     /* ──────── HERO BANNERS ──────── */
     .hero-banners { position: relative; width: 100%; margin-top: 100px; background: var(--blue-dark); }
+    .new-stores-banner { background: var(--blue-dark); border-bottom: 1px solid rgba(255,255,255,.1); padding: 12px 0; }
+    .new-stores-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 20px; text-align: center; }
+    .new-stores-badge { background: var(--yellow); color: var(--graphite); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; padding: 4px 10px; border-radius: 100px; flex-shrink: 0; }
+    .new-stores-text { color: #fff; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 18px; }
+    .new-stores-text strong { color: var(--yellow); font-family: 'Montserrat', sans-serif; font-weight: 800; }
+    .new-stores-item { white-space: nowrap; }
+    @media (max-width: 640px) { .new-stores-text { font-size: 12px; flex-direction: column; gap: 4px; } }
     .banner-carousel { display: flex; overflow-x: scroll; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
     .banner-carousel::-webkit-scrollbar { display: none; }
     .banner-slide { flex: 0 0 100%; position: relative; scroll-snap-align: start; height: clamp(240px, 46vw, 580px); }
@@ -508,6 +515,19 @@
 
 <!-- HERO BANNERS -->
 <section class="hero-banners" id="inicio">
+
+  <!-- ANÚNCIO NOVAS LOJAS -->
+  <div class="new-stores-banner">
+    <div class="container new-stores-inner">
+      <span class="new-stores-badge">🎉 Novidade</span>
+      <p class="new-stores-text">
+        A Tintas Laet está abrindo <strong>2 novas lojas</strong>!
+        <span class="new-stores-item">📍 Loja 5 — Jd. Itapark, Mauá/SP</span>
+        <span class="new-stores-item">📍 Loja 6 — Jd. Santa Terezinha, São Bernardo do Campo/SP</span>
+      </p>
+    </div>
+  </div>
+
   <div class="banner-carousel" id="bannerCarousel">
 
     <!-- Slide 1: Linha de produtos -->
