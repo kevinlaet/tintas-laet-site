@@ -953,13 +953,12 @@ const produtos = {
       'images/ferramentas/rolo-poliester-15cm.png',
       'images/ferramentas/rolo-poliester-9cm.png',
       'images/ferramentas/rolo-la-carneiro.png',
-      'images/ferramentas/rolo-la-super.png',
       'images/ferramentas/rolo-espuma-pop.png',
       'images/ferramentas/rolo-anti-respingo.png',
     ],
-    desc_curta: 'Rolos de pintura em vários tipos e tamanhos: anti-respingo, poliéster, lã de carneiro, lã super e espuma POP.',
-    descricao: 'Linha completa de rolos de pintura Laet. Anti-Respingo e Poliéster Preto já vêm completos, com cabo embutido — prontos pra usar. Lã de Carneiro e Lã Super são refis, precisam de cabo (vendido separado). Espuma POP é a opção mais econômica, ideal para tintas à base de água. Escolha o tipo e tamanho que combina com o seu projeto.',
-    beneficios: ['Anti-Respingo e Poliéster já vêm com cabo', 'Lã de Carneiro e Lã Super são refis (cabo vendido separado)', 'Espuma POP é a opção mais econômica', 'Vários tipos e tamanhos disponíveis'],
+    desc_curta: 'Rolos de pintura em vários tipos e tamanhos: anti-respingo, poliéster, lã de carneiro e espuma POP.',
+    descricao: 'Linha completa de rolos de pintura Laet. Anti-Respingo e Poliéster Preto já vêm completos, com cabo embutido — prontos pra usar. Lã de Carneiro é refil, precisa de cabo (vendido separado). Espuma POP é a opção mais econômica, ideal para tintas à base de água. Escolha o tipo e tamanho que combina com o seu projeto.',
+    beneficios: ['Anti-Respingo e Poliéster já vêm com cabo', 'Lã de Carneiro é refil (cabo vendido separado)', 'Espuma POP é a opção mais econômica', 'Vários tipos e tamanhos disponíveis'],
     precos: [
       { desc: 'Anti-Respingo Completo 9cm (com cabo)', valor: 'R$ 5,90' },
       { desc: 'Poliéster Preto 9cm (com cabo)', valor: 'R$ 5,99' },
@@ -968,10 +967,23 @@ const produtos = {
       { desc: 'Anti-Respingo Refil (sem cabo)', valor: 'R$ 9,99' },
       { desc: 'Espuma POP 23cm', valor: 'R$ 9,90' },
       { desc: 'Lã de Carneiro Refil (sem cabo)', valor: 'R$ 14,99' },
-      { desc: 'Lã Super Refil (sem cabo)', valor: 'R$ 32,99' },
     ],
     preco_from: 'R$ 5<small>,90</small>',
     wa: 'Olá! Quero comprar um Rolo de Pintura Laet. Pode me passar mais informações?'
+  },
+  'rolo-la-super': {
+    nome: 'Rolo de Lã Super',
+    categoria: 'Ferramentas',
+    badge: 'REFIL PREMIUM',
+    imagem: 'images/ferramentas/rolo-la-super.png',
+    desc_curta: 'Refil de lã super 23cm — alta absorção e acabamento uniforme. Cabo vendido separado.',
+    descricao: 'O Rolo de Lã Super Laet é um refil premium de 23cm, ideal para tinta látex e acrílica em superfícies lisas e semi-rugosas. Excelente rendimento, alta absorção e mais uniformidade na pintura, com acabamento profissional. É só o refil — precisa de cabo (vendido separado).',
+    beneficios: ['Excelente rendimento', 'Alta absorção', 'Mais uniformidade na pintura', 'Acabamento profissional', '23cm', 'Refil — cabo vendido separado'],
+    precos: [
+      { desc: 'Refil 23cm (sem cabo)', valor: 'R$ 32,99' },
+    ],
+    preco_from: 'R$ 32<small>,99</small>',
+    wa: 'Olá! Quero comprar o Rolo de Lã Super Laet. Pode me passar mais informações?'
   },
   'cabo-rolo': {
     nome: 'Cabo para Rolo (Reforçado)',
@@ -1723,5 +1735,7 @@ function initZoom() {
 setTimeout(initZoom, 50);
 </script>
 <script src="cart.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
 </body>
 </html>
