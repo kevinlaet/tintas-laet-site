@@ -56,10 +56,10 @@
 
   function injectStyles() {
     const css = `
-      #laet-cart-float { position: fixed; bottom: 144px; right: 24px; z-index: 301; width: 56px; height: 56px; border-radius: 50%; background: #0D47A1; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(13,71,161,.45); cursor: pointer; transition: transform .2s; border: none; }
-      #laet-cart-float:hover { transform: scale(1.07); }
-      #laet-cart-float svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2; }
-      #laet-cart-badge { position: absolute; top: -4px; right: -4px; background: #FFC107; color: #212529; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px; min-width: 20px; height: 20px; border-radius: 10px; display: none; align-items: center; justify-content: center; padding: 0 4px; }
+      .navbar-cart-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.14); flex-shrink: 0; box-shadow: none; cursor: pointer; transition: background .2s; border: none; margin-left: 4px; }
+      .navbar-cart-btn:hover { background: rgba(255,255,255,.26); }
+      .navbar-cart-btn svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2; }
+      #laet-cart-badge { position: absolute; top: -3px; right: -3px; background: #FFC107; color: #212529; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px; min-width: 18px; height: 18px; border-radius: 9px; display: none; align-items: center; justify-content: center; padding: 0 4px; }
       #laet-cart-overlay { position: fixed; inset: 0; z-index: 400; background: rgba(6,43,99,.55); opacity: 0; visibility: hidden; transition: opacity .25s; }
       #laet-cart-overlay.open { opacity: 1; visibility: visible; }
       #laet-cart-panel { position: absolute; top: 0; right: 0; height: 100%; width: 100%; max-width: 400px; background: #fff; display: flex; flex-direction: column; transform: translateX(100%); transition: transform .3s ease; font-family: 'Poppins', sans-serif; }
@@ -101,13 +101,23 @@
     document.head.appendChild(style);
   }
 
-  function injectMarkup() {
-    const wrap = document.createElement('div');
-    wrap.innerHTML = `
-      <button id="laet-cart-float" onclick="LaetCart.openDrawer()" aria-label="Carrinho">
+  function injectCartButton() {
+    const btnHtml = `
+      <button id="laet-cart-nav-btn" class="navbar-cart-btn" onclick="LaetCart.openDrawer()" aria-label="Carrinho">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
         <span id="laet-cart-badge">0</span>
-      </button>
+      </button>`;
+    const navToggle = document.querySelector('.navbar-toggle');
+    const navWa = document.querySelector('.navbar-wa');
+    if (navToggle) navToggle.insertAdjacentHTML('beforebegin', btnHtml);
+    else if (navWa) navWa.insertAdjacentHTML('afterend', btnHtml);
+    else document.querySelector('.navbar-inner')?.insertAdjacentHTML('beforeend', btnHtml);
+  }
+
+  function injectMarkup() {
+    injectCartButton();
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `
       <div id="laet-cart-overlay" onclick="if(event.target===this) LaetCart.closeDrawer()">
         <div id="laet-cart-panel">
           <div class="laet-cart-header">

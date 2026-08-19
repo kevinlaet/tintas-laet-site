@@ -210,8 +210,23 @@
     .how-note strong { color: var(--blue); }
     .how-cta { text-align: center; margin-top: 48px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
+    /* ── PRICE TICKER ── */
+    .ticker-section { padding: 48px 0 8px; background: var(--gray); }
+    .ticker-label { text-align: center; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
+    .ticker-card { max-width: 480px; margin: 0 auto; background: #fff; border-radius: 18px; box-shadow: 0 10px 32px rgba(13,71,161,.12); border: 1px solid rgba(13,71,161,.08); padding: 22px 26px; display: flex; align-items: center; gap: 18px; overflow: hidden; }
+    .ticker-img { width: 64px; height: 64px; border-radius: 12px; background: linear-gradient(135deg, #dce3f0, #c8d4e8); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ticker-img img { width: 52px; height: 52px; object-fit: contain; }
+    .ticker-text { flex: 1; min-width: 0; }
+    .ticker-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14.5px; color: var(--graphite); margin-bottom: 4px; }
+    .ticker-price { font-family: 'Bebas Neue', sans-serif; font-size: 30px; color: var(--blue); line-height: 1; }
+    .ticker-fade { opacity: 1; transition: opacity .35s ease; }
+    .ticker-fade.out { opacity: 0; }
+    .ticker-dots { display: flex; gap: 6px; justify-content: center; margin-top: 14px; }
+    .ticker-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(13,71,161,.2); transition: background .3s; }
+    .ticker-dot.active { background: var(--blue); }
+
     /* ── WINNERS ── */
-    .winners-section { padding: 88px 0; background: var(--gray); }
+    .winners-section { padding: 56px 0 88px; background: var(--gray); scroll-margin-top: 80px; }
     .winners-list { display: flex; flex-direction: column; gap: 18px; max-width: 720px; margin: 0 auto; }
     .winner-row { background: #fff; border-radius: 18px; padding: 24px 28px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,.06); border: 1px solid rgba(0,0,0,.04); }
     .winner-row-month { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: .5px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
@@ -223,6 +238,8 @@
     .winner-row-store { font-size: 13px; color: #777; }
     .winner-row-photos { display: flex; gap: 12px; justify-content: center; margin-bottom: 16px; }
     .winner-row-photos img { width: 100px; height: 134px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+    .winner-row-photos--poster { max-width: 460px; margin: 0 auto 16px; }
+    .winner-row-photos--poster img { width: 100%; height: auto; max-height: 320px; object-fit: contain; border-radius: 12px; background: var(--blue-dark); }
     .winner-row--latest { border: 2px solid var(--yellow); box-shadow: 0 10px 32px rgba(255,193,7,.2); }
     .winner-row--latest .winner-row-month { font-size: 13px; }
     .winner-row--latest .winner-name-main { font-size: clamp(26px, 6vw, 36px); color: var(--blue); }
@@ -272,6 +289,7 @@
       .easy-banner { padding: 24px 22px; }
     }
     @media (max-width: 560px) {
+      .ticker-card { flex-direction: column; text-align: center; padding: 22px 18px; }
       .winner-row { padding: 20px 16px; }
       .how-steps { grid-template-columns: 1fr; }
       .stats-inner { flex-wrap: wrap; gap: 20px 0; }
@@ -310,14 +328,14 @@
     <h1>Comprou na Tintas Laet?<span class="accent">preencha o cupom e concorra!</span></h1>
     <p class="hero-desc"><strong>Participe dos sorteios mensais da Tintas Laet!</strong><br>Compre qualquer valor em uma de nossas lojas ou pelo WhatsApp, preencha o cupom e envie ou deposite na urna.</p>
     <div class="countdown-wrap">
-      <div class="countdown-label">⏰ Falta pouco pro <strong>Sorteio Agosto Premiado</strong></div>
+      <div class="countdown-label">⏰ Falta pouco pro <strong>Sorteio Setembro Premiado</strong></div>
       <div class="countdown-clock" id="countdownClock">
         <div class="clock-box"><span class="clock-num" id="cdDays">--</span><span class="clock-unit">dias</span></div>
         <div class="clock-box"><span class="clock-num" id="cdHours">--</span><span class="clock-unit">horas</span></div>
         <div class="clock-box"><span class="clock-num" id="cdMins">--</span><span class="clock-unit">min</span></div>
         <div class="clock-box"><span class="clock-num" id="cdSecs">--</span><span class="clock-unit">seg</span></div>
       </div>
-      <div class="countdown-caption">08/08 às 13h · ao vivo no Instagram <strong>@TintasLaet</strong></div>
+      <div class="countdown-caption">05/09 às 13h · ao vivo no Instagram <strong>@TintasLaet</strong></div>
     </div>
     <div class="hero-btns">
       <a href="https://wa.me/5511977140964?text=Olá! Quero fazer uma compra e participar do sorteio da Tintas Laet!" class="btn btn-yellow" target="_blank" rel="noopener">🛒 Comprar e participar</a>
@@ -344,49 +362,30 @@
   </div>
 </section>
 
+<!-- QUADRO DE PREÇOS ROTATIVO -->
+<section class="ticker-section">
+  <div class="container">
+    <div class="ticker-label">Não precisa gastar muito pra participar</div>
+    <div class="ticker-card">
+      <div class="ticker-img"><img id="tickerImg" src="" alt=""></div>
+      <div class="ticker-text ticker-fade" id="tickerText">
+        <div class="ticker-name" id="tickerName"></div>
+        <div class="ticker-price" id="tickerPrice"></div>
+      </div>
+    </div>
+    <div class="ticker-dots" id="tickerDots"></div>
+  </div>
+</section>
+
 <!-- GANHADORES -->
-<section class="winners-section">
+<section class="winners-section" id="ganhadores">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-label">Ganhadores anteriores</div>
-      <h2>Últimos ganhadores</h2>
-      <p>Clientes reais que compraram, preencheram o cupom e ganharam. O próximo pode ser você.</p>
+      <div class="section-label">Arquivo completo</div>
+      <h2>Todos os nossos ganhadores</h2>
+      <p>Clientes reais que compraram, preencheram o cupom e ganharam. Sempre que sai um sorteio novo, o ganhador entra aqui — e fica pra sempre nessa página. O próximo pode ser você.</p>
     </div>
-    <div class="winners-list">
-      <div class="winner-row winner-row--latest reveal d1">
-        <div class="winner-row-month">Sorteio de Julho</div>
-        <div class="winner-row-photos">
-          <img src="images/sorteios/ganhadora-julho-roseane.jpg" alt="Roseane, ganhadora principal do sorteio de julho, com a caixa de som Mondial">
-          <img src="images/sorteios/ganhadora-julho-thais.jpg" alt="Thais, amiga indicada premiada no sorteio de julho, com a tinta Cobertura Absoluta">
-        </div>
-        <div class="winner-row-names">
-          <span class="winner-name-main">🏆 Roseane</span>
-          <span class="winner-name-sep">+</span>
-          <span class="winner-name-friend">Thais <small>(amiga indicada)</small></span>
-        </div>
-        <div class="winner-row-store">📍 Compra realizada na Loja 4 — Vila Luzita</div>
-      </div>
-
-      <div class="winner-row reveal d2">
-        <div class="winner-row-month">Sorteio de Junho</div>
-        <div class="winner-row-names">
-          <span class="winner-name-main">🏆 David Gabriel</span>
-          <span class="winner-name-sep">+</span>
-          <span class="winner-name-friend">Reinaldo <small>(amigo indicado)</small></span>
-        </div>
-        <div class="winner-row-store">📍 Compra realizada na Loja 1 — Sapopemba</div>
-      </div>
-
-      <div class="winner-row reveal d3">
-        <div class="winner-row-month">Sorteio de Maio</div>
-        <div class="winner-row-names">
-          <span class="winner-name-main">🏆 Angela Maria</span>
-          <span class="winner-name-sep">+</span>
-          <span class="winner-name-friend">Tom <small>(amigo indicado)</small></span>
-        </div>
-        <div class="winner-row-store">📍 Compra realizada na Loja 4 — Santo André</div>
-      </div>
-    </div>
+    <div class="winners-list" id="winnersList"></div>
     <div style="text-align:center;margin-top:44px" class="reveal">
       <p style="color:#888;font-size:15px;margin-bottom:20px">Você pode ser o próximo. É mais fácil do que parece.</p>
       <a href="https://wa.me/5511977140964?text=Olá! Quero comprar e participar do sorteio da Tintas Laet!" class="btn btn-yellow" target="_blank" rel="noopener">🛒 Participar agora</a>
@@ -398,7 +397,7 @@
 <section class="prize-section">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-label">Prêmios de agosto / 2026</div>
+      <div class="section-label">Prêmios de setembro / 2026</div>
       <h2>O que está em jogo este mês</h2>
       <p>Todo sorteio tem dois ganhadores — o titular do cupom e um amigo indicado por ele</p>
     </div>
@@ -540,7 +539,7 @@
 <!-- FOOTER -->
 <div class="footer-simple">
   <p>© 2026 Tintas Laet — <a href="index.html">Voltar ao site</a> — (11) 97714-0964</p>
-  <p style="text-align:left;max-width:200px"><a href="orcamento.html" style="color:rgba(255,255,255,.65);font-size:13px;font-weight:600">👤 Área do vendedor</a></p>
+  <p style="text-align:left;max-width:200px"><a href="orcamento.html" style="color:rgba(255,255,255,.65);font-size:13px;font-weight:600">👤 Área do vendedor</a> · <a href="trocas.html" style="color:rgba(255,255,255,.65);font-size:13px;font-weight:600">Política de Trocas</a></p>
 </div>
 
 <script>
@@ -632,7 +631,7 @@
   var elHours = document.getElementById('cdHours');
   var elMins = document.getElementById('cdMins');
   var elSecs = document.getElementById('cdSecs');
-  var target = new Date('2026-08-08T13:00:00-03:00').getTime();
+  var target = new Date('2026-09-05T13:00:00-03:00').getTime();
 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
@@ -680,6 +679,98 @@
     if (entries[0].isIntersecting) { startCount(); obs.disconnect(); }
   }, { threshold: 0.4 });
   obs.observe(statsBar);
+})();
+
+/* ── GANHADORES ──
+   Lista cumulativa e completa (não é só "últimos 3"). Pra registrar um sorteio
+   novo: adicionar um objeto no TOPO do array (mais recente primeiro). "fotos"
+   pode ficar vazio ([]) até a foto chegar. "posterStyle: true" é pra quando a
+   foto é um pôster/flyer já pronto (com texto); sem isso, assume foto solta
+   tipo retrato (estilo julho). Sempre atualizar
+   `_memoria/historico-ganhadores-sorteio.md` junto. */
+(function () {
+  var ganhadores = [
+    { mes: 'Agosto', principal: 'Nando', amigo: 'Bruna', loja: 'Loja 1 — Sapopemba', fotos: ['images/sorteios/ganhadores-agosto-grupo.jpg', 'images/sorteios/ganhadores-agosto-detalhe.jpg'], posterStyle: true },
+    { mes: 'Julho', principal: 'Roseane', amigo: 'Thais', loja: 'Loja 4 — Vila Luzita', fotos: ['images/sorteios/ganhadora-julho-roseane.jpg', 'images/sorteios/ganhadora-julho-thais.jpg'] },
+    { mes: 'Junho', principal: 'David Gabriel', amigo: 'Reinaldo', loja: 'Loja 1 — Sapopemba', fotos: [] },
+    { mes: 'Maio', principal: 'Angela Maria', amigo: 'Tom', loja: 'Loja 4 — Santo André', fotos: [] },
+    { mes: 'Abril', principal: 'Israel', amigo: 'Aparecido', loja: 'Loja 1 — Sapopemba', fotos: [] },
+  ];
+
+  var list = document.getElementById('winnersList');
+  var staggers = ['d1', 'd2', 'd3', 'd4'];
+  ganhadores.forEach(function (g, i) {
+    var row = document.createElement('div');
+    row.className = 'winner-row reveal' + (i === 0 ? ' winner-row--latest' : '') + (staggers[i] ? ' ' + staggers[i] : '');
+
+    var photosHtml = '';
+    if (g.fotos.length > 0 && g.posterStyle) {
+      photosHtml = '<div class="winner-row-photos winner-row-photos--poster">' +
+        g.fotos.map(function (src) { return '<img src="' + src + '" alt="Pôster do sorteio de ' + g.mes + ', ganhador ' + g.principal + '" loading="lazy">'; }).join('') +
+        '</div>';
+    } else if (g.fotos.length > 0) {
+      photosHtml = '<div class="winner-row-photos">' +
+        g.fotos.map(function (src) { return '<img src="' + src + '" alt="' + g.principal + ', ganhador do sorteio de ' + g.mes + '" loading="lazy">'; }).join('') +
+        '</div>';
+    }
+
+    row.innerHTML =
+      '<div class="winner-row-month">Sorteio de ' + g.mes + '</div>' +
+      photosHtml +
+      '<div class="winner-row-names">' +
+        '<span class="winner-name-main">🏆 ' + g.principal + '</span>' +
+        '<span class="winner-name-sep">+</span>' +
+        '<span class="winner-name-friend">' + g.amigo + ' <small>(amigo indicado)</small></span>' +
+      '</div>' +
+      '<div class="winner-row-store">📍 Compra realizada na ' + g.loja + '</div>';
+    list.appendChild(row);
+  });
+})();
+
+/* ── QUADRO DE PREÇOS ROTATIVO ──
+   Troca de item a cada 5s. Pra adicionar/tirar produto, só editar este array. */
+(function () {
+  var precosTicker = [
+    { nome: 'Massa Corrida', preco: 'R$ 37,90', img: 'images/embalagens/barrica+plastico.png' },
+    { nome: 'Textura Lisa', preco: 'R$ 54,90', img: 'images/embalagens/barrica+plastico.png' },
+    { nome: 'Tinta Spray Cinza', preco: 'R$ 19,90', img: 'images/ferramentas/sprays.png' },
+    { nome: 'Latex Vinil 18L', preco: 'a partir de R$ 79,90', img: 'images/embalagens/vinil-remove-bg-io.png' },
+    { nome: 'Corante Premium', preco: 'R$ 5,50', img: 'images/embalagens/Corantesbisnaga.webp' },
+    { nome: 'Espátula de Silicone', preco: 'R$ 4,00', img: 'images/ferramentas/espatula-silicone.png' },
+  ];
+
+  var tickerImg = document.getElementById('tickerImg');
+  var tickerName = document.getElementById('tickerName');
+  var tickerPrice = document.getElementById('tickerPrice');
+  var tickerText = document.getElementById('tickerText');
+  var tickerDots = document.getElementById('tickerDots');
+  if (!tickerImg) return;
+
+  precosTicker.forEach(function (_, i) {
+    var dot = document.createElement('div');
+    dot.className = 'ticker-dot' + (i === 0 ? ' active' : '');
+    tickerDots.appendChild(dot);
+  });
+
+  var tickerIndex = 0;
+  function renderTicker(i) {
+    var item = precosTicker[i];
+    tickerImg.src = item.img;
+    tickerImg.alt = item.nome;
+    tickerName.textContent = item.nome;
+    tickerPrice.textContent = item.preco;
+    document.querySelectorAll('.ticker-dot').forEach(function (d, di) { d.classList.toggle('active', di === i); });
+  }
+  renderTicker(0);
+
+  setInterval(function () {
+    tickerText.classList.add('out');
+    setTimeout(function () {
+      tickerIndex = (tickerIndex + 1) % precosTicker.length;
+      renderTicker(tickerIndex);
+      tickerText.classList.remove('out');
+    }, 350);
+  }, 5000);
 })();
 
 /* ── SCROLL REVEAL ── */

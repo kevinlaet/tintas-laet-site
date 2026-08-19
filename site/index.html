@@ -96,13 +96,6 @@
 
     /* ──────── HERO BANNERS ──────── */
     .hero-banners { position: relative; width: 100%; margin-top: 100px; background: var(--blue-dark); }
-    .new-stores-banner { background: var(--blue-dark); border-bottom: 1px solid rgba(255,255,255,.1); padding: 12px 0; }
-    .new-stores-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 20px; text-align: center; }
-    .new-stores-badge { background: var(--yellow); color: var(--graphite); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; padding: 4px 10px; border-radius: 100px; flex-shrink: 0; }
-    .new-stores-text { color: #fff; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 18px; }
-    .new-stores-text strong { color: var(--yellow); font-family: 'Montserrat', sans-serif; font-weight: 800; }
-    .new-stores-item { white-space: nowrap; }
-    @media (max-width: 640px) { .new-stores-text { font-size: 12px; flex-direction: column; gap: 4px; } }
     .banner-carousel { display: flex; overflow-x: scroll; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
     .banner-carousel::-webkit-scrollbar { display: none; }
     .banner-slide { flex: 0 0 100%; position: relative; scroll-snap-align: start; height: clamp(240px, 46vw, 580px); }
@@ -225,6 +218,9 @@
     .loc-btn-map:hover { background: var(--blue); color: #fff; }
     .loc-btn-wa { background: #25D366; color: #fff; }
     .loc-btn-wa:hover { background: #1EBE5D; }
+    .location-photo--soon { aspect-ratio: 4/3; background: linear-gradient(160deg, var(--blue-dark) 0%, var(--blue-mid) 100%); display: flex; align-items: center; justify-content: center; }
+    .location-soon-mark { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 72px; color: rgba(255,255,255,.3); filter: blur(3px); user-select: none; }
+    .location-soon-badge { display: inline-block; background: var(--yellow); color: #1a1000; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px; letter-spacing: .5px; text-transform: uppercase; padding: 3px 9px; border-radius: 100px; margin-left: 6px; vertical-align: middle; }
 
     /* ──────── SOCIAL ──────── */
     .social { background: var(--blue-dark); text-align: center; padding: 72px 0; }
@@ -516,18 +512,6 @@
 <!-- HERO BANNERS -->
 <section class="hero-banners" id="inicio">
 
-  <!-- ANÚNCIO NOVAS LOJAS -->
-  <div class="new-stores-banner">
-    <div class="container new-stores-inner">
-      <span class="new-stores-badge">🎉 Novidade</span>
-      <p class="new-stores-text">
-        A Tintas Laet está abrindo <strong>2 novas lojas</strong>!
-        <span class="new-stores-item">📍 Loja 5 — Jd. Itapark, Mauá/SP</span>
-        <span class="new-stores-item">📍 Loja 6 — Jd. Santa Terezinha, São Bernardo do Campo/SP</span>
-      </p>
-    </div>
-  </div>
-
   <div class="banner-carousel" id="bannerCarousel">
 
     <!-- Slide 1: Linha de produtos -->
@@ -669,7 +653,7 @@
         <div class="pickup-icon">🏪</div>
         <div>
           <div class="pickup-title">Venha até a loja</div>
-          <div class="pickup-desc">Passe em qualquer uma das nossas 4 unidades no ABC e Zona Leste. Se preferir, manda uma mensagem antes pra garantir o produto que você precisa!</div>
+          <div class="pickup-desc">Passe em qualquer uma das nossas 6 unidades no ABC e Zona Leste. Se preferir, manda uma mensagem antes pra garantir o produto que você precisa!</div>
         </div>
       </div>
       <div class="pickup-card">
@@ -928,7 +912,7 @@
           <div class="seller-variant-tag">🎨 15 cores</div>
           <span class="seller-price-from">5kg — a partir de</span>
           <div class="seller-price">R$ 69<small>,90</small></div>
-          <div class="seller-price-detail">5kg a partir de R$ 69,90 · 25kg a partir de R$ 199,90</div>
+          <div class="seller-price-detail">5kg a partir de R$ 69,90 · 23kg a partir de R$ 199,90</div>
           <div class="seller-actions">
             <a href="produto.html?id=efeito-cimento-queimado" class="seller-view">Ver produto completo →</a>
             <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar o Efeito Cimento Queimado Laet.','_blank')">💬 Quero esse produto</button>
@@ -983,8 +967,8 @@
           <div class="why-item">
             <div class="why-item-icon">🏪</div>
             <div class="why-item-text">
-              <strong>4 lojas físicas na região</strong>
-              <p>Prefere retirar? Temos 4 unidades no ABC e Zona Leste pra você escolher a mais perto.</p>
+              <strong>6 lojas físicas na região</strong>
+              <p>Prefere retirar? Temos 6 unidades no ABC e Zona Leste pra você escolher a mais perto.</p>
             </div>
           </div>
         </div>
@@ -1003,7 +987,7 @@
 <section class="section locations" id="enderecos">
   <div class="container">
     <div class="locations-header">
-      <span class="section-label">4 lojas</span>
+      <span class="section-label">6 lojas</span>
       <h2 class="section-title" style="color:var(--blue)">Onde estamos</h2>
       <p class="section-sub">ABC Paulista e Zona Leste de São Paulo.</p>
     </div>
@@ -1060,6 +1044,31 @@
           </div>
         </div>
       </div>
+      <div class="location-card">
+        <div class="location-photo">
+          <img src="images/lojas/loja5-itapark.jpg" alt="Loja Jardim Itapark — Mauá">
+        </div>
+        <div class="location-body">
+          <div class="location-name">Mauá — Jardim Itapark</div>
+          <div class="location-address">Av. Itapark, 4377 — Jardim Itapark, Mauá</div>
+          <div class="location-btns">
+            <a href="https://maps.google.com/?q=Av.+Itapark,+4377,+Jardim+Itapark,+Mauá,+SP" class="loc-btn loc-btn-map" target="_blank" rel="noopener">📍 Ver no mapa</a>
+            <a href="https://wa.me/5511977140964?text=Olá! Quero consultar o estoque da loja de Mauá (Itapark)." class="loc-btn loc-btn-wa" target="_blank" rel="noopener">💬 Consultar estoque</a>
+          </div>
+        </div>
+      </div>
+      <div class="location-card">
+        <div class="location-photo location-photo--soon">
+          <span class="location-soon-mark">?</span>
+        </div>
+        <div class="location-body">
+          <div class="location-name">São Bernardo do Campo <span class="location-soon-badge">Em breve</span></div>
+          <div class="location-address">Nossa 6ª loja está a caminho! Cadastre seu contato e a gente avisa assim que abrir.</div>
+          <div class="location-btns">
+            <a href="https://wa.me/5511977140964?text=Olá! Quero ser avisado quando a Loja 6 (São Bernardo do Campo) abrir." class="loc-btn loc-btn-wa" target="_blank" rel="noopener" style="flex:unset;width:100%">💬 Quero ser avisado</a>
+          </div>
+        </div>
+      </div>
     </div>
     <div style="text-align:center;margin-top:36px">
       <a href="https://wa.me/5511977140964?text=Olá! Qual loja fica mais perto de mim?" class="btn btn-blue" target="_blank" rel="noopener">💬 Qual loja fica mais perto?</a>
@@ -1100,7 +1109,7 @@
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <p>Sim! Você pode vir direto em qualquer uma das nossas 4 lojas: Sapopemba (Vila Bela/SP), Rua do Britador (Mauá), Av. Ayrton Senna (Mauá) e Av. São Bernardo do Campo (Santo André). Não é obrigatório agendar — mas recomendamos consultar o estoque disponível da loja pelo WhatsApp antes de vir. <a href="https://wa.me/5511977140964?text=Olá! Quero consultar o estoque antes de ir à loja." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:#25D366;color:#fff;font-size:12px;font-family:'Montserrat',sans-serif;font-weight:700;padding:4px 12px;border-radius:50px;vertical-align:middle;white-space:nowrap">💬 Consultar estoque</a></p>
+          <p>Sim! Você pode vir direto em qualquer uma das nossas 5 lojas em funcionamento: Sapopemba (Vila Bela/SP), Rua do Britador (Mauá), Av. Ayrton Senna (Mauá), Av. São Bernardo do Campo (Santo André) e Itapark (Mauá). Não é obrigatório agendar — mas recomendamos consultar o estoque disponível da loja pelo WhatsApp antes de vir. <a href="https://wa.me/5511977140964?text=Olá! Quero consultar o estoque antes de ir à loja." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:#25D366;color:#fff;font-size:12px;font-family:'Montserrat',sans-serif;font-weight:700;padding:4px 12px;border-radius:50px;vertical-align:middle;white-space:nowrap">💬 Consultar estoque</a></p>
         </div>
       </div>
       <div class="faq-item">
@@ -1172,7 +1181,7 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:32px">
-      <a href="https://wa.me/5511977140964?text=Olá! Quero comprar e ter esse resultado também!" class="btn btn-blue" target="_blank" rel="noopener">💬 Quero esse resultado também</a>
+      <a href="sorteios.html#ganhadores" class="btn btn-blue">🏆 Quero prêmios também</a>
     </div>
   </div>
 </section>
@@ -1333,7 +1342,7 @@
     <div class="footer-inner">
       <div>
         <div class="footer-logo"><img src="images/logo-branco.png" alt="Tintas Laet"></div>
-        <p class="footer-tagline">A tinta nobre da comunidade.<br>4 lojas na região do ABC e Zona Leste de SP.</p>
+        <p class="footer-tagline">A tinta nobre da comunidade.<br>6 lojas na região do ABC e Zona Leste de SP.</p>
       </div>
       <div>
         <div class="footer-col-title">Navegação</div>
@@ -1342,6 +1351,7 @@
           <li><a href="#produtos">Produtos</a></li>
           <li><a href="#enderecos">Endereços</a></li>
           <li><a href="sorteios.html">Sorteios</a></li>
+          <li><a href="curriculo.html">💼 Trabalhe Conosco</a></li>
         </ul>
       </div>
       <div>
@@ -1354,6 +1364,7 @@
     </div>
     <div class="footer-bottom">
       <a href="orcamento.html" style="color:rgba(255,255,255,.65);font-size:13px;font-weight:600">👤 Área do vendedor</a>
+      <a href="trocas.html" style="color:rgba(255,255,255,.65);font-size:13px;font-weight:600">Política de Trocas</a>
       <span>© 2026 Tintas Laet — Todos os direitos reservados</span>
       <span>A tinta nobre da comunidade ✦</span>
     </div>
