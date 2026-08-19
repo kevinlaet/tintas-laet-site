@@ -1,10 +1,22 @@
 const fs = require('fs');
 const path = require('path');
 
-const [, , prompt, destino] = process.argv;
+const [, , prompt, destino, qualidadeArg, sizeArg] = process.argv;
 
 if (!prompt || !destino) {
-  console.error('Uso: node --env-file=.env scripts/gerar-imagem.js "PROMPT" "destino.png"');
+  console.error('Uso: node --env-file=.env scripts/gerar-imagem.js "PROMPT" "destino.png" [low|medium|high] [1024x1536|1536x1024|1024x1024]');
+  process.exit(1);
+}
+
+const qualidade = qualidadeArg || 'medium';
+if (!['low', 'medium', 'high'].includes(qualidade)) {
+  console.error(`Qualidade inválida: "${qualidade}". Use low, medium ou high.`);
+  process.exit(1);
+}
+
+const size = sizeArg || '1024x1536';
+if (!['1024x1536', '1536x1024', '1024x1024'].includes(size)) {
+  console.error(`Tamanho inválido: "${size}". Use 1024x1536 (retrato, padrão), 1536x1024 (paisagem) ou 1024x1024 (quadrado).`);
   process.exit(1);
 }
 
@@ -24,8 +36,8 @@ if (!apiKey) {
     body: JSON.stringify({
       model: 'gpt-image-1.5',
       prompt,
-      size: '1024x1536',
-      quality: 'medium',
+      size,
+      quality: qualidade,
     }),
   });
 
@@ -40,5 +52,5 @@ if (!apiKey) {
   const outPath = path.resolve(destino);
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, Buffer.from(b64, 'base64'));
-  console.log(`✓ Imagem salva em ${outPath}`);
+  console.log(`✓ Imagem salva em ${outPath} (qualidade: ${qualidade})`);
 })();

@@ -2,7 +2,7 @@
 
 Scripts Node.js e Python que as skills chamam quando precisam fazer coisas fora do alcance da IA pura (gerar imagem, postar em rede social, renderizar HTML em PNG).
 
-A pasta vem **vazia** — cada skill que precisa de script tem instrução de como criar (e geralmente é um único setup por integração que você vai ativar).
+Cada skill que precisa de script tem instrução de como criar (e geralmente é um único setup por integração que você vai ativar). Já tem alguns scripts ativos — ver tabela abaixo.
 
 ## Scripts comuns
 
@@ -10,12 +10,14 @@ Conforme você for ativando skills, isso aqui vai sendo populado. Lista do que c
 
 | Skill | Script esperado | O que faz |
 |---|---|---|
-| `/carrossel` (com foto IA) | `gerar-imagem.js` | Gera foto realista via OpenAI API (DALL-E 3) |
+| `/carrossel` (com foto IA) | `gerar-imagem.js` | Gera foto realista do zero via OpenAI API (`gpt-image-1.5`) — ver `identidade/prompts-ia.md` pro guia de prompt |
+| `/carrossel` (editar foto existente) | `editar-imagem.js` | Edita uma imagem já existente via OpenAI API (`gpt-image-1.5`) — uso: `node --env-file=.env scripts/editar-imagem.js "origem.png" "prompt" "destino.png"` |
 | `/carrossel` (render PNG) | `render.js` (gerado por carrossel, fica na pasta do conteúdo) | Playwright tira screenshot 1080x1350 de cada slide |
 | `/aprovar-post` | `postar-instagram.js` | Publica carrossel no Instagram via Meta Graph API |
 | `/aprovar-post` | `postar-facebook.js` | Publica carrossel no Facebook via Meta Graph API |
 | `/anuncio-google` | (nenhum — gera CSV direto) | — |
 | `/relatorio-ads` | (lê CSV exportado das plataformas) | — |
+| deploy (staging) | `netlify-ignore-branch.sh` | Cancela build do Netlify em branch que não seja `main`, pra economizar minuto de build |
 
 ## Pré-requisitos comuns
 

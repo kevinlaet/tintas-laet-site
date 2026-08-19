@@ -174,29 +174,19 @@ Escrever o conteúdo seguindo as regras de tom:
 
 Antes de gerar qualquer foto por IA, checar `site/images/prova-social/`, `marketing/imagem das lojas/` e `site/images/lojas/` — se tiver foto real que sirva pro tema, usar ela e pular pro Passo 4. Só gerar por IA quando não tiver nada real adequado.
 
-**Fluxo atual: manual, via ChatGPT (plano Go do Kevin)** — sem orçamento pra API da OpenAI (precisa de créditos pré-pagos separados do plano de chat).
+**Fluxo atual: automatizado via API da OpenAI** (ativa desde 29/07/2026, crédito pré-pago configurado). Gerar direto, sem depender do usuário colar prompt em outro app.
 
-1. Montar prompt em inglês (modelos de imagem funcionam melhor em inglês)
-2. Padrão genérico de prompt:
+1. Montar o prompt em inglês seguindo `identidade/prompts-ia.md` (leitura obrigatória — tem a estrutura de prompt, exemplos prontos por uso e a lista de negativos que evita a "cara de IA": simetria perfeita, pele plástica, texto quebrado, fundo genérico de banco de imagem)
+2. Rodar: `node --env-file=.env scripts/gerar-imagem.js "PROMPT" "destino.png" [low|medium|high]` (qualidade `medium` por padrão se omitir o 3º argumento, ~$0,05/imagem — usar `high`, ~$0,20/imagem, pra peça de investimento alto: capa de catálogo, anúncio pago, campanha importante)
+3. Salvar a imagem gerada em `marketing/conteudo/<pasta>/foto-<nome>.png`
 
-```
-Professional [TIPO] photography of [ASSUNTO],
-[DETALHES], [AMBIENTE/CONTEXTO],
-[ESTILO DE LUZ] lighting, shallow depth of field,
-shot from [ÂNGULO], [ESTILO/ESTÉTICA],
-editorial quality
-```
+**Regra da embalagem:** nunca pedir pra lata/embalagem de tinta aparecer dentro do prompt de geração — o modelo não conhece o produto real da Laet e inventa um rótulo genérico. Gerar a cena sem produto visível (foco na pessoa/parede/ambiente) e compor a lata real por cima no HTML, usando o PNG de `identidade/embalagens/<linha>-remove-bg-io.png`. Detalhe completo em `identidade/prompts-ia.md`.
 
-3. Entregar o prompt pronto pro usuário colar no ChatGPT (já tem geração de imagem incluída no plano Go) e pedir pra ele mandar a imagem gerada de volta aqui no chat.
-4. Salvar a imagem recebida em `marketing/conteudo/<pasta>/foto-<nome>.png` e seguir.
+**Checklist de enquadramento (antes de gerar, ver `identidade/design-guide.md` → "Template padrão de peça"):** se vai ter pessoa/produto em cena, checar mentalmente onde caem os scrims do template (claro no topo, escuro na base) antes de escrever o prompt. Pedir enquadramento aberto ("de longe", com folga em volta) **e** posição estratégica explícita do assunto no prompt (ex: terço inferior, totalmente visível, sem tocar as bordas) — as duas coisas juntas, não só uma.
 
-**Regra da embalagem:** se o prompt incluir lata/embalagem de tinta no quadro, **sempre avisar o usuário pra enviar junto a foto real da embalagem da Laet** (`identidade/embalagens/<linha>-remove-bg-io.png`) quando for colar o prompt no ChatGPT. Sem a referência, o ChatGPT inventa um produto genérico/aleatório em vez da embalagem real da marca.
+**CHECKPOINT:** Sempre mostrar a foto gerada antes de usar na peça. Se saiu com cara de IA, ajustar o prompt com mais especificidade (câmera, luz, imperfeição) em vez de só regenerar igual — ver `identidade/prompts-ia.md`.
 
-**Checklist de enquadramento (antes de gerar, ver `identidade/design-guide.md` → "Template padrão de peça"):** se vai ter embalagem/produto em cena, checar mentalmente onde caem os scrims do template (claro no topo, escuro na base) antes de escrever o prompt. Pedir enquadramento aberto ("de longe", com folga em volta) **e** posição estratégica explícita do produto no prompt (ex: terço inferior, totalmente visível, sem tocar as bordas) — as duas coisas juntas, não só uma.
-
-**CHECKPOINT:** Foto aprovada → seguir. Se não, ajustar prompt e pedir nova geração.
-
-> Nota: existe `scripts/gerar-imagem.js`, que automatiza isso via API da OpenAI — só usar se o Kevin confirmar que já tem créditos de API configurados em `.env`. Por padrão, seguir o fluxo manual acima.
+**Fallback:** se a API falhar ou o crédito acabar, seguir o fluxo manual — montar o mesmo prompt e pedir pro usuário colar no ChatGPT (plano Go, já tem geração de imagem incluída), pedir pra mandar a imagem de volta no chat, e salvar do mesmo jeito.
 
 ### Passo 4 — Criar visuais (HTML + PNG)
 

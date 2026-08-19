@@ -47,7 +47,7 @@ O card com ícone dentro de círculo (badge SVG) é genérico — qualquer loja 
 **Ordem de prioridade da foto:**
 1. Foto real já existente em `marketing/prova social/`, `marketing/imagem das lojas/`, `site/images/lojas/` — sempre que servir pro tema
 2. Foto real nova (pedida à loja, ver `_memoria/calendario-editorial.md`)
-3. Foto gerada por IA — só quando as opções acima não cobrirem o tema. **Fluxo atual: automatizado.** API da OpenAI configurada (07/2026) com crédito pré-pago ativo — usar `scripts/gerar-imagem.js` (modelo `gpt-image-1.5`, qualidade `medium`) direto: `node --env-file=.env scripts/gerar-imagem.js "prompt" "destino.png"`.
+3. Foto gerada por IA — só quando as opções acima não cobrirem o tema. **Fluxo atual: automatizado.** API da OpenAI configurada (07/2026) com crédito pré-pago ativo — usar `scripts/gerar-imagem.js` (modelo `gpt-image-1.5`) direto: `node --env-file=.env scripts/gerar-imagem.js "prompt" "destino.png" [low|medium|high] [1024x1536|1536x1024|1024x1024]`. Qualidade `medium` por padrão (~$0,05/imagem); `high` (~$0,20/imagem) pra peça de investimento alto. Tamanho `1024x1536` (retrato) por padrão; usar `1536x1024` pra peça paisagem/horizontal. Pra editar uma imagem já existente em vez de gerar do zero, usar `scripts/editar-imagem.js "origem.png" "prompt" "destino.png"` (qualidade e tamanho fixos em medium/1024x1536). **Como escrever o prompt pra não sair com cara de IA: ver `identidade/prompts-ia.md` (leitura obrigatória antes de gerar).**
 
 **Regra de qualidade:** nunca usar foto de baixa resolução, desfocada, pixelada ou com watermark. Sem foto boa disponível → gerar por IA em vez de usar uma fraca.
 

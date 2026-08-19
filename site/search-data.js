@@ -7,7 +7,7 @@
    de "Rolos de Pintura"). */
 const LAET_SEARCH_INDEX = [
   { id: 'emborrachada', nome: 'Tinta Emborrachada', categoria: 'Tintas' },
-  { id: 'piso-fachada', nome: 'Tinta Piso e Fachada Premium', categoria: 'Tintas' },
+  { id: 'piso-fachada', nome: 'Tinta Pisos & Fachadas', categoria: 'Tintas' },
   { id: 'massa-corrida', nome: 'Massa Corrida', categoria: 'Massa Corrida / Acrílica' },
   { id: 'massa-acrilica', nome: 'Massa Acrílica', categoria: 'Massa Corrida / Acrílica' },
   { id: 'grafiato', nome: 'Grafiato', categoria: 'Texturizados' },

@@ -6,8 +6,9 @@ exports.handler = async function (event) {
   try {
     const body = JSON.parse(event.body || "{}");
     const data = (body.payload && body.payload.data) || {};
+    const formName = data["form-name"];
 
-    if (data["form-name"] !== "cupom-sorteio") {
+    if (formName !== "cupom-sorteio" && formName !== "trabalhe-conosco") {
       return { statusCode: 200, body: "formulario ignorado" };
     }
 
@@ -16,6 +17,32 @@ exports.handler = async function (event) {
     if (!topic) {
       console.error("NTFY_TOPIC nao configurado nas variaveis de ambiente do Netlify");
       return { statusCode: 200, body: "sem topico configurado" };
+    }
+
+    if (formName === "trabalhe-conosco") {
+      const linhas = [
+        `Nome: ${data.nome || "-"}`,
+        `WhatsApp: ${data.whatsapp || "-"}`,
+        `Cidade: ${data.cidade || "-"}`,
+        `Loja de preferência: ${data.loja_preferencia || "-"}`,
+        `Área de interesse: ${data.vaga_interesse || "-"}`,
+        `Disponibilidade: ${data.disponibilidade || "-"}`,
+        data.experiencia ? `Experiência: ${data.experiencia}` : null,
+        data.link_curriculo ? `Currículo/LinkedIn: ${data.link_curriculo}` : null,
+      ].filter(Boolean).join("\n");
+
+      await fetch("https://ntfy.sh", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          topic,
+          title: "💼 Nova candidatura — Trabalhe Conosco!",
+          message: linhas,
+          tags: ["briefcase"],
+        }),
+      });
+
+      return { statusCode: 200, body: "ok" };
     }
 
     const amigosNomes = toArray(data["amigo_nome[]"]);

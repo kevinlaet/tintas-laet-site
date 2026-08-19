@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #111; display: flex; flex-direction: column; gap: 24px; padding: 24px; }
+.slide { width: 1024px; height: 1536px; position: relative; overflow: hidden; flex-shrink: 0; }
+.base { width: 1024px; height: 1536px; display: block; object-fit: cover; }
+.logo {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 112px;
+  width: auto;
+}
+</style>
+</head>
+<body>
+  <div class="slide" id="s1">
+    <img class="base" src="slide1-base.png">
+    <img class="logo" src="../../identidade/logotipo branco-remove-bg-io.png">
+  </div>
+  <div class="slide" id="s2">
+    <img class="base" src="slide2-base.png">
+    <img class="logo" src="../../identidade/logotipo branco-remove-bg-io.png">
+  </div>
+  <div class="slide" id="s3">
+    <img class="base" src="slide3-base.png">
+    <img class="logo" src="../../identidade/logotipo branco-remove-bg-io.png">
+  </div>
+</body>
+</html>

@@ -30,18 +30,18 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 - `scripts/` — scripts e automações
 - `templates/` — modelos reutilizáveis
 - `site/` — código do site (tintaslaet.com, staging em tintas-laet-staging.netlify.app)
-- `netlify/` — funções serverless do site: notificação push pro celular do Kevin (via ntfy.sh, tópico `tintaslaet-18e3366de0`) quando chega cupom de sorteio (`submission-created.js`) ou mensagem do widget de chat do site (`chat-message.js`). Falta configurar a env var `NTFY_TOPIC` no painel do Netlify antes do próximo deploy.
+- `netlify/` — funções serverless do site: notificação push pro celular do Kevin (via ntfy.sh, tópico `tintaslaet-18e3366de0`) quando chega cupom de sorteio, candidatura da página "Trabalhe Conosco" (ambos em `submission-created.js`) ou mensagem do widget de chat do site (`chat-message.js`). Falta configurar a env var `NTFY_TOPIC` no painel do Netlify antes do próximo deploy.
 
 ## Sobre a empresa
 
-Tintas Laet é um comércio de tintas e materiais de pintura com 6 lojas — 5 já funcionando (a Loja 5 com festa de inauguração marcada pra 08/08/2026) e a 6ª ainda vazia (sem estoque), com contrato assinado, entrando em manutenção do salão (pintura e reparos) antes de abrir —, na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado, parcelamento em 12x sem juros e frete justo.
+Tintas Laet é um comércio de tintas e materiais de pintura com 6 lojas — 5 já funcionando (a Loja 5 com festa de inauguração realizada em 08/08/2026) e a 6ª ainda vazia (sem estoque), com contrato assinado, entrando em manutenção do salão (pintura e reparos) antes de abrir —, na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado, parcelamento em 12x sem juros e frete justo.
 
 Fundada por Anderson Laet e Robson Laet. Kevin cuida do marketing digital e da gestão operacional das lojas, sozinho por enquanto.
 
 ## Instagram
 
 - **Perfil:** @Tintaslaet
-- **Situação atual:** 5.550 seguidores, perfil amador mas com alto potencial (vídeos com mais de 150k visualizações)
+- **Situação atual:** 6.251 seguidores (09/08/2026), perfil amador mas com alto potencial (vídeos com mais de 150k visualizações)
 - **Direção:** Profissionalizar o perfil e transformar o mascote em protagonista — como um influencer próprio da marca, com voz e presença consistentes
 
 ## Tom de voz
@@ -53,6 +53,7 @@ Direto, simples, acolhedor. Fala com a comunidade como vizinho — sem jargão d
 ## Regras do sistema
 
 - Antes de qualquer peça visual, ler `identidade/design-guide.md`
+- Antes de gerar foto por IA, ler `identidade/prompts-ia.md`
 - Antes de qualquer texto, ler `_memoria/preferencias.md`
 - Métricas e relatórios salvos em `dados/`
 - Peças e documentos gerados salvam em `saidas/`
@@ -64,7 +65,7 @@ Direto, simples, acolhedor. Fala com a comunidade como vizinho — sem jargão d
 - [x] Instagram @Tintaslaet
 - [ ] Google Ads
 - [x] Google Analytics (G-V8RP9PV579 — ativo desde 15/07/2026 — script adicionado em todos os HTMLs do site)
-- [x] API de imagem OpenAI (ativa desde 29/07/2026 — `scripts/gerar-imagem.js`, modelo `gpt-image-1.5`, qualidade `medium`, crédito pré-pago configurado)
+- [x] API de imagem OpenAI (ativa desde 29/07/2026, modelo `gpt-image-1.5`, crédito pré-pago configurado — `scripts/gerar-imagem.js` gera do zero, com qualidade `low`/`medium`/`high` via 3º argumento — padrão `medium` — e tamanho `1024x1536`/`1536x1024`/`1024x1024` via 4º argumento — padrão `1024x1536`; `scripts/editar-imagem.js` edita imagem existente, com qualidade e tamanho fixos em `medium`/`1024x1536`, sem argumento pra mudar)
 
 ---
 
@@ -77,6 +78,8 @@ No início de toda conversa, ler os seguintes arquivos (quando existirem e estiv
 3. `_memoria/estrategia.md` — foco atual, prioridades, prazos
 
 Usar essas informações como base pra qualquer resposta ou decisão.
+
+**Antes de qualquer texto ou peça que afirme característica técnica de produto** (rendimento, uso interno/externo, lavável ou não, diluição, secagem, preço, cor), ler `_memoria/produtos.md` — dossiê mestre de produtos, fonte única de verdade, com regra explícita de nunca inventar dado técnico não confirmado (usa a resposta-padrão do próprio arquivo quando faltar informação).
 
 Pra qualquer tarefa visual (carrossel, post, landing page), consultar `identidade/design-guide.md` como referência de estilo.
 

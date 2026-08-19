@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#333; }
+  .slide { position:relative; width:1300px; height:569px; overflow:hidden; font-family:'Poppins',sans-serif; }
+  .bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .scrim { position:absolute; inset:0; }
+  .content { position:absolute; inset:0; display:flex; align-items:center; z-index:5; }
+  .label { color:#FFC107; font-family:'Poppins',sans-serif; font-weight:600; font-size:15px; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:10px; display:block; }
+  .headline { font-family:'Montserrat',sans-serif; font-weight:800; font-size:48px; line-height:1.08; color:#fff; margin-bottom:16px; }
+  .chip { background:#FFC107; color:#062B63; padding:2px 12px; border-radius:6px; display:inline-block; transform:rotate(-2deg); }
+  .sub { font-size:17px; line-height:1.5; color:rgba(255,255,255,.88); font-weight:400; max-width:420px; margin-bottom:26px; }
+  .cta { display:inline-block; background:#FFC107; color:#212529; font-family:'Poppins',sans-serif; font-weight:600; font-size:17px; padding:15px 32px; border-radius:10px; text-decoration:none; }
+  .brandtag { position:absolute; bottom:18px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.55); font-size:13px; letter-spacing:.5px; z-index:5; }
+  .pill { position:absolute; z-index:5; background:rgba(6,43,99,.75); border:1px solid rgba(255,255,255,.25); color:#fff; font-size:14px; font-weight:500; padding:9px 18px; border-radius:30px; backdrop-filter:blur(2px); }
+
+  /* SLIDE 1 — PRODUTOS / ATENDIMENTO */
+  #s1 .bg { object-position: center 47%; }
+  #s1 .scrim { background: linear-gradient(90deg, rgba(6,43,99,.05) 0%, rgba(6,43,99,.5) 44%, rgba(6,43,99,.93) 62%, #062B63 100%); }
+  #s1 .content { justify-content:flex-end; padding-right:70px; }
+  #s1 .textbox { width:460px; }
+  #s1 .logo-chest { position:absolute; left:538px; top:298px; width:34px; z-index:4; transform:rotate(9deg); filter: drop-shadow(0 1px 2px rgba(0,0,0,.4)); opacity:.95; }
+
+  /* SLIDE 2 — ENTREGA EM CASA (FIORINO) */
+  #s2 .bg { object-position: center 50%; }
+  #s2 .scrim { background: linear-gradient(90deg, #062B63 0%, rgba(6,43,99,.95) 28%, rgba(6,43,99,.55) 48%, rgba(6,43,99,.08) 68%, rgba(6,43,99,.02) 100%); }
+  #s2 .content { justify-content:flex-start; padding-left:64px; }
+  #s2 .textbox { width:480px; }
+  #s2 .logo-side { position:absolute; left:300px; top:262px; width:330px; z-index:4; transform: perspective(700px) rotateY(-10deg) rotate(-1deg); opacity:.96; }
+  #s2 .logo-hood { position:absolute; left:735px; top:330px; width:130px; z-index:4; transform: perspective(400px) rotateX(38deg) rotate(-4deg); opacity:.92; }
+
+  /* SLIDE 3 — LOJAS */
+  #s3 .bg { object-position: center 43%; }
+  #s3 .scrim { background: linear-gradient(90deg, #062B63 0%, #062B63 32%, rgba(6,43,99,.9) 44%, rgba(6,43,99,.5) 58%, rgba(6,43,99,.08) 76%, rgba(6,43,99,.02) 100%); }
+  #s3 .content { justify-content:flex-start; padding-left:64px; }
+  #s3 .textbox { width:460px; }
+  #s3 .pill { bottom:26px; right:32px; }
+  #s3 .cans { position:absolute; z-index:4; display:flex; align-items:flex-end; }
+  #s3 .cans.stack1 { left:772px; bottom:16px; }
+  #s3 .cans.stack2 { left:848px; bottom:16px; }
+  #s3 .can-stack { position:relative; width:55px; height:126px; }
+  #s3 .can-stack img { position:absolute; left:0; width:55px; filter: drop-shadow(0 3px 4px rgba(0,0,0,.35)); }
+  #s3 .can-stack img:nth-child(1) { bottom:0; }
+  #s3 .can-stack img:nth-child(2) { bottom:36px; }
+  #s3 .can-stack img:nth-child(3) { bottom:72px; }
+</style>
+</head>
+<body>
+
+<div class="slide" id="s1">
+  <img class="bg" src="../../marketing/banco-de-midia/hero-vendedor-casal-v1.png">
+  <div class="scrim"></div>
+  <img class="logo-chest" src="../../identidade/logotipo branco-remove-bg-io.png">
+  <div class="content">
+    <div class="textbox">
+      <span class="label">Atendimento de verdade</span>
+      <div class="headline">A tinta <span class="chip">certa</span><br>pra cada projeto</div>
+      <div class="sub">Preço justo, qualidade garantida — a gente te ajuda a escolher.</div>
+      <a class="cta">Ver Catálogo</a>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s2">
+  <img class="bg" src="../../marketing/banco-de-midia/hero-entrega-fiorino-v1.png">
+  <div class="scrim"></div>
+  <img class="logo-side" src="../../identidade/logotipo branco-remove-bg-io.png">
+  <img class="logo-hood" src="../../identidade/logotipo branco-remove-bg-io.png">
+  <div class="content">
+    <div class="textbox">
+      <span class="label">Comodidade de verdade</span>
+      <div class="headline">Sua tinta <span class="chip">na porta</span><br>de casa</div>
+      <div class="sub">Você escolhe pelo WhatsApp, a gente leva até você — sem sair de casa.</div>
+      <a class="cta">Consultar entrega</a>
+    </div>
+  </div>
+  <div class="brandtag">Tintas Laet</div>
+</div>
+
+<div class="slide" id="s3">
+  <img class="bg" src="../../marketing/conteudo/post-festa-inauguracao-loja5-2026-08-04/assets/foto-fachada-loja5.png">
+  <div class="scrim"></div>
+  <div class="cans stack1">
+    <div class="can-stack">
+      <img src="../../site/images/embalagens/semibrilho-remove-bg-io.png">
+      <img src="../../site/images/embalagens/semibrilho-remove-bg-io.png">
+      <img src="../../site/images/embalagens/semibrilho-remove-bg-io.png">
+    </div>
+  </div>
+  <div class="cans stack2">
+    <div class="can-stack">
+      <img src="../../site/images/embalagens/semibrilho-remove-bg-io.png">
+      <img src="../../site/images/embalagens/semibrilho-remove-bg-io.png">
+      <img src="../../site/images/embalagens/semibrilho-remove-bg-io.png">
+    </div>
+  </div>
+  <div class="content">
+    <div class="textbox">
+      <span class="label">ABC e Zona Leste</span>
+      <div class="headline"><span class="chip">5 lojas</span><br>perto de você</div>
+      <div class="sub">Escolha a mais perto e venha conferir.</div>
+      <a class="cta">Ver endereços</a>
+    </div>
+  </div>
+  <div class="pill">🔜 Loja 6 chegando em breve</div>
+  <div class="brandtag">Tintas Laet</div>
+</div>
+
+</body>
+</html>

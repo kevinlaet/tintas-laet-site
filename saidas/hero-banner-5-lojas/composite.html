@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #111; }
+  img { display: block; }
+
+  :root {
+    --blue-dark: #062B63;
+    --blue: #0D47A1;
+    --yellow: #FFC107;
+  }
+
+  /* ── DESKTOP: 1300x569 ── */
+  #desktop { width: 1300px; height: 569px; background: var(--blue-dark); position: relative; overflow: hidden; font-family: 'Poppins', sans-serif; display: flex; }
+  #desktop .textcol { width: 480px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 0 0 56px; position: relative; z-index: 2; }
+  #desktop .label { display: inline-block; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: 1px; color: var(--yellow); margin-bottom: 8px; }
+  #desktop .headline { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 52px; line-height: 1.03; color: #fff; margin-bottom: 6px; }
+  #desktop .headline .num { background: var(--yellow); color: var(--blue-dark); padding: 2px 14px; border-radius: 8px; display: inline-block; transform: rotate(-2deg); }
+  #desktop .sub { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 26px; color: #fff; margin-bottom: 10px; }
+  #desktop .soon { font-size: 15px; color: #FFE082; font-weight: 600; margin-bottom: 22px; }
+  #desktop .cta { display: inline-flex; align-items: center; background: var(--yellow); color: var(--blue-dark); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 19px; padding: 14px 30px; border-radius: 8px; width: fit-content; }
+
+  #desktop .gridcol { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 10px; padding: 20px 24px 20px 0; }
+  #desktop .tile { position: relative; border-radius: 10px; overflow: hidden; border: 2.5px solid var(--yellow); box-shadow: 0 4px 14px rgba(0,0,0,.35); }
+  #desktop .tile img { width: 100%; height: 100%; object-fit: cover; }
+  #desktop .tile .cap { position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(0deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,0) 100%); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; padding: 16px 8px 6px; text-align: center; line-height: 1.2; }
+  #desktop .tile.soon-tile { background: linear-gradient(150deg, #0D47A1, #062B63); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px; }
+  #desktop .tile.soon-tile .mark { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 40px; color: rgba(255,255,255,.28); }
+  #desktop .tile.soon-tile .soontxt { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11.5px; color: var(--yellow); text-align: center; padding: 0 8px; line-height: 1.3; }
+
+  /* ── MOBILE: 750x750 ── */
+  #mobile { width: 750px; height: 750px; background: var(--blue-dark); position: relative; overflow: hidden; font-family: 'Poppins', sans-serif; display: flex; flex-direction: column; }
+  #mobile .gridrow { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 8px; padding: 22px 22px 0; height: 400px; }
+  #mobile .tile { position: relative; border-radius: 10px; overflow: hidden; border: 2.5px solid var(--yellow); box-shadow: 0 4px 12px rgba(0,0,0,.3); }
+  #mobile .tile img { width: 100%; height: 100%; object-fit: cover; }
+  #mobile .tile .cap { position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(0deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,0) 100%); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; padding: 14px 6px 5px; text-align: center; line-height: 1.15; }
+  #mobile .tile.soon-tile { background: linear-gradient(150deg, #0D47A1, #062B63); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 2px; }
+  #mobile .tile.soon-tile .mark { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 30px; color: rgba(255,255,255,.28); }
+  #mobile .tile.soon-tile .soontxt { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 9.5px; color: var(--yellow); text-align: center; padding: 0 4px; line-height: 1.25; }
+
+  #mobile .textcol { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px 30px 20px; }
+  #mobile .label { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 21px; letter-spacing: 1px; color: var(--yellow); margin-bottom: 6px; }
+  #mobile .headline { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 54px; line-height: 1.03; color: #fff; margin-bottom: 4px; }
+  #mobile .headline .num { background: var(--yellow); color: var(--blue-dark); padding: 2px 16px; border-radius: 8px; display: inline-block; transform: rotate(-2deg); }
+  #mobile .sub { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 27px; color: #fff; margin-bottom: 8px; }
+  #mobile .soon { font-size: 15px; color: #FFE082; font-weight: 600; margin-bottom: 16px; }
+  #mobile .cta { display: inline-flex; align-items: center; background: var(--yellow); color: var(--blue-dark); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 19px; padding: 13px 34px; border-radius: 8px; }
+  #mobile .brand { margin-top: 12px; color: rgba(255,255,255,.7); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .5px; }
+</style>
+</head>
+<body>
+
+<div id="desktop">
+  <div class="textcol">
+    <span class="label">ABC E ZONA LESTE</span>
+    <div class="headline"><span class="num">5 lojas</span></div>
+    <div class="sub">perto de você</div>
+    <div class="soon">+ uma nova unidade a caminho!</div>
+    <div class="cta">Ver endereços</div>
+  </div>
+  <div class="gridcol">
+    <div class="tile"><img src="../../site/images/lojas/loja1-sapopemba.jpg" style="object-position:center 30%"><div class="cap">Vila Bela - Sapopemba</div></div>
+    <div class="tile"><img src="../../site/images/lojas/loja2-sao-joao.jpg" style="object-position:center 30%"><div class="cap">Jd São João - Mauá</div></div>
+    <div class="tile"><img src="../../site/images/lojas/loja3-ayrton-senna.jpg" style="object-position:center 30%"><div class="cap">Av. Ayrton Senna - Mauá</div></div>
+    <div class="tile"><img src="../../site/images/lojas/loja4-santo-andre.jpg" style="object-position:center 30%"><div class="cap">Vila Luzita - Santo André</div></div>
+    <div class="tile"><img src="../../site/images/lojas/loja5-itapark.jpg" style="object-position:center 68%"><div class="cap">Jd Itapark - Mauá</div></div>
+    <div class="tile soon-tile"><div class="mark">?</div><div class="soontxt">Loja 6<br>chegando em breve</div></div>
+  </div>
+</div>
+
+<div id="mobile">
+  <div class="gridrow">
+    <div class="tile"><img src="../../site/images/lojas/loja1-sapopemba.jpg" style="object-position:center 30%"><div class="cap">Sapopemba</div></div>
+    <div class="tile"><img src="../../site/images/lojas/loja2-sao-joao.jpg" style="object-position:center 30%"><div class="cap">Jd São João</div></div>
+    <div class="tile"><img src="../../site/images/lojas/loja3-ayrton-senna.jpg" style="object-position:center 30%"><div class="cap">Ayrton Senna</div></div>
+    <div class="tile"><img src="../../site/images/lojas/loja4-santo-andre.jpg" style="object-position:center 30%"><div class="cap">Santo André</div></div>
+    <div class="tile"><img src="../../site/images/lojas/loja5-itapark.jpg" style="object-position:center 68%"><div class="cap">Itapark</div></div>
+    <div class="tile soon-tile"><div class="mark">?</div><div class="soontxt">Loja 6<br>em breve</div></div>
+  </div>
+  <div class="textcol">
+    <span class="label">ABC E ZONA LESTE</span>
+    <div class="headline"><span class="num">5 lojas</span></div>
+    <div class="sub">perto de você</div>
+    <div class="soon">+ uma nova unidade a caminho!</div>
+    <div class="cta">Ver endereços</div>
+  </div>
+</div>
+
+</body>
+</html>

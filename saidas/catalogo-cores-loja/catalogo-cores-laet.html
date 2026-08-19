@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catálogo de Cores — Tintas Laet (base para impressão)</title>
+<title>Catálogo de Cores — Tintas Laet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -17,61 +17,98 @@
     --gray:#F0F2F5; --graphite:#212529;
   }
 
-  .page{ width:21cm; min-height:29.7cm; margin:0 auto 24px; background:#fff; padding:1.4cm 1.6cm; box-shadow:0 4px 24px rgba(0,0,0,.15); position:relative; }
+  .page{ width:21cm; min-height:29.7cm; margin:0 auto 24px; background:#fff; box-shadow:0 4px 24px rgba(0,0,0,.15); position:relative; overflow:hidden; }
+  .page.padded{ padding:18mm; }
 
-  /* ── CAPA ── */
-  .capa{ background:linear-gradient(150deg,var(--blue-dark) 0%,var(--blue) 100%); color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:22px; }
-  .capa img.logo{ height:120px; margin-bottom:10px; }
-  .capa .tag{ display:inline-block; background:rgba(255,193,7,.18); border:1px solid rgba(255,193,7,.45); color:var(--yellow); font-family:'Montserrat',sans-serif; font-weight:700; font-size:12px; letter-spacing:3px; text-transform:uppercase; padding:6px 18px; border-radius:100px; }
-  .capa h1{ font-family:'Montserrat',sans-serif; font-weight:900; font-size:56px; line-height:1.05; }
-  .capa h1 span{ color:var(--yellow); }
-  .capa p.sub{ max-width:520px; font-size:15px; color:rgba(255,255,255,.8); line-height:1.6; }
-  .capa .instrucao{ margin-top:28px; max-width:560px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-radius:14px; padding:20px 26px; font-size:13px; line-height:1.8; color:rgba(255,255,255,.9); text-align:left; }
-  .capa .instrucao strong{ color:var(--yellow); }
-  .capa .rodape{ position:absolute; bottom:1.4cm; font-size:11px; color:rgba(255,255,255,.5); }
+  /* ── CAPA (foto real + scrim, conforme design-guide.md) ── */
+  .capa{ padding:0; }
+  .capa-foto{ position:absolute; inset:0; background-image:url('../../marketing/prova social/vendedor-e-cliente-loja1.png'); background-size:cover; background-position:center 30%; }
+  .capa-scrim-topo{ position:absolute; top:0; left:0; right:0; height:34%; background:linear-gradient(to bottom, rgba(245,236,215,.97) 0%, rgba(245,236,215,.8) 60%, rgba(245,236,215,0) 100%); }
+  .capa-scrim-base{ position:absolute; bottom:0; left:0; right:0; height:74%; background:linear-gradient(to top, rgba(6,43,99,.97) 0%, rgba(6,43,99,.93) 40%, rgba(6,43,99,.55) 65%, rgba(6,43,99,0) 100%); }
+  .capa-conteudo{ position:relative; z-index:2; height:29.7cm; display:flex; flex-direction:column; justify-content:space-between; padding:.9cm 1.6cm 1.2cm; }
+  .capa-logo{ height:100px; align-self:center; margin-top:.2cm; }
+  .capa-texto{ color:#fff; text-align:center; }
+  .capa-texto .tag{ display:inline-block; background:rgba(255,193,7,.22); border:1px solid rgba(255,193,7,.5); color:var(--yellow); font-family:'Montserrat',sans-serif; font-weight:700; font-size:11.5px; letter-spacing:3px; text-transform:uppercase; padding:6px 18px; border-radius:100px; margin-bottom:14px; }
+  .capa-texto h1{ font-family:'Montserrat',sans-serif; font-weight:900; font-size:44px; line-height:1.12; margin-bottom:14px; }
+  .capa-texto h1 .titulo-chip{ display:inline-block; white-space:nowrap; background:var(--yellow); color:var(--blue-dark); padding:2px 14px; border-radius:8px; transform:rotate(-2deg); }
+  .capa-texto p.sub{ max-width:460px; margin:0 auto; font-size:14.5px; color:rgba(255,255,255,.88); line-height:1.6; }
+  .capa-rodape{ display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(255,255,255,.2); padding-top:14px; color:rgba(255,255,255,.7); font-size:11.5px; }
+  .capa-rodape b{ color:#fff; font-family:'Montserrat',sans-serif; }
 
   /* ── SUMÁRIO ── */
-  .sumario h2{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:26px; color:var(--blue); margin-bottom:6px; }
-  .sumario p.lead{ font-size:13px; color:#777; margin-bottom:28px; }
+  .sumario-topo{ display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+  .sumario h2{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:28px; color:var(--blue); }
+  .sumario img.mascote{ height:86px; }
+  .sumario p.lead{ font-size:13.5px; color:#777; margin-bottom:28px; }
   .sumario-lista{ list-style:none; }
-  .sumario-lista li{ display:flex; justify-content:space-between; align-items:baseline; padding:14px 0; border-bottom:1px dashed #ddd; font-family:'Montserrat',sans-serif; }
-  .sumario-lista li b{ font-size:15px; color:var(--graphite); }
-  .sumario-lista li span{ font-size:13px; color:var(--blue); font-weight:700; }
-  .sumario-lista .num{ display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:var(--blue); color:#fff; font-size:12px; font-weight:800; margin-right:12px; }
+  .sumario-lista li{ display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-bottom:1px solid #eef0f4; }
+  .sumario-lista .esq{ display:flex; align-items:center; gap:14px; }
+  .sumario-lista b{ font-family:'Montserrat',sans-serif; font-size:15.5px; color:var(--graphite); display:block; }
+  .sumario-lista .desc{ font-size:12px; color:#888; margin-top:2px; }
+  .sumario-lista .cont{ font-family:'Montserrat',sans-serif; font-size:12px; color:var(--blue); font-weight:700; white-space:nowrap; }
+  .sumario-lista .num{ display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; background:var(--blue); color:#fff; font-size:13px; font-weight:800; flex-shrink:0; }
 
-  /* ── HEADER DE SEÇÃO (linha de produto) ── */
-  .linha-header{ background:linear-gradient(120deg,var(--blue-dark),var(--blue)); color:#fff; border-radius:14px; padding:22px 26px; margin-bottom:22px; }
-  .linha-header .tag{ display:inline-block; background:rgba(255,193,7,.2); border:1px solid rgba(255,193,7,.45); color:var(--yellow); font-family:'Montserrat',sans-serif; font-weight:700; font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border-radius:100px; margin-bottom:8px; }
-  .linha-header h2{ font-family:'Montserrat',sans-serif; font-weight:900; font-size:26px; }
-  .linha-header p{ font-size:12.5px; color:rgba(255,255,255,.8); margin-top:4px; }
-  .linha-header .contagem{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:12px; color:var(--yellow); margin-top:8px; }
+  /* ── HEADER DE SEÇÃO (linha de produto) — cartão claro + foto do produto real ── */
+  .linha-header{ position:relative; overflow:hidden; background:linear-gradient(135deg,#fff 0%,var(--gray) 100%); border:1px solid #E4E8EE; border-radius:16px; padding:22px 26px; margin-bottom:22px; display:flex; align-items:center; gap:20px; box-shadow:0 3px 16px rgba(13,71,161,.07); }
+  .linha-header::before{ content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(13,71,161,.09) 0%, rgba(13,71,161,0) 70%); }
+  .linha-header .col-texto{ flex:1; min-width:0; position:relative; z-index:1; }
+  .linha-header .col-foto{ width:160px; flex-shrink:0; display:flex; align-items:center; justify-content:center; gap:2px; position:relative; z-index:1; overflow:visible; }
+  .linha-header .col-foto img{ width:150px; height:150px; object-fit:contain; filter:drop-shadow(0 10px 14px rgba(6,43,99,.22)); }
+  .linha-header .col-foto.duas{ width:190px; }
+  .linha-header .col-foto.duas img{ width:95px; height:130px; object-fit:contain; }
+  .linha-header .tag{ display:inline-block; background:rgba(13,71,161,.09); border:1px solid rgba(13,71,161,.25); color:var(--blue); font-family:'Montserrat',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border-radius:100px; margin-bottom:9px; }
+  .linha-header h2{ font-family:'Montserrat',sans-serif; font-weight:900; font-size:23px; color:var(--blue-dark); }
+  .linha-header .nomes-lista{ display:flex; gap:6px; flex-wrap:wrap; margin-top:9px; }
+  .linha-header .nome-tag{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:10.5px; color:#fff; background:var(--blue); padding:4px 10px; border-radius:6px; }
+  .linha-header p.hook{ font-size:12.5px; color:#555; margin-top:10px; line-height:1.55; max-width:520px; }
+  .linha-header .pills{ display:flex; gap:7px; flex-wrap:wrap; margin-top:12px; }
+  .linha-header .pill{ font-family:'Montserrat',sans-serif; font-size:10px; font-weight:700; color:var(--blue-dark); background:#fff; border:1px solid rgba(13,71,161,.25); padding:4px 11px; border-radius:100px; }
+  .linha-header .contagem{ position:absolute; top:20px; right:26px; font-family:'Montserrat',sans-serif; font-weight:800; font-size:11px; color:var(--blue); background:var(--yellow); padding:5px 10px; border-radius:8px; text-align:center; line-height:1.3; z-index:1; }
 
-  .grupo-titulo{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:14px; color:var(--blue); margin:18px 0 10px; padding-bottom:4px; border-bottom:2px solid var(--gray); }
+  .grupo-titulo{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:14px; color:var(--blue); margin:24px 0 12px; padding-bottom:6px; border-bottom:2px solid var(--gray); text-transform:uppercase; letter-spacing:.5px; break-after:avoid; page-break-after:avoid; }
+  .grupo-titulo:first-child{ margin-top:0; }
 
-  /* ── GRID DE CORES ── */
-  .cores-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px 10px; margin-bottom:6px; }
-  .chip{ border:1px solid #E4E8EE; border-radius:10px; overflow:hidden; break-inside:avoid; page-break-inside:avoid; }
-  .chip .cola-aqui{ height:2.3cm; width:100%; background:repeating-linear-gradient(45deg,#fafbfc,#fafbfc 8px,#f1f3f6 8px,#f1f3f6 16px); border-bottom:1.5px dashed #c7cedb; display:flex; align-items:center; justify-content:center; }
-  .chip .cola-aqui span{ font-size:8px; color:#a9b2c2; font-family:'Montserrat',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.5px; text-align:center; padding:0 4px; }
+  /* ── GRID DE CORES ──
+     Quadradinho do tamanho EXATO da etiqueta Pimaco 17,0 x 31,0mm (96 por folha A4)
+     que vai ser colada em cima — por isso o .swatch tem medida fixa em mm,
+     não percentual. Não alterar sem checar a etiqueta física antes.
+     Grid centralizado (justify-content:center) pra manter margem simétrica
+     mesmo quando a última linha não fecha as 4 colunas. */
+  .cores-grid{ display:grid; grid-template-columns:repeat(4, 31mm); gap:10mm; margin-bottom:6mm; justify-content:center; }
+  .chip{ width:31mm; border:1px solid #E4E8EE; border-radius:2px; overflow:hidden; break-inside:avoid; page-break-inside:avoid; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  .chip .swatch{ width:31mm; height:17mm; display:block; }
+  .chip .swatch.branco{ border-bottom:1px solid #E4E8EE; }
   .chip .nome{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:10.5px; color:var(--graphite); padding:6px 7px; line-height:1.25; text-align:center; background:#fff; }
 
-  /* ── PRODUTOS SEM COR ── */
-  .semcor-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
-  .semcor-card{ border:1px solid #E4E8EE; border-radius:12px; padding:16px 18px; break-inside:avoid; }
-  .semcor-card .nome{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:14px; color:var(--blue); margin-bottom:6px; }
+  /* ── PRODUTOS SEM COR (Massas, Texturas e Complementos — flui pra próxima página se precisar) ── */
+  .semcor-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:8px; }
+  .semcor-card{ border:1px solid #E4E8EE; border-radius:12px; padding:16px 18px; break-inside:avoid; page-break-inside:avoid; display:flex; gap:14px; align-items:center; }
+  .semcor-card .foto-mini{ width:64px; height:64px; border-radius:8px; background:var(--gray); flex-shrink:0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .semcor-card .foto-mini img{ max-width:88%; max-height:88%; object-fit:contain; }
+  .semcor-card .nome{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:14px; color:var(--blue); margin-bottom:5px; }
   .semcor-card .desc{ font-size:12px; color:#666; line-height:1.6; }
 
-  /* ── RODAPÉ DE PÁGINA (tela) ── */
-  .folio{ position:absolute; bottom:0.7cm; right:1.6cm; font-size:10px; color:#aaa; font-family:'Montserrat',sans-serif; }
-
   .print-btn{ position:fixed; top:16px; right:16px; z-index:50; background:var(--blue); color:#fff; border:none; padding:12px 20px; border-radius:8px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.25); }
+
+  /* ── RODAPÉ LEGAL (desenhado no fim de CADA folha física — ver função paginar()
+     no script; position:fixed por página foi testado e descartado: no Chrome
+     print-to-pdf ele "flutuou" e sobrepôs conteúdo no meio da página) ── */
+  .rodape-legal{ margin-top:6mm; padding:6px 10px; border-top:2px solid var(--yellow); background:#FFF8E8; border-radius:0 0 4px 4px; text-align:center; font-family:'Poppins',sans-serif; font-weight:600; font-size:10px; line-height:1.5; color:#5c4a00; break-inside:avoid; page-break-inside:avoid; }
+  .capa-aviso{ position:absolute; left:1.6cm; right:1.6cm; bottom:.35cm; z-index:2; text-align:center; font-family:'Poppins',sans-serif; font-weight:600; font-size:10px; line-height:1.4; color:#FFC107; text-shadow:0 1px 3px rgba(0,0,0,.5); }
 
   @media print{
     body{ background:#fff; }
     .print-btn{ display:none !important; }
     .page{ box-shadow:none; margin:0; width:auto; min-height:auto; page-break-after:always; }
-    .page:last-child{ page-break-after:auto; }
-    @page{ size:A4; margin:1.2cm 1.4cm; }
+    /* Margem real de página (@page) em vez de padding do div — assim TODA página física
+       impressa recebe a margem, inclusive as páginas "do meio" de uma grade de cores
+       que se espalha por mais de uma folha. O padding do .page.padded vira redundante
+       no impresso (por isso zera aqui) — ele continua valendo só na pré-visualização em tela. */
+    .page.padded{ padding:0 !important; }
+    .pagina-final{ page-break-after:auto !important; }
+    *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+    @page{ size:A4; margin:18mm; }
+    @page :first{ margin:0; }
   }
 </style>
 </head>
@@ -81,111 +118,234 @@
 
 <!-- CAPA -->
 <section class="page capa">
-  <span class="tag">Uso interno — expor na loja</span>
-  <h1>Catálogo de<br><span>Cores</span></h1>
-  <p class="sub">Base impressa de todas as linhas de tinta com opção de cor da Tintas Laet — cole a amostra real em cada quadro.</p>
-  <div class="instrucao">
-    <strong>Como usar este catálogo:</strong><br>
-    Cada cor tem um quadro pontilhado abaixo do nome. Pinte um pedaço de papel/cartão com a tinta real daquela cor e cole por cima do quadro pontilhado — assim o cliente vê o tom exato, sem depender de tela ou impressora.<br><br>
-    As linhas <strong>Emborrachada</strong>, <strong>Premium Lavável</strong> e <strong>1ª Linha Standard</strong> compartilham a mesma paleta principal — a mesma amostra colada pode ser reaproveitada (fotocopiada/reimpressa) entre essas seções.
+  <div class="capa-foto"></div>
+  <div class="capa-scrim-topo"></div>
+  <div class="capa-scrim-base"></div>
+  <div class="capa-conteudo">
+    <img class="capa-logo" src="../../identidade/logo tipo original-remove-bg-io.png" alt="Tintas Laet">
+    <div class="capa-texto">
+      <span class="tag">Catálogo de Cores</span>
+      <h1>Lindas <span class="titulo-chip">cores</span> para todos os gostos<br>e todos os ambientes!</h1>
+      <p class="sub">Do econômico ao premium — todas as nossas linhas de tinta com opções de cor pensadas pra deixar sua casa com a sua cara.</p>
+    </div>
+    <div class="capa-rodape">
+      <span><b>Tintas Laet</b> — A tinta nobre da comunidade</span>
+      <span>ABC e Zona Leste de SP · (11) 97714-0964</span>
+    </div>
   </div>
-  <div class="rodape">Tintas Laet — A tinta nobre da comunidade · Catálogo gerado a partir dos dados oficiais do site (tintaslaet.com)</div>
+  <div class="capa-aviso">⚠️ Cores meramente ilustrativas. Para melhor visualização, visite uma de nossas lojas e confira os catálogos de aplicações reais da tinta.</div>
 </section>
 
 <!-- SUMÁRIO -->
-<section class="page sumario">
-  <h2>Sumário</h2>
-  <p class="lead">9 linhas com opção de cor + 1 seção de produtos sem cor (textura, massa, epóxi e complementos).</p>
+<section class="page padded sumario">
+  <div class="sumario-topo">
+    <h2>Nossas linhas</h2>
+    <img class="mascote" src="../../identidade/mascote alta qualidade-remove-bg-io.png" alt="Mascote Tintas Laet">
+  </div>
+  <p class="lead">Cada linha foi feita pra um uso diferente. Veja qual combina com o que você vai pintar.</p>
   <ul class="sumario-lista" id="sumario-lista"></ul>
 </section>
 
 <div id="linhas-container"></div>
-
-<!-- PRODUTOS SEM COR -->
-<section class="page">
-  <div class="linha-header">
-    <span class="tag">Referência de loja</span>
-    <h2>Produtos sem opção de cor</h2>
-    <p>Vendidos apenas na cor branca (ou incolor) — não entram no catálogo de amostras coladas.</p>
-  </div>
-  <div class="semcor-grid" id="semcor-grid"></div>
-</section>
+<div id="semcor-container"></div>
 
 <script>
-// ── DADOS: linhas com cor (extraídos do site oficial, site/catalogo/*.html e site/produto.html) ──
+// ── DADOS: linhas com cor (nomes e hex extraídos do site oficial — site/produto.html e site/catalogo/*.html) ──
 const linhas = [
   {
-    nome: 'Latex Vinil 18L',
-    desc: 'Para paredes internas — economia e praticidade.',
-    cores: ['Marfim','Compota de Abacaxi','Amarelo Laet','Sapatilha','Pêssego','Paisagem Leve','Cinza A','Coma de Mascar','Rosado','Fonte da Sorte','Templo da Sabedoria','Chiffon Azul','Areia','Fresco Marítimo','Cacto Dália','Rosa Vinho','Cinza B','Cinza C']
-  },
-  {
-    nome: 'Tinta Emborrachada',
-    desc: 'Para áreas externas — telhados, lajes, muros e paredões.',
-    cores: ['Branco','Amarelo Laet','Gelo','Marfim','Amarelo B 07','Algodão Egípcio','Erva Doce','Amarelo C 07','Pergaminho','Lilás Delicado','Palha','Porcelana Egípcia','Lagoa dos Lírios','Chuva Suave','Pitada de Alecrim','Crômio','Papel Picado','Amarelo Albertino','Rosé Suave','Chuva','Ovelha','Verde Piscina','Areia','Pêssego','Verde Fluorescente','Verde Primavera','Ana Maria','Doce da Vovó','Amarelo Dourado','Gota Serena','Suave Kiwi','Bitigui','Laranja Turco','Sombra Lunar','Capim Cheiroso','Rosa Gloss','Azul Laet','Bege Mineral','Tripla Coroa','Cinza A','Verde Limão','Lilás Enevoado','Mistura de Mostarda','Rosa Irlandesa','Tangerina','Doce da Bisa','Lilás Primata','Lilás Laet','Lícor Doce','Curry Dourado','Pantanal','Cinza Elefante','Lícor de Laranja','Pitada Casual','Expedição Marítima','Chá Quente','Mar de Arruda','Caixa Seca','Cinza B','Flamingo Real','Areia Encharcada','Concreto','Azeitona','Céu Sagrado','Cinza','Marrom Suave','Cinza Wick','Pena Azul','Média Visão','Disfarce','Magia','Camurça','Verde Musgo','Penhasco','Bordô','Uva Doce','Cinza Fumaça','Jogo de Golfe','Rosa Açaí','Ilha de Esmeralda','Petúnia Roxa','Cobre Suave','Paraíso do Mar','Cinza C 04','Terra Nossa','Peça de Teatro','Espaço Verde','Romã','Chá da Tarde','Verde B 10','Vermelho C 09','Mar Aberto','Pavão','Planetário','Vermelho D 10','Valsa Azul','Cinza D 04','Fogo Violeta','Rosa Vermelha','Profundidade','Chumbo','Azul Jazz','Oceano Tranquilo','Marrom Burguês','Intensa Sedução','Estadual','Semente Urbana','Selva Escura','Aurora Serena','Suntuoso','Preto']
-  },
-  {
-    nome: '1ª Linha Standard',
-    desc: 'Para dentro e fora de casa — melhor custo-benefício.',
-    cores: ['Branco','Amarelo Laet','Gelo','Marfim','Amarelo B 07','Palha','Algodão Egípcio','Erva Doce','Amarelo C 07','Lilás Delicado','Chuva Suave','Porcelana Egípcia','Lagoa dos Lírios','Pitada de Alecrim','Pergaminho','Papel Picado','Crômio','Amarelo Albertino','Chuva','Rosé Suave','Ovelha','Verde Piscina','Pêssego','Ana Maria','Areia','Verde Primavera','Doce da Vovó','Gota Serena','Suave Kiwi','Bitigui','Laranja Turco','Sombra Lunar','Capim Cheiroso','Rosa Gloss','Azul Laet','Bege Mineral','Tripla Coroa','Cinza A','Mistura de Mostarda','Lilás Enevoado','Rosa Irlandesa','Tangerina','Doce da Bisa','Lilás Primata','Lilás Laet','Lícor Doce','Pantanal','Cinza Elefante','Pitada Casual','Expedição Marítima','Chá Quente','Mar de Arruda','Caixa Seca','Cinza B','Flamingo Real','Azeitona','Concreto','Céu Sagrado','Cinza','Areia Encharcada','Marrom Suave','Cinza Wick','Pena Azul','Média Visão','Disfarce','Magia','Camurça','Verde Musgo','Penhasco','Bordô','Uva Doce','Cinza Fumaça','Rosa Açaí','Cobre Suave','Paraíso do Mar','Petúnia Roxa','Cinza C 04','Peça de Teatro','Espaço Verde','Verde B 10','Planetário','Mar Aberto','Vermelho D 10','Valsa Azul','Cinza D 04']
-  },
-  {
-    nome: 'Premium Lavável',
-    desc: 'Para dentro e fora de casa — alta lavabilidade.',
-    cores: null // mesma paleta da Tinta Emborrachada (111 cores) — ver nota na capa
-  },
-  {
-    nome: 'Super Profissional',
-    desc: 'Para uso interno.',
-    cores: ['Branco','Compota de Abacaxi','Palha','Amarelo Laet','Papel de Bala','Vitamina','Rosado','Linho Americano','Amêndoa Confeitada','Perfume de Figo','Névoa','Paraíso Secreto','Camponesa','Rosas Híbridas','Verde Piscina','Madeira Enfumaçada','Conto Infantil','Areia','Bambu Tropical','Rosa Gloss','Refresco de Menta','Mergulho Tranquilo','Mousse de Uva','Azul Laet','Caixa Mágica','Folha de Trevo','Hortelã Crespa','Camurça','Olhar Encantador','Lagoa Azul','Trevo da Sorte','Cinza Medieval','Azul Rei','Tubarão Cinza']
-  },
-  {
-    nome: 'Direto no Gesso',
-    desc: 'Vai direto no gesso e drywall, sem precisar de fundo preparador.',
-    cores: ['Branco','Compota de Abacaxi','Palha','Amarelo Laet','Papel de Bala','Vitamina','Rosado','Linho Americano','Amêndoa Confeitada','Perfume de Figo','Névoa','Paraíso Secreto','Camponesa','Rosas Híbridas','Verde Piscina','Madeira Enfumaçada','Conto Infantil','Areia','Bambu Tropical','Rosa Gloss','Refresco de Menta','Mergulho Tranquilo','Mousse de Uva','Azul Laet','Caixa Mágica','Folha de Trevo','Hortelã Crespa','Camurça','Olhar Encantador','Lagoa Azul','Trevo da Sorte','Cinza Medieval','Azul Rei','A 04','Tubarão Cinza']
-  },
-  {
-    nome: 'Esmalte Ecológico Base Água',
-    desc: 'Para ferros, madeiras, paredes e tetos — uso interno e externo.',
-    grupos: [
-      { titulo: 'Branca', cores: ['Branco'] },
-      { titulo: 'Cores Claras', cores: ['Azul Celeste','Pérola','Marfim','Rosa Bebê','Gelo','Platina','Cinza Claro','Crômio'] },
-      { titulo: 'Cores Médias', cores: ['Conhaque','Camurça','Argila','Rosa Big-Big','Verde Caribe','Jeans','Azul Cadeirante','Verde Uva','Verde Casual','Amarelo','Laranja Suave','Cinza Médio'] },
-      { titulo: 'Cores Fortes', cores: ['Azul França','Tabaco','Vermelho Goya','Azul Del Rey','Roxo','Verde Folha','Floresta Amazônica','Verde Colonial','Vermelho','Laranja Cítrico','Cinza Escuro','Escuridão'] }
+    titulo: 'Latex Vinil 18L',
+    nomes: ['Latex Vinil 18L'],
+    tagline: 'Interna, cobertura seca',
+    imagens: ['../../identidade/embalagens/vinil-remove-bg-io.png'],
+    hook: 'Nossa opção mais em conta pra quem quer pintar a casa por dentro sem gastar muito. Indicada pra parede seca e uso interno — pra área externa ou ambiente úmido, a gente indica outra linha.',
+    pills: ['Uso interno','Custo-benefício','Acabamento fosco'],
+    cores: [
+      {nome:'Branco',hex:'#FFFFFF',borda:true},{nome:'Marfim',hex:'#F9F2D0'},{nome:'Compota de Abacaxi',hex:'#F4F4C6'},{nome:'Amarelo Laet',hex:'#F7EDA4'},{nome:'Sapatilha',hex:'#F5D7D7'},{nome:'Pêssego',hex:'#F6D9C2'},{nome:'Paisagem Leve',hex:'#C8E8E5'},{nome:'Cinza A',hex:'#DCDCDC'},{nome:'Coma de Mascar',hex:'#F5CBD6'},{nome:'Rosado',hex:'#F7C6D4'},{nome:'Fonte da Sorte',hex:'#C2E2C2'},{nome:'Templo da Sabedoria',hex:'#DCCCEA'},{nome:'Chiffon Azul',hex:'#B8D9EA'},{nome:'Areia',hex:'#E3CCB5'},{nome:'Fresco Marítimo',hex:'#A6D9D7'},{nome:'Cacto Dália',hex:'#F1AAC2'},{nome:'Rosa Vinho',hex:'#E0B3B3'},{nome:'Cinza B',hex:'#BEBEBE'},{nome:'Cinza C',hex:'#A4A4A4'}
     ]
   },
   {
-    nome: 'Pisos e Fachadas Premium',
-    desc: 'Resiste a tráfego de carro, chuva e sol.',
-    cores: ['Concreto','Amarelo Piso','Cinza','Camurça','Cinza C-04','Vermelho','Espaço Verde','Verde B-10','Profundidade','Chumbo','Vermelho C-09','Azul','Preto']
+    titulo: 'Paleta Grande Laet',
+    nomes: ['Tinta Emborrachada','Premium Lavável','Cobertura Absoluta','Semi Brilho'],
+    tagline: 'Nossa paleta mais completa',
+    imagens: ['../../identidade/embalagens/emborrachada-remove-bg-io.png','../../identidade/embalagens/premiumlavavel-remove-bg-io.png'],
+    hook: 'A mesma paleta de 111 cores usada em 4 linhas — Emborrachada (área externa), Premium Lavável (alta lavabilidade), Cobertura Absoluta e Semi Brilho. Escolha a cor aqui e informe a linha desejada na hora do pedido.',
+    pills: ['Alta cobertura','Anti-mofo','Interna e externa'],
+    cores: [
+      {nome:'Branco',hex:'#FFFFFF',borda:true},{nome:'Amarelo Laet',hex:'#FFFEB3'},{nome:'Gelo',hex:'#FFF1C7'},{nome:'Marfim',hex:'#FFF0CF'},{nome:'Amarelo B 07',hex:'#FFF994'},{nome:'Algodão Egípcio',hex:'#F4ECD6'},{nome:'Erva Doce',hex:'#E7EFCC'},{nome:'Amarelo C 07',hex:'#FFF46A'},{nome:'Pergaminho',hex:'#E7E7DA'},{nome:'Lilás Delicado',hex:'#FFD5F6'},{nome:'Palha',hex:'#F4ECCA'},{nome:'Porcelana Egípcia',hex:'#F1DFC2'},{nome:'Lagoa dos Lírios',hex:'#D0EFC8'},{nome:'Chuva Suave',hex:'#D5E7E3'},{nome:'Pitada de Alecrim',hex:'#D9E7CD'},{nome:'Crômio',hex:'#DDDDDD'},{nome:'Papel Picado',hex:'#DEDED4'},{nome:'Amarelo Albertino',hex:'#FAE453'},{nome:'Rosé Suave',hex:'#EFD0CC'},{nome:'Chuva',hex:'#D6DAD6'},{nome:'Ovelha',hex:'#DAD5D0'},{nome:'Verde Piscina',hex:'#A8EFDB'},{nome:'Areia',hex:'#DED4C6'},{nome:'Pêssego',hex:'#F5CFA8'},{nome:'Verde Fluorescente',hex:'#BAF76D'},{nome:'Verde Primavera',hex:'#D0DEB0'},{nome:'Ana Maria',hex:'#D5D0E6'},{nome:'Doce da Vovó',hex:'#E7CDAF'},{nome:'Amarelo Dourado',hex:'#FFCD64'},{nome:'Gota Serena',hex:'#BCD5DD'},{nome:'Suave Kiwi',hex:'#BEDAB3'},{nome:'Bitigui',hex:'#B3D4C6'},{nome:'Laranja Turco',hex:'#FFB880'},{nome:'Sombra Lunar',hex:'#C7C3CB'},{nome:'Capim Cheiroso',hex:'#A3D4CD'},{nome:'Rosa Gloss',hex:'#F7AEAF'},{nome:'Azul Laet',hex:'#94D0F5'},{nome:'Bege Mineral',hex:'#CBC3A2'},{nome:'Tripla Coroa',hex:'#DAC762'},{nome:'Cinza A',hex:'#C2C2BF'},{nome:'Verde Limão',hex:'#90E766'},{nome:'Lilás Enevoado',hex:'#C2B4C7'},{nome:'Mistura de Mostarda',hex:'#ECB945'},{nome:'Rosa Irlandesa',hex:'#DAABAB'},{nome:'Tangerina',hex:'#F7A767'},{nome:'Doce da Bisa',hex:'#DAAC89'},{nome:'Lilás Primata',hex:'#C7A7D5'},{nome:'Lilás Laet',hex:'#B0AED8'},{nome:'Lícor Doce',hex:'#C6AE9E'},{nome:'Curry Dourado',hex:'#D0B64E'},{nome:'Pantanal',hex:'#B8B395'},{nome:'Cinza Elefante',hex:'#B4B499'},{nome:'Lícor de Laranja',hex:'#FAA628'},{nome:'Pitada Casual',hex:'#A6B5AE'},{nome:'Expedição Marítima',hex:'#A5B5AE'},{nome:'Chá Quente',hex:'#CFA278'},{nome:'Mar de Arruda',hex:'#81BABD'},{nome:'Caixa Seca',hex:'#A2A0DD'},{nome:'Cinza B',hex:'#A7A7A3'},{nome:'Flamingo Real',hex:'#FD7D98'},{nome:'Areia Encharcada',hex:'#A39A87'},{nome:'Concreto',hex:'#9DA18E'},{nome:'Azeitona',hex:'#A2A66B'},{nome:'Céu Sagrado',hex:'#59ACFA'},{nome:'Cinza',hex:'#9A9D98'},{nome:'Marrom Suave',hex:'#A79887'},{nome:'Cinza Wick',hex:'#949AA2'},{nome:'Pena Azul',hex:'#77A0C2'},{nome:'Média Visão',hex:'#A6937D'},{nome:'Disfarce',hex:'#A29378'},{nome:'Magia',hex:'#BD866F'},{nome:'Camurça',hex:'#A19081'},{nome:'Verde Musgo',hex:'#919A73'},{nome:'Penhasco',hex:'#8F949E'},{nome:'Bordô',hex:'#D56BAB'},{nome:'Uva Doce',hex:'#A675DA'},{nome:'Cinza Fumaça',hex:'#81949E'},{nome:'Jogo de Golfe',hex:'#7DA348'},{nome:'Rosa Açaí',hex:'#BA7781'},{nome:'Ilha de Esmeralda',hex:'#4EAF65'},{nome:'Petúnia Roxa',hex:'#6F86AC'},{nome:'Cobre Suave',hex:'#A37B69'},{nome:'Paraíso do Mar',hex:'#3C93F7'},{nome:'Cinza C 04',hex:'#818181'},{nome:'Terra Nossa',hex:'#9E795C'},{nome:'Peça de Teatro',hex:'#997566'},{nome:'Espaço Verde',hex:'#588C81'},{nome:'Romã',hex:'#DD4F46'},{nome:'Chá da Tarde',hex:'#917258'},{nome:'Verde B 10',hex:'#588B6B'},{nome:'Vermelho C 09',hex:'#A16264'},{nome:'Mar Aberto',hex:'#4275E7'},{nome:'Pavão',hex:'#3C8B8B'},{nome:'Planetário',hex:'#4881B5'},{nome:'Vermelho D 10',hex:'#956565'},{nome:'Valsa Azul',hex:'#64708F'},{nome:'Cinza D 04',hex:'#6F6F6F'},{nome:'Fogo Violeta',hex:'#FF3C00'},{nome:'Rosa Vermelha',hex:'#B8413D'},{nome:'Profundidade',hex:'#665D6A'},{nome:'Chumbo',hex:'#616160'},{nome:'Azul Jazz',hex:'#365995'},{nome:'Oceano Tranquilo',hex:'#425C7D'},{nome:'Marrom Burguês',hex:'#734A4A'},{nome:'Intensa Sedução',hex:'#AC3233'},{nome:'Estadual',hex:'#485658'},{nome:'Semente Urbana',hex:'#405364'},{nome:'Selva Escura',hex:'#3F4A53'},{nome:'Aurora Serena',hex:'#4F3358'},{nome:'Suntuoso',hex:'#41295B'},{nome:'Preto',hex:'#202020'}
+    ]
   },
   {
-    nome: 'Efeito Cimento Queimado',
-    desc: 'Acabamento decorativo para paredes e tetos, uso interno e externo.',
-    cores: ['Rosé','Amarelo Laet 2','Bala de Iogurte','Cinza Claro','Verde Uva','Azul Céu','Concreto','Caixa Mágica','Cinza Padrão','Azeitona Passada','Pavão','Jeans','Chumbo','Dois Amores','Marrom Turco']
+    titulo: '1ª Linha Standard',
+    nomes: ['1ª Linha Standard'],
+    tagline: 'Mais de 100 cores',
+    imagens: ['../../identidade/embalagens/standard-remove-bg-io.png'],
+    hook: 'Tinta acrílica concentrada, com ótima cobertura e rendimento — pode ser diluída conforme a necessidade. Serve pra dentro e fora de casa.',
+    pills: ['Alta cobertura','Interna e externa','Anti-mofo'],
+    cores: [
+      {nome:'Branco',hex:'#FFFFFF',borda:true},{nome:'Amarelo Laet',hex:'#FFFEB3'},{nome:'Gelo',hex:'#FFF1C7'},{nome:'Marfim',hex:'#FFF0CF'},{nome:'Amarelo B 07',hex:'#FFF994'},{nome:'Palha',hex:'#F4ECCA'},{nome:'Algodão Egípcio',hex:'#F4ECD6'},{nome:'Erva Doce',hex:'#E7EFCC'},{nome:'Amarelo C 07',hex:'#FFF46A'},{nome:'Lilás Delicado',hex:'#FFD5F6'},{nome:'Chuva Suave',hex:'#D5E7E3'},{nome:'Porcelana Egípcia',hex:'#F1DFC2'},{nome:'Lagoa dos Lírios',hex:'#D0EFC8'},{nome:'Pitada de Alecrim',hex:'#D9E7CD'},{nome:'Pergaminho',hex:'#E7E7DA'},{nome:'Papel Picado',hex:'#DEDED4'},{nome:'Crômio',hex:'#DDDDDD'},{nome:'Amarelo Albertino',hex:'#FAE453'},{nome:'Chuva',hex:'#D6DAD6'},{nome:'Rosé Suave',hex:'#EFD0CC'},{nome:'Ovelha',hex:'#DAD5D0'},{nome:'Verde Piscina',hex:'#A8EFDB'},{nome:'Pêssego',hex:'#F5CFA8'},{nome:'Ana Maria',hex:'#D5D0E6'},{nome:'Areia',hex:'#DED4C6'},{nome:'Verde Primavera',hex:'#D0DEB0'},{nome:'Doce da Vovó',hex:'#E7CDAF'},{nome:'Gota Serena',hex:'#BCD5DD'},{nome:'Suave Kiwi',hex:'#BEDAB3'},{nome:'Bitigui',hex:'#B3D4C6'},{nome:'Laranja Turco',hex:'#FFB880'},{nome:'Sombra Lunar',hex:'#C7C3CB'},{nome:'Capim Cheiroso',hex:'#A3D4CD'},{nome:'Rosa Gloss',hex:'#F7AEAF'},{nome:'Azul Laet',hex:'#94D0F5'},{nome:'Bege Mineral',hex:'#CBC3A2'},{nome:'Tripla Coroa',hex:'#DAC762'},{nome:'Cinza A',hex:'#C2C2BF'},{nome:'Mistura de Mostarda',hex:'#ECB945'},{nome:'Lilás Enevoado',hex:'#C2B4C7'},{nome:'Rosa Irlandesa',hex:'#DAABAB'},{nome:'Tangerina',hex:'#F7A767'},{nome:'Doce da Bisa',hex:'#DAAC89'},{nome:'Lilás Primata',hex:'#C7A7D5'},{nome:'Lilás Laet',hex:'#B0AED8'},{nome:'Lícor Doce',hex:'#C6AE9E'},{nome:'Pantanal',hex:'#B8B395'},{nome:'Cinza Elefante',hex:'#B4B499'},{nome:'Pitada Casual',hex:'#A6B5AE'},{nome:'Expedição Marítima',hex:'#A5B5AE'},{nome:'Chá Quente',hex:'#CFA278'},{nome:'Mar de Arruda',hex:'#81BABD'},{nome:'Caixa Seca',hex:'#A2A0DD'},{nome:'Cinza B',hex:'#A7A7A3'},{nome:'Flamingo Real',hex:'#FD7D98'},{nome:'Azeitona',hex:'#A2A66B'},{nome:'Concreto',hex:'#9DA18E'},{nome:'Céu Sagrado',hex:'#59ACFA'},{nome:'Cinza',hex:'#9A9D98'},{nome:'Areia Encharcada',hex:'#A39A87'},{nome:'Marrom Suave',hex:'#A79887'},{nome:'Cinza Wick',hex:'#949AA2'},{nome:'Pena Azul',hex:'#77A0C2'},{nome:'Média Visão',hex:'#A6937D'},{nome:'Disfarce',hex:'#A29378'},{nome:'Magia',hex:'#BD866F'},{nome:'Camurça',hex:'#A19081'},{nome:'Verde Musgo',hex:'#919A73'},{nome:'Penhasco',hex:'#8F949E'},{nome:'Bordô',hex:'#D56BAB'},{nome:'Uva Doce',hex:'#A675DA'},{nome:'Cinza Fumaça',hex:'#81949E'},{nome:'Rosa Açaí',hex:'#BA7781'},{nome:'Cobre Suave',hex:'#A37B69'},{nome:'Paraíso do Mar',hex:'#3C93F7'},{nome:'Petúnia Roxa',hex:'#6F86AC'},{nome:'Cinza C 04',hex:'#818181'},{nome:'Peça de Teatro',hex:'#997566'},{nome:'Espaço Verde',hex:'#588C81'},{nome:'Verde B 10',hex:'#588B6B'},{nome:'Planetário',hex:'#4881B5'},{nome:'Mar Aberto',hex:'#4275E7'},{nome:'Vermelho D 10',hex:'#956565'},{nome:'Valsa Azul',hex:'#64708F'},{nome:'Cinza D 04',hex:'#6F6F6F'}
+    ]
+  },
+  {
+    titulo: 'Super Profissional & Direto no Gesso',
+    nomes: ['Super Profissional','Direto no Gesso'],
+    tagline: 'Econômicas de ótima qualidade',
+    imagens: ['../../identidade/embalagens/profissional-remove-bg-io.png','../../identidade/embalagens/direto no gesso-remove-bg-io.png'],
+    hook: 'Duas linhas de uso interno que compartilham a mesma paleta de cores — a Super Profissional pra parede comum, e a Direto no Gesso pra quem não quer usar fundo preparador antes.',
+    pills: ['Uso interno','Baixo odor','Alto rendimento'],
+    cores: [
+      {nome:'Branco',hex:'#FFFFFF',borda:true},{nome:'Compota de Abacaxi',hex:'#F4F4C6'},{nome:'Palha',hex:'#F4F4C1'},{nome:'Amarelo Laet',hex:'#F7F1AE'},{nome:'Papel de Bala',hex:'#FBD4E3'},{nome:'Vitamina',hex:'#F8DCBC'},{nome:'Rosado',hex:'#F6D4DC'},{nome:'Linho Americano',hex:'#E9DECB'},{nome:'Amêndoa Confeitada',hex:'#E5DED2'},{nome:'Perfume de Figo',hex:'#E8D6EF'},{nome:'Névoa',hex:'#DCDEDE'},{nome:'Paraíso Secreto',hex:'#BFECDE'},{nome:'Camponesa',hex:'#F8D4C1'},{nome:'Rosas Híbridas',hex:'#F6CBE0'},{nome:'Verde Piscina',hex:'#BAE8E5'},{nome:'Madeira Enfumaçada',hex:'#DCD7D2'},{nome:'Conto Infantil',hex:'#F8CBC1'},{nome:'Areia',hex:'#DED7C8'},{nome:'Bambu Tropical',hex:'#D4DEB9'},{nome:'Rosa Gloss',hex:'#F6C6DC'},{nome:'Refresco de Menta',hex:'#B3E5D0'},{nome:'Mergulho Tranquilo',hex:'#AEE2EC'},{nome:'Mousse de Uva',hex:'#DCCBE8'},{nome:'Azul Laet',hex:'#BCD7F1'},{nome:'Caixa Mágica',hex:'#D2CBEA'},{nome:'Folha de Trevo',hex:'#B5E0C1'},{nome:'Hortelã Crespa',hex:'#B0E0CB'},{nome:'Camurça',hex:'#DCCCB0'},{nome:'Olhar Encantador',hex:'#A7DCE3'},{nome:'Lagoa Azul',hex:'#B2C8EA'},{nome:'Trevo da Sorte',hex:'#A9D4B3'},{nome:'Cinza Medieval',hex:'#BCC1C1'},{nome:'Azul Rei',hex:'#A6BCE5'},{nome:'A 04',hex:'#BAB8B5'},{nome:'Tubarão Cinza',hex:'#A1A4A9'}
+    ]
+  },
+  {
+    titulo: 'Esmalte Ecológico Base Água',
+    nomes: ['Esmalte Ecológico Base Água'],
+    tagline: 'Base água',
+    imagens: ['../../identidade/embalagens/esmalteecologico-removebg-preview.png'],
+    hook: 'Baixíssimo odor e excelente cobertura pra ferro, madeira, parede e teto. Acabamento brilhante, dentro e fora de casa.',
+    pills: ['Base água','Multissuperfície','Interna e externa'],
+    grupos: [
+      { titulo: 'Branca', cores: [{nome:'Branco',hex:'#FFFFFF',borda:true}] },
+      { titulo: 'Cores Claras', cores: [{nome:'Azul Celeste',hex:'#9CC5C6'},{nome:'Pérola',hex:'#FFDEBE'},{nome:'Marfim',hex:'#FAF1C6'},{nome:'Rosa Bebê',hex:'#FFC9F0'},{nome:'Gelo',hex:'#DADFC3'},{nome:'Platina',hex:'#B3B8AB'},{nome:'Cinza Claro',hex:'#BCC2B9'},{nome:'Crômio',hex:'#D4D8CE'}] },
+      { titulo: 'Cores Médias', cores: [{nome:'Conhaque',hex:'#9B7D59'},{nome:'Camurça',hex:'#C4A385'},{nome:'Argila',hex:'#BB8A76'},{nome:'Rosa Big-Big',hex:'#ED9493'},{nome:'Verde Caribe',hex:'#65CFC0'},{nome:'Jeans',hex:'#6F798D'},{nome:'Azul Cadeirante',hex:'#5A99E6'},{nome:'Verde Uva',hex:'#9FBB93'},{nome:'Verde Casual',hex:'#76A48F'},{nome:'Amarelo',hex:'#F4BB4D'},{nome:'Laranja Suave',hex:'#FFAA68'},{nome:'Cinza Médio',hex:'#9B979B'}] },
+      { titulo: 'Cores Fortes', cores: [{nome:'Azul França',hex:'#3A5579'},{nome:'Tabaco',hex:'#6D543C'},{nome:'Vermelho Goya',hex:'#693449'},{nome:'Azul Del Rey',hex:'#405261'},{nome:'Roxo',hex:'#816CAF'},{nome:'Verde Folha',hex:'#1E6B37'},{nome:'Floresta Amazônica',hex:'#396253'},{nome:'Verde Colonial',hex:'#34624A'},{nome:'Vermelho',hex:'#B43B4C'},{nome:'Laranja Cítrico',hex:'#DD7658'},{nome:'Cinza Escuro',hex:'#808080'},{nome:'Escuridão',hex:'#2B2B2B'}] }
+    ]
+  },
+  {
+    titulo: 'Pisos & Fachadas',
+    nomes: ['Pisos & Fachadas'],
+    tagline: 'Super resistência',
+    imagens: ['../../identidade/embalagens/pisos efachadas-remove-bg-io.png'],
+    hook: 'Alta resistência a tráfego de carro, chuva e sol. Super aderente e totalmente lavável.',
+    pills: ['Resiste a tráfego','Lavável','Anti-mofo'],
+    cores: [
+      {nome:'Concreto',hex:'#C2BD9E'},{nome:'Amarelo Piso',hex:'#E4B859'},{nome:'Cinza',hex:'#9C9D99'},{nome:'Camurça',hex:'#A4948C'},{nome:'Cinza C-04',hex:'#868685'},{nome:'Vermelho',hex:'#926262'},{nome:'Espaço Verde',hex:'#587771'},{nome:'Verde B-10',hex:'#5B7660'},{nome:'Profundidade',hex:'#665E6B'},{nome:'Chumbo',hex:'#626260'},{nome:'Vermelho C-09',hex:'#874C4A'},{nome:'Azul',hex:'#465C82'},{nome:'Preto',hex:'#2A2B2B'}
+    ]
+  },
+  {
+    titulo: 'Efeito Cimento Queimado',
+    nomes: ['Efeito Cimento Queimado'],
+    tagline: 'Acabamento decorativo',
+    imagens: ['../../identidade/embalagens/efeitocimentoqueimado.png'],
+    hook: 'O visual industrial do cimento queimado pra decorar parede e teto, dentro ou fora de casa.',
+    pills: ['Decorativo','Interna e externa'],
+    cores: [
+      {nome:'Branco',hex:'#FFFFFF',borda:true},{nome:'Rosé',hex:'#FCEBD9'},{nome:'Amarelo Laet 2',hex:'#FAF29D'},{nome:'Bala de Iogurte',hex:'#F6ACCF'},{nome:'Cinza Claro',hex:'#B4B4AA'},{nome:'Verde Uva',hex:'#8BAD8A'},{nome:'Azul Céu',hex:'#719DBA'},{nome:'Concreto',hex:'#92927A'},{nome:'Caixa Mágica',hex:'#8586C6'},{nome:'Cinza Padrão',hex:'#898883'},{nome:'Azeitona Passada',hex:'#8E7B43'},{nome:'Pavão',hex:'#318889'},{nome:'Jeans',hex:'#606D73'},{nome:'Chumbo',hex:'#605F5A'},{nome:'Dois Amores',hex:'#A63A3B'},{nome:'Marrom Turco',hex:'#423529'}
+    ]
   }
 ];
-// Premium Lavável reaproveita a paleta da Emborrachada (confirmado nos dois arquivos-fonte)
-linhas[3].cores = linhas[1].cores;
 
-const semCor = [
-  { nome:'Massa Corrida', desc:'Nivelamento e correção de superfícies internas. Somente na cor branca.' },
-  { nome:'Massa Acrílica', desc:'Nivelamento e correção de superfícies internas e externas. Somente na cor branca.' },
-  { nome:'Grafiato', desc:'Textura rústica decorativa, uso interno e externo. Somente na cor branca.' },
-  { nome:'Textura Lisa', desc:'Acabamento liso e uniforme, uso interno. Somente na cor branca.' },
-  { nome:'Textura Design', desc:'Efeito decorativo diferenciado, uso interno e externo. Somente na cor branca.' },
-  { nome:'Tinta Epóxi Base Água', desc:'Renova azulejos, cozinhas, banheiros, metais e galvanizados. Somente branca — para outra cor, usar o Corante Premium.' },
-  { nome:'Corante Premium', desc:'Adiciona cor a produtos de base neutra, como o Epóxi Base Água.' },
-  { nome:'Fundo Preparador', desc:'Trata e uniformiza a absorção da superfície antes da pintura.' },
-  { nome:'Seladora', desc:'Sela e uniformiza a absorção do reboco antes da pintura.' },
+const semCorCategorias = [
+  {
+    titulo: 'Massas',
+    tagline: 'Preparação',
+    hook: 'Pra deixar a parede lisa e pronta antes de pintar.',
+    itens: [
+      { nome:'Massa Corrida', imagem:'../../identidade/embalagens/barrica+plastico.png', desc:'Prepara a parede pra pintura com acabamento de alto nível — lixamento fácil, anti-mofo e odor quase zero. Uso interno, só na cor branca.' },
+      { nome:'Massa Acrílica', imagem:'../../identidade/embalagens/barrica+plastico.png', desc:'Igual à Massa Corrida, mas pode ir em áreas externas também. Fácil de lixar e baixíssimo odor.' },
+    ]
+  },
+  {
+    titulo: 'Texturas',
+    tagline: 'Acabamento decorativo',
+    hook: 'Pra quem quer um efeito diferente na parede, além da tinta lisa.',
+    itens: [
+      { nome:'Grafiato', imagem:'../../identidade/embalagens/barrica+plastico.png', desc:'Textura rústica que dá um acabamento diferente pra parede, dentro ou fora de casa. Só na cor branca.' },
+      { nome:'Textura Lisa', imagem:'../../identidade/embalagens/barrica+plastico.png', desc:'Acabamento liso e uniforme pra quem quer um efeito decorativo discreto. Uso interno, só na cor branca.' },
+      { nome:'Textura Design', imagem:'../../identidade/embalagens/barrica+plastico.png', desc:'Efeito decorativo diferenciado pra destacar a parede. Uso interno e externo, só na cor branca.' },
+    ]
+  },
+  {
+    titulo: 'Complementos',
+    tagline: 'Também temos',
+    hook: 'Produtos que completam a pintura — pra renovar superfícies, colorir ou preparar antes de aplicar a tinta.',
+    itens: [
+      { nome:'Tinta Epóxi Base Água', imagem:'../../identidade/embalagens/epoxibaseagua.png', desc:'Renova azulejo, banheiro e metal sem quebrar nada — sem cheiro forte e super resistente. Só branca; pra outra cor, usa com o Corante Premium.' },
+      { nome:'Corante Premium', imagem:'../../identidade/embalagens/Corantesbisnaga.webp', desc:'Adiciona cor a produtos de base neutra, como o Epóxi Base Água. Fácil de misturar, alto poder de tingimento.' },
+      { nome:'Fundo Preparador', imagem:'../../identidade/embalagens/fundo_preparador-removebg-preview.png', desc:'Prepara paredes esfarelando ou com reboco fraco — segura a areia solta antes de pintar.' },
+      { nome:'Seladora', imagem:'../../identidade/embalagens/seladora-removebg-preview.png', desc:'Uniformiza a absorção do reboco antes da pintura, melhorando o acabamento final.' },
+    ]
+  }
 ];
 
-function chipHtml(nome){
-  return `<div class="chip"><div class="cola-aqui"><span>cole a amostra real</span></div><div class="nome">${nome}</div></div>`;
+function chipHtml(c){
+  const bordaClass = c.borda ? ' branco' : '';
+  return `<div class="chip"><div class="swatch${bordaClass}" style="background:${c.hex}"></div><div class="nome">${c.nome}</div></div>`;
 }
 
-function renderGrupo(cores){
-  return `<div class="cores-grid">${cores.map(chipHtml).join('')}</div>`;
+function chunkArray(arr, size){
+  const out = [];
+  for (let i=0;i<arr.length;i+=size) out.push(arr.slice(i,i+size));
+  return out;
+}
+
+const avisoLegal = '⚠️ Cores meramente ilustrativas. Para melhor visualização, visite uma de nossas lojas e confira os catálogos de aplicações reais da tinta.';
+const rodapeHtml = `<div class="rodape-legal">${avisoLegal}</div>`;
+
+/* ── Paginação manual dos quadradinhos ──
+   O Chrome não repete rodapé em toda folha física de forma confiável quando um
+   único bloco de HTML se espalha por várias páginas (testado e quebrou — texto
+   flutuou e sobrepôs cores no meio da página). Por isso, em vez de deixar o
+   conteúdo "vazar" e a impressão cortar onde calhar, cada folha física vira sua
+   própria <section class="page">, com o rodapé de aviso desenhado explicitamente
+   no fim de cada uma. As alturas abaixo são estimadas com folga de segurança
+   (arredondadas pra cima) — mudar o tamanho do quadradinho, da fonte ou do
+   padding exige reconferir esses números com o PDF gerado. */
+const PAG = {
+  alturaPagina: 261,      // mm úteis por folha (A4 297mm − 18mm margem topo/base)
+  rodape: 14,              // mm reservados pro aviso no fim da folha
+  headerSimples: 65,       // mm do cabeçalho da linha (1 nome)
+  headerMultiplo: 75,      // mm do cabeçalho da linha (nomes múltiplos, com tags extras)
+  linhaCor: 38,            // mm por linha de 4 quadradinhos (31x17mm + legenda + gap)
+  linhaSemCor: 28,         // mm por linha de 2 cards de complemento
+  grupoTitulo: 16,         // mm do título de subgrupo (ex: "Cores Claras")
+};
+
+function paginar(blocos, headerH, comRodape){
+  // blocos: [{ html, altura, colaComProximo? }]
+  // comRodape=false: página não tem aviso de cor, então não reserva espaço pra ele
+  const rodapeH = comRodape === false ? 0 : PAG.rodape;
+  const paginas = [];
+  let atual = [];
+  let usado = 0;
+  let primeira = true;
+  let orcamento = PAG.alturaPagina - rodapeH - headerH;
+
+  function fechar(){
+    paginas.push({ primeira, html: atual.join('') });
+    atual = [];
+    usado = 0;
+    primeira = false;
+    orcamento = PAG.alturaPagina - rodapeH;
+  }
+
+  for (let i=0;i<blocos.length;i++){
+    const b = blocos[i];
+    let altura = b.altura;
+    // título de grupo não pode ficar sozinho no fim da página: soma a altura do próximo bloco na checagem
+    if (b.colaComProximo && blocos[i+1]) altura += blocos[i+1].altura;
+    if (usado + b.altura > orcamento && atual.length > 0) fechar();
+    atual.push(b.html);
+    usado += b.altura;
+  }
+  if (atual.length > 0) paginas.push({ primeira, html: atual.join('') });
+  return paginas;
+}
+
+function blocosDeCores(linha){
+  const blocos = [];
+  if (linha.grupos){
+    linha.grupos.forEach(g => {
+      blocos.push({ html:`<div class="grupo-titulo">${g.titulo}</div>`, altura: PAG.grupoTitulo, colaComProximo:true });
+      chunkArray(g.cores, 4).forEach(row => {
+        blocos.push({ html:`<div class="cores-grid">${row.map(chipHtml).join('')}</div>`, altura: PAG.linhaCor });
+      });
+    });
+  } else {
+    chunkArray(linha.cores, 4).forEach(row => {
+      blocos.push({ html:`<div class="cores-grid">${row.map(chipHtml).join('')}</div>`, altura: PAG.linhaCor });
+    });
+  }
+  return blocos;
 }
 
 const container = document.getElementById('linhas-container');
@@ -193,41 +353,78 @@ const sumario = document.getElementById('sumario-lista');
 
 linhas.forEach((linha, i) => {
   const totalCores = linha.grupos ? linha.grupos.reduce((s,g)=>s+g.cores.length,0) : linha.cores.length;
+  const descSumario = linha.tagline;
 
   // sumário
   const li = document.createElement('li');
-  li.innerHTML = `<span><span class="num">${i+1}</span><b>${linha.nome}</b></span><span>${totalCores} cores</span>`;
+  li.innerHTML = `
+    <div class="esq">
+      <span class="num">${i+1}</span>
+      <div><b>${linha.titulo}</b><div class="desc">${descSumario}</div></div>
+    </div>
+    <span class="cont">${totalCores} cores</span>`;
   sumario.appendChild(li);
 
-  // página da linha
-  const section = document.createElement('section');
-  section.className = 'page';
-  let corpo = '';
-  if (linha.grupos) {
-    corpo = linha.grupos.map(g => `<div class="grupo-titulo">${g.titulo}</div>${renderGrupo(g.cores)}`).join('');
-  } else {
-    corpo = renderGrupo(linha.cores);
-  }
-  section.innerHTML = `
+  const nomesLista = linha.nomes.length > 1
+    ? `<div class="nomes-lista">${linha.nomes.map(n=>`<span class="nome-tag">${n}</span>`).join('')}</div>`
+    : '';
+  const fotoClass = linha.imagens.length > 1 ? ' duas' : '';
+  const headerH = linha.nomes.length > 1 ? PAG.headerMultiplo : PAG.headerSimples;
+  const cabecalho = `
     <div class="linha-header">
-      <span class="tag">Linha ${i+1} de ${linhas.length}</span>
-      <h2>${linha.nome}</h2>
-      <p>${linha.desc}</p>
-      <div class="contagem">${totalCores} cores disponíveis</div>
-    </div>
-    ${corpo}
-  `;
-  container.appendChild(section);
+      <div class="col-texto">
+        <span class="tag">${linha.tagline}</span>
+        <h2>${linha.titulo}</h2>
+        ${nomesLista}
+        <p class="hook">${linha.hook}</p>
+        <div class="pills">${linha.pills.map(p=>`<span class="pill">${p}</span>`).join('')}</div>
+      </div>
+      <div class="col-foto${fotoClass}">${linha.imagens.map(src=>`<img src="${src}" alt="${linha.titulo}">`).join('')}</div>
+      <div class="contagem">${totalCores}<br>cores</div>
+    </div>`;
+
+  const paginas = paginar(blocosDeCores(linha), headerH);
+  paginas.forEach(p => {
+    const section = document.createElement('section');
+    section.className = 'page padded';
+    section.innerHTML = `${p.primeira ? cabecalho : ''}${p.html}${rodapeHtml}`;
+    container.appendChild(section);
+  });
 });
 
-// produtos sem cor
-const semCorGrid = document.getElementById('semcor-grid');
-semCorGrid.innerHTML = semCor.map(p => `
-  <div class="semcor-card">
-    <div class="nome">${p.nome}</div>
-    <div class="desc">${p.desc}</div>
-  </div>
-`).join('');
+// produtos sem cor — Massas, Texturas e Complementos, paginado
+const semCorContainer = document.getElementById('semcor-container');
+const semCorBlocos = [];
+semCorCategorias.forEach(cat => {
+  semCorBlocos.push({ html:`<div class="grupo-titulo">${cat.titulo}</div>`, altura: PAG.grupoTitulo, colaComProximo:true });
+  chunkArray(cat.itens, 2).forEach(par => {
+    const cards = par.map(p => `
+      <div class="semcor-card">
+        <div class="foto-mini"><img src="${p.imagem}" alt="${p.nome}"></div>
+        <div>
+          <div class="nome">${p.nome}</div>
+          <div class="desc">${p.desc}</div>
+        </div>
+      </div>
+    `).join('');
+    semCorBlocos.push({ html:`<div class="semcor-grid">${cards}</div>`, altura: PAG.linhaSemCor });
+  });
+});
+const semCorCabecalho = `
+  <div class="linha-header">
+    <div class="col-texto">
+      <span class="tag">Também temos</span>
+      <h2>Texturas, massas e complementos</h2>
+      <p class="hook">Produtos que completam a pintura — vendidos na cor branca (ou incolor).</p>
+    </div>
+  </div>`;
+const semCorPaginas = paginar(semCorBlocos, PAG.headerSimples, false);
+semCorPaginas.forEach((p, idx) => {
+  const section = document.createElement('section');
+  section.className = 'page padded' + (idx === semCorPaginas.length - 1 ? ' pagina-final' : '');
+  section.innerHTML = `${p.primeira ? semCorCabecalho : ''}${p.html}`;
+  semCorContainer.appendChild(section);
+});
 </script>
 
 </body>
