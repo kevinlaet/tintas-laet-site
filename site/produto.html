@@ -1127,33 +1127,19 @@ const produtos = {
     preco_from: 'R$ 14<small>,90</small>',
     wa: 'Olá! Quero comprar o Refil Lã de Carneiro 23cm Laet. Pode me passar mais informações?'
   },
-  'refil-la-carneiro-46cm': {
-    nome: 'Refil Lã de Carneiro 46cm',
+  'refil-la-microfibra-46cm': {
+    nome: 'Refil Lã Microfibra 46cm',
     categoria: 'Ferramentas',
     badge: 'REFIL',
-    imagem: 'images/ferramentas/refil-la-carneiro-46cm.png',
-    desc_curta: 'Refil Lã de Carneiro 46cm, sem cabo — precisa de cabo (vendido separado).',
-    descricao: 'Refil Lã de Carneiro Laet, 46cm, sem cabo — compre junto com o Cabo Reforçado pra já sair pintando. Alta absorção e acabamento macio, ideal pra cobrir área grande mais rápido.',
-    beneficios: ['46cm', 'Refil — sem cabo, cabo vendido separado', 'Alta absorção e acabamento macio', 'Cobre área grande mais rápido'],
+    imagem: 'images/ferramentas/refil-la-microfibra-46cm.png',
+    desc_curta: 'Refil Lã Microfibra 46cm, sem cabo — precisa de cabo (vendido separado).',
+    descricao: 'Refil Lã Microfibra Laet, 46cm, sem cabo — compre junto com o Cabo Reforçado pra já sair pintando. Fibra fina, ótimo acabamento e menor respingo.',
+    beneficios: ['46cm', 'Refil — sem cabo, cabo vendido separado', 'Fibra fina, ótimo acabamento', 'Menor respingo'],
     precos: [
-      { desc: '46cm (refil, sem cabo)', valor: 'R$ 26,90' },
-    ],
-    preco_from: 'R$ 26<small>,90</small>',
-    wa: 'Olá! Quero comprar o Refil Lã de Carneiro 46cm Laet. Pode me passar mais informações?'
-  },
-  'refil-la-microfibra-23cm': {
-    nome: 'Refil Lã Microfibra 23cm',
-    categoria: 'Ferramentas',
-    badge: 'REFIL',
-    imagem: 'images/ferramentas/refil-la-microfibra-23cm.png',
-    desc_curta: 'Refil Lã Microfibra 23cm, sem cabo — precisa de cabo (vendido separado).',
-    descricao: 'Refil Lã Microfibra Laet, 23cm, sem cabo — compre junto com o Cabo Reforçado pra já sair pintando. Fibra fina, ótimo acabamento e menor respingo.',
-    beneficios: ['23cm', 'Refil — sem cabo, cabo vendido separado', 'Fibra fina, ótimo acabamento', 'Menor respingo'],
-    precos: [
-      { desc: '23cm (refil, sem cabo)', valor: 'R$ 39,90' },
+      { desc: '46cm (refil, sem cabo)', valor: 'R$ 39,90' },
     ],
     preco_from: 'R$ 39<small>,90</small>',
-    wa: 'Olá! Quero comprar o Refil Lã Microfibra 23cm Laet. Pode me passar mais informações?'
+    wa: 'Olá! Quero comprar o Refil Lã Microfibra 46cm Laet. Pode me passar mais informações?'
   },
   'refil-la-super-23cm': {
     nome: 'Refil Lã Super 23cm',
@@ -1643,15 +1629,14 @@ const upsellMap = {
   'refil-espuma-pop-23cm': ['cabo-rolo-23cm', 'refil-poliester-23cm'],
   'rolo-la-carneiro-9cm': ['rolo-la-carneiro-15cm', 'refil-la-carneiro-23cm'],
   'rolo-la-carneiro-15cm': ['rolo-la-carneiro-9cm', 'refil-la-carneiro-23cm'],
-  'refil-la-carneiro-23cm': ['cabo-rolo-23cm', 'refil-la-carneiro-46cm'],
-  'refil-la-carneiro-46cm': ['cabo-rolo-46cm', 'refil-la-carneiro-23cm'],
-  'refil-la-microfibra-23cm': ['cabo-rolo-23cm', 'refil-la-super-23cm'],
-  'refil-la-super-23cm': ['cabo-rolo-23cm', 'refil-la-microfibra-23cm'],
+  'refil-la-carneiro-23cm': ['cabo-rolo-23cm', 'refil-la-super-23cm'],
+  'refil-la-microfibra-46cm': ['cabo-rolo-46cm', 'refil-la-super-23cm'],
+  'refil-la-super-23cm': ['cabo-rolo-23cm', 'refil-la-carneiro-23cm'],
   'rolo-textura-cabelo-anjo-10cm': ['refil-textura-cabelo-anjo-23cm', 'cabo-rolo-23cm'],
   'refil-textura-cabelo-anjo-23cm': ['cabo-rolo-23cm', 'rolo-textura-cabelo-anjo-10cm'],
   'refil-rolo-massas-23cm': ['cabo-rolo-23cm'],
   'cabo-rolo-23cm': ['refil-anti-respingo-23cm', 'refil-poliester-23cm', 'refil-la-carneiro-23cm'],
-  'cabo-rolo-46cm': ['refil-anti-respingo-46cm', 'refil-la-carneiro-46cm'],
+  'cabo-rolo-46cm': ['refil-anti-respingo-46cm', 'refil-la-microfibra-46cm'],
   'trincha': ['aguarras'],
   'aguarras': ['trincha'],
   'thinner': ['trincha'],
