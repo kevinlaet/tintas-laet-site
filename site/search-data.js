@@ -61,5 +61,9 @@ const LAET_SEARCH_INDEX = [
   { id: 'seladora', nome: 'Seladora', categoria: 'Complementos' },
   { id: 'liqui-brilho', nome: 'Liqui-brilho', categoria: 'Complementos' },
   { id: 'espatula-silicone', nome: 'Espátula de Silicone', categoria: 'Ferramentas' },
+  { id: 'espatula-inox-6cm', nome: 'Espátula INOX 6cm', categoria: 'Ferramentas' },
+  { id: 'espatula-inox-10cm', nome: 'Espátula INOX 10cm', categoria: 'Ferramentas' },
+  { id: 'espatula-aco-6cm', nome: 'Espátula Aço 6cm', categoria: 'Ferramentas' },
+  { id: 'espatula-aco-10cm', nome: 'Espátula Aço 10cm', categoria: 'Ferramentas' },
   { id: 'esmalte-ecologico', nome: 'Tinta Esmalte Ecológico Base Água', categoria: 'Esmaltes' },
 ];

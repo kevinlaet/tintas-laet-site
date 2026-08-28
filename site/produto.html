@@ -1542,6 +1542,62 @@ const produtos = {
     preco_from: 'R$ 4<small>,00</small>',
     wa: 'Olá! Quero comprar a Espátula de Silicone Laet. Pode me passar mais informações?'
   },
+  'espatula-inox-6cm': {
+    nome: 'Espátula INOX 6cm',
+    categoria: 'Ferramentas',
+    badge: 'INOX',
+    imagem: 'images/ferramentas/espatula-inox-6cm.png',
+    desc_curta: 'Espátula INOX 6cm, cabo de madeira, pra massa corrida, textura e acabamento.',
+    descricao: 'Espátula INOX Laet, 6cm, cabo de madeira. Ideal para aplicação de massa corrida, texturas e acabamentos em geral.',
+    beneficios: ['6cm', 'Lâmina em aço inox', 'Cabo de madeira'],
+    precos: [
+      { desc: '6cm', valor: 'R$ 14,90' },
+    ],
+    preco_from: 'R$ 14<small>,90</small>',
+    wa: 'Olá! Quero comprar a Espátula INOX 6cm Laet. Pode me passar mais informações?'
+  },
+  'espatula-inox-10cm': {
+    nome: 'Espátula INOX 10cm',
+    categoria: 'Ferramentas',
+    badge: 'INOX',
+    imagem: 'images/ferramentas/espatula-inox-10cm.png',
+    desc_curta: 'Espátula INOX 10cm, cabo de madeira, pra massa corrida, textura e acabamento.',
+    descricao: 'Espátula INOX Laet, 10cm, cabo de madeira. Ideal para aplicação de massa corrida, texturas e acabamentos em geral.',
+    beneficios: ['10cm', 'Lâmina em aço inox', 'Cabo de madeira'],
+    precos: [
+      { desc: '10cm', valor: 'R$ 19,90' },
+    ],
+    preco_from: 'R$ 19<small>,90</small>',
+    wa: 'Olá! Quero comprar a Espátula INOX 10cm Laet. Pode me passar mais informações?'
+  },
+  'espatula-aco-6cm': {
+    nome: 'Espátula Aço 6cm',
+    categoria: 'Ferramentas',
+    badge: 'AÇO',
+    imagem: 'images/ferramentas/espatula-aco-6cm.png',
+    desc_curta: 'Espátula de aço 6cm, cabo de madeira, pra massa corrida, textura e acabamento.',
+    descricao: 'Espátula de Aço Laet, 6cm, cabo de madeira. Ideal para aplicação de massa corrida, texturas e acabamentos em geral.',
+    beneficios: ['6cm', 'Lâmina em aço', 'Cabo de madeira'],
+    precos: [
+      { desc: '6cm', valor: 'R$ 5,90' },
+    ],
+    preco_from: 'R$ 5<small>,90</small>',
+    wa: 'Olá! Quero comprar a Espátula Aço 6cm Laet. Pode me passar mais informações?'
+  },
+  'espatula-aco-10cm': {
+    nome: 'Espátula Aço 10cm',
+    categoria: 'Ferramentas',
+    badge: 'AÇO',
+    imagem: 'images/ferramentas/espatula-aco-10cm.png',
+    desc_curta: 'Espátula de aço 10cm, cabo de madeira, pra massa corrida, textura e acabamento.',
+    descricao: 'Espátula de Aço Laet, 10cm, cabo de madeira. Ideal para aplicação de massa corrida, texturas e acabamentos em geral.',
+    beneficios: ['10cm', 'Lâmina em aço', 'Cabo de madeira'],
+    precos: [
+      { desc: '10cm', valor: 'R$ 7,90' },
+    ],
+    preco_from: 'R$ 7<small>,90</small>',
+    wa: 'Olá! Quero comprar a Espátula Aço 10cm Laet. Pode me passar mais informações?'
+  },
   'esmalte-ecologico': {
     nome: 'Tinta Esmalte Ecológico Base Água',
     categoria: 'Esmaltes',
@@ -1610,6 +1666,10 @@ const upsellMap = {
   'massa-corrida': ['desempenadeira-aco', 'lixa-massa'],
   'massa-acrilica': ['desempenadeira-aco', 'lixa-massa'],
   'efeito-cimento-queimado': ['desempenadeira-inox', 'espatula-silicone'],
+  'espatula-inox-6cm': ['espatula-inox-10cm', 'espatula-aco-6cm'],
+  'espatula-inox-10cm': ['espatula-inox-6cm', 'espatula-aco-10cm'],
+  'espatula-aco-6cm': ['espatula-aco-10cm', 'espatula-inox-6cm'],
+  'espatula-aco-10cm': ['espatula-aco-6cm', 'espatula-inox-10cm'],
   'desempenadeira-inox': ['efeito-cimento-queimado'],
   'espatula-silicone': ['efeito-cimento-queimado'],
   'textura-lisa': ['desempenadeira-aco'],
