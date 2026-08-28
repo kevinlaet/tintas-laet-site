@@ -8,15 +8,11 @@ exports.handler = async function (event) {
     const data = (body.payload && body.payload.data) || {};
     const formName = (body.payload && body.payload.form_name) || data["form-name"] || data.form_name;
 
-    console.log("Formulario recebido:", formName);
-
     if (formName !== "cupom-sorteio" && formName !== "trabalhe-conosco") {
       return { statusCode: 200, body: "formulario ignorado" };
     }
 
     const topic = process.env.NTFY_TOPIC;
-
-    console.log("NTFY_TOPIC presente:", Boolean(topic));
 
     if (!topic) {
       console.error("NTFY_TOPIC nao configurado nas variaveis de ambiente do Netlify");
@@ -35,7 +31,7 @@ exports.handler = async function (event) {
         data.link_curriculo ? `Currículo/LinkedIn: ${data.link_curriculo}` : null,
       ].filter(Boolean).join("\n");
 
-      const resp = await fetch("https://ntfy.sh", {
+      await fetch("https://ntfy.sh", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -45,7 +41,6 @@ exports.handler = async function (event) {
           tags: ["briefcase"],
         }),
       });
-      console.log("Resposta do ntfy.sh:", resp.status, await resp.text());
 
       return { statusCode: 200, body: "ok" };
     }
@@ -74,7 +69,7 @@ exports.handler = async function (event) {
       amigosTexto ? `Amigos indicados:${amigosTexto}` : null,
     ].filter(Boolean).join("\n");
 
-    const resp = await fetch("https://ntfy.sh", {
+    await fetch("https://ntfy.sh", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -84,7 +79,6 @@ exports.handler = async function (event) {
         tags: ["ticket"],
       }),
     });
-    console.log("Resposta do ntfy.sh:", resp.status, await resp.text());
 
     return { statusCode: 200, body: "ok" };
   } catch (err) {
