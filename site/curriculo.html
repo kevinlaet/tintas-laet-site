@@ -38,6 +38,8 @@
     .btn:hover { transform: translateY(-2px); }
     .btn-yellow { background: var(--yellow); color: var(--graphite); box-shadow: 0 4px 20px rgba(255,193,7,.4); }
     .btn-yellow:hover { box-shadow: 0 10px 36px rgba(255,193,7,.65); }
+    .btn-green { background: #25D366; color: #fff; box-shadow: 0 4px 20px rgba(37,211,102,.4); }
+    .btn-green:hover { box-shadow: 0 10px 36px rgba(37,211,102,.65); }
     .btn-full { width: 100%; }
     .btn-ghost { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.5); }
     .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.8); }
@@ -79,6 +81,10 @@
     .checkbox-field a { color: var(--blue); font-weight: 700; text-decoration: underline; }
 
     .declaration-box { background: #F7F9FC; border: 1px solid #E5E9F0; border-radius: 10px; padding: 14px 16px; font-size: 11.5px; color: #777; line-height: 1.6; margin-top: 24px; }
+
+    .resume-callout { background: #F7F9FC; border: 1px solid #E5E9F0; border-radius: 12px; padding: 18px 16px; text-align: center; margin-bottom: 18px; }
+    .resume-callout p { font-size: 13px; color: #666; margin-bottom: 12px; }
+    .resume-callout strong { display: block; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; color: var(--graphite); margin-bottom: 6px; }
 
     .hidden-field { position: absolute; left: -9999px; }
 
@@ -178,6 +184,12 @@
     <div class="field">
       <label>Link do currículo ou LinkedIn <span class="opt">(opcional)</span></label>
       <input type="text" name="link_curriculo" placeholder="Cole aqui o link, se tiver">
+    </div>
+
+    <div class="resume-callout">
+      <strong>Tem o currículo em PDF?</strong>
+      <p>Manda direto pra gente pelo WhatsApp — é mais rápido que anexar aqui.</p>
+      <a href="https://wa.me/5511977140964?text=Olá! Estou enviando meu currículo para uma vaga na Tintas Laet." target="_blank" rel="noopener" class="btn btn-green btn-full">📎 Enviar currículo pelo WhatsApp</a>
     </div>
 
     <div class="declaration-box">
