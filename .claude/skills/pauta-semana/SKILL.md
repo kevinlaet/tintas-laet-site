@@ -30,9 +30,13 @@ Identificar a data de hoje e checar a tabela de "Datas comemorativas" em `calend
 ### Passo 2 — Sugerir o post de feed da semana
 
 - Checar `marketing/conteudo/` pra ver o que já foi postado recentemente (não repetir tema)
-- Cruzar com `_memoria/dores-clientes.md`: priorizar dor ainda não usada
-- Se tem data comemorativa próxima, ela tem prioridade sobre a lista de dores
-- Oferecer **2-3 opções de ângulo/tipo** (puxando do "Banco de ângulos por tipo de conteúdo" em `calendario-editorial.md`) — não escolher um tipo fixo pelo usuário, ele decide pauta a pauta
+- Cruzar com os **6 pilares de conteúdo** em `calendario-editorial.md` ("Pilares de conteúdo do
+  feed"), priorizando o pilar que está há mais tempo sem aparecer — não é grade fixa, é rotação por
+  ausência
+- Se tem data comemorativa próxima, ela tem prioridade sobre os pilares
+- Oferecer **2-3 opções de ângulo/tipo**, puxando de pilares diferentes quando possível (puxando
+  também do "Banco de ângulos por tipo de conteúdo" em `calendario-editorial.md`) — não escolher um
+  tipo fixo pelo usuário, ele decide pauta a pauta
 - Indicar se o formato sugerido é carrossel, vídeo ou post único, e por quê
 
 ### Passo 3 — Sugerir ideias de stories
