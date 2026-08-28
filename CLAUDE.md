@@ -30,7 +30,7 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 - `scripts/` — scripts e automações
 - `templates/` — modelos reutilizáveis
 - `site/` — código do site (tintaslaet.com, staging em tintas-laet-staging.netlify.app)
-- `netlify/` — funções serverless do site: notificação push pro celular do Kevin (via ntfy.sh, tópico `tintaslaet-18e3366de0`) quando chega cupom de sorteio, candidatura da página "Trabalhe Conosco" (ambos em `submission-created.js`) ou mensagem do widget de chat do site (`chat-message.js`). Falta configurar a env var `NTFY_TOPIC` no painel do Netlify antes do próximo deploy.
+- `netlify/` — funções serverless do site: notificação push pro celular do Kevin (via ntfy.sh, tópico `tintaslaet-18e3366de0`, configurado como env var `NTFY_TOPIC` no painel do Netlify) quando chega cupom de sorteio, candidatura da página "Trabalhe Conosco" (ambos em `submission-created.js`) ou mensagem do widget de chat do site (`chat-message.js`). Ativo e funcionando desde 27/08/2026. Currículo em PDF não tem upload no formulário — candidato manda pelo WhatsApp (obrigatório pra candidatura ser considerada, via botão em `curriculo.html`).
 
 ## Sobre a empresa
 
