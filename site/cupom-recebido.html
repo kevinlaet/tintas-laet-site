@@ -36,10 +36,19 @@
   <div class="card">
     <div class="check">🎉</div>
     <h1>Cupom recebido!</h1>
+    <p id="protocoloTexto" style="display:none;font-weight:700;color:var(--yellow);margin-bottom:8px"></p>
     <p>Seu cupom já está concorrendo ao sorteio deste mês. Acompanhe o resultado ao vivo no Instagram — e boa sorte!</p>
     <a href="https://www.instagram.com/tintaslaet" class="btn btn-yellow" target="_blank" rel="noopener">📷 Seguir @TintasLaet</a>
     <a href="sorteios.html" class="btn btn-ghost">← Voltar pro sorteio</a>
     <button type="button" class="btn btn-ghost" onclick="window.print()">🖨️ Imprimir / Baixar</button>
   </div>
+  <script>
+    var protocolo = new URLSearchParams(window.location.search).get('protocolo');
+    if (protocolo) {
+      var el = document.getElementById('protocoloTexto');
+      el.textContent = 'Protocolo: ' + protocolo;
+      el.style.display = 'block';
+    }
+  </script>
 </body>
 </html>

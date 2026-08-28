@@ -57,6 +57,7 @@ exports.handler = async function (event) {
       : (data.como_conheceu || "-");
 
     const linhas = [
+      data.protocolo ? `Protocolo: ${data.protocolo}` : null,
       `Nome: ${data.nome || "-"}`,
       `WhatsApp: ${data.whatsapp || "-"}`,
       `Cidade: ${data.cidade || "-"}`,

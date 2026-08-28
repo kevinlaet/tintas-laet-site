@@ -127,6 +127,7 @@
 <div class="container">
   <form class="form-card" name="cupom-sorteio" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="cupom-recebido.html">
     <input type="hidden" name="form-name" value="cupom-sorteio">
+    <input type="hidden" name="protocolo" id="protocoloField">
     <p class="hidden-field"><label>Não preencha isso: <input name="bot-field"></label></p>
 
     <div class="section-divider"><span>Seus dados</span></div>
@@ -350,6 +351,13 @@
       return;
     }
     selfReferralError.style.display = 'none';
+
+    var hoje = new Date();
+    var data = String(hoje.getDate()).padStart(2, '0') + String(hoje.getMonth() + 1).padStart(2, '0') + String(hoje.getFullYear()).slice(-2);
+    var aleatorio = String(Math.floor(1000 + Math.random() * 9000));
+    var protocolo = 'SORT-' + data + '-' + aleatorio;
+    document.getElementById('protocoloField').value = protocolo;
+    form.action = 'cupom-recebido.html?protocolo=' + encodeURIComponent(protocolo);
   });
 
   addBtn.addEventListener('click', addRow);
