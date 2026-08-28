@@ -3,7 +3,7 @@
 // extrair a lista de produtos/quantidades. O navegador nunca ve a chave da API
 // -- ela fica so aqui, na variavel de ambiente GEMINI_API_KEY da Netlify.
 
-const MODELO = 'gemini-2.0-flash';
+const MODELO = 'gemini-3.6-flash';
 
 const PROMPT = `Você está vendo uma foto de um pedido de tinta feito numa loja — pode ser uma anotação escrita à mão por um vendedor ou um print de uma conversa de WhatsApp com o cliente.
 
