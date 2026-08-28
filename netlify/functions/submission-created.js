@@ -6,7 +6,7 @@ exports.handler = async function (event) {
   try {
     const body = JSON.parse(event.body || "{}");
     const data = (body.payload && body.payload.data) || {};
-    const formName = data["form-name"];
+    const formName = (body.payload && body.payload.form_name) || data["form-name"] || data.form_name;
 
     console.log("Formulario recebido:", formName);
 
