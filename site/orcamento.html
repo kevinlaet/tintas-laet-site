@@ -87,6 +87,9 @@
     .foto-importar-status { margin-top: 10px; padding: 10px 12px; border-radius: 8px; font-size: 12.5px; line-height: 1.5; background: #F4F8FE; border: 1px solid #E1EAFA; color: #445; text-align: center; }
     .foto-importar-status.erro { background: #FBEAEA; border-color: #F3CBCB; color: #C62828; }
 
+    .item-chute-aviso { display: none; margin-top: 10px; padding: 7px 11px; border-radius: 8px; font-size: 12px; line-height: 1.5; background: #FFFBEA; border: 1px solid #FFE49A; color: #8A6D00; }
+    .item-chute-aviso.show { display: block; }
+
     .total-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; margin-top: 10px; background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid)); border-radius: 12px; }
     .total-row span:first-child { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; color: rgba(255,255,255,.75); letter-spacing: .5px; }
     .total-row span:last-child { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 26px; color: var(--yellow); }
@@ -292,6 +295,7 @@
         <input type="number" data-f="valor" step="0.01" min="0">
       </div>
     </div>
+    <div class="item-chute-aviso" data-f="chuteAviso">🎲 Chute: a foto não disse o tipo de lixa — confira se as variantes estão corretas antes de finalizar</div>
     <div class="item-subtotal" data-f="subtotal">R$ 0,00</div>
   </div>
 </template>
@@ -588,6 +592,32 @@ function marcarSemMatch(card, textoLido) {
   }, { once: true });
 }
 
+// Pedido escrito à mão costuma so dizer "lixa" + numeracao, sem falar o tipo
+// (madeira/ferro/massa) -- por isso, separado dos 3 produtos de lixa no
+// catalogo, o match direto falha por ambiguidade (ver encontrarProdutoSimilar).
+function ehLixaSemTipo(texto) {
+  const norm = normalizeStr(texto);
+  return norm.includes('lixa') && !/massa|madeira|ferro/.test(norm);
+}
+
+// Chuta Lixa de Massa (a mais pedida sem tipo especificado) e deixa avisado
+// que precisa conferir, em vez de deixar o item todo em branco pro vendedor
+// resolver do zero no celular.
+function aplicarChuteLixa(card, textoParaVariante) {
+  applyProdutoToCard(card, 'lixa-massa', textoParaVariante);
+  const produtoInput = card.querySelector('[data-f="produtoInput"]');
+  const aviso = card.querySelector('[data-f="chuteAviso"]');
+  produtoInput.style.borderColor = '#FFC107';
+  produtoInput.style.background = '#FFFBEA';
+  if (aviso) aviso.classList.add('show');
+  produtoInput.addEventListener('input', function limpar() {
+    produtoInput.style.borderColor = '';
+    produtoInput.style.background = '';
+    if (aviso) aviso.classList.remove('show');
+    produtoInput.removeEventListener('input', limpar);
+  }, { once: true });
+}
+
 function mostrarStatusFoto(mensagem, isErro) {
   const el = document.getElementById('fotoImportarStatus');
   el.textContent = mensagem;
@@ -620,12 +650,16 @@ async function processarFotoPedido(file) {
     }
 
     let semMatch = 0;
+    let chutesLixa = 0;
     data.itens.forEach(item => {
       const card = addItemRow();
       const textoCompleto = `${item.produto || ''} ${item.observacao || ''}`;
       const match = encontrarProdutoSimilar(textoCompleto);
       if (match) {
         applyProdutoToCard(card, match.id, textoCompleto);
+      } else if (ehLixaSemTipo(textoCompleto)) {
+        aplicarChuteLixa(card, textoCompleto);
+        chutesLixa++;
       } else {
         semMatch++;
         const textoLido = [item.produto, item.observacao].filter(Boolean).join(' — ');
@@ -638,6 +672,7 @@ async function processarFotoPedido(file) {
     salvarRascunho();
     const partes = [`${data.itens.length} item(ns) lido(s) da foto.`];
     if (semMatch) partes.push(`${semMatch} não bateu com nenhum produto do catálogo — em vermelho, selecione manualmente.`);
+    if (chutesLixa) partes.push(`${chutesLixa} lixa sem tipo especificado — em amarelo, confira se as variantes estão corretas antes de finalizar.`);
     partes.push('Confira tudo antes de gerar o orçamento.');
     mostrarStatusFoto(partes.join(' '), false);
   } catch (err) {
