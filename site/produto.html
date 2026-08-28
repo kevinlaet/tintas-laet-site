@@ -1215,6 +1215,21 @@ const produtos = {
     preco_label: 'cada — qualquer numeração',
     wa: 'Olá! Quero comprar Lixa de Massa (Tatu) Laet. Pode me passar mais informações?'
   },
+  'lixa-madeira': {
+    nome: 'Lixa de Madeira (Tatu)',
+    categoria: 'Ferramentas',
+    badge: 'TATU',
+    imagens: ['images/ferramentas/lixa-madeira.png', 'images/ferramentas/lixa-madeira-embalagem.jpg'],
+    desc_curta: 'Lixa de madeira Tatu, pra preparar madeira antes de pintar ou envernizar. Numerações 80, 100, 150, 180 e 220.',
+    descricao: 'Lixa de Madeira Tatu, indicada pra preparar superfícies de madeira antes da pintura ou aplicação de verniz. Disponível nas numerações 80, 100, 150, 180 e 220 — mesmo preço em qualquer uma.',
+    beneficios: ['Marca Tatu', '5 numerações: 80, 100, 150, 180 e 220', 'Ideal para preparação de superfícies de madeira'],
+    precos: [
+      { desc: 'Qualquer numeração (80 a 220)', valor: 'R$ 1,50' },
+    ],
+    preco_from: 'R$ 1<small>,50</small>',
+    preco_label: 'cada — qualquer numeração',
+    wa: 'Olá! Quero comprar Lixa de Madeira (Tatu) Laet. Pode me passar mais informações?'
+  },
   'lixa-ferro': {
     nome: 'Lixa de Ferro (Adere)',
     categoria: 'Ferramentas',
@@ -1373,7 +1388,8 @@ const upsellMap = {
   'thinner': ['trincha'],
   'lixa-massa': ['massa-corrida', 'desempenadeira-aco'],
   'lixa-ferro': ['esmalte-ecologico'],
-  'esmalte-ecologico': ['lixa-ferro']
+  'lixa-madeira': ['esmalte-ecologico'],
+  'esmalte-ecologico': ['lixa-ferro', 'lixa-madeira']
 };
 
 function upsellCardHtml(upId) {

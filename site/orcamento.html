@@ -178,6 +178,7 @@
         <span class="orcamento-numero-badge" id="numeroOrcamento">Orçamento #000</span>
       </div>
       <p>Monte o orçamento com os produtos reais do catálogo e gere o PDF pro cliente.</p>
+      <p style="font-size:12px;color:rgba(255,255,255,.55);margin-top:6px">💾 Rascunho salvo sozinho enquanto você digita &nbsp;·&nbsp; 📷 leitura de foto do pedido &nbsp;·&nbsp; 🖨️ PDF pronto pra imprimir ou mandar no WhatsApp</p>
     </div>
   </div>
 
@@ -238,7 +239,8 @@
       <div class="card-title">Produtos</div>
       <div id="itemsList"></div>
       <button class="add-item-btn" id="addItemBtn">+ Adicionar produto</button>
-      <button type="button" class="btn btn-blue" id="fotoImportarBtn" style="width:100%;justify-content:center;margin-top:10px">📷 Ler foto do pedido</button>
+      <button type="button" class="btn btn-blue" id="fotoImportarBtn" style="width:100%;justify-content:center;margin-top:10px">📷 Ler foto do pedido <span style="background:var(--yellow);color:#1a1000;font-size:9.5px;font-weight:800;padding:2px 7px;border-radius:100px;margin-left:2px">NOVO</span></button>
+      <p style="text-align:center;font-size:11.5px;color:#889;margin-top:6px;line-height:1.5">Tira foto de um pedido escrito à mão ou de um print do WhatsApp — a gente lê e já monta a lista de produtos pra você só conferir.</p>
       <input type="file" id="fotoImportarInput" accept="image/*" capture="environment" style="display:none">
       <div id="fotoImportarStatus" class="foto-importar-status" style="display:none"></div>
 
@@ -524,6 +526,14 @@ function lerArquivoBase64(file) {
   });
 }
 
+// Tira um "s" final simples (lixas -> lixa) so pra efeito de comparacao —
+// nao e um singularizador de verdade, so o suficiente pro plural mais comum
+// do portugues nao atrapalhar o match com o catalogo (nome cadastrado quase
+// sempre vem no singular).
+function singularizar(palavra) {
+  return palavra.length > 3 && palavra.endsWith('s') ? palavra.slice(0, -1) : palavra;
+}
+
 // Casa o texto lido da foto (letra a mao/print, nunca bate exato) com o
 // catalogo real. Pontua por substring completa e por palavra em comum;
 // abaixo de 2 pontos e considerado "sem certeza" e fica pro vendedor
@@ -538,7 +548,9 @@ function encontrarProdutoSimilar(texto) {
     const nomeNorm = normalizeStr(o.nome);
     let score = 0;
     if (nomeNorm.includes(norm) || norm.includes(nomeNorm)) score += 5;
-    palavras.forEach(p => { if (nomeNorm.includes(p)) score += 1; });
+    palavras.forEach(p => {
+      if (nomeNorm.includes(p) || nomeNorm.includes(singularizar(p))) score += 1;
+    });
     if (score > melhorScore) { melhorScore = score; melhor = o; }
   });
   return melhorScore >= 2 ? melhor : null;
