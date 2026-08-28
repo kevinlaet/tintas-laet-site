@@ -29,6 +29,8 @@
     .btn-yellow { background: linear-gradient(135deg, var(--yellow), #FFD54A); color: #1a1000; box-shadow: 0 4px 18px rgba(255,193,7,.45); }
     .btn-ghost { background: #fff; color: #C62828; border: 1.5px solid #F3CBCB; }
     .btn-whatsapp { background: #25D366; color: #fff; box-shadow: 0 4px 16px rgba(37,211,102,.35); }
+    .btn[disabled] { opacity: .4; cursor: not-allowed; box-shadow: none; }
+    .btn[disabled]:hover { transform: none; }
 
     /* GATE */
     .gate { position: fixed; inset: 0; background: linear-gradient(160deg, var(--blue-dark), var(--blue)); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 24px; }
@@ -93,6 +95,9 @@
     .total-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; margin-top: 10px; background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid)); border-radius: 12px; }
     .total-row span:first-child { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; color: rgba(255,255,255,.75); letter-spacing: .5px; }
     .total-row span:last-child { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 26px; color: var(--yellow); }
+    .btn-ver-total { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12.5px; letter-spacing: .3px; color: #1a1000; background: var(--yellow); border: none; border-radius: 100px; padding: 10px 20px; cursor: pointer; transition: filter .15s; }
+    .btn-ver-total:hover { filter: brightness(1.06); }
+    .ver-total-hint { text-align: center; font-size: 11.5px; color: #889; margin-top: 8px; }
 
     .actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
@@ -233,6 +238,7 @@
             <option>Dinheiro</option>
             <option>Cartão débito</option>
             <option>Cartão crédito (até 12x sem juros)</option>
+            <option>Pagamento na loja</option>
           </select>
         </div>
       </div>
@@ -252,17 +258,19 @@
         <div class="field"><label>Desconto (R$)</label><input type="number" id="f-desconto" value="0" step="0.01" min="0" oninput="recalcTotal()"></div>
       </div>
 
-      <div class="total-row">
+      <div class="total-row" id="totalRow">
         <span>TOTAL</span>
-        <span id="totalDisplay">R$ 0,00</span>
+        <span id="totalDisplay" style="display:none">R$ 0,00</span>
+        <button type="button" class="btn-ver-total" id="verTotalBtn">👁️ Ver Total</button>
       </div>
     </div>
 
     <div class="actions">
-      <button class="btn btn-yellow" id="genPdfBtn">🖨️ Gerar PDF</button>
-      <button class="btn btn-whatsapp" id="waBtn">💬 Enviar por WhatsApp</button>
+      <button class="btn btn-yellow" id="genPdfBtn" disabled>🖨️ Gerar PDF</button>
+      <button class="btn btn-whatsapp" id="waBtn" disabled>💬 Enviar por WhatsApp</button>
       <button class="btn btn-ghost" id="clearBtn">🗑️ Limpar tudo</button>
     </div>
+    <p class="ver-total-hint" id="verTotalHint">👁️ Clique em "Ver Total" pra liberar o PDF e o envio por WhatsApp.</p>
 
     <div style="text-align:center;margin-top:22px;font-family:'Montserrat',sans-serif;font-size:11px;color:#aab;letter-spacing:.3px">Desenvolvido por Kevin Laet</div>
   </div>
@@ -311,6 +319,7 @@ const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzyAJ0PN8Q41
 
 let orcamentoNumero = null;
 let syncFalhou = false;
+let totalRevelado = false;
 
 function debounce(fn, wait) {
   let t;
@@ -371,6 +380,48 @@ async function salvarNaPlanilha() {
     atualizarNumeroDisplay();
     return false;
   }
+}
+
+function resetTotalGate() {
+  totalRevelado = false;
+  document.getElementById('totalDisplay').style.display = 'none';
+  document.getElementById('verTotalBtn').style.display = '';
+  document.getElementById('genPdfBtn').disabled = true;
+  document.getElementById('waBtn').disabled = true;
+  document.getElementById('verTotalHint').style.display = '';
+}
+
+async function notificarVerTotal() {
+  try {
+    const { total } = coletarOrcamento();
+    await fetch('/.netlify/functions/orcamento-ver-total', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        numero: orcamentoNumero,
+        vendedor: document.getElementById('f-vendedor').value,
+        loja: document.getElementById('f-loja').value,
+        cliente: document.getElementById('f-cliente').value,
+        total
+      })
+    });
+  } catch (e) {
+    console.error('Falha ao notificar Ver Total do orçamento:', e);
+  }
+}
+
+async function revelarTotal() {
+  if (totalRevelado) return;
+  const { itens } = coletarOrcamento();
+  if (!itens.length) { alert('Adicione ao menos um produto antes de ver o total.'); return; }
+  totalRevelado = true;
+  document.getElementById('totalDisplay').style.display = '';
+  document.getElementById('verTotalBtn').style.display = 'none';
+  document.getElementById('genPdfBtn').disabled = false;
+  document.getElementById('waBtn').disabled = false;
+  document.getElementById('verTotalHint').style.display = 'none';
+  await salvarNaPlanilha();
+  notificarVerTotal();
 }
 
 function checkPassword() {
@@ -475,6 +526,7 @@ function flattenOptions(p) {
 
 async function initTool() {
   document.getElementById('addItemBtn').addEventListener('click', () => { addItemRow(); salvarRascunho(); });
+  document.getElementById('verTotalBtn').addEventListener('click', revelarTotal);
   document.getElementById('genPdfBtn').addEventListener('click', gerarPDF);
   document.getElementById('waBtn').addEventListener('click', enviarWhatsapp);
   document.getElementById('clearBtn').addEventListener('click', () => {
@@ -487,6 +539,7 @@ async function initTool() {
     orcamentoNumero = null;
     syncFalhou = false;
     atualizarNumeroDisplay();
+    resetTotalGate();
     try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
     salvarRascunho();
   });
