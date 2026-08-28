@@ -84,6 +84,9 @@
     .add-item-btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; background: #EFF4FF; border: 1.5px dashed rgba(13,71,161,.35); border-radius: 10px; padding: 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: var(--blue); cursor: pointer; transition: background .15s; }
     .add-item-btn:hover { background: rgba(13,71,161,.08); }
 
+    .foto-importar-status { margin-top: 10px; padding: 10px 12px; border-radius: 8px; font-size: 12.5px; line-height: 1.5; background: #F4F8FE; border: 1px solid #E1EAFA; color: #445; text-align: center; }
+    .foto-importar-status.erro { background: #FBEAEA; border-color: #F3CBCB; color: #C62828; }
+
     .total-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; margin-top: 10px; background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid)); border-radius: 12px; }
     .total-row span:first-child { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; color: rgba(255,255,255,.75); letter-spacing: .5px; }
     .total-row span:last-child { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 26px; color: var(--yellow); }
@@ -235,6 +238,9 @@
       <div class="card-title">Produtos</div>
       <div id="itemsList"></div>
       <button class="add-item-btn" id="addItemBtn">+ Adicionar produto</button>
+      <button type="button" class="btn btn-blue" id="fotoImportarBtn" style="width:100%;justify-content:center;margin-top:10px">📷 Ler foto do pedido</button>
+      <input type="file" id="fotoImportarInput" accept="image/*" capture="environment" style="display:none">
+      <div id="fotoImportarStatus" class="foto-importar-status" style="display:none"></div>
 
       <div class="field-row" style="margin-top:18px">
         <div class="field"><label>Valor do frete</label><input type="number" id="f-frete" value="0" step="0.01" min="0" oninput="recalcTotal()"></div>
@@ -478,6 +484,14 @@ async function initTool() {
     try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
     salvarRascunho();
   });
+  document.getElementById('fotoImportarBtn').addEventListener('click', () => {
+    document.getElementById('fotoImportarInput').click();
+  });
+  document.getElementById('fotoImportarInput').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    e.target.value = '';
+    if (file) processarFotoPedido(file);
+  });
 
   try {
     await loadProdutos();
@@ -499,6 +513,107 @@ async function initTool() {
   }
   document.addEventListener('input', debounce(salvarRascunho, 400));
   document.addEventListener('change', salvarRascunho);
+}
+
+function lerArquivoBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// Casa o texto lido da foto (letra a mao/print, nunca bate exato) com o
+// catalogo real. Pontua por substring completa e por palavra em comum;
+// abaixo de 2 pontos e considerado "sem certeza" e fica pro vendedor
+// escolher manualmente (ver marcarSemMatch em processarFotoPedido).
+function encontrarProdutoSimilar(texto) {
+  const norm = normalizeStr(texto);
+  if (!norm) return null;
+  const palavras = norm.split(/\s+/).filter(p => p.length > 2);
+  let melhor = null;
+  let melhorScore = 0;
+  produtoOptionsList.forEach(o => {
+    const nomeNorm = normalizeStr(o.nome);
+    let score = 0;
+    if (nomeNorm.includes(norm) || norm.includes(nomeNorm)) score += 5;
+    palavras.forEach(p => { if (nomeNorm.includes(p)) score += 1; });
+    if (score > melhorScore) { melhorScore = score; melhor = o; }
+  });
+  return melhorScore >= 2 ? melhor : null;
+}
+
+function marcarSemMatch(card, textoLido) {
+  const produtoInput = card.querySelector('[data-f="produtoInput"]');
+  produtoInput.value = textoLido;
+  produtoInput.style.borderColor = '#C62828';
+  produtoInput.style.background = '#FFF5F5';
+  produtoInput.addEventListener('input', function limpar() {
+    produtoInput.style.borderColor = '';
+    produtoInput.style.background = '';
+    produtoInput.removeEventListener('input', limpar);
+  }, { once: true });
+}
+
+function mostrarStatusFoto(mensagem, isErro) {
+  const el = document.getElementById('fotoImportarStatus');
+  el.textContent = mensagem;
+  el.classList.toggle('erro', !!isErro);
+  el.style.display = mensagem ? 'block' : 'none';
+}
+
+async function processarFotoPedido(file) {
+  const btn = document.getElementById('fotoImportarBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Lendo a foto...';
+  mostrarStatusFoto('Lendo a foto do pedido, pode levar alguns segundos...', false);
+
+  try {
+    const imagemBase64 = await lerArquivoBase64(file);
+    const resp = await fetch('/.netlify/functions/ler-pedido-foto', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ imagemBase64, mimeType: file.type })
+    });
+    const data = await resp.json();
+
+    if (!data.ok) {
+      mostrarStatusFoto('Não deu pra ler essa foto: ' + (data.erro || 'erro desconhecido') + '. Adicione os produtos manualmente.', true);
+      return;
+    }
+    if (!data.itens.length) {
+      mostrarStatusFoto('Não encontrei nenhum produto legível nessa foto. Tente uma foto mais nítida ou adicione manualmente.', true);
+      return;
+    }
+
+    let semMatch = 0;
+    data.itens.forEach(item => {
+      const card = addItemRow();
+      const match = encontrarProdutoSimilar(`${item.produto || ''} ${item.observacao || ''}`);
+      if (match) {
+        applyProdutoToCard(card, match.id);
+      } else {
+        semMatch++;
+        const textoLido = [item.produto, item.observacao].filter(Boolean).join(' — ');
+        marcarSemMatch(card, textoLido);
+      }
+      card.querySelector('[data-f="qty"]').value = parseInt(item.quantidade, 10) || 1;
+      recalcRow(card);
+    });
+
+    salvarRascunho();
+    const partes = [`${data.itens.length} item(ns) lido(s) da foto.`];
+    if (semMatch) partes.push(`${semMatch} não bateu com nenhum produto do catálogo — em vermelho, selecione manualmente.`);
+    partes.push('Confira tudo antes de gerar o orçamento.');
+    mostrarStatusFoto(partes.join(' '), false);
+  } catch (err) {
+    console.error('Erro ao processar foto do pedido:', err);
+    mostrarStatusFoto('Erro ao processar a foto. Tente de novo ou adicione manualmente.', true);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '📷 Ler foto do pedido';
+  }
 }
 
 function applyProdutoToCard(card, id) {
