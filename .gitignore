@@ -27,3 +27,6 @@ node_modules/
 # Drop zone do usuário (só o README vai versionado)
 dados/*
 !dados/README.md
+
+# Memória interna (estratégia, financeiro, método) — privado, não pode ir pro repo público
+_memoria/
