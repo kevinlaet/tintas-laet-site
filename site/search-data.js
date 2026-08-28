@@ -39,6 +39,7 @@ const LAET_SEARCH_INDEX = [
   { id: 'fita-crepe', nome: 'Fita Crepe', categoria: 'Ferramentas' },
   { id: 'lixa-massa', nome: 'Lixa de Massa (Tatu)', categoria: 'Ferramentas' },
   { id: 'lixa-ferro', nome: 'Lixa de Ferro (Adere)', categoria: 'Ferramentas' },
+  { id: 'lixa-madeira', nome: 'Lixa de Madeira (Tatu)', categoria: 'Ferramentas' },
   { id: 'fundo-preparador', nome: 'Fundo Preparador', categoria: 'Complementos' },
   { id: 'seladora', nome: 'Seladora', categoria: 'Complementos' },
   { id: 'liqui-brilho', nome: 'Liqui-brilho', categoria: 'Complementos' },
