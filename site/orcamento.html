@@ -28,6 +28,7 @@
     .btn-blue { background: var(--blue); color: #fff; box-shadow: 0 4px 16px rgba(13,71,161,.35); }
     .btn-yellow { background: linear-gradient(135deg, var(--yellow), #FFD54A); color: #1a1000; box-shadow: 0 4px 18px rgba(255,193,7,.45); }
     .btn-ghost { background: #fff; color: #C62828; border: 1.5px solid #F3CBCB; }
+    .btn-whatsapp { background: #25D366; color: #fff; box-shadow: 0 4px 16px rgba(37,211,102,.35); }
 
     /* GATE */
     .gate { position: fixed; inset: 0; background: linear-gradient(160deg, var(--blue-dark), var(--blue)); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 24px; }
@@ -49,8 +50,11 @@
     .tool-hero { background: linear-gradient(150deg, var(--blue-dark) 0%, var(--blue) 60%, var(--blue-mid) 100%); padding: 38px 20px 64px; position: relative; overflow: hidden; }
     .tool-hero::after { content: ''; position: absolute; top: -40%; right: -10%; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(255,193,7,.12) 0%, transparent 70%); pointer-events: none; }
     .tool-hero-inner { max-width: 880px; margin: 0 auto; position: relative; z-index: 1; }
-    .tool-hero h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 26px; color: #fff; margin-bottom: 6px; }
+    .tool-hero-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+    .tool-hero h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 26px; color: #fff; }
     .tool-hero p { font-size: 13.5px; color: rgba(255,255,255,.75); }
+    .orcamento-numero-badge { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12px; color: #1a1000; background: var(--yellow); padding: 6px 14px; border-radius: 100px; white-space: nowrap; }
+    .orcamento-numero-badge.numero-erro { background: #FFEBEE; color: #C62828; }
 
     .wrap { max-width: 880px; margin: -40px auto 0; padding: 0 20px 80px; position: relative; z-index: 2; }
 
@@ -66,6 +70,22 @@
     .item-grid .field { margin: 0; }
     .item-subtotal { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; color: var(--blue); text-align: right; padding: 11px 4px; }
     .item-remove { position: absolute; top: -10px; right: -10px; width: 26px; height: 26px; border-radius: 50%; background: #FBEAEA; border: 1.5px solid #F3CBCB; color: #C62828; cursor: pointer; font-size: 13px; }
+    .item-duplicate { position: absolute; top: -10px; right: 24px; width: 26px; height: 26px; border-radius: 50%; background: #EFF4FF; border: 1.5px solid rgba(13,71,161,.25); color: var(--blue); cursor: pointer; font-size: 13px; }
+
+    .combo { position: relative; }
+    .combo-list { position: absolute; top: calc(100% + 4px); left: 0; right: 0; max-height: 230px; overflow-y: auto; background: #fff; border: 1.5px solid #DCE1EA; border-radius: 10px; box-shadow: 0 10px 30px rgba(13,71,161,.18); z-index: 30; display: none; }
+    .combo-list.open { display: block; }
+    .combo-item { padding: 10px 13px; font-size: 13px; cursor: pointer; border-bottom: 1px solid #F0F2F5; }
+    .combo-item:last-child { border-bottom: none; }
+    .combo-item:hover, .combo-item.active { background: #EFF4FF; color: var(--blue); }
+    .combo-item mark { background: #FFE9A8; color: inherit; border-radius: 2px; padding: 0 1px; }
+    .combo-empty { padding: 12px 13px; font-size: 12.5px; color: #999; text-align: center; }
+
+    .calc-test-alert { background: #C62828; border: 1.5px solid #8E0000; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: #fff; line-height: 1.5; margin-bottom: 14px; font-family: 'Montserrat', sans-serif; font-weight: 800; text-align: center; letter-spacing: .2px; }
+    .calc-warning { background: #FFF8E1; border: 1.5px solid #FFE082; border-radius: 10px; padding: 12px 14px; font-size: 12.5px; color: #7a5b00; line-height: 1.5; margin-bottom: 16px; }
+    .calc-info { background: #F4F8FE; border: 1px solid #E1EAFA; border-radius: 8px; padding: 10px 12px; font-size: 12px; color: #445; margin-top: -2px; margin-bottom: 14px; }
+    .calc-resultado { background: #EAF7EE; border: 1px solid #B9E6C4; border-radius: 8px; padding: 12px 14px; font-size: 12.5px; color: #1b5e20; line-height: 1.5; }
+
     .add-item-btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; background: #EFF4FF; border: 1.5px dashed rgba(13,71,161,.35); border-radius: 10px; padding: 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: var(--blue); cursor: pointer; transition: background .15s; }
     .add-item-btn:hover { background: rgba(13,71,161,.08); }
 
@@ -101,6 +121,8 @@
       .pdf-band-logo { display: flex; align-items: center; gap: 10px; overflow: visible; }
       .pdf-band-logo img.pdf-logo { width: 160px; transform: scale(1.45); transform-origin: left center; }
       .pdf-validade-pill { background: var(--yellow); color: #1a1000; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10.5px; letter-spacing: .3px; padding: 7px 14px; border-radius: 100px; white-space: nowrap; }
+      .pdf-numero-pill { background: rgba(255,255,255,.15); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10.5px; letter-spacing: .3px; padding: 7px 14px; border-radius: 100px; white-space: nowrap; }
+      .pdf-validade-group { display: flex; gap: 8px; align-items: center; }
       .pdf-band-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 34px; color: #fff; letter-spacing: .5px; margin-top: 18px; position: relative; z-index: 1; }
 
       .pdf-info { background: #F4F8FE; border: 1px solid #E1EAFA; border-radius: 16px; padding: 18px 22px; margin-bottom: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; }
@@ -153,7 +175,10 @@
 
   <div class="tool-hero">
     <div class="tool-hero-inner">
-      <h1>🧾 Gerador de Orçamento</h1>
+      <div class="tool-hero-top">
+        <h1>🧾 Gerador de Orçamento</h1>
+        <span class="orcamento-numero-badge" id="numeroOrcamento">Orçamento #000</span>
+      </div>
       <p>Monte o orçamento com os produtos reais do catálogo e gere o PDF pro cliente.</p>
     </div>
   </div>
@@ -209,6 +234,33 @@
       </div>
     </div>
 
+    <div class="card" id="calcCard">
+      <div class="card-title">🧮 Calculadora de quantidade por metragem <span style="font-weight:600;text-transform:none;letter-spacing:0;color:#999;font-size:11px;margin-left:6px">(teste)</span></div>
+      <div class="calc-test-alert">🚧 ATENÇÃO VENDEDOR, ESSA FERRAMENTA ESTÁ EM TESTE, CONFIRA A VERACIDADE DOS CÁLCULOS</div>
+      <div class="calc-warning">⚠️ <strong>Sugestão automática, não é orçamento fechado.</strong> O rendimento real depende da superfície, absorção, preparo, ferramenta, diluição e número de demãos aplicadas. Confira a metragem no local e ajuste a quantidade antes de fechar com o cliente.</div>
+      <div class="field-row">
+        <div class="field">
+          <label>Produto</label>
+          <select id="calc-produto"><option value="">Selecione...</option></select>
+        </div>
+        <div class="field">
+          <label>Metragem a pintar (m²)</label>
+          <input type="number" id="calc-metragem" min="0" step="0.1" placeholder="Ex: 45">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Demãos extras (multiplicador)</label>
+          <input type="number" id="calc-multiplicador" value="1" min="0.5" step="0.5">
+        </div>
+        <div class="field" style="display:flex;align-items:flex-end">
+          <button type="button" class="btn btn-blue" id="calcAddBtn" style="width:100%;justify-content:center">Calcular e adicionar</button>
+        </div>
+      </div>
+      <div id="calc-rendimento-info" class="calc-info" style="display:none"></div>
+      <div id="calc-resultado" class="calc-resultado" style="display:none"></div>
+    </div>
+
     <div class="card">
       <div class="card-title">Produtos</div>
       <div id="itemsList"></div>
@@ -227,8 +279,11 @@
 
     <div class="actions">
       <button class="btn btn-yellow" id="genPdfBtn">🖨️ Gerar PDF</button>
+      <button class="btn btn-whatsapp" id="waBtn">💬 Enviar por WhatsApp</button>
       <button class="btn btn-ghost" id="clearBtn">🗑️ Limpar tudo</button>
     </div>
+
+    <div style="text-align:center;margin-top:22px;font-family:'Montserrat',sans-serif;font-size:11px;color:#aab;letter-spacing:.3px">Ferramenta desenvolvida inteiramente por Kevin Laet</div>
   </div>
 </div>
 
@@ -236,11 +291,15 @@
 
 <template id="itemTemplate">
   <div class="item-card">
+    <button type="button" class="item-duplicate" aria-label="Duplicar" title="Duplicar produto">⧉</button>
     <button type="button" class="item-remove" aria-label="Remover">✕</button>
     <div class="item-grid">
       <div class="field">
         <label>Produto</label>
-        <select data-f="produto"></select>
+        <div class="combo" data-f="produto">
+          <input type="text" data-f="produtoInput" placeholder="Digite pra buscar..." autocomplete="off">
+          <div class="combo-list" data-f="produtoList"></div>
+        </div>
       </div>
       <div class="field">
         <label>Variante</label>
@@ -261,6 +320,76 @@
 
 <script>
 const SENHA = 'laet2026';
+const DRAFT_KEY = 'laet_orcamento_rascunho';
+
+// URL do Web App do Google Apps Script (planilha central de orçamentos).
+// Fica vazio até o deploy ser feito — com vazio, a numeração central é
+// simplesmente ignorada (sem quebrar a ferramenta).
+const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzyAJ0PN8Q41nz_QOeq85A6v8Dso9qESWLuRgrRh9VL2BxKiqV8f9jd4zCZf9tKcDeX/exec';
+
+let orcamentoNumero = null;
+let syncFalhou = false;
+
+function debounce(fn, wait) {
+  let t;
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
+}
+
+function comTimeout(promise, ms) {
+  return Promise.race([
+    promise,
+    new Promise(resolve => setTimeout(() => resolve(null), ms))
+  ]);
+}
+
+function atualizarNumeroDisplay() {
+  const el = document.getElementById('numeroOrcamento');
+  if (!el) return;
+  el.classList.remove('numero-erro');
+  if (orcamentoNumero) {
+    el.textContent = 'Orçamento #' + String(orcamentoNumero).padStart(3, '0');
+  } else if (syncFalhou) {
+    el.textContent = '⚠️ Não sincronizado';
+    el.classList.add('numero-erro');
+  } else {
+    el.textContent = 'Novo orçamento';
+  }
+}
+
+async function salvarNaPlanilha() {
+  if (!SHEETS_WEBHOOK_URL) return false;
+  const { itens, frete, desconto, total } = coletarOrcamento();
+  if (!itens.length) return false;
+
+  const payload = {
+    numero: orcamentoNumero || null,
+    vendedor: document.getElementById('f-vendedor').value,
+    loja: document.getElementById('f-loja').value,
+    cliente: document.getElementById('f-cliente').value,
+    whatsapp: document.getElementById('f-whatsapp').value,
+    endereco: document.getElementById('f-endereco').value,
+    pagamento: document.getElementById('f-pagamento').value,
+    frete, desconto, total,
+    itens: itens.map(it => ({ qty: it.qty, nome: it.nome, variante: it.variante, subtotal: it.subtotal }))
+  };
+
+  try {
+    const res = await comTimeout(fetch(SHEETS_WEBHOOK_URL, { method: 'POST', body: JSON.stringify(payload) }), 6000);
+    if (!res) throw new Error('tempo esgotado');
+    const data = await res.json();
+    if (!data.ok || !data.numero) throw new Error(data.erro || 'resposta inválida da planilha');
+    orcamentoNumero = data.numero;
+    syncFalhou = false;
+    atualizarNumeroDisplay();
+    salvarRascunho();
+    return true;
+  } catch (e) {
+    console.error('Falha ao salvar orçamento na planilha:', e);
+    syncFalhou = true;
+    atualizarNumeroDisplay();
+    return false;
+  }
+}
 
 function checkPassword() {
   const input = document.getElementById('gatePass').value;
@@ -274,13 +403,13 @@ function checkPassword() {
   }
 }
 
+let produtosData = null;
+
 if (sessionStorage.getItem('laet_orcamento_unlocked') === '1') {
   document.getElementById('gate').style.display = 'none';
   document.getElementById('tool').style.display = 'block';
   initTool();
 }
-
-let produtosData = null;
 
 async function loadProdutos() {
   if (produtosData) return produtosData;
@@ -305,6 +434,18 @@ function formatPrice(n) {
 function displayNome(id, p) {
   if (id === 'standard') return 'Tinta Standard';
   return p.nome;
+}
+
+function normalizeStr(s) {
+  return (s || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+}
+
+let produtoOptionsList = [];
+
+function buildProdutoOptionsList() {
+  produtoOptionsList = Object.keys(produtosData)
+    .map(id => ({ id, nome: displayNome(id, produtosData[id]) }))
+    .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
 }
 
 function flattenOptions(p) {
@@ -350,9 +491,85 @@ function flattenOptions(p) {
   return opts;
 }
 
+// Rendimento médio documentado em _memoria/produtos.md (seção 3A), só produtos com
+// número confirmado. Nunca inventar/estimar rendimento pra produto fora desta lista
+// (ex: Textura Design, Proteção Emborrachada) — dossiê marca como "não informado".
+//
+// "match" diz qual variante (do select gerado por flattenOptions) tem o rendimento
+// documentado abaixo — sem isso o código pré-seleciona sempre a 1ª opção da lista, que
+// em vários produtos (piso-fachada, massa-corrida, massa-acrílica, super-profissional)
+// é a embalagem PEQUENA, e o rendimento documentado é sempre da embalagem GRANDE.
+// Cada string é testada em ordem contra o texto da opção (case-insensitive, substring).
+const RENDIMENTO_DATA = {
+  'premium-lavavel': { rendimento: 200, match: ['18L'], texto: '18L cobre até 200 m² acabado — considerando 2 demãos em parede preparada e selada com Seladora Laet (rendimento médio documentado).' },
+  'standard': { rendimento: 300, match: ['18L'], texto: '18L cobre até 300 m² acabado (rendimento médio documentado).' },
+  'super-profissional': { rendimento: 300, match: ['18L'], texto: 'Balde 18L cobre até 300 m² por demão — cobre com 2 demãos em parede preparada e selada com Seladora Laet (rendimento médio documentado).' },
+  'direto-no-gesso': { rendimento: 105, match: ['18L'], texto: '18L cobre até 105 m² acabado (rendimento médio documentado).' },
+  'latex-vinil': { rendimento: 100, match: ['18L'], texto: '18L cobre até 100 m² acabados — intervalo obrigatório de 8h entre demãos (rendimento médio documentado).' },
+  'piso-fachada': { rendimento: 300, match: ['18L', '17L'], texto: 'Balde (17L cores / 18L branca) cobre até 300 m² — dossiê não separa o rendimento por tamanho de embalagem (rendimento médio documentado).' },
+  'esmalte-ecologico': { rendimento: 21, match: ['3,4L', '3,6L'], texto: 'Galão (3,4L pra cores, 3,6L só pra branca) cobre até 21 m² acabado — dossiê documenta esse rendimento pro tamanho galão, sem separar 3,4L de 3,6L. O balde (17L cores / 18L branca) não tem rendimento confirmado nessa linha, por isso o cálculo usa o galão.' },
+  'liqui-brilho': { rendimento: 300, match: ['18L'], texto: '18L cobre até 300 m² (rendimento médio documentado).' },
+  'epoxi-base-agua': { rendimento: 21, match: ['3,6L'], texto: '3,6L cobre até 21 m² acabado (rendimento médio documentado).' },
+  'massa-corrida': { rendimento: 50, match: ['23kg'], texto: '23kg cobre até 50 m²/demão (rendimento médio documentado). O saquinho de 5kg também é vendido, mas o dossiê não tem rendimento confirmado pra esse tamanho.' },
+  'massa-acrilica': { rendimento: 50, match: ['23kg'], texto: '23kg cobre até 50 m²/demão (rendimento médio documentado). O saquinho de 5kg também é vendido, mas o dossiê não tem rendimento confirmado pra esse tamanho.' },
+  'seladora': { rendimento: 110, match: ['18L'], texto: '18L cobre até 110 m²/demão (rendimento médio documentado).' },
+  'fundo-preparador': { rendimento: 180, match: ['18L'], texto: '18L cobre até 180 m²/demão (rendimento médio documentado).' },
+  'textura-lisa': { rendimento: 8, match: ['23kg'], texto: '23kg cobre até 8 m² por embalagem (rendimento médio documentado).' },
+  'grafiato': { rendimento: 5, match: ['23kg'], texto: '23kg cobre até 5 m² por embalagem (rendimento médio documentado).' },
+  'efeito-cimento-queimado': { rendimento: 16, match: ['5kg'], texto: '5kg cobre até 16 m² (rendimento médio documentado — só a embalagem de 5kg; a de 23kg ainda não tem rendimento confirmado).' },
+  'emborrachada': { rendimento: 200, match: ['18L'], texto: '18L cobre até 200 m² (rendimento médio documentado) — diluir 20% na 1ª demão.' },
+};
+
+function buildCalcProdutoSelect() {
+  const sel = document.getElementById('calc-produto');
+  const items = Object.keys(RENDIMENTO_DATA)
+    .filter(id => produtosData[id])
+    .map(id => ({ id, nome: displayNome(id, produtosData[id]) }))
+    .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
+  sel.innerHTML = '<option value="">Selecione...</option>' +
+    items.map(o => `<option value="${o.id}">${o.nome}</option>`).join('');
+}
+
+function updateCalcInfo() {
+  const id = document.getElementById('calc-produto').value;
+  const info = document.getElementById('calc-rendimento-info');
+  const data = RENDIMENTO_DATA[id];
+  document.getElementById('calc-resultado').style.display = 'none';
+  if (!data) { info.style.display = 'none'; info.textContent = ''; return; }
+  info.style.display = 'block';
+  info.textContent = 'Rendimento documentado: ' + data.texto;
+}
+
+function calcAdicionarItem() {
+  const id = document.getElementById('calc-produto').value;
+  const data = RENDIMENTO_DATA[id];
+  const metragem = parseFloat(document.getElementById('calc-metragem').value) || 0;
+  const mult = parseFloat(document.getElementById('calc-multiplicador').value) || 1;
+  const resultDiv = document.getElementById('calc-resultado');
+
+  if (!id || !data) { alert('Selecione um produto pra calcular.'); return; }
+  if (metragem <= 0) { alert('Informe a metragem a pintar.'); return; }
+
+  const areaNecessaria = metragem * mult;
+  const qtdEmbalagens = Math.ceil(areaNecessaria / data.rendimento);
+
+  const card = addItemRow();
+  applyProdutoToCard(card, id, data.match);
+  card.querySelector('[data-f="qty"]').value = qtdEmbalagens;
+  recalcRow(card);
+
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = `${metragem} m² × ${mult}× ÷ ${data.rendimento} m² (rendimento) = <strong>${qtdEmbalagens} embalagem(ns)</strong> sugerida(s) da embalagem que tem o rendimento documentado. Item adicionado em "Produtos" abaixo — confira cor/tamanho e ajuste a quantidade antes de gerar o PDF. Lembrete: é uma estimativa, não uma medida exata.`;
+  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  salvarRascunho();
+}
+
 async function initTool() {
-  document.getElementById('addItemBtn').addEventListener('click', addItemRow);
+  document.getElementById('addItemBtn').addEventListener('click', () => { addItemRow(); salvarRascunho(); });
   document.getElementById('genPdfBtn').addEventListener('click', gerarPDF);
+  document.getElementById('waBtn').addEventListener('click', enviarWhatsapp);
+  document.getElementById('calc-produto').addEventListener('change', updateCalcInfo);
+  document.getElementById('calcAddBtn').addEventListener('click', calcAdicionarItem);
   document.getElementById('clearBtn').addEventListener('click', () => {
     if (!confirm('Limpar todos os dados do orçamento?')) return;
     document.getElementById('itemsList').innerHTML = '';
@@ -360,6 +577,11 @@ async function initTool() {
     document.getElementById('f-frete').value = 0;
     document.getElementById('f-desconto').value = 0;
     recalcTotal();
+    orcamentoNumero = null;
+    syncFalhou = false;
+    atualizarNumeroDisplay();
+    try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+    salvarRascunho();
   });
 
   try {
@@ -374,33 +596,215 @@ async function initTool() {
       alert('Não foi possível carregar a lista de produtos automaticamente. Recarregue a página (Ctrl+Shift+R). Se persistir, avise o Kevin.');
     }
   }
-  addItemRow();
+  buildProdutoOptionsList();
+  buildCalcProdutoSelect();
+  if (!restaurarRascunho()) {
+    orcamentoNumero = null;
+    atualizarNumeroDisplay();
+    addItemRow();
+  }
+  document.addEventListener('input', debounce(salvarRascunho, 400));
+  document.addEventListener('change', salvarRascunho);
 }
 
-function addItemRow() {
+// Acha a variante (balde grande, saco 23kg etc.) cujo rótulo bate com o rendimento
+// documentado em RENDIMENTO_DATA — sem isso a calculadora ia assumir sempre a 1ª opção
+// do select, que em vários produtos é a embalagem pequena (ver comentário acima de
+// RENDIMENTO_DATA). Testa cada termo em ordem, primeira ocorrência ganha.
+function pickVarianteIndex(opts, matchList) {
+  if (!matchList) return 0;
+  const terms = Array.isArray(matchList) ? matchList : [matchList];
+  for (const term of terms) {
+    const idx = opts.findIndex(o => o.label.toLowerCase().includes(term.toLowerCase()));
+    if (idx !== -1) return idx;
+  }
+  return 0;
+}
+
+function applyProdutoToCard(card, id, matchList) {
+  const p = produtosData[id];
+  if (!p) return;
+  const combo = card.querySelector('[data-f="produto"]');
+  const produtoInput = combo.querySelector('[data-f="produtoInput"]');
+  const varianteSel = card.querySelector('[data-f="variante"]');
+  const valorInput = card.querySelector('[data-f="valor"]');
+  combo.dataset.value = id;
+  produtoInput.value = displayNome(id, p);
+  const opts = flattenOptions(p);
+  varianteSel.innerHTML = opts.map((o, i) => `<option value="${i}" data-valor="${parsePrice(o.valor)}">${o.label}</option>`).join('');
+  const idx = pickVarianteIndex(opts, matchList);
+  varianteSel.selectedIndex = idx;
+  valorInput.value = opts.length ? parsePrice(opts[idx].valor).toFixed(2) : '';
+  recalcRow(card);
+}
+
+function coletarItemCard(card) {
+  const combo = card.querySelector('[data-f="produto"]');
+  const varianteSel = card.querySelector('[data-f="variante"]');
+  return {
+    produtoId: combo.dataset.value || '',
+    varianteIndex: varianteSel.selectedIndex,
+    qty: card.querySelector('[data-f="qty"]').value,
+    valor: card.querySelector('[data-f="valor"]').value
+  };
+}
+
+function preencherItem(card, saved) {
+  if (saved.produtoId && produtosData[saved.produtoId]) {
+    applyProdutoToCard(card, saved.produtoId);
+    const varianteSel = card.querySelector('[data-f="variante"]');
+    if (saved.varianteIndex != null && varianteSel.options[saved.varianteIndex]) {
+      varianteSel.selectedIndex = saved.varianteIndex;
+    }
+  }
+  if (saved.qty != null && saved.qty !== '') card.querySelector('[data-f="qty"]').value = saved.qty;
+  if (saved.valor != null && saved.valor !== '') card.querySelector('[data-f="valor"]').value = saved.valor;
+  recalcRow(card);
+}
+
+function duplicateItemRow(sourceCard) {
+  const newCard = addItemRow(sourceCard);
+  preencherItem(newCard, coletarItemCard(sourceCard));
+  salvarRascunho();
+}
+
+function salvarRascunho() {
+  const data = {
+    numero: orcamentoNumero,
+    vendedor: document.getElementById('f-vendedor').value,
+    loja: document.getElementById('f-loja').value,
+    cliente: document.getElementById('f-cliente').value,
+    whatsapp: document.getElementById('f-whatsapp').value,
+    endereco: document.getElementById('f-endereco').value,
+    pagamento: document.getElementById('f-pagamento').value,
+    frete: document.getElementById('f-frete').value,
+    desconto: document.getElementById('f-desconto').value,
+    itens: Array.from(document.querySelectorAll('.item-card')).map(coletarItemCard)
+  };
+  try { localStorage.setItem(DRAFT_KEY, JSON.stringify(data)); } catch (e) {}
+}
+
+function restaurarRascunho() {
+  let raw;
+  try { raw = localStorage.getItem(DRAFT_KEY); } catch (e) { return false; }
+  if (!raw) return false;
+  let data;
+  try { data = JSON.parse(raw); } catch (e) { return false; }
+
+  orcamentoNumero = data.numero || null;
+  document.getElementById('f-vendedor').value = data.vendedor || '';
+  document.getElementById('f-loja').value = data.loja || '';
+  document.getElementById('f-cliente').value = data.cliente || '';
+  document.getElementById('f-whatsapp').value = data.whatsapp || '';
+  document.getElementById('f-endereco').value = data.endereco || '';
+  document.getElementById('f-pagamento').value = data.pagamento || 'Pix';
+  document.getElementById('f-frete').value = data.frete || 0;
+  document.getElementById('f-desconto').value = data.desconto || 0;
+
+  document.getElementById('itemsList').innerHTML = '';
+  const itens = data.itens && data.itens.length ? data.itens : [{}];
+  itens.forEach(it => preencherItem(addItemRow(), it));
+
+  atualizarNumeroDisplay();
+  recalcTotal();
+  return true;
+}
+
+function addItemRow(afterCard) {
   const template = document.getElementById('itemTemplate');
   const node = template.content.cloneNode(true);
   const card = node.querySelector('.item-card');
-  const produtoSel = card.querySelector('[data-f="produto"]');
+  const combo = card.querySelector('[data-f="produto"]');
+  const produtoInput = combo.querySelector('[data-f="produtoInput"]');
+  const produtoList = combo.querySelector('[data-f="produtoList"]');
   const varianteSel = card.querySelector('[data-f="variante"]');
   const qtyInput = card.querySelector('[data-f="qty"]');
   const valorInput = card.querySelector('[data-f="valor"]');
 
-  produtoSel.innerHTML = '<option value="">Selecione...</option>' +
-    Object.keys(produtosData)
-      .sort((a, b) => displayNome(a, produtosData[a]).localeCompare(displayNome(b, produtosData[b]), 'pt-BR'))
-      .map(id => `<option value="${id}">${displayNome(id, produtosData[id])}</option>`).join('');
+  let currentMatches = [];
+  let activeIndex = -1;
 
-  produtoSel.addEventListener('change', () => {
-    const p = produtosData[produtoSel.value];
-    const opts = p ? flattenOptions(p) : [];
-    varianteSel.innerHTML = opts.map((o, i) => `<option value="${i}" data-valor="${parsePrice(o.valor)}">${o.label}</option>`).join('');
-    if (opts.length) {
-      valorInput.value = parsePrice(opts[0].valor).toFixed(2);
-    } else {
-      valorInput.value = '';
-    }
+  function highlightMatch(nome, query) {
+    if (!query) return escapeHtml(nome);
+    const idx = normalizeStr(nome).indexOf(normalizeStr(query));
+    if (idx === -1) return escapeHtml(nome);
+    const before = nome.slice(0, idx);
+    const match = nome.slice(idx, idx + query.length);
+    const after = nome.slice(idx + query.length);
+    return `${escapeHtml(before)}<mark>${escapeHtml(match)}</mark>${escapeHtml(after)}`;
+  }
+
+  function updateActive() {
+    produtoList.querySelectorAll('.combo-item').forEach((el, i) => {
+      el.classList.toggle('active', i === activeIndex);
+    });
+    const activeEl = produtoList.querySelector('.combo-item.active');
+    if (activeEl) activeEl.scrollIntoView({ block: 'nearest' });
+  }
+
+  function renderList(query) {
+    const q = normalizeStr(query);
+    currentMatches = q ? produtoOptionsList.filter(o => normalizeStr(o.nome).includes(q)) : produtoOptionsList;
+    activeIndex = -1;
+    produtoList.innerHTML = currentMatches.length
+      ? currentMatches.map((o, i) => `<div class="combo-item" data-idx="${i}">${highlightMatch(o.nome, query)}</div>`).join('')
+      : '<div class="combo-empty">Nenhum produto encontrado</div>';
+    produtoList.classList.add('open');
+  }
+
+  function closeList() {
+    produtoList.classList.remove('open');
+    activeIndex = -1;
+  }
+
+  function selectProduto(id) {
+    applyProdutoToCard(card, id);
+    closeList();
+  }
+
+  produtoInput.addEventListener('focus', () => {
+    if (combo.dataset.value) produtoInput.select();
+    renderList(combo.dataset.value ? '' : produtoInput.value);
+  });
+
+  produtoInput.addEventListener('input', () => {
+    combo.dataset.value = '';
+    varianteSel.innerHTML = '';
+    valorInput.value = '';
     recalcRow(card);
+    renderList(produtoInput.value);
+  });
+
+  produtoInput.addEventListener('keydown', (e) => {
+    if (!produtoList.classList.contains('open')) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') renderList(combo.dataset.value ? '' : produtoInput.value);
+      return;
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      activeIndex = Math.min(activeIndex + 1, currentMatches.length - 1);
+      updateActive();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      activeIndex = Math.max(activeIndex - 1, 0);
+      updateActive();
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      const pick = currentMatches[activeIndex] || currentMatches[0];
+      if (pick) selectProduto(pick.id);
+    } else if (e.key === 'Escape') {
+      closeList();
+    }
+  });
+
+  produtoInput.addEventListener('blur', () => setTimeout(closeList, 150));
+
+  produtoList.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    const item = e.target.closest('.combo-item');
+    if (!item) return;
+    const pick = currentMatches[parseInt(item.dataset.idx, 10)];
+    if (pick) selectProduto(pick.id);
   });
 
   varianteSel.addEventListener('change', () => {
@@ -415,9 +819,20 @@ function addItemRow() {
   card.querySelector('.item-remove').addEventListener('click', () => {
     card.remove();
     recalcTotal();
+    salvarRascunho();
   });
 
-  document.getElementById('itemsList').appendChild(card);
+  card.querySelector('.item-duplicate').addEventListener('click', () => {
+    duplicateItemRow(card);
+  });
+
+  const itemsList = document.getElementById('itemsList');
+  if (afterCard && afterCard.parentNode === itemsList) {
+    itemsList.insertBefore(card, afterCard.nextSibling);
+  } else {
+    itemsList.appendChild(card);
+  }
+  return card;
 }
 
 function recalcRow(card) {
@@ -446,7 +861,28 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
-function gerarPDF() {
+function coletarOrcamento() {
+  const frete = parseFloat(document.getElementById('f-frete').value) || 0;
+  const desconto = parseFloat(document.getElementById('f-desconto').value) || 0;
+  const itens = [];
+  document.querySelectorAll('.item-card').forEach(card => {
+    const combo = card.querySelector('[data-f="produto"]');
+    const varianteSel = card.querySelector('[data-f="variante"]');
+    const qty = parseFloat(card.querySelector('[data-f="qty"]').value) || 0;
+    const valor = parseFloat(card.querySelector('[data-f="valor"]').value) || 0;
+    const p = produtosData[combo.dataset.value];
+    if (!p || qty <= 0) return;
+    const variante = varianteSel.options[varianteSel.selectedIndex] ? varianteSel.options[varianteSel.selectedIndex].textContent : '';
+    itens.push({ nome: displayNome(combo.dataset.value, p), variante, qty, valor, subtotal: qty * valor });
+  });
+  let total = itens.reduce((soma, it) => soma + it.subtotal, 0) + frete - desconto;
+  if (total < 0) total = 0;
+  return { itens, frete, desconto, total };
+}
+
+async function gerarPDF() {
+  await salvarNaPlanilha();
+
   const vendedor = escapeHtml(document.getElementById('f-vendedor').value) || '—';
   const loja = escapeHtml(document.getElementById('f-loja').value) || '—';
   const cliente = escapeHtml(document.getElementById('f-cliente').value) || '—';
@@ -455,36 +891,21 @@ function gerarPDF() {
   const validade = '7';
   const pagamento = escapeHtml(document.getElementById('f-pagamento').value);
   const dataFmt = new Date().toLocaleDateString('pt-BR');
-  const frete = parseFloat(document.getElementById('f-frete').value) || 0;
-  const desconto = parseFloat(document.getElementById('f-desconto').value) || 0;
+  const numero = orcamentoNumero ? String(orcamentoNumero).padStart(3, '0') : 'S/N';
 
-  let total = frete;
-  let rowsHtml = '';
-  document.querySelectorAll('.item-card').forEach(card => {
-    const produtoSel = card.querySelector('[data-f="produto"]');
-    const varianteSel = card.querySelector('[data-f="variante"]');
-    const qty = parseFloat(card.querySelector('[data-f="qty"]').value) || 0;
-    const valor = parseFloat(card.querySelector('[data-f="valor"]').value) || 0;
-    const p = produtosData[produtoSel.value];
-    if (!p || qty <= 0) return;
-    const variante = varianteSel.options[varianteSel.selectedIndex] ? varianteSel.options[varianteSel.selectedIndex].textContent : '';
-    const subtotal = qty * valor;
-    total += subtotal;
-    rowsHtml += `<tr>
-      <td>${escapeHtml(displayNome(produtoSel.value, p))}${variante ? ' — ' + escapeHtml(variante) : ''}</td>
-      <td>${qty}</td>
-      <td>${formatPrice(valor)}</td>
-      <td>${formatPrice(subtotal)}</td>
-    </tr>`;
-  });
+  const { itens, frete, desconto, total } = coletarOrcamento();
+  let rowsHtml = itens.map(it => `<tr>
+      <td>${escapeHtml(it.nome)}${it.variante ? ' — ' + escapeHtml(it.variante) : ''}</td>
+      <td>${it.qty}</td>
+      <td>${formatPrice(it.valor)}</td>
+      <td>${formatPrice(it.subtotal)}</td>
+    </tr>`).join('');
   if (frete > 0) {
     rowsHtml += `<tr><td>Valor do frete</td><td>1</td><td>${formatPrice(frete)}</td><td>${formatPrice(frete)}</td></tr>`;
   }
   if (desconto > 0) {
-    total -= desconto;
     rowsHtml += `<tr><td>Desconto</td><td>—</td><td>—</td><td>-${formatPrice(desconto)}</td></tr>`;
   }
-  if (total < 0) total = 0;
 
   const html = `
     <div class="pdf-page">
@@ -493,7 +914,10 @@ function gerarPDF() {
           <div class="pdf-band-logo">
             <img src="images/logo-branco.png" class="pdf-logo" alt="Tintas Laet">
           </div>
-          <div class="pdf-validade-pill">Válido por ${validade} dias</div>
+          <div class="pdf-validade-group">
+            <div class="pdf-numero-pill">Nº ${numero}</div>
+            <div class="pdf-validade-pill">Válido por ${validade} dias</div>
+          </div>
         </div>
         <div class="pdf-band-title">ORÇAMENTO</div>
       </div>
@@ -523,6 +947,36 @@ function gerarPDF() {
   `;
   document.getElementById('printArea').innerHTML = html;
   window.print();
+}
+
+async function enviarWhatsapp() {
+  const whatsappRaw = document.getElementById('f-whatsapp').value.trim();
+  if (!whatsappRaw) { alert('Preencha o WhatsApp do cliente antes de enviar.'); return; }
+
+  const { itens, frete, desconto, total } = coletarOrcamento();
+  if (!itens.length) { alert('Adicione ao menos um produto antes de enviar.'); return; }
+
+  await salvarNaPlanilha();
+
+  let digits = whatsappRaw.replace(/\D/g, '');
+  if (digits.length <= 11) digits = '55' + digits;
+
+  const cliente = document.getElementById('f-cliente').value.trim() || 'Cliente';
+  const vendedor = document.getElementById('f-vendedor').value || '—';
+  const pagamento = document.getElementById('f-pagamento').value;
+  const numero = orcamentoNumero ? String(orcamentoNumero).padStart(3, '0') : 'S/N';
+
+  let texto = `*Orçamento Nº ${numero} — Tintas Laet*\n`;
+  texto += `Cliente: ${cliente}\nVendedor: ${vendedor}\n\n`;
+  itens.forEach(it => {
+    texto += `• ${it.qty}x ${it.nome}${it.variante ? ' — ' + it.variante : ''} — ${formatPrice(it.subtotal)}\n`;
+  });
+  if (frete > 0) texto += `• Frete — ${formatPrice(frete)}\n`;
+  if (desconto > 0) texto += `• Desconto — -${formatPrice(desconto)}\n`;
+  texto += `\n*Total: ${formatPrice(total)}*\n`;
+  texto += `Pagamento: ${pagamento}\nVálido por 7 dias.`;
+
+  window.open(`https://wa.me/${digits}?text=${encodeURIComponent(texto)}`, '_blank');
 }
 </script>
 
