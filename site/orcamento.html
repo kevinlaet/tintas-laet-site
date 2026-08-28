@@ -556,6 +556,26 @@ function encontrarProdutoSimilar(texto) {
   return melhorScore >= 2 ? melhor : null;
 }
 
+// Escolhe qual variante (tamanho, numeração etc.) bate melhor com o texto
+// lido da foto -- sem isso, todo item lido cairia sempre na 1a opção da
+// lista (ex: sempre "5kg" mesmo quando o pedido diz "saco de 23kg").
+function pickMelhorVariante(opts, textoLido) {
+  if (!textoLido) return 0;
+  const norm = normalizeStr(textoLido);
+  const palavras = norm.split(/\s+/).filter(p => p.length > 1);
+  let melhorIdx = 0;
+  let melhorScore = 0;
+  opts.forEach((o, i) => {
+    const labelNorm = normalizeStr(o.label);
+    let score = 0;
+    palavras.forEach(p => {
+      if (labelNorm.includes(p) || labelNorm.includes(singularizar(p))) score += 1;
+    });
+    if (score > melhorScore) { melhorScore = score; melhorIdx = i; }
+  });
+  return melhorIdx;
+}
+
 function marcarSemMatch(card, textoLido) {
   const produtoInput = card.querySelector('[data-f="produtoInput"]');
   produtoInput.value = textoLido;
@@ -602,9 +622,10 @@ async function processarFotoPedido(file) {
     let semMatch = 0;
     data.itens.forEach(item => {
       const card = addItemRow();
-      const match = encontrarProdutoSimilar(`${item.produto || ''} ${item.observacao || ''}`);
+      const textoCompleto = `${item.produto || ''} ${item.observacao || ''}`;
+      const match = encontrarProdutoSimilar(textoCompleto);
       if (match) {
-        applyProdutoToCard(card, match.id);
+        applyProdutoToCard(card, match.id, textoCompleto);
       } else {
         semMatch++;
         const textoLido = [item.produto, item.observacao].filter(Boolean).join(' — ');
@@ -628,7 +649,7 @@ async function processarFotoPedido(file) {
   }
 }
 
-function applyProdutoToCard(card, id) {
+function applyProdutoToCard(card, id, textoParaVariante) {
   const p = produtosData[id];
   if (!p) return;
   const combo = card.querySelector('[data-f="produto"]');
@@ -639,8 +660,9 @@ function applyProdutoToCard(card, id) {
   produtoInput.value = displayNome(id, p);
   const opts = flattenOptions(p);
   varianteSel.innerHTML = opts.map((o, i) => `<option value="${i}" data-valor="${parsePrice(o.valor)}">${o.label}</option>`).join('');
-  varianteSel.selectedIndex = 0;
-  valorInput.value = opts.length ? parsePrice(opts[0].valor).toFixed(2) : '';
+  const idx = pickMelhorVariante(opts, textoParaVariante);
+  varianteSel.selectedIndex = idx;
+  valorInput.value = opts.length ? parsePrice(opts[idx].valor).toFixed(2) : '';
   recalcRow(card);
 }
 
