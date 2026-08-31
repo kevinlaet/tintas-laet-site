@@ -7,3 +7,14 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[functions."relatorio-diario"]
+  schedule = "0 0 * * *"
