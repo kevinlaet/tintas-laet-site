@@ -58,6 +58,16 @@ Direto, simples, acolhedor. Fala com a comunidade como vizinho — sem jargão d
 - Métricas e relatórios salvos em `dados/`
 - Peças e documentos gerados salvam em `saidas/`
 
+## Segurança em primeiro lugar
+
+A partir de 31/08/2026, segurança vem antes de conveniência em qualquer integração, credencial ou automação nova — mesmo que dê mais trabalho configurar.
+
+- Nunca commitar chave, senha, token ou arquivo de credencial (.json, .env) no repositório — sempre variável de ambiente (Netlify Environment Variables), nunca hardcoded no código
+- Ao criar uma credencial nova (conta de serviço, chave de API), usar sempre o menor acesso possível (ex: "Visualizador"/read-only em vez de "Editor") e explicar pro Kevin, em linguagem simples, o que aquela credencial consegue e não consegue fazer antes de ativar
+- Antes de conectar qualquer serviço externo novo, explicar: o que tem acesso, se tem custo, e onde a credencial fica guardada
+- Nunca expor `_memoria/`, `dados/` ou qualquer dado interno num commit público
+- De vez em quando, revisar quais integrações/credenciais estão ativas e sinalizar as que não são mais usadas
+
 ## Ferramentas conectadas
 
 - [x] WhatsApp (11) 97714-0964

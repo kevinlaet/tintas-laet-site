@@ -9,9 +9,16 @@ exports.handler = async function (event) {
 
   try {
     const data = JSON.parse(event.body || "{}");
-    const nome = (data.nome || "").trim();
-    const contato = (data.contato || "").trim();
-    const mensagem = (data.mensagem || "").trim();
+
+    // Honeypot: campo escondido que só um bot preencheria. Se veio algo, finge
+    // sucesso e não faz nada (não avisar o bot que foi barrado).
+    if ((data.website || "").trim()) {
+      return { statusCode: 200, body: JSON.stringify({ ok: true }) };
+    }
+
+    const nome = (data.nome || "").trim().slice(0, 200);
+    const contato = (data.contato || "").trim().slice(0, 200);
+    const mensagem = (data.mensagem || "").trim().slice(0, 2000);
 
     if (!mensagem) {
       return { statusCode: 400, body: JSON.stringify({ ok: false, erro: "mensagem vazia" }) };

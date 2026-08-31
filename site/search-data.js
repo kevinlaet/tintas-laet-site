@@ -59,7 +59,7 @@ const LAET_SEARCH_INDEX = [
   { id: 'lixa-madeira', nome: 'Lixa de Madeira (Tatu)', categoria: 'Ferramentas' },
   { id: 'fundo-preparador', nome: 'Fundo Preparador', categoria: 'Complementos' },
   { id: 'seladora', nome: 'Seladora', categoria: 'Complementos' },
-  { id: 'liqui-brilho', nome: 'Liqui-brilho', categoria: 'Complementos' },
+  { id: 'liqui-brilho', nome: 'Resina Acqua', categoria: 'Complementos', aliases: ['liqui-brilho', 'liqui brilho'] },
   { id: 'espatula-silicone', nome: 'Espátula de Silicone', categoria: 'Ferramentas' },
   { id: 'espatula-inox-6cm', nome: 'Espátula INOX 6cm', categoria: 'Ferramentas' },
   { id: 'espatula-inox-10cm', nome: 'Espátula INOX 10cm', categoria: 'Ferramentas' },

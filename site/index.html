@@ -10,6 +10,7 @@
     gtag('js', new Date());
     gtag('config', 'G-V8RP9PV579');
   </script>
+  <script src="analytics-events.js" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tintas Laet — A tinta nobre da comunidade</title>
   <meta name="description" content="Tintas e materiais de pintura com os melhores preços do ABC e Zona Leste. Parcelamento em até 12x sem juros, entrega rápida e atendimento humano.">
@@ -276,6 +277,20 @@
     .pickup-desc { font-size: 13px; color: #555; line-height: 1.6; }
     @media (max-width: 560px) { .pickup-box { grid-template-columns: 1fr; } }
 
+    /* ──────── COMO A GENTE AJUDA ──────── */
+    .help-section { background: #fff; }
+    .help-section .section-title { color: var(--blue); }
+    .help-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; }
+    .help-card { background: var(--gray); border-radius: 14px; padding: 26px 20px; text-align: center; border: 1.5px solid transparent; transition: border-color .2s, transform .2s, box-shadow .2s; }
+    .help-card:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: var(--shadow-sm); }
+    .help-icon { width: 52px; height: 52px; border-radius: 14px; background: rgba(13,71,161,.08); display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 14px; }
+    .help-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: var(--graphite); margin-bottom: 8px; }
+    .help-desc { font-size: 12.5px; color: #777; line-height: 1.6; margin-bottom: 14px; }
+    .help-link { display: inline-flex; align-items: center; gap: 5px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: var(--blue); }
+    .help-link:hover { color: var(--blue-mid); }
+    @media (max-width: 768px) { .help-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .help-grid { grid-template-columns: 1fr; } }
+
     /* ──────── POR QUE — SPLIT ──────── */
     .why { background: var(--blue); }
     .why-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
@@ -478,6 +493,7 @@
   <div id="chatPanelContent">
     <form class="chat-panel-body" id="chatForm" onsubmit="return enviarChat(event)">
       <p>Manda sua dúvida ou pedido que a gente te chama no WhatsApp.</p>
+      <input type="text" id="chatWebsite" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
       <input type="text" id="chatNome" placeholder="Seu nome" required>
       <input type="text" id="chatContato" placeholder="Seu WhatsApp" required>
       <textarea id="chatMensagem" rows="3" placeholder="Sua mensagem" required></textarea>
@@ -1076,6 +1092,43 @@
   </div>
 </section>
 
+<!-- COMO A GENTE AJUDA -->
+<section class="section help-section" id="ajuda">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="section-label">Sempre por perto</span>
+      <h2 class="section-title">Como a gente te ajuda</h2>
+      <p class="section-sub">Além do menor preço, facilitamos cada parte da sua compra — antes, durante e depois.</p>
+    </div>
+    <div class="help-grid">
+      <div class="help-card">
+        <div class="help-icon">💬</div>
+        <div class="help-title">Chat aqui no site</div>
+        <div class="help-desc">Clica no balão azul no canto da tela e manda sua dúvida ou pedido, sem sair da página.</div>
+        <a href="javascript:void(0)" class="help-link" onclick="toggleChat()">Abrir chat →</a>
+      </div>
+      <div class="help-card">
+        <div class="help-icon">📱</div>
+        <div class="help-title">WhatsApp direto</div>
+        <div class="help-desc">Atendente de verdade, sem robô. Manda foto da parede que a gente te ajuda a escolher.</div>
+        <a href="https://wa.me/5511977140964?text=Olá! Vim pelo site e quero fazer um pedido." class="help-link" target="_blank" rel="noopener">Chamar no WhatsApp →</a>
+      </div>
+      <div class="help-card">
+        <div class="help-icon">🧾</div>
+        <div class="help-title">Orçamento grátis</div>
+        <div class="help-desc">Conta o tamanho do ambiente e a gente calcula quantidade e preço, sem compromisso.</div>
+        <a href="https://wa.me/5511977140964?text=Olá! Gostaria de um orçamento." class="help-link" target="_blank" rel="noopener">Pedir orçamento →</a>
+      </div>
+      <div class="help-card">
+        <div class="help-icon">🔄</div>
+        <div class="help-title">Troca fácil</div>
+        <div class="help-desc">Não gostou da cor ou veio errado? Nossa política de trocas é simples, sem burocracia.</div>
+        <a href="trocas.html" class="help-link">Ver política de trocas →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="section faq" id="faq">
   <div class="container">
@@ -1365,9 +1418,12 @@
     <div class="footer-bottom">
       <a href="orcamento.html" style="color:rgba(255,255,255,.65);font-size:13px;font-weight:600">👤 Área do vendedor</a>
       <a href="trocas.html" style="color:rgba(255,255,255,.65);font-size:13px;font-weight:600">Política de Trocas</a>
+      <a href="privacidade.html" style="color:rgba(255,255,255,.65);font-size:13px;font-weight:600">Privacidade</a>
+      <a href="termos.html" style="color:rgba(255,255,255,.65);font-size:13px;font-weight:600">Termos de Uso</a>
       <span>© 2026 Tintas Laet — Todos os direitos reservados</span>
       <span>A tinta nobre da comunidade ✦</span>
     </div>
+    <p style="text-align:center;font-size:11px;color:rgba(255,255,255,.35);margin-top:14px;line-height:1.5">Imagens meramente ilustrativas — o produto pode apresentar variações. Alguns textos deste site são gerados com apoio de IA e podem conter erros de digitação.</p>
   </div>
 </footer>
 
@@ -1455,9 +1511,12 @@ function toggleChat() {
 
 async function enviarChat(event) {
   event.preventDefault();
+  const website = document.getElementById('chatWebsite').value;
+  if (website) return false; // honeypot — bot preencheu campo escondido
+
   const nome = document.getElementById('chatNome').value.trim();
   const contato = document.getElementById('chatContato').value.trim();
-  const mensagem = document.getElementById('chatMensagem').value.trim();
+  const mensagem = document.getElementById('chatMensagem').value.trim().slice(0, 2000);
   const erro = document.getElementById('chatError');
   const btn = document.getElementById('chatSubmitBtn');
 
@@ -1469,7 +1528,7 @@ async function enviarChat(event) {
     const res = await fetch('/.netlify/functions/chat-message', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome, contato, mensagem }),
+      body: JSON.stringify({ nome, contato, mensagem, website }),
     });
     const data = await res.json();
     if (!res.ok || !data.ok) throw new Error('falha no envio');
@@ -1480,6 +1539,7 @@ async function enviarChat(event) {
         <p>Mensagem enviada! A Tintas Laet vai te chamar no WhatsApp em breve.</p>
         <a href="https://wa.me/5511977140964" target="_blank" rel="noopener" class="btn btn-blue">Continuar no WhatsApp</a>
       </div>`;
+    if (typeof gtag === 'function') gtag('event', 'gerar_lead', { lead_type: 'chat_site' });
   } catch (err) {
     erro.style.display = 'block';
     btn.disabled = false;

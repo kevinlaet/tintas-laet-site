@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /orcamento.html
+Disallow: /cupom-pdf.html
+
+Sitemap: https://tintaslaet.com/sitemap.xml
