@@ -3,8 +3,6 @@
 // extrair a lista de produtos/quantidades. O navegador nunca ve a chave da API
 // -- ela fica so aqui, na variavel de ambiente GEMINI_API_KEY da Netlify.
 
-const { tokenValido, extrairToken } = require('./lib/auth-utils');
-
 const MODELO = 'gemini-3.6-flash';
 
 const PROMPT = `Você está vendo uma foto de um pedido de tinta feito numa loja — pode ser uma anotação escrita à mão por um vendedor ou um print de uma conversa de WhatsApp com o cliente.
@@ -21,10 +19,6 @@ Regras:
 exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: JSON.stringify({ ok: false, erro: 'method not allowed' }) };
-  }
-
-  if (!tokenValido(extrairToken(event))) {
-    return { statusCode: 401, body: JSON.stringify({ ok: false, erro: 'sessão expirada, faça login de novo' }) };
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
