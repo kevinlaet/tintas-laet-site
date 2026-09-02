@@ -1,8 +1,12 @@
-// Roda uma vez por dia (agendado em netlify.toml) e manda um resumo do que
-// aconteceu no site hoje pro celular do Kevin via ntfy.sh — mesmo mecanismo
-// de netlify/functions/chat-message.js e submission-created.js.
+// Roda uma vez por dia (agendado em netlify.toml) e manda um resumo do dia
+// anterior pro celular do Kevin via ntfy.sh — mesmo mecanismo de
+// netlify/functions/chat-message.js e submission-created.js.
 // Le os dados direto do Google Analytics (GA4 Data API) usando uma service
 // account (ver GA_CLIENT_EMAIL / GA_PRIVATE_KEY / GA_PROPERTY_ID abaixo).
+//
+// Usa "yesterday", nao "today": o relatorio padrao do GA4 (diferente do
+// Tempo Real) tem atraso de processamento de varias horas, entao pedir o
+// dia de hoje as 21h sempre voltava zerado mesmo com gente no site.
 
 const EVENTOS_CUSTOM = ["click_whatsapp", "click_produto", "form_submit", "gerar_lead"];
 
@@ -76,11 +80,11 @@ exports.handler = async function () {
 
     const [geral, eventos, topPagina] = await Promise.all([
       runReport(accessToken, propertyId, {
-        dateRanges: [{ startDate: "today", endDate: "today" }],
+        dateRanges: [{ startDate: "yesterday", endDate: "yesterday" }],
         metrics: [{ name: "activeUsers" }, { name: "sessions" }, { name: "screenPageViews" }],
       }),
       runReport(accessToken, propertyId, {
-        dateRanges: [{ startDate: "today", endDate: "today" }],
+        dateRanges: [{ startDate: "yesterday", endDate: "yesterday" }],
         dimensions: [{ name: "eventName" }],
         metrics: [{ name: "eventCount" }],
         dimensionFilter: {
@@ -88,7 +92,7 @@ exports.handler = async function () {
         },
       }),
       runReport(accessToken, propertyId, {
-        dateRanges: [{ startDate: "today", endDate: "today" }],
+        dateRanges: [{ startDate: "yesterday", endDate: "yesterday" }],
         dimensions: [{ name: "pageTitle" }],
         metrics: [{ name: "screenPageViews" }],
         orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
@@ -107,7 +111,7 @@ exports.handler = async function () {
 
     const pagina = topPagina.rows && topPagina.rows[0]
       ? `${topPagina.rows[0].dimensionValues[0].value} (${topPagina.rows[0].metricValues[0].value} views)`
-      : "sem dados hoje";
+      : "sem dados ontem";
 
     const mensagem = [
       `👥 ${usuarios} usuários ativos | ${sessoes} sessões | ${pageviews} páginas vistas`,
@@ -118,14 +122,14 @@ exports.handler = async function () {
       `✅ Leads gerados: ${contagem.gerar_lead || 0}`,
     ].join("\n");
 
-    await avisar(topic, "📊 Resumo do dia — Tintas Laet", mensagem, ["bar_chart"]);
+    await avisar(topic, "📊 Resumo de ontem — Tintas Laet", mensagem, ["bar_chart"]);
     return { statusCode: 200, body: "ok" };
   } catch (err) {
     console.error("Erro ao gerar relatorio diario:", err);
     await avisar(
       topic,
       "⚠️ Relatório diário falhou",
-      "Não consegui gerar o resumo do site hoje. Confere os logs da função relatorio-diario no Netlify.",
+      "Não consegui gerar o resumo do site de ontem. Confere os logs da função relatorio-diario no Netlify.",
       ["warning"]
     );
     return { statusCode: 200, body: "erro" };
