@@ -7,6 +7,14 @@
 // Usa "yesterday", nao "today": o relatorio padrao do GA4 (diferente do
 // Tempo Real) tem atraso de processamento de varias horas, entao pedir o
 // dia de hoje as 21h sempre voltava zerado mesmo com gente no site.
+//
+// Cada consulta ao GA4 roda isolada (tentarReport) -- se uma falhar (ex: a
+// dimensao customEvent:produto_id nao estiver registrada como dimensao
+// personalizada no GA4), so aquele pedaco do relatorio some, sem derrubar
+// o resto. Importante porque essa function nao da pra testar localmente
+// (chave privada bloqueada pelo classificador de seguranca, e a Netlify
+// recusa invocacao externa direta de scheduled function) -- so da pra
+// confirmar no disparo real das 21h.
 
 const EVENTOS_CUSTOM = ["click_whatsapp", "click_produto", "form_submit", "gerar_lead"];
 
@@ -56,12 +64,37 @@ async function runReport(accessToken, propertyId, body) {
   return data;
 }
 
+// Isola cada consulta -- uma dimensao/metrica invalida (ex: custom dimension
+// nao configurada no GA4) so tira aquele pedaco do relatorio, em vez de
+// derrubar a notificacao inteira.
+async function tentarReport(label, fn) {
+  try {
+    return await fn();
+  } catch (err) {
+    console.error(`Relatorio diario: falha ao buscar "${label}":`, err);
+    return null;
+  }
+}
+
 async function avisar(topic, title, message, tags) {
   await fetch("https://ntfy.sh", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ topic, title, message, tags }),
   });
+}
+
+function formatVariacao(atual, anterior) {
+  const a = parseFloat(atual) || 0;
+  const b = parseFloat(anterior) || 0;
+  if (b === 0) return a > 0 ? " (novo)" : "";
+  const pct = Math.round(((a - b) / b) * 100);
+  return ` (${pct > 0 ? "+" : ""}${pct}% vs anteontem)`;
+}
+
+function formatLista(rows, formatarLinha) {
+  if (!rows || !rows.length) return null;
+  return rows.map((row, i) => `${i + 1}. ${formatarLinha(row)}`).join("\n");
 }
 
 exports.handler = async function () {
@@ -77,50 +110,94 @@ exports.handler = async function () {
 
   try {
     const accessToken = await getAccessToken(clientEmail, privateKey);
+    const metricasGerais = [{ name: "activeUsers" }, { name: "sessions" }, { name: "screenPageViews" }];
 
-    const [geral, eventos, topPagina] = await Promise.all([
-      runReport(accessToken, propertyId, {
+    const [geral, geralAnteontem, eventos, topPaginas, origens, produtosClicados] = await Promise.all([
+      tentarReport("geral (ontem)", () => runReport(accessToken, propertyId, {
         dateRanges: [{ startDate: "yesterday", endDate: "yesterday" }],
-        metrics: [{ name: "activeUsers" }, { name: "sessions" }, { name: "screenPageViews" }],
-      }),
-      runReport(accessToken, propertyId, {
+        metrics: metricasGerais,
+      })),
+      tentarReport("geral (anteontem, pra comparacao)", () => runReport(accessToken, propertyId, {
+        dateRanges: [{ startDate: "2daysAgo", endDate: "2daysAgo" }],
+        metrics: metricasGerais,
+      })),
+      tentarReport("eventos custom", () => runReport(accessToken, propertyId, {
         dateRanges: [{ startDate: "yesterday", endDate: "yesterday" }],
         dimensions: [{ name: "eventName" }],
         metrics: [{ name: "eventCount" }],
         dimensionFilter: {
           filter: { fieldName: "eventName", inListFilter: { values: EVENTOS_CUSTOM } },
         },
-      }),
-      runReport(accessToken, propertyId, {
+      })),
+      tentarReport("top paginas", () => runReport(accessToken, propertyId, {
         dateRanges: [{ startDate: "yesterday", endDate: "yesterday" }],
         dimensions: [{ name: "pageTitle" }],
         metrics: [{ name: "screenPageViews" }],
         orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
-        limit: 1,
-      }),
+        limit: 5,
+      })),
+      tentarReport("origem do trafego", () => runReport(accessToken, propertyId, {
+        dateRanges: [{ startDate: "yesterday", endDate: "yesterday" }],
+        dimensions: [{ name: "sessionSourceMedium" }],
+        metrics: [{ name: "sessions" }],
+        orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
+        limit: 5,
+      })),
+      tentarReport("produto clicado", () => runReport(accessToken, propertyId, {
+        dateRanges: [{ startDate: "yesterday", endDate: "yesterday" }],
+        dimensions: [{ name: "customEvent:produto_id" }],
+        metrics: [{ name: "eventCount" }],
+        dimensionFilter: {
+          filter: { fieldName: "eventName", stringFilter: { value: "click_produto" } },
+        },
+        orderBys: [{ metric: { metricName: "eventCount" }, desc: true }],
+        limit: 5,
+      })),
     ]);
 
-    const [usuarios, sessoes, pageviews] = geral.rows && geral.rows[0]
+    const [usuarios, sessoes, pageviews] = geral && geral.rows && geral.rows[0]
       ? geral.rows[0].metricValues.map((m) => m.value)
       : ["0", "0", "0"];
+    const [usuariosAntes, sessoesAntes, pageviewsAntes] = geralAnteontem && geralAnteontem.rows && geralAnteontem.rows[0]
+      ? geralAnteontem.rows[0].metricValues.map((m) => m.value)
+      : [null, null, null];
 
     const contagem = {};
-    (eventos.rows || []).forEach((row) => {
+    ((eventos && eventos.rows) || []).forEach((row) => {
       contagem[row.dimensionValues[0].value] = row.metricValues[0].value;
     });
 
-    const pagina = topPagina.rows && topPagina.rows[0]
-      ? `${topPagina.rows[0].dimensionValues[0].value} (${topPagina.rows[0].metricValues[0].value} views)`
-      : "sem dados ontem";
+    const linhaGeral = usuariosAntes !== null
+      ? `👥 ${usuarios} usuários ativos${formatVariacao(usuarios, usuariosAntes)} | ${sessoes} sessões${formatVariacao(sessoes, sessoesAntes)} | ${pageviews} páginas vistas${formatVariacao(pageviews, pageviewsAntes)}`
+      : `👥 ${usuarios} usuários ativos | ${sessoes} sessões | ${pageviews} páginas vistas`;
 
-    const mensagem = [
-      `👥 ${usuarios} usuários ativos | ${sessoes} sessões | ${pageviews} páginas vistas`,
-      `📄 Página mais vista: ${pagina}`,
-      `💬 Cliques no WhatsApp: ${contagem.click_whatsapp || 0}`,
-      `🛒 Cliques em produto: ${contagem.click_produto || 0}`,
-      `📝 Formulários enviados: ${contagem.form_submit || 0}`,
-      `✅ Leads gerados: ${contagem.gerar_lead || 0}`,
-    ].join("\n");
+    const listaPaginas = formatLista(topPaginas && topPaginas.rows, (row) =>
+      `${row.dimensionValues[0].value} (${row.metricValues[0].value} views)`
+    );
+
+    const listaOrigens = formatLista(origens && origens.rows, (row) =>
+      `${row.dimensionValues[0].value} — ${row.metricValues[0].value} sessões`
+    );
+
+    const listaProdutos = formatLista(produtosClicados && produtosClicados.rows, (row) =>
+      `${row.dimensionValues[0].value} — ${row.metricValues[0].value}`
+    );
+
+    const partes = [linhaGeral];
+
+    if (listaPaginas) partes.push(`📄 Páginas mais vistas:\n${listaPaginas}`);
+    if (listaOrigens) partes.push(`🔀 De onde veio o tráfego:\n${listaOrigens}`);
+
+    partes.push(`💬 Cliques no WhatsApp: ${contagem.click_whatsapp || 0}`);
+    partes.push(
+      listaProdutos
+        ? `🛒 Cliques em produto: ${contagem.click_produto || 0}\n${listaProdutos}`
+        : `🛒 Cliques em produto: ${contagem.click_produto || 0}`
+    );
+    partes.push(`📝 Formulários enviados: ${contagem.form_submit || 0}`);
+    partes.push(`✅ Leads gerados: ${contagem.gerar_lead || 0}`);
+
+    const mensagem = partes.join("\n\n");
 
     await avisar(topic, "📊 Resumo de ontem — Tintas Laet", mensagem, ["bar_chart"]);
     return { statusCode: 200, body: "ok" };
