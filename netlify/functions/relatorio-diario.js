@@ -18,6 +18,39 @@
 
 const EVENTOS_CUSTOM = ["click_whatsapp", "click_produto", "form_submit", "gerar_lead"];
 
+let PRODUTOS_POR_ID = null;
+function nomeDoProduto(id) {
+  if (!PRODUTOS_POR_ID) {
+    PRODUTOS_POR_ID = {};
+    try {
+      require("../../site/search-data.js").forEach((p) => { PRODUTOS_POR_ID[p.id] = p.nome; });
+    } catch (err) {
+      console.error("Relatorio diario: nao consegui carregar site/search-data.js:", err);
+    }
+  }
+  return PRODUTOS_POR_ID[id] || id;
+}
+
+// Traduz o valor cru do GA4 (ex: "instagram / bio", "(direct) / (none)")
+// pra uma descricao que qualquer pessoa entende de primeira.
+const ORIGENS_CONHECIDAS = {
+  "(direct) / (none)": "Direto (sem origem)",
+  "google / organic": "Busca no Google",
+  "instagram / bio": "Instagram (bio)",
+  "instagram / story": "Instagram (story)",
+  "whatsapp / status": "WhatsApp (Status)",
+  "facebook / post": "Facebook (post)",
+  "ig / social": "Instagram",
+  "l.instagram.com / referral": "Instagram (link)",
+  "facebook.com / referral": "Facebook (link)",
+  "m.facebook.com / referral": "Facebook (link)",
+  "l.wl.co / referral": "WhatsApp (link)",
+};
+function nomeDaOrigem(sourceMedium) {
+  if (ORIGENS_CONHECIDAS[sourceMedium]) return ORIGENS_CONHECIDAS[sourceMedium];
+  return sourceMedium.replace(/ \/ referral$/, " (link externo)").replace(/ \/ /g, " — ");
+}
+
 function base64url(input) {
   const buf = Buffer.isBuffer(input) ? input : Buffer.from(input);
   return buf.toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
@@ -168,34 +201,36 @@ exports.handler = async function () {
     });
 
     const linhaGeral = usuariosAntes !== null
-      ? `👥 ${usuarios} usuários ativos${formatVariacao(usuarios, usuariosAntes)} | ${sessoes} sessões${formatVariacao(sessoes, sessoesAntes)} | ${pageviews} páginas vistas${formatVariacao(pageviews, pageviewsAntes)}`
-      : `👥 ${usuarios} usuários ativos | ${sessoes} sessões | ${pageviews} páginas vistas`;
+      ? `${usuarios} visitantes${formatVariacao(usuarios, usuariosAntes)}\n${sessoes} visitas${formatVariacao(sessoes, sessoesAntes)} · ${pageviews} páginas vistas${formatVariacao(pageviews, pageviewsAntes)}`
+      : `${usuarios} visitantes\n${sessoes} visitas · ${pageviews} páginas vistas`;
 
     const listaPaginas = formatLista(topPaginas && topPaginas.rows, (row) =>
-      `${row.dimensionValues[0].value} (${row.metricValues[0].value} views)`
+      `${row.dimensionValues[0].value} — ${row.metricValues[0].value} visualizações`
     );
 
     const listaOrigens = formatLista(origens && origens.rows, (row) =>
-      `${row.dimensionValues[0].value} — ${row.metricValues[0].value} sessões`
+      `${nomeDaOrigem(row.dimensionValues[0].value)} — ${row.metricValues[0].value} visitas`
     );
 
     const listaProdutos = formatLista(produtosClicados && produtosClicados.rows, (row) =>
-      `${row.dimensionValues[0].value} — ${row.metricValues[0].value}`
+      `${nomeDoProduto(row.dimensionValues[0].value)} — ${row.metricValues[0].value} cliques`
     );
 
     const partes = [linhaGeral];
 
-    if (listaPaginas) partes.push(`📄 Páginas mais vistas:\n${listaPaginas}`);
-    if (listaOrigens) partes.push(`🔀 De onde veio o tráfego:\n${listaOrigens}`);
-
-    partes.push(`💬 Cliques no WhatsApp: ${contagem.click_whatsapp || 0}`);
     partes.push(
-      listaProdutos
-        ? `🛒 Cliques em produto: ${contagem.click_produto || 0}\n${listaProdutos}`
-        : `🛒 Cliques em produto: ${contagem.click_produto || 0}`
+      [
+        "RESULTADOS DO DIA",
+        `💬 ${contagem.click_whatsapp || 0} cliques no WhatsApp`,
+        `🛒 ${contagem.click_produto || 0} cliques em produto`,
+        `📝 ${contagem.form_submit || 0} formulários enviados`,
+        `✅ ${contagem.gerar_lead || 0} leads gerados`,
+      ].join("\n")
     );
-    partes.push(`📝 Formulários enviados: ${contagem.form_submit || 0}`);
-    partes.push(`✅ Leads gerados: ${contagem.gerar_lead || 0}`);
+
+    if (listaProdutos) partes.push(`PRODUTOS MAIS CLICADOS\n${listaProdutos}`);
+    if (listaPaginas) partes.push(`PÁGINAS MAIS VISTAS\n${listaPaginas}`);
+    if (listaOrigens) partes.push(`DE ONDE VIERAM OS VISITANTES\n${listaOrigens}`);
 
     const mensagem = partes.join("\n\n");
 

@@ -67,3 +67,7 @@ const LAET_SEARCH_INDEX = [
   { id: 'espatula-aco-10cm', nome: 'Espátula Aço 10cm', categoria: 'Ferramentas' },
   { id: 'esmalte-ecologico', nome: 'Tinta Esmalte Ecológico Base Água', categoria: 'Esmaltes' },
 ];
+
+// Permite usar esse mesmo arquivo via require() no Node (funcoes do Netlify),
+// sem afetar o uso normal via <script> no navegador.
+if (typeof module !== 'undefined') module.exports = LAET_SEARCH_INDEX;

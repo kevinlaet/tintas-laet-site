@@ -18,3 +18,4 @@
 
 [functions."relatorio-diario"]
   schedule = "0 0 * * *"
+  included_files = ["site/search-data.js"]
