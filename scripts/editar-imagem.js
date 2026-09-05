@@ -1,3 +1,17 @@
+// O fetch nativo do Node 22 ignora HTTPS_PROXY: a requisição sai por fora do
+// proxy e, numa sessão de nuvem, perde a credencial que o proxy anexaria — o
+// erro que aparece é "Host not in allowlist". A flag que corrige isso só vale
+// se estiver setada na partida do processo, então reexecutamos com ela quando
+// há proxy configurado. Na máquina local não há HTTPS_PROXY e isso não roda.
+if (!process.env.NODE_USE_ENV_PROXY && (process.env.HTTPS_PROXY || process.env.https_proxy)) {
+  const { spawnSync } = require('child_process');
+  const { status } = spawnSync(process.execPath, [__filename, ...process.argv.slice(2)], {
+    stdio: 'inherit',
+    env: { ...process.env, NODE_USE_ENV_PROXY: '1' },
+  });
+  process.exit(status ?? 1);
+}
+
 const fs = require('fs');
 const path = require('path');
 
