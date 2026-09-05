@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700;800;900&family=Poppins:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  body { margin: 0; background: #060F24; }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+
+<!-- SLIDE 2: 6 LOJAS — 1080×1350 -->
+<div style="width:1080px;height:1350px;background:#060F24;position:relative;overflow:hidden;font-family:'Poppins',sans-serif;">
+
+  <!-- Grade sutil -->
+  <div style="position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);
+    background-size:80px 80px;"></div>
+
+  <!-- Barra topo -->
+  <div style="position:absolute;top:0;left:0;right:0;height:8px;background:#FFC107;z-index:10;"></div>
+
+  <!-- HEADER -->
+  <div style="position:absolute;top:24px;left:0;right:0;z-index:5;padding:0 70px 22px;
+    display:flex;align-items:center;justify-content:space-between;
+    border-bottom:1px solid rgba(255,193,7,.15);padding-top:8px;">
+    <img src="logo-branco.png" alt="Tintas Laet" style="height:68px;object-fit:contain;">
+    <span style="font-family:'Poppins',sans-serif;font-weight:600;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.32);">CRESCENDO COM VOCÊS</span>
+  </div>
+
+  <!-- HEADLINE -->
+  <div style="position:absolute;top:132px;left:70px;z-index:5;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+      <div style="width:36px;height:3px;background:#FFC107;"></div>
+      <span style="font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#FFC107;">Nossa rede</span>
+    </div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:130px;line-height:.88;color:#fff;letter-spacing:.01em;">6 LOJAS</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:.9;color:#FFC107;margin-top:4px;">NA REGIÃO</div>
+    <p style="font-size:15px;font-weight:500;color:rgba(255,255,255,.45);margin:10px 0 0;line-height:1.4;">ABC e Zona Leste — cada vez mais perto de você.</p>
+  </div>
+
+  <!-- GRADE DE LOJAS -->
+  <div style="position:absolute;top:380px;left:70px;right:70px;bottom:80px;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:12px;z-index:5;">
+
+    <!-- Loja 01 -->
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:22px 20px 18px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;">
+      <div style="position:absolute;right:8px;top:-12px;font-family:'Bebas Neue',sans-serif;font-size:90px;line-height:1;color:rgba(255,255,255,.04);pointer-events:none;">01</div>
+      <span style="font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#FFC107;margin-bottom:5px;">Loja 01</span>
+      <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#fff;line-height:1.2;">Sapopemba</span>
+      <span style="font-size:12px;color:rgba(255,255,255,.38);margin-top:3px;">Vila Bela · São Paulo</span>
+    </div>
+
+    <!-- Loja 02 -->
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:22px 20px 18px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;">
+      <div style="position:absolute;right:8px;top:-12px;font-family:'Bebas Neue',sans-serif;font-size:90px;line-height:1;color:rgba(255,255,255,.04);pointer-events:none;">02</div>
+      <span style="font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#FFC107;margin-bottom:5px;">Loja 02</span>
+      <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#fff;line-height:1.2;">Jd. São João</span>
+      <span style="font-size:12px;color:rgba(255,255,255,.38);margin-top:3px;">Mauá · SP</span>
+    </div>
+
+    <!-- Loja 03 -->
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:22px 20px 18px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;">
+      <div style="position:absolute;right:8px;top:-12px;font-family:'Bebas Neue',sans-serif;font-size:90px;line-height:1;color:rgba(255,255,255,.04);pointer-events:none;">03</div>
+      <span style="font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#FFC107;margin-bottom:5px;">Loja 03</span>
+      <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#fff;line-height:1.2;">Av. Ayrton Senna</span>
+      <span style="font-size:12px;color:rgba(255,255,255,.38);margin-top:3px;">Mauá · SP</span>
+    </div>
+
+    <!-- Loja 04 -->
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:22px 20px 18px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;">
+      <div style="position:absolute;right:8px;top:-12px;font-family:'Bebas Neue',sans-serif;font-size:90px;line-height:1;color:rgba(255,255,255,.04);pointer-events:none;">04</div>
+      <span style="font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#FFC107;margin-bottom:5px;">Loja 04</span>
+      <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#fff;line-height:1.2;">Vila Luzita</span>
+      <span style="font-size:12px;color:rgba(255,255,255,.38);margin-top:3px;">Santo André · SP</span>
+    </div>
+
+    <!-- Loja 05 -->
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:22px 20px 18px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;">
+      <div style="position:absolute;right:8px;top:-12px;font-family:'Bebas Neue',sans-serif;font-size:90px;line-height:1;color:rgba(255,255,255,.04);pointer-events:none;">05</div>
+      <span style="font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#FFC107;margin-bottom:5px;">Loja 05</span>
+      <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#fff;line-height:1.2;">Itapark</span>
+      <span style="font-size:12px;color:rgba(255,255,255,.38);margin-top:3px;">Mauá · SP</span>
+    </div>
+
+    <!-- Loja 06 — NOVA (destaque festivo) -->
+    <div style="background:#FFC107;border-radius:12px;padding:22px 20px 18px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;">
+      <!-- Número fantasma -->
+      <div style="position:absolute;right:6px;top:-14px;font-family:'Bebas Neue',sans-serif;font-size:90px;line-height:1;color:rgba(6,43,99,.1);pointer-events:none;">06</div>
+      <!-- Padrão diagonal -->
+      <div style="position:absolute;inset:0;pointer-events:none;
+        background-image:repeating-linear-gradient(-45deg,rgba(6,43,99,.05) 0,rgba(6,43,99,.05) 1px,transparent 1px,transparent 9px);"></div>
+      <!-- Badge NOVA -->
+      <div style="position:absolute;top:14px;left:14px;background:#062B63;border-radius:4px;padding:3px 9px;font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#FFC107;z-index:1;">NOVA</div>
+      <span style="font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(6,43,99,.55);margin-bottom:5px;position:relative;z-index:1;">Loja 06</span>
+      <span style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:22px;color:#062B63;line-height:1.2;position:relative;z-index:1;">Em breve!</span>
+      <span style="font-size:11px;color:rgba(6,43,99,.5);margin-top:3px;font-weight:600;position:relative;z-index:1;">Local a revelar</span>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div style="position:absolute;bottom:0;left:70px;right:70px;z-index:5;padding:14px 0;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;">
+    <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,.28);">Preço de amigo · 12x sem juros</span>
+    <span style="font-size:12px;font-weight:700;color:#FFC107;">@Tintaslaet</span>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
