@@ -20,17 +20,18 @@ if (!['1024x1536', '1536x1024', '1024x1024'].includes(size)) {
   process.exit(1);
 }
 
+// Na máquina local a chave vem do .env. Numa sessão de nuvem ela pode estar
+// cadastrada como API credential do ambiente — aí o proxy da Anthropic anexa o
+// Authorization depois que a requisição sai da VM, e a chave nunca chega aqui.
+// Sem chave no ambiente, mandamos sem o header e deixamos o proxy resolver.
 const apiKey = process.env.OPENAI_API_KEY;
-if (!apiKey) {
-  console.error('OPENAI_API_KEY não encontrada. Adicione no .env na raiz do projeto (Tintas Laet OS/.env).');
-  process.exit(1);
-}
+const authHeaders = apiKey ? { Authorization: `Bearer ${apiKey}` } : {};
 
 (async () => {
   const response = await fetch('https://api.openai.com/v1/images/generations', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${apiKey}`,
+      ...authHeaders,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
