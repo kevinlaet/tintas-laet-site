@@ -106,6 +106,7 @@ Cards de ícone em fundo sólido sem foto (como o slide de bullets claro que foi
 - **Mascote principal:** `identidade/mascote alta qualidade-remove-bg-io.png`
 - **Mascote com cupom:** `marketing/banco-de-midia/mascote-com-cupom-gigante.png`
 - **Onde usar:** slide final de carrossel (CTA), header de propostas, posts institucionais
+- **Ícone do site (favicon):** `site/images/favicon-16/32/180/512.png` — recorte só do leque colorido do logo (sem o texto "TINTAS LAET", ilegível em tamanho de aba de navegador). Gerado a partir de `site/images/logo-azul.png` via crop em Playwright/canvas.
 - **Tamanho mínimo (atualizado):** o logo estava saindo pequeno demais nas peças — aumentar em pelo menos 50% sobre o padrão antigo (120–200px de largura / ~180px de altura) a partir de agora:
   - Carrossel/post (1080px largura): altura mínima de **270px**
   - Stories — dois modos consolidados:
