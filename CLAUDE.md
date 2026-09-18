@@ -102,6 +102,8 @@ Antes de executar qualquer tarefa, verificar se existe skill relevante em `.clau
 Ao concluir uma tarefa que não tinha skill mas parece repetível, perguntar:
 > "Isso pode virar uma skill pra próxima vez. Quer que eu crie?"
 
+**Antes de dizer que algo não dá pra fazer** (a partir de 18/09/2026): verificar TODAS as formas possíveis de fazer — outra biblioteca, outra API, outro caminho de arquitetura, outro serviço, contornar a limitação em vez de aceitar ela de cara — antes de responder que não dá. Só concluir que não dá depois de esgotar as alternativas razoáveis, e nesse caso explicar o que foi checado.
+
 ---
 
 ## Aprender com correções
