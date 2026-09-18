@@ -74,6 +74,10 @@ A partir de 31/08/2026, segurança vem antes de conveniência em qualquer integr
 - Nunca expor `_memoria/`, `dados/` ou qualquer dado interno num commit público
 - De vez em quando, revisar quais integrações/credenciais estão ativas e sinalizar as que não são mais usadas
 
+**Estratégia completa (mapa de ameaças, achados de auditoria, protocolo de alerta, resposta a incidente):** `_memoria/seguranca.md` — arquivo confidencial, nunca publicar nenhum trecho dele. Ler antes de mexer em qualquer credencial, endpoint público (`netlify/functions/`) ou dado de cliente.
+
+**Alerta proativo (desde 18/09/2026):** sempre que uma alteração, edição, código novo ou integração criar ou revelar uma vulnerabilidade de segurança, avisar o Kevin na hora e de forma clara — o que é o risco, onde está, o que pode acontecer, e pelo menos uma solução concreta. Nunca esperar ele perguntar, nunca guardar o achado só pra memória.
+
 ## Ferramentas conectadas
 
 - [x] WhatsApp (11) 97714-0964
