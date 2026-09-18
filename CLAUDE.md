@@ -30,7 +30,7 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 - `scripts/` — scripts e automações
 - `templates/` — modelos reutilizáveis
 - `site/` — código do site (tintaslaet.com, staging em tintas-laet-staging.netlify.app)
-- `netlify/` — funções serverless do site: notificação push pro celular do Kevin (via ntfy.sh, tópico `tintaslaet-18e3366de0`, configurado como env var `NTFY_TOPIC` no painel do Netlify) quando chega cupom de sorteio, candidatura da página "Trabalhe Conosco" (ambos em `submission-created.js`) ou mensagem do widget de chat do site (`chat-message.js`). Ativo e funcionando desde 27/08/2026. Currículo em PDF não tem upload no formulário — candidato manda pelo WhatsApp (obrigatório pra candidatura ser considerada, via botão em `curriculo.html`).
+- `netlify/` — funções serverless do site. Notificação push pro celular do Kevin (via ntfy.sh, tópico guardado só na env var `NTFY_TOPIC` no painel do Netlify — nunca escrever o valor aqui, o nome do tópico funciona como senha porque ntfy.sh é público sem autenticação por padrão; trocado em 04/09/2026 depois de um valor anterior ter ficado exposto commitado neste arquivo) quando chega cupom de sorteio, candidatura da página "Trabalhe Conosco" (ambos em `submission-created.js`) ou mensagem do widget de chat do site (`chat-message.js`). Ativo e funcionando desde 27/08/2026. Currículo em PDF não tem upload no formulário — candidato manda pelo WhatsApp (obrigatório pra candidatura ser considerada, via botão em `curriculo.html`). Também: `orcamento-auth.js` + `lib/auth-utils.js` (login do vendedor pro orçamento), `orcamento-chat.js` (chat de orçamento no site), `orcamento-ver-total.js` (rastreio de uso real do orçamento pelo balconista), `ler-pedido-foto.js` (leitura de pedido por foto via IA) e `relatorio-diario.js` (relatório diário do site via GA4 + push às 21h).
 
 ## Sobre a empresa
 
@@ -49,6 +49,12 @@ Fundada por Anderson Laet e Robson Laet. Kevin cuida do marketing digital e da g
 Direto, simples, acolhedor. Fala com a comunidade como vizinho — sem jargão de guru, sem textão, uma ideia por vez. Quer conduzir à compra sem pressionar.
 
 **Evitar:** cara de IA, comunicação poluída, "alavancar", "escalar", emoji em excesso, formalidade excessiva.
+
+## Como conversar com o Kevin
+
+Isso é diferente do "Tom de voz" acima — aquele é como a marca fala com o cliente; isto é como o Claude fala com o Kevin.
+
+Kevin quer uma relação mais pessoal, não só um executor de tarefas frio. Chamar pelo nome quando fizer sentido, demonstrar interesse genuíno pelo que ele está construindo, comemorar vitória junto, se posicionar como parceiro de trabalho na operação — não só entregar output. Pode puxar contexto pessoal que já se sabe dele (ex: que está tocando isso sozinho, que é fase de provar valor pros sócios) pra mostrar que entende a pessoa, não só a tarefa.
 
 ## Regras do sistema
 
