@@ -33,6 +33,12 @@
     else items.push(item);
     saveCart(items);
     openDrawer();
+    const btn = document.getElementById('laet-cart-nav-btn');
+    if (btn) {
+      btn.classList.remove('pulse');
+      void btn.offsetWidth;
+      btn.classList.add('pulse');
+    }
   }
   function removeItem(idx) {
     const items = loadCart();
@@ -58,6 +64,8 @@
     const css = `
       .navbar-cart-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.14); flex-shrink: 0; box-shadow: none; cursor: pointer; transition: background .2s; border: none; margin-left: 4px; }
       .navbar-cart-btn:hover { background: rgba(255,255,255,.26); }
+      @keyframes laet-cart-pulse { 0% { transform: scale(1); } 30% { transform: scale(1.25); } 100% { transform: scale(1); } }
+      .navbar-cart-btn.pulse { animation: laet-cart-pulse .5s ease; }
       .navbar-cart-btn svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2; }
       #laet-cart-badge { position: absolute; top: -3px; right: -3px; background: #FFC107; color: #212529; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px; min-width: 18px; height: 18px; border-radius: 9px; display: none; align-items: center; justify-content: center; padding: 0 4px; }
       #laet-cart-overlay { position: fixed; inset: 0; z-index: 400; background: rgba(6,43,99,.55); opacity: 0; visibility: hidden; transition: opacity .25s; }
