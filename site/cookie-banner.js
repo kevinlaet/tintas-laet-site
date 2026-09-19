@@ -22,7 +22,7 @@
   var aviso = document.createElement("div");
   aviso.id = "aviso-cookies";
   aviso.innerHTML =
-    '<p>🍪 Usamos cookies do Google Analytics pra entender como você usa o site. ' +
+    '<p>🍪 Este site usa cookies para funcionar melhor. ' +
     'Ver mais na <a href="/privacidade.html">Política de Privacidade</a>.</p>' +
     "<button type=\"button\">Entendi</button>";
   document.body.appendChild(aviso);
