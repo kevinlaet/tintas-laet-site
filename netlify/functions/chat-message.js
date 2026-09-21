@@ -2,6 +2,8 @@
 // depender de Netlify Forms) e repassa pra notificacao push do Kevin via
 // ntfy.sh — mesmo mecanismo do netlify/functions/submission-created.js.
 
+const { registrarMensagemSite } = require("./lib/supabase");
+
 exports.handler = async function (event) {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "method not allowed" };
@@ -22,6 +24,15 @@ exports.handler = async function (event) {
 
     if (!mensagem) {
       return { statusCode: 400, body: JSON.stringify({ ok: false, erro: "mensagem vazia" }) };
+    }
+
+    // Registra a mensagem pro painel conseguir avisar "ainda sem resposta" —
+    // best-effort: se o Supabase falhar, a notificação push abaixo continua
+    // funcionando normal (é o canal que já existia e sempre funcionou).
+    try {
+      await registrarMensagemSite({ tipo: "chat", nome, contato, mensagem });
+    } catch (err) {
+      console.error("chat-message: falha ao registrar no Supabase (notificação segue normal):", err.message);
     }
 
     const topic = process.env.NTFY_TOPIC;

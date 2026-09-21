@@ -2,6 +2,8 @@
 // (convencao de nome: "submission-created"). Aqui formatamos os dados e
 // repassamos pra notificacao push do Kevin via ntfy.sh.
 
+const { registrarMensagemSite } = require("./lib/supabase");
+
 exports.handler = async function (event) {
   try {
     const body = JSON.parse(event.body || "{}");
@@ -30,6 +32,19 @@ exports.handler = async function (event) {
         data.experiencia ? `Experiência: ${data.experiencia}` : null,
         data.link_curriculo ? `Currículo/LinkedIn: ${data.link_curriculo}` : null,
       ].filter(Boolean).join("\n");
+
+      // Registra pro painel conseguir avisar "ainda sem resposta" — best-effort,
+      // não pode derrubar a notificação push que já funciona hoje.
+      try {
+        await registrarMensagemSite({
+          tipo: "trabalhe-conosco",
+          nome: data.nome,
+          contato: data.whatsapp,
+          mensagem: linhas,
+        });
+      } catch (err) {
+        console.error("submission-created: falha ao registrar no Supabase (notificação segue normal):", err.message);
+      }
 
       await fetch("https://ntfy.sh", {
         method: "POST",
