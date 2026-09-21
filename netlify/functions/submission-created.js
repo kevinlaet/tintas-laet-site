@@ -84,6 +84,20 @@ exports.handler = async function (event) {
       amigosTexto ? `Amigos indicados:${amigosTexto}` : null,
     ].filter(Boolean).join("\n");
 
+    // Cupom não precisa de "resposta" (não é card de aviso no painel), mas
+    // fica salvo pra você conseguir ver a lista de participantes lá também,
+    // sem precisar abrir o Netlify Forms.
+    try {
+      await registrarMensagemSite({
+        tipo: "cupom-sorteio",
+        nome: data.nome,
+        contato: data.whatsapp,
+        mensagem: linhas,
+      });
+    } catch (err) {
+      console.error("submission-created: falha ao registrar cupom no Supabase (notificação segue normal):", err.message);
+    }
+
     await fetch("https://ntfy.sh", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
