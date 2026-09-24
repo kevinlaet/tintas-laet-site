@@ -4,6 +4,9 @@
 // separado. Preço da cor = preço da BASE do produto (no tamanho) + preço
 // do POTE de pigmento daquela cor (no mesmo tamanho).
 //
+// Todo preço final termina em ,90: se a soma der outro centavo
+// (ex: 64,90 + 9,90 = 74,80), sobe pro próximo ,90 (74,90).
+//
 // Pra atualizar preço: muda o valor aqui e roda
 //   node scripts/precos-cores/atualizar.js          (só mostra o que muda)
 //   node scripts/precos-cores/atualizar.js --aplicar (grava no site)
@@ -21,7 +24,7 @@ const bases = {
   // Cimento Queimado: no site, "balde" = saco de 5kg e "galao" = saco de 20kg.
   'efeito-cimento-queimado': { balde: 64.90, galao: 199.90 },
   // Vinil: preço único pras cores (18L), não é por cor — ver SKILL.md.
-  'latex-vinil':             { balde: 79.90 },
+  'latex-vinil':             { balde: 80.00 },
   'piso-fachada':            null, // base desconhecida (?)
 };
 

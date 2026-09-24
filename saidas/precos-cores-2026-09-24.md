@@ -1,6 +1,6 @@
 # Preços por cor — antes → agora (24/09/2026)
 
-Regra nova: **preço da cor = base + pote de pigmento**.
+Regra: **preço da cor = base + pote de pigmento**, sempre terminando em **,90** (se a soma der outro centavo, sobe pro próximo ,90).
 
 | Produto | Base BD | Base GL | Base PT |
 |---|---|---|---|
@@ -9,7 +9,7 @@ Regra nova: **preço da cor = base + pote de pigmento**.
 | Emborrachada | R$ 399,90 | R$ 99,90 | — |
 | Esmalte | R$ 399,90 | R$ 89,90 | R$ 29,90 |
 | Cimento Queimado | R$ 199,90 (20kg) | R$ 64,90 (5kg) | — |
-| Vinil (cores 18L) | R$ 79,90 + 19,90 = **R$ 99,80** | | |
+| Vinil (cores 18L) | R$ 80,00 + 19,90 = **R$ 99,90** | | |
 
 Removidas de Standard, Premium e Emborrachada: **Cinza, Chumbo e Preto**.
 
@@ -525,37 +525,36 @@ Removidas de Standard, Premium e Emborrachada: **Cinza, Chumbo e Preto**.
 | Escuridão | Galão | R$ 119,99 | R$ 119,90 | −0,09 |
 | Escuridão | Pote | R$ 44,99 | R$ 44,90 | −0,09 |
 
-## Cimento Queimado (29 sobem, 1 descem)
+## Cimento Queimado (29 sobem, 0 descem)
 
 | Cor | Tamanho | Antes | Agora | Diferença |
 |---|---|---|---|---|
-| Rosé | 5kg | R$ 69,90 | R$ 74,80 | +4,90 |
-| Rosé | 20kg | R$ 199,90 | R$ 219,80 | +19,90 |
-| Amarelo Laet 2 | 5kg | R$ 69,90 | R$ 74,80 | +4,90 |
-| Amarelo Laet 2 | 20kg | R$ 199,90 | R$ 219,80 | +19,90 |
-| Bala de Iogurte | 5kg | R$ 69,90 | R$ 84,80 | +14,90 |
-| Bala de Iogurte | 20kg | R$ 199,90 | R$ 239,80 | +39,90 |
-| Cinza Claro | 5kg | R$ 69,90 | R$ 74,80 | +4,90 |
-| Cinza Claro | 20kg | R$ 199,90 | R$ 219,80 | +19,90 |
-| Verde Uva | 5kg | R$ 74,90 | R$ 84,80 | +9,90 |
-| Verde Uva | 20kg | R$ 229,90 | R$ 239,80 | +9,90 |
-| Azul Céu | 5kg | R$ 74,90 | R$ 84,80 | +9,90 |
-| Azul Céu | 20kg | R$ 219,90 | R$ 239,80 | +19,90 |
-| Concreto | 5kg | R$ 74,90 | R$ 84,80 | +9,90 |
-| Concreto | 20kg | R$ 199,90 | R$ 239,80 | +39,90 |
-| Caixa Mágica | 5kg | R$ 69,90 | R$ 84,80 | +14,90 |
-| Caixa Mágica | 20kg | R$ 199,90 | R$ 239,80 | +39,90 |
-| Cinza Padrão | 5kg | R$ 74,90 | R$ 84,80 | +9,90 |
-| Cinza Padrão | 20kg | R$ 199,90 | R$ 239,80 | +39,90 |
-| Azeitona Passada | 5kg | R$ 79,90 | R$ 84,80 | +4,90 |
-| Azeitona Passada | 20kg | R$ 229,90 | R$ 239,80 | +9,90 |
-| Pavão | 5kg | R$ 84,90 | R$ 84,80 | −0,10 |
-| Pavão | 20kg | R$ 224,90 | R$ 239,80 | +14,90 |
-| Jeans | 5kg | R$ 74,90 | R$ 84,80 | +9,90 |
-| Jeans | 20kg | R$ 219,90 | R$ 239,80 | +19,90 |
-| Chumbo | 5kg | R$ 79,90 | R$ 84,80 | +4,90 |
-| Chumbo | 20kg | R$ 229,90 | R$ 239,80 | +9,90 |
-| Dois Amores | 5kg | R$ 89,90 | R$ 114,80 | +24,90 |
-| Dois Amores | 20kg | R$ 259,90 | R$ 299,80 | +39,90 |
-| Marrom Turco | 5kg | R$ 89,90 | R$ 104,80 | +14,90 |
-| Marrom Turco | 20kg | R$ 259,90 | R$ 279,80 | +19,90 |
+| Rosé | 5kg | R$ 69,90 | R$ 74,90 | +5,00 |
+| Rosé | 20kg | R$ 199,90 | R$ 219,90 | +20,00 |
+| Amarelo Laet 2 | 5kg | R$ 69,90 | R$ 74,90 | +5,00 |
+| Amarelo Laet 2 | 20kg | R$ 199,90 | R$ 219,90 | +20,00 |
+| Bala de Iogurte | 5kg | R$ 69,90 | R$ 84,90 | +15,00 |
+| Bala de Iogurte | 20kg | R$ 199,90 | R$ 239,90 | +40,00 |
+| Cinza Claro | 5kg | R$ 69,90 | R$ 74,90 | +5,00 |
+| Cinza Claro | 20kg | R$ 199,90 | R$ 219,90 | +20,00 |
+| Verde Uva | 5kg | R$ 74,90 | R$ 84,90 | +10,00 |
+| Verde Uva | 20kg | R$ 229,90 | R$ 239,90 | +10,00 |
+| Azul Céu | 5kg | R$ 74,90 | R$ 84,90 | +10,00 |
+| Azul Céu | 20kg | R$ 219,90 | R$ 239,90 | +20,00 |
+| Concreto | 5kg | R$ 74,90 | R$ 84,90 | +10,00 |
+| Concreto | 20kg | R$ 199,90 | R$ 239,90 | +40,00 |
+| Caixa Mágica | 5kg | R$ 69,90 | R$ 84,90 | +15,00 |
+| Caixa Mágica | 20kg | R$ 199,90 | R$ 239,90 | +40,00 |
+| Cinza Padrão | 5kg | R$ 74,90 | R$ 84,90 | +10,00 |
+| Cinza Padrão | 20kg | R$ 199,90 | R$ 239,90 | +40,00 |
+| Azeitona Passada | 5kg | R$ 79,90 | R$ 84,90 | +5,00 |
+| Azeitona Passada | 20kg | R$ 229,90 | R$ 239,90 | +10,00 |
+| Pavão | 20kg | R$ 224,90 | R$ 239,90 | +15,00 |
+| Jeans | 5kg | R$ 74,90 | R$ 84,90 | +10,00 |
+| Jeans | 20kg | R$ 219,90 | R$ 239,90 | +20,00 |
+| Chumbo | 5kg | R$ 79,90 | R$ 84,90 | +5,00 |
+| Chumbo | 20kg | R$ 229,90 | R$ 239,90 | +10,00 |
+| Dois Amores | 5kg | R$ 89,90 | R$ 114,90 | +25,00 |
+| Dois Amores | 20kg | R$ 259,90 | R$ 299,90 | +40,00 |
+| Marrom Turco | 5kg | R$ 89,90 | R$ 104,90 | +15,00 |
+| Marrom Turco | 20kg | R$ 259,90 | R$ 279,90 | +20,00 |
