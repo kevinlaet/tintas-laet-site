@@ -1,19 +1,22 @@
 ---
 name: pesquisa-mercado
 description: >
-  Faz uma pesquisa de mercado breve e comercial antes de criar conteúdo — o que outras lojas de
-  tinta (principalmente varejo/loja física, secundariamente fabricantes) estão postando, promovendo
-  ou testando agora. Não é auditoria interna nem SEO técnico, é "o que está rolando lá fora que é
-  relevante pra gente". Use quando o usuário pedir "pesquisa de mercado", "o que a concorrência tá
-  fazendo", "tem algo novo no mercado de tintas", antes de uma sessão de criação de conteúdo se
-  fizer tempo que não roda, ou /pesquisa-mercado.
+  Faz uma pesquisa de mercado breve e comercial antes de criar conteúdo — resume pro Kevin o que
+  está em alta, o que geralmente funciona pra outras lojas de tinta (principalmente varejo/loja
+  física, secundariamente fabricantes), com foco em resolução de problema e criação de ideia. Entrega
+  sempre a tendência/princípio geral, nunca "o site X fez isso, copia" — informa, não copia. Não é
+  auditoria interna nem SEO técnico. Use quando o usuário pedir "pesquisa de mercado", "o que a
+  concorrência tá fazendo", "tem algo novo no mercado de tintas", antes de uma sessão de criação de
+  conteúdo se fizer tempo que não roda, ou /pesquisa-mercado.
 ---
 
 # /pesquisa-mercado — Radar comercial de lojas de tinta
 
 Pesquisa curta (não é um relatório de SEO/concorrência completo — isso já existe no Passo 2 do
-skill `/seo`) pra manter o conteúdo antenado no que outras lojas de tinta estão fazendo de
-relevante agora, sem virar um projeto de pesquisa toda vez que for criar um post.
+skill `/seo`) pra manter o Kevin informado sobre o que está em alta e o que geralmente funciona pra
+outras lojas de tinta — sem virar um projeto de pesquisa toda vez que for criar um post, e sem virar
+"copia esse site aqui". A entrega é sempre um insight/tendência geral que o Kevin decide como (ou
+se) usar, nunca uma cópia disfarçada de achado.
 
 ## Foco (importante)
 
@@ -52,30 +55,38 @@ momento, se houver um):
 - Se tiver um tema específico em mãos (ex: vai criar post sobre "cheiro de tinta"): "loja tinta post
   cheiro tinta instagram" — pra ver se alguém já fez esse ângulo e como
 
-### Passo 3 — Filtrar pelo que é relevante de verdade
+### Passo 3 — Extrair o padrão, não o post
 
-Descartar qualquer achado que seja só "notícia genérica de fabricante grande" sem nada replicável
-pro tamanho da Laet (6 lojas de bairro, não rede nacional). Manter só o que for:
+**O objetivo não é levantar "o que o site/perfil X postou"** — é destilar disso um princípio ou
+tendência geral que o Kevin possa usar com a cara da Laet. Pra cada busca, perguntar:
 
-- Um formato de post/story que uma loja (não fabricante) está usando com frequência
-- Uma promoção/mecânica comercial (parcelamento, frete, sorteio, indicação) que apareça em mais de
-  um lugar — sinal de tendência, não caso isolado
-- Um gancho de conteúdo (dor, humor, bastidor) que pareça estar funcionando bem pra lojas do mesmo
-  porte/público
+- Que **problema do cliente** essa ideia resolve (é isso que mais importa: resolução de problema)?
+- Que **mecânica de criação de ideia** está por trás (formato, gancho, gatilho de venda) — o
+  "porquê funciona", não o "como foi executado especificamente"?
+- Isso aparece mais de uma vez, em lugares diferentes? Um caso isolado não é tendência.
 
-### Passo 4 — Relatório curto
+Descartar notícia genérica de fabricante grande sem nada replicável pro tamanho da Laet (6 lojas de
+bairro, não rede nacional) — e descartar qualquer achado que só faça sentido "copiado", sem virar
+um princípio generalizável.
 
-Formato direto, sem enrolação — 3 a 5 achados, nunca uma lista longa:
+### Passo 4 — Relatório curto (insight, não citação)
+
+Formato direto — 3 a 5 pontos, nunca uma lista longa, e **nunca estruturado como "fulano postou
+isso"**. O relatório informa uma tendência/prática/ideia geral, não aponta uma fonte pra copiar:
 
 ```
 Pesquisa de mercado — <data>
 
-1. <achado> — de onde veio (loja/fabricante) — por que é relevante pra Laet
+1. <tendência ou prática geral> — problema que resolve — por que se aplica à Laet
 2. ...
 3. ...
 
-Vale considerar pra pauta: <1-2 sugestões concretas de ângulo/formato, ligando a um achado>
+Vale considerar pra pauta: <1-2 sugestões concretas de ângulo/formato, adaptadas à voz da Laet,
+nunca uma réplica do que foi encontrado>
 ```
+
+Sem citar nome de site/plataforma/perfil específico no corpo do relatório — a fonte é só rastro de
+onde a IA pesquisou, não o que interessa entregar ao Kevin.
 
 Salvar em `dados/pesquisa-mercado-<YYYY-MM-DD>.md`.
 
@@ -87,10 +98,16 @@ decide se usa.
 
 ## Regras
 
+- **Informa o Kevin, não copia pra ele.** A entrega é sempre "o que está em alta / o que geralmente
+  funciona / que problema isso resolve", nunca "olha o que o site/plataforma X fez, faz igual".
+  Nunca basear a sugestão numa plataforma ou site específico visto na busca — sempre subir um nível
+  de abstração pro princípio geral por trás.
+- Foco em **resolução de problema e criação de ideia**, não em estética ou execução copiável —
+  é sobre entender por que algo funciona, não sobre reproduzir a peça.
 - Breve de verdade — isso é um radar, não uma auditoria. Se a busca não achar nada relevante, dizer
   isso e seguir em frente, não forçar achado fraco só pra preencher.
-- Nunca copiar ideia de concorrente 1:1 — o achado é inspiração de formato/mecânica, o texto/tom
-  final sempre segue `_memoria/preferencias.md` e a voz da Laet
+- Nunca copiar ideia de concorrente 1:1 — mesmo generalizado, o texto/tom final sempre segue
+  `_memoria/preferencias.md` e a voz da Laet
 - Nunca inventar dado técnico de produto a partir de pesquisa externa — isso continua vindo só de
   `_memoria/produtos.md`
 - Se WebSearch não achar nada específico de lojas de tinta na região, ampliar pra "loja de material
