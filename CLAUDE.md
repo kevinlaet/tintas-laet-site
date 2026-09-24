@@ -34,9 +34,11 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 
 ## Sobre a empresa
 
-Tintas Laet é um comércio de tintas e materiais de pintura com 6 lojas — 5 já funcionando (a Loja 5 com festa de inauguração realizada em 08/08/2026) e a 6ª ainda vazia (sem estoque), com contrato assinado, entrando em manutenção do salão (pintura e reparos) antes de abrir —, na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado, parcelamento em 12x sem juros e frete justo.
+Tintas Laet é um comércio de tintas e materiais de pintura com 6 lojas — 5 já funcionando (a Loja 5 com festa de inauguração realizada em 08/08/2026) e a 6ª ainda vazia (sem estoque), com contrato assinado, entrando em manutenção do salão (pintura e reparos) antes de abrir —, na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado e parcelamento em 12x sem juros.
 
 Fundada por Anderson Laet e Robson Laet. Kevin cuida do marketing digital e da gestão operacional das lojas, sozinho por enquanto.
+
+**Entrega própria em teste de descontinuação (a partir de 24/09/2026):** os sócios estão testando tirar a entrega feita pela própria loja e deixar só entrega via aplicativo (Lalamove e Uber, pedido pelo próprio cliente). Enquanto durar esse teste, nenhuma peça (site, post, story, anúncio) pode afirmar "a gente entrega" ou "frete justo" como serviço da loja — a entrega é por conta do cliente via app. Não é definitivo: se os sócios decidirem voltar com entrega própria, essa nota se atualiza. Perguntar ao Kevin antes de reverter.
 
 ## Instagram
 
@@ -111,6 +113,14 @@ Ao concluir uma tarefa que não tinha skill mas parece repetível, perguntar:
 **Antes de dizer que algo não dá pra fazer** (a partir de 18/09/2026): verificar TODAS as formas possíveis de fazer — outra biblioteca, outra API, outro caminho de arquitetura, outro serviço, contornar a limitação em vez de aceitar ela de cara — antes de responder que não dá. Só concluir que não dá depois de esgotar as alternativas razoáveis, e nesse caso explicar o que foi checado.
 
 ---
+
+## Publicar no site (deploy)
+
+A partir de 24/09/2026: **nunca colocar nada no ar sem perguntar pro Kevin antes**, mesmo que ele tenha aprovado o conteúdo. O site oficial publica sozinho quando algo entra na branch `main`, então merge na `main` = deploy.
+
+- Fazer as alterações numa branch de trabalho, commitar e dar push nela (isso não publica nada).
+- Mostrar o que mudou e perguntar: "Posso colocar no ar?". Só abrir/mesclar PR na `main` depois de um "pode" explícito pra aquele deploy específico. Aprovação de um deploy anterior não vale pro próximo.
+- Se o Kevin disser "coloca na fila", deixar na branch e listar o que está esperando deploy.
 
 ## Aprender com correções
 
