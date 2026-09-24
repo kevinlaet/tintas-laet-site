@@ -25,6 +25,13 @@ function lerPreco(str) {
   return parseFloat(str.replace(/[^\d,]/g, '').replace(',', '.'));
 }
 
+// Todo preço final termina em ,90 (sobe pro próximo ,90 se precisar).
+function terminarEm90(n) {
+  const centavos = Math.round(n * 100);
+  const resto = ((centavos - 90) % 100 + 100) % 100;
+  return (resto === 0 ? centavos : centavos + 100 - resto) / 100;
+}
+
 function formatar(n) {
   const [int, dec] = n.toFixed(2).split('.');
   return 'R$ ' + int.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + dec;
@@ -57,7 +64,7 @@ function recalcular(texto, produto, campo, relatorio, arquivo) {
       if (!pig) obs = 'cor sem pigmento na tabela — mantido';
       else if (pig[t] == null) obs = 'sem pote nesse tamanho — mantido';
       else if (base[t] == null) obs = 'sem base nesse tamanho — mantido';
-      else novo = Math.round((base[t] + pig[t]) * 100) / 100;
+      else novo = terminarEm90(base[t] + pig[t]);
       if (novo != null && Math.abs(novo - antigo) > 0.001) {
         nova = nova.replace(re, `$1${formatar(novo)}$3`);
       }
@@ -133,7 +140,7 @@ if (bases['efeito-cimento-queimado']) {
 }
 
 if (bases['latex-vinil']) {
-  const vinilCores = Math.round((bases['latex-vinil'].balde + indices.VINIL[chave('AMARELO LAET')].balde) * 100) / 100;
+  const vinilCores = terminarEm90(bases['latex-vinil'].balde + indices.VINIL[chave('AMARELO LAET')].balde);
   src = src.replace(/('latex-vinil': \{[\s\S]*?desc: '18L — Cores', valor: ')[^']*/, `$1${formatar(vinilCores)}`);
   for (const rel of ['site/index.html', 'site/produtos.html']) {
     gravar(rel, ler(rel).replace(/(Latex Vinil 18L<\/div>[\s\S]*?18L cores )R\$ [\d.,]+/, `$1${formatar(vinilCores)}`));

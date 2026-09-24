@@ -15,6 +15,9 @@ Desde 24/09/2026 cada cor é feita com um **pote de pigmento separado**. Por iss
 
 > **Preço da cor = preço da base do produto (no tamanho) + preço do pote de pigmento da cor (no mesmo tamanho)**
 
+**Todo preço final termina em ,90.** Se a soma der outro centavo (ex: 64,90 + 9,90 = 74,80), o
+script sobe pro próximo ,90 (74,90). Regra do Kevin, 24/09/2026 — não mudar.
+
 Toda a conta sai de um arquivo só: `scripts/precos-cores/tabela.js`. O script
 `scripts/precos-cores/atualizar.js` recalcula e grava em todo lugar. **Nunca editar preço de cor
 direto no HTML**: na próxima rodada do script o valor volta pro que está na tabela.
@@ -77,5 +80,5 @@ nos textos ("108 cores") em `site/catalogo/*.html`, `site/index.html` e `site/pr
 | Emborrachada | 399,90 | 99,90 | — |
 | Esmalte Ecológico | 399,90 | 89,90 | 29,90 |
 | Cimento Queimado | 199,90 (20kg) | 64,90 (5kg) | — |
-| Latex Vinil (cores 18L, preço único) | 79,90 | — | — |
+| Latex Vinil (cores 18L, preço único) | 80,00 | — | — |
 | Pisos & Fachadas | ? (base não informada, não recalculado) | | |
