@@ -123,25 +123,51 @@
     @media (max-width: 900px) { .banner-can { display: none; } }
     .banner-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.25); border: none; color: #fff; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 26px; z-index: 10; transition: background .2s; display: flex; align-items: center; justify-content: center; }
     .banner-arrow:hover { background: rgba(0,0,0,.48); }
+    .banner-slide--graphic { background: radial-gradient(circle at 82% 30%, #123a86 0%, var(--blue-dark) 55%, #04193e 100%); overflow: hidden; }
+    .banner-slide--graphic::before, .banner-slide--graphic::after { content: ''; position: absolute; border-radius: 50%; opacity: .16; }
+    .banner-slide--graphic::before { width: 420px; height: 420px; background: var(--yellow); top: -140px; right: -100px; }
+    .banner-slide--graphic::after { width: 280px; height: 280px; background: #fff; bottom: -120px; right: 22%; opacity: .06; }
+    .banner-app-badges { display: flex; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
+    .banner-app-badge { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: #fff; box-shadow: 0 6px 16px rgba(0,0,0,.25); }
+    .banner-app-badge--uber { background: #000; }
+    .banner-app-badge--lalamove { background: #FF6900; }
+    .banner-app-badge svg { width: 18px; height: 18px; flex-shrink: 0; }
 
     /* LEQUE DE CORES */
-    .color-fan-section { background: var(--blue); padding: 64px 0 56px; overflow: hidden; }
-    .color-fan-header { text-align: center; max-width: 560px; margin: 0 auto 8px; }
+    .color-fan-section { background: var(--blue); padding: 64px 0 56px; overflow: hidden; position: relative; }
+    .color-fan-section::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px); background-size: 26px 26px; opacity: .5; pointer-events: none; }
+    .color-fan-header { text-align: center; max-width: 560px; margin: 0 auto 8px; position: relative; }
     .color-fan-header .section-label { color: var(--yellow); }
     .color-fan-header .section-title { color: #fff; }
     .color-fan-header .section-sub { color: rgba(255,255,255,.75); }
-    .fan-wrap { position: relative; height: clamp(230px, 34vw, 340px); margin-top: 28px; display: flex; justify-content: center; }
+    .fan-layout { display: grid; grid-template-columns: 1fr minmax(auto, 720px) 1fr; align-items: center; gap: 16px; margin-top: 32px; position: relative; }
+    .fan-side { display: flex; flex-direction: column; gap: 14px; }
+    .fan-stat { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 14px 16px; backdrop-filter: blur(2px); }
+    .fan-stat-num { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; color: var(--yellow); line-height: 1; }
+    .fan-stat-label { font-family: 'Poppins', sans-serif; font-size: 12px; color: rgba(255,255,255,.8); margin-top: 4px; }
+    .fan-side--right .fan-stat { text-align: right; }
+    @media (max-width: 980px) { .fan-layout { grid-template-columns: 1fr; } .fan-side { flex-direction: row; justify-content: center; } .fan-side--right { display: none; } .fan-side--left .fan-stat:nth-child(2) { display: none; } }
+    @media (max-width: 640px) { .fan-side--left { display: none; } }
+    .fan-wrap { position: relative; height: clamp(230px, 30vw, 340px); display: flex; justify-content: center; }
     .fan { position: relative; width: 100%; max-width: 720px; height: 100%; }
-    .fan-chip { position: absolute; left: 50%; bottom: 6px; width: 58px; height: clamp(180px, 26vw, 260px); margin-left: -29px; border-radius: 14px 14px 5px 5px; transform-origin: 50% 100%; transform: rotate(0deg); box-shadow: 0 6px 18px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.15); transition: transform .6s cubic-bezier(.2,.8,.2,1), box-shadow .25s, filter .25s; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; text-decoration: none; }
-    .color-fan-section.in-view .fan-chip { transform: rotate(var(--r)); }
-    .fan-chip:hover, .fan-chip:focus-visible { transform: rotate(var(--r)) translateY(-26px) !important; box-shadow: 0 14px 26px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.25); z-index: 5; filter: brightness(1.04); }
+    /* Slot: fica parado no lugar (dono da rotação/posição) — nunca se move no hover,
+       senão o cursor "escapa" do elemento quando ele sobe e fica piscando. */
+    .fan-chip-slot { position: absolute; left: 50%; bottom: 6px; width: 58px; height: clamp(180px, 24vw, 260px); margin-left: -29px; transform-origin: 50% 100%; transform: rotate(0deg); transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    .color-fan-section.in-view .fan-chip-slot { transform: rotate(var(--r)); }
+    /* Inner: é quem visualmente sobe/brilha no hover, dentro do slot parado */
+    .fan-chip-inner { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 14px 14px 5px 5px; border: none; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.15); transition: transform .25s, box-shadow .25s, filter .25s; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; }
+    .fan-chip-slot:hover .fan-chip-inner, .fan-chip-slot:focus-within .fan-chip-inner, .fan-chip-inner.selected { transform: translateY(-26px); box-shadow: 0 14px 26px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.25); z-index: 5; filter: brightness(1.04); }
     .fan-chip-label { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10.5px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.35); background: rgba(0,0,0,.16); padding: 3px 6px; border-radius: 20px; white-space: nowrap; opacity: 0; transform: translateY(4px); transition: opacity .2s, transform .2s; }
-    .fan-chip:hover .fan-chip-label, .fan-chip:focus-visible .fan-chip-label { opacity: 1; transform: translateY(0); }
-    .fan-chip--dark .fan-chip-label { color: #212529; text-shadow: none; background: rgba(255,255,255,.55); }
-    @media (max-width: 640px) { .fan-chip { width: 40px; margin-left: -20px; } .fan-chip-label { display: none; } }
-    .fan-cta { text-align: center; margin-top: 12px; }
-    .fan-cta a { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; opacity: .9; }
-    .fan-hint { text-align: center; color: rgba(255,255,255,.55); font-size: 12px; margin-top: 4px; font-family: 'Poppins', sans-serif; }
+    .fan-chip-slot:hover .fan-chip-label, .fan-chip-slot:focus-within .fan-chip-label, .fan-chip-inner.selected .fan-chip-label { opacity: 1; transform: translateY(0); }
+    .fan-chip-inner.fan-chip--dark .fan-chip-label { color: #212529; text-shadow: none; background: rgba(255,255,255,.55); }
+    @media (max-width: 640px) { .fan-chip-slot { width: 42px; margin-left: -21px; } .fan-chip-label { display: none; } }
+    .fan-detail { display: flex; align-items: center; justify-content: center; gap: 12px; max-width: 420px; margin: 24px auto 0; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: 50px; padding: 8px 8px 8px 18px; transition: background .2s; }
+    .fan-detail.is-filled { background: rgba(255,255,255,.14); }
+    .fan-detail-swatch { width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,.25); flex-shrink: 0; box-shadow: inset 0 0 0 2px rgba(255,255,255,.4); transition: background .2s; }
+    .fan-detail-name { flex: 1; font-family: 'Poppins', sans-serif; font-size: 13px; color: rgba(255,255,255,.85); }
+    .fan-detail-btn { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12.5px; background: var(--yellow); color: var(--graphite); padding: 9px 16px; border-radius: 50px; white-space: nowrap; opacity: .5; pointer-events: none; transition: opacity .2s; }
+    .fan-detail.is-filled .fan-detail-btn { opacity: 1; pointer-events: auto; }
+    .fan-hint { text-align: center; color: rgba(255,255,255,.5); font-size: 12px; margin-top: 10px; font-family: 'Poppins', sans-serif; }
     .banner-prev { left: 16px; }
     .banner-next { right: 16px; }
     @media (max-width: 768px) { .banner-arrow { display: none; } }
@@ -576,19 +602,24 @@
       </div>
     </div>
 
-    <!-- Slide 2: Entregas rápidas -->
-    <div class="banner-slide">
-      <picture>
-        <source media="(max-width: 640px)" srcset="images/hero-novo/banner-entrega-mobile.jpg">
-        <img src="images/hero-novo/banner-entrega.jpg" alt="Entrega da Tintas Laet direto na porta do cliente" class="banner-img" loading="lazy">
-      </picture>
-      <div class="banner-scrim"></div>
+    <!-- Slide 2: Entrega via app -->
+    <div class="banner-slide banner-slide--graphic">
       <div class="banner-content">
         <div class="banner-text">
-          <span class="banner-eyebrow">Frete justo</span>
-          <h1 class="banner-title">Entrega rápida<br>no ABC e Zona Leste</h1>
-          <p class="banner-sub">Você pede, a gente leva até sua porta. Pague só na entrega.</p>
-          <a href="https://wa.me/5511977140964?text=Olá! Quero saber sobre entrega e frete." class="banner-cta" target="_blank" rel="noopener">💬 Consultar entrega</a>
+          <span class="banner-eyebrow">Receba em casa</span>
+          <h1 class="banner-title">Entregas disponíveis<br>via app</h1>
+          <p class="banner-sub">Compre com a gente e peça um motorista pra buscar e levar até você.</p>
+          <div class="banner-app-badges">
+            <span class="banner-app-badge banner-app-badge--uber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5a2 2 0 0 1 2-1.4h10a2 2 0 0 1 2 1.4l2 5"/><path d="M3 13h18v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H6v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4z"/><circle cx="7.5" cy="17.5" r="1.2"/><circle cx="16.5" cy="17.5" r="1.2"/></svg>
+              Uber
+            </span>
+            <span class="banner-app-badge banner-app-badge--lalamove">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+              Lalamove
+            </span>
+          </div>
+          <a href="https://wa.me/5511977140964?text=Olá! Como funciona a entrega por Uber/Lalamove?" class="banner-cta" target="_blank" rel="noopener" style="margin-top:18px">💬 Como funciona</a>
         </div>
       </div>
     </div>
@@ -619,13 +650,13 @@
 <!-- STRIP -->
 <div class="strip" aria-hidden="true">
   <div class="strip-track">
-    <span class="strip-item">🚚 Entrega no ABC e Zona Leste</span><span class="strip-dot"></span>
+    <span class="strip-item">🚗 Peça por Uber ou Lalamove</span><span class="strip-dot"></span>
     <span class="strip-item">💰 Menor preço do mercado</span><span class="strip-dot"></span>
     <span class="strip-item">💳 Até 12x sem juros no cartão</span><span class="strip-dot"></span>
     <span class="strip-item">💧 100% tintas base água</span><span class="strip-dot"></span>
     <span class="strip-item">🤝 Atendimento humano</span><span class="strip-dot"></span>
     <span class="strip-item">🏠 Pague só na entrega</span><span class="strip-dot"></span>
-    <span class="strip-item">🚚 Entrega no ABC e Zona Leste</span><span class="strip-dot"></span>
+    <span class="strip-item">🚗 Peça por Uber ou Lalamove</span><span class="strip-dot"></span>
     <span class="strip-item">💰 Menor preço do mercado</span><span class="strip-dot"></span>
     <span class="strip-item">💳 Até 12x sem juros no cartão</span><span class="strip-dot"></span>
     <span class="strip-item">💧 100% tintas base água</span><span class="strip-dot"></span>
@@ -642,59 +673,117 @@
       <h2 class="section-title">Escolha sua cor</h2>
       <p class="section-sub">Toque numa cor do leque pra ver ela no catálogo completo.</p>
     </div>
-    <div class="fan-wrap">
+    <div class="fan-layout">
+      <div class="fan-side fan-side--left">
+        <div class="fan-stat">
+          <div class="fan-stat-num">200+</div>
+          <div class="fan-stat-label">cores reais catalogadas, em 5 linhas de tinta</div>
+        </div>
+        <div class="fan-stat">
+          <div class="fan-stat-num">Sem filtro</div>
+          <div class="fan-stat-label">a cor que você vê no leque é a que sai na lata</div>
+        </div>
+      </div>
+      <div class="fan-wrap">
       <div class="fan" id="colorFan">
-          <a class="fan-chip" style="--r:-52.5deg;background:#FF3C00" href="produto.html?id=premium-lavavel#cores">
-            <span class="fan-chip-label">Fogo Violeta</span>
-          </a>
-          <a class="fan-chip" style="--r:-45.5deg;background:#DD5047" href="produto.html?id=premium-lavavel#cores">
-            <span class="fan-chip-label">Romã</span>
-          </a>
-          <a class="fan-chip" style="--r:-38.5deg;background:#B43B4C" href="produto.html?id=esmalte-ecologico#cores">
-            <span class="fan-chip-label">Vermelho</span>
-          </a>
-          <a class="fan-chip fan-chip--dark" style="--r:-31.5deg;background:#FAA628" href="produto.html?id=premium-lavavel#cores">
-            <span class="fan-chip-label">Lícor de Laranja</span>
-          </a>
-          <a class="fan-chip fan-chip--dark" style="--r:-24.5deg;background:#FAE554" href="produto.html?id=premium-lavavel#cores">
-            <span class="fan-chip-label">Amarelo Albertino</span>
-          </a>
-          <a class="fan-chip fan-chip--dark" style="--r:-17.5deg;background:#91E867" href="produto.html?id=premium-lavavel#cores">
-            <span class="fan-chip-label">Verde Limão</span>
-          </a>
-          <a class="fan-chip" style="--r:-10.5deg;background:#4FAF65" href="produto.html?id=premium-lavavel#cores">
-            <span class="fan-chip-label">Ilha de Esmeralda</span>
-          </a>
-          <a class="fan-chip" style="--r:-3.5deg;background:#1E6B37" href="produto.html?id=esmalte-ecologico#cores">
-            <span class="fan-chip-label">Verde Folha</span>
-          </a>
-          <a class="fan-chip fan-chip--dark" style="--r:3.5deg;background:#65CFC0" href="produto.html?id=esmalte-ecologico#cores">
-            <span class="fan-chip-label">Verde Caribe</span>
-          </a>
-          <a class="fan-chip" style="--r:10.5deg;background:#3C93F8" href="produto.html?id=premium-lavavel#cores">
-            <span class="fan-chip-label">Paraíso do Mar</span>
-          </a>
-          <a class="fan-chip" style="--r:17.5deg;background:#405261" href="produto.html?id=esmalte-ecologico#cores">
-            <span class="fan-chip-label">Azul Del Rey</span>
-          </a>
-          <a class="fan-chip" style="--r:24.5deg;background:#A776DB" href="produto.html?id=premium-lavavel#cores">
-            <span class="fan-chip-label">Uva Doce</span>
-          </a>
-          <a class="fan-chip" style="--r:31.5deg;background:#42295B" href="produto.html?id=premium-lavavel#cores">
-            <span class="fan-chip-label">Suntuoso</span>
-          </a>
-          <a class="fan-chip" style="--r:38.5deg;background:#D66CAC" href="produto.html?id=premium-lavavel#cores">
-            <span class="fan-chip-label">Bordô</span>
-          </a>
-          <a class="fan-chip fan-chip--dark" style="--r:45.5deg;background:#FD7E98" href="produto.html?id=premium-lavavel#cores">
-            <span class="fan-chip-label">Flamingo Real</span>
-          </a>
-          <a class="fan-chip" style="--r:52.5deg;background:#A47B69" href="produto.html?id=premium-lavavel#cores">
-            <span class="fan-chip-label">Cobre Suave</span>
-          </a>
+          <div class="fan-chip-slot" style="--r:-52.5deg">
+            <button type="button" class="fan-chip-inner" style="background:#FF3C00" data-nome="Fogo Violeta" data-href="produto.html?id=premium-lavavel#cores">
+              <span class="fan-chip-label">Fogo Violeta</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:-45.5deg">
+            <button type="button" class="fan-chip-inner" style="background:#DD5047" data-nome="Romã" data-href="produto.html?id=premium-lavavel#cores">
+              <span class="fan-chip-label">Romã</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:-38.5deg">
+            <button type="button" class="fan-chip-inner" style="background:#B43B4C" data-nome="Vermelho" data-href="produto.html?id=esmalte-ecologico#cores">
+              <span class="fan-chip-label">Vermelho</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:-31.5deg">
+            <button type="button" class="fan-chip-inner fan-chip--dark" style="background:#FAA628" data-nome="Lícor de Laranja" data-href="produto.html?id=premium-lavavel#cores">
+              <span class="fan-chip-label">Lícor de Laranja</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:-24.5deg">
+            <button type="button" class="fan-chip-inner fan-chip--dark" style="background:#FAE554" data-nome="Amarelo Albertino" data-href="produto.html?id=premium-lavavel#cores">
+              <span class="fan-chip-label">Amarelo Albertino</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:-17.5deg">
+            <button type="button" class="fan-chip-inner fan-chip--dark" style="background:#91E867" data-nome="Verde Limão" data-href="produto.html?id=premium-lavavel#cores">
+              <span class="fan-chip-label">Verde Limão</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:-10.5deg">
+            <button type="button" class="fan-chip-inner" style="background:#4FAF65" data-nome="Ilha de Esmeralda" data-href="produto.html?id=premium-lavavel#cores">
+              <span class="fan-chip-label">Ilha de Esmeralda</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:-3.5deg">
+            <button type="button" class="fan-chip-inner" style="background:#1E6B37" data-nome="Verde Folha" data-href="produto.html?id=esmalte-ecologico#cores">
+              <span class="fan-chip-label">Verde Folha</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:3.5deg">
+            <button type="button" class="fan-chip-inner fan-chip--dark" style="background:#65CFC0" data-nome="Verde Caribe" data-href="produto.html?id=esmalte-ecologico#cores">
+              <span class="fan-chip-label">Verde Caribe</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:10.5deg">
+            <button type="button" class="fan-chip-inner" style="background:#3C93F8" data-nome="Paraíso do Mar" data-href="produto.html?id=premium-lavavel#cores">
+              <span class="fan-chip-label">Paraíso do Mar</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:17.5deg">
+            <button type="button" class="fan-chip-inner" style="background:#405261" data-nome="Azul Del Rey" data-href="produto.html?id=esmalte-ecologico#cores">
+              <span class="fan-chip-label">Azul Del Rey</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:24.5deg">
+            <button type="button" class="fan-chip-inner" style="background:#A776DB" data-nome="Uva Doce" data-href="produto.html?id=premium-lavavel#cores">
+              <span class="fan-chip-label">Uva Doce</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:31.5deg">
+            <button type="button" class="fan-chip-inner" style="background:#42295B" data-nome="Suntuoso" data-href="produto.html?id=premium-lavavel#cores">
+              <span class="fan-chip-label">Suntuoso</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:38.5deg">
+            <button type="button" class="fan-chip-inner" style="background:#D66CAC" data-nome="Bordô" data-href="produto.html?id=premium-lavavel#cores">
+              <span class="fan-chip-label">Bordô</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:45.5deg">
+            <button type="button" class="fan-chip-inner fan-chip--dark" style="background:#FD7E98" data-nome="Flamingo Real" data-href="produto.html?id=premium-lavavel#cores">
+              <span class="fan-chip-label">Flamingo Real</span>
+            </button>
+          </div>
+          <div class="fan-chip-slot" style="--r:52.5deg">
+            <button type="button" class="fan-chip-inner" style="background:#A47B69" data-nome="Cobre Suave" data-href="produto.html?id=premium-lavavel#cores">
+              <span class="fan-chip-label">Cobre Suave</span>
+            </button>
+          </div>
+      </div>
+      </div>
+      <div class="fan-side fan-side--right">
+        <div class="fan-stat">
+          <div class="fan-stat-num">5</div>
+          <div class="fan-stat-label">linhas de tinta pra escolher a cor certa</div>
+        </div>
+        <div class="fan-stat">
+          <div class="fan-stat-num">Grátis</div>
+          <div class="fan-stat-label">manda foto da parede e a gente ajuda a escolher</div>
+        </div>
       </div>
     </div>
-    <div class="fan-cta"><a href="produtos.html">Ver o catálogo completo de cores →</a></div>
+    <div class="fan-detail" id="fanDetail">
+      <span class="fan-detail-swatch" id="fanDetailSwatch"></span>
+      <span class="fan-detail-name" id="fanDetailName">Toque numa cor do leque</span>
+      <a class="fan-detail-btn" id="fanDetailBtn" href="produtos.html">Ver essa cor →</a>
+    </div>
     <p class="fan-hint">Cores reais da Tintas Laet — o que você vê aqui é o que sai na tinta.</p>
   </div>
 </section>
@@ -768,8 +857,8 @@
       </div>
       <div class="step-card">
         <div class="step-num">4</div>
-        <div class="step-title">Entrega ou retirada</div>
-        <div class="step-desc">Receba em casa ou retire na loja — você escolhe!</div>
+        <div class="step-title">Retirada ou Uber/Lalamove</div>
+        <div class="step-desc">Retire na loja ou peça um motorista pra buscar e levar até você</div>
       </div>
       <div class="step-card">
         <div class="step-num">5</div>
@@ -1075,10 +1164,10 @@
             </div>
           </div>
           <div class="why-item">
-            <div class="why-item-icon">🚀</div>
+            <div class="why-item-icon">🚗</div>
             <div class="why-item-text">
-              <strong>Entrega rápida e frete justo</strong>
-              <p>Entregamos no ABC e Zona Leste com frete muito abaixo dos grandes e-commerces.</p>
+              <strong>Retirada fácil ou Uber/Lalamove</strong>
+              <p>Retire na loja mais perto de você ou peça um motorista pra buscar e levar até sua casa.</p>
             </div>
           </div>
           <div class="why-item">
@@ -1255,11 +1344,11 @@
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
-          Quais regiões vocês entregam?
+          Vocês entregam?
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <p>Atendemos toda a região do Grande ABC (Santo André, São Bernardo, São Caetano, Mauá, Ribeirão Pires, Rio Grande da Serra e Diadema) e a Zona Leste de São Paulo. Consulte disponibilidade pelo WhatsApp informando seu CEP.</p>
+          <p>Não fazemos entrega própria no momento. Mas é fácil resolver: você compra na loja ou pelo WhatsApp e pede um Uber ou Lalamove pra buscar o produto e levar até você — a gente combina o horário de retirada.</p>
         </div>
       </div>
       <div class="faq-item">
@@ -1268,7 +1357,7 @@
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <p>O parcelamento em até 12x sem juros é feito no cartão de crédito na hora da entrega. Sem necessidade de pagar adiantado — o maquininha vai direto na sua porta junto com o produto.</p>
+          <p>O parcelamento em até 12x sem juros é feito no cartão de crédito na hora que você retira o produto. Sem necessidade de pagar adiantado — a maquininha está te esperando na loja (ou com o motorista, se você pediu por Uber/Lalamove).</p>
         </div>
       </div>
       <div class="faq-item">
@@ -1278,15 +1367,6 @@
         </button>
         <div class="faq-answer">
           <p>Sim! Você pode vir direto em qualquer uma das nossas 5 lojas em funcionamento: Sapopemba (Vila Bela/SP), Rua do Britador (Mauá), Av. Ayrton Senna (Mauá), Av. São Bernardo do Campo (Santo André) e Itapark (Mauá). Não é obrigatório agendar — mas recomendamos consultar o estoque disponível da loja pelo WhatsApp antes de vir. <a href="https://wa.me/5511977140964?text=Olá! Quero consultar o estoque antes de ir à loja." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:#25D366;color:#fff;font-size:12px;font-family:'Montserrat',sans-serif;font-weight:700;padding:4px 12px;border-radius:50px;vertical-align:middle;white-space:nowrap">💬 Consultar estoque</a></p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          Quanto tempo demora a entrega?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>Geralmente entregamos em até 48 horas úteis após a confirmação do pedido. Em alguns casos, dependendo da disponibilidade de estoque e da região, pode ser ainda mais rápido. Consulte seu atendente.</p>
         </div>
       </div>
       <div class="faq-item">
@@ -1620,6 +1700,27 @@ document.querySelectorAll('.seller-card').forEach(card => {
     entries.forEach(e => { if (e.isIntersecting) { fanSection.classList.add('in-view'); obs.disconnect(); } });
   }, { threshold: .25 });
   obs.observe(fanSection);
+})();
+
+/* ── Leque de cores: seleção (funciona no touch e no mouse) ── */
+(function() {
+  const chips = document.querySelectorAll('.fan-chip-inner');
+  const detail = document.getElementById('fanDetail');
+  const swatch = document.getElementById('fanDetailSwatch');
+  const name = document.getElementById('fanDetailName');
+  const btn = document.getElementById('fanDetailBtn');
+  if (!chips.length || !detail) return;
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('selected'));
+      chip.classList.add('selected');
+      const hex = getComputedStyle(chip).backgroundColor;
+      swatch.style.background = hex;
+      name.textContent = chip.dataset.nome;
+      btn.href = chip.dataset.href;
+      detail.classList.add('is-filled');
+    });
+  });
 })();
 
 /* ── Back to top ── */
