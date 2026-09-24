@@ -92,6 +92,55 @@ for (const [produto, rel] of Object.entries(catalogos)) {
   alterados[arq] = recalcular(texto, produto, t => t, relatorio, rel);
 }
 
+// Textos fixos que dependem dos preços por cor (cards do catálogo do
+// Cimento Queimado e os "a partir de" da home, de produtos.html e do produto).
+function ler(rel) {
+  const arq = path.join(RAIZ, rel);
+  return alterados[arq] ?? fs.readFileSync(arq, 'utf8');
+}
+function gravar(rel, texto) { alterados[path.join(RAIZ, rel)] = texto; }
+function precoGrande(n) {
+  const [int, dec] = n.toFixed(2).split('.');
+  return `R$ ${int}<small>,${dec}</small>`;
+}
+const produtosAtual = (new Function('return ' + src.match(/const produtos = (\{[\s\S]*?\n\});/)[1]))();
+
+if (bases['efeito-cimento-queimado']) {
+  const cores = produtosAtual['efeito-cimento-queimado'].cores;
+  const min5 = Math.min(...cores.map(c => lerPreco(c.preco_balde)));
+  const min20 = Math.min(...cores.map(c => lerPreco(c.preco_galao)));
+
+  let cat = ler('site/catalogo/efeito-cimento-queimado.html');
+  for (const c of cores) {
+    const nome = c.nome.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    cat = cat.replace(
+      new RegExp(`(<div class="color-name">${nome}</div>\\s*<div class="color-price">)[^<]*<br>[^<]*(</div>)`),
+      `$15kg ${c.preco_balde}<br>20kg ${c.preco_galao}$2`);
+  }
+  gravar('site/catalogo/efeito-cimento-queimado.html', cat);
+
+  src = src
+    .replace(/(desc: '5kg — a partir de', valor: ')[^']*/, `$1${formatar(min5)}`)
+    .replace(/(desc: '20kg — a partir de', valor: ')[^']*/, `$1${formatar(min20)}`)
+    .replace(/('efeito-cimento-queimado': \{[\s\S]*?preco_from: ')[^']*/, `$1${precoGrande(min5)}`);
+  for (const rel of ['site/index.html', 'site/produtos.html']) {
+    gravar(rel, ler(rel)
+      .replace(/5kg a partir de R\$ [\d.,]+ · 20kg a partir de R\$ [\d.,]+/,
+        `5kg a partir de ${formatar(min5)} · 20kg a partir de ${formatar(min20)}`)
+      .replace(/(Efeito Cimento Queimado<\/div>[\s\S]*?<div class="seller-price">)[^\n]*?(<\/div>)/,
+        `$1${precoGrande(min5)}$2`));
+  }
+}
+
+if (bases['latex-vinil']) {
+  const vinilCores = Math.round((bases['latex-vinil'].balde + indices.VINIL[chave('AMARELO LAET')].balde) * 100) / 100;
+  src = src.replace(/('latex-vinil': \{[\s\S]*?desc: '18L — Cores', valor: ')[^']*/, `$1${formatar(vinilCores)}`);
+  for (const rel of ['site/index.html', 'site/produtos.html']) {
+    gravar(rel, ler(rel).replace(/(Latex Vinil 18L<\/div>[\s\S]*?18L cores )R\$ [\d.,]+/, `$1${formatar(vinilCores)}`));
+  }
+}
+alterados[arqProduto] = src;
+
 // Resumo
 const mudancas = relatorio.filter(r => r.novo != null && Math.abs(r.novo - r.antigo) > 0.001);
 const mantidos = relatorio.filter(r => r.obs);

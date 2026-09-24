@@ -18,8 +18,10 @@ const bases = {
   'premium-lavavel':         { balde: 299.90, galao: 79.90, quarto: 29.90 },
   'emborrachada':            { balde: 399.90, galao: 99.90 },
   'esmalte-ecologico':       { balde: 399.90, galao: 89.90, quarto: 29.90 },
-  'efeito-cimento-queimado': null, // "base A" — valor da base a confirmar
-  'latex-vinil':             null, // "base A" — valor da base a confirmar
+  // Cimento Queimado: no site, "balde" = saco de 5kg e "galao" = saco de 20kg.
+  'efeito-cimento-queimado': { balde: 64.90, galao: 199.90 },
+  // Vinil: preço único pras cores (18L), não é por cor — ver SKILL.md.
+  'latex-vinil':             { balde: 79.90 },
   'piso-fachada':            null, // base desconhecida (?)
 };
 
@@ -145,7 +147,7 @@ const pigmentos = {
     ['PITADA CASUAL', 'A', 40, 20, 8],
     ['PORCELANA EGIPCIA', 'A', 20, 15, 5],
     ['PLANETARIO', 'C', 20, 15, 8],
-    ['PROFUNDIDADE', 'C', 20, 10, null],   // informado pelo Kevin (pigmento do piso); sem PT
+    ['PROFUNDIDADE', 'C', 20, 10, 10],     // informado pelo Kevin (pigmento do piso); PT = mesmo valor do GL
     ['ROMA', 'C', 200, 75, 10],
     ['ROSA ACAI', 'B', 40, 25, 8],
     ['ROSA GLOSS', 'A', 20, 15, 5],
@@ -207,23 +209,24 @@ const pigmentos = {
     ['VERMELHO GOYA', 'C', 100, 30, 15],
   ],
 
-  // Cimento Queimado: BD = saco grande, GL = saco pequeno.
+  // Cimento Queimado. Na tabela da fábrica BD = saco de 20kg e GL = saco de 5kg;
+  // aqui já vai na ordem dos campos do site: [nome, base, 5kg, 20kg, -].
   CIMENTO: [
-    ['CINZA CLARO', 'A', 19.90, 9.90, null],
-    ['CINZA PADRAO', 'A', 39.90, 19.90, null],
-    ['CHUMBO', 'A', 39.90, 19.90, null],
-    ['CONCRETO', 'A', 39.90, 19.90, null],
-    ['AZEITONA PASSADA', 'A', 39.90, 19.90, null],
-    ['MARROM TURCO', 'A', 79.90, 39.90, null],
-    ['ROSE', 'A', 19.90, 9.90, null],
-    ['BALA DE IOGURTE', 'A', 39.90, 19.90, null],
-    ['DOIS AMORES', 'A', 99.90, 49.90, null],
-    ['AMARELO LAET 2', 'A', 19.90, 9.90, null],
-    ['VERDE UVA', 'A', 39.90, 19.90, null],
-    ['PAVAO', 'A', 39.90, 19.90, null],
-    ['CAIXA MAGICA', 'A', 39.90, 19.90, null],
-    ['AZUL CEU', 'A', 39.90, 19.90, null],
-    ['JEANS', 'A', 39.90, 19.90, null],
+    ['CINZA CLARO', 'A', 9.90, 19.90, null],
+    ['CINZA PADRAO', 'A', 19.90, 39.90, null],
+    ['CHUMBO', 'A', 19.90, 39.90, null],
+    ['CONCRETO', 'A', 19.90, 39.90, null],
+    ['AZEITONA PASSADA', 'A', 19.90, 39.90, null],
+    ['MARROM TURCO', 'A', 39.90, 79.90, null],
+    ['ROSE', 'A', 9.90, 19.90, null],
+    ['BALA DE IOGURTE', 'A', 19.90, 39.90, null],
+    ['DOIS AMORES', 'A', 49.90, 99.90, null],
+    ['AMARELO LAET 2', 'A', 9.90, 19.90, null],
+    ['VERDE UVA', 'A', 19.90, 39.90, null],
+    ['PAVAO', 'A', 19.90, 39.90, null],
+    ['CAIXA MAGICA', 'A', 19.90, 39.90, null],
+    ['AZUL CEU', 'A', 19.90, 39.90, null],
+    ['JEANS', 'A', 19.90, 39.90, null],
   ],
 
   VINIL: [

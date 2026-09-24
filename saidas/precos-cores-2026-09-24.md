@@ -1,8 +1,19 @@
-# Preços por cor — antigo → novo (2026-09-24)
+# Preços por cor — antes → agora (24/09/2026)
 
-Preço da cor = base + pote de pigmento.
+Regra nova: **preço da cor = base + pote de pigmento**.
 
-## standard
+| Produto | Base BD | Base GL | Base PT |
+|---|---|---|---|
+| Standard | R$ 219,90 | R$ 59,90 | — |
+| Premium Lavável | R$ 299,90 | R$ 79,90 | R$ 29,90 |
+| Emborrachada | R$ 399,90 | R$ 99,90 | — |
+| Esmalte | R$ 399,90 | R$ 89,90 | R$ 29,90 |
+| Cimento Queimado | R$ 199,90 (20kg) | R$ 64,90 (5kg) | — |
+| Vinil (cores 18L) | R$ 79,90 + 19,90 = **R$ 99,80** | | |
+
+Removidas de Standard, Premium e Emborrachada: **Cinza, Chumbo e Preto**.
+
+## Standard (152 sobem, 3 descem)
 
 | Cor | Tamanho | Antes | Agora | Diferença |
 |---|---|---|---|---|
@@ -162,7 +173,7 @@ Preço da cor = base + pote de pigmento.
 | Valsa Azul | Galão | R$ 74,90 | R$ 84,90 | +10,00 |
 | Cinza D 04 | Balde | R$ 239,90 | R$ 259,90 | +20,00 |
 
-## premium-lavavel
+## Premium Lavável (141 sobem, 13 descem)
 
 | Cor | Tamanho | Antes | Agora | Diferença |
 |---|---|---|---|---|
@@ -303,6 +314,7 @@ Preço da cor = base + pote de pigmento.
 | Rosa Vermelha | Galão | R$ 149,90 | R$ 154,90 | +5,00 |
 | Profundidade | Balde | R$ 349,90 | R$ 319,90 | −30,00 |
 | Profundidade | Galão | R$ 119,90 | R$ 89,90 | −30,00 |
+| Profundidade | Pote | R$ 36,90 | R$ 39,90 | +3,00 |
 | Azul Jazz | Galão | R$ 109,90 | R$ 114,90 | +5,00 |
 | Azul Jazz | Pote | R$ 34,90 | R$ 37,90 | +3,00 |
 | Oceano Tranquilo | Galão | R$ 109,90 | R$ 114,90 | +5,00 |
@@ -320,7 +332,7 @@ Preço da cor = base + pote de pigmento.
 | Suntuoso | Galão | R$ 129,90 | R$ 134,90 | +5,00 |
 | Suntuoso | Pote | R$ 37,90 | R$ 39,90 | +2,00 |
 
-## emborrachada
+## Emborrachada (30 sobem, 57 descem)
 
 | Cor | Tamanho | Antes | Agora | Diferença |
 |---|---|---|---|---|
@@ -412,7 +424,7 @@ Preço da cor = base + pote de pigmento.
 | Selva Escura | Galão | R$ 149,90 | R$ 134,90 | −15,00 |
 | Suntuoso | Galão | R$ 149,90 | R$ 154,90 | +5,00 |
 
-## esmalte-ecologico
+## Esmalte Ecológico (0 sobem, 96 descem)
 
 | Cor | Tamanho | Antes | Agora | Diferença |
 |---|---|---|---|---|
@@ -513,23 +525,37 @@ Preço da cor = base + pote de pigmento.
 | Escuridão | Galão | R$ 119,99 | R$ 119,90 | −0,09 |
 | Escuridão | Pote | R$ 44,99 | R$ 44,90 | −0,09 |
 
-## Mantidos sem recalcular
+## Cimento Queimado (29 sobem, 1 descem)
 
-- standard | Cinza | balde: cor sem pigmento na tabela — mantido
-- standard | Cinza | galao: cor sem pigmento na tabela — mantido
-- premium-lavavel | Cinza | balde: cor sem pigmento na tabela — mantido
-- premium-lavavel | Cinza | galao: cor sem pigmento na tabela — mantido
-- premium-lavavel | Cinza | quarto: cor sem pigmento na tabela — mantido
-- premium-lavavel | Profundidade | quarto: sem pote nesse tamanho — mantido
-- premium-lavavel | Chumbo | balde: cor sem pigmento na tabela — mantido
-- premium-lavavel | Chumbo | galao: cor sem pigmento na tabela — mantido
-- premium-lavavel | Chumbo | quarto: cor sem pigmento na tabela — mantido
-- premium-lavavel | Preto | balde: cor sem pigmento na tabela — mantido
-- premium-lavavel | Preto | galao: cor sem pigmento na tabela — mantido
-- premium-lavavel | Preto | quarto: cor sem pigmento na tabela — mantido
-- emborrachada | Cinza | balde: cor sem pigmento na tabela — mantido
-- emborrachada | Cinza | galao: cor sem pigmento na tabela — mantido
-- emborrachada | Chumbo | balde: cor sem pigmento na tabela — mantido
-- emborrachada | Chumbo | galao: cor sem pigmento na tabela — mantido
-- emborrachada | Preto | balde: cor sem pigmento na tabela — mantido
-- emborrachada | Preto | galao: cor sem pigmento na tabela — mantido
+| Cor | Tamanho | Antes | Agora | Diferença |
+|---|---|---|---|---|
+| Rosé | 5kg | R$ 69,90 | R$ 74,80 | +4,90 |
+| Rosé | 20kg | R$ 199,90 | R$ 219,80 | +19,90 |
+| Amarelo Laet 2 | 5kg | R$ 69,90 | R$ 74,80 | +4,90 |
+| Amarelo Laet 2 | 20kg | R$ 199,90 | R$ 219,80 | +19,90 |
+| Bala de Iogurte | 5kg | R$ 69,90 | R$ 84,80 | +14,90 |
+| Bala de Iogurte | 20kg | R$ 199,90 | R$ 239,80 | +39,90 |
+| Cinza Claro | 5kg | R$ 69,90 | R$ 74,80 | +4,90 |
+| Cinza Claro | 20kg | R$ 199,90 | R$ 219,80 | +19,90 |
+| Verde Uva | 5kg | R$ 74,90 | R$ 84,80 | +9,90 |
+| Verde Uva | 20kg | R$ 229,90 | R$ 239,80 | +9,90 |
+| Azul Céu | 5kg | R$ 74,90 | R$ 84,80 | +9,90 |
+| Azul Céu | 20kg | R$ 219,90 | R$ 239,80 | +19,90 |
+| Concreto | 5kg | R$ 74,90 | R$ 84,80 | +9,90 |
+| Concreto | 20kg | R$ 199,90 | R$ 239,80 | +39,90 |
+| Caixa Mágica | 5kg | R$ 69,90 | R$ 84,80 | +14,90 |
+| Caixa Mágica | 20kg | R$ 199,90 | R$ 239,80 | +39,90 |
+| Cinza Padrão | 5kg | R$ 74,90 | R$ 84,80 | +9,90 |
+| Cinza Padrão | 20kg | R$ 199,90 | R$ 239,80 | +39,90 |
+| Azeitona Passada | 5kg | R$ 79,90 | R$ 84,80 | +4,90 |
+| Azeitona Passada | 20kg | R$ 229,90 | R$ 239,80 | +9,90 |
+| Pavão | 5kg | R$ 84,90 | R$ 84,80 | −0,10 |
+| Pavão | 20kg | R$ 224,90 | R$ 239,80 | +14,90 |
+| Jeans | 5kg | R$ 74,90 | R$ 84,80 | +9,90 |
+| Jeans | 20kg | R$ 219,90 | R$ 239,80 | +19,90 |
+| Chumbo | 5kg | R$ 79,90 | R$ 84,80 | +4,90 |
+| Chumbo | 20kg | R$ 229,90 | R$ 239,80 | +9,90 |
+| Dois Amores | 5kg | R$ 89,90 | R$ 114,80 | +24,90 |
+| Dois Amores | 20kg | R$ 259,90 | R$ 299,80 | +39,90 |
+| Marrom Turco | 5kg | R$ 89,90 | R$ 104,80 | +14,90 |
+| Marrom Turco | 20kg | R$ 259,90 | R$ 279,80 | +19,90 |
