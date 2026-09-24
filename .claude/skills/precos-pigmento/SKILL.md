@@ -63,8 +63,7 @@ O orçamento (`site/orcamento.html`) lê os preços direto de `produto.html`, en
    - `git diff site/index.html site/produtos.html`: conferir que só mudou o card certo.
 6. **Mostrar pro Kevin** a lista antes → agora (mandar o `.md`), destacando o que sobe mais e
    qualquer coisa que ficou de fora. Esperar aprovação.
-7. **Colocar no ar** só depois do "pode colocar": commit na branch de trabalho, abrir PR pra
-   `main` e fazer o merge (o Netlify publica só a `main`).
+7. **Colocar no ar:** só depois de perguntar "Posso colocar no ar?" e o Kevin responder que sim, pra esse deploy específico (ver "Publicar no site" no CLAUDE.md). Aí abrir PR pra `main` e fazer o merge, porque o Netlify publica só a `main`. Se ele disser "coloca na fila", deixar na branch.
 
 ## Quando uma cor sai de linha
 

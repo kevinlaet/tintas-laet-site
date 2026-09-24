@@ -112,6 +112,14 @@ Ao concluir uma tarefa que não tinha skill mas parece repetível, perguntar:
 
 ---
 
+## Publicar no site (deploy)
+
+A partir de 24/09/2026: **nunca colocar nada no ar sem perguntar pro Kevin antes**, mesmo que ele tenha aprovado o conteúdo. O site oficial publica sozinho quando algo entra na branch `main`, então merge na `main` = deploy.
+
+- Fazer as alterações numa branch de trabalho, commitar e dar push nela (isso não publica nada).
+- Mostrar o que mudou e perguntar: "Posso colocar no ar?". Só abrir/mesclar PR na `main` depois de um "pode" explícito pra aquele deploy específico. Aprovação de um deploy anterior não vale pro próximo.
+- Se o Kevin disser "coloca na fila", deixar na branch e listar o que está esperando deploy.
+
 ## Aprender com correções
 
 Quando Kevin corrigir algo ou dar instrução permanente, perguntar:
