@@ -177,7 +177,10 @@
     .fan { position: relative; width: 100%; max-width: 780px; height: 100%; }
     /* Slot: fica parado no lugar (dono da rotação/posição) — nunca se move no hover,
        senão o cursor "escapa" do elemento quando ele sobe e fica piscando. */
-    .fan-chip-slot { position: absolute; left: 50%; bottom: 8px; width: 60px; height: var(--chip-h); margin-left: -30px; transform-origin: 50% 100%; transform: rotate(0deg); transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    .fan-chip-slot { position: absolute; left: 50%; bottom: 8px; width: 60px; height: var(--chip-h); margin-left: -30px; transform-origin: 50% 100%; transform: rotate(0deg); transition: transform .6s cubic-bezier(.2,.8,.2,1); z-index: 1; }
+    /* rotate() cria um contexto de empilhamento por slot — sem isso, o nome
+       da cor selecionada pode ficar escondido atrás do vizinho */
+    .fan-chip-slot:hover, .fan-chip-slot:focus-within, .fan-chip-slot.is-selected { z-index: 20; }
     .color-fan-section.in-view .fan-chip-slot { transform: rotate(var(--r)); }
     /* Inner: é quem visualmente sobe/brilha no hover, dentro do slot parado */
     .fan-chip-inner { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 14px 14px 5px 5px; border: none; cursor: pointer; box-shadow: 0 6px 14px rgba(0,0,0,.18), inset 0 0 0 1px rgba(0,0,0,.06); transition: transform .25s, box-shadow .25s, filter .25s; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; }
@@ -285,8 +288,8 @@
     .locations-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .location-card { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 2px 16px rgba(13,71,161,.08); border: 1px solid #E5E9F0; transition: transform .25s, box-shadow .25s; display: flex; flex-direction: column; text-decoration: none; color: inherit; cursor: pointer; }
     .location-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(13,71,161,.18); }
-    .location-photo { width: 100%; overflow: hidden; background: #f0f2f5; flex-shrink: 0; }
-    .location-photo img { width: 100%; height: auto; display: block; transition: transform .4s; }
+    .location-photo { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background: #f0f2f5; flex-shrink: 0; }
+    .location-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
     .location-card:hover .location-photo img { transform: scale(1.03); }
     .location-body { padding: 20px 22px; flex: 1; display: flex; flex-direction: column; }
     .location-pin { display: none; }
@@ -1740,8 +1743,9 @@ document.querySelectorAll('.seller-card').forEach(card => {
   if (!chips.length || !detail) return;
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('selected'));
+      chips.forEach(c => { c.classList.remove('selected'); c.closest('.fan-chip-slot').classList.remove('is-selected'); });
       chip.classList.add('selected');
+      chip.closest('.fan-chip-slot').classList.add('is-selected');
       const hex = getComputedStyle(chip).backgroundColor;
       swatch.style.background = hex;
       name.textContent = chip.dataset.nome;
