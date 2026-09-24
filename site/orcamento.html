@@ -313,7 +313,7 @@
 </template>
 
 <script>
-const SENHA = 'laet2026';
+const TOKEN_KEY = 'laet_orcamento_token';
 const DRAFT_KEY = 'laet_orcamento_rascunho';
 
 // URL do Web App do Google Apps Script (planilha central de orçamentos).
@@ -400,7 +400,7 @@ async function notificarVerTotal() {
     const { total } = coletarOrcamento();
     await fetch('/.netlify/functions/orcamento-ver-total', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...authHeaders() },
       body: JSON.stringify({
         numero: orcamentoNumero,
         vendedor: document.getElementById('f-vendedor').value,
@@ -428,24 +428,69 @@ async function revelarTotal() {
   notificarVerTotal();
 }
 
-function checkPassword() {
-  const input = document.getElementById('gatePass').value;
-  if (input === SENHA) {
-    sessionStorage.setItem('laet_orcamento_unlocked', '1');
-    document.getElementById('gate').style.display = 'none';
-    document.getElementById('tool').style.display = 'block';
-    initTool();
-  } else {
-    document.getElementById('gateError').style.display = 'block';
+// O token vem do servidor depois do login (dura 12h) e a senha não existe
+// em nenhum lugar deste arquivo.
+function tokenSalvo() {
+  const token = sessionStorage.getItem(TOKEN_KEY);
+  if (!token) return null;
+  const expiraEm = parseInt(token.split('.')[0], 10);
+  if (!expiraEm || Date.now() > expiraEm) {
+    sessionStorage.removeItem(TOKEN_KEY);
+    return null;
   }
+  return token;
+}
+
+function authHeaders() {
+  const token = tokenSalvo();
+  return token ? { 'Authorization': 'Bearer ' + token } : {};
+}
+
+function mostrarFerramenta() {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('tool').style.display = 'block';
+  initTool();
+}
+
+function travarFerramenta(mensagem) {
+  sessionStorage.removeItem(TOKEN_KEY);
+  document.getElementById('tool').style.display = 'none';
+  document.getElementById('gate').style.display = '';
+  const erro = document.getElementById('gateError');
+  erro.textContent = mensagem;
+  erro.style.display = 'block';
+}
+
+async function checkPassword() {
+  const input = document.getElementById('gatePass').value;
+  const erro = document.getElementById('gateError');
+  erro.style.display = 'none';
+  try {
+    const resp = await fetch('/.netlify/functions/orcamento-auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ senha: input })
+    });
+    const data = await resp.json();
+    if (data.ok && data.token) {
+      sessionStorage.setItem(TOKEN_KEY, data.token);
+      document.getElementById('gatePass').value = '';
+      mostrarFerramenta();
+      return;
+    }
+    erro.textContent = data.erro === 'senha incorreta'
+      ? 'Senha incorreta.'
+      : 'Não foi possível entrar agora. Tente de novo em instantes.';
+  } catch (e) {
+    erro.textContent = 'Sem conexão com o servidor. Confira a internet e tente de novo.';
+  }
+  erro.style.display = 'block';
 }
 
 let produtosData = null;
 
-if (sessionStorage.getItem('laet_orcamento_unlocked') === '1') {
-  document.getElementById('gate').style.display = 'none';
-  document.getElementById('tool').style.display = 'block';
-  initTool();
+if (tokenSalvo()) {
+  mostrarFerramenta();
 }
 
 async function loadProdutos() {
@@ -735,9 +780,14 @@ async function processarFotoPedido(file) {
 
     const resp = await fetch('/.netlify/functions/ler-pedido-foto', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...authHeaders() },
       body: JSON.stringify({ imagemBase64, mimeType })
     });
+
+    if (resp.status === 401) {
+      travarFerramenta('Sua sessão expirou. Entre de novo (o orçamento em andamento fica salvo).');
+      return;
+    }
 
     if (!resp.ok) {
       mostrarStatusFoto('O servidor recusou o envio dessa foto (status ' + resp.status + ') — pode estar grande ou pesada demais. Tente outra foto ou adicione manualmente.', true);
