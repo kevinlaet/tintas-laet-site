@@ -3,9 +3,16 @@
 // PDF/mandar WhatsApp, que so acontece se o cliente fechar negocio).
 // Mesmo mecanismo de push do submission-created.js e chat-message.js.
 
+const { tokenValido, extrairToken } = require("./lib/auth-utils");
+
 exports.handler = async function (event) {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "method not allowed" };
+  }
+
+  // Sem login valido nao manda notificacao pro celular do Kevin.
+  if (!tokenValido(extrairToken(event))) {
+    return { statusCode: 401, body: JSON.stringify({ ok: false }) };
   }
 
   try {

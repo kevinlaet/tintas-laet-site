@@ -8,7 +8,7 @@ const { chromium } = require('playwright');
   page.on('console', (msg) => { if (msg.type() === 'error') errors.push(msg.text()); });
 
   await page.goto('http://localhost:8765/orcamento.html');
-  await page.fill('#gatePass', 'laet2026');
+  await page.fill('#gatePass', process.env.ORCAMENTO_SENHA);
   await page.click('button:has-text("Entrar")');
   await page.waitForSelector('#itemsList .item-card', { timeout: 10000 });
 
