@@ -184,6 +184,8 @@
     .fan-chip-slot:hover .fan-chip-inner, .fan-chip-slot:focus-within .fan-chip-inner, .fan-chip-inner.selected { transform: translateY(-28px); box-shadow: 0 16px 26px rgba(0,0,0,.3), inset 0 0 0 1px rgba(0,0,0,.08); z-index: 5; filter: brightness(1.04); }
     .fan-chip-label { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10.5px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.35); background: rgba(0,0,0,.16); padding: 3px 6px; border-radius: 20px; white-space: nowrap; opacity: 0; transform: translateY(4px); transition: opacity .2s, transform .2s; }
     .fan-chip-slot:hover .fan-chip-label, .fan-chip-slot:focus-within .fan-chip-label, .fan-chip-inner.selected .fan-chip-label { opacity: 1; transform: translateY(0); }
+    /* O slot gira, então cria camada própria: o z-index do inner não sai de dentro dele e as lâminas vizinhas cobrem o nome da cor. Sobe o slot inteiro. */
+    .fan-chip-slot:hover, .fan-chip-slot:focus-within, .fan-chip-slot:has(.fan-chip-inner.selected) { z-index: 20; }
     .fan-chip-inner.fan-chip--dark .fan-chip-label { color: #212529; text-shadow: none; background: rgba(255,255,255,.55); }
     @media (max-width: 640px) { .fan-chip-slot { width: 40px; margin-left: -20px; } .fan-chip-label { display: none; } }
     .fan-detail { display: flex; align-items: center; justify-content: center; gap: 12px; max-width: 420px; margin: 24px auto 0; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: 50px; padding: 8px 8px 8px 18px; transition: background .2s; }
