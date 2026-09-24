@@ -1790,7 +1790,7 @@ function render() {
   coresShown = 20;
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
-  const p = produtos[id];
+  const p = Object.prototype.hasOwnProperty.call(produtos, id) ? produtos[id] : undefined;
   const app = document.getElementById('app');
 
   if (!p) {
