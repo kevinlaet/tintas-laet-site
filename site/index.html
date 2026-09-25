@@ -177,7 +177,10 @@
     .fan { position: relative; width: 100%; max-width: 780px; height: 100%; }
     /* Slot: fica parado no lugar (dono da rotação/posição) — nunca se move no hover,
        senão o cursor "escapa" do elemento quando ele sobe e fica piscando. */
-    .fan-chip-slot { position: absolute; left: 50%; bottom: 8px; width: 60px; height: var(--chip-h); margin-left: -30px; transform-origin: 50% 100%; transform: rotate(0deg); transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    .fan-chip-slot { position: absolute; left: 50%; bottom: 8px; width: 60px; height: var(--chip-h); margin-left: -30px; transform-origin: 50% 100%; transform: rotate(0deg); transition: transform .6s cubic-bezier(.2,.8,.2,1); z-index: 1; }
+    /* rotate() cria um contexto de empilhamento por slot — sem isso, o nome
+       da cor selecionada pode ficar escondido atrás do vizinho */
+    .fan-chip-slot:hover, .fan-chip-slot:focus-within, .fan-chip-slot.is-selected { z-index: 20; }
     .color-fan-section.in-view .fan-chip-slot { transform: rotate(var(--r)); }
     /* Inner: é quem visualmente sobe/brilha no hover, dentro do slot parado */
     .fan-chip-inner { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 14px 14px 5px 5px; border: none; cursor: pointer; box-shadow: 0 6px 14px rgba(0,0,0,.18), inset 0 0 0 1px rgba(0,0,0,.06); transition: transform .25s, box-shadow .25s, filter .25s; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; }
@@ -287,8 +290,8 @@
     .locations-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .location-card { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 2px 16px rgba(13,71,161,.08); border: 1px solid #E5E9F0; transition: transform .25s, box-shadow .25s; display: flex; flex-direction: column; text-decoration: none; color: inherit; cursor: pointer; }
     .location-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(13,71,161,.18); }
-    .location-photo { width: 100%; overflow: hidden; background: #f0f2f5; flex-shrink: 0; }
-    .location-photo img { width: 100%; height: auto; display: block; transition: transform .4s; }
+    .location-photo { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background: #f0f2f5; flex-shrink: 0; }
+    .location-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
     .location-card:hover .location-photo img { transform: scale(1.03); }
     .location-body { padding: 20px 22px; flex: 1; display: flex; flex-direction: column; }
     .location-pin { display: none; }
@@ -614,10 +617,7 @@
 
     <!-- Slide 1: A tinta certa -->
     <div class="banner-slide">
-      <picture>
-        <source media="(max-width: 640px)" srcset="images/hero-novo/banner-pintando-mobile.jpg">
-        <img src="images/hero-novo/banner-pintando.jpg" alt="Cliente pintando a parede com tinta Laet" class="banner-img" fetchpriority="high">
-      </picture>
+      <img src="images/hero-novo/banner-pintando.jpg" alt="Cliente pintando a parede com tinta Laet" class="banner-img" fetchpriority="high">
       <div class="banner-scrim"></div>
       <img src="images/embalagens/premiumlavavel-remove-bg-io.png" alt="" class="banner-can" aria-hidden="true">
       <div class="banner-content">
@@ -632,10 +632,7 @@
 
     <!-- Slide 2: Entrega via app -->
     <div class="banner-slide">
-      <picture>
-        <source media="(max-width: 640px)" srcset="images/hero-novo/banner-app-mobile.jpg">
-        <img src="images/hero-novo/banner-app.jpg" alt="Carro e moto de entrega representando Uber e Lalamove" class="banner-img" loading="lazy">
-      </picture>
+      <img src="images/hero-novo/banner-app.jpg" alt="Carro e moto de entrega representando Uber e Lalamove" class="banner-img" loading="lazy" style="object-position:center 35%">
       <div class="banner-scrim"></div>
       <div class="banner-content">
         <div class="banner-text banner-text-glass">
@@ -659,10 +656,7 @@
 
     <!-- Slide 3: Lojas -->
     <div class="banner-slide">
-      <picture>
-        <source media="(max-width: 640px)" srcset="images/hero-novo/banner-leque-mobile.jpg">
-        <img src="images/hero-novo/banner-leque.jpg" alt="Atendimento e escolha de cor em uma das lojas Tintas Laet" class="banner-img" loading="lazy">
-      </picture>
+      <img src="images/hero-novo/banner-leque.jpg" alt="Atendimento e escolha de cor em uma das lojas Tintas Laet" class="banner-img" loading="lazy" style="object-position:65% 25%">
       <div class="banner-scrim"></div>
       <div class="banner-content">
         <div class="banner-text banner-text-glass">
@@ -688,13 +682,13 @@
     <span class="strip-item">💳 Até 12x sem juros no cartão</span><span class="strip-dot"></span>
     <span class="strip-item">💧 100% tintas base água</span><span class="strip-dot"></span>
     <span class="strip-item">🤝 Atendimento humano</span><span class="strip-dot"></span>
-    <span class="strip-item">🏠 Pague só na entrega</span><span class="strip-dot"></span>
+    <span class="strip-item">💳 Pix, cartão ou dinheiro</span><span class="strip-dot"></span>
     <span class="strip-item">🚗 Peça por Uber ou Lalamove</span><span class="strip-dot"></span>
     <span class="strip-item">💰 Menor preço do mercado</span><span class="strip-dot"></span>
     <span class="strip-item">💳 Até 12x sem juros no cartão</span><span class="strip-dot"></span>
     <span class="strip-item">💧 100% tintas base água</span><span class="strip-dot"></span>
     <span class="strip-item">🤝 Atendimento humano</span><span class="strip-dot"></span>
-    <span class="strip-item">🏠 Pague só na entrega</span><span class="strip-dot"></span>
+    <span class="strip-item">💳 Pix, cartão ou dinheiro</span><span class="strip-dot"></span>
   </div>
 </div>
 
@@ -891,11 +885,11 @@
       </div>
       <div class="step-card">
         <div class="step-num">5</div>
-        <div class="step-title">Pague na entrega</div>
-        <div class="step-desc">Pix, cartão ou dinheiro — só paga quando chegar*</div>
+        <div class="step-title">Pague na retirada</div>
+        <div class="step-desc">Pix, cartão ou dinheiro na loja. Pediu por Uber/Lalamove? O pagamento é feito antes, direto com a gente*</div>
       </div>
     </div>
-    <p style="text-align:center;font-size:11px;color:#aaa;margin-top:16px">* Válido para produtos sem coloração. Produtos coloridos são encomendas e podem exigir sinal antecipado.</p>
+    <p style="text-align:center;font-size:11px;color:#aaa;margin-top:16px">* Como a entrega é feita por um motorista de aplicativo, não dá pra pagar só quando chegar — o pagamento é combinado com a gente antes de o pedido sair da loja. Produtos coloridos são encomendas e podem exigir sinal antecipado.</p>
 
     <div class="pickup-box">
       <div class="pickup-card reveal" style="transition-delay:0.00s">
@@ -1202,8 +1196,8 @@
           <div class="why-item glass reveal" style="transition-delay:0.16s">
             <div class="why-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
             <div class="why-item-text">
-              <strong>Pague só na entrega, em até 12x</strong>
-              <p>Não precisa pagar adiantado. Pix, cartão ou dinheiro — você escolhe na hora que o produto chegar.</p>
+              <strong>Pix, cartão ou dinheiro, em até 12x</strong>
+              <p>Pague na retirada, na hora que buscar na loja. Pediu por Uber/Lalamove? O pagamento é feito antes, direto com a gente.</p>
             </div>
           </div>
           <div class="why-item glass reveal" style="transition-delay:0.24s">
@@ -1378,7 +1372,7 @@
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <p>Não fazemos entrega própria no momento. Mas é fácil resolver: você compra na loja ou pelo WhatsApp e pede um Uber ou Lalamove pra buscar o produto e levar até você — a gente combina o horário de retirada.</p>
+          <p>Não fazemos entrega própria no momento. Mas é fácil resolver: você compra na loja ou pelo WhatsApp e pede um Uber ou Lalamove pra buscar o produto e levar até você. Como quem leva é um motorista de aplicativo, o pagamento é feito antes, direto com a gente — não dá pra pagar só quando chegar nesse caso.</p>
         </div>
       </div>
       <div class="faq-item">
@@ -1387,7 +1381,7 @@
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <p>O parcelamento em até 12x sem juros é feito no cartão de crédito na hora que você retira o produto. Sem necessidade de pagar adiantado — a maquininha está te esperando na loja (ou com o motorista, se você pediu por Uber/Lalamove).</p>
+          <p>O parcelamento em até 12x sem juros é feito no cartão de crédito na hora que você retira o produto na loja — a maquininha está te esperando lá. Se você pediu por Uber/Lalamove, o pagamento é feito antes, direto com a gente (o motorista do app só leva o produto, não recebe pagamento).</p>
         </div>
       </div>
       <div class="faq-item">
@@ -1742,8 +1736,9 @@ document.querySelectorAll('.seller-card').forEach(card => {
   if (!chips.length || !detail) return;
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('selected'));
+      chips.forEach(c => { c.classList.remove('selected'); c.closest('.fan-chip-slot').classList.remove('is-selected'); });
       chip.classList.add('selected');
+      chip.closest('.fan-chip-slot').classList.add('is-selected');
       const hex = getComputedStyle(chip).backgroundColor;
       swatch.style.background = hex;
       name.textContent = chip.dataset.nome;
