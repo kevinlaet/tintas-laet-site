@@ -14,7 +14,7 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
   - `embalagens/` — renders de produtos (tintas, solventes) + label da Proteção Emborrachada (em stand-by — foco atual são as aberturas de loja)
   - `placas-lojas/` — templates de placas de loja (tabela de preço, avisos legais, vaga preferencial, proibido fumar, etc.)
 - `marketing/` — campanhas, conteúdo, mídia paga
-  - `catalogos/` — PDFs de catálogo de produtos (Cobertura Absoluta, Flex Emborrachada, Standard, Premium Lavável, Semibrilho)
+  - `catalogos/` — PDFs de catálogo de cores com preço (11 linhas: Cobertura Absoluta, Direto no Gesso, Efeito Cimento Queimado, Esmalte Ecológico, Flexível Emborrachada, Latex Vinil, Pisos e Fachadas, Premium Lavável, Semi-brilho Premium, Standard Concentrada, Super Profissional — versão de 25/09/2026)
   - `conteudo/<slug>-<data>/` — carrosséis e posts de feed de Instagram/Facebook
   - `stories/<YYYY-MM>/<DD>-<slug>/` — stories de Instagram, agrupados por mês (meta é 2/dia, então nunca soltar story direto em `conteudo/`)
   - `status-whatsapp/<slug>-<data>/` — peças no formato 9:16 pra Status do WhatsApp
