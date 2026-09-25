@@ -1,4 +1,4 @@
-// Extrai as cores dos catálogos em PDF (marketing/catalogos): nome, hex do quadradinho e preços de cada linha da tabela.
+// Extrai as cores dos catálogos originais em PDF (marketing/catalogos/antigos-canva-2026-07): nome, hex do quadradinho e preços de cada linha da tabela.
 // Precisa de: cd scripts/cores/extracao && npm install   (pdfjs-dist e sharp; o Playwright vem do projeto)
 // Saída: scripts/cores/extracao/saida-pdf.json — NÃO vai direto pro site: revisar e só então atualizar identidade/cores/paleta-oficial.json.
 // Lê os catálogos em PDF e devolve, pra cada linha de cor, o nome, a cor do quadradinho
@@ -14,7 +14,7 @@ const { chromium } = requireProjeto("playwright");
 
 const AQUI = path.dirname(fileURLToPath(import.meta.url));
 const LIB = path.join(AQUI, "node_modules/pdfjs-dist/legacy/build");
-const PDFS = path.join(AQUI, "..", "..", "..", "marketing", "catalogos");
+const PDFS = path.join(AQUI, "..", "..", "..", "marketing", "catalogos", "antigos-canva-2026-07");
 
 const PAGINA = `<!doctype html><meta charset="utf-8"><body><script type="module">
 import * as pdfjs from '/lib/pdf.mjs';

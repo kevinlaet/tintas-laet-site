@@ -14,7 +14,7 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
   - `embalagens/` — renders de produtos (tintas, solventes) + label da Proteção Emborrachada (em stand-by — foco atual são as aberturas de loja)
   - `placas-lojas/` — templates de placas de loja (tabela de preço, avisos legais, vaga preferencial, proibido fumar, etc.)
 - `marketing/` — campanhas, conteúdo, mídia paga
-  - `catalogos/` — PDFs de catálogo de produtos (Cobertura Absoluta, Flex Emborrachada, Standard, Premium Lavável, Semibrilho)
+  - `catalogos/` — catálogos de cores em PDF prontos pra mandar ao cliente, das 11 linhas (`catalogo-<linha>.pdf`, gerados por `node scripts/catalogos-pdf/gerar.js`: cor da paleta oficial + preço do site; rodar de novo quando mudar preço). Os originais do Canva (Jul/2026) ficam em `catalogos/antigos-canva-2026-07/` — referência da paleta e fonte das capas, não apagar
   - `conteudo/<slug>-<data>/` — carrosséis e posts de feed de Instagram/Facebook
   - `stories/<YYYY-MM>/<DD>-<slug>/` — stories de Instagram, agrupados por mês (meta é 2/dia, então nunca soltar story direto em `conteudo/`)
   - `status-whatsapp/<slug>-<data>/` — peças no formato 9:16 pra Status do WhatsApp

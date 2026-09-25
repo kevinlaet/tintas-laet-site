@@ -2,6 +2,10 @@
 
 Cada mudança em `paleta-oficial.json` entra aqui: data, fonte, o que dizia antes → o que diz agora. Nada é corrigido sem deixar rastro.
 
+## 25/09/2026 — PDFs originais mudaram de pasta
+
+Os 5 PDFs do Canva que deram origem à paleta saíram de `marketing/catalogos/` e foram pra `marketing/catalogos/antigos-canva-2026-07/` (mesmos arquivos, só a pasta). O campo `referencia` do mestre foi atualizado. Em `marketing/catalogos/` agora ficam os catálogos atuais, gerados por `scripts/catalogos-pdf/gerar.js`.
+
 ## 24/09/2026 — criação do arquivo-mestre
 
 **Fonte:** PDFs e fotos de catálogo que o Kevin mandou (`marketing/catalogos/` e `catalogos/`).

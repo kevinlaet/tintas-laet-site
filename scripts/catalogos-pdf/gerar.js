@@ -4,7 +4,8 @@
 //   node scripts/catalogos-pdf/gerar.js premium-lavavel      -> só uma (ids em lib/linhas.js)
 //
 // Cores: identidade/cores/paleta-oficial.json (idênticas aos PDFs/fotos de catálogo).  Preços: site/produto.html.
-// Capas das linhas que já tinham PDF são copiadas dos PDFs antigos (marketing/catalogos); as demais são desenhadas aqui.
+// Capas das linhas que já tinham PDF são copiadas dos originais do Canva (marketing/catalogos/antigos-canva-2026-07); as demais são desenhadas aqui.
+// Saída: marketing/catalogos/ (os catálogos atuais, prontos pra mandar). Arquivos com o mesmo nome são substituídos.
 // Precisa de internet (fontes do Google Fonts) e de:  cd scripts/catalogos-pdf && npm install
 const fs = require("fs");
 const os = require("os");
@@ -16,8 +17,8 @@ const { LINHAS, resolver } = require("./lib/linhas");
 const { paginasTabela, paginaCapa, paginaEncerramento, documento } = require("./lib/paginas");
 
 const RAIZ = path.join(__dirname, "..", "..");
-const ANTIGOS = path.join(RAIZ, "marketing", "catalogos");
-const SAIDA = path.join(RAIZ, "saidas", "catalogos-pdf");
+const ANTIGOS = path.join(RAIZ, "marketing", "catalogos", "antigos-canva-2026-07");
+const SAIDA = path.join(RAIZ, "marketing", "catalogos");
 const TMP = path.join(os.tmpdir(), "tintas-laet-catalogos");
 
 async function main() {

@@ -34,5 +34,5 @@ _memoria/
 # Cores: saída intermediária das ferramentas de extração (só o mestre em identidade/cores vale)
 scripts/cores/extracao/saida-*.json
 
-# Catálogos em PDF gerados por scripts/catalogos-pdf/gerar.js (regeráveis, pesados)
-saidas/catalogos-pdf/
+# Catálogos em PDF gerados por scripts/catalogos-pdf/gerar.js (regeráveis, pesados). Os originais do Canva ficam na subpasta e continuam no git.
+/marketing/catalogos/catalogo-*.pdf

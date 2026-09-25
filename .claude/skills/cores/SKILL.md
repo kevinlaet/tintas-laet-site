@@ -72,18 +72,18 @@ IA **não acerta hex**: ela pinta "um roxo parecido". Portanto:
 5. Custo: gerar imagem por API é pago. Avisar o valor e esperar confirmação antes (regra do guardrail financeiro).
 
 ### Catálogos de cores em PDF (os de mandar no WhatsApp)
-`node scripts/catalogos-pdf/gerar.js` gera os 11 PDFs em `saidas/catalogos-pdf/` (ou só um: `gerar.js premium-lavavel`). Primeira vez: `cd scripts/catalogos-pdf && npm install`. Precisa de internet (fontes).
+`node scripts/catalogos-pdf/gerar.js` gera os 11 PDFs em `marketing/catalogos/` (substitui os de mesmo nome) (ou só um: `gerar.js premium-lavavel`). Primeira vez: `cd scripts/catalogos-pdf && npm install`. Precisa de internet (fontes).
 - Mesmo modelo dos PDFs do Canva (formato 9:16): capa, tabela COR / NOME DA COR / BALDE / GALÃO / (1/4), rodapé de aviso e página final com botões clicáveis (Orçamento, Instagram, Site).
 - Cor vem do mestre, preço vem do site (`site/produto.html`). Mudou preço no site → rodar de novo. Nunca digitar preço à mão no PDF.
-- Premium, Emborrachada, Cobertura, Semi Brilho e Standard reaproveitam a capa do PDF antigo (`marketing/catalogos/`); as outras 6 linhas têm capa desenhada no mesmo estilo (`identidade/catalogo-pdf/` guarda logo, leque, mascote e fundo).
+- Premium, Emborrachada, Cobertura, Semi Brilho e Standard reaproveitam a capa do PDF original do Canva (`marketing/catalogos/antigos-canva-2026-07/`); as outras 6 linhas têm capa desenhada no mesmo estilo (`identidade/catalogo-pdf/` guarda logo, leque, mascote e fundo).
 - Páginas antigas com texto que não vale mais ficaram de fora (Flex e Standard falavam em "entregas disponíveis" e "4 lojas").
 - Cobertura Absoluta e Semi Brilho usam o MESMO preço da Emborrachada (confirmado pelo Kevin em 25/09). Se um dia mudar, trocar `produtoPrecos` em `scripts/catalogos-pdf/lib/linhas.js`.
 - Rodapé só com o aviso de cor. Não colocar variação de litragem/embalagem (pedido do Kevin, 25/09).
-- Depois de gerar, conferir lendo de volta: rodar o extrator de PDF (`scripts/cores/extracao`) apontando pra `saidas/catalogos-pdf` e comparar hex e preço de cada linha com o mestre e o site. Em 25/09: 652 linhas, zero diferença.
-- Os PDFs não vão pro git (são regeráveis e pesados).
+- Depois de gerar, conferir lendo de volta: rodar o extrator de PDF (`scripts/cores/extracao`) apontando pra `marketing/catalogos` e comparar hex e preço de cada linha com o mestre e o site. Em 25/09: 652 linhas, zero diferença.
+- Os PDFs gerados não vão pro git (são regeráveis e pesados); ficam salvos na pasta, que o OneDrive sincroniza. Os originais do Canva continuam no git.
 
 ### Chegou catálogo novo (PDF ou foto)
-1. Salvar o arquivo em `marketing/catalogos/` (PDF) ou `catalogos/` (foto).
+1. Salvar o arquivo em `marketing/catalogos/antigos-canva-2026-07/` (PDF original de fornecedor/Canva — NÃO na raiz de `marketing/catalogos/`, que é dos catálogos gerados) ou `catalogos/` (foto).
 2. `cd scripts/cores/extracao && npm install` (uma vez) e rodar:
    - PDF: `node extrair-pdf.mjs` (lê a tabela COR / NOME DA COR / BALDE e mede o quadradinho)
    - Foto: editar a lista de nomes de cada folha em `extrair-fotos.cjs` (transcrita da foto, na ordem de leitura) e rodar `node extrair-fotos.cjs`. O script avisa se achou quantidade diferente de quadradinhos (`DIVERGE`): parar e revisar antes de seguir.

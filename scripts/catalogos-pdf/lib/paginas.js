@@ -1,5 +1,5 @@
 // HTML das páginas dos catálogos em PDF (quadro 1080x1920 px = página 9:16 do Canva, 810x1440pt).
-// Medidas tiradas dos PDFs originais (marketing/catalogos). Fontes livres no lugar das pagas do Canva:
+// Medidas tiradas dos PDFs originais (marketing/catalogos/antigos-canva-2026-07). Fontes livres no lugar das pagas do Canva:
 // Public Sans (Canva Sans), League Spartan (Futura Heavy), Outfit (Glacial Indifference).
 const path = require("path");
 const { pathToFileURL } = require("url");
