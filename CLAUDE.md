@@ -14,7 +14,7 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
   - `embalagens/` — renders de produtos (tintas, solventes) + label da Proteção Emborrachada (em stand-by — foco atual são as aberturas de loja)
   - `placas-lojas/` — templates de placas de loja (tabela de preço, avisos legais, vaga preferencial, proibido fumar, etc.)
 - `marketing/` — campanhas, conteúdo, mídia paga
-  - `catalogos/` — PDFs de catálogo de produtos (Cobertura Absoluta, Flex Emborrachada, Standard, Premium Lavável, Semibrilho)
+  - `catalogos/` — catálogos de cores em PDF prontos pra mandar ao cliente, das 11 linhas (`catalogo-<linha>.pdf`, gerados por `node scripts/catalogos-pdf/gerar.js`: cor da paleta oficial + preço do site; rodar de novo quando mudar preço). Os originais do Canva (Jul/2026) ficam em `catalogos/antigos-canva-2026-07/` — referência da paleta e fonte das capas, não apagar
   - `conteudo/<slug>-<data>/` — carrosséis e posts de feed de Instagram/Facebook
   - `stories/<YYYY-MM>/<DD>-<slug>/` — stories de Instagram, agrupados por mês (meta é 2/dia, então nunca soltar story direto em `conteudo/`)
   - `status-whatsapp/<slug>-<data>/` — peças no formato 9:16 pra Status do WhatsApp
@@ -34,9 +34,11 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 
 ## Sobre a empresa
 
-Tintas Laet é um comércio de tintas e materiais de pintura com 6 lojas — 5 já funcionando (a Loja 5 com festa de inauguração realizada em 08/08/2026) e a 6ª ainda vazia (sem estoque), com contrato assinado, entrando em manutenção do salão (pintura e reparos) antes de abrir —, na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado, parcelamento em 12x sem juros e frete justo.
+Tintas Laet é um comércio de tintas e materiais de pintura com 6 lojas — 5 já funcionando (a Loja 5 com festa de inauguração realizada em 08/08/2026) e a 6ª ainda vazia (sem estoque), com contrato assinado, entrando em manutenção do salão (pintura e reparos) antes de abrir —, na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado e parcelamento em 12x sem juros.
 
 Fundada por Anderson Laet e Robson Laet. Kevin cuida do marketing digital e da gestão operacional das lojas, sozinho por enquanto.
+
+**Entrega própria em teste de descontinuação (a partir de 24/09/2026):** os sócios estão testando tirar a entrega feita pela própria loja e deixar só entrega via aplicativo (Lalamove e Uber, pedido pelo próprio cliente). Enquanto durar esse teste, nenhuma peça (site, post, story, anúncio) pode afirmar "a gente entrega" ou "frete justo" como serviço da loja — a entrega é por conta do cliente via app. Não é definitivo: se os sócios decidirem voltar com entrega própria, essa nota se atualiza. Perguntar ao Kevin antes de reverter.
 
 ## Instagram
 
@@ -60,6 +62,7 @@ Kevin quer uma relação mais pessoal, não só um executor de tarefas frio. Cha
 
 - Antes de qualquer peça visual, ler `identidade/design-guide.md`
 - Antes de gerar foto por IA, ler `identidade/prompts-ia.md`
+- Qualquer peça, página ou texto que mostre cor de tinta (site, catálogo, leque, post, story, mockup): usar a skill `/cores`. Cor vem sempre de `identidade/cores/paleta-oficial.json` (idêntica ao PDF/foto de catálogo que o Kevin mandou), nunca "de olho". Depois de mexer em cor, rodar `node scripts/cores/verificar.js`.
 - Antes de qualquer texto, ler `_memoria/preferencias.md`
 - Métricas e relatórios salvos em `dados/`
 - Peças e documentos gerados salvam em `saidas/`
@@ -112,7 +115,21 @@ Antes de executar qualquer tarefa, verificar se existe skill relevante em `.clau
 Ao concluir uma tarefa que não tinha skill mas parece repetível, perguntar:
 > "Isso pode virar uma skill pra próxima vez. Quer que eu crie?"
 
+**Antes de dizer que algo não dá pra fazer** (a partir de 18/09/2026): verificar TODAS as formas possíveis de fazer — outra biblioteca, outra API, outro caminho de arquitetura, outro serviço, contornar a limitação em vez de aceitar ela de cara — antes de responder que não dá. Só concluir que não dá depois de esgotar as alternativas razoáveis, e nesse caso explicar o que foi checado.
+
+**Padrão de qualidade** (a partir de 24/09/2026): tudo que a gente cria aqui — painel, site, skill, automação, peça — precisa ser muito bem feito, muito usado de verdade e otimizado, **sem nunca perder função pra "simplificar"**. Evoluir é adicionar/melhorar, não cortar. Antes de considerar algo pronto, perguntar: isso está no nível de ferramenta profissional, ou só "funciona"?
+
+**Antes de criar conteúdo novo** (post, carrossel, campanha): considerar rodar `/pesquisa-mercado` se fizer mais de ~2 semanas desde a última — mantém o conteúdo antenado no que outras lojas de tinta estão fazendo, não só o que já sabemos.
+
 ---
+
+## Publicar no site (deploy)
+
+A partir de 24/09/2026: **nunca colocar nada no ar sem perguntar pro Kevin antes**, mesmo que ele tenha aprovado o conteúdo. O site oficial publica sozinho quando algo entra na branch `main`, então merge na `main` = deploy.
+
+- Fazer as alterações numa branch de trabalho, commitar e dar push nela (isso não publica nada).
+- Mostrar o que mudou e perguntar: "Posso colocar no ar?". Só abrir/mesclar PR na `main` depois de um "pode" explícito pra aquele deploy específico. Aprovação de um deploy anterior não vale pro próximo.
+- Se o Kevin disser "coloca na fila", deixar na branch e listar o que está esperando deploy.
 
 ## Aprender com correções
 

@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700;800;900&family=Poppins:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  body { margin: 0; background: #062B63; }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+
+<!-- SLIDE 1: CAPA — foto real da Loja 6 decorada — 1080×1350 -->
+<div style="width:1080px;height:1350px;position:relative;overflow:hidden;background:#062B63;font-family:'Poppins',sans-serif;">
+
+  <!-- FOTO — os balões e bandeirinhas são reais, da própria foto -->
+  <img src="loja-bg.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;">
+
+  <!-- SCRIM TOPO — só o suficiente pro logo respirar -->
+  <div style="position:absolute;top:0;left:0;right:0;height:300px;z-index:2;
+    background:linear-gradient(to bottom,rgba(4,18,52,.72) 0%,rgba(4,18,52,.34) 45%,transparent 100%);"></div>
+
+  <!-- SCRIM BASE — onde o texto vive -->
+  <div style="position:absolute;bottom:0;left:0;right:0;height:620px;z-index:2;
+    background:linear-gradient(to top,#041234 0%,rgba(4,18,52,.97) 26%,rgba(4,18,52,.82) 48%,rgba(4,18,52,.42) 72%,transparent 100%);"></div>
+
+  <!-- BARRA AMARELA TOPO -->
+  <div style="position:absolute;top:0;left:0;right:0;height:8px;background:#FFC107;z-index:20;"></div>
+
+  <!-- LOGO -->
+  <div style="position:absolute;top:30px;left:0;right:0;display:flex;justify-content:center;z-index:15;">
+    <img src="logo-branco.png" alt="Tintas Laet" style="height:118px;object-fit:contain;filter:drop-shadow(0 2px 22px rgba(0,0,0,.85));">
+  </div>
+
+  <!-- TEXTO -->
+  <div style="position:absolute;bottom:96px;left:0;right:0;z-index:12;
+    display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 62px;">
+
+    <!-- Eyebrow -->
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+      <div style="width:54px;height:3px;background:#FFC107;"></div>
+      <span style="font-size:13px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:#FFC107;">É oficial</span>
+      <div style="width:54px;height:3px;background:#FFC107;"></div>
+    </div>
+
+    <!-- LOJA 6 — "6" em amarelo, na mesma linha -->
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:186px;line-height:.82;color:#fff;letter-spacing:.02em;
+      text-shadow:0 4px 30px rgba(0,0,0,.5);">LOJA <span style="color:#FFC107;">6</span></div>
+
+    <!-- CHEGANDO -->
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:.92;color:#fff;letter-spacing:.1em;margin-top:10px;
+      text-shadow:0 3px 22px rgba(0,0,0,.5);">CHEGANDO</div>
+
+    <p style="font-size:16px;font-weight:500;color:rgba(255,255,255,.62);margin:20px 0 0;line-height:1.55;max-width:490px;">
+      Siga o @Tintaslaet e seja o primeiro a saber a data de inauguração.
+    </p>
+  </div>
+
+  <!-- RODAPÉ -->
+  <div style="position:absolute;bottom:0;left:0;right:0;z-index:20;padding:15px 62px;
+    display:flex;align-items:center;justify-content:space-between;
+    border-top:1px solid rgba(255,193,7,.28);background:rgba(3,14,40,.94);">
+    <span style="font-size:14px;font-weight:700;color:rgba(255,255,255,.85);">@Tintaslaet</span>
+    <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,.4);">Preço de amigo · 12x sem juros</span>
+    <span style="font-size:14px;font-weight:700;color:#FFC107;">(11) 97714-0964</span>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
