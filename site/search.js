@@ -9,6 +9,12 @@
       .replace(/[\u0300-\u036f]/g, '');
   }
 
+  function escapeHtml(str) {
+    return String(str || '').replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
   function matches(entry, query) {
     if (normalize(entry.nome).includes(query)) return true;
     if (entry.aliases && entry.aliases.some(a => normalize(a).includes(query))) return true;
@@ -98,7 +104,7 @@
       const msg = encodeURIComponent('Olá! Procurei "' + q + '" no site e não encontrei — vocês têm?');
       results.innerHTML = `
         <div class="laet-search-empty">
-          <p>Não achei nada com "${q}" no catálogo do site — mas pode ser que a gente tenha na loja.</p>
+          <p>Não achei nada com "${escapeHtml(q)}" no catálogo do site — mas pode ser que a gente tenha na loja.</p>
           <a href="https://wa.me/5511977140964?text=${msg}" target="_blank" rel="noopener">💬 Perguntar no WhatsApp</a>
         </div>`;
       return;

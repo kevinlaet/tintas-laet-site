@@ -1,0 +1,9 @@
+{
+  "name": "extracao-cores",
+  "private": true,
+  "description": "Só as ferramentas de extrair cor de PDF/foto. Não faz parte do site.",
+  "dependencies": {
+    "pdfjs-dist": "4.10.38",
+    "sharp": "^0.35.4"
+  }
+}

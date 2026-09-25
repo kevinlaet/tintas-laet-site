@@ -75,8 +75,8 @@
     .field input, .field select { width: 100%; padding: 13px 14px; border: 1.5px solid #DCE1EA; border-radius: 9px; font-size: 14px; font-family: 'Poppins', sans-serif; background: #fff; }
     .field input:focus, .field select:focus { outline: none; border-color: var(--blue); }
     .radio-group { display: flex; gap: 10px; }
-    .radio-option { flex: 1; }
-    .radio-option input { position: absolute; opacity: 0; pointer-events: none; }
+    .radio-option { flex: 1; position: relative; }
+    .radio-option input { position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px; padding: 0; border: 0; }
     .radio-option label { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 13px 10px; border: 1.5px solid #DCE1EA; border-radius: 9px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; color: #555; cursor: pointer; transition: border-color .2s, background .2s; margin-bottom: 0; }
     .radio-option input:checked + label { border-color: var(--blue); background: rgba(13,71,161,.06); color: var(--blue); }
 
@@ -86,7 +86,7 @@
     .section-note { font-size: 12px; color: #888; margin-bottom: 16px; line-height: 1.5; }
 
     .friend-row { display: flex; gap: 8px; margin-bottom: 10px; }
-    .friend-row input { flex: 1; }
+    .friend-row input { flex: 1; min-width: 0; }
     .friend-remove { flex-shrink: 0; width: 42px; background: #FBEAEA; border: 1.5px solid #F3CBCB; border-radius: 9px; color: #C62828; font-size: 16px; cursor: pointer; }
     .add-friend-btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; background: #EFF4FF; border: 1.5px dashed rgba(13,71,161,.35); border-radius: 9px; padding: 12px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: var(--blue); cursor: pointer; margin-bottom: 8px; }
     .add-friend-btn:hover { background: rgba(13,71,161,.08); }
