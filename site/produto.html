@@ -1659,8 +1659,8 @@ const produtos = {
     badge: 'NOVIDADE',
     imagem: 'images/embalagens/verniz-premium-remove-bg-io.png',
     desc_curta: 'Proteção e beleza para madeiras. Base água, acabamento brilhante, baixo odor e secagem rápida. Uso interno e externo.',
-    descricao: 'O Verniz Premium Laet é a novidade da linha, feito pra deixar as madeiras mais bonitas e ainda protegidas do dia a dia. É base água, com acabamento brilhante, baixo odor, secagem rápida e resistente à chuva. Indicado para portas, móveis e outras superfícies de madeira, em ambientes internos e externos. Facilita a limpeza das ferramentas depois do uso. Disponível em 3 cores: Incolor, Mogno e Imbuia.',
-    beneficios: ['Base água', 'Acabamento brilhante', 'Resistente à chuva', 'Secagem rápida', 'Baixo odor', 'Fácil limpeza das ferramentas', 'Indicado para interior e exterior', '3 cores disponíveis'],
+    descricao: 'O Verniz Premium Laet é a novidade da linha, feito pra deixar as madeiras mais bonitas e ainda protegidas do dia a dia. É base água, com acabamento brilhante, baixo odor, secagem rápida e resistente à chuva. Indicado para portas, móveis e outras superfícies de madeira, em ambientes internos e externos. Facilita a limpeza das ferramentas depois do uso. Disponível em 3 opções: Incolor, Mogno e Imbuia.',
+    beneficios: ['Base água', 'Acabamento brilhante', 'Resistente à chuva', 'Secagem rápida', 'Baixo odor', 'Fácil limpeza das ferramentas', 'Indicado para interior e exterior', '3 opções: Incolor, Mogno e Imbuia'],
     precos: [
       { desc: '3,6L', valor: 'R$ 79,90' },
       { desc: '900ml', valor: 'R$ 24,90' },
@@ -1668,6 +1668,7 @@ const produtos = {
     preco_from: 'R$ 24<small>,90</small>',
     preco_label: '900ml — a partir de',
     wa: 'Olá! Quero comprar o Verniz Premium Laet. Pode me passar mais informações?',
+    cores_label: '3 opções disponíveis',
     cores: [
       { nome: 'Incolor', hex: '#DC9A3D', madeira: true },
       { nome: 'Mogno', hex: '#82380F', madeira: true },
@@ -1974,7 +1975,7 @@ function render() {
         <div class="prod-cores-header">
           <div>
             <div class="prod-cores-title">Catálogo de Cores</div>
-            <div class="prod-cores-count">${p.cores.length} cores disponíveis</div>
+            <div class="prod-cores-count">${p.cores_label || (p.cores.length + ' cores disponíveis')}</div>
           </div>
           ${p.catalogo_pdf ? `
           <a href="${p.catalogo_pdf}" class="prod-cores-pdf" target="_blank" rel="noopener">
