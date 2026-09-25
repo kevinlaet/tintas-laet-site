@@ -1,0 +1,8 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",  "title": "Slide 1 — Capa",    "x": 0,    "y": 0, "w": 1080, "h": 1350 },
+    { "file": "Lojas.dc.html", "title": "Slide 2 — 6 Lojas", "x": 1160, "y": 0, "w": 1080, "h": 1350 },
+    { "file": "CTA.dc.html",   "title": "Slide 3 — CTA",     "x": 2320, "y": 0, "w": 1080, "h": 1350 }
+  ],
+  "launch": { "view": "canvas" }
+}
