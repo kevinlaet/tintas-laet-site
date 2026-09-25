@@ -1,0 +1,6 @@
+{
+  "name": "catalogos-pdf",
+  "private": true,
+  "description": "Gerador dos catálogos de cores em PDF. Só ferramenta, não faz parte do site.",
+  "dependencies": { "pdf-lib": "^1.17.1" }
+}

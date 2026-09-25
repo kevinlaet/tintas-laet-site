@@ -71,6 +71,16 @@ IA **não acerta hex**: ela pinta "um roxo parecido". Portanto:
 4. Rótulo e texto de lata gerada por IA: ler antes de usar (ver `identidade/prompts-ia.md`).
 5. Custo: gerar imagem por API é pago. Avisar o valor e esperar confirmação antes (regra do guardrail financeiro).
 
+### Catálogos de cores em PDF (os de mandar no WhatsApp)
+`node scripts/catalogos-pdf/gerar.js` gera os 11 PDFs em `saidas/catalogos-pdf/` (ou só um: `gerar.js premium-lavavel`). Primeira vez: `cd scripts/catalogos-pdf && npm install`. Precisa de internet (fontes).
+- Mesmo modelo dos PDFs do Canva (formato 9:16): capa, tabela COR / NOME DA COR / BALDE / GALÃO / (1/4), rodapé de aviso e página final com botões clicáveis (Orçamento, Instagram, Site).
+- Cor vem do mestre, preço vem do site (`site/produto.html`). Mudou preço no site → rodar de novo. Nunca digitar preço à mão no PDF.
+- Premium, Emborrachada, Cobertura, Semi Brilho e Standard reaproveitam a capa do PDF antigo (`marketing/catalogos/`); as outras 6 linhas têm capa desenhada no mesmo estilo (`identidade/catalogo-pdf/` guarda logo, leque, mascote e fundo).
+- Páginas antigas com texto que não vale mais ficaram de fora (Flex e Standard falavam em "entregas disponíveis" e "4 lojas").
+- Cobertura Absoluta e Semi Brilho não têm preço próprio no site: seguem a Emborrachada (nos PDFs antigos as três tinham a mesma tabela). Se o Kevin passar preço próprio, criar o produto no site ou uma tabela e trocar `produtoPrecos` em `scripts/catalogos-pdf/lib/linhas.js`.
+- Depois de gerar, conferir lendo de volta: rodar o extrator de PDF (`scripts/cores/extracao`) apontando pra `saidas/catalogos-pdf` e comparar hex e preço de cada linha com o mestre e o site. Em 25/09: 652 linhas, zero diferença.
+- Os PDFs não vão pro git (são regeráveis e pesados).
+
 ### Chegou catálogo novo (PDF ou foto)
 1. Salvar o arquivo em `marketing/catalogos/` (PDF) ou `catalogos/` (foto).
 2. `cd scripts/cores/extracao && npm install` (uma vez) e rodar:

@@ -33,3 +33,6 @@ _memoria/
 
 # Cores: saída intermediária das ferramentas de extração (só o mestre em identidade/cores vale)
 scripts/cores/extracao/saida-*.json
+
+# Catálogos em PDF gerados por scripts/catalogos-pdf/gerar.js (regeráveis, pesados)
+saidas/catalogos-pdf/
