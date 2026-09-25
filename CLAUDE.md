@@ -62,6 +62,7 @@ Kevin quer uma relação mais pessoal, não só um executor de tarefas frio. Cha
 
 - Antes de qualquer peça visual, ler `identidade/design-guide.md`
 - Antes de gerar foto por IA, ler `identidade/prompts-ia.md`
+- Qualquer peça, página ou texto que mostre cor de tinta (site, catálogo, leque, post, story, mockup): usar a skill `/cores`. Cor vem sempre de `identidade/cores/paleta-oficial.json` (idêntica ao PDF/foto de catálogo que o Kevin mandou), nunca "de olho". Depois de mexer em cor, rodar `node scripts/cores/verificar.js`.
 - Antes de qualquer texto, ler `_memoria/preferencias.md`
 - Métricas e relatórios salvos em `dados/`
 - Peças e documentos gerados salvam em `saidas/`

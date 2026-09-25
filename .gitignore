@@ -30,3 +30,6 @@ dados/*
 
 # Memória interna (estratégia, financeiro, método) — privado, não pode ir pro repo público
 _memoria/
+
+# Cores: saída intermediária das ferramentas de extração (só o mestre em identidade/cores vale)
+scripts/cores/extracao/saida-*.json

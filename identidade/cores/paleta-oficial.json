@@ -1,0 +1,1244 @@
+{
+ "_leia_me": "Cores oficiais da Tintas Laet. Fonte única de verdade pra qualquer material com cor (site, catálogos, posts, banners, flyers). Gerado a partir dos PDFs e das fotos de catálogo que o Kevin mandou. Só o hex importa aqui: preço não entra. Nunca chutar cor pelo olho: buscar o nome neste arquivo.",
+ "atualizado_em": "2026-09-24",
+ "linhas": {
+  "paleta-grande": {
+   "titulo": "Paleta Grande Laet",
+   "usada_por": [
+    "premium-lavavel",
+    "emborrachada",
+    "semibrilho",
+    "cobertura-absoluta"
+   ],
+   "referencia": "marketing/catalogos/Premiumlavavel05.26.pdf",
+   "observacao": "Mesma cartela nas 4 linhas (decisão do Kevin, 24/09). Os PDFs da Flex, Cobertura e Semibrilho são versão antiga (Fogo Violeta laranja): vale o da Premium. O PDF da Premium escreve 'Vermelho B 10', os outros escrevem 'Vermelho D 10' (mesma cor): mantido D 10. Preto, Chumbo e Cinza existem no PDF mas foram retirados de Premium, Emborrachada e Standard no site em 24/09.",
+   "cores": [
+    {
+     "nome": "Crômio",
+     "hex": "#DDDDDD"
+    },
+    {
+     "nome": "Cinza A",
+     "hex": "#C2C2C0"
+    },
+    {
+     "nome": "Cinza B",
+     "hex": "#A8A8A4"
+    },
+    {
+     "nome": "Cinza Elefante",
+     "hex": "#B4B499"
+    },
+    {
+     "nome": "Cinza Wick",
+     "hex": "#959BA2"
+    },
+    {
+     "nome": "Pitada Casual",
+     "hex": "#A6B6AE"
+    },
+    {
+     "nome": "Cinza Fumaça",
+     "hex": "#81959F"
+    },
+    {
+     "nome": "Penhasco",
+     "hex": "#8F949F"
+    },
+    {
+     "nome": "Cinza D 04",
+     "hex": "#707070"
+    },
+    {
+     "nome": "Gelo",
+     "hex": "#FFF2C8"
+    },
+    {
+     "nome": "Algodão Egípcio",
+     "hex": "#F4ECD7"
+    },
+    {
+     "nome": "Porcelana Egípcia",
+     "hex": "#F1E0C2"
+    },
+    {
+     "nome": "Palha",
+     "hex": "#F4ECCA"
+    },
+    {
+     "nome": "Bege Mineral",
+     "hex": "#CBC4A2"
+    },
+    {
+     "nome": "Pantanal",
+     "hex": "#B8B396"
+    },
+    {
+     "nome": "Verde Piscina",
+     "hex": "#A9EFDC"
+    },
+    {
+     "nome": "Mar de Arruda",
+     "hex": "#82BBBD"
+    },
+    {
+     "nome": "Amarelo Laet",
+     "hex": "#FFFEB3"
+    },
+    {
+     "nome": "Amarelo B 07",
+     "hex": "#FFF994"
+    },
+    {
+     "nome": "Amarelo C 07",
+     "hex": "#FFF46A"
+    },
+    {
+     "nome": "Amarelo Albertino",
+     "hex": "#FAE554"
+    },
+    {
+     "nome": "Amarelo Dourado",
+     "hex": "#FFCE64"
+    },
+    {
+     "nome": "Chuva Suave",
+     "hex": "#D5E8E4"
+    },
+    {
+     "nome": "Chuva",
+     "hex": "#D7DBD7"
+    },
+    {
+     "nome": "Sombra Lunar",
+     "hex": "#C7C4CB"
+    },
+    {
+     "nome": "Ana Maria",
+     "hex": "#D5D1E6"
+    },
+    {
+     "nome": "Lilás Laet",
+     "hex": "#B1AED8"
+    },
+    {
+     "nome": "Caixa Seca",
+     "hex": "#A3A0DD"
+    },
+    {
+     "nome": "Lilás Delicado",
+     "hex": "#FFD5F7"
+    },
+    {
+     "nome": "Lilás Primata",
+     "hex": "#C7A8D6"
+    },
+    {
+     "nome": "Fogo Violeta",
+     "hex": "#6B24A2"
+    },
+    {
+     "nome": "Aurora Serena",
+     "hex": "#503459"
+    },
+    {
+     "nome": "Erva Doce",
+     "hex": "#E8EFCC"
+    },
+    {
+     "nome": "Pitada de Alecrim",
+     "hex": "#DAE8CE"
+    },
+    {
+     "nome": "Lagoa dos Lírios",
+     "hex": "#D0EFC9"
+    },
+    {
+     "nome": "Suave Kiwi",
+     "hex": "#BFDBB3"
+    },
+    {
+     "nome": "Bitigui",
+     "hex": "#B3D4C6"
+    },
+    {
+     "nome": "Capim Cheiroso",
+     "hex": "#A4D4CE"
+    },
+    {
+     "nome": "Azeitona",
+     "hex": "#A3A66C"
+    },
+    {
+     "nome": "Verde Musgo",
+     "hex": "#929B74"
+    },
+    {
+     "nome": "Disfarce",
+     "hex": "#A29379"
+    },
+    {
+     "nome": "Marrom Suave",
+     "hex": "#A89888"
+    },
+    {
+     "nome": "Média Visão",
+     "hex": "#A6937E"
+    },
+    {
+     "nome": "Cobre Suave",
+     "hex": "#A47B69"
+    },
+    {
+     "nome": "Terra Nossa",
+     "hex": "#9F7A5C"
+    },
+    {
+     "nome": "Magia",
+     "hex": "#BD876F"
+    },
+    {
+     "nome": "Vermelho D 10",
+     "hex": "#966565"
+    },
+    {
+     "nome": "Verde Fluorescente",
+     "hex": "#BBF86D"
+    },
+    {
+     "nome": "Verde Limão",
+     "hex": "#91E867"
+    },
+    {
+     "nome": "Jogo de Golfe",
+     "hex": "#7EA448"
+    },
+    {
+     "nome": "Romã",
+     "hex": "#DD5047"
+    },
+    {
+     "nome": "Rosa Vermelha",
+     "hex": "#B8423E"
+    },
+    {
+     "nome": "Intensa Sedução",
+     "hex": "#AD3233"
+    },
+    {
+     "nome": "Semente Urbana",
+     "hex": "#415464"
+    },
+    {
+     "nome": "Marfim",
+     "hex": "#FFF0CF"
+    },
+    {
+     "nome": "Doce da Vovó",
+     "hex": "#E8CEAF"
+    },
+    {
+     "nome": "Pêssego",
+     "hex": "#F6CFA9"
+    },
+    {
+     "nome": "Laranja Turco",
+     "hex": "#FFB880"
+    },
+    {
+     "nome": "Tangerina",
+     "hex": "#F8A868"
+    },
+    {
+     "nome": "Lícor de Laranja",
+     "hex": "#FAA628"
+    },
+    {
+     "nome": "Rosa Açaí",
+     "hex": "#BB7782"
+    },
+    {
+     "nome": "Bordô",
+     "hex": "#D66CAC"
+    },
+    {
+     "nome": "Papel Picado",
+     "hex": "#DFDFD4"
+    },
+    {
+     "nome": "Uva Doce",
+     "hex": "#A776DB"
+    },
+    {
+     "nome": "Suntuoso",
+     "hex": "#42295B"
+    },
+    {
+     "nome": "Lilás Enevoado",
+     "hex": "#C2B4C8"
+    },
+    {
+     "nome": "Tripla Coroa",
+     "hex": "#DBC863"
+    },
+    {
+     "nome": "Curry Dourado",
+     "hex": "#D1B74F"
+    },
+    {
+     "nome": "Areia",
+     "hex": "#DFD4C6"
+    },
+    {
+     "nome": "Valsa Azul",
+     "hex": "#64718F"
+    },
+    {
+     "nome": "Estadual",
+     "hex": "#485659"
+    },
+    {
+     "nome": "Areia Encharcada",
+     "hex": "#A49B88"
+    },
+    {
+     "nome": "Verde Primavera",
+     "hex": "#D0DFB0"
+    },
+    {
+     "nome": "Expedição Marítima",
+     "hex": "#A5B6AE"
+    },
+    {
+     "nome": "Lícor Doce",
+     "hex": "#C6AE9F"
+    },
+    {
+     "nome": "Mistura de Mostarda",
+     "hex": "#EDB946"
+    },
+    {
+     "nome": "Azul Laet",
+     "hex": "#95D0F6"
+    },
+    {
+     "nome": "Paraíso do Mar",
+     "hex": "#3C93F8"
+    },
+    {
+     "nome": "Mar Aberto",
+     "hex": "#4376E8"
+    },
+    {
+     "nome": "Planetário",
+     "hex": "#4881B6"
+    },
+    {
+     "nome": "Azul Jazz",
+     "hex": "#365A96"
+    },
+    {
+     "nome": "Oceano Tranquilo",
+     "hex": "#435D7D"
+    },
+    {
+     "nome": "Selva Escura",
+     "hex": "#3F4A54"
+    },
+    {
+     "nome": "Peça de Teatro",
+     "hex": "#997667"
+    },
+    {
+     "nome": "Doce da Bisa",
+     "hex": "#DBAD89"
+    },
+    {
+     "nome": "Chá Quente",
+     "hex": "#CFA278"
+    },
+    {
+     "nome": "Chá da Tarde",
+     "hex": "#927259"
+    },
+    {
+     "nome": "Rosé Suave",
+     "hex": "#EFD1CD"
+    },
+    {
+     "nome": "Flamingo Real",
+     "hex": "#FD7E98"
+    },
+    {
+     "nome": "Rosa Gloss",
+     "hex": "#F8AEAF"
+    },
+    {
+     "nome": "Rosa Irlandesa",
+     "hex": "#DBABAB"
+    },
+    {
+     "nome": "Vermelho C 09",
+     "hex": "#A16364"
+    },
+    {
+     "nome": "Ilha de Esmeralda",
+     "hex": "#4FAF65"
+    },
+    {
+     "nome": "Pavão",
+     "hex": "#3C8B8B"
+    },
+    {
+     "nome": "Espaço Verde",
+     "hex": "#588D82"
+    },
+    {
+     "nome": "Gota Serena",
+     "hex": "#BCD6DD"
+    },
+    {
+     "nome": "Pena Azul",
+     "hex": "#77A0C2"
+    },
+    {
+     "nome": "Verde B 10",
+     "hex": "#598B6C"
+    },
+    {
+     "nome": "Concreto",
+     "hex": "#9EA18E"
+    },
+    {
+     "nome": "Camurça",
+     "hex": "#A19182"
+    },
+    {
+     "nome": "Petúnia Roxa",
+     "hex": "#6F87AD"
+    },
+    {
+     "nome": "Pergaminho",
+     "hex": "#E7E8DB"
+    },
+    {
+     "nome": "Ovelha",
+     "hex": "#DBD6D0"
+    },
+    {
+     "nome": "Marrom Burguês",
+     "hex": "#744B4B"
+    },
+    {
+     "nome": "Profundidade",
+     "hex": "#675E6A"
+    },
+    {
+     "nome": "Preto",
+     "hex": "#202020"
+    },
+    {
+     "nome": "Chumbo",
+     "hex": "#626260"
+    },
+    {
+     "nome": "Cinza C 04",
+     "hex": "#828282"
+    },
+    {
+     "nome": "Cinza",
+     "hex": "#9B9D98"
+    },
+    {
+     "nome": "Céu Sagrado",
+     "hex": "#5AADFA"
+    }
+   ],
+   "removidas_do_site": [
+    "Preto",
+    "Chumbo",
+    "Cinza"
+   ],
+   "removidas_do_site_obs": "Retiradas de Standard, Premium e Emborrachada em 24/09 (decisao registrada em saidas/precos-cores-2026-09-24.md). Continuam no PDF, entao seguem aqui como referencia."
+  },
+  "standard": {
+   "titulo": "1ª Linha Standard",
+   "usada_por": [
+    "standard"
+   ],
+   "referencia": "marketing/catalogos/NOVO CAT STAND.pdf (1).pdf",
+   "cores": [
+    {
+     "nome": "Crômio",
+     "hex": "#DDDDDD"
+    },
+    {
+     "nome": "Cinza A",
+     "hex": "#C2C2C0"
+    },
+    {
+     "nome": "Cinza B",
+     "hex": "#A8A8A4"
+    },
+    {
+     "nome": "Cinza Elefante",
+     "hex": "#B4B499"
+    },
+    {
+     "nome": "Cinza Wick",
+     "hex": "#959BA2"
+    },
+    {
+     "nome": "Pitada Casual",
+     "hex": "#A6B6AE"
+    },
+    {
+     "nome": "Cinza Fumaça",
+     "hex": "#81959F"
+    },
+    {
+     "nome": "Penhasco",
+     "hex": "#8F949F"
+    },
+    {
+     "nome": "Cinza D 04",
+     "hex": "#707070"
+    },
+    {
+     "nome": "Gelo",
+     "hex": "#FFF2C8"
+    },
+    {
+     "nome": "Algodão Egípcio",
+     "hex": "#F4ECD7"
+    },
+    {
+     "nome": "Porcelana Egípcia",
+     "hex": "#F1E0C2"
+    },
+    {
+     "nome": "Palha",
+     "hex": "#F8F1CD"
+    },
+    {
+     "nome": "Bege Mineral",
+     "hex": "#CBC4A2"
+    },
+    {
+     "nome": "Pantanal",
+     "hex": "#B8B396"
+    },
+    {
+     "nome": "Verde Piscina",
+     "hex": "#A9EFDC"
+    },
+    {
+     "nome": "Mar de Arruda",
+     "hex": "#82BBBD"
+    },
+    {
+     "nome": "Amarelo Laet",
+     "hex": "#FFFEB3"
+    },
+    {
+     "nome": "Amarelo B 07",
+     "hex": "#FFF994"
+    },
+    {
+     "nome": "Amarelo C 07",
+     "hex": "#FFF46A"
+    },
+    {
+     "nome": "Amarelo Albertino",
+     "hex": "#FAE554"
+    },
+    {
+     "nome": "Chuva Suave",
+     "hex": "#D5E8E4"
+    },
+    {
+     "nome": "Chuva",
+     "hex": "#D7DBD7"
+    },
+    {
+     "nome": "Sombra Lunar",
+     "hex": "#C7C4CB"
+    },
+    {
+     "nome": "Ana Maria",
+     "hex": "#D5D1E6"
+    },
+    {
+     "nome": "Lilás Laet",
+     "hex": "#B1AED8"
+    },
+    {
+     "nome": "Caixa Seca",
+     "hex": "#A3A0DD"
+    },
+    {
+     "nome": "Lilás Delicado",
+     "hex": "#FFD5F7"
+    },
+    {
+     "nome": "Lilás Primata",
+     "hex": "#C7A8D6"
+    },
+    {
+     "nome": "Erva Doce",
+     "hex": "#E8EFCC"
+    },
+    {
+     "nome": "Pitada de Alecrim",
+     "hex": "#DAE8CE"
+    },
+    {
+     "nome": "Lagoa dos Lírios",
+     "hex": "#D0EFC9"
+    },
+    {
+     "nome": "Suave Kiwi",
+     "hex": "#BFDBB3"
+    },
+    {
+     "nome": "Bitigui",
+     "hex": "#B3D4C6"
+    },
+    {
+     "nome": "Capim Cheiroso",
+     "hex": "#A4D4CE"
+    },
+    {
+     "nome": "Azeitona",
+     "hex": "#A3A66C"
+    },
+    {
+     "nome": "Verde Musgo",
+     "hex": "#929B74"
+    },
+    {
+     "nome": "Disfarce",
+     "hex": "#A29379"
+    },
+    {
+     "nome": "Marrom Suave",
+     "hex": "#A89888"
+    },
+    {
+     "nome": "Média Visão",
+     "hex": "#A6937E"
+    },
+    {
+     "nome": "Cobre Suave",
+     "hex": "#A47B69"
+    },
+    {
+     "nome": "Magia",
+     "hex": "#BD876F"
+    },
+    {
+     "nome": "Vermelho D 10",
+     "hex": "#966565"
+    },
+    {
+     "nome": "Marfim",
+     "hex": "#FFF0CF"
+    },
+    {
+     "nome": "Doce da Vovó",
+     "hex": "#E8CEAF"
+    },
+    {
+     "nome": "Pêssego",
+     "hex": "#F6CFA9"
+    },
+    {
+     "nome": "Laranja Turco",
+     "hex": "#FFB880"
+    },
+    {
+     "nome": "Tangerina",
+     "hex": "#F8A868"
+    },
+    {
+     "nome": "Rosa Açaí",
+     "hex": "#BB7782"
+    },
+    {
+     "nome": "Bordô",
+     "hex": "#D66CAC"
+    },
+    {
+     "nome": "Papel Picado",
+     "hex": "#DFDFD4"
+    },
+    {
+     "nome": "Uva Doce",
+     "hex": "#A776DB"
+    },
+    {
+     "nome": "Lilás Enevoado",
+     "hex": "#C2B4C8"
+    },
+    {
+     "nome": "Tripla Coroa",
+     "hex": "#DBC863"
+    },
+    {
+     "nome": "Areia",
+     "hex": "#DFD4C6"
+    },
+    {
+     "nome": "Valsa Azul",
+     "hex": "#64718F"
+    },
+    {
+     "nome": "Areia Encharcada",
+     "hex": "#A49B88"
+    },
+    {
+     "nome": "Verde Primavera",
+     "hex": "#D0DFB0"
+    },
+    {
+     "nome": "Expedição Marítima",
+     "hex": "#A5B6AE"
+    },
+    {
+     "nome": "Lícor Doce",
+     "hex": "#C6AE9F"
+    },
+    {
+     "nome": "Mistura de Mostarda",
+     "hex": "#EDB946"
+    },
+    {
+     "nome": "Azul Laet",
+     "hex": "#95D0F6"
+    },
+    {
+     "nome": "Paraíso do Mar",
+     "hex": "#3C93F8"
+    },
+    {
+     "nome": "Mar Aberto",
+     "hex": "#4376E8"
+    },
+    {
+     "nome": "Planetário",
+     "hex": "#4881B6"
+    },
+    {
+     "nome": "Peça de Teatro",
+     "hex": "#997667"
+    },
+    {
+     "nome": "Doce da Bisa",
+     "hex": "#DBAD89"
+    },
+    {
+     "nome": "Chá Quente",
+     "hex": "#CFA278"
+    },
+    {
+     "nome": "Rosé Suave",
+     "hex": "#EFD1CD"
+    },
+    {
+     "nome": "Flamingo Real",
+     "hex": "#FD7E98"
+    },
+    {
+     "nome": "Rosa Gloss",
+     "hex": "#F8AEAF"
+    },
+    {
+     "nome": "Rosa Irlandesa",
+     "hex": "#DBABAB"
+    },
+    {
+     "nome": "Espaço Verde",
+     "hex": "#588D82"
+    },
+    {
+     "nome": "Gota Serena",
+     "hex": "#BCD6DD"
+    },
+    {
+     "nome": "Pena Azul",
+     "hex": "#77A0C2"
+    },
+    {
+     "nome": "Verde B 10",
+     "hex": "#598B6C"
+    },
+    {
+     "nome": "Concreto",
+     "hex": "#9EA18E"
+    },
+    {
+     "nome": "Camurça",
+     "hex": "#A19182"
+    },
+    {
+     "nome": "Petúnia Roxa",
+     "hex": "#6F87AD"
+    },
+    {
+     "nome": "Pergaminho",
+     "hex": "#E7E8DB"
+    },
+    {
+     "nome": "Ovelha",
+     "hex": "#DBD6D0"
+    },
+    {
+     "nome": "Cinza C 04",
+     "hex": "#828282"
+    },
+    {
+     "nome": "Cinza",
+     "hex": "#9B9D98"
+    },
+    {
+     "nome": "Céu Sagrado",
+     "hex": "#5AADFA"
+    }
+   ],
+   "removidas_do_site": [
+    "Cinza"
+   ]
+  },
+  "super-profissional": {
+   "titulo": "Super Profissional (e Direto no Gesso)",
+   "usada_por": [
+    "super-profissional",
+    "direto-no-gesso"
+   ],
+   "referencia": "catalogos/catalogo profissional pag 1.jpg e pag 2.jpg",
+   "observacao": "Cores lidas dos pixels das fotos do catálogo da Laet. Direto no Gesso usa a mesma cartela (dossiê).",
+   "cores": [
+    {
+     "nome": "Linho Americano",
+     "hex": "#EAD7B9"
+    },
+    {
+     "nome": "Areia",
+     "hex": "#DCD5C2"
+    },
+    {
+     "nome": "Palha",
+     "hex": "#E7E1C1"
+    },
+    {
+     "nome": "Madeira Enfumaçada",
+     "hex": "#BCBAAB"
+    },
+    {
+     "nome": "Bambu Tropical",
+     "hex": "#CEC29A"
+    },
+    {
+     "nome": "Camurça",
+     "hex": "#C5B9A3"
+    },
+    {
+     "nome": "Rosado",
+     "hex": "#FFC7EC"
+    },
+    {
+     "nome": "Rosas Híbridas",
+     "hex": "#FDB0E8"
+    },
+    {
+     "nome": "Caixa Mágica",
+     "hex": "#AA9EE6"
+    },
+    {
+     "nome": "Azul Laet",
+     "hex": "#AADAFE"
+    },
+    {
+     "nome": "Lagoa Azul",
+     "hex": "#94CAF8"
+    },
+    {
+     "nome": "Azul Rei",
+     "hex": "#74B4F1"
+    },
+    {
+     "nome": "Mergulho Tranquilo",
+     "hex": "#6DBDD6"
+    },
+    {
+     "nome": "Olhar Encantador",
+     "hex": "#68BFD0"
+    },
+    {
+     "nome": "Verde Piscina",
+     "hex": "#9BEAD4"
+    },
+    {
+     "nome": "Paraíso Secreto",
+     "hex": "#91E8D5"
+    },
+    {
+     "nome": "Refresco de Menta",
+     "hex": "#95E1BB"
+    },
+    {
+     "nome": "Folha de Trevo",
+     "hex": "#93DDA0"
+    },
+    {
+     "nome": "Hortelã Crespa",
+     "hex": "#82DAA7"
+    },
+    {
+     "nome": "Névoa",
+     "hex": "#BCBCBA"
+    },
+    {
+     "nome": "Trevo da Sorte",
+     "hex": "#90B39F"
+    },
+    {
+     "nome": "Amarelo Laet",
+     "hex": "#FFFDCA"
+    },
+    {
+     "nome": "Compota de Abacaxi",
+     "hex": "#FEFBAE"
+    },
+    {
+     "nome": "Vitamina",
+     "hex": "#FED8B4"
+    },
+    {
+     "nome": "Amêndoa Confeitada",
+     "hex": "#C1BAB2"
+    },
+    {
+     "nome": "Conto Infantil",
+     "hex": "#F7B5A5"
+    },
+    {
+     "nome": "Camponesa",
+     "hex": "#FFBAA0"
+    },
+    {
+     "nome": "Papel de Bala",
+     "hex": "#FFD3EA"
+    },
+    {
+     "nome": "Rosa Gloss",
+     "hex": "#FFADC4"
+    },
+    {
+     "nome": "A 04",
+     "hex": "#BFB9AD"
+    },
+    {
+     "nome": "Perfume de Figo",
+     "hex": "#D5ABCF"
+    },
+    {
+     "nome": "Mousse de Uva",
+     "hex": "#ADA6DC"
+    },
+    {
+     "nome": "Cinza Medieval",
+     "hex": "#A6ADB7"
+    },
+    {
+     "nome": "Tubarão Cinza",
+     "hex": "#969696"
+    }
+   ]
+  },
+  "latex-vinil": {
+   "titulo": "Látex Vinil Acrílico",
+   "usada_por": [
+    "latex-vinil"
+   ],
+   "referencia": "catalogos/catalogo vinil.jpg",
+   "cores": [
+    {
+     "nome": "Cinza A",
+     "hex": "#B5B5AD"
+    },
+    {
+     "nome": "Cinza B",
+     "hex": "#A2A19C"
+    },
+    {
+     "nome": "Cinza C",
+     "hex": "#858480"
+    },
+    {
+     "nome": "Marfim",
+     "hex": "#FDF3D0"
+    },
+    {
+     "nome": "Amarelo Laet",
+     "hex": "#FBFCBA"
+    },
+    {
+     "nome": "Compota de Abacaxi",
+     "hex": "#FFFFA7"
+    },
+    {
+     "nome": "Areia",
+     "hex": "#EBDACA"
+    },
+    {
+     "nome": "Pêssego",
+     "hex": "#F4CDA4"
+    },
+    {
+     "nome": "Sapatilha",
+     "hex": "#FFE1DF"
+    },
+    {
+     "nome": "Rosa Vinho",
+     "hex": "#F0D1CC"
+    },
+    {
+     "nome": "Goma de Mascar",
+     "hex": "#F1B6B0"
+    },
+    {
+     "nome": "Cacto Dália",
+     "hex": "#FFB4C8"
+    },
+    {
+     "nome": "Rosado",
+     "hex": "#FFBBEA"
+    },
+    {
+     "nome": "Templo da Sabedoria",
+     "hex": "#A5A5ED"
+    },
+    {
+     "nome": "Chiffon Azul",
+     "hex": "#9ED6F9"
+    },
+    {
+     "nome": "Paisagem Leve",
+     "hex": "#7EDBE3"
+    },
+    {
+     "nome": "Frescor Marítimo",
+     "hex": "#8ADEC7"
+    },
+    {
+     "nome": "Fonte da Sorte",
+     "hex": "#9FDCA3"
+    }
+   ]
+  },
+  "esmalte-ecologico": {
+   "titulo": "Esmalte Ecológico Base Água",
+   "usada_por": [
+    "esmalte-ecologico"
+   ],
+   "referencia": "catalogos/catalogo esmalte pag 1.jpg e pag 2.jpg",
+   "cores": [
+    {
+     "nome": "Vermelho Goya",
+     "hex": "#69334A"
+    },
+    {
+     "nome": "Vermelho",
+     "hex": "#B43B4C"
+    },
+    {
+     "nome": "Laranja Cítrico",
+     "hex": "#DD7558"
+    },
+    {
+     "nome": "Laranja Suave",
+     "hex": "#FFAA69"
+    },
+    {
+     "nome": "Amarelo",
+     "hex": "#F4BC4F"
+    },
+    {
+     "nome": "Marfim",
+     "hex": "#FAF1C6"
+    },
+    {
+     "nome": "Rosa Big-Big",
+     "hex": "#EC9493"
+    },
+    {
+     "nome": "Rosa Bebê",
+     "hex": "#FFC9F0"
+    },
+    {
+     "nome": "Pérola",
+     "hex": "#FFDEBF"
+    },
+    {
+     "nome": "Cinza Claro",
+     "hex": "#BCC1BA"
+    },
+    {
+     "nome": "Crômio",
+     "hex": "#D5D8CF"
+    },
+    {
+     "nome": "Gelo",
+     "hex": "#DADEC3"
+    },
+    {
+     "nome": "Platina",
+     "hex": "#B4B8AA"
+    },
+    {
+     "nome": "Cinza Médio",
+     "hex": "#9C979B"
+    },
+    {
+     "nome": "Cinza Escuro",
+     "hex": "#808080"
+    },
+    {
+     "nome": "Escuridão",
+     "hex": "#291135"
+    },
+    {
+     "nome": "Azul França",
+     "hex": "#3B5578"
+    },
+    {
+     "nome": "Azul Del Rey",
+     "hex": "#405260"
+    },
+    {
+     "nome": "Jeans",
+     "hex": "#6E798D"
+    },
+    {
+     "nome": "Azul Celeste",
+     "hex": "#9CC6C5"
+    },
+    {
+     "nome": "Azul Cadeirante",
+     "hex": "#5A99E6"
+    },
+    {
+     "nome": "Roxo",
+     "hex": "#816CAF"
+    },
+    {
+     "nome": "Verde Caribe",
+     "hex": "#65D0C0"
+    },
+    {
+     "nome": "Verde Uva",
+     "hex": "#9FBB93"
+    },
+    {
+     "nome": "Verde Casual",
+     "hex": "#77A48F"
+    },
+    {
+     "nome": "Verde Folha",
+     "hex": "#1E6B37"
+    },
+    {
+     "nome": "Floresta Amazônica",
+     "hex": "#396252"
+    },
+    {
+     "nome": "Verde Colonial",
+     "hex": "#35624B"
+    },
+    {
+     "nome": "Tabaco",
+     "hex": "#6D553D"
+    },
+    {
+     "nome": "Conhaque",
+     "hex": "#9B7D59"
+    },
+    {
+     "nome": "Argila",
+     "hex": "#BA8A76"
+    },
+    {
+     "nome": "Camurça",
+     "hex": "#C4A286"
+    }
+   ]
+  },
+  "piso-fachada": {
+   "titulo": "Pisos & Fachadas",
+   "usada_por": [
+    "piso-fachada"
+   ],
+   "referencia": "catalogos/catalogo piso e fachadas.jpg",
+   "cores": [
+    {
+     "nome": "Cinza",
+     "hex": "#9C9D98"
+    },
+    {
+     "nome": "Cinza C 04",
+     "hex": "#868686"
+    },
+    {
+     "nome": "Chumbo",
+     "hex": "#626260"
+    },
+    {
+     "nome": "Concreto",
+     "hex": "#BCBAAB"
+    },
+    {
+     "nome": "Profundidade",
+     "hex": "#665E6B"
+    },
+    {
+     "nome": "Preto",
+     "hex": "#2B2B2B"
+    },
+    {
+     "nome": "Camurça",
+     "hex": "#A5948C"
+    },
+    {
+     "nome": "Vermelho",
+     "hex": "#916161"
+    },
+    {
+     "nome": "Vermelho C 09",
+     "hex": "#874B4A"
+    },
+    {
+     "nome": "Azul",
+     "hex": "#465C83"
+    },
+    {
+     "nome": "Espaço Verde",
+     "hex": "#587771"
+    },
+    {
+     "nome": "Verde B 10",
+     "hex": "#5A7660"
+    },
+    {
+     "nome": "Amarelo Piso",
+     "hex": "#E4B859"
+    }
+   ]
+  }
+ },
+ "sem_referencia": [
+  "efeito-cimento-queimado",
+  "spray",
+  "corante"
+ ]
+}
