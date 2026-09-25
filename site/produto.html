@@ -1652,6 +1652,27 @@ const produtos = {
       { nome: 'Cinza Escuro', hex: '#808080', preco_balde: 'R$ 499,90', preco_galao: 'R$ 119,90', preco_quarto: 'R$ 44,90' },
       { nome: 'Escuridão', hex: '#281134', preco_balde: 'R$ 499,90', preco_galao: 'R$ 119,90', preco_quarto: 'R$ 44,90' },
     ]
+  },
+  'verniz-premium': {
+    nome: 'Verniz Premium',
+    categoria: 'Esmaltes & Vernizes',
+    badge: 'NOVIDADE',
+    imagem: 'images/embalagens/verniz-premium-remove-bg-io.png',
+    desc_curta: 'Proteção e beleza para madeiras. Base água, acabamento brilhante, baixo odor e secagem rápida. Uso interno e externo.',
+    descricao: 'O Verniz Premium Laet é a novidade da linha, feito pra deixar as madeiras mais bonitas e ainda protegidas do dia a dia. É base água, com acabamento brilhante, baixo odor, secagem rápida e resistente à chuva. Indicado para portas, móveis e outras superfícies de madeira, em ambientes internos e externos. Facilita a limpeza das ferramentas depois do uso. Disponível em 3 cores: Incolor, Mogno e Imbuia.',
+    beneficios: ['Base água', 'Acabamento brilhante', 'Resistente à chuva', 'Secagem rápida', 'Baixo odor', 'Fácil limpeza das ferramentas', 'Indicado para interior e exterior', '3 cores disponíveis'],
+    precos: [
+      { desc: '3,6L', valor: 'R$ 79,90' },
+      { desc: '900ml', valor: 'R$ 24,90' },
+    ],
+    preco_from: 'R$ 24<small>,90</small>',
+    preco_label: '900ml — a partir de',
+    wa: 'Olá! Quero comprar o Verniz Premium Laet. Pode me passar mais informações?',
+    cores: [
+      { nome: 'Incolor', hex: '#DC9A3D', madeira: true },
+      { nome: 'Mogno', hex: '#82380F', madeira: true },
+      { nome: 'Imbuia', hex: '#4A2B1A', madeira: true },
+    ]
   }
 };
 
@@ -1764,9 +1785,12 @@ function goToUpsellProduct(e, upId) {
 let coresShown = 20;
 
 function coreCardHtml(c, p) {
+  const swatchBg = c.madeira
+    ? `repeating-linear-gradient(100deg, rgba(0,0,0,.16) 0px, rgba(0,0,0,.16) 1px, transparent 1px, transparent 3px, rgba(255,255,255,.07) 3px, rgba(255,255,255,.07) 4px), linear-gradient(115deg, rgba(255,255,255,.22), transparent 45%), ${c.hex}`
+    : c.hex;
   return `
   <div class="core-card">
-    <div class="core-swatch${c.borda ? ' core-swatch-branco' : ''}" style="background:${c.hex}"></div>
+    <div class="core-swatch${c.borda ? ' core-swatch-branco' : ''}" style="background:${swatchBg}"></div>
     <div class="core-info">
       <div class="core-nome">${c.nome}</div>
       ${c.preco_balde ? `<div class="core-preco">${p.tam_balde_default || 'Balde'} ${c.preco_balde}<br>${p.tam_galao_default || 'Galão'} ${c.preco_galao}${c.preco_quarto ? `<br>${p.tam_quarto_default || 'Pote 1/4'} ${c.preco_quarto}` : ''}</div>` : ''}
