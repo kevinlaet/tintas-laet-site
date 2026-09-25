@@ -27,27 +27,34 @@ Identificar a data de hoje e checar a tabela de "Datas comemorativas" em `calend
 - Se alguma data cai dentro dos próximos ~10 dias, abrir a sugestão da semana avisando sobre ela e com o ângulo já sugerido na tabela
 - Se nenhuma data está próxima, seguir direto pro banco de ângulos
 
-### Passo 2 — Sugerir o post de feed da semana
+### Passo 2 — Sugerir os posts de feed da semana
 
+- Cadência: **1 dia sim, 1 dia não** (~3-4 posts/semana), produzidos e
+  agendados em lote (não um por dia) — ver `_memoria/estrategia.md`
 - Checar `marketing/conteudo/` pra ver o que já foi postado recentemente (não repetir tema)
 - Cruzar com os **6 pilares de conteúdo** em `calendario-editorial.md` ("Pilares de conteúdo do
   feed"), priorizando o pilar que está há mais tempo sem aparecer — não é grade fixa, é rotação por
   ausência
 - Se tem data comemorativa próxima, ela tem prioridade sobre os pilares
-- Oferecer **2-3 opções de ângulo/tipo**, puxando de pilares diferentes quando possível (puxando
+- Pra cada dia da cadência, oferecer **2-3 opções de ângulo/tipo**, puxando de pilares diferentes quando possível (puxando
   também do "Banco de ângulos por tipo de conteúdo" em `calendario-editorial.md`) — não escolher um
   tipo fixo pelo usuário, ele decide pauta a pauta
 - Indicar se o formato sugerido é carrossel, vídeo ou post único, e por quê
+- Lembrar que o post pode ser **agendado** com data futura (não precisa publicar todos no mesmo dia)
 
 ### Passo 3 — Sugerir ideias de stories
 
-- Dar 2-3 ideias de story pros próximos dias, variando tipo (não repetir o mesmo tipo dois dias seguidos)
+- Cadência: **todo dia, 3 peças** — 1 criada + 1 repost de conteúdo de
+  marcação/menção (amigos/seguidores que marcaram a Laet) + 1 repost de
+  conteúdo próprio já existente. Só a primeira exige material novo.
+- Dar a ideia da peça "criada" do dia, variando tipo (não repetir o mesmo tipo dois dias seguidos)
 - Distinguir o que precisa de material das lojas (foto/vídeo bruto) do que pode ser feito só com arte/texto
-- **Padrão, não opção:** Kevin sempre amarra os stories do dia ao tema do post de feed (baixa frequência de criação, não cria pauta de story solta) — se o post de feed da semana já está definido, a sugestão default de story é reaproveitar esse conteúdo (ex: enquete/caixinha de pergunta sobre a mesma dor, bastidor da produção, prévia, repost com sticker)
+- **Padrão, não opção:** Kevin sempre amarra a peça criada ao tema do post de feed da semana (baixa frequência de criação, não cria pauta de story solta) — a sugestão default é reaproveitar esse conteúdo (ex: enquete/caixinha de pergunta sobre a mesma dor, bastidor da produção, prévia, repost com sticker)
+- Pro repost de marcação: lembrar o usuário de checar manualmente as marcações do Instagram (automação ainda não existe)
 
 ### Passo 4 — Lembrete de pedido de material
 
-- Checar se hoje é dia da rotina fixa (segunda-feira, conforme `calendario-editorial.md`)
+- Checar se hoje é dia da rotina fixa (segunda **ou quinta-feira**, conforme `calendario-editorial.md`)
 - Se for, lembrar o usuário de mandar a mensagem-modelo pros vendedores, já preenchendo o "[algo específico]" com o tema da semana definido no Passo 2
 - Se tem data comemorativa chegando em breve, lembrar do reforço pontual também
 
@@ -67,15 +74,15 @@ Semana de <data>
 
 📌 Data comemorativa próxima: <nome, se houver> — ângulo: <texto>
 
-FEED (mín. 1 essa semana):
-- Opção 1: <ângulo/tipo>
-- Opção 2: <ângulo/tipo>
-- Opção 3: <ângulo/tipo>
+FEED (1 dia sim, 1 dia não — ~3-4 essa semana, agendar em lote):
+- Seg: opção 1 <ângulo/tipo> | opção 2 <ângulo/tipo>
+- Qua: opção 1 <ângulo/tipo> | opção 2 <ângulo/tipo>
+- Sex: opção 1 <ângulo/tipo> | opção 2 <ângulo/tipo>
 
-STORIES (mín. 2/dia):
-- <ideia 1 — precisa de material da loja? sim/não>
-- <ideia 2 — precisa de material da loja? sim/não>
-- <ideia 3>
+STORIES (3/dia: 1 criado + 1 repost de marcação + 1 repost nosso):
+- Criado: <ideia — precisa de material da loja? sim/não>
+- Repost de marcação: checar manualmente as menções do Instagram
+- Repost nosso: <sugestão de peça já existente pra reaproveitar>
 
 📨 Pedido às lojas essa semana: <texto já preenchido, se for dia da rotina>
 

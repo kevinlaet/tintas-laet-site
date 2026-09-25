@@ -455,12 +455,53 @@ function mostrarFerramenta() {
 
 function travarFerramenta(mensagem) {
   sessionStorage.removeItem(TOKEN_KEY);
+  sessionStorage.removeItem(CHAVE_ATIVIDADE);
   document.getElementById('tool').style.display = 'none';
   document.getElementById('gate').style.display = '';
   const erro = document.getElementById('gateError');
   erro.textContent = mensagem;
   erro.style.display = 'block';
 }
+
+// Desloga sozinho depois de 1h sem interação real (mouse, teclado, toque,
+// scroll) com a ferramenta aberta — não conta só a aba estar aberta. Pega
+// também o caso de deixar a aba aberta em segundo plano e voltar horas
+// depois, já que o token em si (sessionStorage) só some fechando a aba.
+const CHAVE_ATIVIDADE = 'laet_orcamento_ultima_atividade';
+const LIMITE_INATIVIDADE_MS = 60 * 60 * 1000; // 1h
+
+function registrarAtividadeOrcamento() {
+  sessionStorage.setItem(CHAVE_ATIVIDADE, String(Date.now()));
+}
+
+function estaInativoDemaisOrcamento() {
+  const ultima = Number(sessionStorage.getItem(CHAVE_ATIVIDADE) || 0);
+  if (!ultima) return false;
+  return Date.now() - ultima > LIMITE_INATIVIDADE_MS;
+}
+
+function checarInatividadeOrcamento() {
+  if (!tokenSalvo()) return;
+  if (estaInativoDemaisOrcamento()) {
+    travarFerramenta('Sessão encerrada por inatividade (1h). Digite a senha de novo.');
+  }
+}
+
+let ultimoRegistroAtividade = 0;
+function aoInteragirOrcamento() {
+  if (!tokenSalvo()) return;
+  const agora = Date.now();
+  if (agora - ultimoRegistroAtividade > 15000) {
+    ultimoRegistroAtividade = agora;
+    registrarAtividadeOrcamento();
+  }
+}
+['mousemove', 'keydown', 'mousedown', 'touchstart', 'scroll', 'wheel'].forEach((evento) =>
+  window.addEventListener(evento, aoInteragirOrcamento, { passive: true })
+);
+setInterval(checarInatividadeOrcamento, 30000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) checarInatividadeOrcamento(); });
+window.addEventListener('focus', checarInatividadeOrcamento);
 
 async function checkPassword() {
   const input = document.getElementById('gatePass').value;
@@ -475,6 +516,7 @@ async function checkPassword() {
     const data = await resp.json();
     if (data.ok && data.token) {
       sessionStorage.setItem(TOKEN_KEY, data.token);
+      registrarAtividadeOrcamento();
       document.getElementById('gatePass').value = '';
       mostrarFerramenta();
       return;
@@ -491,7 +533,13 @@ async function checkPassword() {
 let produtosData = null;
 
 if (tokenSalvo()) {
-  mostrarFerramenta();
+  if (estaInativoDemaisOrcamento()) {
+    sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.removeItem(CHAVE_ATIVIDADE);
+  } else {
+    registrarAtividadeOrcamento();
+    mostrarFerramenta();
+  }
 }
 
 async function loadProdutos() {

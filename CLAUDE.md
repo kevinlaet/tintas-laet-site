@@ -117,6 +117,10 @@ Ao concluir uma tarefa que não tinha skill mas parece repetível, perguntar:
 
 **Antes de dizer que algo não dá pra fazer** (a partir de 18/09/2026): verificar TODAS as formas possíveis de fazer — outra biblioteca, outra API, outro caminho de arquitetura, outro serviço, contornar a limitação em vez de aceitar ela de cara — antes de responder que não dá. Só concluir que não dá depois de esgotar as alternativas razoáveis, e nesse caso explicar o que foi checado.
 
+**Padrão de qualidade** (a partir de 24/09/2026): tudo que a gente cria aqui — painel, site, skill, automação, peça — precisa ser muito bem feito, muito usado de verdade e otimizado, **sem nunca perder função pra "simplificar"**. Evoluir é adicionar/melhorar, não cortar. Antes de considerar algo pronto, perguntar: isso está no nível de ferramenta profissional, ou só "funciona"?
+
+**Antes de criar conteúdo novo** (post, carrossel, campanha): considerar rodar `/pesquisa-mercado` se fizer mais de ~2 semanas desde a última — mantém o conteúdo antenado no que outras lojas de tinta estão fazendo, não só o que já sabemos.
+
 ---
 
 ## Publicar no site (deploy)
