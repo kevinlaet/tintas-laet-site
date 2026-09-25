@@ -11,7 +11,7 @@ const GEO = {
   // Cobertura Absoluta e Semi Brilho
   cobertura: { esq: 35.6, topo: 130.7, altCab: 49.1, altLinha: 46.4, larg: [188, 275], tituloBase: 98.7, tituloTam: 40, cabTam: 26.7, linhaTam: 22.66, texto: "#202020" },
   // Standard
-  standard: { esq: 46.7, topo: 144, altCab: 55, altLinha: 47, larg: [178.1, 269.5], tituloBase: 67, tituloTam: 44.8, cabTam: 26.7, linhaTam: 22.66, texto: "#000000" },
+  standard: { esq: 46.7, topo: 144, altCab: 55, altLinha: 47, larg: [178.1, 269.5], tituloBase: 77.3, tituloTam: 44.8, cabTam: 26.7, linhaTam: 22.66, texto: "#000000" },
 };
 // largura das colunas de preço, conforme a geometria e quantas colunas de preço a linha tem
 const LARG_PRECO = {
@@ -21,12 +21,9 @@ const LARG_PRECO = {
   standard: { 2: [269.5, 269.5], 1: [269.5], 3: [179.7, 179.7, 179.6] },
 };
 
-const RODAPE_LITROS = [
-  "AS CORES PODEM SOFRER ALTERAÇÕES DE ACORDO COM A QUALIDADE DE IMAGEM DE CADA APARELHO.",
-  "LITRAGENS VARIAM DE ACORDO COM A COR, DEVIDO À QUANTIDADE DE PIGMENTOS ADICIONADOS NA EMBALAGEM.",
-  "VARIAÇÕES MÁXIMAS: 18/17/16 LITROS      3,6/3,4/3,2L      900/850/800ML",
-];
-const RODAPE_KG = [RODAPE_LITROS[0], "QUANTIDADES VARIAM DE ACORDO COM A COR, DEVIDO À QUANTIDADE DE PIGMENTOS ADICIONADOS NA EMBALAGEM."];
+// Rodapé só com o aviso de cor. Variação de litragem/embalagem NÃO entra (pedido do Kevin, 25/09).
+const RODAPE_LITROS = ["AS CORES PODEM SOFRER ALTERAÇÕES DE ACORDO COM A QUALIDADE DE IMAGEM DE CADA APARELHO."];
+const RODAPE_KG = RODAPE_LITROS;
 const RODAPE_STANDARD = ["Por se tratar de um catálogo virtual, pode haver uma distorção na cor de até 10% devido à resolução de cada aparelho"];
 
 const P = { pdfAntigo: (arq) => arq };

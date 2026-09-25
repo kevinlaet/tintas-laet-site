@@ -77,7 +77,8 @@ IA **não acerta hex**: ela pinta "um roxo parecido". Portanto:
 - Cor vem do mestre, preço vem do site (`site/produto.html`). Mudou preço no site → rodar de novo. Nunca digitar preço à mão no PDF.
 - Premium, Emborrachada, Cobertura, Semi Brilho e Standard reaproveitam a capa do PDF antigo (`marketing/catalogos/`); as outras 6 linhas têm capa desenhada no mesmo estilo (`identidade/catalogo-pdf/` guarda logo, leque, mascote e fundo).
 - Páginas antigas com texto que não vale mais ficaram de fora (Flex e Standard falavam em "entregas disponíveis" e "4 lojas").
-- Cobertura Absoluta e Semi Brilho não têm preço próprio no site: seguem a Emborrachada (nos PDFs antigos as três tinham a mesma tabela). Se o Kevin passar preço próprio, criar o produto no site ou uma tabela e trocar `produtoPrecos` em `scripts/catalogos-pdf/lib/linhas.js`.
+- Cobertura Absoluta e Semi Brilho usam o MESMO preço da Emborrachada (confirmado pelo Kevin em 25/09). Se um dia mudar, trocar `produtoPrecos` em `scripts/catalogos-pdf/lib/linhas.js`.
+- Rodapé só com o aviso de cor. Não colocar variação de litragem/embalagem (pedido do Kevin, 25/09).
 - Depois de gerar, conferir lendo de volta: rodar o extrator de PDF (`scripts/cores/extracao`) apontando pra `saidas/catalogos-pdf` e comparar hex e preço de cada linha com o mestre e o site. Em 25/09: 652 linhas, zero diferença.
 - Os PDFs não vão pro git (são regeráveis e pesados).
 

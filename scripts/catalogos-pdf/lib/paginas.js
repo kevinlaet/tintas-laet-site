@@ -52,9 +52,9 @@ function pagina(conteudo, classe = "") {
 }
 
 // ------------------------------------------------------------------ tabela
-function paginaTabela(res, linhasDaPagina, ultima, unica) {
+function paginaTabela(res, linhasDaPagina, ultima, unica, altLinha) {
   const { cfg } = res;
-  const g0 = GEO[cfg.geo];
+  const g0 = { ...GEO[cfg.geo], altLinha: altLinha || GEO[cfg.geo].altLinha };
   // tabela curta (cabe numa página só): linhas mais altas e letra maior pra ocupar a página, sem passar de 1,7x
   const livre = 1850 - g0.topo - g0.altCab;
   const z = unica ? Math.min(1.7, Math.max(1, livre / (linhasDaPagina.length * g0.altLinha))) : 1;
@@ -92,23 +92,37 @@ function paginaTabela(res, linhasDaPagina, ultima, unica) {
   return pagina(`<div class="tab" style="left:${esq}px;top:${g.topo}px;width:${total}px">${cabHtml}${linhasHtml}${grade}</div><svg class="tx" viewBox="0 0 1080 1920">${svg}</svg>`);
 }
 
-// quantas linhas cabem por página (e na última, que leva rodapé)
+// Quantas linhas por página. Enche cada página até o limite (como nos PDFs originais) e a sobra vai pra última, que leva o rodapé.
+// Se a última ficaria com pouca coisa (menos de 40%), tenta caber tudo numa página a menos apertando a altura da linha,
+// até no máximo 16% mais baixa que a original — assim não sobra página quase vazia no fim.
 function distribuir(n, cfg) {
   const g = GEO[cfg.geo];
-  const capNormal = Math.floor((1905 - g.topo - g.altCab) / g.altLinha);
-  const capUltima = Math.floor(((cfg.rodapeTipo === "standard" ? 1860 : 1858) - g.topo - g.altCab) / g.altLinha);
-  for (let p = Math.max(1, Math.ceil(n / capNormal)); p < 20; p++) {
-    const base = Math.floor(n / p), resto = n % p;
-    const tam = Array.from({ length: p }, (_, i) => base + (i < resto ? 1 : 0));
-    if (tam[0] <= capNormal && tam[p - 1] <= capUltima) return tam;
+  const fimUltima = cfg.rodapeTipo === "standard" ? 1860 : 1858;
+  const cap = (limite, alt) => Math.floor((limite - g.topo - g.altCab) / alt);
+  const encher = (alt) => {
+    const tam = [];
+    let resto = n;
+    while (resto > cap(fimUltima, alt)) { const t = Math.min(cap(1905, alt), resto - 1); tam.push(t); resto -= t; }
+    tam.push(resto);
+    return tam;
+  };
+  const tam = encher(g.altLinha);
+  if (tam.length > 1 && tam[tam.length - 1] < cap(fimUltima, g.altLinha) * 0.4) {
+    const p = tam.length - 1;
+    const porPagina = Math.ceil(n / p);
+    const alt = Math.min((1905 - g.topo - g.altCab) / porPagina, (fimUltima - g.topo - g.altCab) / (n - porPagina * (p - 1)));
+    if (alt >= g.altLinha * 0.84) {
+      const base = Math.floor(n / p), sobra = n % p;
+      return { tam: Array.from({ length: p }, (_, i) => base + (i < sobra ? 1 : 0)), alt };
+    }
   }
-  throw new Error("não consegui paginar " + cfg.id);
+  return { tam, alt: g.altLinha };
 }
 
 function paginasTabela(res) {
-  const tam = distribuir(res.linhas.length, res.cfg);
+  const { tam, alt } = distribuir(res.linhas.length, res.cfg);
   let i = 0;
-  return tam.map((t, k) => { const fatia = res.linhas.slice(i, i + t); i += t; return paginaTabela(res, fatia, k === tam.length - 1, tam.length === 1); });
+  return tam.map((t, k) => { const fatia = res.linhas.slice(i, i + t); i += t; return paginaTabela(res, fatia, k === tam.length - 1, tam.length === 1, alt); });
 }
 
 // ------------------------------------------------------------------ capa (só das linhas sem PDF antigo)
