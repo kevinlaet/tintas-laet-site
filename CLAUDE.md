@@ -5,7 +5,7 @@
 
 ## O que é esse workspace
 
-Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, métricas, identidade visual e tudo que envolve a presença digital das 6 lojas (5 funcionando + 1 em abertura).
+Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, métricas, identidade visual e tudo que envolve a presença digital das 6 lojas, todas funcionando.
 
 **Estrutura de pastas:**
 - `_memoria/` — quem é a empresa, como falamos, foco atual
@@ -34,7 +34,7 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 
 ## Sobre a empresa
 
-Tintas Laet é um comércio de tintas e materiais de pintura com 6 lojas — 5 já funcionando (a Loja 5 com festa de inauguração realizada em 08/08/2026) e a 6ª ainda vazia (sem estoque), com contrato assinado, entrando em manutenção do salão (pintura e reparos) antes de abrir —, na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado e parcelamento em 12x sem juros.
+Tintas Laet é um comércio de tintas e materiais de pintura com 6 lojas, todas funcionando (a Loja 5 com festa de inauguração em 08/08/2026; a Loja 6, Santa Terezinha em São Bernardo do Campo, abriu sem inauguração por causa da chuva nos fins de semana — setembro/2026), na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado e parcelamento em 12x sem juros.
 
 Fundada por Anderson Laet e Robson Laet. Kevin cuida do marketing digital e da gestão operacional das lojas, sozinho por enquanto.
 
