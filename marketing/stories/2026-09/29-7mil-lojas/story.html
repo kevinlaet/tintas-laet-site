@@ -31,8 +31,8 @@ body { background:#020A18; }
 .chip { display:inline-block; margin-top:10px; background:#FFC107; color:#062B63; font:400 78px/1 'Bebas Neue',sans-serif;
   padding:12px 32px 6px; border-radius:16px; transform:rotate(-2deg); box-shadow:0 10px 30px rgba(0,0,0,.3); letter-spacing:.02em; }
 
-.grid { position:absolute; left:72px; right:72px; top:830px; z-index:8; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-.t { position:relative; height:362px; border-radius:14px; overflow:hidden; background:#0D2F66 center/cover no-repeat;
+.grid { position:absolute; left:72px; right:72px; top:852px; z-index:8; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.t { position:relative; height:338px; border-radius:14px; overflow:hidden; background:#0D2F66 center/cover no-repeat;
   border:3px solid rgba(255,255,255,.9); box-shadow:0 12px 30px rgba(0,0,0,.4); }
 .t::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(3,24,58,0) 50%, rgba(3,24,58,.92) 100%); }
 .t .lb { position:absolute; left:14px; right:14px; bottom:12px; z-index:2; }
@@ -41,7 +41,12 @@ body { background:#020A18; }
 .t .nova { position:absolute; top:12px; right:12px; z-index:2; background:#FFC107; color:#062B63; font:400 28px/1 'Bebas Neue',sans-serif;
   padding:7px 12px 4px; border-radius:8px; transform:rotate(3deg); box-shadow:0 4px 12px rgba(0,0,0,.35); }
 
-.msg { position:absolute; left:80px; right:80px; top:1612px; z-index:10; text-align:center; font:600 32px/1.4 'Poppins',sans-serif; }
+.msg { position:absolute; left:80px; right:80px; top:1574px; z-index:10; text-align:center; font:600 31px/1.4 'Poppins',sans-serif; }
+.lbl { position:absolute; left:0; right:0; top:796px; z-index:10; text-align:center; font:700 24px/1 'Poppins',sans-serif;
+  color:#fff; letter-spacing:.2em; text-transform:uppercase; opacity:.92; }
+.cta { position:absolute; left:50%; top:1688px; transform:translateX(-50%); z-index:10; white-space:nowrap;
+  background:#FFC107; color:#062B63; font:800 28px/1 'Montserrat',sans-serif; padding:20px 38px; border-radius:40px;
+  box-shadow:0 10px 26px rgba(0,0,0,.35); }
 .msg b { color:#FFC107; font-weight:700; }
 </style>
 </head>
@@ -52,11 +57,12 @@ body { background:#020A18; }
 
   <div class="top">
     <img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
-    <div class="ey">Obrigado, vizinhança</div>
+    <div class="ey">Muito obrigado</div>
     <div class="num">7 MIL</div>
-    <div class="chip">VIZINHOS NO INSTA</div>
+    <div class="chip">SEGUIDORES NO INSTAGRAM</div>
   </div>
 
+  <div class="lbl">6 lojas no ABC e Zona Leste</div>
   <div class="grid">
     <div class="t" style="background-image:url('lojas/loja1.jpg')"><div class="lb"><div class="n">LOJA 1</div><div class="b">Sapopemba</div></div></div>
     <div class="t" style="background-image:url('lojas/loja2.jpg')"><div class="lb"><div class="n">LOJA 2</div><div class="b">São João</div></div></div>
@@ -66,7 +72,8 @@ body { background:#020A18; }
     <div class="t" style="background-image:url('lojas/loja6.jpg');background-position:62% center"><div class="nova">EM BREVE</div><div class="lb"><div class="n">LOJA 6</div><div class="b">São Bernardo</div></div></div>
   </div>
 
-  <div class="msg">7 mil vizinhos, 6 lojas e uma só família.<br><b>Obrigado por crescer com a gente!</b></div>
+  <div class="msg">Preço abaixo do mercado e <b>12x sem juros</b>.<br>Por isso tanta gente escolhe a Laet.</div>
+  <div class="cta">Passa na loja mais perto de você</div>
 </div>
 <script>
   const cores=['#FFC107','#FFE082','#FFFFFF','#4F8FE8'];
