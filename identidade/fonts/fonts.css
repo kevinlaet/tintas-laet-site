@@ -1,0 +1,55 @@
+/* Fontes da marca hospedadas localmente (Bebas Neue, Montserrat, Poppins) —
+   evita depender do Google Fonts CDN durante o render (Playwright/Chromium
+   nesse ambiente não confia no certificado do proxy de rede, então builds
+   silenciosamente caem pra fonte do sistema sem isso). Arquivos baixados de
+   fonts.gstatic.com em 30/09/2026 (mesmas versões referenciadas no link do
+   Google Fonts usado nas peças). Montserrat é fonte variável (400-900 num
+   arquivo só); Poppins é servida em instâncias estáticas por peso. */
+
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('BebasNeue-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('Montserrat-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Poppins-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('Poppins-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('Poppins-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('Poppins-Bold.woff2') format('woff2');
+}
