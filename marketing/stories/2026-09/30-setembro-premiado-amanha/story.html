@@ -16,36 +16,40 @@ body {
 
 .slide { width:1080px; height:1920px; position:relative; overflow:hidden; flex-shrink:0; background:#0D47A1; }
 
-/* painel de foto — recortado numa curva suave, no lugar do scrim sobre a
-   foto inteira. Menos "hero de site", mais peça gráfica (referência: post
-   "Agosto Premiado" já validado pelo Kevin). */
-.foto-painel { position:absolute; inset:0; clip-path: path('M 460,0 C 600,300 560,640 400,960 C 220,1280 600,1560 460,1920 L 1080,1920 L 1080,0 Z'); }
-.foto-painel img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; }
-.foto-painel::after { content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(2,10,24,.55) 0%, rgba(2,10,24,0) 30%); }
+/* Metade de cima: foto inteira (ganhador + balconista), sem corte nem
+   texto por cima — o quadro 1080x960 é quase quadrado, então um cover
+   simples preserva os dois lados da foto e só apara topo/base. */
+.foto-topo { position:absolute; top:0; left:0; right:0; height:960px; overflow:hidden; }
+.foto-topo img { width:100%; height:100%; object-fit:cover; object-position:center 32%; display:block; }
 
-.col { position:absolute; top:0; left:0; bottom:0; width:400px; z-index:10; padding:72px 56px 64px; display:flex; flex-direction:column; }
+/* Costura entre a foto e o painel — faixa dourada + selo, não um corte
+   reto seco (mesma lógica de "nunca ficar plano demais" do design-guide). */
+.costura { position:absolute; top:944px; left:0; right:0; height:16px; background:#FFC107; z-index:5; }
+.selo { position:absolute; top:900px; left:50%; transform:translateX(-50%); z-index:6;
+  background:#FFC107; color:#062B63; font:800 24px/1 'Poppins',sans-serif; letter-spacing:.12em; text-transform:uppercase;
+  padding:16px 36px; border-radius:14px; box-shadow:0 10px 24px rgba(0,0,0,.35); }
 
-.col .logo { width:220px; object-fit:contain; margin-bottom:34px; }
+/* Metade de baixo: painel sólido com todo o conteúdo — cheio, não vazio. */
+.painel { position:absolute; top:960px; left:0; right:0; bottom:0; background:#0D47A1; z-index:2;
+  display:flex; flex-direction:column; align-items:center; padding:56px 72px 40px; text-align:center; }
 
-.pill { align-self:flex-start; background:#FFC107; color:#062B63; font:800 20px/1 'Poppins',sans-serif; letter-spacing:.1em; text-transform:uppercase; padding:10px 20px; border-radius:10px; margin-bottom:22px; }
+.logo { width:160px; object-fit:contain; margin-bottom:18px; }
 
-.mes { font:400 84px/.9 'Bebas Neue',sans-serif; color:#fff; }
-.premiado { font:400 84px/.9 'Bebas Neue',sans-serif; color:#FFC107; margin-bottom:36px; }
+.mes { font:400 92px/.88 'Bebas Neue',sans-serif; color:#fff; }
+.premiado { font:400 92px/.88 'Bebas Neue',sans-serif; color:#FFC107; margin-bottom:18px; }
 
-.linha { height:2px; background:rgba(255,255,255,.25); margin:8px 0 32px; }
+.stat { margin-bottom:22px; }
+.stat .rotulo { font:800 22px/1.3 'Poppins',sans-serif; color:rgba(255,255,255,.7); letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px; }
+.stat .valor { font:400 78px/.9 'Bebas Neue',sans-serif; color:#FFC107; }
 
-.stat { margin-bottom:30px; }
-.stat .rotulo { font:800 20px/1.3 'Poppins',sans-serif; color:rgba(255,255,255,.65); letter-spacing:.08em; text-transform:uppercase; margin-bottom:6px; }
-.stat .valor { font:400 68px/.95 'Bebas Neue',sans-serif; color:#FFC107; }
+.premios { display:flex; gap:20px; width:100%; margin-bottom:auto; }
+.premio { flex:1; background:rgba(255,255,255,.08); border:1.5px solid rgba(255,255,255,.25); border-radius:18px; padding:20px 16px; display:flex; flex-direction:column; align-items:center; }
+.premio .ico { width:44px; height:44px; border-radius:50%; background:#FFC107; display:flex; align-items:center; justify-content:center; margin-bottom:10px; }
+.premio .rotulo { font:800 15px/1.3 'Poppins',sans-serif; color:#FFC107; letter-spacing:.05em; text-transform:uppercase; margin-bottom:6px; }
+.premio .valor { font:700 20px/1.25 'Montserrat',sans-serif; color:#fff; }
 
-.premio { display:flex; align-items:flex-start; gap:16px; margin-bottom:26px; }
-.premio .ico { width:52px; height:52px; border-radius:50%; background:#FFC107; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.premio .tx .rotulo { font:800 17px/1.3 'Poppins',sans-serif; color:#FFC107; letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px; }
-.premio .tx .valor { font:700 26px/1.25 'Montserrat',sans-serif; color:#fff; }
-
-.spacer { flex:1; }
-
-.cta { font:700 22px/1.4 'Poppins',sans-serif; color:#fff; margin-bottom:18px; }
+.rodape { width:100%; padding-top:18px; margin-top:18px; border-top:1.5px solid rgba(255,255,255,.25); }
+.cta { font:700 21px/1.35 'Poppins',sans-serif; color:#fff; margin-bottom:10px; }
 .handle { font:700 18px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.05em; }
 
 </style>
@@ -53,13 +57,16 @@ body {
 <body>
 
 <div class="slide">
-  <div class="foto-painel">
-    <img src="../../../prova social/ganhador-caixa-de-som.jpg.jfif" alt="Ganhador de sorteio anterior da Tintas Laet">
+  <div class="foto-topo">
+    <img src="../../../prova social/ganhador-caixa-de-som.jpg.jfif" alt="Ganhador e balconista da Tintas Laet com o prêmio">
   </div>
 
-  <div class="col">
+  <div class="costura"></div>
+  <div class="selo">Sorteio mensal</div>
+
+  <div class="painel">
     <img class="logo" src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
-    <div class="pill">Sorteio mensal</div>
+
     <div class="mes">SETEMBRO</div>
     <div class="premiado">PREMIADO</div>
 
@@ -68,32 +75,27 @@ body {
       <div class="valor">AMANHÃ</div>
     </div>
 
-    <div class="linha"></div>
-
-    <div class="premio">
-      <div class="ico">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#062B63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4a2 2 0 0 0 2 4M17 5h3a2 2 0 0 1-2 4"/></svg>
-      </div>
-      <div class="tx">
+    <div class="premios">
+      <div class="premio">
+        <div class="ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#062B63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4a2 2 0 0 0 2 4M17 5h3a2 2 0 0 1-2 4"/></svg>
+        </div>
         <div class="rotulo">Prêmio principal</div>
         <div class="valor">Caixa de Som Mondial 250W</div>
       </div>
-    </div>
-
-    <div class="premio">
-      <div class="ico">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#062B63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6.2 6.5-6.2s6.5 2.6 6.5 6.2"/><circle cx="17.5" cy="8" r="2.6"/><path d="M15.6 13.8c2.9.4 5 2.7 5 5.9"/></svg>
-      </div>
-      <div class="tx">
+      <div class="premio">
+        <div class="ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#062B63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6.2 6.5-6.2s6.5 2.6 6.5 6.2"/><circle cx="17.5" cy="8" r="2.6"/><path d="M15.6 13.8c2.9.4 5 2.7 5 5.9"/></svg>
+        </div>
         <div class="rotulo">Prêmio do amigo indicado</div>
         <div class="valor">Tinta Cobertura Absoluta 3,6L Branca</div>
       </div>
     </div>
 
-    <div class="spacer"></div>
-
-    <p class="cta">Ainda dá tempo! Compra hoje, preenche seu cupom na loja e concorre amanhã.</p>
-    <span class="handle">@Tintaslaet</span>
+    <div class="rodape">
+      <p class="cta">Ainda dá tempo! Compra hoje, preenche seu cupom na loja e concorre amanhã.</p>
+      <span class="handle">@Tintaslaet</span>
+    </div>
   </div>
 </div>
 
