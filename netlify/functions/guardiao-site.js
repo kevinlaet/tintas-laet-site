@@ -19,6 +19,12 @@ const { alertarCelular } = require("./lib/alerta");
 
 const SITE = (process.env.GUARDIAO_SITE_URL || "https://tintaslaet.com").replace(/\/$/, "");
 const NUMERO_OFICIAL = "5511977140964";
+// Todos os telefones oficiais (mesma lista de site/canais-oficiais.js). Qualquer outro número
+// aparecendo em tel:/WhatsApp/lista de canais = alerta.
+const TELEFONES_OFICIAIS = new Set([
+  "5511977140964", "5511980820686", "5511977504434", "5511977498813", "5511948551977",
+  "5511914334875", "5511918755095", "5511948485925", "5511953189216", "5511948910470",
+]);
 const PAGINAS = ["/", "/produtos.html", "/produto.html?id=massa-corrida", "/linktree.html", "/curriculo.html", "/privacidade.html"];
 const HOSTS_PERMITIDOS = new Set([
   "tintaslaet.com",
@@ -58,6 +64,10 @@ function analisarPagina(html, caminho) {
 
   for (const m of html.matchAll(/wa\.me\/(\d+)/gi)) {
     if (m[1] !== NUMERO_OFICIAL) problemas.push(`${caminho}: link de WhatsApp com número DIFERENTE do oficial (${m[1]})`);
+  }
+
+  for (const m of html.matchAll(/href\s*=\s*["']tel:\+?(\d+)/gi)) {
+    if (!TELEFONES_OFICIAIS.has(m[1])) problemas.push(`${caminho}: telefone que NÃO está na lista oficial (${m[1]})`);
   }
 
   for (const m of html.matchAll(/<form\b[^>]*\baction\s*=\s*["'](https?:\/\/[^"']+)["']/gi)) {
@@ -117,6 +127,18 @@ async function verificarTudo() {
     } catch (err) {
       problemas.push(`${caminho}: não abriu (${err.name === "AbortError" ? "demorou demais" : err.message})`);
     }
+  }
+
+  try {
+    const { status, html } = await baixar("/canais-oficiais.js");
+    if (status !== 200) problemas.push(`/canais-oficiais.js: respondeu ${status}`);
+    else {
+      const achados = new Set([...html.matchAll(/\((\d{2})\)\s?(\d{4,5})-(\d{4})/g)].map((m) => "55" + m[1] + m[2] + m[3]));
+      for (const n of achados) if (!TELEFONES_OFICIAIS.has(n)) problemas.push(`/canais-oficiais.js: número fora da lista oficial (${n})`);
+      for (const n of TELEFONES_OFICIAIS) if (!achados.has(n)) problemas.push(`/canais-oficiais.js: número oficial sumiu (${n})`);
+    }
+  } catch (err) {
+    problemas.push(`/canais-oficiais.js: não abriu (${err.message})`);
   }
 
   const host = hostDe(SITE);

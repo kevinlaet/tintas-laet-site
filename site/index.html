@@ -16,6 +16,8 @@
   </script>
   <script src="analytics-events.js" defer></script>
   <script src="cookie-banner.js" defer></script>
+  <script src="avaliacoes-google.js" defer></script>
+  <script src="canais-oficiais.js" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tintas Laet — A tinta nobre da comunidade</title>
   <meta name="description" content="Tintas e materiais de pintura com os melhores preços do ABC e Zona Leste. Parcelamento em até 12x sem juros, 6 lojas no ABC e Zona Leste, com atendimento humano e ajuda pra escolher a cor certa.">
@@ -320,6 +322,7 @@
     .cta-phone { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px, 5.5vw, 56px); color: var(--blue-dark); margin-top: 24px; }
 
     /* ──────── FOOTER ──────── */
+    .location-phone { font-size: 13px; margin: -2px 0 12px; } .location-phone a { color: var(--blue); font-weight: 700; }
     .footer { background: var(--blue-dark); color: rgba(255,255,255,.55); padding: 52px 0 24px; }
     .footer-inner { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 44px; margin-bottom: 44px; }
     .footer-logo img { height: 62px; margin-bottom: 14px; }
@@ -968,7 +971,7 @@
       <span class="section-label">Nosso portfólio</span>
       <h2 class="section-title" style="color:var(--blue)">Produtos em destaque</h2>
       <p class="section-sub">Os mais procurados — preço justo, qualidade comprovada.</p>
-      <p class="products-proof">⭐⭐⭐⭐⭐ &nbsp;<strong>+<span class="count-up" data-target="300">0</span> clientes satisfeitos só esse mês</strong> &nbsp;·&nbsp; Avaliação 4.9 no Google</p>
+      <p class="products-proof">⭐⭐⭐⭐⭐ &nbsp;<strong>Nota <span data-google-nota>4,9</span> no Google</strong> &nbsp;·&nbsp; 6 lojas pertinho de você</p>
     </div>
     <div class="sellers-grid">
 
@@ -1293,6 +1296,7 @@
         <div class="location-body">
           <div class="location-name">São Paulo — Vila Bela</div>
           <div class="location-address">Av. Sapopemba, 25.723 — Vila Bela, SP</div>
+          <div class="location-phone">📞 <a href="tel:+5511980820686">(11) 98082-0686</a></div>
           <div class="location-btns">
             <a href="https://maps.google.com/?q=Av.+Sapopemba,+25723,+Vila+Bela,+São+Paulo,+SP" class="loc-btn loc-btn-map" target="_blank" rel="noopener">📍 Ver no mapa</a>
             <a href="https://wa.me/5511977140964?text=Olá! Quero consultar o estoque da loja de Vila Bela (Sapopemba)." class="loc-btn loc-btn-wa" target="_blank" rel="noopener">💬 Consultar estoque</a>
@@ -1306,6 +1310,7 @@
         <div class="location-body">
           <div class="location-name">Mauá — Jardim São João</div>
           <div class="location-address">Rua do Britador, 2 — Jardim São João, Mauá</div>
+          <div class="location-phone">📞 <a href="tel:+5511977504434">(11) 97750-4434</a></div>
           <div class="location-btns">
             <a href="https://maps.google.com/?q=Rua+do+Britador,+2,+Jardim+São+João,+Mauá,+SP" class="loc-btn loc-btn-map" target="_blank" rel="noopener">📍 Ver no mapa</a>
             <a href="https://wa.me/5511977140964?text=Olá! Quero consultar o estoque da loja de Mauá (Jardim São João)." class="loc-btn loc-btn-wa" target="_blank" rel="noopener">💬 Consultar estoque</a>
@@ -1319,6 +1324,7 @@
         <div class="location-body">
           <div class="location-name">Mauá — Santa Cecília</div>
           <div class="location-address">Av. Ayrton Senna da Silva, 235 — Jardim Santa Cecília, Mauá</div>
+          <div class="location-phone">📞 <a href="tel:+5511977498813">(11) 97749-8813</a></div>
           <div class="location-btns">
             <a href="https://maps.google.com/?q=Av.+Ayrton+Senna+da+Silva,+235,+Jardim+Santa+Cecília,+Mauá,+SP" class="loc-btn loc-btn-map" target="_blank" rel="noopener">📍 Ver no mapa</a>
             <a href="https://wa.me/5511977140964?text=Olá! Quero consultar o estoque da loja de Mauá (Av. Ayrton Senna)." class="loc-btn loc-btn-wa" target="_blank" rel="noopener">💬 Consultar estoque</a>
@@ -1332,6 +1338,7 @@
         <div class="location-body">
           <div class="location-name">Santo André — Vila Luzita</div>
           <div class="location-address">Av. São Bernardo do Campo, 757 — Vila Luzita, Santo André</div>
+          <div class="location-phone">📞 <a href="tel:+5511948551977">(11) 94855-1977</a></div>
           <div class="location-btns">
             <a href="https://maps.google.com/?q=Av.+São+Bernardo+do+Campo,+757,+Vila+Luzita,+Santo+André,+SP" class="loc-btn loc-btn-map" target="_blank" rel="noopener">📍 Ver no mapa</a>
             <a href="https://wa.me/5511977140964?text=Olá! Quero consultar o estoque da loja de Santo André (Vila Luzita)." class="loc-btn loc-btn-wa" target="_blank" rel="noopener">💬 Consultar estoque</a>
@@ -1345,6 +1352,7 @@
         <div class="location-body">
           <div class="location-name">Mauá — Jardim Itapark</div>
           <div class="location-address">Av. Itapark, 4377 — Jardim Itapark, Mauá</div>
+          <div class="location-phone">📞 <a href="tel:+5511914334875">(11) 91433-4875</a></div>
           <div class="location-btns">
             <a href="https://maps.google.com/?q=Av.+Itapark,+4377,+Jardim+Itapark,+Mauá,+SP" class="loc-btn loc-btn-map" target="_blank" rel="noopener">📍 Ver no mapa</a>
             <a href="https://wa.me/5511977140964?text=Olá! Quero consultar o estoque da loja de Mauá (Itapark)." class="loc-btn loc-btn-wa" target="_blank" rel="noopener">💬 Consultar estoque</a>
@@ -1358,6 +1366,7 @@
         <div class="location-body">
           <div class="location-name">São Bernardo — Santa Terezinha</div>
           <div class="location-address">Av. Luís Pequini, 899 — Santa Terezinha, São Bernardo do Campo</div>
+          <div class="location-phone">📞 <a href="tel:+5511918755095">(11) 91875-5095</a></div>
           <div class="location-btns">
             <a href="https://maps.google.com/?q=Av.+Luís+Pequini,+899,+Santa+Terezinha,+São+Bernardo+do+Campo,+SP" class="loc-btn loc-btn-map" target="_blank" rel="noopener">📍 Ver no mapa</a>
             <a href="https://wa.me/5511977140964?text=Olá! Quero consultar o estoque da loja de São Bernardo (Santa Terezinha)." class="loc-btn loc-btn-wa" target="_blank" rel="noopener">💬 Consultar estoque</a>
@@ -1515,7 +1524,7 @@
     <div style="text-align:center;margin-bottom:40px">
       <span class="section-label">Avaliações verificadas</span>
       <h2 class="section-title">O que nossos clientes falam</h2>
-      <p class="section-sub">⭐ <strong><span class="count-up" data-target="4.9" data-decimals="1">0</span></strong> — <span class="count-up" data-target="38">0</span> avaliações reais no Google.</p>
+      <p class="section-sub">⭐ <strong><span class="count-up" data-google-nota data-target="4.9" data-decimals="1">0</span></strong> — <span class="count-up" data-google-qtd data-target="38">0</span> avaliações reais de clientes no Google.<br><small style="color:#888">Depoimentos da Loja 1 — Vila Bela (Sapopemba)</small></p>
     </div>
     <div class="reviews-grid">
       <div class="review-card">
