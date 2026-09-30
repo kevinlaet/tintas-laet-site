@@ -353,6 +353,23 @@
     .steps-note { font-size: 11px; color: rgba(255,255,255,.5); margin-top: 6px; }
     .pickup-box { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 44px; }
     .pickup-card { background: rgba(255,255,255,.6); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); border-radius: 14px; padding: 24px; display: flex; gap: 16px; align-items: flex-start; border: 1px solid rgba(255,255,255,.7); box-shadow: 0 8px 22px rgba(13,71,161,.08), inset 0 1px 0 rgba(255,255,255,.6); transition: border-color .2s, box-shadow .2s, transform .2s; }
+    .navbar-pin { display: inline-flex; align-items: center; gap: 6px; background: var(--yellow); color: #1a1000; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; padding: 8px 14px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; transition: filter .2s, transform .2s; }
+    .navbar-pin:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .uber-guide { margin-top: 28px; background: #fff; border: 1.5px solid rgba(13,71,161,.14); border-radius: 18px; padding: 28px 26px; box-shadow: 0 10px 30px rgba(13,71,161,.08); scroll-margin-top: 90px; }
+    .uber-guide h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(18px, 3vw, 22px); color: var(--blue); margin-bottom: 6px; text-align: center; }
+    .uber-guide .uber-lead { text-align: center; color: #666; font-size: 14px; line-height: 1.6; max-width: 560px; margin: 0 auto 22px; }
+    .uber-steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: ub; }
+    .uber-steps li { counter-increment: ub; background: var(--gray); border-radius: 14px; padding: 16px 14px; font-size: 13px; color: #444; line-height: 1.55; }
+    .uber-steps li::before { content: counter(ub); display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--yellow); color: #1a1000; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; margin-bottom: 10px; }
+    .uber-steps strong { display: block; font-family: 'Montserrat', sans-serif; color: #1a1a2e; font-size: 13.5px; margin-bottom: 3px; }
+    .uber-tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: center; margin-top: 22px; }
+    .uber-tools select { padding: 11px 14px; border: 1.5px solid #DCE1EA; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 13px; background: #fff; max-width: 100%; }
+    .uber-copy { background: var(--blue); color: #fff; border: none; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; padding: 11px 18px; border-radius: 10px; }
+    .uber-copy:hover { filter: brightness(1.12); }
+    .uber-addr { text-align: center; font-size: 13px; color: #555; margin-top: 10px; min-height: 20px; }
+    .uber-note { text-align: center; font-size: 12px; color: #888; margin-top: 14px; line-height: 1.6; }
+    @media (max-width: 900px) { .uber-steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .uber-steps { grid-template-columns: 1fr; } .uber-guide { padding: 22px 16px; } }
     .pickup-card:hover { border-color: rgba(13,71,161,.35); box-shadow: 0 12px 28px rgba(13,71,161,.14); transform: translateY(-3px); }
     .pickup-icon { width: 40px; height: 40px; flex-shrink: 0; color: var(--blue); display: flex; align-items: center; justify-content: center; } .pickup-icon svg { width: 30px; height: 30px; }
     .pickup-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: var(--blue); margin-bottom: 6px; }
@@ -619,6 +636,7 @@
       <a href="https://wa.me/5511977140964?text=Olá! Gostaria de um orçamento." class="btn btn-ghost" target="_blank" rel="noopener">Orçamento grátis</a>
       <a href="https://wa.me/5511977140964" class="btn btn-yellow" target="_blank" rel="noopener">💬 WhatsApp</a>
     </div>
+    <a href="#enderecos" class="navbar-pin" aria-label="Ver endereços das lojas">📍 Lojas</a>
     <button class="navbar-toggle" onclick="document.getElementById('navbar').classList.toggle('nav-open')" aria-label="Abrir menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
     </button>
@@ -693,15 +711,15 @@
 <div class="strip" aria-hidden="true">
   <div class="strip-track">
     <span class="strip-item">📍 6 lojas no ABC e Zona Leste</span><span class="strip-dot"></span>
-    <span class="strip-item">💰 Menor preço do mercado</span><span class="strip-dot"></span>
+    <span class="strip-item">💰 Preços abaixo do mercado</span><span class="strip-dot"></span>
     <span class="strip-item">💳 Até 12x sem juros no cartão</span><span class="strip-dot"></span>
-    <span class="strip-item">💧 100% tintas base água</span><span class="strip-dot"></span>
+    <span class="strip-item">💧 Linha de tintas base água</span><span class="strip-dot"></span>
     <span class="strip-item">🤝 Atendimento humano</span><span class="strip-dot"></span>
     <span class="strip-item">📲 Pague por Pix ou cartão na loja</span><span class="strip-dot"></span>
     <span class="strip-item">📍 6 lojas no ABC e Zona Leste</span><span class="strip-dot"></span>
-    <span class="strip-item">💰 Menor preço do mercado</span><span class="strip-dot"></span>
+    <span class="strip-item">💰 Preços abaixo do mercado</span><span class="strip-dot"></span>
     <span class="strip-item">💳 Até 12x sem juros no cartão</span><span class="strip-dot"></span>
-    <span class="strip-item">💧 100% tintas base água</span><span class="strip-dot"></span>
+    <span class="strip-item">💧 Linha de tintas base água</span><span class="strip-dot"></span>
     <span class="strip-item">🤝 Atendimento humano</span><span class="strip-dot"></span>
     <span class="strip-item">📲 Pague por Pix ou cartão na loja</span><span class="strip-dot"></span>
   </div>
@@ -904,7 +922,7 @@
         <div class="step-desc">A gente prepara tudo e você já sai pronto pra pintar</div>
       </div>
     </div>
-    <p style="text-align:center;font-size:11px;color:#aaa;margin-top:16px">* Até R$100: à vista. Até R$200: em até 2x. Até R$300: em até 4x. Acima de R$300: em até 12x. Sempre sem juros. Produtos coloridos são encomendas e podem exigir sinal antecipado.</p>
+    <p style="text-align:center;font-size:11px;color:#aaa;margin-top:16px">* Até R$100: à vista. Até R$200: em até 2x. Até R$300: em até 4x. Acima de R$300: em até 12x. Sempre sem juros. No cartão feito à distância (pelo WhatsApp), pedimos uma verificação rápida de dados pra garantir que é você mesmo — é pra sua segurança. Produtos coloridos são encomendas e podem exigir sinal antecipado.</p>
 
     <div class="pickup-box">
       <div class="pickup-card reveal" style="transition-delay:0.00s">
@@ -917,10 +935,28 @@
       <div class="pickup-card reveal" style="transition-delay:0.10s">
         <div class="pickup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5a2 2 0 0 1 2-1.4h10a2 2 0 0 1 2 1.4l2 5"/><path d="M3 13h18v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H6v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4z"/><circle cx="7.5" cy="17.5" r="1.2"/><circle cx="16.5" cy="17.5" r="1.2"/></svg></div>
         <div>
-          <div class="pickup-title">Prefere não vir? Mande um Uber ou Lalamove</div>
-          <div class="pickup-desc">Combina o pedido e o pagamento pelo WhatsApp e chama um motorista pelo app pra retirar na loja. A corrida do Uber ou Lalamove é por conta do cliente.</div>
+          <div class="pickup-title">Sem tempo pra vir? Peça um Uber ou Lalamove</div>
+          <div class="pickup-desc">É fácil: combina com a gente pelo WhatsApp e chama o motorista pelo app pra retirar na loja. A corrida é por conta do cliente. <a href="#uber-guia" style="color:var(--blue);font-weight:700">Ver o passo a passo →</a></div>
         </div>
       </div>
+    </div>
+  
+    <div class="uber-guide" id="uber-guia">
+      <h3>Sem tempo pra vir? Peça um Uber ou Lalamove 🚗</h3>
+      <p class="uber-lead">Você compra com a gente e um motorista de app retira o pedido na loja e leva pra você. Simples, e a corrida é por sua conta.</p>
+      <ol class="uber-steps">
+        <li><strong>Fale com a gente</strong>Chame no WhatsApp, diga o que precisa e a loja que fica melhor pra você.</li>
+        <li><strong>Pague o pedido</strong>Pix ou cartão. No cartão à distância tem uma verificação rápida de segurança.</li>
+        <li><strong>Chame o motorista</strong>No Uber ou Lalamove, coloque o endereço da loja como retirada e o seu como destino.</li>
+        <li><strong>Pronto!</strong>Avise a gente quando o motorista chegar. Passamos o pedido pra ele e você recebe em casa.</li>
+      </ol>
+      <div class="uber-tools">
+        <select id="uberLoja" aria-label="Escolha a loja pra retirada"></select>
+        <button type="button" class="uber-copy" id="uberCopy">📋 Copiar endereço da loja</button>
+        <a href="https://wa.me/5511977140964?text=Olá! Quero combinar um pedido pra retirar por Uber/Lalamove." class="btn btn-blue" target="_blank" rel="noopener">💬 Combinar meu pedido</a>
+      </div>
+      <div class="uber-addr" id="uberAddr" aria-live="polite"></div>
+      <p class="uber-note">O valor da corrida é combinado direto no app, entre você e o motorista. Só entregamos o pedido pra quem for retirar com o nome que você nos informar.</p>
     </div>
   </div>
 </section>
@@ -1197,7 +1233,7 @@
           <div class="why-item glass reveal" style="transition-delay:0.00s">
             <div class="why-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/><line x1="5" y1="19" x2="19" y2="5"/></svg></div>
             <div class="why-item-text">
-              <strong>O melhor preço do ABC</strong>
+              <strong>Preço que cabe no bolso</strong>
               <p>Trabalhamos com valores mais acessíveis para que mais pessoas possam realizar o sonho de uma linda casa.</p>
             </div>
           </div>
@@ -1396,7 +1432,7 @@
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <p>Sempre sem juros, e as parcelas dependem do valor da compra: até R$100 à vista, até R$200 em até 2x, até R$300 em até 4x e acima de R$300 em até 12x. O pagamento é feito na loja, por Pix ou cartão, e já sai com nota fiscal.</p>
+          <p>Sempre sem juros, e as parcelas dependem do valor da compra: até R$100 à vista, até R$200 em até 2x, até R$300 em até 4x e acima de R$300 em até 12x. Aceitamos Pix e cartão. Na loja é só pagar no balcão e já sai com nota fiscal. Se o pagamento for à distância, pelo WhatsApp, no cartão a gente faz uma verificação rápida: pedimos alguns dados e comprovações pra confirmar que o titular é você mesmo. É pra proteger você e a loja contra golpes.</p>
         </div>
       </div>
       <div class="faq-item">
@@ -1907,6 +1943,43 @@ function toggleFaq(btn) {
       '<span class="winner-name-friend">' + g.amigo + ' <small>(amigo indicado)</small></span></div>' +
       '<div class="winner-row-store">📍 Compra realizada na ' + g.loja + '</div>';
     list.appendChild(row);
+  });
+})();
+</script>
+<script>
+/* ── PASSO A PASSO UBER/LALAMOVE: escolher loja + copiar endereço ── */
+(function () {
+  var lojas = [
+    { nome: 'São Paulo — Vila Bela (Sapopemba)', end: 'Av. Sapopemba, 25.723 — Vila Bela, São Paulo, SP' },
+    { nome: 'Mauá — Jardim São João', end: 'Rua do Britador, 2 — Jardim São João, Mauá, SP' },
+    { nome: 'Mauá — Santa Cecília (Av. Ayrton Senna)', end: 'Av. Ayrton Senna da Silva, 235 — Jardim Santa Cecília, Mauá, SP' },
+    { nome: 'Santo André — Vila Luzita', end: 'Av. São Bernardo do Campo, 757 — Vila Luzita, Santo André, SP' },
+    { nome: 'Mauá — Jardim Itapark', end: 'Av. Itapark, 4377 — Jardim Itapark, Mauá, SP' },
+    { nome: 'São Bernardo — Santa Terezinha', end: 'Av. Luís Pequini, 899 — Santa Terezinha, São Bernardo do Campo, SP' }
+  ];
+  var sel = document.getElementById('uberLoja');
+  var out = document.getElementById('uberAddr');
+  var btn = document.getElementById('uberCopy');
+  if (!sel || !out || !btn) return;
+  lojas.forEach(function (l, i) {
+    var o = document.createElement('option');
+    o.value = i; o.textContent = l.nome; sel.appendChild(o);
+  });
+  function mostrar() { out.textContent = '📍 ' + lojas[sel.value].end; }
+  sel.addEventListener('change', mostrar);
+  mostrar();
+  btn.addEventListener('click', function () {
+    var txt = lojas[sel.value].end;
+    function ok() { out.textContent = '✓ Endereço copiado: ' + txt; }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); ok(); } catch (e) { out.textContent = '📍 ' + txt + ' (copie manualmente)'; }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, fallback);
+    else fallback();
   });
 })();
 </script>
