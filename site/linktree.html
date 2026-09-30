@@ -18,7 +18,7 @@
   <script src="cookie-banner.js" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tintas Laet — Links</title>
-  <meta name="description" content="Todos os links da Tintas Laet em um só lugar: sorteio, WhatsApp, produtos e site completo.">
+  <meta name="description" content="Encontre a loja da Tintas Laet mais perto de você. 6 lojas no ABC e Zona Leste de SP, com endereço, mapa e catálogo de produtos.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -139,6 +139,24 @@
     .follow-icon:hover img { transform: translateY(-4px) scale(1.06); box-shadow: 0 12px 22px rgba(0,0,0,.3); }
     .follow-icon span { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 11px; color: rgba(255,255,255,.8); }
 
+    .stores-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #FFC107; margin: 30px 0 12px; }
+    .stores { display: flex; flex-direction: column; gap: 10px; }
+    .store {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 12px;
+      padding: 12px 14px;
+      text-align: left;
+      transition: background .18s, transform .18s;
+    }
+    .store:hover { background: rgba(255,255,255,.14); transform: translateY(-2px); }
+    .store-pin { flex-shrink: 0; font-size: 18px; }
+    .store-text { flex: 1; }
+    .store-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: #fff; line-height: 1.3; }
+    .store-addr { font-size: 12px; color: rgba(255,255,255,.65); margin-top: 1px; line-height: 1.35; }
+    .store-go { flex-shrink: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; color: #212529; background: #FFC107; padding: 6px 11px; border-radius: 100px; }
+
     footer { margin-top: 28px; font-size: 11px; color: rgba(255,255,255,.45); }
   </style>
 </head>
@@ -155,20 +173,11 @@
     <h1>A tinta nobre <span>da comunidade</span></h1>
 
     <div class="links">
-      <a href="sorteios.html" class="link-btn featured">
-        <span class="link-icon">🎁</span>
+      <a href="index.html#enderecos" class="link-btn featured">
+        <span class="link-icon">📍</span>
         <span class="link-text">
-          <span class="link-title">Informações sobre o Sorteio</span>
-          <span class="link-sub">Prêmios de junho, regras e como participar</span>
-        </span>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <a href="https://wa.me/5511977140964?text=Olá! Vim pelo Instagram e quero fazer um pedido." target="_blank" rel="noopener" class="link-btn">
-        <span class="link-icon">💬</span>
-        <span class="link-text">
-          <span class="link-title">Comprar pelo WhatsApp</span>
-          <span class="link-sub">Atendimento rápido, fala com a gente agora</span>
+          <span class="link-title">Encontre a loja mais perto de você</span>
+          <span class="link-sub">6 lojas no ABC e Zona Leste, com endereço e mapa</span>
         </span>
         <span class="link-arrow">→</span>
       </a>
@@ -176,8 +185,26 @@
       <a href="produtos.html" class="link-btn">
         <span class="link-icon">🛍️</span>
         <span class="link-text">
-          <span class="link-title">Ver todos os produtos</span>
-          <span class="link-sub">Catálogo completo de tintas e materiais</span>
+          <span class="link-title">Veja o que tem nas lojas</span>
+          <span class="link-sub">Catálogo de tintas e materiais, com preços</span>
+        </span>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://wa.me/5511977140964?text=Olá! Vim pelo Instagram. Queria saber se vocês têm um produto e qual loja fica mais perto de mim." target="_blank" rel="noopener" class="link-btn">
+        <span class="link-icon">💬</span>
+        <span class="link-text">
+          <span class="link-title">Tirar dúvida no WhatsApp</span>
+          <span class="link-sub">Confirme o produto antes de ir até a loja</span>
+        </span>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="index.html#ganhadores" class="link-btn">
+        <span class="link-icon">🏆</span>
+        <span class="link-text">
+          <span class="link-title">Nossos ganhadores</span>
+          <span class="link-sub">Clientes que já levaram prêmio da Laet</span>
         </span>
         <span class="link-arrow">→</span>
       </a>
@@ -189,6 +216,40 @@
           <span class="link-sub">tintaslaet.com</span>
         </span>
         <span class="link-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="stores-title">Nossas lojas</div>
+    <div class="stores">
+      <a class="store" href="https://maps.google.com/?q=Av.+Sapopemba,+25723,+Vila+Bela,+São+Paulo,+SP" target="_blank" rel="noopener">
+        <span class="store-pin">📍</span>
+        <span class="store-text"><span class="store-name">São Paulo — Vila Bela</span><br><span class="store-addr">Av. Sapopemba, 25.723</span></span>
+        <span class="store-go">Como chegar</span>
+      </a>
+      <a class="store" href="https://maps.google.com/?q=Rua+do+Britador,+2,+Jardim+São+João,+Mauá,+SP" target="_blank" rel="noopener">
+        <span class="store-pin">📍</span>
+        <span class="store-text"><span class="store-name">Mauá — Jardim São João</span><br><span class="store-addr">Rua do Britador, 2</span></span>
+        <span class="store-go">Como chegar</span>
+      </a>
+      <a class="store" href="https://maps.google.com/?q=Av.+Ayrton+Senna+da+Silva,+235,+Jardim+Santa+Cecília,+Mauá,+SP" target="_blank" rel="noopener">
+        <span class="store-pin">📍</span>
+        <span class="store-text"><span class="store-name">Mauá — Santa Cecília</span><br><span class="store-addr">Av. Ayrton Senna da Silva, 235</span></span>
+        <span class="store-go">Como chegar</span>
+      </a>
+      <a class="store" href="https://maps.google.com/?q=Av.+São+Bernardo+do+Campo,+757,+Vila+Luzita,+Santo+André,+SP" target="_blank" rel="noopener">
+        <span class="store-pin">📍</span>
+        <span class="store-text"><span class="store-name">Santo André — Vila Luzita</span><br><span class="store-addr">Av. São Bernardo do Campo, 757</span></span>
+        <span class="store-go">Como chegar</span>
+      </a>
+      <a class="store" href="https://maps.google.com/?q=Av.+Itapark,+4377,+Jardim+Itapark,+Mauá,+SP" target="_blank" rel="noopener">
+        <span class="store-pin">📍</span>
+        <span class="store-text"><span class="store-name">Mauá — Jardim Itapark</span><br><span class="store-addr">Av. Itapark, 4377</span></span>
+        <span class="store-go">Como chegar</span>
+      </a>
+      <a class="store" href="https://maps.google.com/?q=Av.+Luís+Pequini,+899,+Santa+Terezinha,+São+Bernardo+do+Campo,+SP" target="_blank" rel="noopener">
+        <span class="store-pin">📍</span>
+        <span class="store-text"><span class="store-name">São Bernardo — Santa Terezinha</span><br><span class="store-addr">Av. Luís Pequini, 899</span></span>
+        <span class="store-go">Como chegar</span>
       </a>
     </div>
 
