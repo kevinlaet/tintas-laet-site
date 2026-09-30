@@ -3,6 +3,30 @@
   functions = "netlify/functions"
   ignore = "bash scripts/netlify-ignore-branch.sh"
 
+[[redirects]]
+  from = "/sorteios.html"
+  to = "/#ganhadores"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sorteios"
+  to = "/#ganhadores"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cupom.html"
+  to = "/#ganhadores"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cupom-recebido.html"
+  to = "/"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*.html"
   [headers.values]
