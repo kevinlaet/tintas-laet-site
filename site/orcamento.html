@@ -317,9 +317,10 @@
 const TOKEN_KEY = 'laet_orcamento_token';
 const DRAFT_KEY = 'laet_orcamento_rascunho';
 
-// A planilha central de orçamentos (Google Apps Script) é chamada pela function
-// /.netlify/functions/orcamento-planilha — a URL real fica só no servidor
-// (env var SHEETS_WEBHOOK_URL), nunca no código público desta página.
+// URL do Web App do Google Apps Script (planilha central de orçamentos).
+// Fica vazio até o deploy ser feito — com vazio, a numeração central é
+// simplesmente ignorada (sem quebrar a ferramenta).
+const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzyAJ0PN8Q41nz_QOeq85A6v8Dso9qESWLuRgrRh9VL2BxKiqV8f9jd4zCZf9tKcDeX/exec';
 
 let orcamentoNumero = null;
 let syncFalhou = false;
@@ -352,6 +353,7 @@ function atualizarNumeroDisplay() {
 }
 
 async function salvarNaPlanilha() {
+  if (!SHEETS_WEBHOOK_URL) return false;
   const { itens, frete, desconto, total } = coletarOrcamento();
   if (!itens.length) return false;
 
@@ -368,7 +370,7 @@ async function salvarNaPlanilha() {
   };
 
   try {
-    const res = await comTimeout(fetch('/.netlify/functions/orcamento-planilha', { method: 'POST', headers: { 'Content-Type': 'application/json', ...authHeaders() }, body: JSON.stringify(payload) }), 10000);
+    const res = await comTimeout(fetch(SHEETS_WEBHOOK_URL, { method: 'POST', body: JSON.stringify(payload) }), 6000);
     if (!res) throw new Error('tempo esgotado');
     const data = await res.json();
     if (!data.ok || !data.numero) throw new Error(data.erro || 'resposta inválida da planilha');
