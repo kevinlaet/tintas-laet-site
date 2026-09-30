@@ -93,6 +93,15 @@ A partir de 31/08/2026, segurança vem antes de conveniência em qualquer integr
 
 ## Contexto do negócio
 
+**`_memoria/` é gitignored neste repositório** (é público — nunca pode
+vazar dado interno num commit aqui) **e por isso não sobrevive sozinho
+entre sessões** (cada sessão roda num container que some depois de um
+tempo). A cópia que persiste de verdade fica no repositório privado
+`kevinlaet/tintas-laet-memoria` (criado em 30/09/2026). No início da
+sessão (`/abrir`) sincronizar de lá pra cá; ao salvar (`/salvar` ou quando
+o Kevin pedir pra "salvar a sessão"), sincronizar daqui pra lá — nunca
+pular esse passo achando que só o `_memoria/` local já resolveu.
+
 No início de toda conversa, ler os seguintes arquivos (quando existirem e estiverem preenchidos):
 
 1. `_memoria/empresa.md` — quem é o usuário, o que faz, como funciona o negócio

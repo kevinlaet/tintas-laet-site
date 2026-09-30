@@ -41,6 +41,26 @@ Detectar com `git rev-parse --is-inside-work-tree`. Se falhar:
 5. Confirmar com link do repositório (extrair de `git remote get-url origin`):
    > "Sincronizado. Ver no GitHub: <URL>"
 
+### Sempre por último: sincronizar a memória privada
+
+`_memoria/` é gitignored aqui (repo público — nunca pode ir num commit
+público), então o passo acima nunca salva ela. Depois de qualquer `/salvar`
+bem-sucedido (ou quando o Kevin pedir explicitamente pra "salvar a
+sessão"/"salvar o contexto"):
+
+1. Garantir que `kevinlaet/tintas-laet-memoria` está anexado à sessão
+   (`add_repo`, access `push`, clonar em `/home/user/tintas-laet-memoria`
+   se ainda não estiver clonado) e atualizado (`git pull`).
+2. Copiar `_memoria/*.md` do `tintas-laet-site` pra `_memoria/` de lá.
+3. `git add -A` → `git commit` → `git push` nesse repositório privado.
+4. Não expor conteúdo de `_memoria/` na resposta pro usuário — só confirmar
+   que salvou: "Memória sincronizada também."
+
+Se esse repositório não existir ainda, avisar o Kevin uma vez que a memória
+está só local nesta sessão e sugerir criar (ver histórico — já foi criado
+em 30/09/2026 como `tintas-laet-memoria`, então normalmente só falta
+anexar/clonar).
+
 ## Regras
 
 - Nunca usar `--force` sem o usuário pedir explicitamente
