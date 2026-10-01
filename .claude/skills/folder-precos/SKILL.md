@@ -10,7 +10,11 @@ description: >
 
 # /folder-precos — Folder Guia da Pintura com preços do site
 
-O folder é um **modelo** (`templates/folder-guia-pintura/`) que puxa os preços sozinho do site
+Dois modelos (desde 01/10/2026 o padrão é o **livro**, mais barato):
+- **livro** — A4 dobrado ao meio, 4 páginas A5 (`templates/folder-guia-pintura-livro/`). Tem espaço pro vendedor escrever nome e WhatsApp na capa.
+- **3dobras** — A4 em 3 dobras, 6 painéis (`templates/folder-guia-pintura/`).
+
+O folder é um **modelo** que puxa os preços sozinho do site
 (`site/produto.html`). Cada preço no modelo é um elemento com
 `data-preco="id-do-produto|tamanho"`, que bate com o `id` e o campo `desc` de `precos` no objeto
 `produtos` do site. **Nunca digitar preço à mão no folder**: a próxima rodada sobrescreve.
@@ -27,8 +31,9 @@ Criado em 01/10/2026, a partir do folder aprovado pelo Kevin ("ficou perfeito").
    ```
    node scripts/folder-precos/gerar.js            # mês atual
    node scripts/folder-precos/gerar.js 2026-11    # mês específico
+   node scripts/folder-precos/gerar.js --modelo 3dobras   # versão em 3 dobras
    ```
-   Grava em `saidas/folder-guia-pintura-AAAA-MM/`: `folder-impressao.pdf` (gráfica),
+   Grava em `saidas/folder-guia-pintura-livro-AAAA-MM/` (ou `folder-guia-pintura-AAAA-MM/` no 3 dobras): `folder-impressao.pdf` (gráfica),
    `previa-lado-de-fora.png`, `previa-lado-de-dentro.png` e o `folder.html` preenchido.
    Numa sessão de nuvem o script acha o Chromium sozinho.
 
@@ -47,12 +52,12 @@ Criado em 01/10/2026, a partir do folder aprovado pelo Kevin ("ficou perfeito").
 ## Instruções pra gráfica (repassar sempre)
 
 - Arquivo: `folder-impressao.pdf` — A4 deitado, frente e verso, 303×216 mm = A4 + 3 mm de sangria.
-- Dobra em 3 tipo **janela/rolo** (a aba de 97 mm dobra pra dentro).
-- Papel sugerido: couché 115 g ou 150 g.
+- **livro:** uma dobra no meio (vira A5). **3dobras:** dobra janela/rolo (a aba de 97 mm entra).
+- Papel: **couché fosco** 115 g ou 150 g — o fosco aceita caneta no espaço do vendedor (brilho borra).
 
 ## Mudar o conteúdo do folder (não o preço)
 
-Editar `templates/folder-guia-pintura/folder.html` e rodar o gerador. Regras:
+Editar o `folder.html` do modelo (`templates/folder-guia-pintura-livro/` ou `templates/folder-guia-pintura/`) e rodar o gerador. Regras:
 - Texto técnico (uso interno/externo, rendimento, diluição, secagem) só com o que está escrito
   no site/`_memoria/produtos.md`. Nunca inventar.
 - Enquanto durar o teste de entrega só por app (desde 24/09/2026), **nada de "a gente entrega"**.

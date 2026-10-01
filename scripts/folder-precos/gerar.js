@@ -1,11 +1,13 @@
 // Gera o folder "Guia da Pintura" (A4, 3 dobras) com os preços ATUAIS do site.
 //
-// Uso:  node scripts/folder-precos/gerar.js [AAAA-MM]
-//   - lê o modelo em templates/folder-guia-pintura/folder.html
+// Uso:  node scripts/folder-precos/gerar.js [AAAA-MM] [--modelo livro|3dobras]
+//   - modelo padrão: livro (A4 dobrado ao meio, 4 páginas A5 — mais barato)
+//     3dobras: A4 em 3 dobras (6 painéis)
+//   - lê o modelo em templates/folder-guia-pintura[-livro]/folder.html
 //   - cada preço do modelo é um elemento com data-preco="id-do-produto|tamanho", que bate
 //     com o objeto `produtos` de site/produto.html (id + campo `desc` de `precos`)
 //   - confere se os endereços do folder batem com a seção "Onde estamos" do site
-//   - grava em saidas/folder-guia-pintura-AAAA-MM/ e gera o PDF da gráfica + prévias
+//   - grava em saidas/folder-guia-pintura[-livro]-AAAA-MM/ e gera o PDF da gráfica + prévias
 //   - mostra o que mudou de preço em relação ao último folder gerado
 //
 // Nunca editar preço direto no folder gerado: a próxima rodada sobrescreve. Se o preço do
@@ -15,7 +17,10 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const RAIZ = path.resolve(__dirname, '..', '..');
-const MODELO = path.join(RAIZ, 'templates', 'folder-guia-pintura');
+const MODELOS = {
+  livro: { pasta: 'folder-guia-pintura-livro', saida: 'folder-guia-pintura-livro' },
+  '3dobras': { pasta: 'folder-guia-pintura', saida: 'folder-guia-pintura' },
+};
 
 function carregarProdutos() {
   const s = fs.readFileSync(path.join(RAIZ, 'site', 'produto.html'), 'utf8');
@@ -41,10 +46,10 @@ function precosDoHtml(html) {
   return mapa;
 }
 
-function ultimoFolderGerado(excetoDir) {
+function ultimoFolderGerado(prefixo, excetoDir) {
   const saidas = path.join(RAIZ, 'saidas');
   const dirs = fs.readdirSync(saidas)
-    .filter((d) => /^folder-guia-pintura-\d{4}-\d{2}$/.test(d) && path.join(saidas, d) !== excetoDir)
+    .filter((d) => new RegExp(`^${prefixo}-\\d{4}-\\d{2}$`).test(d) && path.join(saidas, d) !== excetoDir)
     .sort();
   for (const d of dirs.reverse()) {
     const f = path.join(saidas, d, 'folder.html');
@@ -77,10 +82,16 @@ function copiarPasta(de, para) {
 
 (function main() {
   const hoje = new Date();
-  const mes = process.argv[2] || `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, '0')}`;
+  const args = process.argv.slice(2);
+  const iMod = args.indexOf('--modelo');
+  const nomeModelo = iMod >= 0 ? args.splice(iMod, 2)[1] : 'livro';
+  const modelo = MODELOS[nomeModelo];
+  if (!modelo) { console.error(`Modelo inválido: ${nomeModelo}. Use: ${Object.keys(MODELOS).join(' | ')}`); process.exit(1); }
+  const MODELO = path.join(RAIZ, 'templates', modelo.pasta);
+  const mes = args[0] || `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, '0')}`;
   if (!/^\d{4}-\d{2}$/.test(mes)) { console.error('Mês inválido. Use AAAA-MM, ex: 2026-11'); process.exit(1); }
   const data = hoje.toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
-  const destino = path.join(RAIZ, 'saidas', `folder-guia-pintura-${mes}`);
+  const destino = path.join(RAIZ, 'saidas', `${modelo.saida}-${mes}`);
 
   const produtos = carregarProdutos();
   let html = fs.readFileSync(path.join(MODELO, 'folder.html'), 'utf8');
@@ -102,7 +113,7 @@ function copiarPasta(de, para) {
 
   const avisos = conferirEnderecos(html);
 
-  const anterior = ultimoFolderGerado(destino);
+  const anterior = ultimoFolderGerado(modelo.saida, destino);
   const mudancas = [];
   if (anterior) {
     const antes = precosDoHtml(anterior.html), agora = precosDoHtml(html);
@@ -117,7 +128,7 @@ function copiarPasta(de, para) {
   if (!env.PW_EXEC && fs.existsSync(chromeNuvem)) env.PW_EXEC = chromeNuvem;
   execFileSync(process.execPath, [path.join(destino, 'render.js')], { stdio: 'inherit', env });
 
-  console.log(`\n✅ Folder gerado em saidas/folder-guia-pintura-${mes}/ (preços de ${data})`);
+  console.log(`\n✅ Folder (${nomeModelo}) gerado em saidas/${modelo.saida}-${mes}/ (preços de ${data})`);
   console.log(`   ${Object.keys(precosDoHtml(html)).length} preços puxados do site.`);
   if (anterior) {
     console.log(mudancas.length ? `\nMudou de preço desde ${anterior.nome}:` : `\nNenhum preço mudou desde ${anterior.nome}.`);
