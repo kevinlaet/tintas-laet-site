@@ -112,7 +112,7 @@ Usar essas informações como base pra qualquer resposta ou decisão.
 
 **Regra:** sempre que o Kevin explicar um produto ("dar aula"), salvar aqui na hora, sem precisar ele pedir. Vale por cima do texto do site quando os dois divergirem (e avisar o Kevin pra corrigir o site).
 
-- **Super Profissional:** rende **até 330 m² por demão** (balde 18L), **com a superfície totalmente preparada e selada**. (O site ainda diz 300 m² — 01/10/2026.)
+- **Super Profissional:** rende **até 330 m² por demão** (balde 18L), **com a superfície totalmente preparada e selada**. (Site atualizado pra 330 m² em 01/10/2026.)
 - **Direto no Gesso:** **não necessita de fundo preparador** — falar assim, que o cliente entende.
 - **1ª Linha Standard:** tinta de **baixo custo, mas concentrada, grossa e com bom poder de cobertura**.
 - **Massa Corrida:** só **área interna e seca** (quartos, salas). Nivela e corrige a parede antes de pintar.
