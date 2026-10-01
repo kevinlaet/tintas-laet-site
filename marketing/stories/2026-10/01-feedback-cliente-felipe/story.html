@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Story — Feedback de cliente</title>
+<style>
+@font-face { font-family:'Bebas Neue'; font-weight:400; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { background:#020A18; }
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; display:flex; flex-direction:column; align-items:center; text-align:center;
+  background: radial-gradient(ellipse at 60% 20%, #1565C0 0%, #0D47A1 38%, #062B63 75%, #041d45 100%); }
+.slide::before { content:''; position:absolute; inset:0;
+  background-image: repeating-linear-gradient(60deg, rgba(255,255,255,.025) 0, rgba(255,255,255,.025) 1px, transparent 1px, transparent 60px),
+                   repeating-linear-gradient(-60deg, rgba(255,255,255,.025) 0, rgba(255,255,255,.025) 1px, transparent 1px, transparent 60px); }
+.slide > * { position:relative; z-index:2; }
+.logo { height:280px; object-fit:contain; margin-top:130px; }
+.eyebrow { font:700 22px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.25em; text-transform:uppercase; display:flex; align-items:center; gap:16px; margin-top:20px; }
+.eyebrow::before, .eyebrow::after { content:''; width:30px; height:3px; background:rgba(255,193,7,.5); }
+h1 { font:400 128px/.98 'Bebas Neue',sans-serif; color:#fff; letter-spacing:.01em; margin-top:30px; }
+h1 .chip { background:#FFC107; color:#062B63; padding:2px 28px; border-radius:12px; display:inline-block; transform:rotate(-2deg); line-height:1.08; }
+.print { width:900px; background:#fff; border-radius:18px; padding:14px; box-shadow:0 24px 60px rgba(0,0,0,.35); }
+.print img { width:100%; display:block; border-radius:10px; }
+.p1 { margin-top:50px; transform:rotate(-1.2deg); }
+.p2 { margin-top:34px; transform:rotate(1deg); }
+.nota { margin-top:40px; font:600 30px/1.4 'Poppins',sans-serif; color:rgba(255,255,255,.9); }
+.nota b { color:#FFC107; font-weight:700; }
+.rodape { position:absolute !important; bottom:150px; left:0; right:0; font:600 24px/1 'Poppins',sans-serif; color:rgba(255,255,255,.85); letter-spacing:.04em; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <img class="logo" src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+  <div class="eyebrow">Mensagens reais de clientes</div>
+  <h1>CLIENTE<br><span class="chip">MEGA SATISFEITO</span></h1>
+  <div class="print p1"><img src="crop-a.png" alt=""></div>
+  <div class="print p2"><img src="crop-b.png" alt=""></div>
+  <div class="nota">Parabéns, <b>Felipe</b>! Orgulho de ter você no time.</div>
+  <div class="rodape">@Tintaslaet</div>
+</div>
+</body>
+</html>
