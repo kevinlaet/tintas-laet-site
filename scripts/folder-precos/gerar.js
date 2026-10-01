@@ -58,6 +58,10 @@ function conferirEnderecos(htmlFolder) {
   const doSite = [...idx.matchAll(/class="location-address">([^<]+)</g)].map((m) => m[1].split(' — ')[0].trim());
   const avisos = [];
   for (const end of doSite) if (!htmlFolder.includes(end)) avisos.push(`endereço do site não está no folder: "${end}"`);
+  // telefones por loja (quando o site tiver): cada um precisa aparecer no folder
+  for (const m of idx.matchAll(/class="location-phone">[^<]*<a[^>]*>([^<]+)</g)) {
+    if (!htmlFolder.includes(m[1].trim())) avisos.push(`telefone do site não está no folder: "${m[1].trim()}"`);
+  }
   const qtdFolder = (htmlFolder.match(/class="loja[" ]/g) || []).length;
   if (qtdFolder !== doSite.length) avisos.push(`o site tem ${doSite.length} lojas e o folder tem ${qtdFolder}`);
   return avisos;
