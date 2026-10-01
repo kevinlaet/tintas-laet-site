@@ -108,6 +108,21 @@ Usar essas informações como base pra qualquer resposta ou decisão.
 
 **Antes de qualquer texto ou peça que afirme característica técnica de produto** (rendimento, uso interno/externo, lavável ou não, diluição, secagem, preço, cor), ler `_memoria/produtos.md` — dossiê mestre de produtos, fonte única de verdade, com regra explícita de nunca inventar dado técnico não confirmado (usa a resposta-padrão do próprio arquivo quando faltar informação).
 
+### Conhecimento de produto — aulas do Kevin
+
+**Regra:** sempre que o Kevin explicar um produto ("dar aula"), salvar aqui na hora, sem precisar ele pedir. Vale por cima do texto do site quando os dois divergirem (e avisar o Kevin pra corrigir o site).
+
+- **Super Profissional:** rende **até 330 m² por demão** (balde 18L), **com a superfície totalmente preparada e selada**. (O site ainda diz 300 m² — 01/10/2026.)
+- **Direto no Gesso:** **não necessita de fundo preparador** — falar assim, que o cliente entende.
+- **1ª Linha Standard:** tinta de **baixo custo, mas concentrada, grossa e com bom poder de cobertura**.
+- **Massa Corrida:** só **área interna e seca** (quartos, salas). Nivela e corrige a parede antes de pintar.
+- **Massa Acrílica:** pra **áreas úmidas** — banheiro, cozinha, área de serviço — e área externa.
+- **Fundo Preparador:** pra **reboco fraco e parede velha** — que descasca, esfarela, está fraca. Firma a superfície antes da tinta.
+- **Seladora:** pra **parede nova / reboco novo que chupa muita tinta**. É uma película inicial de um produto mais grosso e **mais barato que a tinta**: preenche os poros do reboco e economiza tinta.
+- **Emborrachada:** comunicar que **resolve até 100% do problema de infiltração** (laje, telhado, muro).
+- **Látex Vinil:** produto de combate, **sem a marca Laet** — não divulgar em folder/panfleto.
+- **Parcelamento 12x sem juros:** não vale pra toda compra — sempre com **"consulte as condições"**.
+
 Pra qualquer tarefa visual (carrossel, post, landing page), consultar `identidade/design-guide.md` como referência de estilo.
 
 ---
