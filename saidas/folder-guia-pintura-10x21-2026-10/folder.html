@@ -46,8 +46,9 @@ body { font-family:'Poppins',sans-serif; color:var(--grafite); }
 .sec small { display:block; font:600 5.8pt/1.1 'Poppins',sans-serif; color:#5b6470; margin-top:.4mm; letter-spacing:0; }
 
 /* linha de produto: foto | nome + explicação | preços */
-.prod { display:grid; grid-template-columns:12mm 1fr auto; column-gap:2.2mm; align-items:center; padding:1.9mm 0; border-bottom:.2mm solid #e1e6ef; }
+.prod { display:grid; grid-template-columns:12mm 1fr auto; column-gap:2.2mm; align-items:center; padding:2.2mm 0; border-bottom:.2mm solid #e1e6ef; }
 .prod img { width:12mm; height:12mm; object-fit:contain; }
+.prod img.alta { height:17mm; }
 .prod .nm { font:800 7.6pt/1.1 'Montserrat',sans-serif; color:var(--escuro); }
 .prod .nm em { font:700 4.9pt/1 'Poppins',sans-serif; font-style:normal; color:var(--azul); background:var(--claro); border-radius:.6mm; padding:.45mm .9mm .3mm; margin-left:1mm; vertical-align:1px; text-transform:uppercase; letter-spacing:.03em; }
 .prod .nm em.y { background:#FFF3CD; color:#7a5b00; }
@@ -78,41 +79,44 @@ body { font-family:'Poppins',sans-serif; color:var(--grafite); }
 .check li::before { content:''; width:2.4mm; height:2.4mm; border:.3mm solid var(--amarelo); border-radius:.5mm; flex-shrink:0; }
 
 /* ───────── CONTRACAPA ───────── */
-.steps { display:grid; grid-template-columns:1fr 1fr; gap:2.2mm 3mm; margin-bottom:4mm; }
-.step { display:flex; gap:1.6mm; align-items:flex-start; }
+.contra { justify-content:space-between; }
+.steps { display:flex; flex-direction:column; gap:2mm; }
+.step { display:flex; gap:2mm; align-items:center; }
 .step .n { width:5.2mm; height:5.2mm; border-radius:1.4mm; background:var(--azul); color:#fff; font:400 9.5pt/5.6mm 'Bebas Neue',sans-serif; text-align:center; flex-shrink:0; transform:rotate(-8deg); }
-.step .t { font:800 6.6pt/1.15 'Montserrat',sans-serif; color:var(--escuro); }
+.step .t { font:800 6.8pt/1.3 'Montserrat',sans-serif; color:var(--escuro); }
+.step .t span { font:600 6.1pt/1.3 'Poppins',sans-serif; color:#4a5260; }
 .step .d { font:600 5.4pt/1.3 'Poppins',sans-serif; color:#4a5260; margin-top:.2mm; }
-.loja { display:flex; gap:2mm; padding:1.7mm 0; border-bottom:.2mm solid #e1e6ef; align-items:center; }
+.loja { display:flex; gap:2mm; padding:2.1mm 0; border-bottom:.2mm solid #e1e6ef; align-items:center; }
 .loja .num { font:400 9.5pt/1 'Bebas Neue',sans-serif; color:#fff; background:var(--azul); border-radius:1.2mm; width:5.6mm; height:5.6mm; display:flex; align-items:center; justify-content:center; padding-top:.4mm; flex-shrink:0; transform:rotate(-8deg); }
 .loja .tx { flex:1; min-width:0; }
 .loja .b { font:800 6.6pt/1.15 'Montserrat',sans-serif; color:var(--escuro); }
 .loja .e { font:600 5.4pt/1.3 'Poppins',sans-serif; color:#4a5260; margin-top:.2mm; }
 .loja .t { font:400 10pt/1 'Bebas Neue',sans-serif; color:var(--azul); letter-spacing:.02em; white-space:nowrap; }
-.contato { margin-top:auto; position:relative; display:flex; gap:2.6mm; align-items:center; background:var(--escuro); border-radius:3mm; padding:2.8mm; color:#fff; }
+.contato { position:relative; display:flex; gap:2.6mm; align-items:center; background:var(--escuro); border-radius:3mm; padding:2.8mm; color:#fff; }
 .contato .qrw { background:#fff; border-radius:1.6mm; padding:1.2mm; flex-shrink:0; }
 .contato .qr { width:17mm; height:17mm; display:block; }
-.canais { display:flex; flex-direction:column; gap:1.4mm; flex:1; }
+.canais { display:flex; flex-direction:column; gap:2mm; flex:1; }
 .canal { display:flex; align-items:center; gap:1.6mm; }
-.canal svg { width:4.4mm; height:4.4mm; flex-shrink:0; }
+.canal svg { width:5mm; height:5mm; flex-shrink:0; }
 .canal .k { font:700 4.6pt/1 'Poppins',sans-serif; color:var(--amarelo2); text-transform:uppercase; letter-spacing:.05em; }
-.canal .v { font:800 7pt/1.1 'Montserrat',sans-serif; color:#fff; }
-.canal.wa .v { font:400 14pt/1 'Bebas Neue',sans-serif; letter-spacing:.02em; }
+.canal .v { font:800 8pt/1.1 'Montserrat',sans-serif; color:#fff; }
+.canal.wa .v { font:400 15pt/1 'Bebas Neue',sans-serif; letter-spacing:.02em; }
 
 /* ───────── CAPA ───────── */
 .capa .logo { width:40mm; }
-.foto { position:relative; margin:8mm 0 0 4mm; width:76mm; height:78mm; z-index:2; }
+.foto { position:relative; margin:9mm 0 0 2mm; width:80mm; height:92mm; z-index:2; }
 .foto .img { position:absolute; inset:0; border-radius:6mm; background:url('img/capa.jpg') 42% 24%/cover no-repeat; box-shadow:0 2mm 6mm rgba(6,43,99,.28); }
-.capa .ey { font:700 6pt/1 'Poppins',sans-serif; color:var(--azul); letter-spacing:.22em; text-transform:uppercase; margin-top:7mm; }
-.capa h1 { font:400 40pt/.9 'Bebas Neue',sans-serif; color:var(--escuro); margin-top:1.6mm; }
+.capa .ey { font:700 6.6pt/1 'Poppins',sans-serif; color:var(--azul); letter-spacing:.22em; text-transform:uppercase; margin-top:auto; }
+.capa h1 { font:400 44pt/.9 'Bebas Neue',sans-serif; color:var(--escuro); margin-top:1.6mm; }
 .capa h1 .g { display:inline-block; background:var(--amarelo); color:var(--escuro); padding:1mm 2.6mm .1mm; border-radius:1.6mm; transform:rotate(-2deg); margin-top:1mm; }
-.capa .lead { font:600 6.6pt/1.42 'Poppins',sans-serif; color:#4a5260; margin-top:2.6mm; max-width:76mm; }
+.capa .lead { font:600 7.2pt/1.45 'Poppins',sans-serif; color:#4a5260; margin-top:2.6mm; max-width:76mm; }
 .capa .chips { display:flex; gap:1.6mm; margin-top:2.8mm; }
-.capa .chip { font:800 5.9pt/1 'Montserrat',sans-serif; color:var(--escuro); border:.3mm solid var(--claro2); border-radius:4mm; padding:1.5mm 2.6mm 1.3mm; background:#fff; }
+.capa .chip { font:800 6.4pt/1 'Montserrat',sans-serif; color:var(--escuro); border:.3mm solid var(--claro2); border-radius:4mm; padding:1.5mm 2.6mm 1.3mm; background:#fff; }
 .capa .chip.y { background:var(--amarelo); border-color:var(--amarelo); }
+.capa .aster { font:600 5.2pt/1.3 'Poppins',sans-serif; color:#6b7380; margin-top:1.6mm; padding-bottom:6mm; }
 
 /* cartão do vendedor (pra escrever à caneta) */
-.vend { margin-top:auto; background:#fff; border:.35mm solid var(--claro2); border-radius:3mm; padding:2.6mm 3.2mm 3mm; color:var(--escuro); position:relative; }
+.vend { background:#fff; border:.35mm solid var(--claro2); border-radius:3mm; padding:2.6mm 3.2mm 3mm; color:var(--escuro); position:relative; }
 .vend .top { display:flex; justify-content:space-between; align-items:center; }
 .vend .top b { font:400 11.5pt/1 'Bebas Neue',sans-serif; letter-spacing:.03em; color:var(--escuro); }
 .vend .top span { font:700 4.6pt/1 'Poppins',sans-serif; color:#5b6470; text-transform:uppercase; letter-spacing:.05em; }
@@ -130,34 +134,38 @@ body { font-family:'Poppins',sans-serif; color:var(--grafite); }
 <!-- ═════════════ PÁGINA 1 — LADO DE FORA ═════════════ -->
 <div class="page">
 
-  <!-- CONTRACAPA: lojas + passo a passo + contato -->
+  <!-- CONTRACAPA: lojas + passo a passo + vendedor + contato -->
   <div class="pn l">
     <div class="geo g-claro" style="width:46mm;height:46mm;left:-22mm;top:-24mm"></div>
     <div class="geo g-azul" style="width:20mm;height:20mm;left:14mm;top:-12mm"></div>
-    <div class="geo g-claro" style="width:30mm;height:30mm;right:-16mm;bottom:58mm;opacity:.7"></div>
-    <div class="in">
-      <div style="height:9mm"></div>
-      <div class="sec"><div class="bar"></div><h2>Nossas 6 lojas<small>ABC Paulista e Zona Leste de SP</small></h2></div>
-      <div class="lojas">
-        <div class="loja"><div class="num">1</div><div class="tx"><div class="b">São Paulo — Vila Bela</div><div class="e">Av. Sapopemba, 25.723</div></div><div class="t">(11) 98082-0686</div></div>
-        <div class="loja"><div class="num">2</div><div class="tx"><div class="b">Mauá — Jardim São João</div><div class="e">Rua do Britador, 2</div></div><div class="t">(11) 97750-4434</div></div>
-        <div class="loja"><div class="num">3</div><div class="tx"><div class="b">Mauá — Santa Cecília</div><div class="e">Av. Ayrton Senna da Silva, 235</div></div><div class="t">(11) 97749-8813</div></div>
-        <div class="loja"><div class="num">4</div><div class="tx"><div class="b">Santo André — Vila Luzita</div><div class="e">Av. São Bernardo do Campo, 757</div></div><div class="t">(11) 94855-1977</div></div>
-        <div class="loja"><div class="num">5</div><div class="tx"><div class="b">Mauá — Jardim Itapark</div><div class="e">Av. Itapark, 4377</div></div><div class="t">(11) 91433-4875</div></div>
-        <div class="loja"><div class="num">6</div><div class="tx"><div class="b">S. Bernardo — Sta. Terezinha</div><div class="e">Av. Luís Pequini, 899</div></div><div class="t">(11) 91875-5095</div></div>
+    <div class="geo g-claro" style="width:28mm;height:28mm;right:-16mm;top:98mm;opacity:.7"></div>
+    <div class="in contra">
+      <div class="bloco" style="padding-top:8mm">
+        <div class="sec"><div class="bar"></div><h2>Nossas 6 lojas<small>ABC Paulista e Zona Leste de SP</small></h2></div>
+        <div class="lojas">
+          <div class="loja"><div class="num">1</div><div class="tx"><div class="b">São Paulo — Vila Bela</div><div class="e">Av. Sapopemba, 25.723</div></div><div class="t">(11) 98082-0686</div></div>
+          <div class="loja"><div class="num">2</div><div class="tx"><div class="b">Mauá — Jardim São João</div><div class="e">Rua do Britador, 2</div></div><div class="t">(11) 97750-4434</div></div>
+          <div class="loja"><div class="num">3</div><div class="tx"><div class="b">Mauá — Santa Cecília</div><div class="e">Av. Ayrton Senna da Silva, 235</div></div><div class="t">(11) 97749-8813</div></div>
+          <div class="loja"><div class="num">4</div><div class="tx"><div class="b">Santo André — Vila Luzita</div><div class="e">Av. São Bernardo do Campo, 757</div></div><div class="t">(11) 94855-1977</div></div>
+          <div class="loja"><div class="num">5</div><div class="tx"><div class="b">Mauá — Jardim Itapark</div><div class="e">Av. Itapark, 4377</div></div><div class="t">(11) 91433-4875</div></div>
+          <div class="loja"><div class="num">6</div><div class="tx"><div class="b">S. Bernardo — Sta. Terezinha</div><div class="e">Av. Luís Pequini, 899</div></div><div class="t">(11) 91875-5095</div></div>
+        </div>
       </div>
 
-      <div class="sec" style="margin-top:4.5mm"><div class="bar"></div><h2>Vai pintar? Faça assim</h2></div>
-      <div class="steps">
-        <div class="step"><div class="n">1</div><div><div class="t">Proteja a casa</div><div class="d">Lona no chão e fita crepe nos cantos.</div></div></div>
-        <div class="step"><div class="n">2</div><div><div class="t">Prepare a parede</div><div class="d">Lixe, tire o pó e corrija com massa.</div></div></div>
-        <div class="step"><div class="n">3</div><div><div class="t">Sele antes</div><div class="d">Seladora ou fundo melhoram a aderência.</div></div></div>
-        <div class="step"><div class="n">4</div><div><div class="t">Pinte em 2 demãos</div><div class="d">Respeite a secagem da embalagem.</div></div></div>
+      <div class="bloco">
+        <div class="sec"><div class="bar"></div><h2>Vai pintar? Faça assim</h2></div>
+        <div class="steps">
+          <div class="step"><div class="n">1</div><div class="t">Proteja a casa <span>— lona no chão e fita crepe nos cantos.</span></div></div>
+          <div class="step"><div class="n">2</div><div class="t">Prepare a parede <span>— lixe, tire o pó e corrija com massa.</span></div></div>
+          <div class="step"><div class="n">3</div><div class="t">Sele antes <span>— seladora ou fundo melhoram a aderência.</span></div></div>
+          <div class="step"><div class="n">4</div><div class="t">Pinte em 2 demãos <span>— respeite a secagem da embalagem.</span></div></div>
+        </div>
       </div>
 
-      <div class="box claro" style="margin:0 0 3.2mm">
-        <h3>Ficou na dúvida?</h3>
-        <p>Mande uma foto da parede no WhatsApp <b style="white-space:nowrap">(11) 97714-0964</b> ou pro seu vendedor: a gente indica o produto certo e calcula quanto você precisa.</p>
+      <div class="vend">
+        <div class="top"><b>Seu vendedor Laet</b><span>Chame direto no WhatsApp</span></div>
+        <div class="ln"><label>Nome</label><div class="linha"></div></div>
+        <div class="ln"><label>WhatsApp</label><span class="ddd">(11)</span><div class="linha"></div></div>
       </div>
 
       <div class="contato">
@@ -165,48 +173,39 @@ body { font-family:'Poppins',sans-serif; color:var(--grafite); }
         <div class="canais">
           <div class="canal wa">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg>
-            <div><div class="k">WhatsApp · orçamento</div><div class="v">(11) 97714-0964</div></div>
+            <div class="v">(11) 97714-0964</div>
           </div>
           <div class="canal">
             <svg viewBox="0 0 24 24"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".35" stop-color="#FA7E1E"/><stop offset=".65" stop-color="#D62976"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig)"/><rect x="5.5" y="5.5" width="13" height="13" rx="3.8" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.1" cy="7.9" r="1" fill="#fff"/></svg>
-            <div><div class="k">Instagram</div><div class="v">@tintaslaet</div></div>
+            <div class="v">@tintaslaet</div>
           </div>
           <div class="canal">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#fff"/><circle cx="12" cy="12" r="6.5" fill="none" stroke="#0D47A1" stroke-width="1.4"/><ellipse cx="12" cy="12" rx="2.8" ry="6.5" fill="none" stroke="#0D47A1" stroke-width="1.4"/><path d="M5.5 12h13" stroke="#0D47A1" stroke-width="1.4"/></svg>
-            <div><div class="k">Site · preços e cores</div><div class="v">tintaslaet.com</div></div>
+            <div class="v">tintaslaet.com</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CAPA -->
+  <!-- CAPA: só marca, foto, título e subtítulo -->
   <div class="pn r capa">
     <div class="geo g-esc" style="width:44mm;height:44mm;right:-14mm;top:-14mm"></div>
     <div class="geo g-claro2" style="width:22mm;height:22mm;right:26mm;top:-6mm;opacity:.8"></div>
-    <div class="geo g-azul" style="width:34mm;height:34mm;right:-10mm;top:52mm"></div>
-    <div class="geo g-claro" style="width:30mm;height:30mm;left:-12mm;top:44mm"></div>
-    <div class="geo g-am" style="width:7mm;height:7mm;left:11mm;top:106mm"></div>
-    <div class="geo g-esc" style="width:5mm;height:5mm;left:20mm;top:113mm"></div>
+    <div class="geo g-azul" style="width:34mm;height:34mm;right:-10mm;top:62mm"></div>
+    <div class="geo g-claro" style="width:30mm;height:30mm;left:-12mm;top:54mm"></div>
+    <div class="geo g-am" style="width:7mm;height:7mm;right:12mm;top:136mm"></div>
+    <div class="geo g-esc" style="width:5mm;height:5mm;right:6mm;top:143mm"></div>
+    <div class="geo g-claro" style="width:40mm;height:40mm;right:-18mm;bottom:-16mm"></div>
+    <div class="geo g-azul" style="width:14mm;height:14mm;right:16mm;bottom:-6mm"></div>
     <div class="in">
       <img class="logo" src="img/logo.png" alt="Tintas Laet">
       <div class="foto"><div class="img"></div></div>
       <div class="ey">Guia de preços</div>
       <h1>Tudo pra sua<br><span class="g">pintura</span></h1>
       <p class="lead">Preço abaixo do mercado e explicação simples de cada produto, pra você comprar certo e gastar menos.</p>
-      <div class="chips"><span class="chip y">12x sem juros</span><span class="chip">6 lojas</span></div>
-
-      <div class="vend">
-        <div class="top"><b>Seu vendedor Laet</b><span>Chame no WhatsApp</span></div>
-        <div class="ln"><label>Nome</label><div class="linha"></div></div>
-        <div class="ln"><label>WhatsApp</label><span class="ddd">(11)</span><div class="linha"></div></div>
-      </div>
-
-      <div class="rodape">
-        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/></svg>(11) 97714-0964</span>
-        <span>@tintaslaet</span>
-        <span>tintaslaet.com</span>
-      </div>
+      <div class="chips"><span class="chip y">Até 12x sem juros*</span><span class="chip">6 lojas</span></div>
+      <p class="aster">*Consulte as condições na loja.</p>
     </div>
   </div>
 </div>
@@ -220,10 +219,6 @@ body { font-family:'Poppins',sans-serif; color:var(--grafite); }
     <div class="in">
       <div class="sec"><div class="bar"></div><h2>Tintas pra parede<small>Da mais econômica à mais completa</small></h2></div>
 
-      <div class="prod"><img src="img/vinil.png" alt=""><div>
-        <div class="nm">Látex Vinil<em>Interna</em></div>
-        <div class="ds">A mais econômica. Só parede interna e seca.</div>
-      </div><div class="pr"><div>18L branca<b data-preco="latex-vinil|18L — Branca">R$ 79,90</b></div><div>18L cores<b data-preco="latex-vinil|18L — Cores">R$ 99,90</b></div></div></div>
 
       <div class="prod"><img src="img/profissional.png" alt=""><div>
         <div class="nm">Super Profissional<em>Interna</em></div>
@@ -252,10 +247,10 @@ body { font-family:'Poppins',sans-serif; color:var(--grafite); }
 
       <div class="sec" style="margin-top:3.6mm"><div class="bar"></div><h2>Preparação<small>O que faz a pintura durar</small></h2></div>
 
-      <div class="prod"><img src="img/barrica.png" alt=""><div>
+      <div class="prod"><img class="alta" src="img/massa.png" alt=""><div>
         <div class="nm">Massa Corrida · Acrílica</div>
         <div class="ds">Deixam a parede lisa. A acrílica serve pra área externa.</div>
-      </div><div class="pr"><div>Corrida 5kg<b data-preco="massa-corrida|5kg">R$ 19,90</b></div><div>Acrílica 5kg<b data-preco="massa-acrilica|5kg">R$ 29,90</b></div></div></div>
+      </div><div class="pr"><div>Corrida saco 23kg<b data-preco="massa-corrida|Saco 23kg">R$ 37,90</b></div><div>Acrílica saco 23kg<b data-preco="massa-acrilica|Saco 23kg">R$ 69,90</b></div></div></div>
 
       <div class="prod"><img src="img/seladora.png" alt=""><div>
         <div class="nm">Seladora · Fundo</div>
@@ -325,7 +320,7 @@ body { font-family:'Poppins',sans-serif; color:var(--grafite); }
         <ul><li>Tinta</li><li>Seladora</li><li>Massa</li><li>Lixa</li><li>Rolo e cabo</li><li>Trincha</li><li>Bandeja</li><li>Fita crepe</li><li>Lona</li></ul>
       </div>
 
-      <p class="nota">Preços de 01/10/2026, sujeitos a alteração e ao estoque de cada loja. Até 12x sem juros no cartão. Imagens ilustrativas.</p>
+      <p class="nota">Preços de 01/10/2026, sujeitos a alteração e ao estoque de cada loja. Parcelamento em até 12x sem juros: consulte as condições. Imagens ilustrativas.</p>
     </div>
   </div>
 </div>

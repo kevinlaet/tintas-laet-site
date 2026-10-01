@@ -65,6 +65,11 @@ Editar o `folder.html` do modelo (`templates/folder-guia-pintura-10x21/`, `-a5/`
 - Texto técnico (uso interno/externo, rendimento, diluição, secagem) só com o que está escrito
   no site/`_memoria/produtos.md`. Nunca inventar.
 - Enquanto durar o teste de entrega só por app (desde 24/09/2026), **nada de "a gente entrega"**.
+- **Nunca colocar Látex Vinil** em folder/panfleto: não tem a marca Laet, é produto de combate (pedido do Kevin, 01/10/2026).
+- **12x sem juros sempre com "consulte as condições"** — não vale pra toda compra.
+- **Capa só com marca, foto, título e subtítulo.** O espaço do vendedor (nome + WhatsApp) fica no verso.
+- **Contatos sem rótulo:** só ícone + número / @ / site (sem escrever "WhatsApp", "Instagram", "Site").
+- Massa corrida/acrílica: preço do **saco 23kg** e imagem `barrica+plastico.png` (barrica + saco na bolinha).
 - Produto novo: copiar um bloco `.prod`, trocar imagem (`img/`), textos e os `data-preco`.
   O tamanho no `data-preco` precisa ser idêntico ao `desc` do site (com travessão "—").
 - Cores do layout: paleta do `identidade/design-guide.md`. Se o folder passar a mostrar cor de
