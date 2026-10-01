@@ -26,13 +26,14 @@ const GRAPH_VERSION = 'v21.0';
 
 // Mesmos endereços da seção "Onde estamos" do site (site/index.html#enderecos) e do
 // painel (tintas-laet-painel/netlify/functions/lib/lojas.js). A Loja 6 (São Bernardo do
-// Campo) ainda não entra aqui — sem estoque, sem endereço de loja aberta ainda.
+// Campo) entrou em out/2026, quando inaugurou — conferir se o painel também já tem ela.
 const LOJAS = [
   { id: 'vila-bela', nome: 'São Paulo — Vila Bela (Sapopemba)', endereco: 'Av. Sapopemba, 25723, Vila Bela, São Paulo, SP' },
   { id: 'jardim-sao-joao', nome: 'Mauá — Jardim São João', endereco: 'Rua do Britador, 2, Jardim São João, Mauá, SP' },
   { id: 'santa-cecilia', nome: 'Mauá — Jardim Santa Cecília', endereco: 'Av. Ayrton Senna da Silva, 235, Jardim Santa Cecília, Mauá, SP' },
   { id: 'vila-luzita', nome: 'Santo André — Vila Luzita', endereco: 'Av. São Bernardo do Campo, 757, Vila Luzita, Santo André, SP' },
   { id: 'itapark', nome: 'Mauá — Jardim Itapark', endereco: 'Av. Itapark, 4377, Jardim Itapark, Mauá, SP' },
+  { id: 'santa-terezinha', nome: 'São Bernardo do Campo — Santa Terezinha', endereco: 'Av. Luís Pequini, 899, Santa Terezinha, São Bernardo do Campo, SP' },
 ];
 
 const RAIO_PADRAO_KM = 8;
