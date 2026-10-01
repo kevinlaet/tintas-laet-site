@@ -25,7 +25,7 @@ const TELEFONES_OFICIAIS = new Set([
   "5511977140964", "5511980820686", "5511977504434", "5511977498813", "5511948551977",
   "5511914334875", "5511918755095", "5511948485925", "5511953189216", "5511948910470",
 ]);
-const PAGINAS = ["/", "/produtos.html", "/produto.html?id=massa-corrida", "/linktree.html", "/curriculo.html", "/privacidade.html"];
+const PAGINAS = ["/", "/produtos.html", "/produto.html?id=massa-corrida", "/linktree.html", "/lojas.html", "/curriculo.html", "/privacidade.html"];
 const HOSTS_PERMITIDOS = new Set([
   "tintaslaet.com",
   "www.tintaslaet.com",
@@ -63,7 +63,7 @@ function analisarPagina(html, caminho) {
   }
 
   for (const m of html.matchAll(/wa\.me\/(\d+)/gi)) {
-    if (m[1] !== NUMERO_OFICIAL) problemas.push(`${caminho}: link de WhatsApp com número DIFERENTE do oficial (${m[1]})`);
+    if (!TELEFONES_OFICIAIS.has(m[1])) problemas.push(`${caminho}: link de WhatsApp com número FORA da lista oficial (${m[1]})`);
   }
 
   for (const m of html.matchAll(/href\s*=\s*["']tel:\+?(\d+)/gi)) {
