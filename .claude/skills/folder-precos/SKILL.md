@@ -1,7 +1,7 @@
 ---
 name: folder-precos
 description: >
-  Gera o folder "Guia da Pintura" (A5 dobrado ao meio por padrão; também A4 livro ou A4 em 3 dobras, pronto pra gráfica) com os
+  Gera o folder "Guia da Pintura" (20x21 cm dobrado ao meio por padrão; também A5, A4 livro ou A4 em 3 dobras, pronto pra gráfica) com os
   preços ATUAIS do site e os endereços das lojas, mostra o que mudou de preço desde o último folder
   e entrega o PDF com sangria + prévias. Use quando o usuário pedir "folder", "panfleto de preço",
   "atualiza o folder", "folder do mês", "material pra deixar na loja", "mudou preço, refaz o
@@ -10,7 +10,8 @@ description: >
 
 # /folder-precos — Folder Guia da Pintura com preços do site
 
-Três modelos (desde 01/10/2026 o padrão é o **a5**, o mais barato):
+Quatro modelos (padrão desde 01/10/2026: **10x21**, escolhido pelo Kevin a partir de uma referência de folder com painéis altos, fundo claro e formas geométricas azuis):
+- **10x21** — 20 × 21 cm aberto, dobra ao meio, fecha em 10 × 21 cm (`templates/folder-guia-pintura-10x21/`). Fundo branco, formas azuis inclinadas, foto arredondada na capa, espaço do vendedor.
 - **a5** — A5 dobrado ao meio, 4 páginas A6 de 10,5 × 14,8 cm (`templates/folder-guia-pintura-a5/`). Mesmo conteúdo, em formato de tabela de preços. Espaço pro vendedor na capa.
 - **livro** — A4 dobrado ao meio, 4 páginas A5 (`templates/folder-guia-pintura-livro/`). Tem espaço pro vendedor escrever nome e WhatsApp na capa.
 - **3dobras** — A4 em 3 dobras, 6 painéis (`templates/folder-guia-pintura/`).
@@ -32,10 +33,11 @@ Criado em 01/10/2026, a partir do folder aprovado pelo Kevin ("ficou perfeito").
    ```
    node scripts/folder-precos/gerar.js            # mês atual
    node scripts/folder-precos/gerar.js 2026-11    # mês específico
+   node scripts/folder-precos/gerar.js --modelo a5        # A5 dobrado ao meio
    node scripts/folder-precos/gerar.js --modelo livro     # A4 dobrado ao meio
    node scripts/folder-precos/gerar.js --modelo 3dobras   # A4 em 3 dobras
    ```
-   Grava em `saidas/folder-guia-pintura-a5-AAAA-MM/` (`-livro-` no livro, sem sufixo no 3 dobras): `folder-impressao.pdf` (gráfica),
+   Grava em `saidas/folder-guia-pintura-10x21-AAAA-MM/` (`-a5-`, `-livro-` nos outros; sem sufixo no 3 dobras): `folder-impressao.pdf` (gráfica),
    `previa-lado-de-fora.png`, `previa-lado-de-dentro.png` e o `folder.html` preenchido.
    Numa sessão de nuvem o script acha o Chromium sozinho.
 
@@ -53,13 +55,13 @@ Criado em 01/10/2026, a partir do folder aprovado pelo Kevin ("ficou perfeito").
 
 ## Instruções pra gráfica (repassar sempre)
 
-- Arquivo: `folder-impressao.pdf`, frente e verso, com 3 mm de sangria: **a5** 216×154 mm (A5 deitado), **livro/3dobras** 303×216 mm (A4 deitado).
-- **a5:** uma dobra no meio (vira A6). **livro:** uma dobra no meio (vira A5). **3dobras:** dobra janela/rolo (a aba de 97 mm entra).
+- Arquivo: `folder-impressao.pdf`, frente e verso, com 3 mm de sangria: **10x21** 206×216 mm (20×21 cm aberto), **a5** 216×154 mm (A5 deitado), **livro/3dobras** 303×216 mm (A4 deitado).
+- **10x21:** uma dobra no meio (fecha em 10×21 cm). **a5:** uma dobra no meio (vira A6). **livro:** uma dobra no meio (vira A5). **3dobras:** dobra janela/rolo (a aba de 97 mm entra).
 - Papel: **couché fosco** 115 g ou 150 g — o fosco aceita caneta no espaço do vendedor (brilho borra).
 
 ## Mudar o conteúdo do folder (não o preço)
 
-Editar o `folder.html` do modelo (`templates/folder-guia-pintura-a5/`, `-livro/` ou `templates/folder-guia-pintura/`) e rodar o gerador. Regras:
+Editar o `folder.html` do modelo (`templates/folder-guia-pintura-10x21/`, `-a5/`, `-livro/` ou `templates/folder-guia-pintura/`) e rodar o gerador. Regras:
 - Texto técnico (uso interno/externo, rendimento, diluição, secagem) só com o que está escrito
   no site/`_memoria/produtos.md`. Nunca inventar.
 - Enquanto durar o teste de entrega só por app (desde 24/09/2026), **nada de "a gente entrega"**.
