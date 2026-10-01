@@ -116,7 +116,7 @@ Usar essas informações como base pra qualquer resposta ou decisão.
 - **Direto no Gesso:** **não necessita de fundo preparador** — falar assim, que o cliente entende.
 - **1ª Linha Standard:** tinta de **baixo custo, mas concentrada, grossa e com bom poder de cobertura**.
 - **Massa Corrida:** só **área interna e seca** (quartos, salas). Nivela e corrige a parede antes de pintar.
-- **Massa Acrílica:** pra **áreas úmidas** — banheiro, cozinha, área de serviço — e área externa.
+- **Massa Acrílica:** pra áreas que **pegam respingo de água** (banheiro, cozinha) e área externa. **Nunca dizer que resiste/resolve umidade** — senão o cliente usa pra tratar umidade (correção do Kevin, 01/10/2026).
 - **Fundo Preparador:** pra **reboco fraco e parede velha** — que descasca, esfarela, está fraca. Firma a superfície antes da tinta.
 - **Seladora:** pra **parede nova / reboco novo que chupa muita tinta**. É uma película inicial de um produto mais grosso e **mais barato que a tinta**: preenche os poros do reboco e economiza tinta.
 - **Emborrachada:** comunicar que **resolve até 100% do problema de infiltração** (laje, telhado, muro).
