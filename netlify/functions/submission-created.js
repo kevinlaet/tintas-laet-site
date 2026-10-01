@@ -10,7 +10,7 @@ exports.handler = async function (event) {
     const data = (body.payload && body.payload.data) || {};
     const formName = (body.payload && body.payload.form_name) || data["form-name"] || data.form_name;
 
-    if (formName !== "cupom-sorteio" && formName !== "trabalhe-conosco") {
+    if (formName !== "trabalhe-conosco") {
       return { statusCode: 200, body: "formulario ignorado" };
     }
 
@@ -60,64 +60,9 @@ exports.handler = async function (event) {
       return { statusCode: 200, body: "ok" };
     }
 
-    const amigosNomes = toArray(data["amigo_nome[]"]);
-    const amigosWpp = toArray(data["amigo_whatsapp[]"]);
-    let amigosTexto = "";
-    amigosNomes.forEach((nome, i) => {
-      if (nome) amigosTexto += `\n  ${i + 1}. ${nome} - ${amigosWpp[i] || "sem whatsapp"}`;
-    });
-
-    const comoConheceu = data.como_conheceu === "Outro"
-      ? (data.como_conheceu_outro || "Outro")
-      : (data.como_conheceu || "-");
-
-    const linhas = [
-      data.protocolo ? `Protocolo: ${data.protocolo}` : null,
-      `Nome: ${data.nome || "-"}`,
-      `WhatsApp: ${data.whatsapp || "-"}`,
-      `Cidade: ${data.cidade || "-"}`,
-      `Loja: ${data.loja || "-"}`,
-      `Forma de compra: ${data.forma_compra || "-"}`,
-      data.numero_pedido ? `Numero do pedido: ${data.numero_pedido}` : null,
-      data.prazo_projeto ? `Prazo do projeto: ${data.prazo_projeto}` : null,
-      `Como conheceu: ${comoConheceu}`,
-      amigosTexto ? `Amigos indicados:${amigosTexto}` : null,
-    ].filter(Boolean).join("\n");
-
-    // Cupom não precisa de "resposta" (não é card de aviso no painel), mas
-    // fica salvo pra você conseguir ver a lista de participantes lá também,
-    // sem precisar abrir o Netlify Forms.
-    try {
-      await registrarMensagemSite({
-        tipo: "cupom-sorteio",
-        nome: data.nome,
-        contato: data.whatsapp,
-        mensagem: linhas,
-      });
-    } catch (err) {
-      console.error("submission-created: falha ao registrar cupom no Supabase (notificação segue normal):", err.message);
-    }
-
-    await fetch("https://ntfy.sh", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        topic,
-        title: "🎟️ Novo cupom do sorteio!",
-        message: linhas,
-        tags: ["ticket"],
-      }),
-    });
-
-    return { statusCode: 200, body: "ok" };
+    return { statusCode: 200, body: "formulario ignorado" };
   } catch (err) {
     console.error("Erro ao notificar:", err);
     return { statusCode: 200, body: "erro tratado" };
   }
 };
-
-function toArray(value) {
-  if (Array.isArray(value)) return value;
-  if (value === undefined || value === null || value === "") return [];
-  return [value];
-}

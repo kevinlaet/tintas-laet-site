@@ -3,6 +3,7 @@
   const ADDR_KEY = 'laet_cart_addr_v1';
   const WHATSAPP_NUMBER = '5511977140964';
 
+  function esc(v) { return String(v == null ? '' : v).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
   function loadCart() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch (e) { return []; }
   }
@@ -11,7 +12,8 @@
     renderBadge();
   }
   function loadAddr() {
-    try { return JSON.parse(localStorage.getItem(ADDR_KEY)) || {}; } catch (e) { return {}; }
+    // Só guardamos a loja de retirada; CEP/endereço de versões antigas são descartados (menos dado pessoal no aparelho).
+    try { const a = JSON.parse(localStorage.getItem(ADDR_KEY)) || {}; return { loja: typeof a.loja === 'string' ? a.loja : '', uber: !!a.uber }; } catch (e) { return {}; }
   }
   function saveAddr(addr) {
     localStorage.setItem(ADDR_KEY, JSON.stringify(addr));
@@ -129,33 +131,31 @@
       <div id="laet-cart-overlay" onclick="if(event.target===this) LaetCart.closeDrawer()">
         <div id="laet-cart-panel">
           <div class="laet-cart-header">
-            <h3>Seu pedido</h3>
+            <h3>Sua lista de compras</h3>
             <button class="laet-cart-close" onclick="LaetCart.closeDrawer()">✕</button>
           </div>
           <div id="laet-cart-body"></div>
           <div id="laet-cart-footer">
-            <div class="laet-cart-section-title">Endereço de entrega</div>
-            <div class="laet-cart-row">
-              <div class="laet-cart-field">
-                <label>CEP</label>
-                <input type="text" id="laet-cep" placeholder="00000-000" maxlength="9" oninput="LaetCart.maskCep(this); LaetCart.lookupCep()">
-              </div>
-              <div class="laet-cart-field" style="flex:0 0 90px">
-                <label>Número</label>
-                <input type="text" id="laet-numero" placeholder="nº" oninput="LaetCart.saveAddrField('numero', this.value)">
-              </div>
+            <div class="laet-cart-section-title">Em qual loja você vai retirar?</div>
+            <div class="laet-cart-field">
+              <select id="laet-loja" onchange="LaetCart.saveAddrField('loja', this.value)" style="width:100%;padding:9px 10px;border:1.5px solid #DCE1EA;border-radius:7px;font-size:13px;font-family:'Poppins',sans-serif;background:#fff">
+                <option value="">Escolha a loja mais perto de você</option>
+                <option>São Paulo — Vila Bela (Av. Sapopemba, 25.723)</option>
+                <option>Mauá — Jardim São João (Rua do Britador, 2)</option>
+                <option>Mauá — Santa Cecília (Av. Ayrton Senna da Silva, 235)</option>
+                <option>Santo André — Vila Luzita (Av. São Bernardo do Campo, 757)</option>
+                <option>Mauá — Jardim Itapark (Av. Itapark, 4377)</option>
+                <option>São Bernardo — Santa Terezinha (Av. Luís Pequini, 899)</option>
+              </select>
             </div>
-            <div class="laet-endereco-resultado" id="laet-endereco-resultado"></div>
-            <div class="laet-cart-field" style="margin-top:8px">
-              <label>Complemento (opcional)</label>
-              <input type="text" id="laet-complemento" placeholder="apto, bloco, ponto de referência..." oninput="LaetCart.saveAddrField('complemento', this.value)">
-            </div>
+            <div class="laet-endereco-resultado" id="laet-endereco-resultado"><a href="index.html#enderecos" style="color:#0D47A1;font-weight:600">📍 Ver endereços e mapa das lojas</a></div>
+            <label style="display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#555;margin:10px 0 4px;line-height:1.4"><input type="checkbox" id="laet-uber" onchange="LaetCart.saveAddrField('uber', this.checked)" style="margin-top:2px"> Vou pedir um Uber ou Lalamove pra retirar (a corrida é por minha conta)</label>
             <div class="laet-cart-total">
               <span>Total estimado</span>
               <span id="laet-cart-total">R$ 0,00</span>
             </div>
             <button class="laet-cart-checkout" onclick="LaetCart.checkout()">
-              💬 Finalizar pedido no WhatsApp
+              💬 Confirmar no WhatsApp
             </button>
             <button class="laet-cart-clear" onclick="LaetCart.clearCart()">Limpar carrinho</button>
           </div>
@@ -183,14 +183,14 @@
       body.innerHTML = items.map((it, idx) => `
         <div class="laet-cart-item">
           <div class="laet-cart-item-info">
-            <div class="laet-cart-item-nome">${it.nome}</div>
-            <div class="laet-cart-item-detalhe">${it.tamanho}${it.cor ? ' · Cor: ' + it.cor : ''}</div>
-            <div class="laet-cart-item-preco">${it.valor}</div>
+            <div class="laet-cart-item-nome">${esc(it.nome)}</div>
+            <div class="laet-cart-item-detalhe">${esc(it.tamanho)}${it.cor ? ' · Cor: ' + esc(it.cor) : ''}</div>
+            <div class="laet-cart-item-preco">${esc(it.valor)}</div>
           </div>
           <div class="laet-cart-item-qty">
-            <button onclick="LaetCart.updateQty(${idx}, ${it.qty - 1})">−</button>
-            <span>${it.qty}</span>
-            <button onclick="LaetCart.updateQty(${idx}, ${it.qty + 1})">+</button>
+            <button onclick="LaetCart.updateQty(${idx}, ${Number(it.qty) - 1})">−</button>
+            <span>${Number(it.qty)}</span>
+            <button onclick="LaetCart.updateQty(${idx}, ${Number(it.qty) + 1})">+</button>
           </div>
           <button class="laet-cart-item-remove" onclick="LaetCart.removeItem(${idx})" title="Remover">✕</button>
         </div>
@@ -203,14 +203,10 @@
 
   function renderAddrFields() {
     const addr = loadAddr();
-    const cepInput = document.getElementById('laet-cep');
-    const numInput = document.getElementById('laet-numero');
-    const compInput = document.getElementById('laet-complemento');
-    const resultEl = document.getElementById('laet-endereco-resultado');
-    if (cepInput) cepInput.value = addr.cep || '';
-    if (numInput) numInput.value = addr.numero || '';
-    if (compInput) compInput.value = addr.complemento || '';
-    if (resultEl) resultEl.textContent = addr.logradouro ? `${addr.logradouro}, ${addr.bairro} - ${addr.localidade}/${addr.uf}` : '';
+    const lojaSel = document.getElementById('laet-loja');
+    const uber = document.getElementById('laet-uber');
+    if (lojaSel) lojaSel.value = addr.loja || '';
+    if (uber) uber.checked = !!addr.uber;
   }
 
   function openDrawer() {
@@ -225,41 +221,6 @@
     if (overlay) overlay.classList.remove('open');
   }
 
-  function maskCep(input) {
-    let v = input.value.replace(/\D/g, '').slice(0, 8);
-    if (v.length > 5) v = v.slice(0, 5) + '-' + v.slice(5);
-    input.value = v;
-  }
-
-  async function lookupCep() {
-    const cepInput = document.getElementById('laet-cep');
-    const resultEl = document.getElementById('laet-endereco-resultado');
-    const digits = (cepInput.value || '').replace(/\D/g, '');
-    const addr = loadAddr();
-    addr.cep = cepInput.value;
-    saveAddr(addr);
-    if (digits.length !== 8) { resultEl.textContent = ''; return; }
-    resultEl.textContent = 'Buscando endereço...';
-    try {
-      const res = await fetch(`https://viacep.com.br/ws/${digits}/json/`);
-      const data = await res.json();
-      const addr2 = loadAddr();
-      if (data.erro) {
-        resultEl.textContent = 'CEP não encontrado — pode descrever o endereço completo no campo "Complemento".';
-        addr2.logradouro = ''; addr2.bairro = ''; addr2.localidade = ''; addr2.uf = '';
-      } else {
-        addr2.logradouro = data.logradouro;
-        addr2.bairro = data.bairro;
-        addr2.localidade = data.localidade;
-        addr2.uf = data.uf;
-        resultEl.textContent = `${data.logradouro}, ${data.bairro} - ${data.localidade}/${data.uf}`;
-      }
-      saveAddr(addr2);
-    } catch (e) {
-      resultEl.textContent = 'Não foi possível buscar o CEP agora. Pode descrever o endereço completo no campo "Complemento".';
-    }
-  }
-
   function saveAddrField(field, value) {
     const addr = loadAddr();
     addr[field] = value;
@@ -270,25 +231,17 @@
     const items = loadCart();
     if (items.length === 0) { alert('Seu carrinho está vazio. Adicione produtos antes de finalizar.'); return; }
     const addr = loadAddr();
-    let msg = 'Olá! Quero fazer um pedido:\n\n';
+    let msg = 'Olá! Quero confirmar se vocês têm estes produtos:\n\n';
     items.forEach((it, idx) => {
       msg += `${idx + 1}. ${it.nome} — ${it.tamanho}`;
       if (it.cor) msg += ` — Cor: ${it.cor}`;
       msg += ` — Qtd: ${it.qty} — ${it.valor}\n`;
     });
     msg += `\nTotal estimado: ${formatPrice(totalValue())}\n`;
-    msg += '\n📍 Endereço para entrega:\n';
-    if (addr.cep) msg += `CEP: ${addr.cep}\n`;
-    if (addr.logradouro) {
-      msg += `${addr.logradouro}, ${addr.numero || 's/n'}`;
-      if (addr.complemento) msg += ` - ${addr.complemento}`;
-      msg += `\n${addr.bairro} - ${addr.localidade}/${addr.uf}\n`;
-    } else if (addr.complemento || addr.numero) {
-      msg += `${addr.complemento || ''} ${addr.numero ? '(nº ' + addr.numero + ')' : ''}\n`;
-    } else {
-      msg += '(endereço não informado — favor confirmar)\n';
-    }
-    msg += '\nPode confirmar disponibilidade, pagamento e entrega? Obrigado!';
+    if (addr.loja) msg += `\n📍 Loja de retirada: ${addr.loja}\n`;
+    else msg += '\n📍 Ainda não escolhi a loja — qual fica mais perto de mim?\n';
+    if (addr.uber) msg += '🚗 Vou pedir um Uber/Lalamove pra retirar (corrida por minha conta).\n';
+    msg += '\nPode confirmar disponibilidade e forma de pagamento? Obrigado!';
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
   }
@@ -300,8 +253,6 @@
     clearCart,
     openDrawer,
     closeDrawer,
-    maskCep,
-    lookupCep,
     saveAddrField,
     checkout
   };

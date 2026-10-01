@@ -35,14 +35,20 @@ exports.handler = async function (event) {
 
   try {
     const { imagemBase64, mimeType } = JSON.parse(event.body || '{}');
-    if (!imagemBase64) {
+    if (!imagemBase64 || typeof imagemBase64 !== 'string') {
       return { statusCode: 400, body: JSON.stringify({ ok: false, erro: 'imagem não enviada' }) };
     }
+    if (imagemBase64.length > 5 * 1024 * 1024) {
+      return { statusCode: 413, body: JSON.stringify({ ok: false, erro: 'imagem grande demais' }) };
+    }
+    if (mimeType && !/^image\/(jpeg|png|webp|heic|heif)$/.test(mimeType)) {
+      return { statusCode: 400, body: JSON.stringify({ ok: false, erro: 'tipo de arquivo não aceito' }) };
+    }
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODELO}:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODELO}:generateContent`;
     const resp = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
       body: JSON.stringify({
         contents: [{
           parts: [

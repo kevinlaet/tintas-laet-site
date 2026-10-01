@@ -16,6 +16,7 @@
   </script>
   <script src="analytics-events.js" defer></script>
   <script src="cookie-banner.js" defer></script>
+  <script src="canais-oficiais.js" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todos os Produtos — Tintas Laet</title>
   <meta name="description" content="Catálogo completo de tintas e materiais de pintura da Tintas Laet, organizado por categoria.">
@@ -65,6 +66,7 @@
     .navbar-links a:hover { color: var(--yellow); }
     .navbar-actions { display: flex; gap: 10px; }
     .navbar-actions .btn { padding: 9px 16px; font-size: 13px; }
+    .navbar-pin { display: inline-flex; align-items: center; gap: 6px; background: #FFC107; color: #1a1000; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; padding: 8px 14px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
     .navbar-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-shrink: 0; }
     .navbar-toggle svg { width: 26px; height: 26px; stroke: #fff; }
 
@@ -189,12 +191,13 @@
       <li><a href="index.html#superficies">Categorias</a></li>
       <li><a href="produtos.html">Produtos</a></li>
       <li><a href="index.html#enderecos">Endereços</a></li>
-      <li><a href="sorteios.html">🎁 Sorteios</a></li>
+      <li><a href="index.html#ganhadores">🏆 Ganhadores</a></li>
     </ul>
     <div class="navbar-actions">
       <a href="https://wa.me/5511977140964?text=Olá! Gostaria de um orçamento." class="btn btn-ghost" target="_blank" rel="noopener">Orçamento grátis</a>
       <a href="https://wa.me/5511977140964" class="btn btn-yellow" target="_blank" rel="noopener">💬 WhatsApp</a>
     </div>
+    <a href="index.html#enderecos" class="navbar-pin" aria-label="Ver endereços das lojas">📍 Lojas</a>
     <button class="navbar-toggle" onclick="document.getElementById('navbar').classList.toggle('nav-open')" aria-label="Abrir menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
     </button>
@@ -534,10 +537,10 @@
         <div class="seller-body">
           <div class="seller-name">Massa Corrida</div>
           <div class="seller-desc">Lixamento fácil e acabamento de alto nível.</div>
-          <div class="seller-variant-tag">📏 3 tamanhos</div>
+          <div class="seller-variant-tag">📏 4 tamanhos</div>
           <span class="seller-price-from">a partir de</span>
-          <div class="seller-price">R$ 19<small>,90</small></div>
-          <div class="seller-price-detail">5kg R$ 19,90 · Saco R$ 37,90 · Barrica 23kg R$ 45,90</div>
+          <div class="seller-price">R$ 9<small>,90</small></div>
+          <div class="seller-price-detail">1,5kg R$ 9,90 · 5kg R$ 19,90 · Saco R$ 37,90 · Barrica 23kg R$ 45,90</div>
           <div class="seller-actions">
             <a href="produto.html?id=massa-corrida" class="seller-view">Ver produto completo →</a>
             <button class="seller-btn" onclick="window.open('https://wa.me/5511977140964?text=Olá! Quero comprar Massa Corrida Laet.','_blank')">💬 Quero esse produto</button>
@@ -1524,7 +1527,7 @@
           <li><a href="index.html#superficies">Categorias</a></li>
           <li><a href="produtos.html">Produtos</a></li>
           <li><a href="index.html#enderecos">Endereços</a></li>
-          <li><a href="sorteios.html">Sorteios</a></li>
+          <li><a href="index.html#ganhadores">Ganhadores</a></li>
           <li><a href="curriculo.html">💼 Trabalhe Conosco</a></li>
         </ul>
       </div>
