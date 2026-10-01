@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — 7 mil seguidores</title>
+<style>
+/* fontes oficiais embutidas (sem depender do Google Fonts na hora do render) */
+@font-face { font-family:'Bebas Neue'; font-weight:400; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { background:#020A18; font-family:'Montserrat',sans-serif; }
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; color:#fff;
+  background:
+    radial-gradient(ellipse 900px 700px at 50% 26%, rgba(33,110,230,.55) 0%, rgba(13,71,161,0) 70%),
+    linear-gradient(180deg, #0D47A1 0%, #0A3A86 38%, #062B63 70%, #03183A 100%); }
+
+/* retícula sutil, eco do logo circular */
+.dots { position:absolute; inset:0; z-index:1; opacity:.16;
+  background-image: radial-gradient(rgba(255,255,255,.9) 1.4px, transparent 1.6px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 620px 520px at 88% 8%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(ellipse 620px 520px at 88% 8%, #000 0%, transparent 70%); }
+
+/* confete na paleta da marca */
+.cf { position:absolute; z-index:2; border-radius:3px; }
+
+.top { position:absolute; top:150px; left:0; right:0; z-index:10; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.top img { height:400px; margin:-99px 0 -76px; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(0,0,0,.35)); }
+.ey { font:700 27px/1 'Poppins',sans-serif; color:#FFE082; letter-spacing:.24em; text-transform:uppercase; display:flex; align-items:center; gap:18px; }
+.ey::before,.ey::after { content:''; width:44px; height:3px; background:rgba(255,224,130,.6); display:block; }
+
+.num { position:relative; font:400 350px/.82 'Bebas Neue',sans-serif; color:#fff; letter-spacing:.005em; margin-top:22px;
+  text-shadow:0 10px 40px rgba(0,0,0,.35); }
+.num small { font-size:.5em; vertical-align:.9em; color:#FFC107; margin-left:4px; }
+.chip { display:inline-block; margin-top:14px; background:#FFC107; color:#062B63; font:400 88px/1 'Bebas Neue',sans-serif;
+  padding:12px 34px 6px; border-radius:16px; transform:rotate(-2deg); box-shadow:0 10px 30px rgba(0,0,0,.3); letter-spacing:.02em; }
+
+.card { position:absolute; left:50%; top:885px; width:740px; z-index:9; transform:translateX(-50%) rotate(2deg);
+  background:#fff; padding:18px 18px 22px; border-radius:10px; box-shadow:0 24px 60px rgba(0,0,0,.5); }
+.card .ph { width:100%; height:575px; border-radius:5px;
+  background:url('equipe.jpg') center 25% / cover no-repeat; }
+.card .cap { font:700 30px/1 'Montserrat',sans-serif; color:#062B63; text-align:center; margin-top:20px; }
+.card .cap b { color:#0D47A1; }
+
+.msg { position:absolute; left:92px; right:92px; top:1605px; z-index:10; text-align:center;
+  font:600 33px/1.4 'Poppins',sans-serif; color:#fff; }
+.msg b { color:#FFC107; font-weight:700; }
+
+.bot { position:absolute; bottom:175px; left:92px; right:92px; z-index:10; display:flex; align-items:center; justify-content:space-between;
+  padding-top:20px; border-top:1.5px solid rgba(255,255,255,.3); }
+.bot .hd { font:700 22px/1 'Poppins',sans-serif; color:#fff; letter-spacing:.05em; }
+.bot .cd { font:700 20px/1.3 'Poppins',sans-serif; color:#FFC107; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="dots"></div>
+  <div id="confete"></div>
+
+  <div class="top">
+    <img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+    <div class="ey">Obrigado, vizinhança</div>
+    <div class="num">7 MIL</div>
+    <div class="chip">SEGUIDORES NO INSTA</div>
+  </div>
+
+  <div class="card">
+    <div class="ph"></div>
+    <div class="cap">Da equipe <b>Tintas Laet</b> pra você</div>
+  </div>
+
+  <div class="msg">Cada curtida, comentário e visita na loja fez a gente chegar aqui. <b>Valeu demais!</b></div>
+
+  <div class="bot">
+    <span class="hd">@Tintaslaet</span>
+    <span class="cd">Rumo aos 10 mil</span>
+  </div>
+</div>
+<script>
+  // confete fixo (sementes determinísticas) nas cores da marca
+  const cores=['#FFC107','#FFE082','#FFFFFF','#4F8FE8'];
+  let s=7; const r=()=>{s=(s*9301+49297)%233280;return s/233280;};
+  const c=document.getElementById('confete');
+  for(let i=0;i<46;i++){
+    const d=document.createElement('div'); d.className='cf';
+    const x=r()*1080, y=r()<.5? 60+r()*820 : 1545+r()*25;
+    if(x>250&&x<830&&y>80&&y<880) { i--; continue; }
+    const w=8+r()*14, h=w*(r()<.5?.45:1);
+    Object.assign(d.style,{left:x+'px',top:y+'px',width:w+'px',height:h+'px',background:cores[i%4],
+      transform:`rotate(${r()*180}deg)`,opacity:.55+r()*.4,borderRadius:r()<.3?'50%':'3px'});
+    c.appendChild(d);
+  }
+</script>
+</body>
+</html>

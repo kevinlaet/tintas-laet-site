@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Tintas Laet — Folder Guia da Pintura (A4, 3 dobras)</title>
+<!--
+  Folder A4 dobrado em 3 (dobra janela/rolo), frente e verso.
+  Página com sangria: 303 x 216 mm (A4 deitado 297 x 210 + 3 mm de cada lado).
+  Painéis (medida final, sem sangria):
+    Lado de FORA:  [aba que dobra pra dentro 97mm] [verso 100mm] [capa 100mm]
+    Lado de DENTRO:[esquerdo 100mm] [meio 100mm] [direito 97mm]
+  MODELO — não editar preço aqui. Os preços entram sozinhos do site (site/produto.html)
+  pelo script scripts/folder-precos/gerar.js, pelo atributo data-preco (id do produto + tamanho).
+-->
+<style>
+@font-face { font-family:'Bebas Neue'; font-weight:400; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+
+@page { size: 303mm 216mm; margin: 0; }
+:root { --azul:#0D47A1; --escuro:#062B63; --amarelo:#FFC107; --amarelo2:#FFE082; --cinza:#F0F2F5; --grafite:#212529; }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html, body { background:#fff; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+body { font-family:'Poppins',sans-serif; color:var(--grafite); }
+
+.page { width:303mm; height:216mm; position:relative; overflow:hidden; page-break-after:always; break-after:page; background:#fff; }
+.page:last-child { page-break-after:auto; break-after:auto; }
+/* painéis posicionados em coordenadas da página (com 3 mm de sangria) */
+.pn { position:absolute; top:0; height:216mm; overflow:hidden; }
+.in { position:absolute; top:8mm; bottom:8mm; left:6mm; right:6mm; display:flex; flex-direction:column; }
+
+/* ───────── LADO DE FORA ───────── */
+.o-flap  { left:0;     width:100mm; background:var(--cinza); }     /* 3 sangria + 97 */
+.o-back  { left:100mm; width:100mm; background:linear-gradient(180deg,var(--azul) 0%,var(--escuro) 100%); color:#fff; }
+.o-cover { left:200mm; width:103mm; background:var(--escuro); color:#fff; } /* 100 + 3 sangria */
+.o-flap .in { left:9mm; right:6mm; }
+.o-cover .in { left:6mm; right:9mm; }
+
+/* ───────── LADO DE DENTRO ───────── */
+.i-left  { left:0;     width:103mm; background:#fff; }   /* 3 sangria + 100 */
+.i-mid   { left:103mm; width:100mm; background:#fff; }
+.i-right { left:203mm; width:100mm; background:var(--cinza); } /* 97 + 3 sangria */
+.i-left .in { left:9mm; right:6mm; }
+.i-right .in { left:6mm; right:9mm; }
+
+/* títulos de seção */
+.sec { display:flex; align-items:center; gap:2.5mm; margin-bottom:3mm; }
+.sec .bar { width:1.6mm; height:9mm; background:var(--amarelo); border-radius:1mm; }
+.sec h2 { font:400 23pt/0.95 'Bebas Neue',sans-serif; color:var(--escuro); letter-spacing:.01em; }
+.sec small { display:block; font:600 7pt/1.2 'Poppins',sans-serif; color:#5b6470; letter-spacing:0; margin-top:.6mm; }
+
+/* cartão de produto */
+.prod { display:flex; gap:3mm; padding:3.1mm 0; border-bottom:.25mm solid #dfe3ea; align-items:flex-start; }
+.prod:last-child { border-bottom:0; }
+.prod img { width:17mm; height:17mm; object-fit:contain; flex-shrink:0; }
+.prod .tx { flex:1; min-width:0; }
+.prod .nm { font:800 9.4pt/1.15 'Montserrat',sans-serif; color:var(--escuro); }
+.prod .ds { font:600 7.1pt/1.34 'Poppins',sans-serif; color:#4a5260; margin-top:.5mm; }
+.tags { display:flex; flex-wrap:wrap; gap:1mm; margin-top:1mm; }
+.tag { font:700 5.9pt/1 'Poppins',sans-serif; color:var(--azul); background:#E3ECFA; border-radius:1mm; padding:.8mm 1.4mm .6mm; text-transform:uppercase; letter-spacing:.04em; }
+.tag.y { background:#FFF3CD; color:#7a5b00; }
+.pr { display:flex; flex-wrap:wrap; gap:1mm 3mm; margin-top:1.2mm; }
+.pr span { font:600 6.8pt/1 'Poppins',sans-serif; color:#5b6470; white-space:nowrap; }
+.pr b { font:400 13pt/1 'Bebas Neue',sans-serif; color:var(--azul); letter-spacing:.02em; margin-left:.6mm; }
+
+/* tabela de acessórios */
+.acc { width:100%; border-collapse:collapse; margin-top:1mm; }
+.acc td { font:600 7pt/1.2 'Poppins',sans-serif; color:var(--grafite); padding:1.55mm 0; border-bottom:.25mm dotted #c3cad6; }
+.acc td:last-child { text-align:right; white-space:nowrap; font:400 12pt/1 'Bebas Neue',sans-serif; color:var(--azul); letter-spacing:.02em; }
+.acc td i { font:600 6pt/1 'Poppins',sans-serif; color:#5b6470; font-style:normal; margin-right:.6mm; }
+.acc tr:last-child td { border-bottom:0; }
+
+.nota { font:600 6pt/1.4 'Poppins',sans-serif; color:#6b7380; margin-top:auto; padding-top:2mm; }
+
+/* passo a passo (aba) */
+.step { display:flex; gap:3mm; margin-bottom:4mm; }
+.step .n { width:8.5mm; height:8.5mm; border-radius:50%; background:var(--azul); color:#fff; font:400 15pt/9mm 'Bebas Neue',sans-serif; text-align:center; flex-shrink:0; }
+.step .t { font:800 9.4pt/1.2 'Montserrat',sans-serif; color:var(--escuro); }
+.step .d { font:600 7.1pt/1.38 'Poppins',sans-serif; color:#4a5260; margin-top:.5mm; }
+.check { background:#fff; border-radius:2.5mm; padding:3mm 3.4mm; border:.3mm solid #dfe3ea; }
+.check h3 { font:400 16pt/1 'Bebas Neue',sans-serif; color:var(--escuro); margin-bottom:1.6mm; }
+.check ul { list-style:none; columns:2; column-gap:3mm; }
+.check li { font:600 7.2pt/1.25 'Poppins',sans-serif; color:var(--grafite); display:flex; align-items:center; gap:1.4mm; margin-bottom:2mm; break-inside:avoid; }
+.check li::before { content:''; width:3mm; height:3mm; border:.35mm solid var(--azul); border-radius:.6mm; flex-shrink:0; }
+
+.dica { margin-top:auto; background:var(--azul); color:#fff; border-radius:2.5mm; padding:3.4mm 3.6mm; font:600 7.2pt/1.45 'Poppins',sans-serif; }
+.dica b { color:var(--amarelo); font-weight:700; }
+.quanto { margin-top:4mm; border-left:1.4mm solid var(--amarelo); background:#fff; border-radius:0 2.5mm 2.5mm 0; padding:3mm 3.4mm; }
+.quanto h3 { font:400 16pt/1 'Bebas Neue',sans-serif; color:var(--escuro); margin-bottom:1.4mm; }
+.quanto p { font:600 7.1pt/1.45 'Poppins',sans-serif; color:#4a5260; }
+.quanto b { color:var(--escuro); font-weight:700; }
+/* verso: lojas */
+.o-back .logo { width:38mm; align-self:center; margin-bottom:4mm; }
+.o-back h2 { font:400 22pt/1 'Bebas Neue',sans-serif; color:#fff; text-align:center; letter-spacing:.02em; }
+.o-back .sub { font:600 6.6pt/1.3 'Poppins',sans-serif; color:var(--amarelo2); text-align:center; margin:1mm 0 3.2mm; }
+.loja { display:flex; gap:2.6mm; padding:2.1mm 0; border-bottom:.25mm solid rgba(255,255,255,.18); }
+.loja:last-of-type { border-bottom:0; }
+.loja .num { font:400 12pt/1 'Bebas Neue',sans-serif; color:var(--escuro); background:var(--amarelo); border-radius:1.2mm; width:8mm; height:8mm; display:flex; align-items:center; justify-content:center; padding-top:.5mm; flex-shrink:0; }
+.loja .b { font:800 8.2pt/1.15 'Montserrat',sans-serif; color:#fff; }
+.loja .e { font:600 6.8pt/1.3 'Poppins',sans-serif; color:rgba(255,255,255,.85); margin-top:.3mm; }
+.loja .t { font:700 6.8pt/1.2 'Poppins',sans-serif; color:var(--amarelo2); margin-top:.5mm; }
+.loja .eb { font:700 5.4pt/1 'Poppins',sans-serif; background:var(--amarelo); color:var(--escuro); border-radius:.8mm; padding:.6mm 1.2mm .4mm; margin-left:1.2mm; vertical-align:1px; letter-spacing:.05em; }
+.contato { margin-top:auto; display:flex; gap:3.4mm; align-items:center; background:#fff; border-radius:2.5mm; padding:2.8mm; color:var(--escuro); }
+.contato .qr { width:24mm; height:24mm; flex-shrink:0; }
+.contato .k { font:700 5.8pt/1.2 'Poppins',sans-serif; color:#5b6470; text-transform:uppercase; letter-spacing:.06em; }
+.contato .wa small { display:block; font:700 7pt/1.1 'Montserrat',sans-serif; color:#1a8f4a; letter-spacing:.02em; }
+.contato .wa { font:400 19pt/1 'Bebas Neue',sans-serif; color:var(--escuro); margin:.6mm 0 1mm; letter-spacing:.02em; }
+.contato .s { font:600 6.2pt/1.35 'Poppins',sans-serif; color:var(--grafite); }
+
+/* capa */
+.cover-photo { position:absolute; left:0; right:0; top:0; height:118mm; background:url('img/capa.jpg') 38% 30%/cover no-repeat; }
+.cover-photo::after { content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(6,43,99,.55) 0%, rgba(6,43,99,0) 28%, rgba(6,43,99,0) 62%, rgba(6,43,99,1) 100%); }
+.o-cover .in { z-index:2; }
+.o-cover .logo { width:44mm; align-self:center; filter:drop-shadow(0 1mm 3mm rgba(0,0,0,.35)); }
+.o-cover .guarde { align-self:center; margin-top:2.5mm; font:700 6.2pt/1 'Poppins',sans-serif; color:var(--escuro); background:#fff; border-radius:5mm; padding:1.4mm 3mm 1.2mm; letter-spacing:.08em; text-transform:uppercase; }
+.o-cover .bottom { margin-top:auto; text-align:center; }
+.o-cover .ey { font:700 7pt/1 'Poppins',sans-serif; color:var(--amarelo2); letter-spacing:.22em; text-transform:uppercase; }
+.o-cover h1 { font:400 46pt/.88 'Bebas Neue',sans-serif; color:#fff; margin-top:2mm; letter-spacing:.005em; }
+.o-cover h1 .g { display:inline-block; background:var(--amarelo); color:var(--escuro); padding:1.2mm 3mm .2mm; border-radius:2mm; transform:rotate(-2deg); margin-top:1.4mm; }
+.o-cover .lead { font:600 7.6pt/1.4 'Poppins',sans-serif; color:#fff; margin:4mm auto 0; max-width:76mm; }
+.o-cover .chips { display:flex; justify-content:center; gap:2mm; margin-top:4mm; }
+.o-cover .chip { font:800 7pt/1 'Montserrat',sans-serif; color:#fff; border:.35mm solid rgba(255,255,255,.55); border-radius:5mm; padding:1.8mm 3mm 1.6mm; }
+.o-cover .chip.y { background:var(--amarelo); color:var(--escuro); border-color:var(--amarelo); }
+</style>
+</head>
+<body>
+
+<!-- ═════════════ PÁGINA 1 — LADO DE FORA ═════════════ -->
+<div class="page">
+
+  <!-- ABA (dobra pra dentro): passo a passo + lista de compras -->
+  <div class="pn o-flap"><div class="in">
+    <div class="sec"><div class="bar"></div><h2>Vai pintar?<small>O passo a passo pra fazer certo da primeira vez</small></h2></div>
+
+    <div class="step"><div class="n">1</div><div><div class="t">Proteja a casa</div><div class="d">Cubra piso e móveis com lona ou papelão e passe fita crepe em rodapés, tomadas e batentes.</div></div></div>
+    <div class="step"><div class="n">2</div><div><div class="t">Prepare a parede</div><div class="d">Lixe, tire o pó e corrija os defeitos. Massa corrida pra dentro de casa, massa acrílica pra dentro e fora.</div></div></div>
+    <div class="step"><div class="n">3</div><div><div class="t">Sele antes de pintar</div><div class="d">Seladora ou fundo preparador melhoram a aderência e o acabamento da tinta.</div></div></div>
+    <div class="step"><div class="n">4</div><div><div class="t">Pinte em 2 demãos</div><div class="d">Respeite o tempo de secagem entre uma demão e outra, indicado na embalagem.</div></div></div>
+
+    <div class="check" style="margin-top:1.4mm">
+      <h3>Lista de compras</h3>
+      <ul>
+        <li>Tinta</li><li>Seladora ou fundo</li><li>Massa</li><li>Lixa</li>
+        <li>Rolo e cabo</li><li>Trincha</li><li>Bandeja</li><li>Fita crepe</li>
+        <li>Lona ou papelão</li><li>Extensor</li>
+      </ul>
+    </div>
+
+    <div class="quanto">
+      <h3>Quanto de tinta eu levo?</h3>
+      <p>Um balde de <b>18L</b> da Super Profissional ou da 1ª Linha Standard rende <b>até 300 m² por demão</b>. Meça as paredes, conte <b>2 demãos</b> e traga a medida pra gente: o balconista calcula certinho pra você não sobrar nem faltar.</p>
+    </div>
+
+    <div class="dica"><b>Ficou na dúvida?</b> Mande uma foto da parede no WhatsApp <b>(11) 97714-0964</b> que a gente te ajuda a escolher o produto certo.</div>
+  </div></div>
+
+  <!-- VERSO: lojas + contato -->
+  <div class="pn o-back"><div class="in">
+    <img class="logo" src="img/logo-branco.png" alt="Tintas Laet">
+    <h2>Nossas lojas</h2>
+    <p class="sub">Encontre a Laet mais perto de você · ABC e Zona Leste de SP</p>
+
+    <div class="loja"><div class="num">1</div><div><div class="b">São Paulo — Vila Bela</div><div class="e">Av. Sapopemba, 25.723 — Vila Bela, SP</div><div class="t">📞 (11) 98082-0686</div></div></div>
+    <div class="loja"><div class="num">2</div><div><div class="b">Mauá — Jardim São João</div><div class="e">Rua do Britador, 2 — Jardim São João, Mauá</div><div class="t">📞 (11) 97750-4434</div></div></div>
+    <div class="loja"><div class="num">3</div><div><div class="b">Mauá — Santa Cecília</div><div class="e">Av. Ayrton Senna da Silva, 235 — Jd. Santa Cecília, Mauá</div><div class="t">📞 (11) 97749-8813</div></div></div>
+    <div class="loja"><div class="num">4</div><div><div class="b">Santo André — Vila Luzita</div><div class="e">Av. São Bernardo do Campo, 757 — Vila Luzita, Santo André</div><div class="t">📞 (11) 94855-1977</div></div></div>
+    <div class="loja"><div class="num">5</div><div><div class="b">Mauá — Itapark</div><div class="e">Av. Itapark, 4377 — Jardim Itapark, Mauá</div><div class="t">📞 (11) 91433-4875</div></div></div>
+    <div class="loja"><div class="num">6</div><div><div class="b">São Bernardo — Santa Terezinha</div><div class="e">Av. Luís Pequini, 899 — Santa Terezinha, S. B. do Campo</div><div class="t">📞 (11) 91875-5095</div></div></div>
+
+    <div class="contato">
+      <img class="qr" src="img/qr-wa.svg" alt="QR code WhatsApp">
+      <div>
+        <div class="k">Orçamento e estoque</div>
+        <div class="wa"><small>WhatsApp</small>(11) 97714-0964</div>
+        <div class="s">Aponte a câmera pro código e fale com a gente.<br>@tintaslaet · tintaslaet.com</div>
+      </div>
+    </div>
+  </div></div>
+
+  <!-- CAPA -->
+  <div class="pn o-cover">
+    <div class="cover-photo"></div>
+    <div class="in">
+      <img class="logo" src="img/logo-branco.png" alt="Tintas Laet">
+      <div class="guarde">Guarde este guia</div>
+      <div class="bottom">
+        <div class="ey">Guia de preços</div>
+        <h1>Tudo pra sua<br><span class="g">pintura</span></h1>
+        <p class="lead">Preço abaixo do mercado e explicação simples de cada produto, pra você comprar certo e gastar menos.</p>
+        <div class="chips"><span class="chip y">12x sem juros</span><span class="chip">6 lojas</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════ PÁGINA 2 — LADO DE DENTRO ═════════════ -->
+<div class="page">
+
+  <!-- ESQUERDA: tintas pra parede -->
+  <div class="pn i-left"><div class="in">
+    <div class="sec"><div class="bar"></div><h2>Tintas pra parede<small>Da mais econômica à mais completa</small></h2></div>
+
+    <div class="prod"><img src="img/vinil.png" alt=""><div class="tx">
+      <div class="nm">Látex Vinil</div>
+      <div class="ds">A opção mais econômica. Só pra parede interna e seca. Aguarde 8h entre demãos.</div>
+      <div class="tags"><span class="tag">Interna</span><span class="tag">Fosco</span></div>
+      <div class="pr"><span>18L branca<b data-preco="latex-vinil|18L — Branca">R$ 79,90</b></span><span>18L cores<b data-preco="latex-vinil|18L — Cores">R$ 99,90</b></span></div>
+    </div></div>
+
+    <div class="prod"><img src="img/profissional.png" alt=""><div class="tx">
+      <div class="nm">Super Profissional</div>
+      <div class="ds">Acrílica com ótimo custo-benefício. Rende até 300 m² por demão e é anti-mofo.</div>
+      <div class="tags"><span class="tag">Interna</span><span class="tag">Anti-mofo</span></div>
+      <div class="pr"><span>18L branca<b data-preco="super-profissional|18L — Branca">R$ 139,90</b></span><span>3,6L branca<b data-preco="super-profissional|3,6L — Branca">R$ 39,90</b></span></div>
+    </div></div>
+
+    <div class="prod"><img src="img/gesso.png" alt=""><div class="tx">
+      <div class="nm">Direto no Gesso</div>
+      <div class="ds">Vai direto no gesso e no drywall, sem precisar de fundo preparador.</div>
+      <div class="tags"><span class="tag">Interna</span><span class="tag">Gesso e drywall</span></div>
+      <div class="pr"><span>18L branca<b data-preco="direto-no-gesso|18L — Branca">R$ 179,90</b></span><span>3,6L branca<b data-preco="direto-no-gesso|3,6L — Branca">R$ 49,90</b></span></div>
+    </div></div>
+
+    <div class="prod"><img src="img/standard.png" alt=""><div class="tx">
+      <div class="nm">1ª Linha Standard</div>
+      <div class="ds">Concentrada: pode diluir até 20%. Cobre fácil até cor forte. Mais de 80 cores.</div>
+      <div class="tags"><span class="tag">Interna e externa</span><span class="tag">Anti-mofo</span></div>
+      <div class="pr"><span>18L branca<b data-preco="standard|18L — Branca">R$ 219,90</b></span><span>3,6L branca<b data-preco="standard|3,6L — Branca">R$ 59,90</b></span></div>
+    </div></div>
+
+    <div class="prod"><img src="img/premium.png" alt=""><div class="tx">
+      <div class="nm">Premium Lavável</div>
+      <div class="ds">A mais completa: lavável, baixo odor, anti-mofo e excelente cobertura.</div>
+      <div class="tags"><span class="tag">Interna e externa</span><span class="tag y">Lavável</span></div>
+      <div class="pr"><span>18L branca<b data-preco="premium-lavavel|18L — Branca">R$ 299,90</b></span><span>3,6L<b data-preco="premium-lavavel|3,6L — Branca">R$ 79,90</b></span><span>900ml<b data-preco="premium-lavavel|900ml — Branca">R$ 29,90</b></span></div>
+    </div></div>
+
+    <p class="nota">Cores têm valor diferente da branca: consulte na loja ou no site.</p>
+  </div></div>
+
+  <!-- MEIO: tintas especiais -->
+  <div class="pn i-mid"><div class="in">
+    <div class="sec"><div class="bar"></div><h2>Pra resolver problema<small>Umidade, piso, azulejo, ferro e madeira</small></h2></div>
+
+    <div class="prod"><img src="img/emborrachada.png" alt=""><div class="tx">
+      <div class="nm">Tinta Emborrachada</div>
+      <div class="ds">Líquido que vira borracha: impermeável, protege laje, telhado e muro contra chuva, sol e microfissuras.</div>
+      <div class="tags"><span class="tag y">Contra umidade</span><span class="tag">Laje, telhado e muro</span></div>
+      <div class="pr"><span>18L branca<b data-preco="emborrachada|18L — Branca">R$ 399,90</b></span><span>3,6L branca<b data-preco="emborrachada|3,6L — Branca">R$ 99,90</b></span></div>
+    </div></div>
+
+    <div class="prod"><img src="img/piso.png" alt=""><div class="tx">
+      <div class="nm">Pisos &amp; Fachadas</div>
+      <div class="ds">Aguenta passagem de carro, chuva e sol. Lavável e super aderente. 13 cores.</div>
+      <div class="tags"><span class="tag">Piso e fachada</span><span class="tag">Fosco</span></div>
+      <div class="pr"><span>17L cores<b data-preco="piso-fachada|17L — Cores">R$ 219,90</b></span><span>18L branca<b data-preco="piso-fachada|18L — Branca">R$ 299,90</b></span></div>
+    </div></div>
+
+    <div class="prod"><img src="img/epoxi.png" alt=""><div class="tx">
+      <div class="nm">Epóxi Base Água</div>
+      <div class="ds">Renova azulejo, cozinha, banheiro e metal sem quebrar nada. Sem cheiro forte.</div>
+      <div class="tags"><span class="tag y">Renove sem quebrar</span></div>
+      <div class="pr"><span>3,6L branca<b data-preco="epoxi-base-agua|3,6L — Branca">R$ 129,90</b></span><span>900ml<b data-preco="epoxi-base-agua|900ml — Branca">R$ 35,90</b></span></div>
+    </div></div>
+
+    <div class="prod"><img src="img/esmalte.png" alt=""><div class="tx">
+      <div class="nm">Esmalte Ecológico Base Água</div>
+      <div class="ds">Pra portão, grade, porta e janela. Baixo odor e acabamento brilhante. 32 cores.</div>
+      <div class="tags"><span class="tag">Ferro e madeira</span><span class="tag">Interna e externa</span></div>
+      <div class="pr"><span>3,6L branca<b data-preco="esmalte-ecologico|3,6L — Branca">R$ 89,90</b></span><span>900ml<b data-preco="esmalte-ecologico|900ml — Branca">R$ 29,90</b></span></div>
+    </div></div>
+
+    <div class="prod"><img src="img/verniz.png" alt=""><div class="tx">
+      <div class="nm">Verniz Premium</div>
+      <div class="ds">Protege e dá brilho à madeira. Base água e secagem rápida. Incolor, Mogno e Imbuia.</div>
+      <div class="tags"><span class="tag">Madeira</span><span class="tag">Interna e externa</span></div>
+      <div class="pr"><span>3,6L<b data-preco="verniz-premium|3,6L">R$ 79,90</b></span><span>900ml<b data-preco="verniz-premium|900ml">R$ 24,90</b></span></div>
+    </div></div>
+
+    <div class="prod"><img src="img/cimento.png" alt=""><div class="tx">
+      <div class="nm">Efeito Cimento Queimado</div>
+      <div class="ds">O visual de cimento queimado direto na parede ou teto. 15 cores.</div>
+      <div class="tags"><span class="tag">Decorativo</span><span class="tag">Interna e externa</span></div>
+      <div class="pr"><span>5kg a partir de<b data-preco="efeito-cimento-queimado|5kg — a partir de">R$ 74,90</b></span><span>20kg a partir de<b data-preco="efeito-cimento-queimado|20kg — a partir de">R$ 219,90</b></span></div>
+    </div></div>
+  </div></div>
+
+  <!-- DIREITA: preparação, texturas e acessórios -->
+  <div class="pn i-right"><div class="in">
+    <div class="sec"><div class="bar"></div><h2>Preparação e acessórios<small>O que faz a pintura durar</small></h2></div>
+
+    <div class="prod"><img src="img/barrica.png" alt=""><div class="tx">
+      <div class="nm">Massa Corrida · Massa Acrílica</div>
+      <div class="ds">Deixam a parede lisa antes de pintar. Corrida: só interna. Acrílica: interna e externa.</div>
+      <div class="pr"><span>Corrida 5kg<b data-preco="massa-corrida|5kg">R$ 19,90</b></span><span>Acrílica 5kg<b data-preco="massa-acrilica|5kg">R$ 29,90</b></span></div>
+    </div></div>
+
+    <div class="prod"><img src="img/seladora.png" alt=""><div class="tx">
+      <div class="nm">Seladora · Fundo Preparador</div>
+      <div class="ds">Melhoram a aderência e o acabamento da tinta.</div>
+      <div class="pr"><span>Seladora 18L<b data-preco="seladora|18L">R$ 79,90</b></span><span>Fundo 3,6L<b data-preco="fundo-preparador|3,6L">R$ 69,90</b></span></div>
+    </div></div>
+
+    <div class="prod"><img src="img/barrica.png" alt=""><div class="tx">
+      <div class="nm">Grafiato · Texturas</div>
+      <div class="ds">Acabamento decorativo rústico, liso ou design. Na cor branca.</div>
+      <div class="pr"><span>Saco 23kg a partir de<b data-preco="grafiato|Saco 23kg">R$ 54,90</b></span></div>
+    </div></div>
+
+    <table class="acc">
+      <tr><td>Kit Pintura 5 itens (rolo, cabo, rolinho, pincel e bandeja)</td><td data-preco="kit-pintura|Kit 5 itens">R$ 35,00</td></tr>
+      <tr><td>Refil rolo anti-respingo 23cm</td><td data-preco="refil-anti-respingo-23cm|23cm (refil, sem cabo)">R$ 9,90</td></tr>
+      <tr><td>Cabo reforçado 23cm</td><td data-preco="cabo-rolo-23cm|Cabo reforçado 23cm">R$ 9,90</td></tr>
+      <tr><td>Trincha 2", 3" e 4"</td><td><i>a partir de</i> <span data-preco="trincha|2 polegadas">R$ 5,90</span></td></tr>
+      <tr><td>Fita crepe M · G</td><td><i>a partir de</i> <span data-preco="fita-crepe|M">R$ 6,90</span></td></tr>
+      <tr><td>Lixa de massa (unidade)</td><td data-preco="lixa-massa|Numeração 80">R$ 1,50</td></tr>
+      <tr><td>Lona preta (metro)</td><td data-preco="lona-preta|Metro (1x4m)">R$ 5,00</td></tr>
+      <tr><td>Extensor 2m · 3m</td><td><i>a partir de</i> <span data-preco="extensor|2 metros">R$ 39,90</span></td></tr>
+      <tr><td>Corante 50ml</td><td data-preco="corante|Bisnaga 50ml">R$ 5,50</td></tr>
+    </table>
+
+    <p class="nota">Preços de 01/10/2026, sujeitos a alteração e à disponibilidade de estoque em cada loja. Parcelamento em até 12x sem juros no cartão. Imagens ilustrativas.</p>
+  </div></div>
+</div>
+
+</body>
+</html>
