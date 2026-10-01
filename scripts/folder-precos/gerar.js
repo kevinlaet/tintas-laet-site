@@ -1,7 +1,8 @@
 // Gera o folder "Guia da Pintura" (A4, 3 dobras) com os preços ATUAIS do site.
 //
-// Uso:  node scripts/folder-precos/gerar.js [AAAA-MM] [--modelo livro|3dobras]
-//   - modelo padrão: livro (A4 dobrado ao meio, 4 páginas A5 — mais barato)
+// Uso:  node scripts/folder-precos/gerar.js [AAAA-MM] [--modelo a5|livro|3dobras]
+//   - modelo padrão: a5 (A5 dobrado ao meio, 4 páginas A6 — o mais barato)
+//     livro: A4 dobrado ao meio, 4 páginas A5
 //     3dobras: A4 em 3 dobras (6 painéis)
 //   - lê o modelo em templates/folder-guia-pintura[-livro]/folder.html
 //   - cada preço do modelo é um elemento com data-preco="id-do-produto|tamanho", que bate
@@ -18,6 +19,7 @@ const { execFileSync } = require('child_process');
 
 const RAIZ = path.resolve(__dirname, '..', '..');
 const MODELOS = {
+  a5: { pasta: 'folder-guia-pintura-a5', saida: 'folder-guia-pintura-a5' },
   livro: { pasta: 'folder-guia-pintura-livro', saida: 'folder-guia-pintura-livro' },
   '3dobras': { pasta: 'folder-guia-pintura', saida: 'folder-guia-pintura' },
 };
@@ -84,7 +86,7 @@ function copiarPasta(de, para) {
   const hoje = new Date();
   const args = process.argv.slice(2);
   const iMod = args.indexOf('--modelo');
-  const nomeModelo = iMod >= 0 ? args.splice(iMod, 2)[1] : 'livro';
+  const nomeModelo = iMod >= 0 ? args.splice(iMod, 2)[1] : 'a5';
   const modelo = MODELOS[nomeModelo];
   if (!modelo) { console.error(`Modelo inválido: ${nomeModelo}. Use: ${Object.keys(MODELOS).join(' | ')}`); process.exit(1); }
   const MODELO = path.join(RAIZ, 'templates', modelo.pasta);

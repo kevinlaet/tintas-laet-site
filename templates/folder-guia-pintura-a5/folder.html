@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Tintas Laet — Folder Guia da Pintura (A5 dobrado ao meio)</title>
+<!--
+  Folder A5 com UMA dobra no meio (formato livro: 4 páginas A6 de 10,5 x 14,8 cm), frente e verso.
+  Versão mais barata: metade do papel do folder A4.
+  Página com sangria: 216 x 154 mm (A5 deitado 210 x 148 + 3 mm de cada lado).
+    Lado de FORA:   [contracapa 105mm] [capa 105mm]
+    Lado de DENTRO: [página 2 105mm]   [página 3 105mm]
+  MODELO — não editar preço aqui. Os preços entram sozinhos do site (site/produto.html)
+  pelo script scripts/folder-precos/gerar.js, pelo atributo data-preco (id do produto + tamanho).
+-->
+<style>
+@font-face { font-family:'Bebas Neue'; font-weight:400; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+
+@page { size: 216mm 154mm; margin: 0; }
+:root { --azul:#0D47A1; --escuro:#062B63; --amarelo:#FFC107; --amarelo2:#FFE082; --cinza:#F0F2F5; --grafite:#212529; }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html, body { background:#fff; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+body { font-family:'Poppins',sans-serif; color:var(--grafite); }
+
+.page { width:216mm; height:154mm; position:relative; overflow:hidden; page-break-after:always; break-after:page; background:#fff; }
+.page:last-child { page-break-after:auto; break-after:auto; }
+.pn { position:absolute; top:0; height:154mm; width:108mm; overflow:hidden; }
+.pn.l { left:0; }  .pn.r { left:108mm; }
+/* área segura: 3 mm de sangria + 5 mm de margem; 5,5 mm do lado da dobra */
+.in { position:absolute; top:8mm; bottom:7.5mm; display:flex; flex-direction:column; }
+.pn.l .in { left:8mm; right:5.5mm; }
+.pn.r .in { left:5.5mm; right:8mm; }
+
+/* títulos */
+.sec { display:flex; align-items:center; gap:1.8mm; margin-bottom:1.2mm; }
+.sec .bar { width:1.3mm; height:5.6mm; background:var(--amarelo); border-radius:.8mm; flex-shrink:0; }
+.sec h2 { font:400 14.5pt/1 'Bebas Neue',sans-serif; color:var(--escuro); letter-spacing:.01em; }
+.sec h2 small { font:600 5.4pt/1 'Poppins',sans-serif; color:#5b6470; letter-spacing:0; margin-left:1.4mm; }
+.sec.claro h2 { color:#fff; } .sec.claro h2 small { color:var(--amarelo2); }
+
+/* linha de produto: foto | nome + explicação | preços */
+.prod { display:grid; grid-template-columns:10.5mm 1fr auto; column-gap:2mm; align-items:center; padding:1.55mm 0; border-bottom:.2mm solid #dfe3ea; }
+.prod img { width:10.5mm; height:10.5mm; object-fit:contain; }
+.prod .nm { font:800 6.9pt/1.1 'Montserrat',sans-serif; color:var(--escuro); }
+.prod .nm em { font:700 4.6pt/1 'Poppins',sans-serif; font-style:normal; color:var(--azul); background:#E3ECFA; border-radius:.6mm; padding:.4mm .8mm .3mm; margin-left:1mm; vertical-align:1px; text-transform:uppercase; letter-spacing:.03em; }
+.prod .nm em.y { background:#FFF3CD; color:#7a5b00; }
+.prod .ds { font:600 5.4pt/1.28 'Poppins',sans-serif; color:#4a5260; margin-top:.35mm; }
+.prod .pr { text-align:right; }
+.prod .pr div { font:600 4.9pt/1 'Poppins',sans-serif; color:#5b6470; white-space:nowrap; }
+.prod .pr div + div { margin-top:.7mm; }
+.prod .pr b { font:400 10pt/1 'Bebas Neue',sans-serif; color:var(--azul); letter-spacing:.02em; margin-left:.6mm; }
+
+/* acessórios */
+.acc { display:grid; grid-template-columns:1fr 1fr; column-gap:3mm; }
+.acc div { display:flex; justify-content:space-between; align-items:baseline; gap:1mm; font:600 5.6pt/1.15 'Poppins',sans-serif; color:var(--grafite); padding:1.15mm 0; border-bottom:.2mm dotted #c3cad6; }
+.acc div > span:last-child { white-space:nowrap; font:400 8.8pt/1 'Bebas Neue',sans-serif; color:var(--azul); letter-spacing:.02em; }
+.acc i { font:600 4.5pt/1 'Poppins',sans-serif; color:#5b6470; font-style:normal; margin-right:.4mm; }
+
+.nota { font:600 4.6pt/1.35 'Poppins',sans-serif; color:#6b7380; margin-top:auto; padding-top:1.2mm; }
+
+/* ───────── CONTRACAPA ───────── */
+.contra { background:linear-gradient(180deg,var(--azul) 0%,var(--escuro) 100%); color:#fff; }
+.steps { display:grid; grid-template-columns:1fr 1fr; gap:1.6mm 3mm; margin-bottom:3mm; }
+.step { display:flex; gap:1.6mm; align-items:flex-start; }
+.step .n { width:4.8mm; height:4.8mm; border-radius:50%; background:var(--amarelo); color:var(--escuro); font:400 9pt/5.1mm 'Bebas Neue',sans-serif; text-align:center; flex-shrink:0; }
+.step .t { font:800 6pt/1.15 'Montserrat',sans-serif; color:#fff; }
+.step .d { font:600 5pt/1.3 'Poppins',sans-serif; color:rgba(255,255,255,.82); margin-top:.2mm; }
+.lojas { display:grid; grid-template-columns:1fr 1fr; gap:0 3mm; }
+.loja { display:flex; gap:1.5mm; padding:1.2mm 0; border-bottom:.2mm solid rgba(255,255,255,.16); }
+.loja .num { font:400 8pt/1 'Bebas Neue',sans-serif; color:var(--escuro); background:var(--amarelo); border-radius:.9mm; width:4.6mm; height:4.6mm; display:flex; align-items:center; justify-content:center; padding-top:.4mm; flex-shrink:0; }
+.loja .b { font:800 5.6pt/1.15 'Montserrat',sans-serif; color:#fff; }
+.loja .e { font:600 4.7pt/1.3 'Poppins',sans-serif; color:rgba(255,255,255,.82); margin-top:.2mm; }
+.loja .t { font:700 5.3pt/1.2 'Poppins',sans-serif; color:var(--amarelo2); margin-top:.3mm; }
+.contato { margin-top:auto; display:flex; gap:2.6mm; align-items:center; background:#fff; border-radius:2.2mm; padding:2.2mm; color:var(--escuro); }
+.contato .qr { width:17mm; height:17mm; flex-shrink:0; display:block; }
+.contato .qrtx { font:600 4.3pt/1.2 'Poppins',sans-serif; color:#5b6470; text-align:center; margin-top:.6mm; }
+.canais { display:flex; flex-direction:column; gap:1.2mm; flex:1; }
+.canal { display:flex; align-items:center; gap:1.5mm; }
+.canal svg { width:4mm; height:4mm; flex-shrink:0; }
+.canal .k { font:700 4.3pt/1 'Poppins',sans-serif; color:#5b6470; text-transform:uppercase; letter-spacing:.05em; }
+.canal .v { font:800 6.8pt/1.1 'Montserrat',sans-serif; color:var(--escuro); }
+.canal.wa .v { font:400 13pt/1 'Bebas Neue',sans-serif; letter-spacing:.02em; }
+.duvida { font:600 5.2pt/1.35 'Poppins',sans-serif; color:#fff; margin:2.4mm 0 0; padding:1.8mm 2.2mm; border-left:1mm solid var(--amarelo); background:rgba(255,255,255,.08); border-radius:0 1.5mm 1.5mm 0; }
+.duvida b { color:var(--amarelo); }
+.check { margin-top:2.4mm; }
+.check h3 { font:400 10pt/1 'Bebas Neue',sans-serif; color:var(--amarelo); margin-bottom:1.2mm; }
+.check ul { list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:0 2mm; }
+.check li { font:600 5.4pt/1.2 'Poppins',sans-serif; color:#fff; display:flex; align-items:center; gap:1mm; margin-bottom:1.1mm; }
+.check li::before { content:''; width:2.2mm; height:2.2mm; border:.3mm solid var(--amarelo); border-radius:.5mm; flex-shrink:0; }
+
+/* ───────── CAPA ───────── */
+.capa { background:var(--escuro); color:#fff; }
+.cover-photo { position:absolute; left:0; right:0; top:0; height:86mm; background:url('img/capa.jpg') 30% 26%/cover no-repeat; }
+.cover-photo::after { content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(6,43,99,.6) 0%, rgba(6,43,99,0) 26%, rgba(6,43,99,0) 55%, rgba(6,43,99,1) 100%); }
+.capa .in { z-index:2; }
+.capa .logo { width:33mm; align-self:center; filter:drop-shadow(0 .8mm 2.4mm rgba(0,0,0,.35)); }
+.capa .meio { margin-top:auto; text-align:center; }
+.capa .ey { font:700 5.4pt/1 'Poppins',sans-serif; color:var(--amarelo2); letter-spacing:.22em; text-transform:uppercase; }
+.capa h1 { font:400 34pt/.88 'Bebas Neue',sans-serif; color:#fff; margin-top:1.4mm; }
+.capa h1 .g { display:inline-block; background:var(--amarelo); color:var(--escuro); padding:.9mm 2.4mm .1mm; border-radius:1.5mm; transform:rotate(-2deg); margin-top:1mm; }
+.capa .lead { font:600 5.9pt/1.4 'Poppins',sans-serif; color:#fff; margin:2.2mm auto 0; max-width:80mm; }
+.capa .chips { display:flex; justify-content:center; gap:1.5mm; margin-top:2.2mm; }
+.capa .chip { font:800 5.4pt/1 'Montserrat',sans-serif; color:#fff; border:.3mm solid rgba(255,255,255,.55); border-radius:4mm; padding:1.3mm 2.3mm 1.2mm; }
+.capa .chip.y { background:var(--amarelo); color:var(--escuro); border-color:var(--amarelo); }
+
+/* cartão do vendedor (pra escrever à caneta) */
+.vend { margin-top:3mm; background:#fff; border-radius:2.2mm; padding:2.2mm 3mm 2.6mm; color:var(--escuro); box-shadow:0 .8mm 3mm rgba(0,0,0,.25); }
+.vend .top { display:flex; justify-content:space-between; align-items:center; }
+.vend .top b { font:400 10pt/1 'Bebas Neue',sans-serif; letter-spacing:.03em; color:var(--escuro); }
+.vend .top span { font:700 4.4pt/1 'Poppins',sans-serif; color:#5b6470; text-transform:uppercase; letter-spacing:.05em; }
+.vend .ln { display:flex; align-items:flex-end; gap:1.5mm; margin-top:2.6mm; }
+.vend .ln label { font:700 5.4pt/1 'Poppins',sans-serif; color:var(--azul); white-space:nowrap; }
+.vend .ln .linha { flex:1; border-bottom:.3mm solid #9aa6b8; height:4mm; }
+.vend .ln .ddd { font:700 5.8pt/1 'Poppins',sans-serif; color:var(--grafite); white-space:nowrap; }
+.capa .rodape { display:flex; justify-content:center; gap:2.6mm; margin-top:2.2mm; font:700 5pt/1 'Poppins',sans-serif; color:#fff; }
+.capa .rodape span { display:flex; align-items:center; gap:.9mm; }
+.capa .rodape svg { width:2.6mm; height:2.6mm; }
+</style>
+</head>
+<body>
+
+<!-- ═════════════ PÁGINA 1 — LADO DE FORA ═════════════ -->
+<div class="page">
+
+  <!-- CONTRACAPA: passo a passo + lojas + contato -->
+  <div class="pn l contra"><div class="in">
+    <div class="sec claro"><div class="bar"></div><h2>Vai pintar? Faça assim</h2></div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div><div class="t">Proteja a casa</div><div class="d">Lona no chão e fita crepe nos cantos.</div></div></div>
+      <div class="step"><div class="n">2</div><div><div class="t">Prepare a parede</div><div class="d">Lixe, tire o pó e corrija com massa.</div></div></div>
+      <div class="step"><div class="n">3</div><div><div class="t">Sele antes</div><div class="d">Seladora ou fundo melhoram a aderência.</div></div></div>
+      <div class="step"><div class="n">4</div><div><div class="t">Pinte em 2 demãos</div><div class="d">Respeite a secagem da embalagem.</div></div></div>
+    </div>
+
+    <div class="sec claro"><div class="bar"></div><h2>Nossas 6 lojas<small>ABC e Zona Leste de SP</small></h2></div>
+    <div class="lojas">
+      <div class="loja"><div class="num">1</div><div><div class="b">São Paulo — Vila Bela</div><div class="e">Av. Sapopemba, 25.723</div><div class="t">(11) 98082-0686</div></div></div>
+      <div class="loja"><div class="num">2</div><div><div class="b">Mauá — Jd. São João</div><div class="e">Rua do Britador, 2</div><div class="t">(11) 97750-4434</div></div></div>
+      <div class="loja"><div class="num">3</div><div><div class="b">Mauá — Santa Cecília</div><div class="e">Av. Ayrton Senna da Silva, 235</div><div class="t">(11) 97749-8813</div></div></div>
+      <div class="loja"><div class="num">4</div><div><div class="b">Santo André — V. Luzita</div><div class="e">Av. São Bernardo do Campo, 757</div><div class="t">(11) 94855-1977</div></div></div>
+      <div class="loja"><div class="num">5</div><div><div class="b">Mauá — Jd. Itapark</div><div class="e">Av. Itapark, 4377</div><div class="t">(11) 91433-4875</div></div></div>
+      <div class="loja"><div class="num">6</div><div><div class="b">S. Bernardo — Sta. Terezinha</div><div class="e">Av. Luís Pequini, 899</div><div class="t">(11) 91875-5095</div></div></div>
+    </div>
+
+    <p class="duvida"><b>Ficou na dúvida?</b> Mande uma foto da parede no WhatsApp que a gente indica o produto certo. Um balde de 18L da Super Profissional ou Standard rende <b>até 300 m² por demão</b>.</p>
+
+    <div class="check">
+      <h3>Lista de compras</h3>
+      <ul><li>Tinta</li><li>Seladora ou fundo</li><li>Massa</li><li>Lixa</li><li>Rolo e cabo</li><li>Trincha</li><li>Bandeja</li><li>Fita crepe</li><li>Lona ou papelão</li></ul>
+    </div>
+
+    <div class="contato">
+      <div>
+        <img class="qr" src="img/qr-wa.svg" alt="QR code WhatsApp">
+        <div class="qrtx">Aponte a câmera</div>
+      </div>
+      <div class="canais">
+        <div class="canal wa">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg>
+          <div><div class="k">WhatsApp · orçamento</div><div class="v">(11) 97714-0964</div></div>
+        </div>
+        <div class="canal">
+          <svg viewBox="0 0 24 24"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".35" stop-color="#FA7E1E"/><stop offset=".65" stop-color="#D62976"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig)"/><rect x="5.5" y="5.5" width="13" height="13" rx="3.8" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.1" cy="7.9" r="1" fill="#fff"/></svg>
+          <div><div class="k">Instagram</div><div class="v">@tintaslaet</div></div>
+        </div>
+        <div class="canal">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><circle cx="12" cy="12" r="6.5" fill="none" stroke="#fff" stroke-width="1.4"/><ellipse cx="12" cy="12" rx="2.8" ry="6.5" fill="none" stroke="#fff" stroke-width="1.4"/><path d="M5.5 12h13" stroke="#fff" stroke-width="1.4"/></svg>
+          <div><div class="k">Site · preços e cores</div><div class="v">tintaslaet.com</div></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+
+  <!-- CAPA -->
+  <div class="pn r capa">
+    <div class="cover-photo"></div>
+    <div class="in">
+      <img class="logo" src="img/logo-branco.png" alt="Tintas Laet">
+      <div class="meio">
+        <div class="ey">Guia de preços</div>
+        <h1>Tudo pra sua <span class="g">pintura</span></h1>
+        <p class="lead">Preço abaixo do mercado e explicação simples de cada produto.</p>
+        <div class="chips"><span class="chip y">12x sem juros</span><span class="chip">6 lojas</span></div>
+      </div>
+
+      <div class="vend">
+        <div class="top"><b>Seu vendedor Laet</b><span>Chame direto no WhatsApp</span></div>
+        <div class="ln"><label>Nome</label><div class="linha"></div></div>
+        <div class="ln"><label>WhatsApp</label><span class="ddd">(11)</span><div class="linha"></div></div>
+      </div>
+
+      <div class="rodape">
+        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/></svg>(11) 97714-0964</span>
+        <span>@tintaslaet</span>
+        <span>tintaslaet.com</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════ PÁGINA 2 — LADO DE DENTRO ═════════════ -->
+<div class="page">
+
+  <!-- PÁGINA 2 (esquerda): tintas pra parede + preparação -->
+  <div class="pn l"><div class="in">
+    <div class="sec"><div class="bar"></div><h2>Tintas pra parede<small>da mais econômica à mais completa</small></h2></div>
+
+    <div class="prod"><img src="img/vinil.png" alt=""><div>
+      <div class="nm">Látex Vinil<em>Interna</em></div>
+      <div class="ds">A mais econômica. Só parede interna e seca.</div>
+    </div><div class="pr"><div>18L branca<b data-preco="latex-vinil|18L — Branca"></b></div><div>18L cores<b data-preco="latex-vinil|18L — Cores"></b></div></div></div>
+
+    <div class="prod"><img src="img/profissional.png" alt=""><div>
+      <div class="nm">Super Profissional<em>Interna</em></div>
+      <div class="ds">Ótimo custo-benefício. Rende até 300 m²/demão. Anti-mofo.</div>
+    </div><div class="pr"><div>18L<b data-preco="super-profissional|18L — Branca"></b></div><div>3,6L<b data-preco="super-profissional|3,6L — Branca"></b></div></div></div>
+
+    <div class="prod"><img src="img/gesso.png" alt=""><div>
+      <div class="nm">Direto no Gesso<em>Interna</em></div>
+      <div class="ds">Direto no gesso e drywall, sem fundo preparador.</div>
+    </div><div class="pr"><div>18L<b data-preco="direto-no-gesso|18L — Branca"></b></div><div>3,6L<b data-preco="direto-no-gesso|3,6L — Branca"></b></div></div></div>
+
+    <div class="prod"><img src="img/standard.png" alt=""><div>
+      <div class="nm">1ª Linha Standard<em>Int. e ext.</em></div>
+      <div class="ds">Concentrada: dilui até 20%. Cobre até cor forte.</div>
+    </div><div class="pr"><div>18L<b data-preco="standard|18L — Branca"></b></div><div>3,6L<b data-preco="standard|3,6L — Branca"></b></div></div></div>
+
+    <div class="prod"><img src="img/premium.png" alt=""><div>
+      <div class="nm">Premium Lavável<em class="y">Lavável</em></div>
+      <div class="ds">A mais completa: baixo odor, anti-mofo, ótima cobertura.</div>
+    </div><div class="pr"><div>18L<b data-preco="premium-lavavel|18L — Branca"></b></div><div>3,6L<b data-preco="premium-lavavel|3,6L — Branca"></b></div></div></div>
+
+    <div class="sec" style="margin-top:2.4mm"><div class="bar"></div><h2>Preparação<small>o que faz a pintura durar</small></h2></div>
+
+    <div class="prod"><img src="img/barrica.png" alt=""><div>
+      <div class="nm">Massa Corrida · Acrílica</div>
+      <div class="ds">Deixam a parede lisa. Acrílica serve pra área externa.</div>
+    </div><div class="pr"><div>Corrida 5kg<b data-preco="massa-corrida|5kg"></b></div><div>Acrílica 5kg<b data-preco="massa-acrilica|5kg"></b></div></div></div>
+
+    <div class="prod"><img src="img/seladora.png" alt=""><div>
+      <div class="nm">Seladora · Fundo</div>
+      <div class="ds">Melhoram a aderência e o acabamento da tinta.</div>
+    </div><div class="pr"><div>Seladora 18L<b data-preco="seladora|18L"></b></div><div>Fundo 3,6L<b data-preco="fundo-preparador|3,6L"></b></div></div></div>
+
+    <div class="prod"><img src="img/barrica.png" alt=""><div>
+      <div class="nm">Grafiato · Texturas</div>
+      <div class="ds">Acabamento decorativo rústico, liso ou design.</div>
+    </div><div class="pr"><div>23kg a partir de<b data-preco="grafiato|Saco 23kg"></b></div></div></div>
+
+    <p class="nota">Tintas: preço da branca, salvo indicado. Cores: consulte na loja ou no site.</p>
+  </div></div>
+
+  <!-- PÁGINA 3 (direita): pra resolver problema + acessórios -->
+  <div class="pn r"><div class="in">
+    <div class="sec"><div class="bar"></div><h2>Pra resolver problema<small>umidade, piso, azulejo, ferro</small></h2></div>
+
+    <div class="prod"><img src="img/emborrachada.png" alt=""><div>
+      <div class="nm">Emborrachada<em class="y">Umidade</em></div>
+      <div class="ds">Vira borracha: impermeável pra laje, telhado e muro.</div>
+    </div><div class="pr"><div>18L<b data-preco="emborrachada|18L — Branca"></b></div><div>3,6L<b data-preco="emborrachada|3,6L — Branca"></b></div></div></div>
+
+    <div class="prod"><img src="img/piso.png" alt=""><div>
+      <div class="nm">Pisos &amp; Fachadas</div>
+      <div class="ds">Aguenta carro, chuva e sol. Lavável. 13 cores.</div>
+    </div><div class="pr"><div>17L cores<b data-preco="piso-fachada|17L — Cores"></b></div><div>18L branca<b data-preco="piso-fachada|18L — Branca"></b></div></div></div>
+
+    <div class="prod"><img src="img/epoxi.png" alt=""><div>
+      <div class="nm">Epóxi Base Água</div>
+      <div class="ds">Renova azulejo, banheiro e metal sem quebrar.</div>
+    </div><div class="pr"><div>3,6L<b data-preco="epoxi-base-agua|3,6L — Branca"></b></div><div>900ml<b data-preco="epoxi-base-agua|900ml — Branca"></b></div></div></div>
+
+    <div class="prod"><img src="img/esmalte.png" alt=""><div>
+      <div class="nm">Esmalte Ecológico</div>
+      <div class="ds">Base água pra portão, grade e porta. Baixo odor.</div>
+    </div><div class="pr"><div>3,6L<b data-preco="esmalte-ecologico|3,6L — Branca"></b></div><div>900ml<b data-preco="esmalte-ecologico|900ml — Branca"></b></div></div></div>
+
+    <div class="prod"><img src="img/verniz.png" alt=""><div>
+      <div class="nm">Verniz Premium</div>
+      <div class="ds">Protege a madeira. Incolor, Mogno e Imbuia.</div>
+    </div><div class="pr"><div>3,6L<b data-preco="verniz-premium|3,6L"></b></div><div>900ml<b data-preco="verniz-premium|900ml"></b></div></div></div>
+
+    <div class="prod"><img src="img/cimento.png" alt=""><div>
+      <div class="nm">Cimento Queimado</div>
+      <div class="ds">O visual de cimento queimado na parede. 15 cores.</div>
+    </div><div class="pr"><div>5kg a partir de<b data-preco="efeito-cimento-queimado|5kg — a partir de"></b></div></div></div>
+
+    <div class="sec" style="margin-top:2.4mm"><div class="bar"></div><h2>Acessórios</h2></div>
+    <div class="acc">
+      <div><span>Kit Pintura 5 itens</span><span data-preco="kit-pintura|Kit 5 itens"></span></div>
+      <div><span>Trincha</span><span><i>a partir de</i><span data-preco="trincha|2 polegadas"></span></span></div>
+      <div><span>Refil anti-respingo 23cm</span><span data-preco="refil-anti-respingo-23cm|23cm (refil, sem cabo)"></span></div>
+      <div><span>Fita crepe</span><span><i>a partir de</i><span data-preco="fita-crepe|M"></span></span></div>
+      <div><span>Cabo reforçado 23cm</span><span data-preco="cabo-rolo-23cm|Cabo reforçado 23cm"></span></div>
+      <div><span>Lixa de massa</span><span data-preco="lixa-massa|Numeração 80"></span></div>
+      <div><span>Extensor</span><span><i>a partir de</i><span data-preco="extensor|2 metros"></span></span></div>
+      <div><span>Lona preta (metro)</span><span data-preco="lona-preta|Metro (1x4m)"></span></div>
+      <div><span>Corante 50ml</span><span data-preco="corante|Bisnaga 50ml"></span></div>
+    </div>
+
+    <p class="nota">Preços de {{DATA}}, sujeitos a alteração e ao estoque de cada loja. Até 12x sem juros no cartão. Imagens ilustrativas.</p>
+  </div></div>
+</div>
+
+</body>
+</html>
