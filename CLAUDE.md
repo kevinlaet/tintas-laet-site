@@ -36,6 +36,10 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 
 Tintas Laet é um comércio de tintas e materiais de pintura com 6 lojas, todas funcionando (a Loja 5 com festa de inauguração em 08/08/2026; a Loja 6, Santa Terezinha em São Bernardo do Campo, abriu sem inauguração por causa da chuva nos fins de semana — setembro/2026), na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado e parcelamento em 12x sem juros.
 
+**Horário de atendimento (todas as lojas, Kevin 02/10/2026):** segunda a sexta 8h–18h; sábado até 14h; domingo fechado; feriados geralmente até meio-dia. Já está no site (home e catálogo Latex Vinil). Usar em qualquer peça ou texto que cite horário.
+
+**Textos prontos pra IA do WhatsApp:** `saidas/textos-ia-whatsapp.md` (endereços, produtos, trocas, sorteio, conduta). Atualizar quando mudar horário, endereço, regra de troca, sorteio ou entrega.
+
 **Nome da Loja 6 em qualquer peça (regra do Kevin, 01/10/2026):** escrever **"São Bernardo do Campo"**; se não couber, **"São Bernardo do C."** ou **"São Bernardo"**. Nunca "SB", "SBC" ou "S. Bernardo" — "São Bernardo" é o que o cliente reconhece.
 
 Fundada por Anderson Laet e Robson Laet. Kevin cuida do marketing digital e da gestão operacional das lojas, sozinho por enquanto.
