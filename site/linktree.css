@@ -139,3 +139,16 @@ h1 span { background: linear-gradient(90deg, #FFC107, #FFE082); -webkit-backgrou
   .blob, .avatar::before, .handle i { animation: none; }
   .act, .act::after, .store, .store-photo img { transition: none; }
 }
+
+/* Loja mais perto */
+.perto-btn { display: flex; width: 100%; align-items: center; justify-content: center; gap: 10px; margin: 0 0 14px; padding: 14px 16px; border-radius: 16px; cursor: pointer;
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14.5px; color: #fff; background: linear-gradient(135deg, rgba(76,141,246,.35), rgba(13,71,161,.5));
+  border: 1px solid rgba(140,180,255,.45); box-shadow: 0 10px 26px rgba(13,71,161,.4), inset 0 1px 0 rgba(255,255,255,.15); transition: transform .2s, box-shadow .2s; }
+.perto-btn[hidden] { display: none; }
+.perto-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(13,71,161,.55), inset 0 1px 0 rgba(255,255,255,.2); }
+.perto-btn:disabled { opacity: .75; cursor: progress; }
+.perto-btn svg { width: 20px; height: 20px; fill: none; stroke: #FFC107; stroke-width: 2; stroke-linecap: round; }
+.perto-msg { font-size: 12.5px; color: var(--txt-2); margin: -4px 0 14px; }
+.dist-tag { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12px; color: #FFE082; background: rgba(255,193,7,.12); border: 1px solid rgba(255,193,7,.35); padding: 5px 11px; border-radius: 100px; }
+.store.mais-perto { border-color: rgba(255,193,7,.75); box-shadow: 0 0 0 2px rgba(255,193,7,.35), 0 18px 44px rgba(0,0,0,.35); }
+.store.mais-perto .dist-tag { background: #FFC107; color: #212529; border-color: #FFC107; }

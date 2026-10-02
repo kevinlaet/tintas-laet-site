@@ -22,6 +22,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="linktree.css">
+  <script src="lojas-dados.js" defer></script>
+  <script src="loja-perto.js" defer></script>
   <title>Nossas lojas — Tintas Laet</title>
   <meta name="description" content="As 6 lojas da Tintas Laet no ABC e Zona Leste de SP: endereço, WhatsApp de cada loja e rota no Google Maps.">
 </head>
@@ -41,14 +43,18 @@
 
     <div class="chips rise" style="--i:1" role="group" aria-label="Filtrar por cidade"><button type="button" class="chip" data-f="Todas" aria-pressed="true">Todas</button><button type="button" class="chip" data-f="São Paulo" aria-pressed="false">São Paulo</button><button type="button" class="chip" data-f="Mauá" aria-pressed="false">Mauá</button><button type="button" class="chip" data-f="Santo André" aria-pressed="false">Santo André</button><button type="button" class="chip" data-f="São Bernardo" aria-pressed="false">São Bernardo</button></div>
 
+    <button type="button" class="perto-btn rise" style="--i:1" data-perto data-alvo="#lista" data-aviso="pertoMsg" hidden><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7.5"/></svg>Usar minha localização</button>
+    <p class="perto-msg" id="pertoMsg" hidden></p>
+
     <section class="stores" id="lista" aria-live="polite">
-      <article class="store rise" style="--i:2" data-city="São Paulo">
+      <article class="store rise" data-loja="1" style="--i:2" data-city="São Paulo">
         <div class="store-photo">
           <img src="images/lojas/loja1-sapopemba.jpg" alt="Fachada da Loja 1 da Tintas Laet — São Paulo — Vila Bela" loading="eager" decoding="async">
           <span class="store-badge">Loja 1</span>
           <span class="store-city">São Paulo</span>
         </div>
         <div class="store-body">
+          <div class="dist-slot" data-dist-slot></div>
           <h2 class="store-name">São Paulo — Vila Bela</h2>
           <p class="store-addr">Av. Sapopemba, 25.723 — Vila Bela, São Paulo</p>
           <div class="store-btns">
@@ -57,13 +63,14 @@
           </div>
         </div>
       </article>
-      <article class="store rise" style="--i:3" data-city="Mauá">
+      <article class="store rise" data-loja="2" style="--i:3" data-city="Mauá">
         <div class="store-photo">
           <img src="images/lojas/loja2-sao-joao.jpg" alt="Fachada da Loja 2 da Tintas Laet — Mauá — Jardim São João" loading="eager" decoding="async">
           <span class="store-badge">Loja 2</span>
           <span class="store-city">Mauá</span>
         </div>
         <div class="store-body">
+          <div class="dist-slot" data-dist-slot></div>
           <h2 class="store-name">Mauá — Jardim São João</h2>
           <p class="store-addr">Rua do Britador, 2 — Jardim São João, Mauá</p>
           <div class="store-btns">
@@ -72,13 +79,14 @@
           </div>
         </div>
       </article>
-      <article class="store rise" style="--i:4" data-city="Mauá">
+      <article class="store rise" data-loja="3" style="--i:4" data-city="Mauá">
         <div class="store-photo">
           <img src="images/lojas/loja3-ayrton-senna.jpg" alt="Fachada da Loja 3 da Tintas Laet — Mauá — Santa Cecília" loading="lazy" decoding="async">
           <span class="store-badge">Loja 3</span>
           <span class="store-city">Mauá</span>
         </div>
         <div class="store-body">
+          <div class="dist-slot" data-dist-slot></div>
           <h2 class="store-name">Mauá — Santa Cecília</h2>
           <p class="store-addr">Av. Ayrton Senna da Silva, 235 — Jardim Santa Cecília, Mauá</p>
           <div class="store-btns">
@@ -87,13 +95,14 @@
           </div>
         </div>
       </article>
-      <article class="store rise" style="--i:5" data-city="Santo André">
+      <article class="store rise" data-loja="4" style="--i:5" data-city="Santo André">
         <div class="store-photo">
           <img src="images/lojas/loja4-santo-andre.jpg" alt="Fachada da Loja 4 da Tintas Laet — Santo André — Vila Luzita" loading="lazy" decoding="async">
           <span class="store-badge">Loja 4</span>
           <span class="store-city">Santo André</span>
         </div>
         <div class="store-body">
+          <div class="dist-slot" data-dist-slot></div>
           <h2 class="store-name">Santo André — Vila Luzita</h2>
           <p class="store-addr">Av. São Bernardo do Campo, 757 — Vila Luzita, Santo André</p>
           <div class="store-btns">
@@ -102,13 +111,14 @@
           </div>
         </div>
       </article>
-      <article class="store rise" style="--i:6" data-city="Mauá">
+      <article class="store rise" data-loja="5" style="--i:6" data-city="Mauá">
         <div class="store-photo">
           <img src="images/lojas/loja5-itapark.jpg" alt="Fachada da Loja 5 da Tintas Laet — Mauá — Jardim Itapark" loading="lazy" decoding="async">
           <span class="store-badge">Loja 5</span>
           <span class="store-city">Mauá</span>
         </div>
         <div class="store-body">
+          <div class="dist-slot" data-dist-slot></div>
           <h2 class="store-name">Mauá — Jardim Itapark</h2>
           <p class="store-addr">Av. Itapark, 4377 — Jardim Itapark, Mauá</p>
           <div class="store-btns">
@@ -117,13 +127,14 @@
           </div>
         </div>
       </article>
-      <article class="store rise" style="--i:7" data-city="São Bernardo">
+      <article class="store rise" data-loja="6" style="--i:7" data-city="São Bernardo">
         <div class="store-photo">
           <img src="images/lojas/loja6-sbc.jpg" alt="Fachada da Loja 6 da Tintas Laet — São Bernardo — Santa Terezinha" loading="lazy" decoding="async">
           <span class="store-badge">Loja 6</span>
           <span class="store-city">São Bernardo</span>
         </div>
         <div class="store-body">
+          <div class="dist-slot" data-dist-slot></div>
           <h2 class="store-name">São Bernardo — Santa Terezinha</h2>
           <p class="store-addr">Av. Luís Pequini, 899 — Santa Terezinha, São Bernardo do Campo</p>
           <div class="store-btns">

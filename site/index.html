@@ -18,6 +18,8 @@
   <script src="cookie-banner.js" defer></script>
   <script src="avaliacoes-google.js" defer></script>
   <script src="canais-oficiais.js" defer></script>
+  <script src="lojas-dados.js" defer></script>
+  <script src="loja-perto.js" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tintas Laet — A tinta nobre da comunidade</title>
   <meta name="description" content="Tintas e materiais de pintura com os melhores preços do ABC e Zona Leste. Parcelamento em até 12x sem juros, 6 lojas no ABC e Zona Leste, com atendimento humano e ajuda pra escolher a cor certa.">
@@ -322,6 +324,15 @@
     .cta-phone { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px, 5.5vw, 56px); color: var(--blue-dark); margin-top: 24px; }
 
     /* ──────── FOOTER ──────── */
+    .perto-wrap { text-align: center; margin: -8px 0 26px; }
+    .perto-btn-home { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: 0; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; padding: 14px 24px; border-radius: 14px; color: #fff; background: linear-gradient(135deg, var(--blue-mid), var(--blue-dark)); box-shadow: 0 12px 28px rgba(13,71,161,.35); transition: transform .2s, box-shadow .2s; }
+    .perto-btn-home[hidden] { display: none; }
+    .perto-btn-home:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(13,71,161,.45); }
+    .perto-btn-home:disabled { opacity: .75; cursor: progress; }
+    .perto-msg-home { font-size: 13px; color: #555; margin-top: 10px; }
+    .dist-tag { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12px; color: var(--blue); background: rgba(13,71,161,.08); border: 1px solid rgba(13,71,161,.2); padding: 5px 11px; border-radius: 100px; }
+    .location-card.mais-perto { outline: 3px solid var(--yellow); outline-offset: 2px; }
+    .location-card.mais-perto .dist-tag { background: var(--yellow); color: #1a1000; border-color: var(--yellow); }
     .location-phone { font-size: 13px; margin: -2px 0 12px; } .location-phone a { color: var(--blue); font-weight: 700; }
     .footer { background: var(--blue-dark); color: rgba(255,255,255,.55); padding: 52px 0 24px; }
     .footer-inner { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 44px; margin-bottom: 44px; }
@@ -1334,12 +1345,17 @@
       <h2 class="section-title" style="color:var(--blue)">Onde estamos</h2>
       <p class="section-sub">ABC Paulista e Zona Leste de São Paulo.</p>
     </div>
+    <div class="perto-wrap">
+      <button type="button" class="perto-btn-home" data-perto data-alvo="#enderecos .locations-grid" data-aviso="pertoMsgHome" hidden>📍 Usar minha localização e achar a loja mais perto</button>
+      <p class="perto-msg-home" id="pertoMsgHome" hidden></p>
+    </div>
     <div class="locations-grid">
-      <div class="location-card">
+      <div class="location-card" data-loja="1">
         <div class="location-photo">
           <img src="images/lojas/loja1-sapopemba.jpg" alt="Loja Vila Bela — Sapopemba">
         </div>
         <div class="location-body">
+          <div data-dist-slot></div>
           <div class="location-name">São Paulo — Vila Bela</div>
           <div class="location-address">Av. Sapopemba, 25.723 — Vila Bela, SP</div>
           <div class="location-phone">📞 <a href="tel:+5511980820686">(11) 98082-0686</a></div>
@@ -1349,11 +1365,12 @@
           </div>
         </div>
       </div>
-      <div class="location-card">
+      <div class="location-card" data-loja="2">
         <div class="location-photo">
           <img src="images/lojas/loja2-sao-joao.jpg" alt="Loja Jardim São João — Mauá">
         </div>
         <div class="location-body">
+          <div data-dist-slot></div>
           <div class="location-name">Mauá — Jardim São João</div>
           <div class="location-address">Rua do Britador, 2 — Jardim São João, Mauá</div>
           <div class="location-phone">📞 <a href="tel:+5511977504434">(11) 97750-4434</a></div>
@@ -1363,11 +1380,12 @@
           </div>
         </div>
       </div>
-      <div class="location-card">
+      <div class="location-card" data-loja="3">
         <div class="location-photo">
           <img src="images/lojas/loja3-ayrton-senna.jpg" alt="Loja Santa Cecília — Mauá">
         </div>
         <div class="location-body">
+          <div data-dist-slot></div>
           <div class="location-name">Mauá — Santa Cecília</div>
           <div class="location-address">Av. Ayrton Senna da Silva, 235 — Jardim Santa Cecília, Mauá</div>
           <div class="location-phone">📞 <a href="tel:+5511977498813">(11) 97749-8813</a></div>
@@ -1377,11 +1395,12 @@
           </div>
         </div>
       </div>
-      <div class="location-card">
+      <div class="location-card" data-loja="4">
         <div class="location-photo">
           <img src="images/lojas/loja4-santo-andre.jpg" alt="Loja Vila Luzita — Santo André">
         </div>
         <div class="location-body">
+          <div data-dist-slot></div>
           <div class="location-name">Santo André — Vila Luzita</div>
           <div class="location-address">Av. São Bernardo do Campo, 757 — Vila Luzita, Santo André</div>
           <div class="location-phone">📞 <a href="tel:+5511948551977">(11) 94855-1977</a></div>
@@ -1391,11 +1410,12 @@
           </div>
         </div>
       </div>
-      <div class="location-card">
+      <div class="location-card" data-loja="5">
         <div class="location-photo">
           <img src="images/lojas/loja5-itapark.jpg" alt="Loja Jardim Itapark — Mauá">
         </div>
         <div class="location-body">
+          <div data-dist-slot></div>
           <div class="location-name">Mauá — Jardim Itapark</div>
           <div class="location-address">Av. Itapark, 4377 — Jardim Itapark, Mauá</div>
           <div class="location-phone">📞 <a href="tel:+5511914334875">(11) 91433-4875</a></div>
@@ -1405,11 +1425,12 @@
           </div>
         </div>
       </div>
-      <div class="location-card">
+      <div class="location-card" data-loja="6">
         <div class="location-photo">
           <img src="images/lojas/loja6-sbc.jpg" alt="Loja Santa Terezinha — São Bernardo do Campo">
         </div>
         <div class="location-body">
+          <div data-dist-slot></div>
           <div class="location-name">São Bernardo — Santa Terezinha</div>
           <div class="location-address">Av. Luís Pequini, 899 — Santa Terezinha, São Bernardo do Campo</div>
           <div class="location-phone">📞 <a href="tel:+5511918755095">(11) 91875-5095</a></div>
