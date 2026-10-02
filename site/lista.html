@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8RP9PV579"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-V8RP9PV579');
+  </script>
+  <script src="analytics-events.js" defer></script>
+  <script src="cookie-banner.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#04193E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="linktree.css">
+  <script src="lojas-dados.js"></script>
+  <title>Lista de compras — Tintas Laet</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Lista de compras montada no site da Tintas Laet pra retirar na loja.">
+</head>
+<body>
+  <div class="bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+  <main class="wrap wide">
+    <header class="topbar">
+      <a class="back" href="produtos.html"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Produtos</a>
+      <img src="images/logo-branco.png" alt="Tintas Laet">
+    </header>
+
+    <div class="rise" style="--i:0">
+      <span class="eyebrow">Lista pra retirar na loja</span>
+      <h1 id="titulo">Lista de <span>compras</span></h1>
+      <p class="lead" id="lojaTxt"></p>
+    </div>
+
+    <section class="lista-card rise" style="--i:1" aria-live="polite">
+      <div id="itens"></div>
+      <div class="lista-total"><span>Total estimado</span><strong id="total">—</strong></div>
+      <p class="lista-aviso">Preço e estoque são confirmados na loja na hora da compra.</p>
+    </section>
+
+    <nav class="actions rise" style="--i:2;margin-top:18px" aria-label="Ações da lista" id="acoes"></nav>
+    <p class="foot rise" style="--i:3"><a href="lojas.html">Ver todas as lojas</a> &nbsp;·&nbsp; <a href="index.html#canais-oficiais">Canais oficiais</a></p>
+  </main>
+  <script>
+  (function () {
+    var PRINCIPAL = '5511977140964';
+    function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+    function ler() {
+      var m = /[#&]d=([A-Za-z0-9_-]{1,6000})/.exec(location.hash || '');
+      if (!m) return null;
+      try {
+        var b = m[1].replace(/-/g, '+').replace(/_/g, '/');
+        while (b.length % 4) b += '=';
+        var bin = atob(b), bytes = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        var d = JSON.parse(new TextDecoder().decode(bytes));
+        if (!d || !Array.isArray(d.i)) return null;
+        return {
+          loja: String(d.l || '').slice(0, 120),
+          uber: !!d.u,
+          itens: d.i.slice(0, 60).map(function (x) {
+            x = Array.isArray(x) ? x : [];
+            return { nome: String(x[0] || '').slice(0, 160), tam: String(x[1] || '').slice(0, 80), cor: String(x[2] || '').slice(0, 80), qty: Math.max(1, Math.min(999, parseInt(x[3], 10) || 1)), valor: String(x[4] || '').slice(0, 30) };
+          }).filter(function (x) { return x.nome; })
+        };
+      } catch (e) { return null; }
+    }
+    function preco(s) { var n = parseFloat(String(s).replace(/[^\d,]/g, '').replace(',', '.')); return isFinite(n) ? n : 0; }
+    function brl(n) { return 'R$ ' + n.toFixed(2).replace('.', ','); }
+
+    var d = ler();
+    var itensBox = document.getElementById('itens');
+    var acoes = document.getElementById('acoes');
+    if (!d || !d.itens.length) {
+      document.getElementById('lojaTxt').textContent = 'Essa lista está vazia ou o link veio incompleto. Monte sua lista na página de produtos.';
+      itensBox.append(el('p', 'lista-vazia', 'Nenhum item.'));
+      var a0 = el('a', 'act primary', null); a0.href = 'produtos.html';
+      a0.append(el('span', 'act-txt', 'Ver produtos'));
+      acoes.append(a0);
+      return;
+    }
+    var loja = (window.LAET_LOJAS || []).filter(function (l) { return l.rotulo === d.loja; })[0] || null;
+    document.getElementById('lojaTxt').textContent = loja ? '📍 Retirada na loja ' + loja.nome + (d.uber ? ' · cliente vai mandar Uber/Lalamove' : '') : '📍 Loja ainda não escolhida';
+    var total = 0, linhas = [];
+    d.itens.forEach(function (it) {
+      var row = el('div', 'lista-item');
+      row.append(el('b', null, it.qty + 'x'));
+      var det = el('div', null, it.nome);
+      det.append(el('small', null, [it.tam, it.cor ? 'Cor: ' + it.cor : ''].filter(Boolean).join(' · ')));
+      row.append(det, el('span', null, it.valor));
+      itensBox.append(row);
+      total += preco(it.valor) * it.qty;
+      linhas.push(it.qty + 'x ' + it.nome + (it.tam ? ' — ' + it.tam : '') + (it.cor ? ' — Cor: ' + it.cor : '') + (it.valor ? ' — ' + it.valor : ''));
+    });
+    document.getElementById('total').textContent = brl(total);
+
+    var msg = 'Olá! Montei esta lista no site da Tintas Laet' + (loja ? ' pra retirar na ' + 'Loja ' + loja.n + ' (' + loja.nome + ')' : '') + ':\n\n' + linhas.join('\n') + '\n\nTotal estimado: ' + brl(total) + '\n\nPode confirmar disponibilidade e pagamento?';
+    var wa = el('a', 'act primary', null);
+    wa.href = 'https://wa.me/' + (loja ? loja.wa : PRINCIPAL) + '?text=' + encodeURIComponent(msg);
+    wa.target = '_blank'; wa.rel = 'noopener';
+    var t1 = el('span', 'act-txt'); t1.append(el('span', 'act-title', loja ? 'Enviar pra loja no WhatsApp' : 'Enviar no WhatsApp'), el('span', 'act-sub', loja ? 'Vai direto pro WhatsApp da ' + 'Loja ' + loja.n : 'Fale com a nossa equipe'));
+    wa.append(t1);
+    acoes.append(wa);
+    if (loja) {
+      var mp = el('a', 'act', null); mp.href = loja.mapa; mp.target = '_blank'; mp.rel = 'noopener';
+      var t2 = el('span', 'act-txt'); t2.append(el('span', 'act-title', 'Como chegar'), el('span', 'act-sub', 'Abrir a rota no Google Maps'));
+      mp.append(t2); acoes.append(mp);
+    }
+  })();
+  </script>
+</body>
+</html>

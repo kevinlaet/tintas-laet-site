@@ -103,6 +103,24 @@
       .laet-cart-total span:last-child { font-size: 18px; color: #0D47A1; font-weight: 800; }
       .laet-cart-checkout { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: #25D366; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; padding: 13px; border-radius: 8px; border: none; cursor: pointer; transition: filter .2s; }
       .laet-cart-checkout:hover { filter: brightness(1.08); }
+      .laet-cart-balcao { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-bottom: 8px; background: #0D47A1; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; padding: 13px; border-radius: 8px; border: none; cursor: pointer; transition: filter .2s; }
+      .laet-cart-balcao:hover { filter: brightness(1.15); }
+      #laet-balcao { position: fixed; inset: 0; z-index: 500; background: #fff; color: #212529; overflow-y: auto; font-family: 'Poppins', sans-serif; display: none; }
+      #laet-balcao.open { display: block; }
+      .lb-in { max-width: 520px; margin: 0 auto; padding: 22px 20px 40px; }
+      .lb-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+      .lb-top img { width: 96px; background: #062B63; padding: 8px 10px; border-radius: 10px; }
+      .lb-fechar { background: #F0F2F5; border: none; font-size: 15px; font-weight: 700; padding: 10px 16px; border-radius: 100px; cursor: pointer; font-family: 'Montserrat', sans-serif; }
+      .lb-codigo { text-align: center; background: #062B63; color: #fff; border-radius: 16px; padding: 16px; margin-bottom: 16px; }
+      .lb-codigo small { display: block; font-size: 12px; opacity: .75; letter-spacing: 1px; text-transform: uppercase; }
+      .lb-codigo strong { display: block; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 34px; letter-spacing: 3px; color: #FFC107; }
+      .lb-loja { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 16px; color: #0D47A1; margin-bottom: 10px; }
+      .lb-item { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #EEF1F6; font-size: 16px; }
+      .lb-item b { font-family: 'Montserrat', sans-serif; font-size: 20px; color: #0D47A1; min-width: 44px; }
+      .lb-item div { flex: 1; } .lb-item small { display: block; color: #666; font-size: 13px; }
+      .lb-total { display: flex; justify-content: space-between; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; margin: 14px 0 18px; }
+      .lb-qr { text-align: center; } .lb-qr canvas { width: 180px; height: 180px; image-rendering: pixelated; }
+      .lb-qr p, .lb-aviso { font-size: 12.5px; color: #666; text-align: center; margin-top: 6px; line-height: 1.5; }
       .laet-cart-clear { display: block; width: 100%; text-align: center; background: none; border: none; color: #999; font-size: 12px; margin-top: 10px; cursor: pointer; }
       @media (max-width: 480px) { #laet-cart-panel { max-width: 100%; } }
     `;
@@ -154,6 +172,7 @@
               <span>Total estimado</span>
               <span id="laet-cart-total">R$ 0,00</span>
             </div>
+            <button class="laet-cart-balcao" onclick="LaetCart.openBalcao()">📲 Mostrar no balcão da loja</button>
             <button class="laet-cart-checkout" onclick="LaetCart.checkout()">
               💬 Confirmar no WhatsApp
             </button>
@@ -242,8 +261,96 @@
     else msg += '\n📍 Ainda não escolhi a loja — qual fica mais perto de mim?\n';
     if (addr.uber) msg += '🚗 Vou pedir um Uber/Lalamove pra retirar (corrida por minha conta).\n';
     msg += '\nPode confirmar disponibilidade e forma de pagamento? Obrigado!';
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    const url = `https://wa.me/${numeroDaLoja(addr.loja)}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
+  }
+
+  // Mensagem que cita uma loja vai pro WhatsApp oficial DESSA loja; sem loja, vai pro número principal.
+  function numeroDaLoja(rotulo) {
+    const l = (window.LAET_LOJAS || []).find(x => x.rotulo === rotulo);
+    return l ? l.wa : WHATSAPP_NUMBER;
+  }
+
+  // ── "Mostrar no balcão": lista em tela cheia + código + QR que abre lista.html com a lista ──
+  function b64url(str) {
+    const bytes = new TextEncoder().encode(str);
+    let bin = '';
+    bytes.forEach(b => { bin += String.fromCharCode(b); });
+    return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+  function codigoDe(str) {
+    let h = 2166136261;
+    for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    const s = (h >>> 0).toString(36).toUpperCase().replace(/[O0I1]/g, 'X');
+    return 'LAET-' + (s + 'XXXX').slice(0, 4);
+  }
+  function carregarQr(cb) {
+    if (window.qrcode) return cb();
+    const s = document.createElement('script');
+    s.src = 'vendor/qrcode-generator.js';
+    s.onload = function () { cb(); };
+    s.onerror = function () { cb(new Error('qr')); };
+    document.head.appendChild(s);
+  }
+  function el(tag, cls, txt) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (txt != null) e.textContent = txt;
+    return e;
+  }
+  function openBalcao() {
+    const items = loadCart();
+    if (!items.length) { alert('Sua lista está vazia. Adicione produtos antes.'); return; }
+    const addr = loadAddr();
+    const dados = { v: 1, l: addr.loja || '', u: !!addr.uber, i: items.map(it => [String(it.nome || ''), String(it.tamanho || ''), String(it.cor || ''), Number(it.qty) || 1, String(it.valor || '')]) };
+    const json = JSON.stringify(dados);
+    const codigo = codigoDe(json);
+    const link = location.origin + '/lista.html#d=' + b64url(json);
+
+    let box = document.getElementById('laet-balcao');
+    if (!box) { box = el('div'); box.id = 'laet-balcao'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Lista pra mostrar no balcão'); document.body.appendChild(box); }
+    box.textContent = '';
+    box.dataset.link = link;
+    const inn = el('div', 'lb-in');
+    const top = el('div', 'lb-top');
+    const logo = el('img'); logo.src = 'images/logo-branco.png'; logo.alt = 'Tintas Laet';
+    const fechar = el('button', 'lb-fechar', '✕ Fechar'); fechar.type = 'button';
+    fechar.onclick = () => box.classList.remove('open');
+    top.append(logo, fechar);
+    const cod = el('div', 'lb-codigo');
+    cod.append(el('small', null, 'Mostre esta tela no balcão'), el('strong', null, codigo));
+    inn.append(top, cod);
+    inn.append(el('div', 'lb-loja', addr.loja ? '📍 ' + addr.loja : '📍 Loja ainda não escolhida'));
+    items.forEach(it => {
+      const row = el('div', 'lb-item');
+      const det = el('div', null, it.nome);
+      det.append(el('small', null, [it.tamanho, it.cor ? 'Cor: ' + it.cor : ''].filter(Boolean).join(' · ')));
+      row.append(el('b', null, (Number(it.qty) || 1) + 'x'), det, el('span', null, it.valor || ''));
+      inn.append(row);
+    });
+    const tot = el('div', 'lb-total'); tot.append(el('span', null, 'Total estimado'), el('span', null, formatPrice(totalValue())));
+    inn.append(tot);
+    const qr = el('div', 'lb-qr');
+    inn.append(qr);
+    inn.append(el('p', 'lb-aviso', 'Preço e estoque são confirmados na loja na hora da compra.'));
+    box.append(inn);
+    box.classList.add('open');
+    closeDrawer();
+    carregarQr(function (err) {
+      if (err || !window.qrcode) return;
+      const q = window.qrcode(0, 'M');
+      q.addData(link);
+      q.make();
+      const n = q.getModuleCount(), cell = 6, m = 4, size = (n + m * 2) * cell;
+      const cv = document.createElement('canvas');
+      cv.width = cv.height = size;
+      const ctx = cv.getContext('2d');
+      ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, size, size);
+      ctx.fillStyle = '#062B63';
+      for (let r = 0; r < n; r++) for (let col = 0; col < n; col++) if (q.isDark(r, col)) ctx.fillRect((col + m) * cell, (r + m) * cell, cell, cell);
+      qr.append(cv, el('p', null, 'A loja pode escanear pra abrir sua lista no celular dela.'));
+    });
+    if (typeof gtag === 'function') gtag('event', 'lista_balcao', { itens: items.length });
   }
 
   window.LaetCart = {
@@ -254,7 +361,8 @@
     openDrawer,
     closeDrawer,
     saveAddrField,
-    checkout
+    checkout,
+    openBalcao
   };
 
   document.addEventListener('DOMContentLoaded', function () {
