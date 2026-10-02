@@ -36,6 +36,8 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 
 Tintas Laet é um comércio de tintas e materiais de pintura com 6 lojas, todas funcionando (a Loja 5 com festa de inauguração em 08/08/2026; a Loja 6, Santa Terezinha em São Bernardo do Campo, abriu sem inauguração por causa da chuva nos fins de semana — setembro/2026), na região do ABC e Zona Leste de SP. Atende donos e donas de casa na periferia que querem economizar — com preços abaixo do mercado e parcelamento em 12x sem juros.
 
+**Nome da Loja 6 em qualquer peça (regra do Kevin, 01/10/2026):** escrever **"São Bernardo do Campo"**; se não couber, **"São Bernardo do C."** ou **"São Bernardo"**. Nunca "SB", "SBC" ou "S. Bernardo" — "São Bernardo" é o que o cliente reconhece.
+
 Fundada por Anderson Laet e Robson Laet. Kevin cuida do marketing digital e da gestão operacional das lojas, sozinho por enquanto.
 
 **Entrega própria em teste de descontinuação (a partir de 24/09/2026):** os sócios estão testando tirar a entrega feita pela própria loja e deixar só entrega via aplicativo (Lalamove e Uber, pedido pelo próprio cliente). Enquanto durar esse teste, nenhuma peça (site, post, story, anúncio) pode afirmar "a gente entrega" ou "frete justo" como serviço da loja — a entrega é por conta do cliente via app. Não é definitivo: se os sócios decidirem voltar com entrega própria, essa nota se atualiza. Perguntar ao Kevin antes de reverter.
@@ -57,6 +59,8 @@ Direto, simples, acolhedor. Fala com a comunidade como vizinho — sem jargão d
 Isso é diferente do "Tom de voz" acima — aquele é como a marca fala com o cliente; isto é como o Claude fala com o Kevin.
 
 Kevin quer uma relação mais pessoal, não só um executor de tarefas frio. Chamar pelo nome quando fizer sentido, demonstrar interesse genuíno pelo que ele está construindo, comemorar vitória junto, se posicionar como parceiro de trabalho na operação — não só entregar output. Pode puxar contexto pessoal que já se sabe dele (ex: que está tocando isso sozinho, que é fase de provar valor pros sócios) pra mostrar que entende a pessoa, não só a tarefa.
+
+**Respostas curtas (pedido do Kevin, 01/10/2026):** ele lê o dia inteiro (clientes, equipe, Claude). Responder resumido, direto ao ponto, sem perder informação importante: o que foi feito, o que ele precisa decidir, e só.
 
 ## Regras do sistema
 
@@ -103,6 +107,21 @@ No início de toda conversa, ler os seguintes arquivos (quando existirem e estiv
 Usar essas informações como base pra qualquer resposta ou decisão.
 
 **Antes de qualquer texto ou peça que afirme característica técnica de produto** (rendimento, uso interno/externo, lavável ou não, diluição, secagem, preço, cor), ler `_memoria/produtos.md` — dossiê mestre de produtos, fonte única de verdade, com regra explícita de nunca inventar dado técnico não confirmado (usa a resposta-padrão do próprio arquivo quando faltar informação).
+
+### Conhecimento de produto — aulas do Kevin
+
+**Regra:** sempre que o Kevin explicar um produto ("dar aula"), salvar aqui na hora, sem precisar ele pedir. Vale por cima do texto do site quando os dois divergirem (e avisar o Kevin pra corrigir o site).
+
+- **Super Profissional:** rende **até 330 m² por demão** (balde 18L), **com a superfície totalmente preparada e selada**. (Site atualizado pra 330 m² em 01/10/2026.)
+- **Direto no Gesso:** **não necessita de fundo preparador** — falar assim, que o cliente entende.
+- **1ª Linha Standard:** tinta de **baixo custo, mas concentrada, grossa e com bom poder de cobertura**.
+- **Massa Corrida:** só **área interna e seca** (quartos, salas). Nivela e corrige a parede antes de pintar.
+- **Massa Acrílica:** pra áreas que **pegam respingo de água** (banheiro, cozinha) e área externa. **Nunca dizer que resiste/resolve umidade** — senão o cliente usa pra tratar umidade (correção do Kevin, 01/10/2026).
+- **Fundo Preparador:** pra **reboco fraco e parede velha** — que descasca, esfarela, está fraca. Firma a superfície antes da tinta.
+- **Seladora:** pra **parede nova / reboco novo que chupa muita tinta**. É uma película inicial de um produto mais grosso e **mais barato que a tinta**: preenche os poros do reboco e economiza tinta.
+- **Emborrachada:** comunicar que **resolve até 100% do problema de infiltração** (laje, telhado, muro).
+- **Látex Vinil:** produto de combate, **sem a marca Laet** — não divulgar em folder/panfleto.
+- **Parcelamento 12x sem juros:** não vale pra toda compra — sempre com **"consulte as condições"**.
 
 Pra qualquer tarefa visual (carrossel, post, landing page), consultar `identidade/design-guide.md` como referência de estilo.
 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — 7 mil seguidores, 6 lojas</title>
+<style>
+@font-face { font-family:'Bebas Neue'; font-weight:400; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { background:#020A18; }
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; color:#fff;
+  background:
+    radial-gradient(ellipse 900px 620px at 50% 22%, rgba(33,110,230,.55) 0%, rgba(13,71,161,0) 70%),
+    linear-gradient(180deg, #0D47A1 0%, #0A3A86 36%, #062B63 68%, #03183A 100%); }
+.dots { position:absolute; inset:0; z-index:1; opacity:.16;
+  background-image: radial-gradient(rgba(255,255,255,.9) 1.4px, transparent 1.6px); background-size:22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 600px 500px at 90% 6%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(ellipse 600px 500px at 90% 6%, #000 0%, transparent 70%); }
+.cf { position:absolute; z-index:2; }
+
+.top { position:absolute; top:150px; left:0; right:0; z-index:10; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.top img { height:340px; margin:-84px 0 -62px; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(0,0,0,.35)); }
+.ey { font:700 26px/1 'Poppins',sans-serif; color:#FFE082; letter-spacing:.24em; text-transform:uppercase; display:flex; align-items:center; gap:18px; margin-top:6px; }
+.ey::before,.ey::after { content:''; width:44px; height:3px; background:rgba(255,224,130,.6); display:block; }
+.num { font:400 300px/.82 'Bebas Neue',sans-serif; color:#fff; margin-top:20px; text-shadow:0 10px 40px rgba(0,0,0,.35); }
+.chip { display:inline-block; margin-top:10px; background:#FFC107; color:#062B63; font:400 78px/1 'Bebas Neue',sans-serif;
+  padding:12px 32px 6px; border-radius:16px; transform:rotate(-2deg); box-shadow:0 10px 30px rgba(0,0,0,.3); letter-spacing:.02em; }
+
+.grid { position:absolute; left:72px; right:72px; top:852px; z-index:8; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.t { position:relative; height:338px; border-radius:14px; overflow:hidden; background:#0D2F66 center/cover no-repeat;
+  border:3px solid rgba(255,255,255,.9); box-shadow:0 12px 30px rgba(0,0,0,.4); }
+.t::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(3,24,58,0) 50%, rgba(3,24,58,.92) 100%); }
+.t .lb { position:absolute; left:14px; right:14px; bottom:12px; z-index:2; }
+.t .n { font:400 40px/1 'Bebas Neue',sans-serif; color:#FFC107; letter-spacing:.03em; }
+.t .b { font:700 20px/1.15 'Montserrat',sans-serif; color:#fff; margin-top:2px; }
+.t .nova { position:absolute; top:12px; right:12px; z-index:2; background:#FFC107; color:#062B63; font:400 28px/1 'Bebas Neue',sans-serif;
+  padding:7px 12px 4px; border-radius:8px; transform:rotate(3deg); box-shadow:0 4px 12px rgba(0,0,0,.35); }
+
+.msg { position:absolute; left:80px; right:80px; top:1574px; z-index:10; text-align:center; font:600 31px/1.4 'Poppins',sans-serif; }
+.lbl { position:absolute; left:0; right:0; top:796px; z-index:10; text-align:center; font:700 24px/1 'Poppins',sans-serif;
+  color:#fff; letter-spacing:.2em; text-transform:uppercase; opacity:.92; }
+.cta { position:absolute; left:50%; top:1688px; transform:translateX(-50%); z-index:10; white-space:nowrap;
+  background:#FFC107; color:#062B63; font:800 28px/1 'Montserrat',sans-serif; padding:20px 38px; border-radius:40px;
+  box-shadow:0 10px 26px rgba(0,0,0,.35); }
+.msg b { color:#FFC107; font-weight:700; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="dots"></div>
+  <div id="confete"></div>
+
+  <div class="top">
+    <img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+    <div class="ey">Muito obrigado</div>
+    <div class="num">7 MIL</div>
+    <div class="chip">SEGUIDORES NO INSTAGRAM</div>
+  </div>
+
+  <div class="lbl">6 lojas no ABC e Zona Leste</div>
+  <div class="grid">
+    <div class="t" style="background-image:url('lojas/loja1.jpg')"><div class="lb"><div class="n">LOJA 1</div><div class="b">Sapopemba</div></div></div>
+    <div class="t" style="background-image:url('lojas/loja2.jpg')"><div class="lb"><div class="n">LOJA 2</div><div class="b">São João</div></div></div>
+    <div class="t" style="background-image:url('lojas/loja3.jpg')"><div class="lb"><div class="n">LOJA 3</div><div class="b">Ayrton Senna</div></div></div>
+    <div class="t" style="background-image:url('lojas/loja4.jpg')"><div class="lb"><div class="n">LOJA 4</div><div class="b">Santo André</div></div></div>
+    <div class="t" style="background-image:url('lojas/loja5.jpg')"><div class="lb"><div class="n">LOJA 5</div><div class="b">Itapark</div></div></div>
+    <div class="t" style="background-image:url('lojas/loja6.jpg');background-position:62% center"><div class="lb"><div class="n">LOJA 6</div><div class="b">São Bernardo</div></div></div>
+  </div>
+
+  <div class="msg">Preço abaixo do mercado e <b>12x sem juros</b>.<br>Por isso tanta gente escolhe a Laet.</div>
+  <div class="cta">Passa na loja mais perto de você</div>
+</div>
+<script>
+  const cores=['#FFC107','#FFE082','#FFFFFF','#4F8FE8'];
+  let s=11; const r=()=>{s=(s*9301+49297)%233280;return s/233280;};
+  const c=document.getElementById('confete');
+  for(let i=0;i<40;i++){
+    const x=r()*1080, y=60+r()*820;
+    if(x>200&&x<880&&y>120) { i--; continue; }
+    const d=document.createElement('div'); d.className='cf';
+    const w=8+r()*14, h=w*(r()<.5?.45:1);
+    Object.assign(d.style,{left:x+'px',top:y+'px',width:w+'px',height:h+'px',background:cores[i%4],
+      transform:`rotate(${r()*180}deg)`,opacity:.55+r()*.4,borderRadius:r()<.3?'50%':'3px'});
+    c.appendChild(d);
+  }
+</script>
+</body>
+</html>

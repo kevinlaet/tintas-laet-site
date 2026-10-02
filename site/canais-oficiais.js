@@ -45,6 +45,7 @@
 
     var box = document.createElement('section');
     box.className = 'laet-oficial';
+    box.id = 'canais-oficiais';
     box.setAttribute('aria-label', 'Canais oficiais da Tintas Laet');
 
     var h = document.createElement('h3');
