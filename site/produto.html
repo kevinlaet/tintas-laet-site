@@ -1657,25 +1657,34 @@ const produtos = {
     ]
   },
   'verniz-premium': {
-    nome: 'Verniz Premium',
+    nome: 'Verniz Base Água Tintas Laet',
     categoria: 'Esmaltes & Vernizes',
     badge: 'NOVIDADE',
     imagem: 'images/embalagens/verniz-premium-remove-bg-io.png',
-    desc_curta: 'Proteção e beleza para madeiras. Base água, acabamento brilhante, baixo odor e secagem rápida. Uso interno e externo.',
-    descricao: 'O Verniz Premium Laet é a novidade da linha, feito pra deixar as madeiras mais bonitas e ainda protegidas do dia a dia. É base água, com acabamento brilhante, baixo odor, secagem rápida e resistente à chuva. Indicado para portas, móveis e outras superfícies de madeira, em ambientes internos e externos. Facilita a limpeza das ferramentas depois do uso. Disponível em 3 opções: Incolor, Mogno e Imbuia.',
-    beneficios: ['Base água', 'Acabamento brilhante', 'Resistente à chuva', 'Secagem rápida', 'Baixo odor', 'Fácil limpeza das ferramentas', 'Indicado para interior e exterior', '3 opções: Incolor, Mogno e Imbuia'],
+    desc_curta: 'Fundo e acabamento no mesmo produto, sem seladora. Base água, boa cobertura, bom brilho e odor baixíssimo. Incolor, Mogno e Imbuia.',
+    descricao: 'O Verniz Base Água Tintas Laet realça os veios e valoriza a madeira com mais praticidade: ele já é fundo e acabamento no mesmo produto, então dispensa o uso de seladora antes da aplicação. Tem boa cobertura, bom brilho e odor baixíssimo — uma aplicação muito mais confortável, principalmente pra quem vai pintar dentro de casa. Indicado para portas, móveis e outras superfícies de madeira, em ambientes internos e externos. Disponível em 3 tonalidades: Incolor (também conhecida como Natural), que mantém a aparência mais próxima da madeira original; Mogno, mais avermelhada e marcante; e Imbuia, mais escura, com aparência intensa e sofisticada. Disponível em todas as nossas lojas.',
+    beneficios: ['Fundo e acabamento no mesmo produto', 'Dispensa seladora', 'Base água', 'Boa cobertura', 'Bom brilho', 'Odor baixíssimo', 'Resistente à chuva', 'Secagem rápida', 'Fácil limpeza das ferramentas', 'Indicado para interior e exterior', '3 tonalidades: Incolor (Natural), Mogno e Imbuia'],
     precos: [
-      { desc: '3,6L', valor: 'R$ 79,90' },
-      { desc: '900ml', valor: 'R$ 24,90' },
+      { desc: '18L — Incolor', valor: 'R$ 249,90' },
+      { desc: '3,6L — Incolor', valor: 'R$ 79,90' },
+      { desc: '900ml — Incolor', valor: 'R$ 24,90' },
+      { desc: '18L — Mogno e Imbuia', valor: 'R$ 269,90' },
+      { desc: '3,6L — Mogno e Imbuia', valor: 'R$ 89,90' },
+      { desc: '900ml — Mogno e Imbuia', valor: 'R$ 32,90' },
     ],
     preco_from: 'R$ 24<small>,90</small>',
     preco_label: '900ml — a partir de',
-    wa: 'Olá! Quero comprar o Verniz Premium Laet. Pode me passar mais informações?',
-    cores_label: '3 opções disponíveis',
+    wa: 'Olá! Quero comprar o Verniz Base Água Tintas Laet. Pode me passar mais informações?',
+    cores_precificadas: true,
+    tem_branca: false,
+    tam_balde_default: '18L',
+    tam_galao_default: '3,6L',
+    tam_quarto_default: '900ml',
+    cores_label: '3 tonalidades disponíveis',
     cores: [
-      { nome: 'Incolor', hex: '#DC9A3D', madeira: true },
-      { nome: 'Mogno', hex: '#82380F', madeira: true },
-      { nome: 'Imbuia', hex: '#4A2B1A', madeira: true },
+      { nome: 'Incolor (Natural)', hex: '#DC9A3D', madeira: true, preco_balde: 'R$ 249,90', preco_galao: 'R$ 79,90', preco_quarto: 'R$ 24,90' },
+      { nome: 'Mogno', hex: '#82380F', madeira: true, preco_balde: 'R$ 269,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 32,90' },
+      { nome: 'Imbuia', hex: '#4A2B1A', madeira: true, preco_balde: 'R$ 269,90', preco_galao: 'R$ 89,90', preco_quarto: 'R$ 32,90' },
     ]
   }
 };
@@ -2051,7 +2060,7 @@ function updateWaBuyLink(id) {
   const partes = [];
   if (tamanhoSel && tamanhoSel.value) partes.push(tamanhoSel.value.split('|')[0]);
   if (corSel && corSel.value) partes.push('cor ' + corSel.value.split('|')[0]);
-  let msg = `Olá! Quero comprar ${p.nome} Laet`;
+  let msg = `Olá! Quero comprar ${p.nome}${/Laet$/.test(p.nome) ? "" : " Laet"}`;
   if (partes.length) msg += ` — ${partes.join(', ')}`;
   if (qty > 1) msg += ` — Quantidade: ${qty}`;
   msg += '. Pode me confirmar disponibilidade e fechar o pedido?';
