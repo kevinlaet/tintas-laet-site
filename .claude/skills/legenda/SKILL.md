@@ -82,6 +82,8 @@ Usar 1 a 3 por legenda, nunca todos. Cada um precisa ser **verdadeiro e verific�
 
 ## Regras fixas
 
+- **Embalagem certa (Kevin, 06/10/2026 — erro grave):** massa corrida e massa acrílica existem em **saco plástico** e em **barrica de papelão**, com preços diferentes (ex.: site: saco 23kg R$ 37,90 × barrica 23kg R$ 45,90). Toda peça/legenda/anúncio com preço de massa diz qual é ("saco 23kg" ou "barrica 23kg") e a imagem tem que ser a da embalagem certa: saco = `identidade/embalagens/massaplastico.png`, barrica = `identidade/embalagens/barrica-remove-bg-io.png`. Sem confirmação de qual embalagem é, **não fazer a peça — perguntar antes**. Vale pra qualquer produto com mais de uma embalagem/tamanho (galão × balde, 3,6L × 18L): a foto e o texto têm que bater com o preço.
+
 - Tom da marca: vizinho, simples, uma ideia por vez. Emoji como marcador ou 1–2 de emoção, nunca enfeite em toda linha.
 - Nada de superlativo sem prova ("o melhor", "o menor preço da região"). Trocar por fato ("R$ 29,90").
 - Telefone/WhatsApp: o oficial do `CLAUDE.md`. Se a arte mostra um número, a legenda mostra o mesmo. Divergência = avisar o Kevin.
@@ -103,6 +105,7 @@ Salvar em `legenda.md` na pasta da peça (legenda + alt text + localização + v
 
 - [ ] Palavra-chave principal + cidade/bairro nos primeiros ~125 caracteres
 - [ ] Todo preço, medida e telefone confere com a arte e com a fonte (site, produtos.md, CLAUDE.md)
+- [ ] Embalagem escrita quando o produto tem mais de uma (massa corrida/acrílica: **saco** × **barrica**; galão × balde) e igual à da arte. Sem confirmação, perguntar antes
 - [ ] Um CTA principal só
 - [ ] Gatilhos usados são verdadeiros
 - [ ] Nenhuma promessa proibida (entrega própria, superlativo, dado técnico não confirmado)

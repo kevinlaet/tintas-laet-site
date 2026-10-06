@@ -47,6 +47,7 @@ Objetivo: fazer cada real de anúncio virar conversa no WhatsApp, depois orçame
 ## Porteiro — checar antes de qualquer publicação paga
 
 - **Fato:** cada dado técnico, preço e condição confere com `produtos.md` e com o site vigente. Sem confirmação, não afirmar.
+- **Embalagem:** produto com mais de uma embalagem (massa corrida/acrílica em saco × barrica; galão × balde) → texto diz qual e a imagem é a da embalagem certa. Foto de barrica com preço de saco = 🔴 não publicar.
 - **Oferta clara:** parcelamento exatamente como na régua vigente (`empresa.md`, bloco Pagamento), nunca "12x" solto; preço, condição e limitação visíveis.
 - **Superlativo ou comparativo** ("menor preço", "o melhor") sem prova → reescrever com fato verificável.
 - **Entrega e pagamento:** só as formulações aprovadas; sem prometer hora; sem revelar regra interna do link de pagamento.

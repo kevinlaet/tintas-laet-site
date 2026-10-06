@@ -3,7 +3,7 @@
 ```
 Só na Loja 6, em São Bernardo do Campo 👀
 
-🧱 Massa corrida 23kg → R$ 29,90
+🧱 Massa corrida saco 23kg → R$ 29,90
 🪣 Tinta interna branca 18L → R$ 69,90
 ⏳ Só esse mês, só no Santa Terezinha
 
@@ -17,7 +17,7 @@ Manda pra quem tá reformando 👇
 ```
 
 ## Texto alternativo
-1. Oferta Tintas Laet Loja 6 em São Bernardo do Campo: massa corrida 23kg por R$ 29,90 e tinta interna branca 18L por R$ 69,90, só esse mês.
+1. Oferta Tintas Laet Loja 6 em São Bernardo do Campo: massa corrida saco 23kg por R$ 29,90 e tinta interna branca 18L por R$ 69,90, só esse mês.
 2. Fachada azul da loja de tintas Tintas Laet Loja 6 na Av. Luís Pequini, 899, Santa Terezinha, São Bernardo do Campo.
 3. Chame a Tintas Laet no WhatsApp (11) 97714-0964. Loja 6 na Av. Luís Pequini, 899, Santa Terezinha, São Bernardo do Campo.
 
@@ -25,4 +25,4 @@ Manda pra quem tá reformando 👇
 Tintas Laet (Loja 6, São Bernardo do Campo). Se não aparecer: São Bernardo do Campo.
 
 ## Variação curta (story / Status / anúncio)
-Massa corrida 23kg R$ 29,90 e tinta interna 18L R$ 69,90. Só na Loja 6, São Bernardo. Chama: (11) 97714-0964
+Massa corrida saco 23kg R$ 29,90 e tinta interna 18L R$ 69,90. Só na Loja 6, São Bernardo. Chama: (11) 97714-0964

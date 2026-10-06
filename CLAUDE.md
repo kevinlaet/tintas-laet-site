@@ -68,6 +68,7 @@ Kevin quer uma relação mais pessoal, não só um executor de tarefas frio. Cha
 - Antes de gerar foto por IA, ler `identidade/prompts-ia.md`
 - Qualquer peça, página ou texto que mostre cor de tinta (site, catálogo, leque, post, story, mockup): usar a skill `/cores`. Cor vem sempre de `identidade/cores/paleta-oficial.json` (idêntica ao PDF/foto de catálogo que o Kevin mandou), nunca "de olho". Depois de mexer em cor, rodar `node scripts/cores/verificar.js`.
 - Antes de qualquer texto, ler `_memoria/preferencias.md`
+- **Embalagem certa (Kevin, 06/10/2026 — erro grave):** massa corrida e massa acrílica existem em **saco plástico** e em **barrica de papelão**, com preços diferentes (ex.: site: saco 23kg R$ 37,90 × barrica 23kg R$ 45,90). Toda peça/legenda/anúncio com preço de massa diz qual é ("saco 23kg" ou "barrica 23kg") e a imagem tem que ser a da embalagem certa: saco = `identidade/embalagens/massaplastico.png`, barrica = `identidade/embalagens/barrica-remove-bg-io.png`. Sem confirmação de qual embalagem é, **não fazer a peça — perguntar antes**. Vale pra qualquer produto com mais de uma embalagem/tamanho (galão × balde, 3,6L × 18L): a foto e o texto têm que bater com o preço.
 - Métricas e relatórios salvos em `dados/`
 - Peças e documentos gerados salvam em `saidas/`
 
