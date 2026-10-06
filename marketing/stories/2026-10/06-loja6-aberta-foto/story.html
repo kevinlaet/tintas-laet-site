@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<style>
+@font-face { font-family:"Bebas Neue"; font-weight:400; src:url("fonts/bebas-neue-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family:"Montserrat"; font-weight:700; src:url("fonts/montserrat-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family:"Montserrat"; font-weight:800; src:url("fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
+@font-face { font-family:"Poppins"; font-weight:600; src:url("fonts/poppins-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family:"Poppins"; font-weight:700; src:url("fonts/poppins-latin-700-normal.woff2") format("woff2"); }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { background:#020A18; }
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; color:#fff; }
+.abs { position:absolute; z-index:5; }
+.chip { display:inline-block; background:#FFC107; color:#062B63; border-radius:14px; transform:rotate(-2deg); box-shadow:0 10px 30px rgba(0,0,0,.3); }
+.ey { font:700 26px/1 "Poppins",sans-serif; color:#FFC107; letter-spacing:.25em; text-transform:uppercase; display:flex; align-items:center; gap:16px; justify-content:center; }
+.ey::before,.ey::after { content:""; width:40px; height:3px; background:rgba(255,193,7,.55); }
+.tel { display:inline-block; background:#FFC107; color:#062B63; font:800 54px/1 "Montserrat",sans-serif; padding:26px 52px; border-radius:12px; box-shadow:0 12px 30px rgba(0,0,0,.35); }
+
+.bg { position:absolute; inset:0; background:url("foto-fachada-placa.png") center/cover no-repeat; }
+.st { position:absolute; left:0; right:0; top:0; height:29%; background:linear-gradient(180deg, rgba(245,236,215,.96) 0%, rgba(245,236,215,.86) 55%, rgba(245,236,215,0) 100%); }
+.sb { position:absolute; left:0; right:0; bottom:0; height:52%; background:linear-gradient(180deg, rgba(4,22,56,0) 0%, rgba(4,22,56,.82) 30%, rgba(4,22,56,.97) 100%); }
+.logo { left:0; right:0; top:120px; text-align:center; } .logo img { height:210px; }
+.tit { left:0; right:0; top:1150px; text-align:center; }
+h1 { font:400 230px/.85 "Bebas Neue",sans-serif; margin-top:20px; text-shadow:0 10px 40px rgba(0,0,0,.45); }
+.tit .chip { font:400 112px/1 "Bebas Neue",sans-serif; padding:10px 42px 2px; margin-top:4px; }
+.end { margin-top:34px; font:600 32px/1.35 "Poppins",sans-serif; color:rgba(255,255,255,.95); }
+.tit .tel { margin-top:30px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bg"></div><div class="st"></div><div class="sb"></div>
+  <div class="abs logo"><img src="../../../../identidade/logotipo-original-recortado.png" alt="Tintas Laet"></div>
+  <div class="abs tit">
+    <div class="ey">São Bernardo do Campo</div>
+    <h1>LOJA 6</h1>
+    <div class="chip">JÁ ESTÁ ABERTA</div>
+    <div class="end">Av. Luís Pequini, 899 — Santa Terezinha</div>
+    <div class="tel">(11) 91875-5095</div>
+  </div>
+</div>
+</body>
+</html>
