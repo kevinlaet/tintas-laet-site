@@ -5,7 +5,7 @@ A nossa Loja 6 já está aberta na Av. Luís Pequini, 899, no Santa Terezinha. M
 Arraste pro lado e confere como chegar.
 
 📍 Av. Luís Pequini, 899 — Santa Terezinha, São Bernardo do Campo
-📱 WhatsApp da Loja 6: (11) 91875-5095
+📱 WhatsApp: (11) 97714-0964
 🗺️ No Google Maps, procure por Tintas Laet
 
 Marca aquele vizinho de São Bernardo que tá pensando em pintar a casa 👇
