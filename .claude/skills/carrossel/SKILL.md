@@ -135,7 +135,7 @@ Seguir `_memoria/preferencias.md`. Em geral: frases naturais, sem jargão de mar
 
 ### Legenda — sempre gerar junto
 
-Ao terminar de renderizar os PNGs, gerar **automaticamente** a legenda do post e salvar em `legenda.md` na mesma pasta. **Não esperar o usuário pedir.** Estrutura padrão:
+Ao terminar de renderizar os PNGs, gerar **automaticamente** a legenda do post e salvar em `legenda.md` na mesma pasta. **Não esperar o usuário pedir.** Seguir a skill `/legenda` (SEO do Instagram + gatilhos honestos + alt text + localização). Resumo da estrutura:
 
 1. Hook (pergunta ou afirmação)
 2. Contexto (1-2 frases sobre o conteúdo)
