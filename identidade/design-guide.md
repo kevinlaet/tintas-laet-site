@@ -114,6 +114,13 @@ Cards de ícone em fundo sólido sem foto (como o slide de bullets claro que foi
     - **Canto superior esquerdo** (quando a foto não pode ser tampada, ex: rostos): **110px** com `filter: drop-shadow(0 2px 12px rgba(0,0,0,.5))`
   - O logo precisa ter presença visual clara — nunca discreto no centro; o modo canto é exceção justificada, não padrão
 
+**Regra do logo grande (Kevin, 06/10/2026 — "é a marca"):** em toda peça o logo tem que ser bem aparente, nunca pequeno. Causa do problema antigo: os PNGs `logotipo branco-remove-bg-io.png` e `logo tipo original-remove-bg-io.png` têm ~54% de borda transparente (500x500 com o logo ocupando só 464x232), então "height:270px" virava ~125px de logo de verdade. A partir de agora:
+- Usar sempre as versões **recortadas** (sem borda): `identidade/logotipo-branco-recortado.png` (fundo escuro/azul) e `identidade/logotipo-original-recortado.png` (fundo claro). Os tamanhos abaixo são de logo **visível**.
+- Story (1080x1920): logo recortado com **190–220px de altura** (~380–440px de largura), centralizado no topo
+- Carrossel/post (1080x1350): **170–200px de altura** (~340–400px de largura)
+- Se o arquivo antigo (com borda) for usado por algum motivo, multiplicar a altura por ~2,15 pra chegar no mesmo tamanho visível
+- Na dúvida entre logo maior ou menor: maior
+
 ---
 
 ## Observações adicionais
