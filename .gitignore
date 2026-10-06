@@ -36,3 +36,6 @@ scripts/cores/extracao/saida-*.json
 
 # Catálogos em PDF gerados por scripts/catalogos-pdf/gerar.js (regeráveis, pesados). Os originais do Canva ficam na subpasta e continuam no git.
 /marketing/catalogos/catalogo-*.pdf
+
+# Orçamentos gerados (têm nome e WhatsApp de cliente) — ficam só na máquina, nunca no repo
+/saidas/orcamentos/
