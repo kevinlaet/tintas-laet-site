@@ -56,7 +56,7 @@ const soDigitos = (s) => String(s || '').replace(/\D/g, '');
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:1080px;background:#fff;font-family:Poppins,sans-serif;color:var(--graf)}
 .topo{background:var(--az);color:#fff;padding:48px 56px;display:flex;align-items:center;justify-content:space-between}
-.topo img{height:150px}
+.topo img{height:210px;margin:-20px 0}
 .topo .tit{text-align:right}
 .topo .tit h1{font:400 84px 'Bebas Neue',sans-serif;letter-spacing:2px;line-height:1}
 .topo .tit .n{display:inline-block;background:var(--am);color:var(--azesc);font:800 30px Montserrat,sans-serif;padding:6px 20px;border-radius:6px;margin-top:10px;transform:rotate(-2deg)}
