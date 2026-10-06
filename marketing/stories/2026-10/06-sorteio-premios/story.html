@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Story — Sorteio mensal e prêmios</title>
+<style>
+@font-face { font-family:'Bebas Neue'; font-weight:400; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { background:#020A18; }
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; color:#fff; display:flex; flex-direction:column; align-items:center; text-align:center;
+  background:
+    radial-gradient(ellipse 900px 600px at 50% 18%, rgba(33,110,230,.55) 0%, rgba(13,71,161,0) 70%),
+    radial-gradient(ellipse 800px 500px at 50% 62%, rgba(255,193,7,.12) 0%, rgba(255,193,7,0) 70%),
+    linear-gradient(180deg, #0D47A1 0%, #0A3A86 40%, #062B63 72%, #03183A 100%); }
+.slide::before { content:''; position:absolute; inset:0; z-index:1;
+  background-image: repeating-linear-gradient(60deg, rgba(255,255,255,.025) 0, rgba(255,255,255,.025) 1px, transparent 1px, transparent 60px),
+                   repeating-linear-gradient(-60deg, rgba(255,255,255,.025) 0, rgba(255,255,255,.025) 1px, transparent 1px, transparent 60px); }
+.slide > * { position:relative; z-index:2; }
+.logo { height:180px; object-fit:contain; margin-top:90px; }
+h1 { font:400 165px/.9 'Bebas Neue',sans-serif; color:#fff; margin-top:22px; text-shadow:0 10px 40px rgba(0,0,0,.35); letter-spacing:.01em; }
+.chip { display:inline-block; margin-top:6px; background:#FFC107; color:#062B63; font:400 98px/1 'Bebas Neue',sans-serif; padding:8px 36px 2px; border-radius:14px; transform:rotate(-2deg); box-shadow:0 10px 30px rgba(0,0,0,.3); letter-spacing:.02em; }
+
+.prizes { width:940px; margin-top:84px; display:flex; flex-direction:column; gap:58px; }
+.p { position:relative; height:360px; border-radius:20px; background:linear-gradient(135deg, rgba(20,74,160,.85), rgba(6,43,99,.9)); border:2px solid rgba(255,255,255,.28); box-shadow:0 18px 40px rgba(0,0,0,.35); text-align:left; }
+.p.main { border:3px solid #FFC107; }
+.p .ghost { position:absolute; top:10px; font:400 380px/1 'Bebas Neue',sans-serif; color:rgba(255,255,255,.07); pointer-events:none; }
+.p .ring { position:absolute; top:50%; width:430px; height:430px; border-radius:50%; transform:translateY(-50%);
+  background:radial-gradient(circle, rgba(255,193,7,.5) 0%, rgba(255,193,7,.16) 45%, rgba(255,193,7,0) 70%); }
+.p .floor { position:absolute; bottom:-6px; width:300px; height:40px; border-radius:50%; background:radial-gradient(ellipse, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 70%); }
+.p img { position:absolute; filter:drop-shadow(0 18px 22px rgba(0,0,0,.5)); }
+.p .tx { position:absolute; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center; }
+.tag { align-self:flex-start; background:#FFC107; color:#062B63; font:400 40px/1 'Bebas Neue',sans-serif; padding:8px 18px 3px; border-radius:10px; letter-spacing:.03em; }
+.p.sec .tag { background:#fff; }
+.nm { font:800 40px/1.12 'Montserrat',sans-serif; color:#fff; margin-top:16px; }
+.ds { font:600 25px/1.3 'Poppins',sans-serif; color:#FFE082; margin-top:10px; }
+/* prêmio 1: produto à esquerda */
+.p.main .ghost { left:20px; } .p.main .ring { left:-10px; } .p.main .floor { left:30px; }
+.p.main img { left:30px; top:-72px; height:432px; }
+.p.main .tx { left:360px; right:34px; }
+/* prêmio 2: produto à direita */
+.p.sec .ghost { right:24px; } .p.sec .ring { right:-10px; } .p.sec .floor { right:30px; }
+.p.sec img { right:26px; top:-14px; height:360px; }
+.p.sec .tx { left:40px; right:400px; }
+
+.steps { width:940px; margin-top:36px; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.st { background:rgba(6,43,99,.55); border:1px solid rgba(255,255,255,.22); border-radius:8px; padding:18px 14px 16px; }
+.st .n { width:50px; height:50px; margin:0 auto; border-radius:50%; background:#FFC107; color:#062B63; font:400 42px/52px 'Bebas Neue',sans-serif; }
+.st .t { font:700 25px/1.25 'Poppins',sans-serif; color:#fff; margin-top:10px; }
+.cta { margin-top:28px; background:#FFC107; color:#062B63; font:800 33px/1 'Montserrat',sans-serif; padding:24px 44px; border-radius:50px; box-shadow:0 10px 26px rgba(0,0,0,.35); white-space:nowrap; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <img class="logo" src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+  <h1>SORTEIO</h1>
+  <div class="chip">MENSAL</div>
+
+  <div class="prizes">
+    <div class="p main">
+      <div class="ghost">1º</div><div class="ring"></div><div class="floor"></div>
+      <img src="caixa.png" alt="Caixa de Som Mondial 250W">
+      <div class="tx"><div class="tag">1º PRÊMIO</div><div class="nm">Caixa de Som<br>Mondial 250W</div><div class="ds">Pro dono do cupom sorteado</div></div>
+    </div>
+    <div class="p sec">
+      <div class="ghost">2º</div><div class="ring"></div><div class="floor"></div>
+      <img src="tinta.png" alt="Tinta Cobertura Absoluta 3,6L">
+      <div class="tx"><div class="tag">2º PRÊMIO</div><div class="nm">Cobertura Absoluta<br>3,6L Branca</div><div class="ds">Sorteada entre os amigos indicados pelo ganhador</div></div>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="st"><div class="n">1</div><div class="t">Compre de<br>qualquer valor</div></div>
+    <div class="st"><div class="n">2</div><div class="t">Preencha o cupom na loja</div></div>
+    <div class="st"><div class="n">3</div><div class="t">Indique até<br>10 amigos</div></div>
+  </div>
+  <div class="cta">Ao vivo no @Tintaslaet</div>
+</div>
+</body>
+</html>
