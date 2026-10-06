@@ -87,7 +87,8 @@ A partir de 31/08/2026, segurança vem antes de conveniência em qualquer integr
 
 ## Ferramentas conectadas
 
-- [x] WhatsApp (11) 97714-0964
+- [x] WhatsApp (11) 97714-0964 (central)
+- WhatsApp oficial de cada loja: Loja 1 (11) 98082-0686 · Loja 2 (11) 97750-4434 · Loja 3 (11) 97749-8813 · Loja 4 (11) 94855-1977 · Loja 5 (11) 91433-4875 · **Loja 6 (11) 91875-5095 (confirmado pelo Kevin em 06/10/2026, print do contato "Loja 6 SBC")**. Fonte: folder e site. Sempre que um número aparecer diferente em qualquer lugar (placa, peça, site, Google), avisar o Kevin na hora — ex.: a placa da fachada da Loja 6 (foto de 10/2026) mostra 91875-5055
 - [x] Meta Ads (tráfego pago)
 - [x] Instagram @Tintaslaet
 - [ ] Google Ads
