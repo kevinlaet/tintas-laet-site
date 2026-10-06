@@ -20,7 +20,9 @@ const soDigitos = (s) => String(s || '').replace(/\D/g, '');
 (async () => {
   const args = process.argv.slice(2);
   const teste = args.includes('--teste');
-  const arq = args.find((a) => !a.startsWith('--'));
+  const iN = args.indexOf('--numero');                       // refazer um orçamento já emitido, sem gastar número novo
+  const refazer = iN >= 0 ? parseInt(args[iN + 1], 10) : null;
+  const arq = args.find((a, i) => !a.startsWith('--') && args[i - 1] !== '--numero');
   if (!arq) { console.error('Uso: node scripts/orcamento/gerar.js orcamento.json [--teste]'); process.exit(1); }
   const d = JSON.parse(fs.readFileSync(arq, 'utf8'));
   if (!d.cliente || !Array.isArray(d.itens) || !d.itens.length) { console.error('✗ Falta cliente ou itens.'); process.exit(1); }
@@ -33,7 +35,7 @@ const soDigitos = (s) => String(s || '').replace(/\D/g, '');
 
   let num = 0;
   const cont = fs.existsSync(CONTADOR) ? JSON.parse(fs.readFileSync(CONTADOR, 'utf8')) : { ultimo: 0 };
-  num = cont.ultimo + 1;
+  num = refazer || cont.ultimo + 1;
   const numero = String(num).padStart(4, '0');
   const hoje = new Date(new Date().getTime() - 3 * 3600e3);          // horário de Brasília
   const data = hoje.toISOString().slice(0, 10).split('-').reverse().join('/');
@@ -93,8 +95,8 @@ body{width:1080px;background:#fff;font-family:Poppins,sans-serif;color:var(--gra
   <div class="total"><span>TOTAL</span><b>${brl(total)}</b></div>
 </div>
 ${d.obs ? `<div class="obs">${esc(d.obs)}</div>` : ''}
-<div class="obs">Parcelamento em até 12x sem juros — consulte as condições. Preços sujeitos a alteração.</div>
-<div class="rodape"><div class="cta">Quer fechar? Chama no WhatsApp</div><div class="w">${esc(wLoja)}</div><p>Tintas Laet · tintaslaet.com · @Tintaslaet</p></div>
+<div class="obs">Parcelamento em até 12x sem juros (consulte as condições). Valores sujeitos a alteração sem aviso prévio.</div>
+<div class="rodape"><div class="cta">Para confirmar seu pedido, fale conosco</div><div class="w">${esc(wLoja)}</div><p>Atenciosamente, Tintas Laet · tintaslaet.com · @Tintaslaet</p></div>
 </body></html>`;
 
   const stamp = hoje.toISOString().slice(0, 10);
@@ -116,7 +118,7 @@ ${d.obs ? `<div class="obs">${esc(d.obs)}</div>` : ''}
   await pg.pdf({ path: path.join(dest, 'orcamento.pdf'), width: '1080px', height: h + 'px', printBackground: true });
   await br.close();
 
-  if (!teste) {
+  if (!teste && !refazer) {
     fs.writeFileSync(CONTADOR, JSON.stringify({ ultimo: num }, null, 2) + '\n');
     fs.mkdirSync(REGISTRO_DIR, { recursive: true });
     const reg = path.join(REGISTRO_DIR, 'registro.csv');
