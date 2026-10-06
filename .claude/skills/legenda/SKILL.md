@@ -47,7 +47,22 @@ Toda legenda tem dois trabalhos: **ser encontrada** (busca do Instagram, Google,
 6. **CTA de engajamento** (opcional, curto): "Salva esse post" / "Marca quem tá reformando 👇".
 7. **Hashtags (3–5).**
 
-Tamanho: oferta/anúncio 300–600 caracteres; post educativo pode ir a ~1.200 se cada linha entregar algo. Parágrafo de no máximo 2 linhas no celular.
+Tamanho e visual: ver "Visual no celular" abaixo (oferta em 8–12 linhas curtas; educativo pode ser maior, mas sempre em blocos curtos).
+
+## Visual no celular (pedido do Kevin, 06/10/2026)
+
+A legenda tem que ser **bonita de ler no feed**, não um bloco de texto. Regras:
+
+- **Linhas curtas:** cada linha com no máximo ~40 caracteres (cabe numa linha do celular). Frase maior → quebra em duas linhas ou corta palavras.
+- **Blocos com respiro:** no máximo 4 blocos (gancho · oferta · contato · hashtags), separados por **uma linha em branco**. Nada de parágrafo corrido.
+- **Gancho sozinho na primeira linha**, curto e forte. A segunda linha já pode ficar escondida no "mais".
+- **Oferta em lista:** um item por linha, com emoji como marcador (✅ 🎨 🪣 🧱) e o preço no fim da linha. Ex.: `🧱 Massa corrida 23kg → R$ 29,90`
+- **Contato em lista:** 📍 · 📱 · 🗺️, uma informação por linha, curtinha (endereço sem repetir cidade se já apareceu no gancho/oferta).
+- **CTA de engajamento em 1 linha só**, ou nenhum.
+- **Hashtags numa linha só, no fim.**
+- **Linha em branco que some:** se o Instagram "comer" a linha em branco ao colar, usar o caractere invisível `⠀` (braile vazio, U+2800) sozinho na linha.
+- **Meta de tamanho:** oferta cabe em **8–12 linhas curtas** no total. Se passou disso, cortar — a arte já mostra o resto.
+- **Teste final:** imaginar a tela do celular. Dá pra entender o post lendo só o gancho + a lista? Se sim, está certo.
 
 ## Gatilhos — só os honestos
 

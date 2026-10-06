@@ -1,17 +1,17 @@
 # Legenda — Loja 6 oferta (06/10/2026)
 
 ```
-Massa corrida 23kg por R$ 29,90 em São Bernardo do Campo? Tem sim, e só na Loja 6 👀
+Só na Loja 6, em São Bernardo do Campo 👀
 
-Tinta interna branca 18L por R$ 69,90 também. Preço especial que só a nossa loja do Santa Terezinha tem, e só esse mês.
+🧱 Massa corrida 23kg → R$ 29,90
+🪣 Tinta interna branca 18L → R$ 69,90
+⏳ Só esse mês, só no Santa Terezinha
 
-Vai pintar a casa? Chama no WhatsApp que a gente te ajuda a calcular quanto você vai precisar.
+📍 Av. Luís Pequini, 899
+📱 WhatsApp (11) 97714-0964
+🗺️ No Maps: Tintas Laet
 
-📍 Av. Luís Pequini, 899 — Santa Terezinha, São Bernardo do Campo
-📱 WhatsApp: (11) 97714-0964
-🗺️ No Google Maps, procure Tintas Laet
-
-Salva esse post e manda pra quem tá reformando 👇
+Manda pra quem tá reformando 👇
 
 #TintasLaet #SaoBernardoDoCampo #LojaDeTintas #MassaCorrida #ABCPaulista
 ```
