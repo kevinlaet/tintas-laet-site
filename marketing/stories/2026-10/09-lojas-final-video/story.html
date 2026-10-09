@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=1080"><title>Story — Final do vídeo: nossas 6 lojas</title><style>
+@font-face { font-family:'Bebas Neue'; font-weight:400; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { background:#020A18; }
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; color:#fff; text-align:center;
+  background:
+    radial-gradient(ellipse 950px 650px at 50% 12%, rgba(40,120,240,.6) 0%, rgba(13,71,161,0) 70%),
+    radial-gradient(ellipse 900px 520px at 50% 100%, rgba(255,193,7,.14) 0%, rgba(255,193,7,0) 70%),
+    linear-gradient(180deg, #0D47A1 0%, #0A3A86 40%, #062B63 72%, #031A40 100%); }
+.slide::before { content:''; position:absolute; inset:0;
+  background-image: repeating-linear-gradient(60deg, rgba(255,255,255,.025) 0, rgba(255,255,255,.025) 1px, transparent 1px, transparent 60px),
+                   repeating-linear-gradient(-60deg, rgba(255,255,255,.025) 0, rgba(255,255,255,.025) 1px, transparent 1px, transparent 60px); }
+.abs { position:absolute; z-index:5; left:0; right:0; }
+.logo { height:170px; filter:drop-shadow(0 4px 16px rgba(0,0,0,.3)); }
+h1 { font:400 104px/.95 'Bebas Neue',sans-serif; text-shadow:0 8px 30px rgba(0,0,0,.4); }
+h1 .chip { display:inline-block; background:#FFC107; color:#062B63; border-radius:14px; transform:rotate(-2deg); padding:6px 28px 0; margin:0 6px; box-shadow:0 10px 26px rgba(0,0,0,.35); }
+.grid { top:525px; left:60px; right:60px; display:grid; grid-template-columns:1fr 1fr; gap:22px 22px; }
+.card { background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 14px 30px rgba(0,0,0,.4); position:relative; text-align:left; }
+.card .ph { width:100%; height:255px; object-fit:cover; object-position:50% 52%; display:block; }
+.card .n { position:absolute; left:14px; top:14px; background:#FFC107; color:#062B63; font:400 44px/1 'Bebas Neue',sans-serif; padding:8px 18px 3px; border-radius:10px; box-shadow:0 6px 14px rgba(0,0,0,.35); letter-spacing:.03em; }
+.card .t { padding:14px 20px 16px; }
+.card .b { font:800 31px/1.1 'Montserrat',sans-serif; color:#062B63; }
+.card .c { font:700 24px/1.2 'Poppins',sans-serif; color:#0D47A1; margin-top:4px; }
+.cta { top:1690px; }
+.url { display:inline-block; background:#FFC107; color:#062B63; font:800 54px/1 'Montserrat',sans-serif; padding:22px 52px; border-radius:60px; box-shadow:0 12px 28px rgba(0,0,0,.4); }
+.wa { display:inline-flex; align-items:center; gap:14px; color:#fff; font:800 50px/1 'Montserrat',sans-serif; margin-top:20px; }
+.wa svg { width:50px; height:50px; fill:#FFC107; }
+</style></head><body>
+<div class="slide">
+  <div class="abs" style="top:60px"><img class="logo" src="../../../../identidade/logotipo-branco-recortado.png" alt="Tintas Laet"></div>
+  <div class="abs" style="top:270px"><h1>6 LOJAS PARA<br><span class="chip">VOCÊ VISITAR</span></h1></div>
+  <div class="abs grid">
+    <div class="card"><img class="ph" src="fotos/loja1-sapopemba.jpg"><div class="n">LOJA 1</div><div class="t"><div class="b">Vila Bela</div><div class="c">São Paulo</div></div></div>
+    <div class="card"><img class="ph" src="fotos/loja2-sao-joao.jpg"><div class="n">LOJA 2</div><div class="t"><div class="b">Jardim São João</div><div class="c">Mauá</div></div></div>
+    <div class="card"><img class="ph" src="fotos/loja3-ayrton-senna.jpg"><div class="n">LOJA 3</div><div class="t"><div class="b">Santa Cecília</div><div class="c">Mauá</div></div></div>
+    <div class="card"><img class="ph" src="fotos/loja4-santo-andre.jpg"><div class="n">LOJA 4</div><div class="t"><div class="b">Vila Luzita</div><div class="c">Santo André</div></div></div>
+    <div class="card"><img class="ph" src="fotos/loja5-itapark.jpg"><div class="n">LOJA 5</div><div class="t"><div class="b">Itapark</div><div class="c">Mauá</div></div></div>
+    <div class="card"><img class="ph" src="fotos/loja6-sbc.jpg"><div class="n">LOJA 6</div><div class="t"><div class="b">Santa Terezinha</div><div class="c">São Bernardo do Campo</div></div></div>
+  </div>
+  <div class="abs cta"><div class="url">tintaslaet.com</div><br>
+    <div class="wa"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5.3-.5v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.6.6-.9 1.4-.9 2.2.1 1 .5 2 1.1 2.8 1.2 1.7 2.7 3 4.6 3.8.5.2 1 .4 1.5.5.6.2 1.2.1 1.7-.1.5-.3.9-.7 1-1.3.1-.3.1-.6 0-.8l-.3-.1z"/></svg>(11) 97714-0964</div></div>
+</div></body></html>
