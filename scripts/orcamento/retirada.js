@@ -3,7 +3,7 @@
 // JSON: { "cliente":"", "whatsappCliente":"", "vendedor":"Kevin", "loja":"Loja 1 — Vila Bela (Sapopemba)",
 //         "whatsappLoja":"(11) 97714-0964",
 //         "itens":[{"produto":"Super Profissional","cor":"Cinza Medieval","tamanho":"Balde 18L","qtd":1,"unit":149.90}],
-//         "pago":60, "formaPagamento":"" }
+//         "pago":60, "formaPagamento":"", "retirada":{"data":"09/10/2026","periodo":"Tarde"} }
 const fs = require('fs');
 const path = require('path');
 const rod = require('./rodape');
@@ -86,6 +86,7 @@ ${rod.css}
   <div><small>WhatsApp do cliente</small><b>${esc(d.whatsappCliente || '—')}</b></div>
   <div><small>Data da autorização</small><b>${data}</b></div>
   <div><small>Vendedor</small><b>${esc(vendedor)}</b></div>
+  ${d.retirada ? `<div class="full"><small>Retirada prevista</small><b>${esc(d.retirada.data)}${d.retirada.periodo ? ' · período da ' + esc(d.retirada.periodo.toLowerCase()) : ''}</b></div>` : ''}
   ${d.loja ? `<div class="full"><small>Loja de retirada</small><b>${esc(d.loja)}</b></div>` : ''}
 </div>
 <div class="lista"><div class="cab"><div>Produto</div><div>Qtd</div><div>Valor</div></div>${linhas}</div>
