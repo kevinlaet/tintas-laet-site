@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=1080"><title>Story — Loja 6 — Tinta Interna</title><style>
+@font-face { font-family:'Bebas Neue'; font-weight:400; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { background:#020A18; display:flex; flex-direction:column; align-items:center; }
+.slide { position:relative; overflow:hidden; color:#fff; }
+.azul { background:
+  radial-gradient(ellipse 950px 700px at 50% 16%, rgba(40,120,240,.6) 0%, rgba(13,71,161,0) 70%),
+  radial-gradient(ellipse 900px 560px at 50% 70%, rgba(255,193,7,.14) 0%, rgba(255,193,7,0) 70%),
+  linear-gradient(180deg, #0D47A1 0%, #0A3A86 40%, #062B63 72%, #031A40 100%); }
+.rays { position:absolute; left:50%; width:2000px; height:2000px; transform:translate(-50%,-50%); z-index:0;
+  background:repeating-conic-gradient(from 0deg, rgba(255,255,255,.07) 0deg 6deg, rgba(255,255,255,0) 6deg 15deg);
+  -webkit-mask-image:radial-gradient(circle, #000 0%, rgba(0,0,0,.5) 25%, transparent 50%); mask-image:radial-gradient(circle, #000 0%, rgba(0,0,0,.5) 25%, transparent 50%); }
+.abs { position:absolute; z-index:5; }
+.center { left:0; right:0; text-align:center; }
+.logo { filter:drop-shadow(0 4px 16px rgba(0,0,0,.3)); }
+.chip { display:inline-block; background:#FFC107; color:#062B63; border-radius:14px; transform:rotate(-2deg); box-shadow:0 10px 30px rgba(0,0,0,.3); }
+.ey { font:700 24px/1 'Poppins',sans-serif; color:#FFC107; letter-spacing:.24em; text-transform:uppercase; display:flex; align-items:center; gap:16px; justify-content:center; }
+.ey::before,.ey::after { content:''; width:40px; height:3px; background:rgba(255,193,7,.55); }
+.burst { width:220px; height:220px; background:#FFC107; color:#062B63; display:flex; align-items:center; justify-content:center; text-align:center;
+  clip-path:polygon(50% 0%,61% 12%,75% 5%,79% 21%,95% 22%,90% 37%,100% 50%,90% 63%,95% 78%,79% 79%,75% 95%,61% 88%,50% 100%,39% 88%,25% 95%,21% 79%,5% 78%,10% 63%,0% 50%,10% 37%,5% 22%,21% 21%,25% 5%,39% 12%);
+  font:400 46px/.9 'Bebas Neue',sans-serif; transform:rotate(-10deg); filter:drop-shadow(0 10px 20px rgba(0,0,0,.35)); }
+/* card de produto */
+.prod { position:relative; background:linear-gradient(180deg, rgba(255,255,255,.98), #EEF2F8); border-radius:22px; box-shadow:0 22px 50px rgba(0,0,0,.45); color:#062B63; text-align:center; overflow:visible; }
+.prod .img { position:absolute; left:50%; transform:translateX(-50%); filter:drop-shadow(0 16px 18px rgba(0,0,0,.35)); }
+.prod .nm { font:800 30px/1.1 'Montserrat',sans-serif; color:#062B63; }
+.prod .sz { font:600 22px/1.2 'Poppins',sans-serif; color:#555; margin-top:4px; }
+.price { display:inline-flex; align-items:flex-start; background:#0D47A1; color:#FFC107; border-radius:14px; padding:6px 22px 0; transform:rotate(-3deg); box-shadow:0 10px 24px rgba(6,43,99,.4); }
+.price .rs { font:800 30px/1 'Montserrat',sans-serif; margin-top:22px; margin-right:6px; color:#fff; }
+.price .n { font:400 150px/.95 'Bebas Neue',sans-serif; }
+.price .c { font:400 64px/1 'Bebas Neue',sans-serif; margin-top:14px; }
+.wa { display:inline-flex; align-items:center; gap:16px; background:#FFC107; color:#062B63; font:800 50px/1 'Montserrat',sans-serif; padding:24px 46px; border-radius:60px; box-shadow:0 12px 30px rgba(0,0,0,.35); }
+.wa svg { width:50px; height:50px; }
+.end { font:600 28px/1.35 'Poppins',sans-serif; color:rgba(255,255,255,.95); }
+.end b { color:#FFC107; font-weight:700; }
+.fine { font:600 20px/1.3 'Poppins',sans-serif; color:rgba(255,255,255,.7); }
+.slide { width:1080px; height:1920px; }
+.rays { top:980px; }
+h1 { font:400 150px/.9 'Bebas Neue',sans-serif; text-shadow:0 10px 40px rgba(0,0,0,.4); }
+h1 .chip { font-size:120px; padding:8px 34px 0; margin-top:8px; }
+.abs.prod { position:absolute; }
+.card { left:80px; right:80px; top:660px; height:820px; }
+.card .ibox { position:absolute; left:0; right:0; top:-90px; height:520px; display:flex; align-items:center; justify-content:center; }
+.card .ibox img { max-width:84%; max-height:100%; filter:drop-shadow(0 22px 24px rgba(0,0,0,.4)); }
+.card .tx { position:absolute; left:20px; right:20px; top:460px; text-align:center; }
+.card .nm { font-size:64px; } .card .sz { font-size:36px; margin-top:8px; }
+.card .price { margin-top:26px; padding:10px 40px 0; }
+.card .price .n { font-size:230px; } .card .price .c { font-size:96px; margin-top:24px; } .card .price .rs { font-size:48px; margin-top:42px; }
+</style></head><body>
+<div class="slide azul">
+  <div class="rays"></div>
+  <div class="abs center" style="top:80px"><img class="logo" src="../../../../identidade/logotipo-branco-recortado.png" style="height:190px" alt="Tintas Laet"></div>
+  <div class="abs burst" style="right:44px; top:560px; width:210px; height:210px; font-size:44px; z-index:9">SÓ ESSE<br>MÊS!</div>
+  <div class="abs center" style="top:330px"><div class="ey">Loja 6 · São Bernardo</div><h1 style="margin-top:18px">SÓ NA <span class="chip">LOJA 6</span></h1></div>
+  <div class="abs prod card"><div class="ibox"><img src="produto.png" alt="Tinta interna branca 18L"></div><div class="tx"><div class="nm">Tinta Interna</div><div class="sz">Branca 18L</div><div class="price"><span class="rs">R$</span><span class="n">69</span><span class="c">,90</span></div></div></div>
+  <div class="abs center" style="top:1530px"><div class="end">📍 <b>Av. Luís Pequini, 899</b> — Santa Terezinha, SBC</div></div>
+  <div class="abs center" style="top:1595px"><div class="wa"><svg viewBox="0 0 24 24" fill="#062B63"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5.3-.5v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.6.6-.9 1.4-.9 2.2.1 1 .5 2 1.1 2.8 1.2 1.7 2.7 3 4.6 3.8.5.2 1 .4 1.5.5.6.2 1.2.1 1.7-.1.5-.3.9-.7 1-1.3.1-.3.1-.6 0-.8l-.3-.1z"/></svg> (11) 97714-0964</div></div>
+</div></body></html>
