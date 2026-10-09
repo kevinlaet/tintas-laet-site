@@ -33,7 +33,7 @@ Criado em 06/10/2026. Kevin manda foto/print do pedido do cliente neste chat; a 
 
 ## Contador
 
-- Numeração única (orçamento + retirada), começa no **0133**. `scripts/orcamento/contador.json` guarda só o último número (sem dado de cliente, é versionado).
+- Numeração única (orçamento + retirada), continua da sequência já emitida (0055 e 0056 foram os últimos; próximo = 0057). `scripts/orcamento/contador.json` guarda só o último número (sem dado de cliente, é versionado).
 - Histórico (número, data, hora, vendedor, cliente, WhatsApp, total) vai pra `dados/orcamentos/registro.csv` — **privado, nunca commitar** (`dados/` é gitignored; tem dado pessoal de cliente).
 - **Importante:** a sessão na nuvem some. Depois de gerar um orçamento "valendo", commitar e dar push do `contador.json` na branch de trabalho, senão o próximo começa do número errado. O `registro.csv` fica só na máquina/sessão onde foi gerado.
 - Contagem do mês/dia: contar as linhas do `registro.csv` por data.
@@ -55,7 +55,7 @@ Mesmo design do orçamento, pra cliente que pagou parte (sinal) e acerta o resto
 node scripts/orcamento/retirada.js retirada.json          # gasta um número (MESMO contador do orçamento)
 node scripts/orcamento/retirada.js retirada.json --teste  # prévia
 ```
-JSON: ver cabeçalho de `scripts/orcamento/retirada.js` (`cliente`, `whatsappCliente`, `loja`, `itens[]`, `pago`, `formaPagamento`). Pedir ao Kevin a loja de retirada se não vier. Histórico em `dados/orcamentos/registro-retiradas.csv` (privado). Orçamentos e retiradas dividem **uma numeração só** (`contador.json`); a contagem começou no **Nº 0133** (decisão do Kevin, 09/10/2026).
+JSON: ver cabeçalho de `scripts/orcamento/retirada.js` (`cliente`, `whatsappCliente`, `loja`, `itens[]`, `pago`, `formaPagamento`). Pedir ao Kevin a loja de retirada se não vier. Histórico em `dados/orcamentos/registro-retiradas.csv` (privado). Orçamentos e retiradas dividem **uma numeração só** (`contador.json`); a contagem começou em 0055 (Kevin, 06/10/2026); ele chegou a propor 0133 em 09/10/2026 e voltou atrás.
 
 ## CTA (rodapé) — fixo em toda peça
 
