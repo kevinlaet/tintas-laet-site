@@ -9,7 +9,7 @@ const path = require('path');
 const rod = require('./rodape');
 
 const RAIZ = path.resolve(__dirname, '../..');
-const CONTADOR = path.join(__dirname, 'contador-retirada.json');
+const CONTADOR = path.join(__dirname, 'contador.json')   // mesmo contador do orçamento: pedidos e retiradas dividem a numeração;
 const REGISTRO_DIR = path.join(RAIZ, 'dados', 'orcamentos');
 const brl = (n) => 'R$ ' + n.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));

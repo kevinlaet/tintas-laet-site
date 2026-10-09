@@ -33,7 +33,7 @@ Criado em 06/10/2026. Kevin manda foto/print do pedido do cliente neste chat; a 
 
 ## Contador
 
-- `scripts/orcamento/contador.json` guarda só o último número (sem dado de cliente, é versionado).
+- Numeração única (orçamento + retirada), começa no **0133**. `scripts/orcamento/contador.json` guarda só o último número (sem dado de cliente, é versionado).
 - Histórico (número, data, hora, vendedor, cliente, WhatsApp, total) vai pra `dados/orcamentos/registro.csv` — **privado, nunca commitar** (`dados/` é gitignored; tem dado pessoal de cliente).
 - **Importante:** a sessão na nuvem some. Depois de gerar um orçamento "valendo", commitar e dar push do `contador.json` na branch de trabalho, senão o próximo começa do número errado. O `registro.csv` fica só na máquina/sessão onde foi gerado.
 - Contagem do mês/dia: contar as linhas do `registro.csv` por data.
@@ -52,11 +52,15 @@ Segue `identidade/design-guide.md`: cabeçalho azul `#0D47A1` com logo branco e 
 Mesmo design do orçamento, pra cliente que pagou parte (sinal) e acerta o resto na loja. Mostra data, cliente, WhatsApp, produto, cor, tamanho, quantidade, valor total, valor pago e **saldo a pagar na retirada**. Se saldo = 0 vira "PAGO — RETIRADA LIBERADA".
 
 ```
-node scripts/orcamento/retirada.js retirada.json          # gasta um número (contador próprio: contador-retirada.json)
+node scripts/orcamento/retirada.js retirada.json          # gasta um número (MESMO contador do orçamento)
 node scripts/orcamento/retirada.js retirada.json --teste  # prévia
 ```
-JSON: ver cabeçalho de `scripts/orcamento/retirada.js` (`cliente`, `whatsappCliente`, `loja`, `itens[]`, `pago`, `formaPagamento`). Pedir ao Kevin a loja de retirada se não vier. Histórico em `dados/orcamentos/registro-retiradas.csv` (privado). Commitar o `contador-retirada.json` depois de gerar valendo.
+JSON: ver cabeçalho de `scripts/orcamento/retirada.js` (`cliente`, `whatsappCliente`, `loja`, `itens[]`, `pago`, `formaPagamento`). Pedir ao Kevin a loja de retirada se não vier. Histórico em `dados/orcamentos/registro-retiradas.csv` (privado). Orçamentos e retiradas dividem **uma numeração só** (`contador.json`); a contagem começou no **Nº 0133** (decisão do Kevin, 09/10/2026).
 
 ## CTA (rodapé) — fixo em toda peça
 
 Instagram @Tintaslaet + WhatsApp (11) 97714-0964 + site tintaslaet.com (`scripts/orcamento/rodape.js`). WhatsApp só muda em peça de loja específica. Regra também no `CLAUDE.md`.
+
+## Persistência do contador (importante)
+
+Toda sessão nova começa clonando a `main`. Por isso o `contador.json` só "lembra" se o último valor estiver **commitado e na `main`**. Ao gerar qualquer documento valendo: commitar o `contador.json` e dar push. Ao começar uma sessão: ler o `contador.json` antes de gerar e conferir com o último número que o Kevin disser, se ele falar um diferente, o dele vale.
