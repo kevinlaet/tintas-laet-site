@@ -1,6 +1,6 @@
 // Gera a AUTORIZAÇÃO DE RETIRADA (PNG + PDF) no mesmo design do orçamento, com número sequencial próprio.
 // Uso: node scripts/orcamento/retirada.js retirada.json [--teste] [--numero N]
-// JSON: { "cliente":"", "whatsappCliente":"", "vendedor":"Kevin", "loja":"Loja 1 — Vila Bela (Sapopemba)",
+// JSON: { "cliente":"", "whatsappCliente":"", "vendedor":"Kevin", "loja":"Loja 3 — Mauá (Av. Ayrton Senna)" (OBRIGATÓRIO),
 //         "whatsappLoja":"(11) 97714-0964",
 //         "itens":[{"produto":"Super Profissional","cor":"Cinza Medieval","tamanho":"Balde 18L","qtd":1,"unit":149.90}],
 //         "pago":60, "formaPagamento":"", "retirada":{"data":"09/10/2026","periodo":"Tarde"} }
@@ -9,7 +9,7 @@ const path = require('path');
 const rod = require('./rodape');
 
 const RAIZ = path.resolve(__dirname, '../..');
-const CONTADOR = path.join(__dirname, 'contador.json')   // mesmo contador do orçamento: pedidos e retiradas dividem a numeração;
+const CONTADOR = path.join(__dirname, 'contador.json'); // mesmo contador do orçamento: pedidos e retiradas dividem a numeração
 const REGISTRO_DIR = path.join(RAIZ, 'dados', 'orcamentos');
 const brl = (n) => 'R$ ' + n.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -24,6 +24,8 @@ const b64 = (f) => 'data:image/png;base64,' + fs.readFileSync(path.join(RAIZ, f)
   if (!arq) { console.error('Uso: node scripts/orcamento/retirada.js retirada.json [--teste] [--numero N]'); process.exit(1); }
   const d = JSON.parse(fs.readFileSync(arq, 'utf8'));
   if (!d.cliente || !Array.isArray(d.itens) || !d.itens.length) { console.error('✗ Falta cliente ou itens.'); process.exit(1); }
+  if (!d.loja) { console.error('✗ Falta a loja de retirada (campo "loja"). Pergunte ao Kevin.'); process.exit(1); }
+  if (!d.retirada || !d.retirada.data) { console.error('✗ Falta a data prevista de retirada (campo "retirada"). Pergunte ao Kevin.'); process.exit(1); }
 
   const vendedor = d.vendedor || 'Kevin';
   const wLoja = d.whatsappLoja || '(11) 97714-0964';
@@ -80,14 +82,14 @@ body{width:1080px;background:#fff;font-family:Poppins,sans-serif;color:var(--gra
 ${rod.css}
 </style></head><body>
 <div class="topo"><img src="${b64('identidade/logotipo branco-remove-bg-io.png')}"><div class="tit"><h1>AUTORIZAÇÃO DE<br>RETIRADA</h1><div class="n">Nº ${numero}</div></div></div>
-<div class="intro">Autorizamos a retirada do produto abaixo${d.loja ? ' na <b>' + esc(d.loja) + '</b>' : ' na loja'}${quitado ? '.' : ', mediante o pagamento do saldo restante.'}</div>
+<div class="intro">Autorizamos a retirada do produto abaixo na loja indicada${quitado ? '.' : ', mediante o pagamento do saldo restante.'}</div>
 <div class="dados">
   <div><small>Cliente</small><b>${esc(d.cliente)}</b></div>
   <div><small>WhatsApp do cliente</small><b>${esc(d.whatsappCliente || '—')}</b></div>
   <div><small>Data da autorização</small><b>${data}</b></div>
   <div><small>Vendedor</small><b>${esc(vendedor)}</b></div>
-  ${d.retirada ? `<div class="full"><small>Retirada prevista</small><b>${esc(d.retirada.data)}${d.retirada.periodo ? ' · período da ' + esc(d.retirada.periodo.toLowerCase()) : ''}</b></div>` : ''}
-  ${d.loja ? `<div class="full"><small>Loja de retirada</small><b>${esc(d.loja)}</b></div>` : ''}
+  <div><small>Retirada prevista</small><b>${esc(d.retirada.data)}${d.retirada.periodo ? ' · ' + esc(d.retirada.periodo.toLowerCase()) : ''}</b></div>
+  <div><small>Loja de retirada</small><b>${esc(d.loja)}</b></div>
 </div>
 <div class="lista"><div class="cab"><div>Produto</div><div>Qtd</div><div>Valor</div></div>${linhas}</div>
 <div class="pag">

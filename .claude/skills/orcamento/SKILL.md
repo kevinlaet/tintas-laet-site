@@ -64,3 +64,14 @@ Instagram @Tintaslaet + WhatsApp (11) 97714-0964 + site tintaslaet.com (`scripts
 ## Persistência do contador (importante)
 
 Toda sessão nova começa clonando a `main`. Por isso o `contador.json` só "lembra" se o último valor estiver **commitado e na `main`**. Ao gerar qualquer documento valendo: commitar o `contador.json` e dar push. Ao começar uma sessão: ler o `contador.json` antes de gerar e conferir com o último número que o Kevin disser, se ele falar um diferente, o dele vale.
+
+## Dados obrigatórios — SEMPRE perguntar o que faltar (regra do Kevin, 09/10/2026)
+
+Antes de gerar, conferir a lista. Se faltar algo, pedir ao Kevin numa mensagem só (curta). Não gerar com campo vazio.
+
+**Autorização de retirada** (o script recusa sem loja e sem data):
+1. Nome do cliente · 2. WhatsApp do cliente · 3. Produto, cor, tamanho, quantidade · 4. Valor total · 5. Valor já pago (e forma de pagamento, se ele quiser) · 6. **Loja de retirada** (1 a 6) · 7. **Data prevista de retirada + período** (manhã/tarde) · 8. Vendedor (padrão Kevin).
+
+**Orçamento:** nome e WhatsApp do cliente, itens com quantidade (galão por padrão), **loja de retirada e data prevista** (quando o cliente for retirar; campos opcionais `loja` e `retirada`), vendedor (padrão Kevin).
+
+Nomes de loja (usar assim): Loja 1 — Vila Bela (Sapopemba) · Loja 2 — Mauá (Jardim São João) · Loja 3 — Mauá (Av. Ayrton Senna) · Loja 4 — Santo André (Vila Luzita) · Loja 5 — Mauá (Itapark) · Loja 6 — São Bernardo do Campo (Santa Terezinha).

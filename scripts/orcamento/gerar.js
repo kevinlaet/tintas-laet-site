@@ -86,6 +86,8 @@ ${rod.css}
   <div><small>WhatsApp do cliente</small><b>${esc(d.whatsappCliente || '—')}</b></div>
   <div><small>Vendedor</small><b>${esc(vendedor)}</b></div>
   <div><small>Data</small><b>${data}</b></div>
+  ${d.retirada ? `<div><small>Retirada prevista</small><b>${esc(d.retirada.data)}${d.retirada.periodo ? ' · ' + esc(d.retirada.periodo.toLowerCase()) : ''}</b></div>` : ''}
+  ${d.loja ? `<div><small>Loja de retirada</small><b>${esc(d.loja)}</b></div>` : ''}
 </div>
 <div class="lista"><div class="cab"><div>Produto</div><div>Qtd</div><div>Unitário</div><div>Subtotal</div></div>${linhas}</div>
 <div class="totais">
