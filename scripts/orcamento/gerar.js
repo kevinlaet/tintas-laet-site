@@ -9,6 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 
+const rod = require('./rodape');
 const RAIZ = path.resolve(__dirname, '../..');
 const CONTADOR = path.join(__dirname, 'contador.json');       // versionado: só o último número, sem dado de cliente
 const REGISTRO_DIR = path.join(RAIZ, 'dados', 'orcamentos');  // dados/ é privado (gitignored): histórico com nome de cliente
@@ -77,10 +78,7 @@ body{width:1080px;background:#fff;font-family:Poppins,sans-serif;color:var(--gra
 .total span{font:700 30px Montserrat,sans-serif}
 .total b{font:400 76px 'Bebas Neue',sans-serif;color:var(--am);letter-spacing:1px}
 .obs{margin:0 56px 26px;font-size:22px;color:#5b6470}
-.rodape{background:var(--azesc);color:#fff;padding:40px 56px;text-align:center}
-.rodape .cta{display:inline-block;background:var(--am);color:var(--graf);font:800 38px Montserrat,sans-serif;padding:16px 40px;border-radius:8px;margin-bottom:18px}
-.rodape .w{font:400 66px 'Bebas Neue',sans-serif;letter-spacing:2px}
-.rodape p{font-size:22px;opacity:.9;margin-top:8px}
+${rod.css}
 </style></head><body>
 <div class="topo"><img src="${b64('identidade/logotipo branco-remove-bg-io.png')}"><div class="tit"><h1>ORÇAMENTO</h1><div class="n">Nº ${numero}</div></div></div>
 <div class="dados">
@@ -96,7 +94,7 @@ body{width:1080px;background:#fff;font-family:Poppins,sans-serif;color:var(--gra
 </div>
 ${d.obs ? `<div class="obs">${esc(d.obs)}</div>` : ''}
 <div class="obs">Parcelamento em até 12x sem juros (consulte as condições). Valores sujeitos a alteração sem aviso prévio.</div>
-<div class="rodape"><div class="cta">Para confirmar seu pedido, fale conosco</div><div class="w">${esc(wLoja)}</div><p>Atenciosamente, Tintas Laet · tintaslaet.com · @Tintaslaet</p></div>
+${rod.html('Para confirmar seu pedido, fale conosco', esc(wLoja))}
 </body></html>`;
 
   const stamp = hoje.toISOString().slice(0, 10);

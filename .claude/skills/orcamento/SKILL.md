@@ -46,3 +46,17 @@ Segue `identidade/design-guide.md`: cabeçalho azul `#0D47A1` com logo branco e 
 
 - Validade do orçamento (ex.: 7 dias) — ainda não definida pelo Kevin; não inventar.
 - Ler preço direto de `produto.html` por nome de produto/cor (hoje o preço é buscado manualmente no passo 2).
+
+## Autorização de retirada (09/10/2026)
+
+Mesmo design do orçamento, pra cliente que pagou parte (sinal) e acerta o resto na loja. Mostra data, cliente, WhatsApp, produto, cor, tamanho, quantidade, valor total, valor pago e **saldo a pagar na retirada**. Se saldo = 0 vira "PAGO — RETIRADA LIBERADA".
+
+```
+node scripts/orcamento/retirada.js retirada.json          # gasta um número (contador próprio: contador-retirada.json)
+node scripts/orcamento/retirada.js retirada.json --teste  # prévia
+```
+JSON: ver cabeçalho de `scripts/orcamento/retirada.js` (`cliente`, `whatsappCliente`, `loja`, `itens[]`, `pago`, `formaPagamento`). Pedir ao Kevin a loja de retirada se não vier. Histórico em `dados/orcamentos/registro-retiradas.csv` (privado). Commitar o `contador-retirada.json` depois de gerar valendo.
+
+## CTA (rodapé) — fixo em toda peça
+
+Instagram @Tintaslaet + WhatsApp (11) 97714-0964 + site tintaslaet.com (`scripts/orcamento/rodape.js`). WhatsApp só muda em peça de loja específica. Regra também no `CLAUDE.md`.
