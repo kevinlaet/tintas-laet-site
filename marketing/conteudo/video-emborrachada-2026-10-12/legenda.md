@@ -1,23 +1,24 @@
 # Legenda — Vídeo Tinta Emborrachada + 6 lojas (12/10/2026)
 
 ```
-Tinta emborrachada pra laje, muro e fachada 👇
-
-Líquida na lata. Quando seca, vira uma membrana de borracha.
-
-✅ Impermeável
-✅ Protege contra sol, chuva e microfissuras
-✅ Lavável
-
+Tinta emborrachada pra laje e muro 👇
+Líquida na lata, vira borracha ao secar
+⠀
+💧 Impermeável
+☀️ Protege contra sol e chuva
+🧱 Protege contra microfissuras
+🧼 Lavável
+⠀
 💳 12x de R$ 33,32 sem juros
 🪣 Balde 18L branca: R$ 399,90
-
-📍 6 lojas: Mauá, Santo André, São Bernardo do Campo e São Paulo
+⠀
+📍 6 lojas no ABC e Zona Leste
+Mauá, Santo André e São Bernardo do Campo
 🌐 tintaslaet.com
-📱 WhatsApp (11) 97714-0964
-
-Salva esse vídeo pra quando for impermeabilizar 💙
-
+📱 (11) 97714-0964
+⠀
+Salva pra quando for impermeabilizar 💙
+⠀
 #TintasLaet #TintaEmborrachada #LojaDeTintas #ABCPaulista #ZonaLeste
 ```
 
