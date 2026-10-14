@@ -15,145 +15,163 @@ body{background:#ddd}
 .slide{width:1080px;height:1920px;position:relative;overflow:hidden;background:#fff;margin-bottom:20px}
 .geo{position:absolute;border-radius:44px;transform:rotate(-22deg)}
 .g-esc{background:var(--escuro)}.g-azul{background:var(--azul)}.g-claro{background:var(--claro)}.g-claro2{background:var(--claro2)}
-.in{position:absolute;left:80px;right:80px;top:190px;bottom:250px;display:flex;flex-direction:column;z-index:3}
-.logo{width:250px}
-.ey{font:700 30px/1 'Poppins',sans-serif;color:var(--azul);letter-spacing:.18em;text-transform:uppercase;margin-top:44px}
-h1{font:400 136px/1.04 'Bebas Neue',sans-serif;color:var(--escuro);margin-top:14px}
+.in{position:absolute;left:80px;right:80px;top:150px;bottom:230px;display:flex;flex-direction:column;align-items:center;text-align:center;z-index:3}
+.logo{width:230px}
+.ey{font:700 28px/1 'Poppins',sans-serif;color:var(--azul);letter-spacing:.2em;text-transform:uppercase;margin-top:44px}
+h1{font:400 128px/1.02 'Bebas Neue',sans-serif;color:var(--escuro);margin-top:16px}
 h1 .g{display:inline-block;line-height:.9;background:var(--amarelo);padding:8px 26px 0;border-radius:18px;transform:rotate(-2deg)}
-.foto{position:relative;height:520px;margin-top:26px;display:flex;align-items:center;justify-content:center}
-.foto::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,#DCE6F7 0%,rgba(220,230,247,0) 70%)}
-.foto img{position:relative;height:500px;filter:drop-shadow(0 26px 30px rgba(6,43,99,.28))}
-.selo{position:absolute;right:0;bottom:30px;background:var(--amarelo);border-radius:26px;padding:18px 26px 10px;transform:rotate(-4deg);box-shadow:0 14px 30px rgba(6,43,99,.28);text-align:center}
-.selo small{display:block;font:700 26px/1 'Poppins',sans-serif;color:var(--escuro)}
-.selo b{display:block;font:400 104px/1 'Bebas Neue',sans-serif;color:var(--escuro);letter-spacing:.01em;margin-top:4px}
-.tag{align-self:flex-start;font:700 24px/1 'Poppins',sans-serif;color:var(--azul);background:var(--claro);border-radius:10px;padding:10px 16px 8px;text-transform:uppercase;letter-spacing:.04em;margin-top:18px}
-.bul{list-style:none;margin-top:22px}
-.bul li{display:flex;align-items:center;gap:18px;font:600 34px/1.25 'Poppins',sans-serif;color:#2b3a55;margin-bottom:14px}
-.bul li::before{content:'✓';flex-shrink:0;width:46px;height:46px;border-radius:12px;background:var(--azul);color:#fff;font:700 28px/46px 'Poppins',sans-serif;text-align:center}
-.p2{font:600 30px/1 'Poppins',sans-serif;color:#5b6470;margin-top:8px}
-.p2 b{font:400 58px/1 'Bebas Neue',sans-serif;color:var(--azul);margin-left:10px;letter-spacing:.02em}
-.rod{margin-top:auto}
-.x12{align-self:center;text-align:center;font:600 34px/1 'Poppins',sans-serif;color:var(--escuro);margin-bottom:18px}
-.x12 b{display:inline-block;font:400 56px/1 'Bebas Neue',sans-serif;background:var(--amarelo);color:var(--escuro);padding:8px 18px 2px;border-radius:12px;margin-left:8px;letter-spacing:.02em;transform:rotate(-2deg)}
-.cta{display:flex;align-items:center;justify-content:center;background:var(--escuro);color:#fff;border-radius:28px;padding:26px 36px 20px;font:400 72px/1 'Bebas Neue',sans-serif;letter-spacing:.04em}
-.contatos{display:flex;align-items:center;justify-content:center;gap:4px;font:600 25px/1 'Poppins',sans-serif;color:#4a5260;margin-top:18px;white-space:nowrap}
-.contatos svg{width:30px;height:30px;margin-right:6px}
-.nota{font:600 20px/1.35 'Poppins',sans-serif;color:#6b7380;text-align:center;margin-top:12px}
+.sub{font:600 32px/1.3 'Poppins',sans-serif;color:#4a5260;margin-top:18px}
+.foto{position:relative;width:100%;height:440px;margin-top:20px;display:flex;align-items:center;justify-content:center}
+.foto::before{content:'';position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,#DCE6F7 0%,rgba(220,230,247,0) 68%)}
+.foto img{position:relative;height:430px;filter:drop-shadow(0 24px 28px rgba(6,43,99,.28))}
+.bul{display:flex;justify-content:center;gap:34px;margin-top:14px}
+.bul span{display:flex;align-items:center;gap:10px;font:700 26px/1 'Poppins',sans-serif;color:var(--escuro);white-space:nowrap}
+.bul svg{width:34px;height:34px;flex-shrink:0}
+.preco{width:100%;margin-top:30px;border-radius:30px;overflow:hidden;box-shadow:0 18px 40px rgba(6,43,99,.22)}
+.preco .lin{display:grid;grid-template-columns:1.25fr 1fr;background:var(--escuro)}
+.preco .cel{padding:26px 20px 18px}
+.preco .cel+.cel{border-left:2px solid rgba(255,255,255,.18)}
+.preco small{display:block;font:700 24px/1 'Poppins',sans-serif;color:#AFC6EC;letter-spacing:.02em}
+.preco b{display:block;font:400 104px/1 'Bebas Neue',sans-serif;color:var(--amarelo);letter-spacing:.01em;margin-top:6px}
+.preco .cel+.cel b{font-size:76px;color:#fff;margin-top:20px}
+.preco .x12{background:var(--amarelo);color:var(--escuro);padding:16px 20px 14px;font:700 28px/1 'Poppins',sans-serif}
+.preco .x12 strong{font:400 44px/1 'Bebas Neue',sans-serif;letter-spacing:.02em;vertical-align:-3px;margin:0 4px}
+.preco .x12 em{font-style:normal;font-weight:600;font-size:22px;opacity:.8}
+.rod{margin-top:auto;width:100%}
+.cta{display:block;border:4px solid var(--escuro);color:var(--escuro);border-radius:24px;padding:20px 30px 14px;font:400 68px/1 'Bebas Neue',sans-serif;letter-spacing:.06em}
+.contatos{display:flex;align-items:center;justify-content:center;gap:30px;font:700 27px/1 'Poppins',sans-serif;color:#4a5260;margin-top:22px}
+.contatos span{display:flex;align-items:center;gap:10px}
+.contatos svg{width:34px;height:34px}
 </style>
 </head>
 <body>
 
 <!-- STORY 1: Super Profissional -->
 <div class="slide">
-  <div class="geo g-esc" style="width:420px;height:420px;right:-140px;top:-150px"></div>
-  <div class="geo g-claro2" style="width:200px;height:200px;right:250px;top:-70px;opacity:.8"></div>
-  <div class="geo g-claro" style="width:300px;height:300px;left:-170px;top:760px"></div>
+  <div class="geo g-esc" style="width:360px;height:360px;right:-150px;top:-150px"></div>
+  <div class="geo g-claro2" style="width:170px;height:170px;right:180px;top:-80px;opacity:.8"></div>
+  <div class="geo g-claro" style="width:300px;height:300px;left:-190px;top:-120px"></div>
   <div class="in">
     <img class="logo" src="img/logo.png" alt="Tintas Laet">
     <div class="ey">Super Profissional</div>
     <h1>Até <span class="g">330 m²</span><br>por demão</h1>
-    <div class="foto"><img src="img/profissional.png" alt="Super Profissional">
-      <div class="selo"><small>Balde 18L branca</small><b data-preco="super-profissional|18L — Branca">R$ 139,90</b></div></div>
-    <span class="tag">Interna</span>
-    <ul class="bul"><li>Ótimo custo-benefício</li><li>Anti-mofo</li><li>Rende até 330 m² em parede preparada e selada</li></ul>
-    <div class="p2">Galão 3,6L branca<b data-preco="super-profissional|3,6L — Branca">R$ 39,90</b></div>
+    <div class="sub">Em parede preparada e selada</div>
+    <div class="foto"><img src="img/profissional.png" alt="Super Profissional"></div>
+    <div class="bul"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Anti-mofo</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ótimo custo-benefício</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Uso interno</span></div>
+    <div class="preco">
+      <div class="lin">
+        <div class="cel"><small>Balde 18L branca</small><b data-preco="super-profissional|18L — Branca">R$ 139,90</b></div>
+        <div class="cel"><small>Galão 3,6L branca</small><b data-preco="super-profissional|3,6L — Branca">R$ 39,90</b></div>
+      </div>
+      <div class="x12">Em até <strong>12x sem juros</strong> <em>· consulte as condições</em></div>
+    </div>
     <div class="rod">
-      <div class="x12">Em até <b>12x sem juros*</b></div>
       <div class="cta">TINTASLAET.COM</div>
-      <div class="contatos"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg> (11) 97714-0964 &nbsp;·&nbsp; @tintaslaet &nbsp;·&nbsp; 6 lojas no ABC e Zona Leste</div>
-      <p class="nota">*Consulte as condições. Preços sujeitos a alteração.</p>
+      <div class="contatos"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg>(11) 97714-0964</span><span><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#062B63"/><rect x="5.5" y="5.5" width="13" height="13" rx="3.8" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.1" cy="7.9" r="1" fill="#fff"/></svg>@tintaslaet</span></div>
     </div>
   </div>
 </div>
 
 <!-- STORY 2: 1ª Linha Standard -->
 <div class="slide">
-  <div class="geo g-azul" style="width:400px;height:400px;left:-150px;top:-140px"></div>
-  <div class="geo g-claro" style="width:220px;height:220px;left:230px;top:-90px"></div>
-  <div class="geo g-claro2" style="width:260px;height:260px;right:-140px;top:820px;opacity:.8"></div>
+  <div class="geo g-azul" style="width:360px;height:360px;left:-150px;top:-150px"></div>
+  <div class="geo g-claro2" style="width:170px;height:170px;left:180px;top:-80px;opacity:.8"></div>
+  <div class="geo g-claro" style="width:300px;height:300px;right:-190px;top:-120px"></div>
   <div class="in">
-    <img class="logo" src="img/logo.png" alt="Tintas Laet" style="align-self:flex-end">
+    <img class="logo" src="img/logo.png" alt="Tintas Laet">
     <div class="ey">1ª Linha Standard</div>
     <h1>Preço baixo,<br>tinta <span class="g">grossa</span></h1>
-    <div class="foto"><img src="img/standard.png" alt="1ª Linha Standard">
-      <div class="selo"><small>Balde 18L branca</small><b data-preco="standard|18L — Branca">R$ 219,90</b></div></div>
-    <span class="tag">Interna e externa</span>
-    <ul class="bul"><li>Concentrada: pode diluir até 20%</li><li>Cobre fácil até cor forte</li><li>Anti-mofo</li></ul>
-    <div class="p2">Galão 3,6L branca<b data-preco="standard|3,6L — Branca">R$ 59,90</b></div>
+    <div class="sub">Concentrada: pode diluir até 20%</div>
+    <div class="foto"><img src="img/standard.png" alt="1ª Linha Standard"></div>
+    <div class="bul"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Cobre até cor forte</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Anti-mofo</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Interna e externa</span></div>
+    <div class="preco">
+      <div class="lin">
+        <div class="cel"><small>Balde 18L branca</small><b data-preco="standard|18L — Branca">R$ 219,90</b></div>
+        <div class="cel"><small>Galão 3,6L branca</small><b data-preco="standard|3,6L — Branca">R$ 59,90</b></div>
+      </div>
+      <div class="x12">Em até <strong>12x sem juros</strong> <em>· consulte as condições</em></div>
+    </div>
     <div class="rod">
-      <div class="x12">Em até <b>12x sem juros*</b></div>
       <div class="cta">TINTASLAET.COM</div>
-      <div class="contatos"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg> (11) 97714-0964 &nbsp;·&nbsp; @tintaslaet &nbsp;·&nbsp; 6 lojas no ABC e Zona Leste</div>
-      <p class="nota">*Consulte as condições. Preços sujeitos a alteração.</p>
+      <div class="contatos"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg>(11) 97714-0964</span><span><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#062B63"/><rect x="5.5" y="5.5" width="13" height="13" rx="3.8" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.1" cy="7.9" r="1" fill="#fff"/></svg>@tintaslaet</span></div>
     </div>
   </div>
 </div>
 
 <!-- STORY 3: Premium Lavável -->
 <div class="slide">
-  <div class="geo g-claro2" style="width:380px;height:380px;right:-140px;top:-130px;opacity:.85"></div>
-  <div class="geo g-esc" style="width:180px;height:180px;right:200px;top:-80px"></div>
-  <div class="geo g-claro" style="width:300px;height:300px;left:-170px;top:800px"></div>
+  <div class="geo g-esc" style="width:360px;height:360px;right:-150px;top:-150px"></div>
+  <div class="geo g-claro" style="width:170px;height:170px;right:180px;top:-80px"></div>
+  <div class="geo g-claro2" style="width:300px;height:300px;left:-190px;top:-120px;opacity:.7"></div>
   <div class="in">
     <img class="logo" src="img/logo.png" alt="Tintas Laet">
     <div class="ey">Premium Lavável</div>
     <h1>Sujou?<br><span class="g">É só lavar</span></h1>
-    <div class="foto"><img src="img/premium.png" alt="Premium Lavável">
-      <div class="selo"><small>Balde 18L branca</small><b data-preco="premium-lavavel|18L — Branca">R$ 299,90</b></div></div>
-    <span class="tag">Interna e externa</span>
-    <ul class="bul"><li>Lavável: limpa com facilidade</li><li>Baixo odor</li><li>Anti-mofo e excelente cobertura</li></ul>
-    <div class="p2">Galão 3,6L branca<b data-preco="premium-lavavel|3,6L — Branca">R$ 79,90</b></div>
+    <div class="sub">A mais completa da linha Laet</div>
+    <div class="foto"><img src="img/premium.png" alt="Premium Lavável"></div>
+    <div class="bul"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Baixo odor</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Anti-mofo</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Interna e externa</span></div>
+    <div class="preco">
+      <div class="lin">
+        <div class="cel"><small>Balde 18L branca</small><b data-preco="premium-lavavel|18L — Branca">R$ 299,90</b></div>
+        <div class="cel"><small>Galão 3,6L branca</small><b data-preco="premium-lavavel|3,6L — Branca">R$ 79,90</b></div>
+      </div>
+      <div class="x12">Em até <strong>12x sem juros</strong> <em>· consulte as condições</em></div>
+    </div>
     <div class="rod">
-      <div class="x12">Em até <b>12x sem juros*</b></div>
       <div class="cta">TINTASLAET.COM</div>
-      <div class="contatos"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg> (11) 97714-0964 &nbsp;·&nbsp; @tintaslaet &nbsp;·&nbsp; 6 lojas no ABC e Zona Leste</div>
-      <p class="nota">*Consulte as condições. Preços sujeitos a alteração.</p>
+      <div class="contatos"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg>(11) 97714-0964</span><span><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#062B63"/><rect x="5.5" y="5.5" width="13" height="13" rx="3.8" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.1" cy="7.9" r="1" fill="#fff"/></svg>@tintaslaet</span></div>
     </div>
   </div>
 </div>
 
 <!-- STORY 4: Tinta Emborrachada -->
 <div class="slide">
-  <div class="geo g-esc" style="width:420px;height:420px;left:-150px;top:-160px"></div>
-  <div class="geo g-claro2" style="width:200px;height:200px;left:240px;top:-90px;opacity:.8"></div>
-  <div class="geo g-claro" style="width:280px;height:280px;right:-150px;top:780px"></div>
+  <div class="geo g-azul" style="width:360px;height:360px;left:-150px;top:-150px"></div>
+  <div class="geo g-claro" style="width:170px;height:170px;left:180px;top:-80px"></div>
+  <div class="geo g-claro2" style="width:300px;height:300px;right:-190px;top:-120px;opacity:.7"></div>
   <div class="in">
-    <img class="logo" src="img/logo.png" alt="Tintas Laet" style="align-self:flex-end">
+    <img class="logo" src="img/logo.png" alt="Tintas Laet">
     <div class="ey">Tinta Emborrachada</div>
     <h1>Chega de<br><span class="g">infiltração</span></h1>
-    <div class="foto"><img src="img/emborrachada.png" alt="Tinta Emborrachada">
-      <div class="selo"><small>Balde 18L branca</small><b data-preco="emborrachada|18L — Branca">R$ 399,90</b></div></div>
-    <span class="tag">Laje, telhado e muro</span>
-    <ul class="bul"><li>Resolve até 100% da infiltração</li><li>Vira uma borracha que sela a superfície</li><li>Protege do sol e da chuva</li></ul>
-    <div class="p2">Galão 3,6L branca<b data-preco="emborrachada|3,6L — Branca">R$ 99,90</b></div>
+    <div class="sub">Resolve até 100% da infiltração</div>
+    <div class="foto"><img src="img/emborrachada.png" alt="Tinta Emborrachada"></div>
+    <div class="bul"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Vira borracha</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Sol e chuva</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Laje, telhado e muro</span></div>
+    <div class="preco">
+      <div class="lin">
+        <div class="cel"><small>Balde 18L branca</small><b data-preco="emborrachada|18L — Branca">R$ 399,90</b></div>
+        <div class="cel"><small>Galão 3,6L branca</small><b data-preco="emborrachada|3,6L — Branca">R$ 99,90</b></div>
+      </div>
+      <div class="x12">Em até <strong>12x sem juros</strong> <em>· consulte as condições</em></div>
+    </div>
     <div class="rod">
-      <div class="x12">Em até <b>12x sem juros*</b></div>
       <div class="cta">TINTASLAET.COM</div>
-      <div class="contatos"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg> (11) 97714-0964 &nbsp;·&nbsp; @tintaslaet &nbsp;·&nbsp; 6 lojas no ABC e Zona Leste</div>
-      <p class="nota">*Consulte as condições. Preços sujeitos a alteração.</p>
+      <div class="contatos"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg>(11) 97714-0964</span><span><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#062B63"/><rect x="5.5" y="5.5" width="13" height="13" rx="3.8" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.1" cy="7.9" r="1" fill="#fff"/></svg>@tintaslaet</span></div>
     </div>
   </div>
 </div>
 
 <!-- STORY 5: Epóxi Base Água -->
 <div class="slide">
-  <div class="geo g-azul" style="width:380px;height:380px;right:-140px;top:-140px"></div>
-  <div class="geo g-claro" style="width:220px;height:220px;right:220px;top:-90px"></div>
-  <div class="geo g-claro2" style="width:280px;height:280px;left:-160px;top:820px;opacity:.8"></div>
+  <div class="geo g-esc" style="width:360px;height:360px;right:-150px;top:-150px"></div>
+  <div class="geo g-claro2" style="width:170px;height:170px;right:180px;top:-80px;opacity:.8"></div>
+  <div class="geo g-claro" style="width:300px;height:300px;left:-190px;top:-120px"></div>
   <div class="in">
     <img class="logo" src="img/logo.png" alt="Tintas Laet">
     <div class="ey">Epóxi Base Água</div>
     <h1>Renove sem<br><span class="g">quebrar</span></h1>
-    <div class="foto"><img src="img/epoxi.png" alt="Epóxi Base Água">
-      <div class="selo"><small>Galão 3,6L branca</small><b data-preco="epoxi-base-agua|3,6L — Branca">R$ 129,90</b></div></div>
-    <span class="tag">Azulejo, banheiro e metal</span>
-    <ul class="bul"><li>Pinta azulejo, cozinha, banheiro e metal</li><li>Sem cheiro forte</li><li>Secagem rápida e lavável</li></ul>
-    <div class="p2">900ml branca<b data-preco="epoxi-base-agua|900ml — Branca">R$ 35,90</b></div>
+    <div class="sub">Pinta azulejo, banheiro e metal</div>
+    <div class="foto"><img src="img/epoxi.png" alt="Epóxi Base Água"></div>
+    <div class="bul"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Sem cheiro forte</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Secagem rápida</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D47A1"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Lavável</span></div>
+    <div class="preco">
+      <div class="lin">
+        <div class="cel"><small>Galão 3,6L branca</small><b data-preco="epoxi-base-agua|3,6L — Branca">R$ 129,90</b></div>
+        <div class="cel"><small>900ml branca</small><b data-preco="epoxi-base-agua|900ml — Branca">R$ 35,90</b></div>
+      </div>
+      <div class="x12">Em até <strong>12x sem juros</strong> <em>· consulte as condições</em></div>
+    </div>
     <div class="rod">
-      <div class="x12">Em até <b>12x sem juros*</b></div>
       <div class="cta">TINTASLAET.COM</div>
-      <div class="contatos"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg> (11) 97714-0964 &nbsp;·&nbsp; @tintaslaet &nbsp;·&nbsp; 6 lojas no ABC e Zona Leste</div>
-      <p class="nota">*Consulte as condições. Preços sujeitos a alteração.</p>
+      <div class="contatos"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg>(11) 97714-0964</span><span><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#062B63"/><rect x="5.5" y="5.5" width="13" height="13" rx="3.8" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.1" cy="7.9" r="1" fill="#fff"/></svg>@tintaslaet</span></div>
     </div>
   </div>
 </div>
