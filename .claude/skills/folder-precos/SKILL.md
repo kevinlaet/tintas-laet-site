@@ -71,6 +71,7 @@ Editar o `folder.html` do modelo (`templates/folder-guia-pintura-10x21/`, `-a5/`
 - **Contatos sem rótulo:** só ícone + número / @ / site (sem escrever "WhatsApp", "Instagram", "Site").
 - Massa corrida/acrílica: preço do **saco 23kg** e imagem `barrica+plastico.png` (barrica + saco na bolinha).
 - Textos de produto seguem a seção **"Conhecimento de produto — aulas do Kevin"** do `CLAUDE.md` (ex.: Super Profissional 330 m², fundo x seladora, massa corrida x acrílica). Nada abreviado ("Interna e externa", não "Int. e ext.").
+- **Rendimento sempre "até X m² por demão"** (regra do Kevin, 14/10/2026), nunca abreviado ("m²/demão") nem sem o "até".
 - Sem lista de compras (Kevin tirou em 01/10/2026: ninguém usa, ocupava espaço).
 - Produto novo: copiar um bloco `.prod`, trocar imagem (`img/`), textos e os `data-preco`.
   O tamanho no `data-preco` precisa ser idêntico ao `desc` do site (com travessão "—").
