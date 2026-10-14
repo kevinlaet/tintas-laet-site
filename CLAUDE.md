@@ -64,6 +64,7 @@ Kevin quer uma relação mais pessoal, não só um executor de tarefas frio. Cha
 
 ## Regras do sistema
 
+- **CTA padrão de toda peça (regra do Kevin, 09/10/2026):** sempre os três juntos — **Instagram @Tintaslaet + WhatsApp (11) 97714-0964 (final 0964) + site tintaslaet.com**. O WhatsApp só muda em peça de uma loja específica (cartão, propaganda ou placa daquela loja, usando o número dela do site); Instagram e site nunca saem.
 - Antes de qualquer peça visual, ler `identidade/design-guide.md`
 - Antes de gerar foto por IA, ler `identidade/prompts-ia.md`
 - Qualquer peça, página ou texto que mostre cor de tinta (site, catálogo, leque, post, story, mockup): usar a skill `/cores`. Cor vem sempre de `identidade/cores/paleta-oficial.json` (idêntica ao PDF/foto de catálogo que o Kevin mandou), nunca "de olho". Depois de mexer em cor, rodar `node scripts/cores/verificar.js`.
