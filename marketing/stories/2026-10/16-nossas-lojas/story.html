@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1080">
-<title>Tintas Laet — Nossas lojas</title>
+<title>Tintas Laet — Loja nova em São Bernardo do Campo</title>
 <style>
 @font-face { font-family:'Bebas Neue'; font-weight:400; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
 @font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
@@ -15,62 +15,49 @@
 body { background:#020A18; }
 .slide { width:1080px; height:1920px; position:relative; overflow:hidden; color:#fff; }
 
-.foto { position:absolute; inset:0; z-index:0; background:url('../../../../marketing/imagem das lojas/loja6 fachada.png') center 30% / cover no-repeat; }
-.scrim-top { position:absolute; top:0; left:0; right:0; height:600px; z-index:1;
-  background:linear-gradient(180deg, rgba(2,10,24,.88) 0%, rgba(2,10,24,.5) 50%, rgba(2,10,24,0) 100%); }
-.scrim-bot { position:absolute; bottom:0; left:0; right:0; height:1080px; z-index:1;
-  background:linear-gradient(180deg, rgba(2,10,24,0) 0%, rgba(3,24,58,.75) 20%, #062043 46%, #03162f 100%); }
+.foto { position:absolute; inset:0; z-index:0; background:url('../../../../marketing/imagem das lojas/loja6 fachada.png') center -130px / auto 2050px no-repeat; }
+.vinheta { position:absolute; inset:0; z-index:1;
+  background:radial-gradient(ellipse 620px 900px at 50% 42%, rgba(2,10,24,0) 55%, rgba(2,10,24,.6) 100%); }
+.scrim-top { position:absolute; top:0; left:0; right:0; height:470px; z-index:1;
+  background:linear-gradient(180deg, rgba(2,10,24,.9) 0%, rgba(2,10,24,.65) 60%, rgba(2,10,24,0) 100%); }
+.scrim-bot { position:absolute; bottom:0; left:0; right:0; height:760px; z-index:1;
+  background:linear-gradient(180deg, rgba(3,22,47,0) 0%, rgba(3,22,47,.85) 24%, #03162f 46%, #03162f 100%); }
 
-.top { position:absolute; top:96px; left:0; right:0; z-index:10; display:flex; flex-direction:column; align-items:center; text-align:center; }
-.top img { height:260px; margin:-64px 0 -44px; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(0,0,0,.4)); }
-.ey { font:700 25px/1 'Poppins',sans-serif; color:#FFE082; letter-spacing:.2em; text-transform:uppercase; display:flex; align-items:center; gap:16px; margin-top:4px; text-align:center; }
-.ey::before,.ey::after { content:''; width:34px; height:3px; background:rgba(255,224,130,.6); display:block; }
-.num { font:400 102px/.9 'Bebas Neue',sans-serif; color:#fff; margin-top:16px; text-shadow:0 8px 30px rgba(0,0,0,.4); text-align:center; padding:0 40px; }
-.chip { display:inline-flex; margin-top:14px; background:#FFC107; color:#062B63; font:400 46px/1 'Bebas Neue',sans-serif;
-  padding:10px 26px 4px; border-radius:14px; transform:rotate(-2deg); box-shadow:0 10px 26px rgba(0,0,0,.3); }
+.top { position:absolute; top:150px; left:0; right:0; z-index:10; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.h1 { font:400 150px/.85 'Bebas Neue',sans-serif; color:#fff; text-shadow:0 8px 30px rgba(0,0,0,.5); }
+.chip { margin-top:10px; background:#FFC107; color:#062B63; font:400 66px/1 'Bebas Neue',sans-serif;
+  padding:10px 30px 4px; border-radius:14px; transform:rotate(-2deg); box-shadow:0 10px 26px rgba(0,0,0,.35); }
 
-.corpo { position:absolute; left:0; right:0; bottom:0; top:900px; z-index:10; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 72px; }
-.msg { font:600 30px/1.45 'Poppins',sans-serif; margin-top:40px; }
-.msg b { color:#FFC107; font-weight:700; }
-
-.cidades { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:38px; }
-.cid { background:rgba(255,255,255,.08); border:2px solid rgba(255,224,130,.45); border-radius:30px; padding:12px 22px;
-  font:700 21px/1 'Montserrat',sans-serif; color:#fff; }
-
-.cta { margin-top:50px; white-space:nowrap; background:#FFC107; color:#062B63; font:800 27px/1 'Montserrat',sans-serif;
-  padding:20px 36px; border-radius:40px; box-shadow:0 10px 26px rgba(0,0,0,.35); }
-.foot { position:absolute; left:0; right:0; bottom:60px; z-index:10; text-align:center;
-  font:600 22px/1 'Poppins',sans-serif; color:rgba(255,255,255,.85); }
-.foot b { color:#FFE082; font-weight:700; }
+.base { position:absolute; left:0; right:0; top:1300px; z-index:10; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.vem { font:400 124px/.9 'Bebas Neue',sans-serif; color:#fff; text-shadow:0 8px 30px rgba(0,0,0,.4); }
+.end { margin-top:14px; font:800 44px/1.1 'Montserrat',sans-serif; color:#fff; }
+.bairro { margin-top:8px; font:600 34px/1 'Poppins',sans-serif; color:#FFE082; }
+.btn { margin-top:34px; display:flex; align-items:center; gap:16px; background:#FFC107; color:#062B63;
+  font:800 44px/1 'Montserrat',sans-serif; padding:20px 44px; border-radius:60px; box-shadow:0 12px 30px rgba(0,0,0,.4); }
+.btn svg { width:48px; height:48px; fill:#062B63; }
+.sub { margin-top:18px; font:700 30px/1 'Poppins',sans-serif; color:#fff; }
+.sub b { color:#FFE082; }
 </style>
 </head>
 <body>
 <div class="slide">
   <div class="foto"></div>
+  <div class="vinheta"></div>
   <div class="scrim-top"></div>
   <div class="scrim-bot"></div>
 
   <div class="top">
-    <img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
-    <div class="ey">Nossa loja mais nova</div>
-    <div class="num">SÃO BERNARDO<br>DO CAMPO</div>
-    <div class="chip">LOJA 6</div>
+    <div class="h1">LOJA NOVA</div>
+    <div class="chip">EM SÃO BERNARDO DO CAMPO</div>
   </div>
 
-  <div class="corpo">
-    <div class="msg">Mais uma <b>Tintas Laet</b> pra você economizar na reforma.<br>Agora são <b>6 lojas</b> no ABC e na Zona Leste.</div>
-
-    <div class="cidades">
-      <div class="cid">São Paulo</div>
-      <div class="cid">Mauá</div>
-      <div class="cid">Santo André</div>
-      <div class="cid">São Bernardo do Campo</div>
-    </div>
-
-    <div class="cta">Vê o endereço da sua loja</div>
+  <div class="base">
+    <div class="vem">VEM CONHECER!</div>
+    <div class="end">Av. Luís Pequini, 899</div>
+    <div class="bairro">Santa Terezinha</div>
+    <div class="btn"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>(11) 91875-5095</div>
+    <div class="sub"><b>@Tintaslaet</b> · tintaslaet.com</div>
   </div>
-
-  <div class="foot"><b>@Tintaslaet</b> · (11) 97714-0964 · tintaslaet.com</div>
 </div>
 </body>
 </html>

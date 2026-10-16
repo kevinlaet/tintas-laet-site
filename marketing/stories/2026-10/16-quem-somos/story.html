@@ -15,34 +15,27 @@
 body { background:#020A18; }
 .slide { width:1080px; height:1920px; position:relative; overflow:hidden; color:#fff; }
 
-.foto { position:absolute; inset:0; z-index:0; background:url('../../../../marketing/prova social/equipe tintas laet.jpg') center 18% / cover no-repeat; }
-.scrim-top { position:absolute; top:0; left:0; right:0; height:620px; z-index:1;
-  background:linear-gradient(180deg, rgba(2,10,24,.88) 0%, rgba(2,10,24,.55) 48%, rgba(2,10,24,0) 100%); }
-.scrim-bot { position:absolute; bottom:0; left:0; right:0; height:1180px; z-index:1;
-  background:linear-gradient(180deg, rgba(2,10,24,0) 0%, rgba(3,24,58,.72) 22%, #062043 48%, #03162f 100%); }
+.foto { position:absolute; inset:0; z-index:0; background:url('../../../../marketing/prova social/equipe tintas laet.jpg') center -60px / 1080px auto no-repeat; }
+.scrim-top { position:absolute; top:0; left:0; right:0; height:420px; z-index:1;
+  background:linear-gradient(180deg, rgba(2,10,24,.8) 0%, rgba(2,10,24,.35) 60%, rgba(2,10,24,0) 100%); }
+.scrim-bot { position:absolute; bottom:0; left:0; right:0; height:1060px; z-index:1;
+  background:linear-gradient(180deg, rgba(3,22,47,0) 0%, rgba(3,22,47,.82) 20%, #041d3f 34%, #03162f 100%); }
 
-.top { position:absolute; top:96px; left:0; right:0; z-index:10; display:flex; flex-direction:column; align-items:center; text-align:center; }
-.top img { height:270px; margin:-66px 0 -46px; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(0,0,0,.4)); }
-.ey { font:700 27px/1 'Poppins',sans-serif; color:#FFE082; letter-spacing:.24em; text-transform:uppercase; display:flex; align-items:center; gap:18px; margin-top:4px; }
-.ey::before,.ey::after { content:''; width:44px; height:3px; background:rgba(255,224,130,.6); display:block; }
-.num { font:400 198px/.86 'Bebas Neue',sans-serif; color:#fff; margin-top:18px; text-shadow:0 10px 40px rgba(0,0,0,.4); }
+.logo { position:absolute; top:96px; left:0; right:0; z-index:10; text-align:center; }
+.logo img { height:320px; margin:-80px 0 -60px; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(0,0,0,.45)); }
 
-.corpo { position:absolute; left:0; right:0; bottom:0; top:860px; z-index:10; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 80px; }
-.msg { font:600 32px/1.45 'Poppins',sans-serif; margin-top:46px; }
-.msg b { color:#FFC107; font-weight:700; }
+.base { position:absolute; left:0; right:0; top:1068px; z-index:10; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.ey { font:700 31px/1 'Poppins',sans-serif; color:#FFE082; letter-spacing:.14em; text-transform:uppercase; }
+.h1 { font:400 152px/.88 'Bebas Neue',sans-serif; color:#fff; margin-top:22px; text-shadow:0 8px 30px rgba(0,0,0,.4); }
+.chip { margin-top:22px; background:#FFC107; color:#062B63; font:400 84px/1 'Bebas Neue',sans-serif;
+  padding:12px 34px 4px; border-radius:16px; transform:rotate(-2deg); box-shadow:0 10px 30px rgba(0,0,0,.35); }
 
-.fatos { display:flex; gap:16px; margin-top:52px; }
-.fato { background:rgba(255,255,255,.08); border:2px solid rgba(255,224,130,.5); border-radius:16px; padding:20px 22px 14px; flex:1; }
-.fato .n { font:400 54px/.9 'Bebas Neue',sans-serif; color:#FFC107; }
-.fato .l { font:700 19px/1.2 'Montserrat',sans-serif; color:#fff; margin-top:8px; text-transform:uppercase; letter-spacing:.02em; }
-
-.nota { font:600 20px/1.3 'Poppins',sans-serif; color:rgba(255,255,255,.65); margin-top:18px; }
-
-.cta { margin-top:56px; white-space:nowrap; background:#FFC107; color:#062B63; font:800 28px/1 'Montserrat',sans-serif;
-  padding:20px 38px; border-radius:40px; box-shadow:0 10px 26px rgba(0,0,0,.35); }
-.foot { position:absolute; left:0; right:0; bottom:64px; z-index:10; text-align:center;
-  font:600 23px/1 'Poppins',sans-serif; color:rgba(255,255,255,.85); letter-spacing:.01em; }
-.foot b { color:#FFE082; font-weight:700; }
+.btn { margin-top:34px; display:flex; align-items:center; gap:16px; background:#FFC107; color:#062B63;
+  font:800 44px/1 'Montserrat',sans-serif; padding:20px 44px; border-radius:60px; box-shadow:0 12px 30px rgba(0,0,0,.4); }
+.btn svg { width:48px; height:48px; fill:#062B63; }
+.sub { margin-top:18px; font:700 30px/1 'Poppins',sans-serif; color:#fff; }
+.sub b { color:#FFE082; }
+.nota { margin-top:14px; font:600 21px/1 'Poppins',sans-serif; color:rgba(255,255,255,.6); }
 </style>
 </head>
 <body>
@@ -51,26 +44,16 @@ body { background:#020A18; }
   <div class="scrim-top"></div>
   <div class="scrim-bot"></div>
 
-  <div class="top">
-    <img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
-    <div class="ey">Quem somos</div>
-    <div class="num">LAET</div>
-  </div>
+  <div class="logo"><img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet"></div>
 
-  <div class="corpo">
-    <div class="msg">Negócio de família, tocado por <b>Anderson e Robson Laet</b>.<br>6 lojas no ABC e na Zona Leste de São Paulo, pra quem quer economizar na reforma de verdade.</div>
-
-    <div class="fatos">
-      <div class="fato"><div class="n">6</div><div class="l">Lojas</div></div>
-      <div class="fato"><div class="n">12x</div><div class="l">Sem juros*</div></div>
-      <div class="fato"><div class="n">↓</div><div class="l">Preço de<br>mercado</div></div>
-    </div>
+  <div class="base">
+    <div class="ey">6 lojas no ABC e Zona Leste</div>
+    <div class="h1">PREÇO ABAIXO<br>DO MERCADO</div>
+    <div class="chip">E 12X SEM JUROS*</div>
+    <div class="btn"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>(11) 97714-0964</div>
+    <div class="sub"><b>@Tintaslaet</b> · tintaslaet.com</div>
     <div class="nota">*consulte as condições</div>
-
-    <div class="cta">Vem conhecer a Laet</div>
   </div>
-
-  <div class="foot"><b>@Tintaslaet</b> · (11) 97714-0964 · tintaslaet.com</div>
 </div>
 </body>
 </html>
