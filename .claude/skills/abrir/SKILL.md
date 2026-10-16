@@ -12,6 +12,19 @@ Curto e direto. O objetivo é carregar contexto e devolver uma síntese de uma f
 
 ## Workflow
 
+0. **Sincronizar memória primeiro** (repo privado `kevinlaet/tintas-laet-memoria`
+   — `_memoria/` do site é gitignored por ser repo público, então é lá que o
+   contexto sobrevive entre sessões):
+   - Se o repositório já estiver anexado à sessão, dar um `git pull` nele.
+   - Senão, usar `add_repo` (owner `kevinlaet`, repo `tintas-laet-memoria`,
+     access `push`) e clonar em `/home/user/tintas-laet-memoria`.
+   - Copiar `_memoria/*.md` de lá pra `_memoria/` do `tintas-laet-site`
+     (sobrescrevendo — a cópia privada é a fonte de verdade entre sessões).
+   - Se esse repositório não existir ou não puder ser acessado, seguir com
+     o que já estiver local em `_memoria/` (pode estar desatualizado) e
+     avisar o Kevin depois do resumo: "não consegui sincronizar a memória
+     privada — usei o que já tinha aqui."
+
 1. Ler, em ordem:
    - `_memoria/empresa.md`
    - `_memoria/preferencias.md`
