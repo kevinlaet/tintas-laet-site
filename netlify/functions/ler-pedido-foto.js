@@ -60,8 +60,16 @@ exports.handler = async function (event) {
       })
     });
 
-    const data = await resp.json();
+    const data = await resp.json().catch(() => ({}));
     if (!resp.ok) {
+      // Cota gratuita do Gemini: 503 (modelo sobrecarregado) e 429 (limite de uso) passam
+      // sozinhos em segundos/minutos — o navegador tenta de novo quando vê "temporario".
+      if (resp.status === 503 || resp.status === 429 || resp.status === 500) {
+        const erro = resp.status === 429
+          ? 'o limite de uso gratuito da IA foi atingido por agora'
+          : 'a IA do Google está sobrecarregada no momento';
+        return { statusCode: 200, body: JSON.stringify({ ok: false, temporario: true, erro }) };
+      }
       const msg = (data.error && data.error.message) || 'erro desconhecido do Gemini';
       return { statusCode: 200, body: JSON.stringify({ ok: false, erro: msg }) };
     }

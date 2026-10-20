@@ -830,32 +830,42 @@ async function processarFotoPedido(file) {
       mimeType = file.type;
     }
 
-    const resp = await fetch('/.netlify/functions/ler-pedido-foto', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', ...authHeaders() },
-      body: JSON.stringify({ imagemBase64, mimeType })
-    });
-
-    if (resp.status === 401) {
-      travarFerramenta('Sua sessão expirou. Entre de novo (o orçamento em andamento fica salvo).');
-      return;
-    }
-
-    if (!resp.ok) {
-      mostrarStatusFoto('O servidor recusou o envio dessa foto (status ' + resp.status + ') — pode estar grande ou pesada demais. Tente outra foto ou adicione manualmente.', true);
-      return;
-    }
-
     let data;
-    try {
-      data = await resp.json();
-    } catch (e) {
-      mostrarStatusFoto('O servidor não devolveu uma resposta válida pra essa foto. Tente outra foto ou adicione manualmente.', true);
-      return;
+    for (let tentativa = 0; ; tentativa++) {
+      const resp = await fetch('/.netlify/functions/ler-pedido-foto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...authHeaders() },
+        body: JSON.stringify({ imagemBase64, mimeType })
+      });
+
+      if (resp.status === 401) {
+        travarFerramenta('Sua sessão expirou. Entre de novo (o orçamento em andamento fica salvo).');
+        return;
+      }
+
+      if (!resp.ok) {
+        mostrarStatusFoto('O servidor recusou o envio dessa foto (status ' + resp.status + ') — pode estar grande ou pesada demais. Tente outra foto ou adicione manualmente.', true);
+        return;
+      }
+
+      try {
+        data = await resp.json();
+      } catch (e) {
+        mostrarStatusFoto('O servidor não devolveu uma resposta válida pra essa foto. Tente outra foto ou adicione manualmente.', true);
+        return;
+      }
+
+      if (data.ok || !data.temporario || tentativa >= 2) break;
+      mostrarStatusFoto('A IA do Google está ocupada agora — tentando de novo em alguns segundos...', false);
+      await new Promise(r => setTimeout(r, (tentativa + 1) * 3000));
     }
 
     if (!data.ok) {
-      mostrarStatusFoto('Não deu pra ler essa foto: ' + (data.erro || 'erro desconhecido') + '. Adicione os produtos manualmente.', true);
+      if (data.temporario) {
+        mostrarStatusFoto('Não deu pra ler agora: ' + data.erro + '. Tente de novo em 1 minuto ou adicione os produtos manualmente.', true);
+      } else {
+        mostrarStatusFoto('Não deu pra ler essa foto: ' + (data.erro || 'erro desconhecido').replace(/\.+$/, '') + '. Adicione os produtos manualmente.', true);
+      }
       return;
     }
     if (!data.itens.length) {
