@@ -71,6 +71,8 @@
     .field label { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11.5px; color: #667; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .3px; }
     .field input, .field select { width: 100%; padding: 12px 13px; border: 1.5px solid #DCE1EA; border-radius: 9px; font-size: 13.5px; font-family: 'Poppins', sans-serif; background: #FAFBFD; transition: border-color .15s, background .15s; }
     .field input:focus, .field select:focus { outline: none; border-color: var(--blue); background: #fff; }
+    .field select.campo-erro { border-color: #C62828; background: #FBEAEA; }
+    .field label .obrig { color: #C62828; }
 
     .item-card { background: linear-gradient(135deg, #F7F9FF, #F0F4FC); border: 1px solid #E5E9F0; border-radius: 14px; padding: 16px; margin-bottom: 12px; position: relative; }
     .item-grid { display: grid; grid-template-columns: 2fr 1.4fr .7fr 1fr; gap: 10px; align-items: end; }
@@ -200,7 +202,7 @@
       <div class="card-title">Dados do orçamento</div>
       <div class="field-row">
         <div class="field">
-          <label>Vendedor</label>
+          <label>Vendedor <span class="obrig">*</span></label>
           <select id="f-vendedor">
             <option value="">Selecione...</option>
             <option>Kevin</option>
@@ -218,7 +220,7 @@
           </select>
         </div>
         <div class="field">
-          <label>Loja</label>
+          <label>Loja <span class="obrig">*</span></label>
           <select id="f-loja">
             <option value="">Selecione...</option>
             <option>Loja 1 — Sapopemba</option>
@@ -328,6 +330,9 @@ const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzyAJ0PN8Q41
 let orcamentoNumero = null;
 let syncFalhou = false;
 let totalRevelado = false;
+// Sem número (planilha falhou no "Ver Total"): o 1º toque numera, o 2º abre o PDF/WhatsApp.
+let pdfAguardandoToque = false;
+let waAguardandoToque = false;
 
 function debounce(fn, wait) {
   let t;
@@ -397,11 +402,15 @@ function resetTotalGate() {
   document.getElementById('genPdfBtn').disabled = true;
   document.getElementById('waBtn').disabled = true;
   document.getElementById('verTotalHint').style.display = '';
+  pdfAguardandoToque = false;
+  waAguardandoToque = false;
+  document.getElementById('genPdfBtn').textContent = '🖨️ Gerar PDF';
+  document.getElementById('waBtn').textContent = '💬 Enviar por WhatsApp';
 }
 
 async function notificarVerTotal() {
   try {
-    const { total } = coletarOrcamento();
+    const { itens, frete, desconto, total } = coletarOrcamento();
     await fetch('/.netlify/functions/orcamento-ver-total', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', ...authHeaders() },
@@ -410,7 +419,8 @@ async function notificarVerTotal() {
         vendedor: document.getElementById('f-vendedor').value,
         loja: document.getElementById('f-loja').value,
         cliente: document.getElementById('f-cliente').value,
-        total
+        itens: itens.map(it => ({ qty: it.qty, nome: it.nome, variante: it.variante, subtotal: it.subtotal })),
+        frete, desconto, total
       })
     });
   } catch (e) {
@@ -422,6 +432,13 @@ async function revelarTotal() {
   if (totalRevelado) return;
   const { itens } = coletarOrcamento();
   if (!itens.length) { alert('Adicione ao menos um produto antes de ver o total.'); return; }
+  const faltando = [['f-vendedor', 'o vendedor'], ['f-loja', 'a loja']].filter(([id]) => !document.getElementById(id).value);
+  if (faltando.length) {
+    faltando.forEach(([id]) => document.getElementById(id).classList.add('campo-erro'));
+    document.getElementById(faltando[0][0]).scrollIntoView({ behavior: 'smooth', block: 'center' });
+    alert('Escolha ' + faltando.map(([, nome]) => nome).join(' e ') + ' antes de ver o total.');
+    return;
+  }
   totalRevelado = true;
   document.getElementById('totalDisplay').style.display = '';
   document.getElementById('verTotalBtn').style.display = 'none';
@@ -628,6 +645,7 @@ function flattenOptions(p) {
 async function initTool() {
   document.getElementById('addItemBtn').addEventListener('click', () => { addItemRow(); salvarRascunho(); });
   document.getElementById('verTotalBtn').addEventListener('click', revelarTotal);
+  ['f-vendedor', 'f-loja'].forEach(id => document.getElementById(id).addEventListener('change', e => e.target.classList.remove('campo-erro')));
   document.getElementById('genPdfBtn').addEventListener('click', gerarPDF);
   document.getElementById('waBtn').addEventListener('click', enviarWhatsapp);
   document.getElementById('clearBtn').addEventListener('click', () => {
@@ -1167,8 +1185,20 @@ function coletarOrcamento() {
   return { itens, frete, desconto, total };
 }
 
+// Safari do iPhone só abre a impressão/WhatsApp direto do toque: nada de esperar a planilha antes.
 async function gerarPDF() {
-  await salvarNaPlanilha();
+  const btn = document.getElementById('genPdfBtn');
+  if (!orcamentoNumero && !pdfAguardandoToque) {
+    btn.disabled = true;
+    btn.textContent = '⏳ Numerando...';
+    await salvarNaPlanilha();
+    btn.disabled = false;
+    btn.textContent = '🖨️ Abrir PDF';
+    pdfAguardandoToque = true;
+    return;
+  }
+  pdfAguardandoToque = false;
+  btn.textContent = '🖨️ Gerar PDF';
 
   const vendedor = escapeHtml(document.getElementById('f-vendedor').value) || '—';
   const loja = escapeHtml(document.getElementById('f-loja').value) || '—';
@@ -1234,6 +1264,7 @@ async function gerarPDF() {
   `;
   document.getElementById('printArea').innerHTML = html;
   window.print();
+  salvarNaPlanilha();
 }
 
 async function enviarWhatsapp() {
@@ -1243,7 +1274,18 @@ async function enviarWhatsapp() {
   const { itens, frete, desconto, total } = coletarOrcamento();
   if (!itens.length) { alert('Adicione ao menos um produto antes de enviar.'); return; }
 
-  await salvarNaPlanilha();
+  const btn = document.getElementById('waBtn');
+  if (!orcamentoNumero && !waAguardandoToque) {
+    btn.disabled = true;
+    btn.textContent = '⏳ Numerando...';
+    await salvarNaPlanilha();
+    btn.disabled = false;
+    btn.textContent = '💬 Abrir WhatsApp';
+    waAguardandoToque = true;
+    return;
+  }
+  waAguardandoToque = false;
+  btn.textContent = '💬 Enviar por WhatsApp';
 
   let digits = whatsappRaw.replace(/\D/g, '');
   if (digits.length <= 11) digits = '55' + digits;
@@ -1264,6 +1306,7 @@ async function enviarWhatsapp() {
   texto += `Pagamento: ${pagamento}\nVálido por 7 dias.`;
 
   window.open(`https://wa.me/${digits}?text=${encodeURIComponent(texto)}`, '_blank');
+  salvarNaPlanilha();
 }
 </script>
 

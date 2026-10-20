@@ -5,6 +5,9 @@
 
 const { tokenValido, extrairToken } = require("./lib/auth-utils");
 
+const brl = (v) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(v || 0);
+const MAX_ITENS = 15;
+
 exports.handler = async function (event) {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "method not allowed" };
@@ -30,13 +33,25 @@ exports.handler = async function (event) {
       return { statusCode: 200, body: JSON.stringify({ ok: true }) };
     }
 
-    const totalFmt = "R$ " + total.toFixed(2).replace(".", ",");
+    const itens = Array.isArray(data.itens) ? data.itens : [];
+    const frete = Number(data.frete) || 0;
+    const desconto = Number(data.desconto) || 0;
+
+    const linhasItens = itens.slice(0, MAX_ITENS).map((it) => {
+      const qty = Number(it.qty) || 0;
+      const nome = String(it.nome || "").trim().slice(0, 60);
+      const variante = String(it.variante || "").trim().slice(0, 40);
+      return `${qty}x ${nome}${variante ? " " + variante : ""} · ${brl(Number(it.subtotal))}`;
+    });
+    if (itens.length > MAX_ITENS) linhasItens.push(`+ ${itens.length - MAX_ITENS} item(ns)`);
+
     const linhas = [
-      `Protocolo: #${numero}`,
-      `Vendedor: ${vendedor || "-"}`,
-      `Loja: ${loja || "-"}`,
+      `${vendedor || "Sem vendedor"} · ${loja || "Sem loja"}`,
       `Cliente: ${cliente || "-"}`,
-      `Total: ${totalFmt}`,
+      ...linhasItens,
+      ...(frete > 0 ? [`Frete: ${brl(frete)}`] : []),
+      ...(desconto > 0 ? [`Desconto: -${brl(desconto)}`] : []),
+      `Total: ${brl(total)}`,
     ].join("\n");
 
     await fetch("https://ntfy.sh", {
@@ -44,7 +59,7 @@ exports.handler = async function (event) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         topic,
-        title: "🧾 Orçamento consultado no balcão",
+        title: `🧾 #${numero} · ${brl(total)} · consultado no balcão`,
         message: linhas,
         tags: ["receipt"],
       }),
