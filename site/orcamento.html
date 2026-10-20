@@ -301,8 +301,12 @@
         </div>
       </div>
       <div class="field">
-        <label>Variante</label>
-        <select data-f="variante"></select>
+        <label>Variante / cor</label>
+        <div class="combo" data-f="varianteCombo">
+          <input type="text" data-f="varianteInput" placeholder="Escolha o produto primeiro" autocomplete="off" disabled>
+          <div class="combo-list" data-f="varianteList"></div>
+        </div>
+        <select data-f="variante" hidden></select>
       </div>
       <div class="field">
         <label>Qtd</label>
@@ -333,6 +337,7 @@ let totalRevelado = false;
 // Sem número (planilha falhou no "Ver Total"): o 1º toque numera, o 2º abre o PDF/WhatsApp.
 let pdfAguardandoToque = false;
 let waAguardandoToque = false;
+let imprimindo = false;
 
 function debounce(fn, wait) {
   let t;
@@ -360,7 +365,15 @@ function atualizarNumeroDisplay() {
   }
 }
 
-async function salvarNaPlanilha() {
+// Um salvamento por vez: dois ao mesmo tempo sem número criariam dois números pro mesmo orçamento.
+let filaPlanilha = Promise.resolve();
+function salvarNaPlanilha() {
+  const vez = filaPlanilha.then(salvarNaPlanilhaAgora);
+  filaPlanilha = vez.catch(() => {});
+  return vez;
+}
+
+async function salvarNaPlanilhaAgora() {
   if (!SHEETS_WEBHOOK_URL) return false;
   const { itens, frete, desconto, total } = coletarOrcamento();
   if (!itens.length) return false;
@@ -440,12 +453,19 @@ async function revelarTotal() {
     return;
   }
   totalRevelado = true;
+  const pdfBtn = document.getElementById('genPdfBtn');
+  const waBtn = document.getElementById('waBtn');
   document.getElementById('totalDisplay').style.display = '';
   document.getElementById('verTotalBtn').style.display = 'none';
-  document.getElementById('genPdfBtn').disabled = false;
-  document.getElementById('waBtn').disabled = false;
   document.getElementById('verTotalHint').style.display = 'none';
+  pdfBtn.textContent = '⏳ Gerando número...';
+  waBtn.textContent = '⏳ Gerando número...';
   await salvarNaPlanilha();
+  if (!totalRevelado) return;
+  pdfBtn.disabled = false;
+  waBtn.disabled = false;
+  pdfBtn.textContent = '🖨️ Gerar PDF';
+  waBtn.textContent = '💬 Enviar por WhatsApp';
   notificarVerTotal();
 }
 
@@ -646,6 +666,7 @@ async function initTool() {
   document.getElementById('addItemBtn').addEventListener('click', () => { addItemRow(); salvarRascunho(); });
   document.getElementById('verTotalBtn').addEventListener('click', revelarTotal);
   ['f-vendedor', 'f-loja'].forEach(id => document.getElementById(id).addEventListener('change', e => e.target.classList.remove('campo-erro')));
+  new Image().src = 'images/logo-branco.png';
   document.getElementById('genPdfBtn').addEventListener('click', gerarPDF);
   document.getElementById('waBtn').addEventListener('click', enviarWhatsapp);
   document.getElementById('clearBtn').addEventListener('click', () => {
@@ -940,7 +961,18 @@ function applyProdutoToCard(card, id, textoParaVariante) {
   const idx = pickMelhorVariante(opts, textoParaVariante);
   varianteSel.selectedIndex = idx;
   valorInput.value = opts.length ? parsePrice(opts[idx].valor).toFixed(2) : '';
+  syncVarianteInput(card);
   recalcRow(card);
+}
+
+// O <select> escondido continua sendo a fonte da variante; o campo de texto só mostra e busca.
+function syncVarianteInput(card) {
+  const sel = card.querySelector('[data-f="variante"]');
+  const input = card.querySelector('[data-f="varianteInput"]');
+  const atual = sel.options[sel.selectedIndex];
+  input.disabled = !sel.options.length;
+  input.value = atual ? atual.textContent : '';
+  input.placeholder = sel.options.length ? 'Digite a cor ou o tamanho...' : 'Escolha o produto primeiro';
 }
 
 function coletarItemCard(card) {
@@ -960,6 +992,7 @@ function preencherItem(card, saved) {
     const varianteSel = card.querySelector('[data-f="variante"]');
     if (saved.varianteIndex != null && varianteSel.options[saved.varianteIndex]) {
       varianteSel.selectedIndex = saved.varianteIndex;
+      syncVarianteInput(card);
     }
   }
   if (saved.qty != null && saved.qty !== '') card.querySelector('[data-f="qty"]').value = saved.qty;
@@ -1075,6 +1108,7 @@ function addItemRow(afterCard) {
   produtoInput.addEventListener('input', () => {
     combo.dataset.value = '';
     varianteSel.innerHTML = '';
+    syncVarianteInput(card);
     valorInput.value = '';
     recalcRow(card);
     renderList(produtoInput.value);
@@ -1115,7 +1149,84 @@ function addItemRow(afterCard) {
   varianteSel.addEventListener('change', () => {
     const selected = varianteSel.options[varianteSel.selectedIndex];
     if (selected) valorInput.value = parseFloat(selected.getAttribute('data-valor')).toFixed(2);
+    syncVarianteInput(card);
     recalcRow(card);
+  });
+
+  const varianteInput = card.querySelector('[data-f="varianteInput"]');
+  const varianteList = card.querySelector('[data-f="varianteList"]');
+  let varMatches = [];
+  let varActive = -1;
+
+  function renderVarList(query) {
+    const termos = normalizeStr(query).split(/\s+/).filter(Boolean);
+    const todas = Array.from(varianteSel.options).map((o, i) => ({ i, label: o.textContent }));
+    varMatches = termos.length ? todas.filter(o => termos.every(t => normalizeStr(o.label).includes(t))) : todas;
+    varActive = varMatches.findIndex(o => o.i === varianteSel.selectedIndex);
+    varianteList.innerHTML = varMatches.length
+      ? varMatches.map((o, k) => `<div class="combo-item${k === varActive ? ' active' : ''}" data-idx="${k}">${highlightMatch(o.label, termos[0] || '')}</div>`).join('')
+      : '<div class="combo-empty">Nenhuma cor encontrada</div>';
+    varianteList.classList.add('open');
+    const ativo = varianteList.querySelector('.combo-item.active');
+    if (ativo) ativo.scrollIntoView({ block: 'nearest' });
+  }
+
+  function closeVarList() {
+    varianteList.classList.remove('open');
+    varActive = -1;
+  }
+
+  function selectVariante(i) {
+    varianteSel.selectedIndex = i;
+    varianteSel.dispatchEvent(new Event('change'));
+    closeVarList();
+    varianteInput.blur();
+    salvarRascunho();
+  }
+
+  varianteInput.addEventListener('focus', () => {
+    varianteInput.select();
+    renderVarList('');
+  });
+
+  varianteInput.addEventListener('input', () => renderVarList(varianteInput.value));
+
+  varianteInput.addEventListener('keydown', (e) => {
+    if (!varianteList.classList.contains('open')) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') renderVarList('');
+      return;
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      varActive = Math.min(varActive + 1, varMatches.length - 1);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      varActive = Math.max(varActive - 1, 0);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      const pick = varMatches[varActive] || varMatches[0];
+      if (pick) selectVariante(pick.i);
+      return;
+    } else if (e.key === 'Escape') {
+      closeVarList();
+      syncVarianteInput(card);
+      return;
+    } else {
+      return;
+    }
+    varianteList.querySelectorAll('.combo-item').forEach((el, k) => el.classList.toggle('active', k === varActive));
+    const ativo = varianteList.querySelector('.combo-item.active');
+    if (ativo) ativo.scrollIntoView({ block: 'nearest' });
+  });
+
+  varianteInput.addEventListener('blur', () => setTimeout(() => { closeVarList(); syncVarianteInput(card); }, 150));
+
+  varianteList.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    const item = e.target.closest('.combo-item');
+    if (!item) return;
+    const pick = varMatches[parseInt(item.dataset.idx, 10)];
+    if (pick) selectVariante(pick.i);
   });
 
   qtyInput.addEventListener('input', () => recalcRow(card));
@@ -1193,10 +1304,13 @@ async function gerarPDF() {
     btn.textContent = '⏳ Numerando...';
     await salvarNaPlanilha();
     btn.disabled = false;
-    btn.textContent = '🖨️ Abrir PDF';
+    btn.textContent = '🖨️ Toque pra abrir o PDF';
     pdfAguardandoToque = true;
     return;
   }
+  if (imprimindo) return;
+  imprimindo = true;
+  setTimeout(() => { imprimindo = false; }, 2000);
   pdfAguardandoToque = false;
   btn.textContent = '🖨️ Gerar PDF';
 
@@ -1280,7 +1394,7 @@ async function enviarWhatsapp() {
     btn.textContent = '⏳ Numerando...';
     await salvarNaPlanilha();
     btn.disabled = false;
-    btn.textContent = '💬 Abrir WhatsApp';
+    btn.textContent = '💬 Toque pra abrir o WhatsApp';
     waAguardandoToque = true;
     return;
   }
