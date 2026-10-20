@@ -408,7 +408,7 @@ function resetTotalGate() {
 
 async function notificarVerTotal() {
   try {
-    const { total } = coletarOrcamento();
+    const { itens, frete, desconto, total } = coletarOrcamento();
     await fetch('/.netlify/functions/orcamento-ver-total', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', ...authHeaders() },
@@ -417,7 +417,8 @@ async function notificarVerTotal() {
         vendedor: document.getElementById('f-vendedor').value,
         loja: document.getElementById('f-loja').value,
         cliente: document.getElementById('f-cliente').value,
-        total
+        itens: itens.map(it => ({ qty: it.qty, nome: it.nome, variante: it.variante, subtotal: it.subtotal })),
+        frete, desconto, total
       })
     });
   } catch (e) {
