@@ -328,6 +328,9 @@ const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzyAJ0PN8Q41
 let orcamentoNumero = null;
 let syncFalhou = false;
 let totalRevelado = false;
+// Sem número (planilha falhou no "Ver Total"): o 1º toque numera, o 2º abre o PDF/WhatsApp.
+let pdfAguardandoToque = false;
+let waAguardandoToque = false;
 
 function debounce(fn, wait) {
   let t;
@@ -397,6 +400,10 @@ function resetTotalGate() {
   document.getElementById('genPdfBtn').disabled = true;
   document.getElementById('waBtn').disabled = true;
   document.getElementById('verTotalHint').style.display = '';
+  pdfAguardandoToque = false;
+  waAguardandoToque = false;
+  document.getElementById('genPdfBtn').textContent = '🖨️ Gerar PDF';
+  document.getElementById('waBtn').textContent = '💬 Enviar por WhatsApp';
 }
 
 async function notificarVerTotal() {
@@ -1167,8 +1174,20 @@ function coletarOrcamento() {
   return { itens, frete, desconto, total };
 }
 
+// Safari do iPhone só abre a impressão/WhatsApp direto do toque: nada de esperar a planilha antes.
 async function gerarPDF() {
-  await salvarNaPlanilha();
+  const btn = document.getElementById('genPdfBtn');
+  if (!orcamentoNumero && !pdfAguardandoToque) {
+    btn.disabled = true;
+    btn.textContent = '⏳ Numerando...';
+    await salvarNaPlanilha();
+    btn.disabled = false;
+    btn.textContent = '🖨️ Abrir PDF';
+    pdfAguardandoToque = true;
+    return;
+  }
+  pdfAguardandoToque = false;
+  btn.textContent = '🖨️ Gerar PDF';
 
   const vendedor = escapeHtml(document.getElementById('f-vendedor').value) || '—';
   const loja = escapeHtml(document.getElementById('f-loja').value) || '—';
@@ -1234,6 +1253,7 @@ async function gerarPDF() {
   `;
   document.getElementById('printArea').innerHTML = html;
   window.print();
+  salvarNaPlanilha();
 }
 
 async function enviarWhatsapp() {
@@ -1243,7 +1263,18 @@ async function enviarWhatsapp() {
   const { itens, frete, desconto, total } = coletarOrcamento();
   if (!itens.length) { alert('Adicione ao menos um produto antes de enviar.'); return; }
 
-  await salvarNaPlanilha();
+  const btn = document.getElementById('waBtn');
+  if (!orcamentoNumero && !waAguardandoToque) {
+    btn.disabled = true;
+    btn.textContent = '⏳ Numerando...';
+    await salvarNaPlanilha();
+    btn.disabled = false;
+    btn.textContent = '💬 Abrir WhatsApp';
+    waAguardandoToque = true;
+    return;
+  }
+  waAguardandoToque = false;
+  btn.textContent = '💬 Enviar por WhatsApp';
 
   let digits = whatsappRaw.replace(/\D/g, '');
   if (digits.length <= 11) digits = '55' + digits;
@@ -1264,6 +1295,7 @@ async function enviarWhatsapp() {
   texto += `Pagamento: ${pagamento}\nVálido por 7 dias.`;
 
   window.open(`https://wa.me/${digits}?text=${encodeURIComponent(texto)}`, '_blank');
+  salvarNaPlanilha();
 }
 </script>
 
