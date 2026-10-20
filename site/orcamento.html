@@ -71,6 +71,8 @@
     .field label { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11.5px; color: #667; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .3px; }
     .field input, .field select { width: 100%; padding: 12px 13px; border: 1.5px solid #DCE1EA; border-radius: 9px; font-size: 13.5px; font-family: 'Poppins', sans-serif; background: #FAFBFD; transition: border-color .15s, background .15s; }
     .field input:focus, .field select:focus { outline: none; border-color: var(--blue); background: #fff; }
+    .field select.campo-erro { border-color: #C62828; background: #FBEAEA; }
+    .field label .obrig { color: #C62828; }
 
     .item-card { background: linear-gradient(135deg, #F7F9FF, #F0F4FC); border: 1px solid #E5E9F0; border-radius: 14px; padding: 16px; margin-bottom: 12px; position: relative; }
     .item-grid { display: grid; grid-template-columns: 2fr 1.4fr .7fr 1fr; gap: 10px; align-items: end; }
@@ -200,7 +202,7 @@
       <div class="card-title">Dados do orçamento</div>
       <div class="field-row">
         <div class="field">
-          <label>Vendedor</label>
+          <label>Vendedor <span class="obrig">*</span></label>
           <select id="f-vendedor">
             <option value="">Selecione...</option>
             <option>Kevin</option>
@@ -218,7 +220,7 @@
           </select>
         </div>
         <div class="field">
-          <label>Loja</label>
+          <label>Loja <span class="obrig">*</span></label>
           <select id="f-loja">
             <option value="">Selecione...</option>
             <option>Loja 1 — Sapopemba</option>
@@ -430,6 +432,13 @@ async function revelarTotal() {
   if (totalRevelado) return;
   const { itens } = coletarOrcamento();
   if (!itens.length) { alert('Adicione ao menos um produto antes de ver o total.'); return; }
+  const faltando = [['f-vendedor', 'o vendedor'], ['f-loja', 'a loja']].filter(([id]) => !document.getElementById(id).value);
+  if (faltando.length) {
+    faltando.forEach(([id]) => document.getElementById(id).classList.add('campo-erro'));
+    document.getElementById(faltando[0][0]).scrollIntoView({ behavior: 'smooth', block: 'center' });
+    alert('Escolha ' + faltando.map(([, nome]) => nome).join(' e ') + ' antes de ver o total.');
+    return;
+  }
   totalRevelado = true;
   document.getElementById('totalDisplay').style.display = '';
   document.getElementById('verTotalBtn').style.display = 'none';
@@ -636,6 +645,7 @@ function flattenOptions(p) {
 async function initTool() {
   document.getElementById('addItemBtn').addEventListener('click', () => { addItemRow(); salvarRascunho(); });
   document.getElementById('verTotalBtn').addEventListener('click', revelarTotal);
+  ['f-vendedor', 'f-loja'].forEach(id => document.getElementById(id).addEventListener('change', e => e.target.classList.remove('campo-erro')));
   document.getElementById('genPdfBtn').addEventListener('click', gerarPDF);
   document.getElementById('waBtn').addEventListener('click', enviarWhatsapp);
   document.getElementById('clearBtn').addEventListener('click', () => {
