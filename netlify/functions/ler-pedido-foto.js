@@ -18,6 +18,30 @@ Regras:
 - Não invente produtos que não estão na imagem.
 - Se a imagem não tiver nenhum pedido legível, responda com um array vazio: []`;
 
+// Com o catálogo da loja no prompt, a própria IA escolhe produto e variante exatos
+// (ex: "tinta branca emborrachada 3,7L" -> emborrachada / "Branco — 3,6L"), em vez
+// do navegador tentar adivinhar pelo texto lido.
+function promptComCatalogo(catalogo) {
+  return `Você está vendo a foto de um pedido de uma loja de tintas — anotação escrita à mão por um vendedor ou print de conversa de WhatsApp com o cliente.
+
+CATÁLOGO DA LOJA — uma linha por produto, no formato: id | nome | variantes separadas por " ; "
+${catalogo}
+
+Para cada produto pedido na imagem, encontre o produto e a variante corretos NESTE CATÁLOGO. Responda SOMENTE com um array JSON, sem texto antes ou depois, no formato:
+[{"texto_lido": "o item como está escrito na imagem", "quantidade": numero, "produto_id": "id copiado exatamente do catálogo, ou vazio", "variante": "variante copiada exatamente do catálogo, ou vazio", "certeza": "alta" ou "baixa"}]
+
+Como deduzir:
+- Entenda o que o item é, não só as palavras soltas: "tinta branca emborrachada" é a Tinta Emborrachada na variante Branco; "rolo anti respingo 9" é o Rolo Anti-Respingo 9cm.
+- Tamanho: lata ou balde = 18L (nas cores, 17L); galão = 3,6L (nas cores, 3,4L); quarto ou 1/4 = a variante de 1/4 ou 0,9L. Litragem escrita um pouco diferente do catálogo (ex: 3,7L, 3,5L, 20L) = o tamanho mais próximo que existir pra aquela cor.
+- Cor: compare sem ligar pra acento ou maiúscula; "branca" = Branco. Nunca troque por outra cor parecida: se a cor escrita não existir nesse produto, deixe "variante" vazio e "certeza" baixa.
+- Se o produto tem uma variante só, use ela.
+- Lixa sem dizer o tipo (massa, madeira ou ferro): use a lixa de massa, com "certeza" baixa.
+- "produto_id" e "variante" precisam ser cópias exatas do catálogo, caractere por caractere.
+- Se o item não existir no catálogo, deixe "produto_id" vazio e escreva em "texto_lido" o que leu.
+- "certeza" alta só quando produto, cor e tamanho estão claros na imagem (ou o produto tem variante única); se precisou chutar algo, baixa.
+- Quantidade não escrita = 1. Não invente itens que não estão na imagem. Sem pedido legível: [].`;
+}
+
 exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: JSON.stringify({ ok: false, erro: 'method not allowed' }) };
@@ -34,7 +58,8 @@ exports.handler = async function (event) {
   }
 
   try {
-    const { imagemBase64, mimeType } = JSON.parse(event.body || '{}');
+    const { imagemBase64, mimeType, catalogo } = JSON.parse(event.body || '{}');
+    const usarCatalogo = typeof catalogo === 'string' && catalogo.length > 0 && catalogo.length <= 150000;
     if (!imagemBase64 || typeof imagemBase64 !== 'string') {
       return { statusCode: 400, body: JSON.stringify({ ok: false, erro: 'imagem não enviada' }) };
     }
@@ -52,7 +77,7 @@ exports.handler = async function (event) {
       body: JSON.stringify({
         contents: [{
           parts: [
-            { text: PROMPT },
+            { text: usarCatalogo ? promptComCatalogo(catalogo) : PROMPT },
             { inline_data: { mime_type: mimeType || 'image/jpeg', data: imagemBase64 } }
           ]
         }],

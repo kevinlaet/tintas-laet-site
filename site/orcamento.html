@@ -611,6 +611,46 @@ function normalizeStr(s) {
   return (s || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
 }
 
+// Busca por palavras: "rolo anti respingo" acha "Rolo Anti-Respingo 9cm".
+function normalizeBusca(s) {
+  return normalizeStr(s).replace(/[-–—_/]+/g, ' ');
+}
+
+function bateBusca(texto, termos) {
+  const n = normalizeBusca(texto);
+  return termos.every(t => n.includes(t));
+}
+
+function catalogoParaIA() {
+  return Object.keys(produtosData).map(id => {
+    const p = produtosData[id];
+    return `${id} | ${displayNome(id, p)} | ${flattenOptions(p).map(o => o.label).join(' ; ')}`;
+  }).join('\n');
+}
+
+function aplicarVarianteExata(card, label) {
+  if (!label) return false;
+  const sel = card.querySelector('[data-f="variante"]');
+  const limpo = s => normalizeStr(s).replace(/\s+/g, ' ').trim();
+  const idx = Array.from(sel.options).findIndex(o => limpo(o.textContent) === limpo(label));
+  if (idx < 0) return false;
+  sel.selectedIndex = idx;
+  card.querySelector('[data-f="valor"]').value = parseFloat(sel.options[idx].dataset.valor).toFixed(2);
+  syncVarianteInput(card);
+  recalcRow(card);
+  return true;
+}
+
+function marcarConferirVariante(card) {
+  const input = card.querySelector('[data-f="varianteInput"]');
+  input.style.borderColor = '#FFC107';
+  input.style.background = '#FFFBEA';
+  card.querySelector('[data-f="variante"]').addEventListener('change', () => {
+    input.style.borderColor = '';
+    input.style.background = '';
+  }, { once: true });
+}
+
 let produtoOptionsList = [];
 
 function buildProdutoOptionsList() {
@@ -874,7 +914,7 @@ async function processarFotoPedido(file) {
       const resp = await fetch('/.netlify/functions/ler-pedido-foto', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', ...authHeaders() },
-        body: JSON.stringify({ imagemBase64, mimeType })
+        body: JSON.stringify({ imagemBase64, mimeType, catalogo: catalogoParaIA() })
       });
 
       if (resp.status === 401) {
@@ -914,19 +954,32 @@ async function processarFotoPedido(file) {
 
     let semMatch = 0;
     let chutesLixa = 0;
+    let conferir = 0;
     data.itens.forEach(item => {
       const card = addItemRow();
-      const textoCompleto = `${item.produto || ''} ${item.observacao || ''}`;
-      const match = encontrarProdutoSimilar(textoCompleto);
-      if (match) {
-        applyProdutoToCard(card, match.id, textoCompleto);
-      } else if (ehLixaSemTipo(textoCompleto)) {
-        aplicarChuteLixa(card, textoCompleto);
-        chutesLixa++;
+      const formatoCatalogo = 'produto_id' in item;
+      const textoCompleto = formatoCatalogo ? (item.texto_lido || '') : `${item.produto || ''} ${item.observacao || ''}`;
+      const textoLido = formatoCatalogo ? (item.texto_lido || '') : [item.produto, item.observacao].filter(Boolean).join(' — ');
+      if (formatoCatalogo && produtosData[item.produto_id]) {
+        applyProdutoToCard(card, item.produto_id, item.variante || textoCompleto);
+        const exata = aplicarVarianteExata(card, item.variante);
+        const unica = card.querySelector('[data-f="variante"]').options.length <= 1;
+        if (!unica && (!exata || item.certeza !== 'alta')) {
+          marcarConferirVariante(card);
+          conferir++;
+        }
       } else {
-        semMatch++;
-        const textoLido = [item.produto, item.observacao].filter(Boolean).join(' — ');
-        marcarSemMatch(card, textoLido);
+        // Com catálogo, "sem produto" é a IA dizendo que não existe: não chutar pelo texto.
+        const match = formatoCatalogo ? null : encontrarProdutoSimilar(textoCompleto);
+        if (match) {
+          applyProdutoToCard(card, match.id, textoCompleto);
+        } else if (ehLixaSemTipo(textoCompleto)) {
+          aplicarChuteLixa(card, textoCompleto);
+          chutesLixa++;
+        } else {
+          semMatch++;
+          marcarSemMatch(card, textoLido);
+        }
       }
       card.querySelector('[data-f="qty"]').value = parseInt(item.quantidade, 10) || 1;
       recalcRow(card);
@@ -935,6 +988,7 @@ async function processarFotoPedido(file) {
     salvarRascunho();
     const partes = [`${data.itens.length} item(ns) lido(s) da foto.`];
     if (semMatch) partes.push(`${semMatch} não bateu com nenhum produto do catálogo — em vermelho, selecione manualmente.`);
+    if (conferir) partes.push(`${conferir} com cor ou tamanho que a foto não deixou claro — em amarelo, confira a variante.`);
     if (chutesLixa) partes.push(`${chutesLixa} lixa sem tipo especificado — em amarelo, confira se as variantes estão corretas antes de finalizar.`);
     partes.push('Confira tudo antes de gerar o orçamento.');
     mostrarStatusFoto(partes.join(' '), false);
@@ -1081,11 +1135,11 @@ function addItemRow(afterCard) {
   }
 
   function renderList(query) {
-    const q = normalizeStr(query);
-    currentMatches = q ? produtoOptionsList.filter(o => normalizeStr(o.nome).includes(q)) : produtoOptionsList;
+    const termos = normalizeBusca(query).split(/\s+/).filter(Boolean);
+    currentMatches = termos.length ? produtoOptionsList.filter(o => bateBusca(o.nome, termos)) : produtoOptionsList;
     activeIndex = -1;
     produtoList.innerHTML = currentMatches.length
-      ? currentMatches.map((o, i) => `<div class="combo-item" data-idx="${i}">${highlightMatch(o.nome, query)}</div>`).join('')
+      ? currentMatches.map((o, i) => `<div class="combo-item" data-idx="${i}">${highlightMatch(o.nome, termos[0] || '')}</div>`).join('')
       : '<div class="combo-empty">Nenhum produto encontrado</div>';
     produtoList.classList.add('open');
   }
@@ -1159,9 +1213,9 @@ function addItemRow(afterCard) {
   let varActive = -1;
 
   function renderVarList(query) {
-    const termos = normalizeStr(query).split(/\s+/).filter(Boolean);
+    const termos = normalizeBusca(query).split(/\s+/).filter(Boolean);
     const todas = Array.from(varianteSel.options).map((o, i) => ({ i, label: o.textContent }));
-    varMatches = termos.length ? todas.filter(o => termos.every(t => normalizeStr(o.label).includes(t))) : todas;
+    varMatches = termos.length ? todas.filter(o => bateBusca(o.label, termos)) : todas;
     varActive = varMatches.findIndex(o => o.i === varianteSel.selectedIndex);
     varianteList.innerHTML = varMatches.length
       ? varMatches.map((o, k) => `<div class="combo-item${k === varActive ? ' active' : ''}" data-idx="${k}">${highlightMatch(o.label, termos[0] || '')}</div>`).join('')
