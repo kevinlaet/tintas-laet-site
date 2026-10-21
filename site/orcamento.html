@@ -624,7 +624,8 @@ function bateBusca(texto, termos) {
 function catalogoParaIA() {
   return Object.keys(produtosData).map(id => {
     const p = produtosData[id];
-    return `${id} | ${displayNome(id, p)} | ${flattenOptions(p).map(o => o.label).join(' ; ')}`;
+    const nome = displayNome(id, p);
+    return `${id} | ${nome}${ehRefilDeRolo(nome) ? ' (refil de rolo)' : ''} | ${flattenOptions(p).map(o => o.label).join(' ; ')}`;
   }).join('\n');
 }
 
@@ -653,9 +654,17 @@ function marcarConferirVariante(card) {
 
 let produtoOptionsList = [];
 
+// No catálogo os rolos de 23cm e 46cm se chamam "Refil ...", mas o vendedor procura por "rolo".
+function ehRefilDeRolo(nome) {
+  return /^refil\b/i.test(nome) && !/rolo/i.test(nome);
+}
+
 function buildProdutoOptionsList() {
   produtoOptionsList = Object.keys(produtosData)
-    .map(id => ({ id, nome: displayNome(id, produtosData[id]) }))
+    .map(id => {
+      const nome = displayNome(id, produtosData[id]);
+      return { id, nome, busca: ehRefilDeRolo(nome) ? `${nome} rolo` : nome };
+    })
     .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
 }
 
@@ -1136,7 +1145,7 @@ function addItemRow(afterCard) {
 
   function renderList(query) {
     const termos = normalizeBusca(query).split(/\s+/).filter(Boolean);
-    currentMatches = termos.length ? produtoOptionsList.filter(o => bateBusca(o.nome, termos)) : produtoOptionsList;
+    currentMatches = termos.length ? produtoOptionsList.filter(o => bateBusca(o.busca, termos)) : produtoOptionsList;
     activeIndex = -1;
     produtoList.innerHTML = currentMatches.length
       ? currentMatches.map((o, i) => `<div class="combo-item" data-idx="${i}">${highlightMatch(o.nome, termos[0] || '')}</div>`).join('')
