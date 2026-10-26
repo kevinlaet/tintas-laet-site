@@ -37,20 +37,38 @@ exports.handler = async function (event) {
     const frete = Number(data.frete) || 0;
     const desconto = Number(data.desconto) || 0;
 
+    const whatsapp = String(data.whatsapp || "").trim().slice(0, 30);
+    const endereco = String(data.endereco || "").trim().slice(0, 140);
+    const pagamento = String(data.pagamento || "").trim().slice(0, 60);
+
     const linhasItens = itens.slice(0, MAX_ITENS).map((it) => {
       const qty = Number(it.qty) || 0;
       const nome = String(it.nome || "").trim().slice(0, 60);
       const variante = String(it.variante || "").trim().slice(0, 40);
-      return `${qty}x ${nome}${variante ? " " + variante : ""} · ${brl(Number(it.subtotal))}`;
+      const unitario = Number(it.valor) || 0;
+      const detalheUnit = qty > 1 && unitario > 0 ? ` (${brl(unitario)} cada)` : "";
+      return `• ${qty}x ${nome}${variante ? " (" + variante + ")" : ""}\n   ${brl(Number(it.subtotal))}${detalheUnit}`;
     });
     if (itens.length > MAX_ITENS) linhasItens.push(`+ ${itens.length - MAX_ITENS} item(ns)`);
 
+    const qtdTotal = itens.reduce((s, it) => s + (Number(it.qty) || 0), 0);
+    const subtotalItens = itens.reduce((s, it) => s + (Number(it.subtotal) || 0), 0);
+
     const linhas = [
-      `${vendedor || "Sem vendedor"} · ${loja || "Sem loja"}`,
+      `Vendedor: ${vendedor || "Sem vendedor"}`,
+      `Loja: ${loja || "Sem loja"}`,
+      "",
       `Cliente: ${cliente || "-"}`,
+      ...(whatsapp ? [`WhatsApp: ${whatsapp}`] : []),
+      ...(endereco ? [`Endereço: ${endereco}`] : []),
+      "",
+      `Produtos (${itens.length} ${itens.length === 1 ? "item" : "itens"}, ${qtdTotal} un.):`,
       ...linhasItens,
+      "",
+      ...(frete > 0 || desconto > 0 ? [`Produtos: ${brl(subtotalItens)}`] : []),
       ...(frete > 0 ? [`Frete: ${brl(frete)}`] : []),
       ...(desconto > 0 ? [`Desconto: -${brl(desconto)}`] : []),
+      ...(pagamento ? [`Pagamento: ${pagamento}`] : []),
       `Total: ${brl(total)}`,
     ].join("\n");
 

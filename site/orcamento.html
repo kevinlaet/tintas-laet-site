@@ -432,7 +432,10 @@ async function notificarVerTotal() {
         vendedor: document.getElementById('f-vendedor').value,
         loja: document.getElementById('f-loja').value,
         cliente: document.getElementById('f-cliente').value,
-        itens: itens.map(it => ({ qty: it.qty, nome: it.nome, variante: it.variante, subtotal: it.subtotal })),
+        whatsapp: document.getElementById('f-whatsapp').value,
+        endereco: document.getElementById('f-endereco').value,
+        pagamento: document.getElementById('f-pagamento').value,
+        itens: itens.map(it => ({ qty: it.qty, nome: it.nome, variante: it.variante, valor: it.valor, subtotal: it.subtotal })),
         frete, desconto, total
       })
     });
