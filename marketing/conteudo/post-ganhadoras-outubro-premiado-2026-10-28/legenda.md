@@ -2,14 +2,16 @@
 
 **Parabéns, Marilene e Camila! 🎉**
 
-O sorteio do Outubro Premiado já tem dono:
+O Outubro Premiado já tem dono:
 
 🔊 **Marilene** levou a Caixa de Som Mondial 250W.
-🎨 **Camila**, indicada da Marilene, levou a tinta Cobertura Absoluta 3,6L.
+🎨 **Camila** levou a tinta Cobertura Absoluta 3,6L. Ela ganhou porque a Marilene indicou.
 
-Marilene e Camila, fiquem de olho no WhatsApp: nossa equipe vai entrar em contato com vocês pra combinar a entrega do prêmio.
+Aqui na Laet quem indica também concorre. Na próxima, o ganhador pode ser você ou alguém que você gosta.
 
-Quer ser o próximo? É só comprar em qualquer uma das nossas 6 lojas, preencher seu cupom na loja e indicar seus amigos. Quem você indica também concorre!
+É simples: compre em uma das nossas 6 lojas, preencha o cupom e indique seus amigos.
+
+Marilene e Camila, nossa equipe vai chamar vocês no WhatsApp pra combinar a entrega.
 
 📲 WhatsApp (11) 97714-0964
 🌐 tintaslaet.com
