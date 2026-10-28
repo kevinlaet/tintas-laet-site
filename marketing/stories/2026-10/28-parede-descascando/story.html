@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — Pintou e descascou?</title>
+<style>
+@font-face { font-family:'Bebas Neue'; font-weight:400; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { background:#020A18; }
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; color:#fff;
+  background:
+    radial-gradient(ellipse 900px 640px at 50% 26%, rgba(33,110,230,.5) 0%, rgba(13,71,161,0) 70%),
+    linear-gradient(180deg, #0D47A1 0%, #0A3A86 36%, #062B63 68%, #03183A 100%); }
+.dots { position:absolute; inset:0; z-index:1; opacity:.14;
+  background-image: radial-gradient(rgba(255,255,255,.9) 1.4px, transparent 1.6px); background-size:22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 600px 500px at 92% 5%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(ellipse 600px 500px at 92% 5%, #000 0%, transparent 70%); }
+.logo { position:absolute; top:122px; left:0; right:0; z-index:10; text-align:center; }
+.logo img { height:220px; margin:-54px 0 -40px; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(0,0,0,.35)); }
+.ey { position:absolute; left:0; right:0; z-index:10; text-align:center; font:700 28px/1 'Poppins',sans-serif; color:#FFE082; letter-spacing:.18em; text-transform:uppercase; }
+.prog { position:absolute; top:92px; left:0; right:0; z-index:10; display:flex; justify-content:center; gap:10px; }
+.prog i { width:46px; height:8px; border-radius:6px; background:rgba(255,255,255,.28); }
+.prog i.on { background:#FFC107; }
+.toque { position:absolute; left:50%; transform:translateX(-50%); z-index:10; white-space:nowrap; display:flex; align-items:center; gap:14px;
+  background:#FFC107; color:#062B63; font:400 58px/1 'Bebas Neue',sans-serif; padding:16px 38px 10px; border-radius:60px; box-shadow:0 14px 34px rgba(0,0,0,.45); letter-spacing:.03em; }
+.toque svg { width:40px; height:40px; margin-top:-6px; }
+.rod { position:absolute; left:0; right:0; top:1676px; z-index:10; text-align:center; font:700 26px/1 'Poppins',sans-serif; color:rgba(255,255,255,.9); }
+.rod b { color:#FFE082; }
+
+/* frame 1 */
+.parede { position:absolute; left:90px; top:372px; width:900px; height:620px; z-index:5; border-radius:26px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,.5); }
+.f1-h { position:absolute; left:0; right:0; top:1032px; z-index:10; text-align:center; font:400 172px/.86 'Bebas Neue',sans-serif; text-shadow:0 10px 36px rgba(0,0,0,.4); }
+.f1-h b { color:#FFC107; font-weight:400; }
+.f1-s { position:absolute; left:0; right:0; top:1350px; z-index:10; text-align:center; font:800 50px/1.15 'Montserrat',sans-serif; }
+.f1-s b { color:#FFC107; }
+
+/* frame 2 */
+.f2-h { position:absolute; left:0; right:0; top:300px; z-index:10; text-align:center; font:400 118px/.9 'Bebas Neue',sans-serif; text-shadow:0 10px 36px rgba(0,0,0,.4); }
+.f2-h b { color:#FFC107; font-weight:400; }
+.card { position:absolute; left:56px; right:56px; height:420px; z-index:8; border-radius:28px; background:rgba(13,47,102,.82); border:2px solid rgba(255,255,255,.24); box-shadow:0 20px 44px rgba(0,0,0,.4); display:flex; align-items:center; gap:10px; padding:0 34px 0 10px; overflow:hidden; }
+.card .ft { flex:0 0 auto; width:340px; height:340px; object-fit:contain; filter:drop-shadow(0 18px 24px rgba(0,0,0,.5)); }
+.card .tg { display:inline-block; background:rgba(255,224,130,.16); border:2px solid rgba(255,224,130,.55); color:#FFE082; font:700 25px/1.2 'Poppins',sans-serif; padding:8px 16px; border-radius:30px; }
+.card .nm { font:400 92px/.92 'Bebas Neue',sans-serif; color:#FFC107; margin-top:16px; letter-spacing:.01em; }
+.card .ds { font:700 33px/1.25 'Montserrat',sans-serif; color:#fff; margin-top:10px; }
+
+/* frame 3 */
+.f3-h { position:absolute; left:0; right:0; top:298px; z-index:10; text-align:center; font:400 168px/.86 'Bebas Neue',sans-serif; text-shadow:0 10px 36px rgba(0,0,0,.4); }
+.f3-h b { color:#FFC107; font-weight:400; }
+.chat { position:absolute; left:90px; right:90px; top:640px; height:600px; z-index:8; border-radius:34px; background:#EEF2F7; box-shadow:0 30px 60px rgba(0,0,0,.5); overflow:hidden; color:#14233C; }
+.chat .hd { height:104px; background:#062B63; display:flex; align-items:center; gap:18px; padding:0 30px; color:#fff; }
+.chat .hd .av { width:66px; height:66px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.chat .hd .av img { width:52px; height:52px; object-fit:contain; }
+.chat .hd .nm { font:800 32px/1.1 'Montserrat',sans-serif; }
+.chat .hd .st { font:600 22px/1.2 'Poppins',sans-serif; color:#9FC2FF; }
+.bub { position:absolute; max-width:600px; border-radius:26px; padding:18px 22px; font:600 29px/1.3 'Poppins',sans-serif; box-shadow:0 4px 10px rgba(0,0,0,.08); }
+.bub.cli { right:28px; top:136px; background:#FFF3C4; border-bottom-right-radius:8px; }
+.bub.cli .mini { width:420px; height:210px; border-radius:16px; overflow:hidden; margin-bottom:12px; }
+.bub.cli .mini svg { width:100%; height:100%; display:block; }
+.bub.laet { left:28px; top:468px; background:#fff; border-bottom-left-radius:8px; }
+.bub.laet b { color:#0D47A1; }
+.f3-s { position:absolute; left:40px; right:40px; top:1276px; z-index:10; text-align:center; font:800 41px/1.2 'Montserrat',sans-serif; }
+.f3-s b { color:#FFC107; }
+.selo { position:absolute; left:50%; top:1412px; transform:translateX(-50%) rotate(-2deg); z-index:10; white-space:nowrap; background:#fff; color:#062B63; font:400 54px/1 'Bebas Neue',sans-serif; padding:12px 30px 6px; border-radius:14px; box-shadow:0 10px 26px rgba(0,0,0,.35); letter-spacing:.03em; }
+.btn { position:absolute; left:50%; top:1528px; transform:translateX(-50%); z-index:10; display:flex; align-items:center; gap:16px; white-space:nowrap;
+  background:#FFC107; color:#062B63; font:800 44px/1 'Montserrat',sans-serif; padding:20px 44px; border-radius:60px; box-shadow:0 12px 30px rgba(0,0,0,.4); }
+.btn svg { width:48px; height:48px; fill:#062B63; }
+.sub { position:absolute; left:0; right:0; top:1624px; z-index:10; text-align:center; font:700 30px/1 'Poppins',sans-serif; color:#fff; }
+.sub b { color:#FFE082; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="parede" viewBox="0 0 900 620">
+      <rect width="900" height="620" fill="#F4ECD7"/>
+      <path stroke="#9C9282" stroke-width="3" d="M 0 470 L 60 452 L 92 476 L 150 440 L 196 468 L 246 430 L 300 462 L 334 448 L 368 488 L 330 540 L 360 620 L 0 620 Z" fill="#B7AD9E"/>
+      <path stroke="#9C9282" stroke-width="3" d="M 520 70 L 566 52 L 612 86 L 664 60 L 706 96 L 744 80 L 770 128 L 742 170 L 760 214 L 712 240 L 680 222 L 640 258 L 604 230 L 566 246 L 540 206 L 512 186 L 528 146 L 500 112 Z" fill="#B7AD9E"/>
+      <path stroke="#9C9282" stroke-width="3" d="M 640 380 L 680 366 L 704 392 L 742 384 L 756 418 L 730 452 L 696 446 L 668 470 L 646 440 L 626 418 Z" fill="#B7AD9E"/>
+      <g fill="#A1978A">
+        <circle cx="80" cy="520" r="5"/><circle cx="150" cy="560" r="4"/><circle cx="230" cy="510" r="6"/><circle cx="290" cy="580" r="4"/><circle cx="120" cy="600" r="3"/>
+        <circle cx="600" cy="120" r="5"/><circle cx="660" cy="170" r="4"/><circle cx="710" cy="140" r="5"/><circle cx="580" cy="200" r="4"/>
+        <circle cx="690" cy="410" r="4"/><circle cx="720" cy="430" r="3"/>
+      </g>
+      <path d="M 742 170 L 800 150 L 846 196 L 812 214 L 760 214 Z" fill="#FBF7EC"/>
+      <path d="M 760 214 L 812 214 L 846 196 L 840 220 L 800 236 Z" fill="#D8CDB8"/>
+      <path d="M 368 488 L 430 470 L 470 512 L 420 530 L 360 540 Z" fill="#FBF7EC"/>
+      <path d="M 360 540 L 420 530 L 470 512 L 462 538 L 410 556 Z" fill="#D8CDB8"/>
+      <g stroke="#9C9282" stroke-width="3" fill="none" stroke-linecap="round">
+        <path d="M 300 120 L 330 170 L 318 214 L 352 268"/>
+        <path d="M 330 170 L 372 186"/>
+        <path d="M 120 250 L 150 300 L 142 336"/>
+        <path d="M 820 520 L 790 560 L 806 600"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- 1: gancho -->
+<div class="slide">
+  <div class="dots"></div>
+  <div class="logo"><img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet"></div>
+  <div class="ey" style="top:318px">Aconteceu aí também?</div>
+  <svg class="parede" viewBox="0 0 900 620"><use href="#parede"/></svg>
+  <div class="f1-h">PINTOU E<br><b>DESCASCOU?</b></div>
+  <div class="f1-s">Nem sempre <b>a culpa é da tinta.</b></div>
+  <div class="toque" style="top:1470px">TOCA PRA VER O MOTIVO <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="#062B63" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="rod"><b>@Tintaslaet</b> · (11) 97714-0964 · tintaslaet.com</div>
+</div>
+
+<!-- 2: resposta -->
+<div class="slide">
+  <div class="dots"></div>
+  <div class="logo"><img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet"></div>
+  <div class="f2-h">O SEGREDO TÁ NO QUE<br><b>VEM ANTES DA TINTA</b></div>
+  <div class="card" style="top:540px">
+    <img class="ft" src="../../../../identidade/embalagens/fundo_preparador-removebg-preview.png" alt="Fundo Preparador Laet">
+    <div><span class="tg">Parede velha, que esfarela</span><div class="nm">FUNDO PREPARADOR</div><div class="ds">Firma a superfície antes da tinta.</div></div>
+  </div>
+  <div class="card" style="top:986px">
+    <img class="ft" src="../../../../identidade/embalagens/seladora-removebg-preview.png" alt="Seladora Laet">
+    <div><span class="tg">Parede nova, que chupa tinta</span><div class="nm">SELADORA</div><div class="ds">Fecha os poros do reboco e economiza tinta.</div></div>
+  </div>
+  <div class="toque" style="top:1470px">QUAL É A SUA? TOCA AQUI <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="#062B63" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="rod"><b>@Tintaslaet</b> · (11) 97714-0964 · tintaslaet.com</div>
+</div>
+
+<!-- 3: CTA -->
+<div class="slide">
+  <div class="dots"></div>
+  <div class="logo"><img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet"></div>
+  <div class="f3-h">NÃO SABE<br><b>QUAL É A SUA?</b></div>
+  <div class="chat">
+    <div class="hd"><div class="av"><img src="../../../../site/images/favicon-512.png" alt=""></div><div><div class="nm">Tintas Laet</div><div class="st">atendimento pelo WhatsApp</div></div></div>
+    <div class="bub cli"><div class="mini"><svg viewBox="0 40 900 450" preserveAspectRatio="xMidYMid slice"><use href="#parede"/></svg></div>Tá assim. O que eu uso?</div>
+    <div class="bub laet">Pela foto, ela pede <b>Fundo Preparador</b> antes da tinta.</div>
+  </div>
+  <div class="f3-s">Manda uma foto da parede no WhatsApp.<br><b>A gente te diz o que usar.</b></div>
+  <div class="selo">SEM CUSTO E SEM COMPROMISSO</div>
+  <div class="btn"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>(11) 97714-0964</div>
+  <div class="sub"><b>@Tintaslaet</b> · tintaslaet.com</div>
+</div>
+
+</body>
+</html>
