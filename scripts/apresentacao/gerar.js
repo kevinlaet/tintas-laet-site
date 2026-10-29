@@ -33,7 +33,8 @@ function faixasCores(p) {
   const out = [];
   for (const [chave, rotulo, def] of [['preco_balde', 'Balde', p.tam_balde_default], ['preco_galao', 'Galão', p.tam_galao_default], ['preco_quarto', 'Quarto', null]]) {
     const v = cores.map((c) => num(c[chave])).filter((n) => !isNaN(n));
-    if (v.length) const tam = { '17L': '17/18L', '3,4L': '3,4/3,6L' }[def] || def;   // cor clara vem em 18L/3,6L, cor média/forte em 17L/3,4L (mesmo preço)
+    if (!v.length) continue;
+    const tam = { '17L': '17/18L', '3,4L': '3,4/3,6L' }[def] || def;   // cor clara vem em 18L/3,6L, cor média/forte em 17L/3,4L (mesmo preço)
     out.push({ rotulo: tam ? `${rotulo} ${tam}` : rotulo, min: Math.min(...v), max: Math.max(...v) });
   }
   return { n: cores.length, faixas: out };
