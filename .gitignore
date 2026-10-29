@@ -39,3 +39,4 @@ scripts/cores/extracao/saida-*.json
 
 # Orçamentos gerados (têm nome e WhatsApp de cliente) — ficam só na máquina, nunca no repo
 /saidas/orcamentos/
+/saidas/apresentacoes/

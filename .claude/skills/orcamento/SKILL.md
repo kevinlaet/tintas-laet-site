@@ -79,3 +79,12 @@ Nomes de loja (usar assim): Loja 1 — Vila Bela (Sapopemba) · Loja 2 — Mauá
 ## Orçamento com fotos dos produtos (29/10/2026)
 
 Cada item aceita `"foto": "ferramentas/lona-preta.png"` (caminho dentro de `site/images/`; as fotos dos produtos estão em `ferramentas/` e `embalagens/`). Aparece uma miniatura ao lado do nome. Saída em PNG e PDF. Usar quando o cliente manda foto/referência do que quer, ou quando o Kevin pedir orçamento "profissional" pra mandar em PDF. Produto que a Laet não vende (não está em `site/produto.html`) não entra: avisar o Kevin em vez de inventar item.
+
+## Apresentação de preços e variações (29/10/2026)
+
+Quando o Kevin pedir "apresentação de preços" em vez de orçamento (cliente quer ver o que a Laet tem, com tamanhos e variações, sem fechar pedido): **sem número, sem total, sem gastar contador**.
+
+```
+node scripts/apresentacao/gerar.js apresentacao.json
+```
+JSON: `{ "cliente": "Nome (opcional)", "titulo": "...", "itens": [ { "id": "standard", "obs": "opcional" } ] }` — `id` é a chave do produto em `site/produto.html` (preços, tamanhos, foto e descrição vêm de lá, nunca digitados). Produto com preço por cor mostra a faixa (menor a maior) por tamanho. Saída: `saidas/apresentacoes/<cliente>-<data>/apresentacao.pdf` (página única longa, boa no celular) + `previa.png` (pasta ignorada pelo git). Produto que a Laet não vende não entra.
