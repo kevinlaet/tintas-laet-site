@@ -75,3 +75,7 @@ Antes de gerar, conferir a lista. Se faltar algo, pedir ao Kevin numa mensagem s
 **Orçamento:** nome e WhatsApp do cliente, itens com quantidade (galão por padrão), **loja de retirada e data prevista** (quando o cliente for retirar; campos opcionais `loja` e `retirada`), vendedor (padrão Kevin).
 
 Nomes de loja (usar assim): Loja 1 — Vila Bela (Sapopemba) · Loja 2 — Mauá (Jardim São João) · Loja 3 — Mauá (Av. Ayrton Senna) · Loja 4 — Santo André (Vila Luzita) · Loja 5 — Mauá (Itapark) · Loja 6 — São Bernardo do Campo (Santa Terezinha).
+
+## Orçamento com fotos dos produtos (29/10/2026)
+
+Cada item aceita `"foto": "ferramentas/lona-preta.png"` (caminho dentro de `site/images/`; as fotos dos produtos estão em `ferramentas/` e `embalagens/`). Aparece uma miniatura ao lado do nome. Saída em PNG e PDF. Usar quando o cliente manda foto/referência do que quer, ou quando o Kevin pedir orçamento "profissional" pra mandar em PDF. Produto que a Laet não vende (não está em `site/produto.html`) não entra: avisar o Kevin em vez de inventar item.

@@ -4,6 +4,7 @@
 // JSON de entrada:
 // { "cliente": "Mara", "whatsappCliente": "(11) 91234-5678",
 //   "vendedor": "Kevin", "whatsappLoja": "(11) 97714-0964",
+//   (item pode ter "foto": "ferramentas/lona-preta.png" — caminho dentro de site/images — pra mostrar a foto do produto)
 //   "itens": [ { "produto": "Standard", "cor": "Tangerina", "tamanho": "Galão 3,4L", "qtd": 1, "unit": 79.90 } ],
 //   "desconto": 0, "obs": "" }
 const fs = require('fs');
@@ -16,6 +17,12 @@ const REGISTRO_DIR = path.join(RAIZ, 'dados', 'orcamentos');  // dados/ é priva
 const brl = (n) => 'R$ ' + n.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const b64 = (f) => 'data:image/png;base64,' + fs.readFileSync(path.join(RAIZ, f)).toString('base64');
+const MIME = { png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', jfif: 'image/jpeg', webp: 'image/webp' };
+const fotoB64 = (rel) => {   // rel = caminho dentro de site/images (ex.: ferramentas/lona-preta.png)
+  const f = path.join(RAIZ, 'site', 'images', rel);
+  if (!fs.existsSync(f)) { console.error('⚠ Foto não encontrada: ' + rel); return null; }
+  return `data:${MIME[path.extname(f).slice(1).toLowerCase()] || 'image/png'};base64,` + fs.readFileSync(f).toString('base64');
+};
 const soDigitos = (s) => String(s || '').replace(/\D/g, '');
 
 (async () => {
@@ -44,7 +51,7 @@ const soDigitos = (s) => String(s || '').replace(/\D/g, '');
 
   const linhas = d.itens.map((i) => `
     <div class="item">
-      <div class="desc"><b>${esc(i.produto)}${i.cor ? ' · ' + esc(i.cor) : ''}</b><span>${esc(i.tamanho || '')}</span></div>
+      <div class="desc${i.foto ? ' comfoto' : ''}">${i.foto && fotoB64(i.foto) ? `<img src="${fotoB64(i.foto)}">` : ''}<div><b>${esc(i.produto)}${i.cor ? ' · ' + esc(i.cor) : ''}</b><span>${esc(i.tamanho || '')}</span></div></div>
       <div class="qtd">${i.qtd}×</div>
       <div class="unit">${brl(i.unit)}</div>
       <div class="sub">${brl(i.qtd * i.unit)}</div>
@@ -70,6 +77,8 @@ body{width:1080px;background:#fff;font-family:Poppins,sans-serif;color:var(--gra
 .item{padding:22px 0;border-bottom:1px solid #dde1e6;font-size:26px}
 .item .desc b{display:block;font:700 28px Montserrat,sans-serif}
 .item .desc span{color:#5b6470;font-size:22px}
+.desc.comfoto{display:flex;align-items:center;gap:20px}
+.desc.comfoto img{width:104px;height:104px;object-fit:contain;background:#fff;border:1px solid #e3e6ea;border-radius:8px;padding:6px;flex:none}
 .qtd{text-align:center;font-weight:600}.unit,.sub{text-align:right}.sub{font-weight:600}
 .cab div:nth-child(2){text-align:center}.cab div:nth-child(n+3){text-align:right}
 .totais{padding:20px 56px 36px}
