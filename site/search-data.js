@@ -43,6 +43,7 @@ const LAET_SEARCH_INDEX = [
   { id: 'cabo-rolo-23cm', nome: 'Cabo para Rolo (Reforçado) 23cm', categoria: 'Ferramentas' },
   { id: 'cabo-rolo-46cm', nome: 'Cabo para Rolo (Reforçado) 46cm', categoria: 'Ferramentas' },
   { id: 'lona-preta', nome: 'Lona Preta', categoria: 'Ferramentas' },
+  { id: 'cacamba-pintura', nome: 'Caçamba de Pintura', categoria: 'Ferramentas' },
   { id: 'papelao-protege-piso', nome: 'Papelão Protege-Piso', categoria: 'Ferramentas' },
   { id: 'trincha', nome: 'Trincha', categoria: 'Ferramentas' },
   { id: 'aguarras', nome: 'Aguarrás', categoria: 'Ferramentas' },
