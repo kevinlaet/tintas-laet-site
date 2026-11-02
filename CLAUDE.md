@@ -108,6 +108,17 @@ sessão (`/abrir`) sincronizar de lá pra cá; ao salvar (`/salvar` ou quando
 o Kevin pedir pra "salvar a sessão"), sincronizar daqui pra lá — nunca
 pular esse passo achando que só o `_memoria/` local já resolveu.
 
+**Salvar na memória sem esperar pedido (Kevin, 02/11/2026):** ao terminar
+qualquer tarefa que mude algo (peça nova, alteração no site, decisão do
+Kevin), atualizar `_memoria/estrategia.md` (progresso/pendências) e
+sincronizar com `tintas-laet-memoria` na hora. O Kevin trabalha em vários
+chats e o que não vai pra lá se perde.
+
+**Chats:** o chat principal da Laet se chama "⭐ LAET CENTRAL" (design,
+alterações, pedidos rápidos); código do painel fica no "🛠 LAET PAINEL".
+Se o Kevin pedir algo da Laet em outro chat, fazer normalmente e salvar na
+memória do mesmo jeito.
+
 No início de toda conversa, ler os seguintes arquivos (quando existirem e estiverem preenchidos):
 
 1. `_memoria/empresa.md` — quem é o usuário, o que faz, como funciona o negócio
