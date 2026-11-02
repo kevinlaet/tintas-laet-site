@@ -51,3 +51,17 @@ CiaColor, Decor Colors, Suvinil, Mundo das Tintas. O guia completo está na skil
 **Me entregue primeiro:** diagnóstico do que está errado hoje, proposta de como encaixar as etapas sem
 quebrar o que já funciona, e o que você recomenda (skill, biblioteca de referências, ou só ajustar os prompts).
 Só depois de eu aprovar, implemente.
+
+---
+
+**Última coisa (importante) — contexto compartilhado com o chat "⭐ LAET CENTRAL":**
+O painel já tem coisas minhas que o outro chat não enxerga (cérebro dos stories, `docs/PADRAO-DESIGN-STORIES.md`,
+👍/👎, programação, fila, o que está quebrado). Pra eu não ter que repassar contexto toda hora, crie e **mantenha
+atualizado** o arquivo `docs/CONTEXTO-PAINEL.md` no repo `tintas-laet-painel`, e atualize-o ao fim de TODA tarefa
+(commit na `main` só com o "pode" do Kevin; senão na branch). Conteúdo, curto e sem nenhum segredo/chave:
+1. O que o painel faz hoje (telas, ferramentas) e o que cada uma usa (OpenAI/Gemini/Meta/Notion) — só nomes, sem valores.
+2. O "cérebro" atual: onde vivem as regras de texto e design, o que o 👍/👎 já ensinou, o que é travado.
+3. Programação em vigor (datas, temas, status) e o que está na fila.
+4. O que está quebrado ou pendente, e o que depende de decisão do Kevin.
+5. Decisões já tomadas (pra ninguém re-perguntar).
+O chat Central lê esse arquivo no início de cada sessão.

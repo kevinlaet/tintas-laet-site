@@ -25,6 +25,11 @@ Curto e direto. O objetivo é carregar contexto e devolver uma síntese de uma f
      avisar o Kevin depois do resumo: "não consegui sincronizar a memória
      privada — usei o que já tinha aqui."
 
+0b. **Contexto do painel** (repo `kevinlaet/tintas-laet-painel`, já anexado ou via `add_repo`):
+   `git pull` e, se existir, ler `docs/CONTEXTO-PAINEL.md` (o chat do painel mantém esse arquivo —
+   programação, fila, o que está quebrado, decisões). Usar como contexto; não pedir pro Kevin repassar.
+   Se não existir ainda, seguir sem ele e lembrar o Kevin de colar o prompt de `saidas/prompt-painel-guia-conteudo.md` no chat do painel.
+
 1. Ler, em ordem:
    - `_memoria/empresa.md`
    - `_memoria/preferencias.md`
