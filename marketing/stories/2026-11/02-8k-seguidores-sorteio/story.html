@@ -10,102 +10,191 @@
 @font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
 @font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
 @font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 body { background:#020A18; }
+
 .slide { width:1080px; height:1920px; position:relative; overflow:hidden; color:#fff;
   background:
-    radial-gradient(ellipse 1000px 760px at 50% 24%, rgba(46,128,255,.65) 0%, rgba(13,71,161,0) 70%),
-    linear-gradient(180deg, #0D47A1 0%, #0A3A86 30%, #062B63 62%, #03183A 100%); }
-/* raios de luz saindo de trás do 8 MIL */
-.rays { position:absolute; left:50%; top:470px; width:2400px; height:2400px; transform:translate(-50%,-50%); z-index:1; opacity:.55;
-  background:repeating-conic-gradient(from 0deg, rgba(255,224,130,.20) 0deg 6deg, rgba(255,224,130,0) 6deg 18deg);
-  -webkit-mask-image:radial-gradient(circle, #000 0%, rgba(0,0,0,.55) 22%, transparent 48%);
-          mask-image:radial-gradient(circle, #000 0%, rgba(0,0,0,.55) 22%, transparent 48%); }
-.dots { position:absolute; inset:0; z-index:1; opacity:.14;
-  background-image:radial-gradient(rgba(255,255,255,.9) 1.4px, transparent 1.6px); background-size:22px 22px;
-  -webkit-mask-image:radial-gradient(ellipse 700px 600px at 50% 100%, #000 0%, transparent 70%);
-          mask-image:radial-gradient(ellipse 700px 600px at 50% 100%, #000 0%, transparent 70%); }
-.cf { position:absolute; z-index:2; }
+    radial-gradient(ellipse 820px 620px at 50% 30%, rgba(52,132,255,.70) 0%, rgba(13,71,161,0) 72%),
+    radial-gradient(ellipse 900px 700px at 50% 72%, rgba(13,71,161,.55) 0%, rgba(6,43,99,0) 70%),
+    linear-gradient(180deg, #0D47A1 0%, #0B3F92 26%, #062B63 58%, #041F4A 80%, #02122D 100%); }
 
-.top { position:absolute; top:150px; left:0; right:0; z-index:10; text-align:center; }
-.top img { height:240px; margin:-60px 0 -50px; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(0,0,0,.35)); }
+/* holofote suave atrás do número */
+.beam { position:absolute; left:50%; top:-120px; width:1300px; height:1100px; transform:translateX(-50%); z-index:1;
+  background:conic-gradient(from 180deg at 50% 0%, transparent 0deg 148deg, rgba(255,224,130,.13) 160deg, rgba(255,255,255,.10) 180deg, rgba(255,224,130,.13) 200deg, transparent 212deg 360deg);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 55%,transparent 90%);
+          mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 55%,transparent 90%); }
+/* granulado fino: tira o aspecto "digital chapado" */
+.grain { position:absolute; inset:0; z-index:30; pointer-events:none; opacity:.09; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.vig { position:absolute; inset:0; z-index:29; pointer-events:none;
+  background:radial-gradient(ellipse 760px 1100px at 50% 46%, transparent 62%, rgba(1,8,22,.55) 100%); }
 
-.hero { position:absolute; left:0; right:0; top:300px; z-index:8; text-align:center; }
-.n8 { font:400 430px/.8 'Bebas Neue',sans-serif; letter-spacing:.005em; position:relative; display:inline-block;
-  background:linear-gradient(180deg,#FFFFFF 0%,#FFF3C4 55%,#FFC107 100%); -webkit-background-clip:text; background-clip:text; color:transparent;
-  filter:drop-shadow(0 10px 0 #0A3A86) drop-shadow(0 22px 36px rgba(0,0,0,.5)); }
-.chip { display:inline-flex; align-items:center; gap:22px; margin-top:22px; background:#FFC107; color:#062B63; font:400 84px/1 'Bebas Neue',sans-serif; padding:14px 40px 8px 30px; border-radius:16px; transform:rotate(-2deg); box-shadow:0 14px 30px rgba(0,0,0,.4); letter-spacing:.03em; }
-.chip svg { width:68px; height:68px; margin-top:-8px; }
+/* confete com profundidade: alguns desfocados (fundo), outros nítidos (frente) */
+#fx { position:absolute; inset:0; z-index:2; }
+.cf { position:absolute; }
+.bk { position:absolute; border-radius:50%; }
+.spk { position:absolute; z-index:12; filter:drop-shadow(0 0 10px rgba(255,224,130,.9)); }
 
-.win { position:absolute; left:0; right:0; top:850px; z-index:8; text-align:center; font:400 128px/1 'Bebas Neue',sans-serif; text-shadow:0 8px 30px rgba(0,0,0,.45); white-space:nowrap; }
-.win em { font-style:normal; display:inline-block; background:#FFC107; color:#062B63; padding:4px 26px 0; border-radius:14px; transform:rotate(-3deg); margin-left:6px; text-shadow:none; box-shadow:0 12px 26px rgba(0,0,0,.4); }
+/* LOGO */
+.logo { position:absolute; top:148px; left:0; right:0; z-index:10; text-align:center; }
+.logo img { height:226px; margin:-56px 0 -48px; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(0,0,0,.35)); }
 
-.mural { position:absolute; left:0; right:0; top:1005px; height:430px; z-index:7; }
-.pol { position:absolute; width:262px; background:#fff; padding:12px 12px 0; border-radius:6px; box-shadow:0 24px 44px rgba(0,0,0,.55); }
-.pol .ft { width:238px; height:262px; border-radius:3px; background:#ccc center/cover no-repeat; }
-.pol .lb { height:48px; display:flex; align-items:center; justify-content:center; gap:9px; font:800 21px/1 'Montserrat',sans-serif; color:#062B63; }
-.pol .lb i { width:11px; height:11px; border-radius:50%; background:#FFC107; display:inline-block; }
-.pol::before { content:''; position:absolute; top:-15px; left:50%; width:104px; height:30px; transform:translateX(-50%) rotate(-3deg); background:rgba(255,224,130,.85); box-shadow:0 2px 6px rgba(0,0,0,.2); }
-.p1 { left:34px;  top:48px; transform:rotate(-7deg); z-index:1; }
-.p2 { left:284px; top:6px;  transform:rotate(3deg);  z-index:2; }
-.p3 { left:540px; top:34px; transform:rotate(-3deg); z-index:3; }
-.p4 { left:790px; top:0;    transform:rotate(6deg);  z-index:4; }
-.p1 .ft { background-image:url('../../../prova social/ganhadora-julhopremiado2026.jfif'); background-size:200% auto; background-position:88% 48%; }
-.p2 .ft { background-image:url('../../../prova social/ganhadorasecundaria-julhopremiado2026.jfif'); background-size:205% auto; background-position:97% 42%; }
-.p3 .ft { background-image:url('../../../prova social/vendedorentregandoparafusadeirapremioaocliente.jfif'); background-size:135% auto; background-position:55% 52%; }
-.p4 .ft { background-image:url('../../../prova social/kevin Entregando um kit faqueiro para a ganhadora..jfif'); background-size:138% auto; background-position:44% 26%; }
-.real { position:absolute; left:50%; top:1397px; transform:translateX(-50%) rotate(-1.5deg); z-index:9; background:#fff; color:#062B63; font:400 46px/1 'Bebas Neue',sans-serif; letter-spacing:.06em; padding:10px 28px 5px; border-radius:10px; box-shadow:0 10px 24px rgba(0,0,0,.4); white-space:nowrap; }
+/* 8 MIL — dourado da paleta, com eco em contorno atrás */
+.hero { position:absolute; left:0; right:0; top:300px; z-index:9; height:330px; text-align:center; }
+.n8, .n8e { position:absolute; left:0; right:0; top:0; font:400 410px/.8 'Bebas Neue',sans-serif; letter-spacing:.01em; white-space:nowrap; }
+.n8e { color:transparent; -webkit-text-stroke:3px rgba(255,224,130,.55); transform:translate(16px,16px); }
+.n8 { background:linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 22%,#FFF3C4 40%,#FFE082 56%,#FFC107 78%,#FFC107 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 6px 0 #062B63) drop-shadow(0 26px 40px rgba(0,0,0,.55)); }
 
-.msg { position:absolute; left:64px; right:64px; top:1478px; z-index:10; text-align:center; font:600 37px/1.28 'Poppins',sans-serif; }
-.msg b { color:#FFC107; font-weight:700; }
-.btn { position:absolute; left:50%; top:1612px; transform:translateX(-50%); z-index:10; display:flex; align-items:center; gap:16px; white-space:nowrap;
-  background:#FFC107; color:#062B63; font:800 44px/1 'Montserrat',sans-serif; padding:22px 50px; border-radius:70px; box-shadow:0 12px 30px rgba(0,0,0,.45); }
-.btn svg { width:48px; height:48px; fill:#062B63; }
-.sub { position:absolute; left:0; right:0; top:1706px; z-index:10; text-align:center; font:700 30px/1 'Poppins',sans-serif; color:#fff; }
+.seg { position:absolute; left:0; right:0; top:654px; z-index:10; display:flex; align-items:center; justify-content:center; gap:20px;
+  font:800 40px/1 'Montserrat',sans-serif; letter-spacing:.16em; color:#fff; }
+.seg::before,.seg::after { content:''; width:70px; height:3px; border-radius:2px; background:linear-gradient(90deg,rgba(255,193,7,0),#FFC107); }
+.seg::after { transform:scaleX(-1); }
+.seg svg { width:46px; height:46px; flex:none; }
+
+.win { position:absolute; left:0; right:0; top:748px; z-index:10; text-align:center; white-space:nowrap;
+  font:400 128px/1 'Bebas Neue',sans-serif; letter-spacing:.005em; text-shadow:0 10px 34px rgba(0,0,0,.5); }
+.win em { font-style:normal; position:relative; display:inline-block; margin-left:10px; padding:6px 28px 0; color:#062B63; text-shadow:none;
+  background:linear-gradient(180deg,#FFD54F 0%,#FFC107 100%); border-radius:16px; transform:rotate(-3deg);
+  box-shadow:0 14px 30px rgba(0,0,0,.45), inset 0 -6px 0 rgba(6,43,99,.12), inset 0 3px 0 rgba(255,255,255,.45); }
+
+/* MURAL DE GANHADORES */
+.mural { position:absolute; left:0; right:0; top:930px; height:450px; z-index:8; }
+.pol { position:absolute; background:#FFFDF7; padding:12px 12px 0; border-radius:5px;
+  box-shadow:0 30px 50px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.25); }
+.pol .ft { border-radius:2px; background:#ccc center/cover no-repeat; box-shadow:inset 0 0 0 1px rgba(0,0,0,.08), inset 0 0 30px rgba(0,0,0,.18); }
+.pol .lb { height:50px; display:flex; align-items:center; justify-content:center; gap:10px; font:800 22px/1 'Montserrat',sans-serif; color:#062B63; letter-spacing:.01em; }
+.pol .lb i { width:12px; height:12px; border-radius:50%; background:#FFC107; box-shadow:0 0 0 3px rgba(255,193,7,.25); display:inline-block; }
+.pol::before { content:''; position:absolute; top:-16px; left:50%; width:108px; height:32px; transform:translateX(-50%) rotate(-4deg);
+  background:linear-gradient(90deg, rgba(255,236,170,.92), rgba(255,224,130,.80)); box-shadow:0 2px 6px rgba(0,0,0,.2);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0 3px,#000 3px calc(100% - 3px),transparent calc(100% - 3px)); }
+.p1 { left:26px;  top:74px; transform:rotate(-8deg); z-index:1; }
+.p2 { left:262px; top:4px;  transform:rotate(-2.5deg); z-index:3; }
+.p3 { left:536px; top:22px; transform:rotate(3deg);  z-index:2; }
+.p4 { left:800px; top:96px; transform:rotate(8deg);  z-index:1; }
+.p1 .ft, .p4 .ft { width:230px; height:262px; }
+.p2 .ft, .p3 .ft { width:262px; height:296px; }
+.p1 .ft { background-image:url('../../../prova social/ganhadora-julhopremiado2026.jfif'); background-size:205% auto; background-position:88% 46%; }
+.p2 .ft { background-image:url('../../../prova social/ganhadorasecundaria-julhopremiado2026.jfif'); background-size:200% auto; background-position:96% 40%; }
+.p3 .ft { background-image:url('../../../prova social/vendedorentregandoparafusadeirapremioaocliente.jfif'); background-size:140% auto; background-position:55% 50%; }
+.p4 .ft { background-image:url('../../../prova social/kevin Entregando um kit faqueiro para a ganhadora..jfif'); background-size:150% auto; background-position:46% 26%; }
+
+/* selo circular */
+.stamp { position:absolute; right:22px; top:902px; width:190px; height:190px; z-index:14; transform:rotate(12deg);
+  filter:drop-shadow(0 14px 22px rgba(0,0,0,.45)); }
+
+/* faixa */
+.ribbon { position:absolute; left:50%; top:1366px; transform:translateX(-50%) rotate(-1.5deg); z-index:13; }
+.ribbon b { display:block; position:relative; background:#fff; color:#062B63; font:400 50px/1 'Bebas Neue',sans-serif; letter-spacing:.07em;
+  padding:13px 54px 7px; white-space:nowrap; clip-path:polygon(0 0,100% 0,calc(100% - 22px) 50%,100% 100%,0 100%,22px 50%);
+  box-shadow:0 10px 24px rgba(0,0,0,.4); }
+.ribbon b span { color:#C99400; }
+.ribbon::before { content:''; position:absolute; inset:6px -10px -6px 10px; background:rgba(0,0,0,.28); filter:blur(8px); z-index:-1; }
+
+.msg { position:absolute; left:56px; right:56px; top:1452px; z-index:10; text-align:center; }
+.msg .l1 { font:800 43px/1.18 'Montserrat',sans-serif; letter-spacing:-.005em; }
+.msg .l1 b { color:#FFC107; }
+.msg .l2 { font:600 33px/1.3 'Poppins',sans-serif; color:rgba(255,255,255,.92); margin-top:10px; }
+
+.btn { position:absolute; left:50%; top:1598px; transform:translateX(-50%); z-index:10; display:flex; align-items:center; gap:16px; white-space:nowrap;
+  background:linear-gradient(180deg,#FFD54F 0%,#FFC107 100%); color:#062B63; font:800 46px/1 'Montserrat',sans-serif; padding:22px 52px; border-radius:70px;
+  box-shadow:0 14px 32px rgba(0,0,0,.5), 0 0 0 6px rgba(255,193,7,.18), inset 0 2px 0 rgba(255,255,255,.5); }
+.btn svg { width:50px; height:50px; fill:#062B63; }
+.sub { position:absolute; left:0; right:0; top:1700px; z-index:10; text-align:center; font:700 30px/1 'Poppins',sans-serif; color:#fff; }
 .sub b { color:#FFE082; }
 </style>
 </head>
 <body>
 <div class="slide">
-  <div class="rays"></div>
-  <div class="dots"></div>
-  <div id="confete"></div>
+  <div class="beam"></div>
+  <div id="fx"></div>
 
-  <div class="top"><img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet"></div>
+  <div class="logo"><img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet"></div>
 
-  <div class="hero">
-    <div class="n8">8 MIL</div><br>
-    <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="#062B63" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="#062B63" stroke="none"/></svg>SEGUIDORES NO INSTAGRAM</div>
-  </div>
+  <div class="hero"><div class="n8e">8 MIL</div><div class="n8">8 MIL</div></div>
 
-  <div class="win">E QUEM GANHA É <em>VOCÊ!</em></div>
+  <div class="seg"><svg viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="#FFC107" stroke="none"/></svg>SEGUIDORES NO INSTAGRAM</div>
+
+  <div class="win">E QUEM GANHA É<em>VOCÊ!</em></div>
 
   <div class="mural">
     <div class="pol p1"><div class="ft"></div><div class="lb"><i></i>Caixa de som</div></div>
-    <div class="pol p2"><div class="ft"></div><div class="lb"><i></i>Cobertura</div></div>
+    <div class="pol p2"><div class="ft"></div><div class="lb"><i></i>Tinta</div></div>
     <div class="pol p3"><div class="ft"></div><div class="lb"><i></i>Parafusadeira</div></div>
     <div class="pol p4"><div class="ft"></div><div class="lb"><i></i>Kit faqueiro</div></div>
   </div>
-  <div class="real">GANHADORES DE VERDADE</div>
 
-  <div class="msg">Vem fazer parte da <b>família Tintas Laet</b> e concorra a <b>vários prêmios</b>, além de várias promoções!</div>
+  <svg class="stamp" viewBox="0 0 200 200">
+    <defs><path id="ring" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+    <circle cx="100" cy="100" r="98" fill="#FFC107"/>
+    <circle cx="100" cy="100" r="90" fill="none" stroke="#062B63" stroke-width="2.5" stroke-dasharray="2 5"/>
+    <circle cx="100" cy="100" r="56" fill="#062B63"/>
+    <text font-family="Bebas Neue" font-size="28" letter-spacing="3.2" fill="#062B63"><textPath href="#ring">SORTEIO TODO MÊS • SORTEIO TODO MÊS •</textPath></text>
+    <g transform="translate(100 102)" fill="#FFC107">
+      <rect x="-30" y="-8" width="60" height="38" rx="4"/>
+      <rect x="-35" y="-22" width="70" height="16" rx="4"/>
+      <rect x="-5" y="-22" width="10" height="52" fill="#062B63"/>
+      <path d="M0 -22 C -8 -40 -30 -40 -24 -27 C -20 -21 -8 -22 0 -22 Z M0 -22 C 8 -40 30 -40 24 -27 C 20 -21 8 -22 0 -22 Z" fill="none" stroke="#FFC107" stroke-width="5" stroke-linejoin="round"/>
+    </g>
+  </svg>
+
+  <div class="ribbon"><b>GANHADORES <span>DE VERDADE</span></b></div>
+
+  <div class="msg">
+    <div class="l1">Vem fazer parte da <b>família Tintas Laet</b></div>
+    <div class="l2">e concorra a vários prêmios, além de várias promoções!</div>
+  </div>
+
   <div class="btn"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>(11) 97714-0964</div>
   <div class="sub"><b>@Tintaslaet</b> · tintaslaet.com</div>
+
+  <div class="vig"></div>
+  <div class="grain"></div>
 </div>
 <script>
-  const cores=['#FFC107','#FFE082','#FFFFFF','#4F8FE8'];
-  let s=23; const r=()=>{s=(s*9301+49297)%233280;return s/233280;};
-  const c=document.getElementById('confete');
-  for(let i=0;i<70;i++){
-    const x=r()*1060, y=30+r()*1500;
-    if(x>60&&x<1020&&y>230&&y<1500){ i--; continue; }
-    if(y>1500||(y<300&&x>330&&x<760)){ i--; continue; }
-    const d=document.createElement('div'); d.className='cf';
-    const w=10+r()*16, h=w*(r()<.5?.45:1);
-    Object.assign(d.style,{left:x+'px',top:y+'px',width:w+'px',height:h+'px',background:cores[i%4],
-      transform:`rotate(${r()*180}deg)`,opacity:.55+r()*.4,borderRadius:r()<.3?'50%':'3px'});
-    c.appendChild(d);
+  const fx = document.getElementById('fx');
+  let s = 11; const r = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+  // zonas onde não pode cair nada (texto, fotos, CTA)
+  const livre = (x, y) => {
+    if (y > 1440) return false;                         // texto + CTA
+    if (y > 270 && y < 900 && x > 40 && x < 1040) return false; // 8 MIL / seguidores / headline
+    if (y > 900 && x > 20 && x < 1060) return false;    // mural
+    if (y < 300 && x > 330 && x < 750) return false;    // logo
+    return true;
+  };
+  // bokeh desfocado (fundo)
+  for (let i = 0, n = 0; n < 16 && i < 2000; i++) {
+    const x = r() * 1080, y = r() * 1500, d = 30 + r() * 70;
+    if (!livre(x, y) && r() > .15) continue;
+    const b = document.createElement('div'); b.className = 'bk';
+    Object.assign(b.style, { left: x + 'px', top: y + 'px', width: d + 'px', height: d + 'px',
+      background: r() < .5 ? 'rgba(255,224,130,.16)' : 'rgba(120,180,255,.16)', filter: `blur(${6 + r() * 10}px)` });
+    fx.appendChild(b); n++;
   }
+  // confete nítido + algumas serpentinas
+  const cores = ['#FFC107', '#FFE082', '#FFFFFF', '#5B9BF0'];
+  for (let i = 0, n = 0; n < 46 && i < 4000; i++) {
+    const x = r() * 1060, y = 30 + r() * 1440;
+    if (!livre(x, y)) continue;
+    const d = document.createElement('div'); d.className = 'cf';
+    const w = 10 + r() * 18, h = w * (r() < .55 ? .42 : 1), blur = r() < .3 ? 2.5 : 0;
+    Object.assign(d.style, { left: x + 'px', top: y + 'px', width: w + 'px', height: h + 'px', background: cores[n % 4],
+      transform: `rotate(${r() * 180}deg) skewX(${(r() - .5) * 30}deg)`, opacity: .6 + r() * .4,
+      borderRadius: r() < .25 ? '50%' : '2px', filter: blur ? `blur(${blur}px)` : 'none',
+      boxShadow: blur ? 'none' : '0 3px 6px rgba(0,0,0,.25)' });
+    fx.appendChild(d); n++;
+  }
+  const serp = [[60, 300, 30, '#FFC107'], [930, 250, -20, '#FFE082']];
+  serp.forEach(([x, y, rot, c]) => {
+    fx.insertAdjacentHTML('beforeend', `<svg style="position:absolute;left:${x}px;top:${y}px;transform:rotate(${rot}deg);filter:drop-shadow(0 4px 6px rgba(0,0,0,.3))" width="70" height="150" viewBox="0 0 70 150"><path d="M35 4 C 6 24, 64 44, 35 64 S 6 104, 35 124 S 60 140, 40 146" fill="none" stroke="${c}" stroke-width="7" stroke-linecap="round"/></svg>`);
+  });
+  // brilhos em volta do número
+  const spark = (x, y, sz, c) => document.querySelector('.slide').insertAdjacentHTML('beforeend',
+    `<svg class="spk" style="left:${x}px;top:${y}px;width:${sz}px;height:${sz}px" viewBox="0 0 40 40"><path d="M20 0 C22 14 26 18 40 20 C26 22 22 26 20 40 C18 26 14 22 0 20 C14 18 18 14 20 0Z" fill="${c}"/></svg>`);
+  spark(112, 318, 58, '#FFFFFF'); spark(918, 300, 40, '#FFE082'); spark(948, 566, 64, '#FFFFFF'); spark(150, 580, 34, '#FFE082');
 </script>
 </body>
 </html>
