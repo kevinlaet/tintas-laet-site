@@ -120,7 +120,8 @@ visita, panfletos, faixas de promoção, banners e afins **sem passar pela
 automação do painel**. Exige capricho máximo e fidelidade ao padrão de design
 da Laet (`identidade/design-guide.md`, "Peças visuais" em
 `_memoria/preferencias.md`, skill `/guia-conteudo`): pensar antes de criar,
-nível de agência, nada genérico, nada de "só funciona". Código do painel fica
+nível de agência, nada genérico, nada de "só funciona". Base completa do chat em
+`_memoria/base-criativa.md` (ler no início). Código do painel fica
 no "🛠 LAET PAINEL".
 Se o Kevin pedir algo da Laet em outro chat, fazer normalmente e salvar na
 memória do mesmo jeito.
