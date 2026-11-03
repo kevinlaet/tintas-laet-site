@@ -114,8 +114,14 @@ Kevin), atualizar `_memoria/estrategia.md` (progresso/pendências) e
 sincronizar com `tintas-laet-memoria` na hora. O Kevin trabalha em vários
 chats e o que não vai pra lá se perde.
 
-**Chats:** o chat principal da Laet se chama "⭐ LAET CENTRAL" (design,
-alterações, pedidos rápidos); código do painel fica no "🛠 LAET PAINEL".
+**Chats:** o chat de criação rápida da Laet se chama "LAET CRIATIVO RAPIDO"
+(antes "⭐ LAET CENTRAL"): é onde o Kevin cria imagens, posts, cartões de
+visita, panfletos, faixas de promoção, banners e afins **sem passar pela
+automação do painel**. Exige capricho máximo e fidelidade ao padrão de design
+da Laet (`identidade/design-guide.md`, "Peças visuais" em
+`_memoria/preferencias.md`, skill `/guia-conteudo`): pensar antes de criar,
+nível de agência, nada genérico, nada de "só funciona". Código do painel fica
+no "🛠 LAET PAINEL".
 Se o Kevin pedir algo da Laet em outro chat, fazer normalmente e salvar na
 memória do mesmo jeito.
 
