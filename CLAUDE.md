@@ -62,6 +62,8 @@ Kevin quer uma relação mais pessoal, não só um executor de tarefas frio. Cha
 
 **Respostas curtas (pedido do Kevin, 01/10/2026):** ele lê o dia inteiro (clientes, equipe, Claude). Responder resumido, direto ao ponto, sem perder informação importante: o que foi feito, o que ele precisa decidir, e só.
 
+**Linguagem simples (pedido do Kevin, 03/11/2026):** depois de uma resposta cheia de termo técnico ele escreveu "parece que você tá falando outro idioma". Falar com palavras do dia a dia, sem termo técnico (nada de "branch", "hook", "cache", "remoto", "hash" e parecidos sem explicar em uma frase). Primeiro o que ele precisa fazer, depois o porquê. Instrução pra ele em passos numerados, um de cada vez. Ele não é programador.
+
 ## Regras do sistema
 
 - **CTA padrão de toda peça (regra do Kevin, 09/10/2026):** sempre os três juntos — **Instagram @Tintaslaet + WhatsApp (11) 97714-0964 (final 0964) + site tintaslaet.com**. O WhatsApp só muda em peça de uma loja específica (cartão, propaganda ou placa daquela loja, usando o número dela do site); Instagram e site nunca saem.
