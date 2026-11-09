@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — 8 mil seguidores</title>
+<style>
+@font-face { font-family:'Bebas Neue'; font-weight:400; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { background:#020A18; }
+.post { width:1080px; height:1350px; position:relative; overflow:hidden; color:#fff;
+  background:
+    radial-gradient(ellipse 900px 520px at 50% 18%, rgba(33,110,230,.55) 0%, rgba(13,71,161,0) 70%),
+    linear-gradient(180deg, #0D47A1 0%, #0A3A86 36%, #062B63 68%, #03183A 100%); }
+.dots { position:absolute; inset:0; z-index:1; opacity:.16;
+  background-image: radial-gradient(rgba(255,255,255,.9) 1.4px, transparent 1.6px); background-size:22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 600px 420px at 90% 5%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(ellipse 600px 420px at 90% 5%, #000 0%, transparent 70%); }
+.cf { position:absolute; z-index:2; }
+
+.top { position:absolute; top:34px; left:0; right:0; z-index:10; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.top img { height:290px; margin:-72px 0 -54px; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(0,0,0,.35)); }
+.ey { font:700 28px/1 'Poppins',sans-serif; color:#FFE082; letter-spacing:.2em; text-transform:uppercase; display:flex; align-items:center; gap:18px; margin-top:6px; }
+.ey::before,.ey::after { content:''; width:44px; height:3px; background:rgba(255,224,130,.6); display:block; }
+.big { font:400 218px/.84 'Bebas Neue',sans-serif; color:#fff; margin-top:56px; text-shadow:0 10px 40px rgba(0,0,0,.35); }
+
+.mid { position:absolute; left:0; right:0; top:262px; z-index:8; text-align:center; }
+.n8 { font:400 330px/.82 'Bebas Neue',sans-serif; color:#fff; text-shadow:0 12px 46px rgba(0,0,0,.4); letter-spacing:.005em; }
+.chip { display:inline-block; margin-top:6px; background:#FFC107; color:#062B63; font:400 96px/1 'Bebas Neue',sans-serif; padding:12px 36px 4px; border-radius:14px; transform:rotate(-2deg); box-shadow:0 12px 28px rgba(0,0,0,.35); letter-spacing:.03em; }
+.mural { position:absolute; left:0; right:0; top:728px; height:380px; z-index:7; }
+.pol { position:absolute; width:236px; background:#fff; padding:11px 11px 0; border-radius:5px; box-shadow:0 18px 36px rgba(0,0,0,.5); }
+.pol .ft { width:214px; height:238px; border-radius:3px; background:#ccc center/cover no-repeat; }
+.pol .lb { height:42px; display:flex; align-items:center; justify-content:center; gap:8px; font:800 19px/1 'Montserrat',sans-serif; color:#062B63; }
+.pol .lb i { width:10px; height:10px; border-radius:50%; background:#FFC107; display:inline-block; }
+.pol::before { content:''; position:absolute; top:-13px; left:50%; width:92px; height:28px; transform:translateX(-50%) rotate(-3deg); background:rgba(255,224,130,.82); box-shadow:0 2px 5px rgba(0,0,0,.18); }
+.p1 { left:44px; top:34px; transform:rotate(-6deg); }
+.p2 { left:300px; top:0; transform:rotate(3deg); }
+.p3 { left:556px; top:30px; transform:rotate(-3deg); }
+.p4 { left:800px; top:6px; transform:rotate(5deg); }
+.p1 .ft { background-image:url('../../../marketing/prova social/ganhadora-julhopremiado2026.jfif'); background-size:200% auto; background-position:88% 48%; }
+.p2 .ft { background-image:url('../../../marketing/prova social/ganhadorasecundaria-julhopremiado2026.jfif'); background-size:205% auto; background-position:97% 42%; }
+.p3 .ft { background-image:url('../../../marketing/prova social/vendedorentregandoparafusadeirapremioaocliente.jfif'); background-size:135% auto; background-position:55% 52%; }
+.p4 .ft { background-image:url('../../../marketing/prova social/kevin Entregando um kit faqueiro para a ganhadora..jfif'); background-size:138% auto; background-position:44% 26%; }
+.msg { position:absolute; left:50px; right:50px; top:1136px; z-index:10; text-align:center; font:600 32px/1.3 'Poppins',sans-serif; }
+.msg b { color:#FFC107; font-weight:700; }
+.btn { position:absolute; left:50%; top:1238px; transform:translateX(-50%); z-index:10; display:flex; align-items:center; gap:14px; white-space:nowrap;
+  background:#FFC107; color:#062B63; font:800 38px/1 'Montserrat',sans-serif; padding:15px 38px; border-radius:60px; box-shadow:0 10px 26px rgba(0,0,0,.4); }
+.btn svg { width:40px; height:40px; fill:#062B63; }
+.sub { position:absolute; left:0; right:0; top:1316px; z-index:10; text-align:center; font:700 26px/1 'Poppins',sans-serif; color:#fff; }
+.sub b { color:#FFE082; }
+</style>
+</head>
+<body>
+<div class="post">
+  <div class="dots"></div>
+  <div id="confete"></div>
+  <div class="top">
+    <img src="../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet">
+    <div class="ey">Chegamos a</div>
+  </div>
+  <div class="mid"><div class="n8">8 MIL</div><div class="chip">SEGUIDORES</div></div>
+  <div class="mural">
+    <div class="pol p1"><div class="ft"></div><div class="lb"><i></i>Caixa de som</div></div>
+    <div class="pol p2"><div class="ft"></div><div class="lb"><i></i>Cobertura</div></div>
+    <div class="pol p3"><div class="ft"></div><div class="lb"><i></i>Parafusadeira</div></div>
+    <div class="pol p4"><div class="ft"></div><div class="lb"><i></i>Kit faqueiro</div></div>
+  </div>
+  <div class="msg">Obrigado por cada curtida, mensagem e compra.<br>A Laet cresce com <b>você.</b></div>
+  <div class="btn"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>(11) 97714-0964</div>
+  <div class="sub"><b>@Tintaslaet</b> · tintaslaet.com</div>
+</div>
+<script>
+  const cores=['#FFC107','#FFE082','#FFFFFF','#4F8FE8'];
+  let s=77; const r=()=>{s=(s*9301+49297)%233280;return s/233280;};
+  const c=document.getElementById('confete');
+  const zonas=[[0,0,1080,330,false]];
+  for(let i=0;i<60;i++){
+    const x=r()*1050, y=20+r()*1100;
+    // evita texto central (8 MIL / chip / mascote / mensagem)
+    if(x>20&&x<1060&&y>240&&y<1230){ i--; continue; }
+    if(y<300&&x>200&&x<880){ i--; continue; }
+    const d=document.createElement('div'); d.className='cf';
+    const w=9+r()*14, h=w*(r()<.5?.45:1);
+    Object.assign(d.style,{left:x+'px',top:y+'px',width:w+'px',height:h+'px',background:cores[i%4],
+      transform:`rotate(${r()*180}deg)`,opacity:.55+r()*.4,borderRadius:r()<.3?'50%':'3px'});
+    c.appendChild(d);
+  }
+</script>
+</body>
+</html>
