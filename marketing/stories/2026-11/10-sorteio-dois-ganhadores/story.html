@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Tintas Laet — Sorteio: você ganha e seu amigo também</title>
+<style>
+@font-face { font-family:'Bebas Neue'; font-weight:400; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { background:#020A18; }
+.slide { width:1080px; height:1920px; position:relative; overflow:hidden; color:#fff;
+  background:
+    radial-gradient(ellipse 900px 640px at 50% 24%, rgba(52,132,255,.62) 0%, rgba(13,71,161,0) 72%),
+    radial-gradient(ellipse 980px 760px at 50% 62%, rgba(13,71,161,.5) 0%, rgba(6,43,99,0) 70%),
+    linear-gradient(180deg,#0D47A1 0%,#0B3F92 24%,#062B63 56%,#041F4A 80%,#02122D 100%); }
+.beam { position:absolute; left:50%; top:-120px; width:1400px; height:1200px; transform:translateX(-50%); z-index:1;
+  background:conic-gradient(from 180deg at 50% 0%, transparent 0deg 146deg, rgba(255,224,130,.14) 160deg, rgba(255,255,255,.10) 180deg, rgba(255,224,130,.14) 200deg, transparent 214deg 360deg);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 55%,transparent 90%); mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 55%,transparent 90%); }
+.grain { position:absolute; inset:0; z-index:30; pointer-events:none; opacity:.09; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>"); }
+.vig { position:absolute; inset:0; z-index:29; pointer-events:none; background:radial-gradient(ellipse 760px 1100px at 50% 46%, transparent 62%, rgba(1,8,22,.55) 100%); }
+#fx { position:absolute; inset:0; z-index:2; }
+.cf { position:absolute; } .bk { position:absolute; border-radius:50%; }
+.spk { position:absolute; z-index:12; filter:drop-shadow(0 0 10px rgba(255,224,130,.9)); }
+
+.logo { position:absolute; top:120px; left:0; right:0; z-index:10; text-align:center; }
+.logo img { height:210px; margin:-50px 0 -44px; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(0,0,0,.35)); }
+.chip { position:absolute; top:318px; left:50%; transform:translateX(-50%) rotate(-2deg); z-index:10; white-space:nowrap;
+  background:#FFC107; color:#062B63; font:400 50px/1 'Bebas Neue',sans-serif; letter-spacing:.09em; padding:12px 38px 7px; border-radius:10px;
+  box-shadow:0 10px 24px rgba(0,0,0,.4), inset 0 3px 0 rgba(255,255,255,.4); }
+
+.h1 { position:absolute; left:0; right:0; top:384px; padding-top:70px; z-index:10; text-align:center; font:400 244px/.86 'Bebas Neue',sans-serif; letter-spacing:.005em;
+  background:linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 40%,#DCE9FF 100%); -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 6px 0 #062B63) drop-shadow(0 24px 34px rgba(0,0,0,.5)); }
+.h2 { position:absolute; left:0; right:0; top:612px; padding-top:50px; z-index:10; text-align:center; white-space:nowrap; font:400 140px/.9 'Bebas Neue',sans-serif; letter-spacing:.01em;
+  background:linear-gradient(180deg,#FFF3C4 0%,#FFE082 35%,#FFC107 80%); -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 5px 0 #062B63) drop-shadow(0 20px 30px rgba(0,0,0,.5)); }
+
+/* cartões de prêmio */
+.card { position:absolute; top:850px; width:452px; height:570px; z-index:8; border-radius:30px; overflow:hidden;
+  background:radial-gradient(ellipse 360px 300px at 50% 42%, rgba(80,150,255,.55) 0%, rgba(13,71,161,.0) 75%), linear-gradient(180deg,#0E4FB4 0%,#082F70 100%);
+  border:3px solid rgba(255,224,130,.85); box-shadow:0 34px 60px rgba(0,0,0,.55), inset 0 0 0 8px rgba(255,255,255,.06); }
+.c1 { left:62px; transform:rotate(-3deg); } .c2 { right:62px; transform:rotate(3deg); top:880px; }
+.card .tag { position:absolute; left:0; right:0; top:0; padding:18px 10px 12px; text-align:center; background:#FFC107; color:#062B63;
+  font:400 40px/1 'Bebas Neue',sans-serif; letter-spacing:.07em; }
+.card .nm { position:absolute; left:0; right:0; bottom:0; padding:26px 18px 28px; text-align:center;
+  background:linear-gradient(180deg,rgba(2,18,45,0) 0%,rgba(2,18,45,.92) 38%); font:800 33px/1.12 'Montserrat',sans-serif; }
+.card .nm small { display:block; margin-top:7px; font:600 25px/1 'Poppins',sans-serif; color:#FFE082; }
+.card img { position:absolute; left:50%; transform:translateX(-50%); }
+.c1 { background:radial-gradient(ellipse 340px 300px at 50% 46%, rgba(40,110,230,.55) 0%, rgba(6,20,50,0) 72%), linear-gradient(180deg,#0A1B3D 0%,#050E22 100%); }
+.c1 img { top:44px; height:500px; -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 62%,transparent 100%); mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 62%,transparent 100%); }
+.c2 img { top:70px; height:370px; filter:drop-shadow(0 22px 22px rgba(0,0,0,.5)); }
+.mais { position:absolute; left:50%; top:1062px; width:112px; height:112px; transform:translateX(-50%); z-index:15; border-radius:50%;
+  background:#fff; color:#062B63; font:400 100px/1 'Bebas Neue',sans-serif; display:flex; align-items:center; justify-content:center; padding-bottom:6px;
+  box-shadow:0 12px 26px rgba(0,0,0,.5), 0 0 0 8px rgba(255,193,7,.35); }
+
+.steps { position:absolute; left:46px; right:46px; top:1462px; z-index:10; display:flex; justify-content:space-between; }
+.st { width:314px; display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.10); border:2px solid rgba(255,255,255,.28); border-radius:18px; padding:14px 14px;
+  backdrop-filter:blur(2px); font:700 27px/1.15 'Poppins',sans-serif; }
+.st .n { flex:none; width:50px; height:50px; border-radius:50%; background:#FFC107; color:#062B63; font:400 40px/1 'Bebas Neue',sans-serif; display:flex; align-items:center; justify-content:center; padding-top:4px; }
+.live { position:absolute; left:0; right:0; top:1592px; z-index:10; text-align:center; font:700 31px/1 'Poppins',sans-serif; color:#fff; }
+.live i { display:inline-block; width:18px; height:18px; border-radius:50%; background:#FF3B30; margin-right:12px; box-shadow:0 0 0 6px rgba(255,59,48,.3); vertical-align:-1px; }
+.live b { color:#FFC107; }
+.btn { position:absolute; left:50%; top:1650px; transform:translateX(-50%); z-index:10; display:flex; align-items:center; gap:16px; white-space:nowrap;
+  background:linear-gradient(180deg,#FFD54F 0%,#FFC107 100%); color:#062B63; font:800 46px/1 'Montserrat',sans-serif; padding:22px 52px; border-radius:70px;
+  box-shadow:0 14px 32px rgba(0,0,0,.5), 0 0 0 6px rgba(255,193,7,.18), inset 0 2px 0 rgba(255,255,255,.5); }
+.btn svg { width:50px; height:50px; fill:#062B63; }
+.sub { position:absolute; left:0; right:0; top:1748px; z-index:10; text-align:center; font:700 30px/1 'Poppins',sans-serif; color:#fff; }
+.sub b { color:#FFE082; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="beam"></div><div id="fx"></div>
+  <div class="logo"><img src="../../../../identidade/logotipo branco-remove-bg-io.png" alt="Tintas Laet"></div>
+  <div class="chip">NOVEMBRO PREMIADO</div>
+  <div class="h1">VOCÊ GANHA</div>
+  <div class="h2">E SEU AMIGO TAMBÉM</div>
+
+  <div class="card c1"><div class="tag">PRÊMIO PRA VOCÊ</div><img src="../../../sorteio/caixa de som mondial 250w.png" alt="Caixa de som"><div class="nm">Caixa de Som<br>Mondial 250W</div></div>
+  <div class="mais">+</div>
+  <div class="card c2"><div class="tag">PRÊMIO PRO AMIGO</div><img src="../../../sorteio/cobertura absoluta.png" alt="Cobertura Absoluta"><div class="nm">Tinta Cobertura Absoluta<small>3,6L · Branca</small></div></div>
+
+  <div class="steps">
+    <div class="st"><div class="n">1</div>Compre de qualquer valor</div>
+    <div class="st"><div class="n">2</div>Preencha o cupom na loja</div>
+    <div class="st"><div class="n">3</div>Indique até 10 amigos</div>
+  </div>
+  <div class="live"><i></i>Sorteio <b>ao vivo</b> no Instagram da Laet</div>
+  <div class="btn"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>(11) 97714-0964</div>
+  <div class="sub"><b>@Tintaslaet</b> · tintaslaet.com</div>
+  <div class="vig"></div><div class="grain"></div>
+</div>
+<script>
+  const fx=document.getElementById('fx'); let s=7; const r=()=>{s=(s*9301+49297)%233280;return s/233280;};
+  const livre=(x,y)=>{ if(y>1440&&y<1790) return false; if(y>300&&y<800&&x>30&&x<1050) return false; if(y>840&&y<1440&&x>40&&x<1040) return false; if(y<300&&x>330&&x<750) return false; return true; };
+  for(let i=0,n=0;n<16&&i<2000;i++){const x=r()*1080,y=r()*1700,d=30+r()*70; if(!livre(x,y)&&r()>.15) continue;
+    const b=document.createElement('div'); b.className='bk'; Object.assign(b.style,{left:x+'px',top:y+'px',width:d+'px',height:d+'px',background:r()<.5?'rgba(255,224,130,.16)':'rgba(120,180,255,.16)',filter:`blur(${6+r()*10}px)`}); fx.appendChild(b); n++;}
+  const cores=['#FFC107','#FFE082','#FFFFFF','#5B9BF0'];
+  for(let i=0,n=0;n<44&&i<5000;i++){const x=r()*1060,y=30+r()*1800; if(!livre(x,y)) continue;
+    const d=document.createElement('div'); d.className='cf'; const w=10+r()*18,h=w*(r()<.55?.42:1),blur=r()<.3?2.5:0;
+    Object.assign(d.style,{left:x+'px',top:y+'px',width:w+'px',height:h+'px',background:cores[n%4],transform:`rotate(${r()*180}deg) skewX(${(r()-.5)*30}deg)`,opacity:.6+r()*.4,borderRadius:r()<.25?'50%':'2px',filter:blur?`blur(${blur}px)`:'none',boxShadow:blur?'none':'0 3px 6px rgba(0,0,0,.25)'}); fx.appendChild(d); n++;}
+  const spark=(x,y,sz,c)=>document.querySelector('.slide').insertAdjacentHTML('beforeend',`<svg class="spk" style="left:${x}px;top:${y}px;width:${sz}px;height:${sz}px" viewBox="0 0 40 40"><path d="M20 0 C22 14 26 18 40 20 C26 22 22 26 20 40 C18 26 14 22 0 20 C14 18 18 14 20 0Z" fill="${c}"/></svg>`);
+  spark(36,640,50,'#FFFFFF'); spark(1000,430,42,'#FFE082'); spark(965,820,60,'#FFFFFF'); spark(60,800,34,'#FFE082'); spark(500,1440,36,'#FFE082');
+</script>
+</body></html>
