@@ -66,6 +66,7 @@ const LAET_SEARCH_INDEX = [
   { id: 'espatula-aco-6cm', nome: 'Espátula Aço 6cm', categoria: 'Ferramentas' },
   { id: 'espatula-aco-10cm', nome: 'Espátula Aço 10cm', categoria: 'Ferramentas' },
   { id: 'esmalte-ecologico', nome: 'Tinta Esmalte Ecológico Base Água', categoria: 'Esmaltes' },
+  { id: 'verniz-premium', nome: 'Verniz Base Água Tintas Laet', categoria: 'Esmaltes & Vernizes', aliases: ['verniz premium', 'verniz para madeira', 'verniz madeira', 'verniz mogno', 'verniz imbuia', 'verniz incolor', 'verniz natural'] },
 ];
 
 // Permite usar esse mesmo arquivo via require() no Node (funcoes do Netlify),
