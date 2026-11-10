@@ -222,7 +222,8 @@ const BANNERS = {
     await p.evaluate(() => document.fonts.ready);
     await p.waitForTimeout(500);
     await p.screenshot({ path: path.join(OUT, `${nome}-150dpi.png`) });
-    await p.pdf({ path: path.join(OUT, `${nome}-60x100cm.pdf`), width: "600mm", height: "1000mm", printBackground: true, scale: 600 / 317.5, pageRanges: "1" });
+    // PDF feito da própria imagem em 150 dpi: sai idêntico à prévia, no tamanho real (60 x 100 cm).
+    require("child_process").execFileSync("python3", ["-c", "import sys; from PIL import Image; Image.open(sys.argv[1]).convert('RGB').save(sys.argv[2], resolution=150.0, quality=95)", path.join(OUT, `${nome}-150dpi.png`), path.join(OUT, `${nome}-60x100cm.pdf`)]);
     const prev = await b.newContext({ viewport: { width: 1200, height: 2000 }, deviceScaleFactor: 0.5 });
     const pp = await prev.newPage();
     await pp.setContent(html, { waitUntil: "networkidle" });
