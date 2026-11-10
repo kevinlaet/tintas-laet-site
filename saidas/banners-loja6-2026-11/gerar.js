@@ -10,6 +10,10 @@ const OUT = process.argv[2] || path.join(__dirname, "saida");
 fs.mkdirSync(OUT, { recursive: true });
 
 const ZAP_LOJA6 = "(11) 91875-5095";
+const TAMANHOS = {};
+for (const f of fs.readdirSync(A).filter((x) => x.startsWith("rec-"))) {
+  const b = fs.readFileSync(path.join(A, f)); TAMANHOS[f] = [b.readUInt32BE(16), b.readUInt32BE(20)];
+}
 const ICONE = {
   zap: `<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.4-.7-2.4-1.4-3.3-3-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.1-.7z"/></svg>`,
   insta: `<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM21.9 7.1c-.1-1.6-.4-3-1.6-4.2S17.6 1.3 16 1.2C14.3 1.1 9.7 1.1 8 1.2c-1.6.1-3 .4-4.2 1.6S2.2 5.5 2.1 7.1C2 8.8 2 13.4 2.1 15.1c.1 1.6.4 3 1.6 4.2s2.6 1.5 4.2 1.6c1.7.1 6.3.1 8 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.1-1.7.1-6.3.2-8zm-2.2 10.3a3.3 3.3 0 0 1-1.8 1.8c-1.3.5-4.3.4-5.9.4s-4.6.1-5.9-.4a3.3 3.3 0 0 1-1.8-1.8c-.5-1.3-.4-4.3-.4-5.9s-.1-4.6.4-5.9a3.3 3.3 0 0 1 1.8-1.8c1.3-.5 4.3-.4 5.9-.4s4.6-.1 5.9.4a3.3 3.3 0 0 1 1.8 1.8c.5 1.3.4 4.3.4 5.9s.1 4.6-.4 5.9z"/></svg>`,
@@ -53,8 +57,8 @@ const CSS = `
   .chip.az { background:linear-gradient(180deg,#1257C2,#0D47A1); color:#fff; }
   .tinta { font-family:'Bebas Neue',sans-serif; font-size:62px; line-height:1; letter-spacing:.1em; margin-top:20px; }
   .nome { font-family:'Bebas Neue',sans-serif; line-height:.86; text-transform:uppercase; white-space:nowrap; }
-  .nome.am { padding-top:.16em; margin-top:-.16em; background:linear-gradient(180deg,#FFEA8F 8%,#FFC107 55%,#F29B00 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 6px 0 #7A4B00) drop-shadow(0 18px 26px rgba(0,0,0,.45)); }
-  .nome.az { color:#0D47A1; filter:drop-shadow(0 6px 0 #062B63) drop-shadow(0 16px 22px rgba(6,43,99,.25)); }
+  .nome.am { padding-top:.16em; margin-top:-.16em; background:linear-gradient(180deg,#FFEA8F 8%,#FFC107 55%,#F29B00 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 12px 28px rgba(0,0,0,.30)); }
+  .nome.az { color:#0D47A1; }
   .frase { font-weight:900; font-size:46px; line-height:1.08; margin-top:20px; letter-spacing:-.01em; }
   .frase em { font-style:normal; }
   .lista { margin-top:20px; display:flex; flex-direction:column; gap:13px; }
@@ -92,6 +96,28 @@ function rodapeProduto() {
 }
 
 // Banner de 2 produtos: A em cima (escuro), B embaixo (claro).
+// Balde "pertencente" à peça: pedestal na cor da marca, sombra de contato no
+// pedestal, anel de luz atrás e luz suave — todos no mesmo tamanho.
+function palco({ cx, base, h, img, tema }) {
+  const [iw, ih] = TAMANHOS[img];
+  const w = Math.round((h * iw) / ih);
+  const W = Math.round(Math.max(w * 1.18, 420));
+  const esc = tema === "esc";
+  const topo = esc ? "linear-gradient(180deg,#FFE58A 0%,#FFC107 70%,#F2AE00 100%)" : "linear-gradient(180deg,#2C74D6 0%,#0D47A1 80%)";
+  const lado = esc ? "linear-gradient(180deg,#E9A600,#A86F00)" : "linear-gradient(180deg,#0A3C8C,#041D47)";
+  const anel = esc ? "rgba(255,213,79,.32)" : "rgba(13,71,161,.16)";
+  const luz = esc ? "rgba(110,170,255,.55)" : "rgba(13,71,161,.16)";
+  const cy = base - h * 0.52, d = Math.round(h * 1.22);
+  return `
+    <div style="position:absolute; z-index:2; left:${cx - d * 0.62}px; top:${cy - d * 0.62}px; width:${d * 1.24}px; height:${d * 1.24}px; border-radius:50%; background:radial-gradient(circle, ${luz}, transparent 64%)"></div>
+    <div style="position:absolute; z-index:3; left:${cx - d / 2}px; top:${cy - d / 2}px; width:${d}px; height:${d}px; border-radius:50%; border:3px solid ${anel}"></div>
+    <div style="position:absolute; z-index:3; left:${cx - d * 0.42}px; top:${cy - d * 0.42}px; width:${d * 0.84}px; height:${d * 0.84}px; border-radius:50%; border:2px solid ${anel}; opacity:.6"></div>
+    <div style="position:absolute; z-index:4; left:${cx - W / 2}px; top:${base}px; width:${W}px; height:46px; background:${lado}; border-radius:0 0 50% 50% / 0 0 36px 36px; box-shadow:0 26px 40px rgba(0,0,0,${esc ? ".45" : ".25"})"></div>
+    <div style="position:absolute; z-index:5; left:${cx - W / 2}px; top:${base - 36}px; width:${W}px; height:72px; border-radius:50%; background:${topo}; box-shadow:inset 0 3px 0 rgba(255,255,255,.45)"></div>
+    <div style="position:absolute; z-index:6; left:${cx - w * 0.52}px; top:${base - 20}px; width:${w * 1.04}px; height:34px; border-radius:50%; background:radial-gradient(ellipse, rgba(0,0,0,.55), rgba(0,0,0,.25) 45%, transparent 72%)"></div>
+    <img src="${uri(img)}" style="position:absolute; z-index:7; left:${cx - w / 2}px; top:${base - h + 2}px; height:${h}px; width:${w}px; filter:drop-shadow(0 14px 22px rgba(0,0,0,${esc ? ".35" : ".22"}))">`;
+}
+
 function bannerProdutos({ a, b }) {
   const s = seam(1075, 905);
   const clip = `clip-path:polygon(0 0,1200px 0,1200px ${s.yD}px,0 ${s.yE}px)`;
@@ -102,9 +128,7 @@ function bannerProdutos({ a, b }) {
     <div class="escuro" style="${clip}"></div>
     <img class="logo" src="${uri("logo-branco.png")}" style="top:78px; width:420px">
 
-    <div class="brilho" style="left:610px; top:300px; width:620px; height:620px; z-index:2; background:radial-gradient(circle, rgba(120,180,255,.55), transparent 66%)"></div>
-    <div class="sombra" style="left:690px; top:${s.yD + 0}px; width:430px; height:60px"></div>
-    <img class="pote" src="${uri(a.img)}" style="right:${a.direita || 40}px; top:${a.topo}px; height:${a.altura}px">
+    ${palco({ cx: 885, base: 838, h: 500, img: a.img, tema: "esc" })}
     <div class="bloco esc" style="left:64px; top:330px; width:600px">
       <div class="chip am">${a.chip}</div>
       <div class="tinta">${a.tinta}</div>
@@ -115,9 +139,7 @@ function bannerProdutos({ a, b }) {
 
     ${fita(s, "A TINTA NOBRE DA COMUNIDADE")}
 
-    <div class="brilho" style="left:-40px; top:1140px; width:660px; height:660px; z-index:2; background:radial-gradient(circle, rgba(13,71,161,.20), transparent 66%)"></div>
-    <div class="sombra" style="left:60px; top:1700px; width:480px; height:56px; background:radial-gradient(ellipse, rgba(6,43,99,.35), transparent 70%)"></div>
-    <img class="pote" src="${uri(b.img)}" style="left:${b.esquerda || 34}px; top:${b.topo}px; height:${b.altura}px; filter:drop-shadow(0 30px 30px rgba(6,43,99,.35))">
+    ${palco({ cx: 300, base: 1668, h: 470, img: b.img, tema: "clr" })}
     <div class="bloco clr" style="right:56px; top:${b.texto}px; width:540px">
       <div class="chip az">${b.chip}</div>
       <div class="tinta">${b.tinta}</div>
@@ -170,7 +192,7 @@ function bannerLojas() {
     .zap svg { width:30px; height:30px; color:#1FA855; }
     .aqui .bairro, .aqui .end, .aqui .zap { color:#fff; } .aqui .cid { color:#FFE082; }
     .titulo { position:absolute; left:0; right:0; top:345px; z-index:8; text-align:center; }
-    .seis { font-family:'Bebas Neue',sans-serif; font-size:290px; padding-top:.12em; margin-top:-.12em; line-height:.82; background:linear-gradient(180deg,#FFEA8F 8%,#FFC107 55%,#F29B00 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 7px 0 #7A4B00) drop-shadow(0 20px 26px rgba(0,0,0,.45)); }
+    .seis { font-family:'Bebas Neue',sans-serif; font-size:290px; padding-top:.12em; margin-top:-.12em; line-height:.82; background:linear-gradient(180deg,#FFEA8F 8%,#FFC107 55%,#F29B00 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 14px 30px rgba(0,0,0,.32)); }
     .perto { font-family:'Bebas Neue',sans-serif; font-size:96px; line-height:1; color:#fff; letter-spacing:.06em; margin-top:6px; text-shadow:0 8px 24px rgba(0,0,0,.4); }
     .regiao { font-family:'Poppins',sans-serif; font-weight:600; font-size:34px; color:#FFE082; margin-top:6px; }
     .redes { position:absolute; left:0; right:0; bottom:0; height:250px; z-index:9; background:linear-gradient(180deg,#0A3C8C,#062B63); border-top:8px solid #FFC107; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:34px; gap:12px; color:#fff; }
@@ -198,15 +220,15 @@ function bannerLojas() {
 
 const BANNERS = {
   "banner-1-emborrachada-pisos": bannerProdutos({
-    a: { img: "emborrachada-remove-bg-io.png", topo: 300, altura: 640, direita: 30, chip: "Laje · telha · muro", tinta: "TINTA", nome: ["EMBORRACHADA"], tam: [116],
+    a: { img: "rec-emborrachada-remove-bg-io.png", topo: 300, altura: 640, direita: 30, chip: "Laje · telha · muro", tinta: "TINTA", nome: ["EMBORRACHADA"], tam: [116],
       frase: "Adeus, <em>infiltração.</em>", itens: ["Resolve até 100% da infiltração", "Resiste a sol e chuva", "Rende até 200 m² (balde 18 L)"] },
-    b: { img: "pisos-efachadas-remove-bg-io.png", topo: 1150, altura: 570, esquerda: 24, texto: 1090, chip: "Garagem · calçada · fachada", tinta: "TINTA", nome: ["PISOS &", "FACHADAS"], tam: [118, 118],
+    b: { img: "rec-pisos-efachadas-remove-bg-io.png", topo: 1150, altura: 570, esquerda: 24, texto: 1090, chip: "Garagem · calçada · fachada", tinta: "TINTA", nome: ["PISOS &", "FACHADAS"], tam: [118, 118],
       frase: "Aguenta o <em>dia a dia.</em>", itens: ["Resiste ao tráfego de carros", "Resiste a chuva e sol", "Rende até 300 m² por demão"] },
   }),
   "banner-2-lavavel-epoxi": bannerProdutos({
-    a: { img: "premiumlavavel-remove-bg-io.png", topo: 300, altura: 640, direita: 30, chip: "Dentro e fora de casa", tinta: "TINTA", nome: ["PREMIUM", "LAVÁVEL"], tam: [132, 132],
+    a: { img: "rec-premiumlavavel-remove-bg-io.png", topo: 300, altura: 640, direita: 30, chip: "Dentro e fora de casa", tinta: "TINTA", nome: ["PREMIUM", "LAVÁVEL"], tam: [132, 132],
       frase: "Sujou? <em>Limpa fácil.</em>", itens: ["Fácil de limpar", "Anti-mofo e anti-fungos", "Rende até 200 m² (balde 18 L)"] },
-    b: { img: "epoxibaseagua.png", topo: 1150, altura: 570, esquerda: 24, texto: 1090, chip: "Azulejo · cozinha · banheiro", tinta: "TINTA", nome: ["EPÓXI", "BASE ÁGUA"], tam: [118, 118],
+    b: { img: "rec-epoxibaseagua.png", topo: 1150, altura: 570, esquerda: 24, texto: 1090, chip: "Azulejo · cozinha · banheiro", tinta: "TINTA", nome: ["EPÓXI", "BASE ÁGUA"], tam: [118, 118],
       frase: "Renove <em>sem quebrar.</em>", itens: ["Pinta azulejo sem obra", "Secagem rápida", "Sem cheiro forte"] },
   }),
   "banner-3-lojas": bannerLojas(),
