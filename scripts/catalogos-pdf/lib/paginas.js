@@ -75,7 +75,7 @@ const CSS_V2 = `
 .capa2 .frase{margin-top:30px;max-width:840px;font-size:38px;line-height:1.3;font-weight:500;color:rgba(255,255,255,.88)}
 .capa2 .frase b{color:#FFD54F;font-weight:700}
 .capa2 .leque2{position:absolute;left:540px;top:2010px;width:0;height:0;z-index:2}
-.capa2 .chip{position:absolute;left:-62px;bottom:0;width:124px;height:800px;border-radius:26px;transform-origin:62px 100%;box-shadow:0 14px 34px rgba(0,0,0,.35),inset 0 0 0 2px rgba(255,255,255,.16)}
+.capa2 .chip{position:absolute;left:-62px;bottom:0;width:124px;height:960px;border-radius:26px;transform-origin:62px 100%;box-shadow:0 14px 34px rgba(0,0,0,.35),inset 0 0 0 2px rgba(255,255,255,.16)}
 .capa2 .chip::after{content:"";position:absolute;inset:0;border-radius:26px;background:linear-gradient(90deg,rgba(255,255,255,.22),rgba(255,255,255,0) 40%,rgba(0,0,0,.10))}
 .capa2 .halo{position:absolute;left:50%;top:1500px;width:900px;height:620px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(70,150,255,.40),transparent 66%);z-index:1}
 .capa2 .lata{position:absolute;left:50%;transform:translateX(-50%);z-index:4;filter:drop-shadow(0 34px 40px rgba(0,0,0,.55))}
@@ -210,7 +210,7 @@ function paginaCapa(cfg, res) {
   const abre = 56;
   const chips = escolha.map((hex, k) => { const ang = N > 1 ? -abre + (2 * abre * k) / (N - 1) : 0; return `<div class="chip" style="background:${hex};transform:rotate(${ang.toFixed(2)}deg)"></div>`; }).join("");
   const total = res ? res.linhas.length : 0;
-  const lata = arqLata ? `<img class="lata" src="${embalagem(arqLata)}" style="top:1250px;height:560px">` : "";
+  const lata = arqLata ? `<img class="lata" src="${embalagem(arqLata)}" style="top:1095px;height:710px">` : "";
   return pagina(`
     <div class="bg"></div><div class="grade-tec"></div>
     <img class="logo2" src="${asset("logo-laet-branco.png")}" style="top:110px;width:440px">
