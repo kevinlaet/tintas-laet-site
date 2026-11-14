@@ -116,6 +116,18 @@ const LINHAS = [
     rodape: RODAPE_LITROS,
   },
   {
+    // Epóxi Base Água: mesma cartela do Esmalte Ecológico (decisão do Kevin, 14/11/2026) + "Areia Bege" (cor extra).
+    // Preços informados pelo Kevin (galão 3,6L): Branca R$135; Bege e Platina R$149,90; demais cores R$159,90.
+    // O tom de "Areia Bege" é PROVISÓRIO (= "Areia" da paleta grande) até o Kevin mandar a cartela do epóxi.
+    id: "epoxi-base-agua", arquivo: "catalogo-epoxi-base-agua", titulo: "EPÓXI BASE ÁGUA",
+    geo: "premium", cabecalho: "#0D47A1", corTitulo: "#0D47A1", corRodape: "#0D47A1",
+    paletaLista: "esmalte-ecologico", paleta: "esmalte-ecologico", produtoPrecos: "epoxi-base-agua",
+    extras: { depois: "Pérola", cores: [{ nome: "Areia Bege", hex: "#DFD4C6", provisorio: true }] },
+    colunas: [{ rotulo: "GALÃO 3,6L", faixas: { branco: "R$135,00", especiais: { "PLATINA": "R$149,90", "AREIA BEGE": "R$149,90" }, demais: "R$159,90" } }],
+    capa: { tema: "#0D47A1", linhas: ["EPÓXI", "BASE ÁGUA"] },
+    rodape: RODAPE_LITROS,
+  },
+  {
     // Sem catálogo de referência (PDF/foto): as cores vêm do site e NÃO foram conferidas contra material do fabricante.
     id: "efeito-cimento-queimado", arquivo: "catalogo-efeito-cimento-queimado", titulo: "EFEITO CIMENTO QUEIMADO",
     geo: "premium", cabecalho: "#7B3FB3", corTitulo: "#7B3FB3", corRodape: "#7B3FB3",
@@ -169,15 +181,22 @@ function resolver(cfg, avisos) {
     lista = paleta.linhas[cfg.paletaLista].cores.map((c) => ({ nome: c.nome, hex: c.hex }));
   }
 
+  if (cfg.extras) {
+    const i = lista.findIndex((c) => norm(c.nome) === norm(cfg.extras.depois));
+    lista.splice(i < 0 ? lista.length : i + 1, 0, ...cfg.extras.cores.map((c) => ({ nome: c.nome, hex: c.hex })));
+    for (const c of cfg.extras.cores) if (c.provisorio) avisos.push(`${cfg.id}: cor "${c.nome}" com tom PROVISÓRIO (${c.hex}), confirmar com a cartela do fabricante`);
+  }
+
   // Branco primeiro (os PDFs antigos não listavam; o preço dele é o mais procurado). Pula se a linha não tem branco.
   const brancoSite = dosPrecos.get("BRANCO");
-  const temBrancoFixo = cfg.colunas.every((col) => col.branco);
+  const temBrancoFixo = cfg.colunas.every((col) => col.branco || col.faixas);
   if (temBrancoFixo || (brancoSite && cfg.colunas.every((col) => col.campo && brancoSite[col.campo]))) {
     lista.unshift({ nome: "Branco", hex: "#FFFFFF", branco: true });
   }
 
   const linhas = lista.map((c) => {
     const valores = cfg.colunas.map((col) => {
+      if (col.faixas) return c.branco ? col.faixas.branco : col.faixas.especiais[norm(c.nome)] || col.faixas.demais;
       if (c.branco && col.branco) return precoFixo(cfg.produtoPrecos, col.branco);
       if (col.fixo) return precoFixo(cfg.produtoPrecos, col.fixo);
       const site = dosPrecos.get(norm(c.nome));
