@@ -36,9 +36,9 @@ async function main() {
   for (const cfg of linhas) {
     const res = resolver(cfg, avisos);
     const paginas = [];
-    if (!cfg.capaAntiga) paginas.push(paginaCapa(cfg));
+    if (!cfg.capaAntiga) paginas.push(paginaCapa(cfg, res));
     paginas.push(...paginasTabela(res));
-    paginas.push(paginaEncerramento());
+    paginas.push(paginaEncerramento(cfg));
 
     const html = path.join(TMP, cfg.id + ".html");
     fs.writeFileSync(html, documento(paginas));

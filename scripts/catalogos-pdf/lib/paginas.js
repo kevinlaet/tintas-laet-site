@@ -13,7 +13,14 @@ const LINKS = {
   orcamento: "https://wa.me/message/NX7QVXEHRI4SG1",
   instagram: "https://www.instagram.com/tintaslaet/",
   site: "https://tintaslaet.com/",
+  lojas: "https://tintaslaet.com/lojas.html",
+  produtos: "https://tintaslaet.com/produtos.html",
+  whatsapp: "https://wa.me/5511977140964",
 };
+// Links do site com marcação de origem: o Google Analytics mostra quantas pessoas vieram de cada catálogo.
+const comOrigem = (url, cfg) => `${url}${url.includes("?") ? "&" : "?"}utm_source=catalogo&utm_medium=pdf&utm_campaign=${encodeURIComponent(cfg ? cfg.id : "catalogo")}`;
+const EMBALAGENS = path.join(__dirname, "..", "..", "..", "identidade", "embalagens");
+const embalagem = (arq) => pathToFileURL(path.join(EMBALAGENS, arq)).href;
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
@@ -46,6 +53,69 @@ svg.tx{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visibl
 .enc a.btn span{display:inline-block}
 .enc .contato{position:absolute;left:0;width:1080px;text-align:center;font-family:'Outfit',sans-serif;font-weight:700;font-size:49px;color:#051951;line-height:1}
 `;
+
+const CSS_V2 = `
+.v2{background:#041D47;color:#fff;font-family:'Poppins',sans-serif}
+.v2 .bg{position:absolute;inset:0;background:
+  radial-gradient(ellipse 900px 700px at 50% 34%,rgba(48,128,255,.42),transparent 70%),
+  radial-gradient(ellipse 700px 500px at 100% 100%,rgba(255,193,7,.10),transparent 70%),
+  linear-gradient(180deg,#0B3F95 0%,#072F72 42%,#041D47 100%)}
+.v2 .grade-tec{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+  background-size:60px 60px;-webkit-mask-image:radial-gradient(ellipse 760px 900px at 50% 40%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse 760px 900px at 50% 40%,#000 30%,transparent 80%)}
+.v2 .logo2{position:absolute;left:50%;transform:translateX(-50%);filter:drop-shadow(0 10px 26px rgba(0,0,0,.35))}
+.v2 .pill{display:inline-flex;align-items:center;gap:14px;border:2px solid rgba(255,214,79,.75);color:#FFD54F;border-radius:999px;padding:12px 30px 10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:27px;letter-spacing:.2em;text-transform:uppercase}
+.v2 .pill i{width:12px;height:12px;border-radius:50%;background:#FFC107;box-shadow:0 0 14px #FFC107}
+.v2 .h-fit{white-space:nowrap;line-height:.92}
+.v2 .amarelo{background:linear-gradient(180deg,#FFE88A 10%,#FFC107 55%,#F29B00 100%);-webkit-background-clip:text;background-clip:text;color:transparent;padding-top:.1em;margin-top:-.1em}
+/* capa */
+.capa2 .topo{position:absolute;left:0;right:0;top:470px;display:flex;flex-direction:column;align-items:center;text-align:center;z-index:5}
+.capa2 .t1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:200px;letter-spacing:-.03em;margin-top:34px;text-shadow:0 14px 40px rgba(0,0,0,.35)}
+.capa2 .t2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:120px;letter-spacing:-.02em;filter:drop-shadow(0 12px 26px rgba(0,0,0,.30))}
+.capa2 .frase{margin-top:30px;max-width:840px;font-size:38px;line-height:1.3;font-weight:500;color:rgba(255,255,255,.88)}
+.capa2 .frase b{color:#FFD54F;font-weight:700}
+.capa2 .leque2{position:absolute;left:540px;top:2010px;width:0;height:0;z-index:2}
+.capa2 .chip{position:absolute;left:-62px;bottom:0;width:124px;height:800px;border-radius:26px;transform-origin:62px 100%;box-shadow:0 14px 34px rgba(0,0,0,.35),inset 0 0 0 2px rgba(255,255,255,.16)}
+.capa2 .chip::after{content:"";position:absolute;inset:0;border-radius:26px;background:linear-gradient(90deg,rgba(255,255,255,.22),rgba(255,255,255,0) 40%,rgba(0,0,0,.10))}
+.capa2 .halo{position:absolute;left:50%;top:1500px;width:900px;height:620px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(70,150,255,.40),transparent 66%);z-index:1}
+.capa2 .lata{position:absolute;left:50%;transform:translateX(-50%);z-index:4;filter:drop-shadow(0 34px 40px rgba(0,0,0,.55))}
+.capa2 .base{position:absolute;left:0;right:0;bottom:0;height:150px;z-index:6;background:linear-gradient(180deg,rgba(4,29,71,0),rgba(4,29,71,.92) 55%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:42px;gap:20px;font-weight:600;font-size:27px;color:rgba(255,255,255,.85)}
+.capa2 .base a{color:inherit;text-decoration:none}
+.capa2 .base span{opacity:.5}
+/* contracapa */
+.cc2 .mascote{position:absolute;left:50%;top:150px;transform:translateX(-50%);width:250px;height:250px;border-radius:50%;padding:9px;background:linear-gradient(135deg,#FFE58A,#FFB300);box-shadow:0 18px 44px rgba(0,0,0,.4)}
+.cc2 .mascote img{width:100%;height:100%;border-radius:50%;object-fit:cover;background:#fff;display:block}
+.cc2 .balao{position:absolute;left:650px;top:148px;background:#fff;color:#062B63;border-radius:28px 28px 28px 6px;padding:20px 28px 16px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:30px;line-height:1.15;box-shadow:0 14px 30px rgba(0,0,0,.3);transform:rotate(-3deg)}
+.cc2 .titulo{position:absolute;left:0;right:0;top:450px;text-align:center}
+.cc2 .titulo .l1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:104px;letter-spacing:-.03em;line-height:1}
+.cc2 .titulo .l2{margin-top:22px;font-size:38px;font-weight:500;color:rgba(255,255,255,.85)}
+.cc2 .titulo .l2 b{color:#FFD54F;font-weight:700}
+.cc2 a.card{position:absolute;left:84px;width:912px;height:180px;border-radius:44px;display:flex;align-items:center;gap:34px;padding:0 40px 0 34px;text-decoration:none;color:#fff;
+  background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.05));border:2px solid rgba(255,255,255,.22);box-shadow:0 20px 44px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.25)}
+.cc2 a.card.prim{background:linear-gradient(135deg,#FFE27A 0%,#FFC107 55%,#F2AE00 100%);color:#062B63;border-color:rgba(255,255,255,.6)}
+.cc2 .ic{flex:none;width:120px;height:120px;border-radius:34px;display:flex;align-items:center;justify-content:center;background:rgba(255,193,7,.16);border:2px solid rgba(255,214,79,.55);color:#FFD54F}
+.cc2 .prim .ic{background:#062B63;border-color:#062B63;color:#FFC107}
+.cc2 .ic svg{width:62px;height:62px}
+.cc2 .txt{flex:1;min-width:0}
+.cc2 .tt{font-family:'Montserrat',sans-serif;font-weight:800;font-size:50px;line-height:1.05;white-space:nowrap}
+.cc2 .st{margin-top:8px;font-size:30px;line-height:1.2;opacity:.82;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc2 .seta{flex:none;width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.12)}
+.cc2 .prim .seta{background:#062B63;color:#FFC107}
+.cc2 .seta svg{width:36px;height:36px}
+.cc2 .rodape2{position:absolute;left:0;right:0;bottom:76px;display:flex;flex-direction:column;align-items:center;gap:22px}
+.cc2 .zap{display:inline-flex;align-items:center;gap:16px;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:40px}
+.cc2 .zap svg{width:46px;height:46px;color:#25D366}
+.cc2 .dica{font-size:24px;color:rgba(255,255,255,.55);letter-spacing:.04em}
+`;
+
+const ICONES = {
+  loja: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/></svg>',
+  produtos: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14l-1.2 12.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 7V5.5a3 3 0 0 1 6 0V7"/></svg>',
+  insta: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg>',
+  site: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 3.8 5.8 3.8 9s-1.2 6.2-3.8 9c-2.6-2.8-3.8-5.8-3.8-9S9.4 5.8 12 3z"/></svg>',
+  seta: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>',
+  zap: '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.4-.7-2.4-1.4-3.3-3-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.1-.7z"/></svg>',
+};
 
 function pagina(conteudo, classe = "") {
   return `<section class="pg ${classe}">${conteudo}</section>`;
@@ -126,48 +196,77 @@ function paginasTabela(res) {
 }
 
 // ------------------------------------------------------------------ capa (só das linhas sem PDF antigo)
-function paginaCapa(cfg) {
-  const { tema, linhas } = cfg.capa;
-  const fit = (txt, y, max) => `<text class="fit" data-max="${max}" x="41" y="${y}" font-family="League Spartan" font-weight="800" font-size="190" letter-spacing="-0.07em" fill="${tema}">${esc(txt)}</text>`;
-  // linhas 2 e 3: cada uma com o maior tamanho que couber (até 190px), como nos originais
-  const svg = `
-    <path d="${formas.arco}" fill="${tema}"/>
-    <text x="41" y="745" font-family="League Spartan" font-weight="800" font-size="80.2" letter-spacing="-0.07em" fill="${tema}">CATÁLOGO DE CORES</text>
-    ${fit(linhas[0], 917, 760).replace('class="fit"', 'class="fit t2"')}
-    ${fit(linhas[1], 1077, 760).replace('class="fit"', 'class="fit t3"')}
-    <path d="${formas.estrela}" fill="${tema}"/>`;
+// Capa v2 (nov/2026): fundo azul com grade "tecnológica", leque feito com as cores DE VERDADE da linha
+// (hex da tabela, em ordem de matiz) e a embalagem real na frente. Tudo que o cliente lê é fato da linha.
+function paginaCapa(cfg, res) {
+  const { linhas: titulo, frase, embalagem: arqLata } = cfg.capa;
+  const cores = (res ? res.linhas : []).filter((l) => !/^branc/i.test(l.nome)).map((l) => l.hex);
+  const matiz = (h) => { const r = parseInt(h.slice(1, 3), 16) / 255, g = parseInt(h.slice(3, 5), 16) / 255, b = parseInt(h.slice(5, 7), 16) / 255;
+    const mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn; if (d < 0.08) return 999 + (1 - mx);
+    let hh = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; return (hh * 60 + 360) % 360; };
+  const ordenadas = [...cores].sort((a, b) => matiz(a) - matiz(b));
+  const N = Math.min(15, ordenadas.length);
+  const escolha = Array.from({ length: N }, (_, k) => ordenadas[Math.round((k * (ordenadas.length - 1)) / Math.max(1, N - 1))]);
+  const abre = 56;
+  const chips = escolha.map((hex, k) => { const ang = N > 1 ? -abre + (2 * abre * k) / (N - 1) : 0; return `<div class="chip" style="background:${hex};transform:rotate(${ang.toFixed(2)}deg)"></div>`; }).join("");
+  const total = res ? res.linhas.length : 0;
+  const lata = arqLata ? `<img class="lata" src="${embalagem(arqLata)}" style="top:1250px;height:560px">` : "";
   return pagina(`
-    <img src="${asset("logo-laet.png")}" style="position:absolute;left:98.9px;top:-77.5px;width:882px;height:882px">
-    <svg class="tx" viewBox="0 0 1080 1920" style="z-index:1">${svg}</svg>
-    <img src="${asset("leque-pincel.png")}" style="position:absolute;left:145.2px;top:1226px;width:1007px;height:929px;z-index:2">`, "capa");
+    <div class="bg"></div><div class="grade-tec"></div>
+    <img class="logo2" src="${asset("logo-laet-branco.png")}" style="top:110px;width:440px">
+    <div class="topo">
+      <div class="pill"><i></i>Catálogo de cores${total ? ` · ${total} cores` : ""}</div>
+      <div class="t1 h-fit" data-max="980">${esc(titulo[0])}</div>
+      ${titulo[1] ? `<div class="t2 h-fit amarelo" data-max="980">${esc(titulo[1])}</div>` : ""}
+      ${frase ? `<div class="frase">${frase}</div>` : ""}
+    </div>
+    <div class="halo"></div>
+    <div class="leque2">${chips}</div>
+    ${lata}
+    <div class="base"><a href="${comOrigem(LINKS.site, cfg)}">tintaslaet.com</a><span>•</span><a href="${LINKS.instagram}">@tintaslaet</a><span>•</span><a href="${LINKS.whatsapp}">(11) 97714-0964</a></div>`, "v2 capa2");
 }
 
-// ------------------------------------------------------------------ encerramento (botões com link)
-function paginaEncerramento() {
-  const tops = [1035.5, 1209.1, 1382.7];
-  const sombras = [973, 1147, 1320];
-  const botoes = [["ORÇAMENTO GRATUITO", LINKS.orcamento], ["INSTAGRAM", LINKS.instagram], ["SITE", LINKS.site]];
+// ------------------------------------------------------------------ contracapa (v2, nov/2026): 4 botões clicáveis
+// Ordem pedida pelo Kevin: Lojas (página de lojas, com WhatsApp e mapa de cada uma), Produtos, Instagram, Site.
+function paginaEncerramento(cfg) {
+  const cards = [
+    { ic: "loja", tt: "Lojas", st: "Endereço e WhatsApp das 6 lojas", url: comOrigem(LINKS.lojas, cfg), prim: true },
+    { ic: "produtos", tt: "Produtos", st: "A linha completa, com preços", url: comOrigem(LINKS.produtos, cfg) },
+    { ic: "insta", tt: "Instagram", st: "Dicas, novidades e sorteios", url: LINKS.instagram },
+    { ic: "site", tt: "Site", st: "Tudo da Laet num lugar só", url: comOrigem(LINKS.site, cfg) },
+  ];
+  const y0 = 700, passo = 206;
   return pagina(`
-    <img class="fundo" src="${asset("fundo-azul.jpg")}">
-    <img class="sombra-cartao" src="${asset("sombra-cartao.png")}">
-    <div class="cartao"></div>
-    <div class="anel"></div>
-    <div class="rosto"><img src="${asset("mascote-rosto.png")}"></div>
-    <img class="logo" src="${asset("logo-laet.png")}">
-    <div class="sel" style="top:${917 - 42}px">Selecione abaixo:</div>
-    ${sombras.map((y) => `<img class="sbtn" src="${asset("sombra-botao.png")}" style="top:${y}px">`).join("")}
-    ${botoes.map(([t, url], i) => `<a class="btn" href="${url}" style="top:${tops[i]}px"><span>${t}</span></a>`).join("")}
-    <div class="contato" style="top:${1680 - 38}px">@TINTASLAET</div>
-    <div class="contato" style="top:${1741 - 38}px">(11) 97714-0964</div>`, "enc");
+    <div class="bg"></div><div class="grade-tec"></div>
+    <div class="mascote"><img src="${asset("mascote-rosto.png")}"></div>
+    <div class="balao">Escolheu<br>a cor?</div>
+    <div class="titulo">
+      <div class="l1">Bora <span style="color:#FFC107">pintar.</span></div>
+      <div class="l2">Toque num botão e <b>siga daqui</b>:</div>
+    </div>
+    ${cards.map((c, k) => `<a class="card${c.prim ? " prim" : ""}" href="${c.url}" style="top:${y0 + k * passo}px">
+      <div class="ic">${ICONES[c.ic]}</div>
+      <div class="txt"><div class="tt">${c.tt}</div><div class="st">${c.st}</div></div>
+      <div class="seta">${ICONES.seta}</div></a>`).join("")}
+    <div class="rodape2">
+      <img src="${asset("logo-laet-branco.png")}" style="width:250px">
+      <a class="zap" href="${LINKS.whatsapp}">${ICONES.zap}(11) 97714-0964</a>
+      <div class="dica">Os botões desta página são clicáveis</div>
+    </div>`, "v2 cc2");
 }
 
 // ------------------------------------------------------------------ documento
-const FONTES = "https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=Rubik:wght@800&family=League+Spartan:wght@800&family=Outfit:wght@400;700&display=swap";
+const FONTES = "https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=Rubik:wght@800&family=League+Spartan:wght@800&family=Outfit:wght@400;700&family=Montserrat:wght@800;900&family=Poppins:wght@500;600;700&display=swap";
 
 const SCRIPT = `
 window.ajustar = async () => {
   await document.fonts.ready;
-  for (const f of ['400 20px "Public Sans"', '600 20px "Public Sans"', '700 20px "Public Sans"', '800 20px "League Spartan"', '400 20px "Outfit"', '700 20px "Outfit"', '800 20px "Rubik"']) await document.fonts.load(f);
+  for (const f of ['400 20px "Public Sans"', '600 20px "Public Sans"', '700 20px "Public Sans"', '800 20px "League Spartan"', '400 20px "Outfit"', '700 20px "Outfit"', '800 20px "Rubik"', '800 20px "Montserrat"', '900 20px "Montserrat"', '500 20px "Poppins"', '600 20px "Poppins"', '700 20px "Poppins"']) await document.fonts.load(f);
+  // títulos da capa v2: diminui até caber
+  document.querySelectorAll('.h-fit').forEach((el) => {
+    const max = Number(el.dataset.max); let s = parseFloat(getComputedStyle(el).fontSize);
+    for (let i = 0; i < 60 && el.scrollWidth > max; i++) { s *= 0.97; el.style.fontSize = s + 'px'; }
+  });
   // textos SVG: reduz o tamanho até caber na largura máxima
   document.querySelectorAll('text.fit').forEach((t) => {
     const max = Number(t.dataset.max); let s = parseFloat(t.getAttribute('font-size'));
@@ -198,7 +297,7 @@ window.ajustar = async () => {
 function documento(paginas) {
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Catálogo Tintas Laet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="${FONTES}">
-<style>${CSS}</style></head><body>${paginas.join("")}<script>${SCRIPT}</script></body></html>`;
+<style>${CSS}${CSS_V2}</style></head><body>${paginas.join("")}<script>${SCRIPT}</script></body></html>`;
 }
 
 module.exports = { paginasTabela, paginaCapa, paginaEncerramento, documento, LINKS };

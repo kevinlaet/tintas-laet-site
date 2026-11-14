@@ -126,7 +126,7 @@ const LINHAS = [
     extras: { depois: "Pérola", cores: [{ nome: "Areia Bege", hex: "#DFD4C6", provisorio: true }] },
     colunas: [{ rotulo: "GALÃO 3,6L", faixas: { branco: "R$135,00", valorClaras: "R$145,00", demais: "R$155,00",
       claras: ["Rosa Bebê", "Marfim", "Pérola", "Crômio", "Areia Bege", "Gelo", "Rosa Big-Big", "Cinza Claro", "Laranja Suave", "Platina", "Azul Celeste", "Verde Uva", "Camurça"] } }],
-    capa: { tema: "#0D47A1", linhas: ["EPÓXI", "BASE ÁGUA"] },
+    capa: { tema: "#0D47A1", linhas: ["EPÓXI", "BASE ÁGUA"], embalagem: "epoxibaseagua.png", frase: "Renove azulejo, cozinha e banheiro <b>sem quebrar nada</b>. Escolha a sua cor." },
     rodape: RODAPE_LITROS,
   },
   {
