@@ -117,13 +117,15 @@ const LINHAS = [
   },
   {
     // Epóxi Base Água: mesma cartela do Esmalte Ecológico (decisão do Kevin, 14/11/2026) + "Areia Bege" (cor extra).
-    // Preços informados pelo Kevin (galão 3,6L): Branca R$135; Bege e Platina R$149,90; demais cores R$159,90.
+    // Preços do Kevin (14/11/2026, galão 3,6L): Branca R$135; cores claras (pastéis) R$145; cores vibrantes (fortes) R$155.
+    // Quais cores são "claras": claridade HSL >= 65% na cartela (regra objetiva) — o Kevin pode ajustar a lista abaixo.
     // O tom de "Areia Bege" é PROVISÓRIO (= "Areia" da paleta grande) até o Kevin mandar a cartela do epóxi.
     id: "epoxi-base-agua", arquivo: "catalogo-epoxi-base-agua", titulo: "EPÓXI BASE ÁGUA",
     geo: "premium", cabecalho: "#0D47A1", corTitulo: "#0D47A1", corRodape: "#0D47A1",
     paletaLista: "esmalte-ecologico", paleta: "esmalte-ecologico", produtoPrecos: "epoxi-base-agua",
     extras: { depois: "Pérola", cores: [{ nome: "Areia Bege", hex: "#DFD4C6", provisorio: true }] },
-    colunas: [{ rotulo: "GALÃO 3,6L", faixas: { branco: "R$135,00", especiais: { "PLATINA": "R$149,90", "AREIA BEGE": "R$149,90" }, demais: "R$159,90" } }],
+    colunas: [{ rotulo: "GALÃO 3,6L", faixas: { branco: "R$135,00", valorClaras: "R$145,00", demais: "R$155,00",
+      claras: ["Rosa Bebê", "Marfim", "Pérola", "Crômio", "Areia Bege", "Gelo", "Rosa Big-Big", "Cinza Claro", "Laranja Suave", "Platina", "Azul Celeste", "Verde Uva", "Camurça"] } }],
     capa: { tema: "#0D47A1", linhas: ["EPÓXI", "BASE ÁGUA"] },
     rodape: RODAPE_LITROS,
   },
@@ -196,7 +198,7 @@ function resolver(cfg, avisos) {
 
   const linhas = lista.map((c) => {
     const valores = cfg.colunas.map((col) => {
-      if (col.faixas) return c.branco ? col.faixas.branco : col.faixas.especiais[norm(c.nome)] || col.faixas.demais;
+      if (col.faixas) return c.branco ? col.faixas.branco : col.faixas.claras.some((n) => norm(n) === norm(c.nome)) ? col.faixas.valorClaras : col.faixas.demais;
       if (c.branco && col.branco) return precoFixo(cfg.produtoPrecos, col.branco);
       if (col.fixo) return precoFixo(cfg.produtoPrecos, col.fixo);
       const site = dosPrecos.get(norm(c.nome));
