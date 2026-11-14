@@ -12,7 +12,7 @@ const os = require("os");
 const path = require("path");
 const { pathToFileURL } = require("url");
 const { chromium } = require("playwright");
-const { PDFDocument } = require("pdf-lib");
+const { PDFDocument, PDFName, PDFString } = require("pdf-lib");
 const { LINHAS, resolver } = require("./lib/linhas");
 const { paginasTabela, paginaCapa, paginaEncerramento, documento } = require("./lib/paginas");
 
@@ -30,7 +30,7 @@ async function main() {
 
   const avisos = [];
   const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
+  const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 2 });
   const resumo = [];
 
   for (const cfg of linhas) {
@@ -46,6 +46,17 @@ async function main() {
     await page.evaluate(() => window.ajustar());
     const gerado = await page.pdf({ width: "1080px", height: "1920px", printBackground: true, preferCSSPageSize: true });
 
+    // Páginas "v2" (capa e contracapa novas) usam transparência, sombra e brilho: o leitor de PDF do iPhone desenha
+    // isso errado (camadas fantasma). Por isso elas entram como IMAGEM em alta resolução, e os links viram
+    // áreas clicáveis por cima, nas mesmas posições dos botões.
+    const v2 = await page.evaluate(() => [...document.querySelectorAll("section.pg")].map((sec, i) => {
+      if (!sec.classList.contains("v2")) return null;
+      const b = sec.getBoundingClientRect();
+      return { i, links: [...sec.querySelectorAll("a[href]")].map((a) => { const r = a.getBoundingClientRect(); return { href: a.href, x: r.left - b.left, y: r.top - b.top, w: r.width, h: r.height }; }) };
+    }).filter(Boolean));
+    const imagens = {};
+    for (const p of v2) imagens[p.i] = await page.locator("section.pg").nth(p.i).screenshot({ type: "jpeg", quality: 92, scale: "device" });
+
     // monta o arquivo final: [capa antiga (+ página de produto antiga)] + páginas geradas
     const final = await PDFDocument.create();
     const novo = await PDFDocument.load(gerado);
@@ -56,7 +67,20 @@ async function main() {
       final.addPage(pg);
     }
     const copiadas = await final.copyPages(novo, novo.getPageIndices());
-    copiadas.forEach((p) => final.addPage(p));
+    for (let k = 0; k < copiadas.length; k++) {
+      const info = v2.find((p) => p.i === k);
+      if (!info) { final.addPage(copiadas[k]); continue; }
+      const { width: W, height: H } = copiadas[k].getSize();
+      const pg = final.addPage([W, H]);
+      const img = await final.embedJpg(imagens[k]);
+      pg.drawImage(img, { x: 0, y: 0, width: W, height: H });
+      const f = W / 1080; // px do desenho -> pontos do PDF
+      for (const l of info.links) {
+        const annot = final.context.obj({ Type: "Annot", Subtype: "Link", Rect: [l.x * f, H - (l.y + l.h) * f, (l.x + l.w) * f, H - l.y * f], Border: [0, 0, 0],
+          A: { Type: "Action", S: "URI", URI: PDFString.of(l.href) } });
+        pg.node.addAnnot(final.context.register(annot));
+      }
+    }
     final.setTitle(`Catálogo de cores Tintas Laet: ${cfg.titulo}`);
     final.setAuthor("Tintas Laet");
     final.setCreator("Tintas Laet OS");
