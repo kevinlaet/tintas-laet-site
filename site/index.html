@@ -121,6 +121,29 @@
     .banner-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; background: var(--yellow); color: var(--graphite); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; padding: 13px 24px; border-radius: var(--radius); transition: filter .2s, transform .2s; }
     .banner-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
     @media (max-width: 640px) { .banner-title { max-width: 78vw; } .banner-sub { display: none; } }
+    /* Slide das paredes: a mesma sala trocando de cor (cores EXATAS da cartela Premium Lavável; sem scrim por cima pra não mudar o tom) */
+    .banner-paredes .parede-frame { position: absolute; inset: 0; opacity: 0; }
+    .banner-paredes .parede-frame:first-child { opacity: 1; }
+    .banner-paredes .banner-img { object-position: 62% 40%; }
+    .banner-paredes.ativo .parede-frame { animation: paredeTroca 12s linear infinite; animation-delay: calc(var(--i) * 2s); }
+    .banner-paredes.ativo .parede-frame:first-child { opacity: 0; }
+    @keyframes paredeTroca { 0% { opacity: 0; } 5% { opacity: 1; } 16.67% { opacity: 1; } 21.67% { opacity: 0; } 100% { opacity: 0; } }
+    .parede-tag { position: absolute; left: 6vw; bottom: 30px; display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,.94); color: var(--graphite); padding: 9px 16px 9px 10px; border-radius: 999px; box-shadow: 0 8px 22px rgba(0,0,0,.22); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; z-index: 3; }
+    .parede-tag i { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.18); display: block; }
+    .parede-tag small { font-weight: 600; color: #6b7280; font-size: 12px; }
+    .banner-paredes .banner-text-glass { background: rgba(6,30,70,.66); }
+    .parede-aviso { position: absolute; right: 2.5vw; bottom: 10px; z-index: 3; font-family: 'Poppins', sans-serif; font-size: 10.5px; color: rgba(255,255,255,.85); text-shadow: 0 1px 6px rgba(0,0,0,.55); max-width: 46vw; text-align: right; }
+    @media (max-width: 640px) {
+      .parede-tag { bottom: auto; top: 14px; left: 14px; font-size: 13px; }
+      .parede-aviso { display: none; }
+      .banner-paredes .banner-img { object-position: 72% 40%; }
+      .banner-paredes .banner-content { align-items: flex-end; padding: 0 14px 34px; }
+      .banner-paredes .banner-text-glass { padding: 10px 14px 12px; border-radius: 14px; max-width: 62vw; }
+      .banner-paredes .banner-eyebrow { display: none; }
+      .banner-paredes .banner-title { font-size: 19px; max-width: none; }
+      .banner-paredes .banner-cta { margin-top: 8px; padding: 8px 14px; font-size: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .banner-paredes.ativo .parede-frame { animation: none; } .banner-paredes.ativo .parede-frame:first-child { opacity: 1; } }
     .banner-can { position: absolute; right: 5vw; bottom: -6%; height: 78%; max-height: 340px; filter: drop-shadow(0 22px 30px rgba(0,0,0,.35)); pointer-events: none; }
 
     /* ── Liquid glass (efeito vidro fosco) ── */
@@ -708,6 +731,43 @@
           <div class="banner-actions"><a href="#cores" class="banner-cta">🎨 Escolher minha cor</a></div>
         </div>
       </div>
+    </div>
+
+    <!-- Slide: paredes coloridas (cores exatas da cartela Premium Lavável) -->
+    <div class="banner-slide banner-paredes" data-duration="12000">
+        <div class="parede-frame" style="--i:0">
+          <img src="images/hero-novo/parede-azul-jazz.jpg" alt="Sala com a parede pintada na cor Azul Jazz" class="banner-img" loading="eager">
+          <span class="parede-tag"><i style="background:#365A96"></i><span>Azul Jazz<br><small>Premium Lavável</small></span></span>
+        </div>
+        <div class="parede-frame" style="--i:1">
+          <img src="images/hero-novo/parede-espaco-verde.jpg" alt="Sala com a parede pintada na cor Espaço Verde" class="banner-img" loading="lazy">
+          <span class="parede-tag"><i style="background:#588D82"></i><span>Espaço Verde<br><small>Premium Lavável</small></span></span>
+        </div>
+        <div class="parede-frame" style="--i:2">
+          <img src="images/hero-novo/parede-magia.jpg" alt="Sala com a parede pintada na cor Magia" class="banner-img" loading="lazy">
+          <span class="parede-tag"><i style="background:#BD876F"></i><span>Magia<br><small>Premium Lavável</small></span></span>
+        </div>
+        <div class="parede-frame" style="--i:3">
+          <img src="images/hero-novo/parede-areia.jpg" alt="Sala com a parede pintada na cor Areia" class="banner-img" loading="lazy">
+          <span class="parede-tag"><i style="background:#DFD4C6"></i><span>Areia<br><small>Premium Lavável</small></span></span>
+        </div>
+        <div class="parede-frame" style="--i:4">
+          <img src="images/hero-novo/parede-amarelo-dourado.jpg" alt="Sala com a parede pintada na cor Amarelo Dourado" class="banner-img" loading="lazy">
+          <span class="parede-tag"><i style="background:#FFCE64"></i><span>Amarelo Dourado<br><small>Premium Lavável</small></span></span>
+        </div>
+        <div class="parede-frame" style="--i:5">
+          <img src="images/hero-novo/parede-rosa-irlandesa.jpg" alt="Sala com a parede pintada na cor Rosa Irlandesa" class="banner-img" loading="lazy">
+          <span class="parede-tag"><i style="background:#DBABAB"></i><span>Rosa Irlandesa<br><small>Premium Lavável</small></span></span>
+        </div>
+      <div class="banner-content">
+        <div class="banner-text banner-text-glass">
+          <span class="banner-eyebrow">Premium Lavável</span>
+          <h1 class="banner-title">Qual cor vai na<br>sua parede?</h1>
+          <p class="banner-sub">Veja como fica. Escolha entre as cores da nossa cartela.</p>
+          <div class="banner-actions"><a href="#cores" class="banner-cta">🎨 Ver todas as cores</a></div>
+        </div>
+      </div>
+      <p class="parede-aviso">A tela pode mostrar a cor um pouco diferente. Confira no catálogo na loja.</p>
     </div>
 
     <!-- Slide 2: Entrega via app -->
@@ -1827,10 +1887,15 @@ document.querySelectorAll('.seller-card').forEach(card => {
       if (i < cur) s.classList.add('done'); else if (i === cur) s.classList.add('on');
     });
     count.innerHTML = '<b>' + pad(cur + 1) + '</b> / ' + pad(total);
+    Array.prototype.forEach.call(carousel.children, function(sl, i) { sl.classList.toggle('ativo', i === cur); });
   }
   function restart() {
-    clearInterval(timer);
-    if (!hover) timer = setInterval(function() { goTo(cur + 1, true); }, 5000);
+    clearTimeout(timer); clearInterval(timer);
+    if (!hover) {
+      const slide = carousel.children[cur];
+      const d = Number(slide && slide.dataset.duration) || 5000;
+      timer = setTimeout(function() { goTo(cur + 1, true); }, d);
+    }
   }
   function goTo(n, auto) {
     cur = (n + total) % total;
