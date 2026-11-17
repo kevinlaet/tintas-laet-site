@@ -35,21 +35,25 @@ const S=[
   <div class="bl" style="top:110px"><div class="chip">O produto</div><div class="t" style="font-size:66px;margin-top:40px">Tinta</div>
   <div class="t" style="font-size:150px;color:#FFC107;line-height:.95">EMBOR&shy;RACHADA</div>
   <div class="p" style="margin-top:44px;font-size:46px">Forma uma película<br>tipo borracha.</div></div>`),
- // 4 onde usa
- pag(`${N(4)}<div class="bl" style="top:160px"><div class="t" style="font-size:92px">Pra <em>laje</em>,<br>telhado e muro.</div></div>
-  <div class="bl" style="top:560px;display:grid;gap:34px">${["Protege contra o sol","Protege contra a chuva","Protege contra microfissuras"].map(x=>`<div style="display:flex;align-items:center;gap:26px;background:#062B63;color:#fff;border-radius:24px;padding:44px 38px"><span style="width:64px;height:64px;border-radius:50%;background:#FFC107;color:#062B63;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:40px">✓</span><span class="p" style="font-size:44px">${x}</span></div>`).join("")}</div>`,"creme"),
- // 5 como aplicar
- pag(`${N(5)}<div class="bl" style="top:170px"><div class="chip">Antes de pintar</div><div class="t" style="font-size:104px;margin-top:40px">Superfície<br><em>limpa</em> e <em>seca</em>.</div>
-  <div class="p" style="margin-top:50px">Depois é seguir as demãos que estão na embalagem.</div>
-  <div class="p" style="margin-top:34px;opacity:.75;font-size:34px">Na dúvida, manda foto que a gente te orienta.</div></div>
-  <div style="position:absolute;left:84px;right:84px;bottom:100px;height:400px;border-radius:28px;background:url('${uri(F+"parede-ferramentas.jpg")}') center 55%/cover"></div>`),
- // 6 CTA
- pag(`<div class="foto" style="background-image:url('${uri(F+"loja-interior-clientes.jpg")}')"></div><div class="veu" style="background:linear-gradient(180deg,rgba(4,24,58,.55),rgba(4,24,58,.94) 55%)"></div>
-  <img src="${LOGO}" style="position:absolute;top:56px;left:50%;transform:translateX(-50%);height:230px">
-  <img src="${MASC}" style="position:absolute;right:20px;bottom:250px;height:400px;filter:drop-shadow(0 16px 26px rgba(0,0,0,.45))">
-  <div class="bl" style="top:380px;right:380px"><div class="t" style="font-size:80px">Manda uma <em>foto</em> da sua laje.</div>
-  <div class="p" style="margin-top:26px;font-size:36px">A gente diz se a Emborrachada é a indicada e quanto você vai precisar.</div></div>
-  <div style="position:absolute;left:84px;right:84px;bottom:140px;display:flex;align-items:center;justify-content:center;gap:18px;background:#FFC107;color:#062B63;border-radius:999px;padding:28px;font-weight:900;font-size:52px">${ZAP}(11) 97714-0964</div>
+ // 4 a prova: foto real do Kevin, água escorrendo na Emborrachada
+ pag(`<div class="foto" style="background-image:url('${uri(__dirname+"/real-agua-escorrendo.jpg")}');background-position:center 60%"></div>
+  <div class="veu" style="background:linear-gradient(180deg,rgba(4,24,58,.94) 0%,rgba(4,24,58,.82) 30%,rgba(4,24,58,0) 55%,rgba(4,24,58,0) 78%,rgba(4,24,58,.85) 100%)"></div>${N(4)}
+  <div class="bl" style="top:120px"><div class="chip">Teste de verdade</div><div class="t" style="font-size:104px;margin-top:34px">A água bate<br>e <em>escorre</em>.</div>
+  <div class="p" style="margin-top:28px">É a nossa Emborrachada: hidrorrepelente. A água não entra.</div></div>
+  <div style="position:absolute;left:84px;right:84px;bottom:70px;display:flex;gap:16px">${["Sol","Chuva","Microfissuras"].map(x=>`<div style="flex:1;display:flex;align-items:center;justify-content:center;gap:12px;background:rgba(255,255,255,.95);color:#062B63;border-radius:999px;padding:20px 10px;font-weight:800;font-size:32px"><span style="width:38px;height:38px;border-radius:50%;background:#FFC107;display:flex;align-items:center;justify-content:center;font-size:24px">✓</span>${x}</div>`).join("")}</div>
+  <div style="position:absolute;right:84px;bottom:160px;font-family:Poppins;font-weight:600;font-size:22px;color:#fff;opacity:.85;text-shadow:0 2px 8px rgba(0,0,0,.6)">Foto real da Emborrachada Laet</div>`),
+ // 5 a virada: chove de novo e nada pinga (teto limpo em cima, café embaixo)
+ pag(`<div class="foto" style="background-image:url('${uri(__dirname+"/ia-depois-cozinha.png")}');background-position:center 85%"></div>
+  <div class="veu" style="background:linear-gradient(180deg,rgba(4,24,58,.92) 0%,rgba(4,24,58,.75) 30%,rgba(4,24,58,0) 52%)"></div>${N(5)}
+  <div class="bl" style="top:110px"><div class="chip">Depois da Emborrachada</div><div class="t" style="font-size:92px;margin-top:30px">Choveu de novo.<br>E dessa vez, <em>nada</em>.</div>
+  <div class="p" style="margin-top:24px;opacity:.95">Só o barulho da chuva e o café quente.</div></div>`),
+ // 6 fechamento: laje protegida + contato
+ pag(`<div class="foto" style="background-image:url('${uri(__dirname+"/ia-depois-laje.png")}');background-position:center 55%"></div>
+  <div class="veu" style="background:linear-gradient(180deg,rgba(4,24,58,.9) 0%,rgba(4,24,58,.55) 32%,rgba(4,24,58,0) 50%,rgba(4,24,58,.6) 70%,rgba(4,24,58,.96) 100%)"></div>
+  <img src="${LOGO}" style="position:absolute;top:40px;left:84px;height:170px">
+  <div class="bl" style="top:240px"><div class="t" style="font-size:96px">Sua laje pode<br>ficar <em>assim</em>.</div></div>
+  <div class="bl" style="bottom:250px"><div class="p" style="font-size:40px">Manda uma foto da sua laje. A gente diz se a Emborrachada é a indicada e quanto você vai precisar.</div></div>
+  <div style="position:absolute;left:84px;right:84px;bottom:120px;display:flex;align-items:center;justify-content:center;gap:18px;background:#FFC107;color:#062B63;border-radius:999px;padding:26px;font-weight:900;font-size:52px">${ZAP}(11) 97714-0964</div>
   <div class="rod"><b>@Tintaslaet</b> · tintaslaet.com</div>`),
 ];
 (async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:1080,height:1350}});
