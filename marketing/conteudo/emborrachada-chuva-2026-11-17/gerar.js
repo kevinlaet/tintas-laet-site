@@ -42,7 +42,7 @@ const S=[
  pag(`<div class="foto" style="background-image:url('${uri(__dirname+"/real-agua-escorrendo.jpg")}');background-position:center 60%"></div>
   <div class="veu" style="background:linear-gradient(180deg,rgba(4,24,58,.94) 0%,rgba(4,24,58,.82) 32%,rgba(4,24,58,0) 56%,rgba(4,24,58,0) 78%,rgba(4,24,58,.85) 100%)"></div>${N(4)}
   <div class="bl" style="top:120px"><div class="chip">Por que funciona</div><div class="t" style="font-size:104px;margin-top:34px">A água bate<br>e <em>escorre</em>.</div>
-  <div class="p" style="margin-top:28px">Forma uma película tipo borracha que acompanha as microfissuras.</div></div>
+  <div class="p" style="margin-top:28px">Forma uma película de borracha que acompanha as microfissuras.</div></div>
   <div style="position:absolute;left:84px;right:84px;bottom:70px;display:flex;gap:16px">${["Sol","Chuva","Microfissuras"].map(x=>`<div style="flex:1;display:flex;align-items:center;justify-content:center;gap:12px;background:rgba(255,255,255,.95);color:#062B63;border-radius:999px;padding:20px 10px;font-weight:800;font-size:32px"><span style="width:38px;height:38px;border-radius:50%;background:#FFC107;display:flex;align-items:center;justify-content:center;font-size:24px">✓</span>${x}</div>`).join("")}</div>
   <div style="position:absolute;right:84px;bottom:160px;font-family:Poppins;font-weight:600;font-size:22px;color:#fff;opacity:.85;text-shadow:0 2px 8px rgba(0,0,0,.6)">Foto real da Emborrachada Laet</div>`),
  // 5 depois
