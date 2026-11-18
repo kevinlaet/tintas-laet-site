@@ -30,36 +30,38 @@ const L=[
  {n:5,cid:"Mauá",b:"Jardim Itapark",e:"Av. Itapark, 4377",z:"(11) 91433-4875",f:"fachada-loja5.jpg",p:"center 40%"},
  {n:6,cid:"São Bernardo do Campo",b:"Santa Terezinha",e:"Av. Luís Pequini, 899",z:"(11) 91875-5095",f:"fachada-loja6.jpg",p:"center 35%"},
 ];
-const card=(l)=>`<div style="display:flex;gap:30px;align-items:stretch;background:#fff;border-radius:30px;overflow:hidden;box-shadow:0 16px 34px rgba(6,43,99,.16);height:520px">
-  <div style="flex:none;width:400px;position:relative;background:url('${uri(F+l.f)}') ${l.p}/cover">
-   <div style="position:absolute;left:18px;top:18px;background:#FFC107;color:#062B63;font-weight:900;font-size:30px;padding:10px 18px;border-radius:12px">LOJA ${l.n}</div></div>
-  <div style="flex:1;padding:44px 36px 40px 0;display:flex;flex-direction:column;justify-content:center;color:#062B63">
-   <div class="t" style="font-size:${l.cid.length>12?50:66}px">${l.cid}</div>
-   <div class="p" style="font-size:34px;color:#0D47A1;margin-top:10px">${l.b}</div>
-   <div class="p" style="font-size:28px;color:#4b5563;margin-top:22px;font-weight:600">${l.e}</div>
-   <div class="p" style="font-size:30px;margin-top:18px;display:flex;align-items:center;gap:10px;color:#062B63"><span style="color:#1FA855">${ZAP}</span>${l.z}</div></div></div>`;
-const par=(a,b,i)=>pag(`${N(i)}<div class="bl" style="top:70px"><div class="chip">Tem Laet perto de você</div></div>
-  <div class="bl" style="top:170px;display:grid;gap:34px">${card(L[a])}${card(L[b])}</div>`,"creme");
+const card=(l,h=520,w=400)=>`<div style="display:flex;gap:30px;align-items:stretch;background:#fff;border-radius:30px;overflow:hidden;box-shadow:0 16px 34px rgba(6,43,99,.16);height:${h}px">
+  <div style="flex:none;width:${w}px;position:relative;background:url('${uri(F+l.f)}') ${l.p}/cover">
+   <div style="position:absolute;left:18px;top:18px;background:#FFC107;color:#062B63;font-weight:900;font-size:${h<400?24:30}px;padding:8px 16px;border-radius:12px">LOJA ${l.n}</div></div>
+  <div style="flex:1;padding:${h<400?20:40}px 30px ${h<400?20:40}px 0;display:flex;flex-direction:column;justify-content:center;color:#062B63">
+   <div class="t" style="font-size:${h<400?48:(l.cid.length>12?50:66)}px">${h<400?l.b:l.cid}</div>
+   ${h<400?"":`<div class="p" style="font-size:34px;color:#0D47A1;margin-top:10px">${l.b}</div>`}
+   <div class="p" style="font-size:${h<400?26:28}px;color:#4b5563;margin-top:${h<400?10:22}px;font-weight:600">${l.e}</div>
+   <div class="p" style="font-size:${h<400?27:30}px;margin-top:${h<400?8:18}px;display:flex;align-items:center;gap:10px;color:#062B63"><span style="color:#1FA855">${ZAP}</span>${l.z}</div></div></div>`;
+const beneficio=(t)=>`<div style="display:flex;align-items:center;gap:18px;background:#062B63;color:#fff;border-radius:22px;padding:24px 30px"><span style="flex:none;width:52px;height:52px;border-radius:50%;background:#FFC107;color:#062B63;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:30px">✓</span><span class="p" style="font-size:34px">${t}</span></div>`;
+const regiao=(rot,ids,ben,i,h,w)=>pag(`${N(i)}<div class="bl" style="top:70px"><div class="chip">${rot}</div></div>
+  <div class="bl" style="top:160px;display:grid;gap:${h<400?22:34}px">${ids.map(k=>card(L[k],h,w)).join("")}</div>
+  <div class="bl" style="bottom:56px">${beneficio(ben)}</div>`,"creme");
 const S=[
  // 1 capa
  pag(`<div class="foto" style="background-image:url('${uri(F+"fachada-loja6.jpg")}');background-position:center 30%"></div><div class="veu"></div>${N(1)}
-  <div class="bl" style="bottom:140px"><div class="chip">6 lojas</div><div class="t" style="font-size:84px;margin-top:30px">Mauá, Santo André, <em>São Bernardo do Campo</em> ou Zona Leste?</div>
-  <div class="p" style="margin-top:26px">Tem uma Tintas Laet perto de você →</div></div>`),
- par(0,1,2), par(2,3,3), par(4,5,4),
- // 5 horário + retirada
- pag(`${N(5)}<div class="bl" style="top:120px"><div class="chip">Como funciona</div><div class="t" style="font-size:88px;margin-top:30px">Aberto pra <em>sua obra</em>.</div></div>
-  <div class="bl" style="top:470px;display:grid;gap:26px">
+  <div class="bl" style="bottom:130px"><div class="chip">Precisa de tinta hoje?</div><div class="t" style="font-size:86px;margin-top:30px">Tem uma Tintas Laet a <em>poucos minutos</em> de você.</div>
+  <div class="p" style="margin-top:26px">6 lojas no ABC e na Zona Leste · preço de fábrica →</div></div>`),
+ regiao("Zona Leste",[0],"Tinta acrílica e emborrachada a preço de fábrica",2,760,520),
+ regiao("Mauá",[1,2,4],"Massa e textura pra sua obra",3,300,330),
+ regiao("Santo André e São Bernardo",[3,5],"Atendimento de quem entende de tinta",4,470,400),
+ // 5 horário
+ pag(`${N(5)}<div class="bl" style="top:120px"><div class="chip">Antes de pintar</div><div class="t" style="font-size:84px;margin-top:30px">Passa aqui antes de começar a <em>pintura</em>.</div></div>
+  <div class="bl" style="top:560px;display:grid;gap:26px">
    ${[["Segunda a sexta","8h às 18h"],["Sábado","8h às 14h"]].map(([d,h])=>`<div style="display:flex;justify-content:space-between;align-items:center;background:#062B63;color:#fff;border-radius:24px;padding:36px 40px"><span class="p" style="font-size:42px">${d}</span><span class="t" style="font-size:56px;color:#FFC107">${h}</span></div>`).join("")}
-   <div class="p" style="font-size:28px;color:#4b5563">Feriado de hoje (20/11): [CONFIRMAR]</div>
-   <div style="background:#fff;border-radius:24px;padding:34px 40px;box-shadow:0 12px 26px rgba(6,43,99,.1)"><div class="p" style="font-size:38px;color:#062B63">Retire na loja ou peça um <b>Uber ou Lalamove</b> pra buscar.</div><div class="p" style="font-size:28px;color:#6b7280;margin-top:10px">A corrida é por sua conta.</div></div>
+   <div style="background:#fff;border-radius:24px;padding:34px 40px;box-shadow:0 12px 26px rgba(6,43,99,.1)"><div class="p" style="font-size:38px;color:#062B63">Retire na loja ou <b>pede um Uber ou Lalamove</b> e recebe hoje mesmo.</div></div>
   </div>`,"creme"),
  // 6 chamada
  pag(`<div class="foto" style="background-image:url('${uri(F+"loja-interior-clientes.jpg")}');background-position:center 50%"></div>
   <div class="veu" style="background:linear-gradient(180deg,rgba(4,24,58,.92) 0%,rgba(4,24,58,.6) 38%,rgba(4,24,58,.7) 60%,rgba(4,24,58,.97) 100%)"></div>
   <img src="${LOGO}" style="position:absolute;top:40px;left:84px;height:170px">
-  <div class="bl" style="top:250px"><div class="t" style="font-size:90px">Comenta o seu <em>bairro</em>.</div>
-  <div class="p" style="margin-top:28px;font-size:40px">A gente responde qual loja fica mais perto. Ou chama no WhatsApp e confirma se o produto tá na loja antes de sair.</div>
-  <div class="p" style="margin-top:24px;font-size:32px;color:#FFC107">Parcele em até 12x sem juros (consulte as condições)</div></div>
+  <div class="bl" style="top:250px"><div class="t" style="font-size:84px">Comenta seu <em>bairro</em> que a gente te fala a loja mais perto 👇</div>
+  <div class="p" style="margin-top:28px;font-size:34px;color:#FFC107">Parcele em até 12x sem juros (consulte as condições)</div></div>
   <div style="position:absolute;left:84px;right:84px;bottom:120px;display:flex;align-items:center;justify-content:center;gap:18px;background:#FFC107;color:#062B63;border-radius:999px;padding:26px;font-weight:900;font-size:52px">${ZAP}(11) 97714-0964</div>
   <div class="rod" style="font-size:26px"><b>@tintaslaet</b> · tintaslaet.com · A tinta nobre da comunidade</div>`),
 ];
