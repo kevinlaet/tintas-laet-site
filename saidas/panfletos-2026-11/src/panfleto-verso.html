@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Panfleto Tintas Laet</title><style>
+@font-face { font-family:'Bebas Neue'; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html,body { width:1819px; height:2551px; background:#fff; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.pg { position:relative; width:1819px; height:2551px; overflow:hidden; font-family:'Poppins',sans-serif; color:#062B63; }
+.abs { position:absolute; }
+svg { display:block; }
+.selo { position:absolute; width:340px; height:340px; z-index:30; transform:rotate(10deg); filter:drop-shadow(0 18px 26px rgba(0,0,0,.35)); }
+.selo .in { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:#062B63; padding:0 40px; }
+.selo .in .ic { width:64px; height:64px; margin-bottom:6px; }
+.selo .in .t1 { font:800 30px/1.08 'Montserrat',sans-serif; }
+.selo .in .t2 { font:400 76px/.9 'Bebas Neue',sans-serif; margin-top:6px; letter-spacing:.01em; }
+/* guias (só no modo --guias) */
+.guia { position:absolute; z-index:99; pointer-events:none; }
+
+.pg { page-break-after:always; break-after:page; }
+.selo .in .t3 { margin-top:8px; background:#062B63; color:#FFC107; font:800 22px/1 'Montserrat',sans-serif; padding:7px 12px; border-radius:20px; white-space:nowrap; }
+.selo .in .t1 { font-size:27px; } .selo .in .t2 { font-size:66px; }
+
+/* ---------- FRENTE ---------- */
+.f-foto { position:absolute; left:0; top:0; width:1819px; height:1720px; background:url('img/sala-areia.webp') no-repeat; background-size:auto 1720px; background-position:82% 0; }
+.f-foto::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg, rgba(245,236,215,.55) 0%, rgba(245,236,215,.15) 45%, rgba(245,236,215,0) 65%); }
+.f-logo { position:absolute; left:94px; top:96px; height:200px; z-index:5; }
+.f-tit { position:absolute; left:90px; top:400px; z-index:5; font:400 238px/.84 'Bebas Neue',sans-serif; color:#062B63; letter-spacing:.005em; }
+.f-tit em { font-style:normal; color:#0D47A1; }
+.f-prod { position:absolute; left:50px; top:850px; width:600px; z-index:12; filter:drop-shadow(0 40px 40px rgba(0,0,0,.42)) drop-shadow(0 8px 14px rgba(0,0,0,.28)); }
+.f-tag { position:absolute; left:660px; top:1150px; z-index:13; background:#FFC107; color:#062B63; border-radius:28px; padding:24px 36px 20px; box-shadow:0 20px 40px rgba(0,0,0,.35); transform:rotate(-3deg); }
+.f-tag .a { font:400 82px/.9 'Bebas Neue',sans-serif; letter-spacing:.02em; }
+.f-tag .a2 { font:800 30px/1.1 'Montserrat',sans-serif; letter-spacing:.03em; margin-top:4px; }
+.f-tag .b { display:flex; align-items:flex-start; gap:6px; margin-top:8px; }
+.f-tag .b small { font:800 46px/1 'Montserrat',sans-serif; margin-top:22px; }
+.f-tag .b span { font:400 176px/.8 'Bebas Neue',sans-serif; padding-top:16px; }
+.f-tag .c { font:700 27px/1 'Poppins',sans-serif; margin-top:4px; }
+.f-band { position:absolute; left:0; top:1560px; width:1819px; height:991px; z-index:10;
+  background:radial-gradient(ellipse 900px 600px at 90% 30%, rgba(64,140,255,.35) 0%, rgba(13,71,161,0) 70%), linear-gradient(180deg,#0A3C8C 0%,#062B63 45%,#041F4A 100%);
+  clip-path:polygon(0 110px, 100% 0, 100% 100%, 0 100%); }
+.f-band::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#FFC107,#FFE082); clip-path:polygon(0 110px, 100% 0, 100% 12px, 0 122px); }
+.f-info { position:absolute; left:94px; right:94px; top:1770px; z-index:15; color:#fff; }
+.f-l1 { display:flex; align-items:center; gap:26px; white-space:nowrap; }
+.f-l1 .n { background:#FFC107; color:#062B63; font:400 110px/1 'Bebas Neue',sans-serif; padding:12px 30px 4px; border-radius:16px; letter-spacing:.03em; }
+.f-l1 .b { font:400 132px/.9 'Bebas Neue',sans-serif; letter-spacing:.01em; padding-top:10px; }
+.f-l2 { margin-top:16px; font:700 40px/1.2 'Poppins',sans-serif; color:#FFE082; white-space:nowrap; }
+.f-wa { margin-top:34px; display:inline-flex; align-items:center; gap:22px; background:linear-gradient(180deg,#FFD54F,#FFC107); color:#062B63; border-radius:90px; padding:22px 56px 22px 40px;
+  font:800 92px/1 'Montserrat',sans-serif; box-shadow:0 18px 40px rgba(0,0,0,.45), inset 0 3px 0 rgba(255,255,255,.5); white-space:nowrap; }
+.f-wa svg { width:96px; height:96px; }
+.f-l3 { margin-top:26px; display:flex; align-items:center; gap:22px; font:600 33px/1 'Poppins',sans-serif; color:rgba(255,255,255,.92); white-space:nowrap; }
+.fer { background:rgba(255,193,7,.16); border:2px solid rgba(255,193,7,.7); color:#FFE082; border-radius:40px; padding:9px 20px; font:700 27px/1 'Poppins',sans-serif; white-space:nowrap; }
+.f-l4 { margin-top:18px; font:700 30px/1 'Poppins',sans-serif; color:#FFE082; }
+.f-qr { position:absolute; right:94px; top:2040px; z-index:16; text-align:center; }
+.f-qr .box { width:270px; height:270px; background:#fff; border-radius:22px; padding:16px; box-shadow:0 14px 30px rgba(0,0,0,.4); }
+.f-qr .box svg { width:238px; height:238px; }
+.f-qr .c { margin-top:12px; font:800 24px/1.15 'Montserrat',sans-serif; color:#FFC107; }
+
+/* ---------- VERSO ---------- */
+.v-hero { position:absolute; left:0; top:0; width:1819px; height:1150px; overflow:hidden;
+  background:radial-gradient(ellipse 900px 820px at 78% 52%, rgba(64,140,255,.55) 0%, rgba(13,71,161,0) 70%), radial-gradient(ellipse 700px 500px at 10% 0%, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 70%), linear-gradient(160deg,#0D47A1 0%,#0A3C8C 35%,#062B63 75%,#041F4A 100%); }
+.v-hero::before { content:''; position:absolute; inset:0; opacity:.07;
+  background-image:linear-gradient(rgba(255,255,255,1) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,255,255,1) 1.5px, transparent 1.5px);
+  background-size:64px 64px; -webkit-mask-image:radial-gradient(ellipse 900px 700px at 75% 50%, #000 0%, transparent 75%); mask-image:radial-gradient(ellipse 900px 700px at 75% 50%, #000 0%, transparent 75%); }
+.ring { position:absolute; left:990px; top:250px; width:760px; height:760px; border-radius:50%; border:2px solid rgba(255,224,130,.22); }
+.ring.b { left:1050px; top:310px; width:640px; height:640px; border-color:rgba(255,255,255,.10); }
+.v-logo { position:absolute; left:94px; top:96px; height:170px; }
+.v-urg { position:absolute; left:94px; top:308px; display:flex; align-items:center; gap:18px; background:#FFC107; color:#062B63; border-radius:60px; padding:16px 36px 16px 24px; font:800 38px/1 'Montserrat',sans-serif; letter-spacing:.04em; box-shadow:0 12px 30px rgba(0,0,0,.3); }
+.v-urg i { width:20px; height:20px; border-radius:50%; background:#C62828; box-shadow:0 0 0 7px rgba(198,40,40,.22); }
+.v-kick { position:absolute; left:98px; top:420px; font:800 50px/1 'Montserrat',sans-serif; letter-spacing:.28em; color:#FFE082; }
+.v-nome { position:absolute; left:90px; top:474px; font:400 176px/.84 'Bebas Neue',sans-serif; color:#fff; text-shadow:0 10px 30px rgba(0,0,0,.35); }
+.v-sub { position:absolute; left:98px; top:786px; display:flex; gap:34px; font:600 40px/1 'Poppins',sans-serif; color:#fff; white-space:nowrap; }
+.v-sub div { display:flex; align-items:center; gap:14px; }
+.v-sub .ck { width:44px; height:44px; border-radius:50%; background:rgba(255,193,7,.16); border:2px solid #FFC107; color:#FFC107; padding:7px; flex:none; }
+.v-preco { position:absolute; left:94px; top:900px; display:flex; align-items:flex-start; gap:10px; }
+.v-preco .lb { position:absolute; left:6px; top:-30px; font:700 28px/1 'Montserrat',sans-serif; color:rgba(255,255,255,.8); letter-spacing:.14em; white-space:nowrap; }
+.v-preco .rs { font:800 70px/1 'Montserrat',sans-serif; color:#FFC107; margin-top:34px; }
+.v-preco .v { font:400 230px/.8 'Bebas Neue',sans-serif; background:linear-gradient(180deg,#FFF3C4 0%,#FFE082 30%,#FFC107 75%,#F2B200 100%); -webkit-background-clip:text; background-clip:text; color:transparent; padding-top:20px;
+  filter:drop-shadow(0 7px 0 #041F4A) drop-shadow(0 16px 26px rgba(0,0,0,.35)); }
+.v-balde { position:absolute; left:990px; top:250px; width:760px; height:760px; z-index:5; filter:drop-shadow(0 46px 46px rgba(0,0,0,.5)) drop-shadow(0 10px 18px rgba(0,0,0,.35)); }
+.v-chao { position:absolute; left:1060px; top:960px; width:640px; height:100px; border-radius:50%; background:radial-gradient(ellipse, rgba(0,0,0,.55), rgba(0,0,0,0) 70%); z-index:4; }
+.v-mid { position:absolute; left:0; top:1150px; width:1819px; height:640px; background:linear-gradient(180deg,#F5F7FB 0%,#EDF1F8 100%); }
+.v-mid h3 { position:absolute; left:0; right:0; top:46px; text-align:center; font:400 88px/1 'Bebas Neue',sans-serif; color:#062B63; letter-spacing:.02em; }
+.v-mid h3 span { color:#0D47A1; }
+.v-mid .h3s { position:absolute; left:0; right:0; top:136px; text-align:center; font:600 31px/1 'Poppins',sans-serif; color:#4A5878; }
+.chips { position:absolute; left:96px; top:192px; width:1627px; display:flex; justify-content:space-between; }
+.chip { width:216px; background:#fff; border-radius:20px; padding:11px 11px 0; box-shadow:0 12px 26px rgba(6,43,99,.12), 0 2px 6px rgba(6,43,99,.08); }
+.chip .sw { height:140px; border-radius:12px; box-shadow:inset 0 0 0 2px rgba(6,43,99,.08), inset 0 -16px 26px rgba(0,0,0,.05); }
+.chip .nm { height:74px; display:flex; align-items:center; justify-content:center; text-align:center; font:800 25px/1.1 'Montserrat',sans-serif; color:#062B63; }
+.difs { position:absolute; left:96px; top:462px; width:1627px; display:flex; justify-content:space-between; }
+.dif { width:526px; height:128px; display:flex; align-items:center; gap:20px; padding:0 22px; background:#062B63; border-radius:22px; color:#fff; box-shadow:0 12px 26px rgba(6,43,99,.22); }
+.dif .ic { flex:none; width:84px; height:84px; border-radius:50%; background:#FFC107; color:#062B63; padding:19px; }
+.dif b { display:block; font:800 33px/1.05 'Montserrat',sans-serif; white-space:nowrap; }
+.dif span { display:block; font:600 26px/1.15 'Poppins',sans-serif; color:#FFE082; margin-top:5px; white-space:nowrap; }
+.v-nota { position:absolute; left:98px; top:1756px; font:600 22px/1 'Poppins',sans-serif; color:#6B7896; }
+.v-lojas { position:absolute; left:0; top:1790px; width:1819px; height:761px; color:#fff;
+  background:radial-gradient(ellipse 800px 400px at 85% 0%, rgba(64,140,255,.30) 0%, rgba(13,71,161,0) 70%), linear-gradient(180deg,#062B63 0%,#041F4A 100%); }
+.v-lojas::before { content:''; position:absolute; left:0; top:0; width:100%; height:10px; background:linear-gradient(90deg,#FFC107,#FFE082,#FFC107); }
+.v-lh { position:absolute; left:94px; right:94px; top:34px; display:flex; align-items:center; justify-content:space-between; white-space:nowrap; }
+.v-lh h4 { font:400 76px/1 'Bebas Neue',sans-serif; letter-spacing:.02em; padding-top:6px; }
+.v-lh h4 span { color:#FFC107; }
+.v-lh .h { display:flex; align-items:center; gap:18px; font:600 29px/1 'Poppins',sans-serif; color:rgba(255,255,255,.92); }
+.v-lh .h svg { width:36px; height:36px; color:#FFC107; }
+.grid { position:absolute; left:94px; top:128px; width:1631px; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.lj { position:relative; background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.14); border-radius:20px; padding:14px 20px 13px; }
+.lj .t { display:flex; align-items:center; gap:12px; white-space:nowrap; }
+.lj .t .n { background:#FFC107; color:#062B63; font:400 40px/1 'Bebas Neue',sans-serif; padding:6px 12px 2px; border-radius:8px; letter-spacing:.03em; }
+.lj .t .b { font:400 42px/1 'Bebas Neue',sans-serif; letter-spacing:.02em; padding-top:4px; }
+.lj .c { margin-top:7px; font:700 23px/1.2 'Poppins',sans-serif; color:#FFE082; }
+.lj .e { margin-top:3px; font:600 23px/1.25 'Poppins',sans-serif; color:rgba(255,255,255,.9); white-space:nowrap; }
+.lj .w { margin-top:8px; display:flex; align-items:center; gap:10px; font:800 31px/1 'Montserrat',sans-serif; color:#fff; white-space:nowrap; }
+.lj .w svg { width:32px; height:32px; color:#25D366; }
+.lj .gift { position:absolute; right:14px; bottom:14px; display:flex; align-items:center; gap:6px; background:#FFC107; color:#062B63; border-radius:20px; padding:6px 12px; font:800 18px/1 'Montserrat',sans-serif; }
+.lj .gift svg { width:22px; height:22px; }
+.v-foot { position:absolute; left:94px; right:94px; top:524px; display:flex; align-items:center; gap:28px; }
+.v-foot .box { flex:none; width:136px; height:136px; background:#fff; border-radius:14px; padding:9px; }
+.v-foot .box svg { width:118px; height:118px; }
+.v-foot .t1 { font:800 27px/1.1 'Montserrat',sans-serif; color:#FFC107; }
+.v-foot .t2 { display:flex; align-items:center; gap:12px; margin-top:8px; font:800 52px/1 'Montserrat',sans-serif; white-space:nowrap; }
+.v-foot .t2 svg { width:52px; height:52px; color:#25D366; }
+.v-foot .t3 { margin-top:10px; font:700 27px/1 'Poppins',sans-serif; color:#FFE082; white-space:nowrap; }
+.v-foot .fer { margin-left:auto; }
+</style></head><body><div class="pg">
+<div class="v-hero"><div class="ring"></div><div class="ring b"></div>
+  <img class="v-logo" src="img/logo-branco.png" alt="Tintas Laet">
+  <div class="v-urg"><i></i>ENQUANTO DURAR O ESTOQUE</div>
+  <div class="v-kick">TINTA</div>
+  <div class="v-nome">SUPER<br>PROFISSIONAL</div>
+  <div class="v-sub"><div><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Balde de 18 litros</div><div><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Cobertura garantida</div></div>
+  <div class="v-preco"><div class="lb">O BALDE DE 18L</div><div class="rs">R$</div><div class="v">139,90</div></div>
+  <div class="v-chao"></div>
+  <img class="v-balde" src="img/balde-super-profissional.png" alt="Balde 18L Tinta Super Profissional Laet">
+</div>
+<div class="v-mid">
+  <h3>CORES CLARAS <span>EM ESTOQUE</span></h3>
+  <div class="h3s">Mesmo preço do balde de 18L, na cor que você escolher.</div>
+  <div class="chips"><div class="chip"><div class="sw" style="background:#BCBCBA"></div><div class="nm">Névoa</div></div><div class="chip"><div class="sw" style="background:#DCD5C2"></div><div class="nm">Areia</div></div><div class="chip"><div class="sw" style="background:#EAD7B9"></div><div class="nm">Linho Americano</div></div><div class="chip"><div class="sw" style="background:#E7E1C1"></div><div class="nm">Palha</div></div><div class="chip"><div class="sw" style="background:#C5B9A3"></div><div class="nm">Camurça</div></div><div class="chip"><div class="sw" style="background:#AADAFE"></div><div class="nm">Azul Laet</div></div><div class="chip"><div class="sw" style="background:#FFD3EA"></div><div class="nm">Papel de Bala</div></div></div>
+  <div class="difs">
+    <div class="dif"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 9.5h19M6 15h4"/></svg></div><div><b>12x sem juros*</b><span>sem valor mínimo</span></div></div>
+    <div class="dif"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.6"/></svg></div><div><b>Melhores preços</b><span>da região</span></div></div>
+    <div class="dif"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.2-4 4.3-6 8-6s6.8 2 8 6"/><path d="M17.5 4.5l1.5 1.5 2.5-2.5"/></svg></div><div><b>Atendimento</b><span>personalizado</span></div></div>
+  </div>
+</div>
+<div class="v-nota">*12x sem juros, sem valor mínimo: consulte as condições.</div>
+<div class="v-lojas">
+  <div class="v-lh"><h4>NOSSAS <span>6 LOJAS</span></h4><div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9.2"/><path d="M12 7v5.2l3.4 2.1"/></svg>Seg a sex 8h às 18h · Sáb 8h às 14h</div></div>
+  <div class="grid"><div class="lj">
+    <div class="t"><span class="n">LOJA 1</span><span class="b">VILA BELA</span></div>
+    <div class="c">São Paulo</div><div class="e">Av. Sapopemba, 25.723</div><div class="w"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 98082-0686</div></div><div class="lj">
+    <div class="t"><span class="n">LOJA 2</span><span class="b">JD. SÃO JOÃO</span></div>
+    <div class="c">Mauá</div><div class="e">Rua do Britador, 2</div><div class="w"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 97750-4434</div></div><div class="lj"><div class="gift"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8S10.5 3.5 8 4.2C6 4.8 6.6 8 12 8zm0 0s1.5-4.5 4-3.8C18 4.8 17.4 8 12 8z"/></svg>BRINDE</div>
+    <div class="t"><span class="n">LOJA 3</span><span class="b">JD. SANTA CECÍLIA</span></div>
+    <div class="c">Mauá</div><div class="e">Av. Ayrton Senna da Silva, 235</div><div class="w"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 97749-8813</div></div><div class="lj">
+    <div class="t"><span class="n">LOJA 4</span><span class="b">VILA LUZITA</span></div>
+    <div class="c">Santo André</div><div class="e">Av. São Bernardo do Campo, 757</div><div class="w"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 94855-1977</div></div><div class="lj">
+    <div class="t"><span class="n">LOJA 5</span><span class="b">JD. ITAPARK</span></div>
+    <div class="c">Mauá</div><div class="e">Av. Itapark, 4377</div><div class="w"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 91433-4875</div></div><div class="lj"><div class="gift"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8S10.5 3.5 8 4.2C6 4.8 6.6 8 12 8zm0 0s1.5-4.5 4-3.8C18 4.8 17.4 8 12 8z"/></svg>BRINDE</div>
+    <div class="t"><span class="n">LOJA 6</span><span class="b">SANTA TEREZINHA</span></div>
+    <div class="c">São Bernardo do Campo</div><div class="e">Av. Luís Pequini, 899</div><div class="w"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 91875-5095</div></div></div>
+  <div class="v-foot"><div class="box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45" shape-rendering="crispEdges"><path fill="#FFFFFF" d="M0 0h45v45H0z"/><path stroke="#062B63" d="M0 0.5h7m2 0h1m2 0h1m2 0h2m1 0h4m1 0h5m2 0h4m2 0h1m1 0h7M0 1.5h1m5 0h1m4 0h2m3 0h1m6 0h1m3 0h7m1 0h1m2 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h3m1 0h3m1 0h7m3 0h2m2 0h1m2 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h8m2 0h1m3 0h4m1 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m1 0h1m1 0h1m1 0h2m4 0h3m3 0h1m2 0h1m2 0h4m4 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h3m3 0h1m1 0h3m1 0h1m3 0h1m2 0h2m1 0h3M0 8.5h1m1 0h5m2 0h4m1 0h2m2 0h1m1 0h6m1 0h4m3 0h1m1 0h1m1 0h5M1 9.5h5m3 0h2m1 0h1m1 0h2m1 0h2m2 0h1m2 0h1m1 0h2m3 0h1m8 0h5M4 10.5h1m1 0h3m1 0h1m1 0h3m1 0h3m4 0h1m4 0h1m1 0h1m2 0h7m1 0h3M1 11.5h1m1 0h1m1 0h1m2 0h2m1 0h1m5 0h4m1 0h1m10 0h2m1 0h2m4 0h1M0 12.5h1m1 0h2m1 0h5m1 0h1m1 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h4m2 0h1m2 0h2m1 0h1m1 0h1M1 13.5h5m6 0h2m1 0h3m1 0h3m2 0h1m1 0h1m3 0h1m3 0h2m1 0h2m2 0h2M3 14.5h6m2 0h6m6 0h1m3 0h1m2 0h2m1 0h1m2 0h1m2 0h2m1 0h3M2 15.5h4m1 0h2m1 0h7m1 0h4m2 0h1m2 0h1m2 0h1m1 0h1m2 0h2M0 16.5h2m1 0h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m5 0h1m2 0h1m1 0h1m4 0h1m1 0h1m3 0h2m1 0h1M3 17.5h3m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m2 0h2m2 0h2m2 0h3m1 0h1m3 0h1M1 18.5h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h2m1 0h1m1 0h1m5 0h1m3 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h2m1 0h1M3 19.5h1m1 0h1m2 0h2m4 0h2m2 0h1m1 0h5m2 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1M2 20.5h7m1 0h1m2 0h1m6 0h6m2 0h5m3 0h5m1 0h1M1 21.5h1m2 0h1m3 0h1m4 0h1m2 0h3m1 0h1m3 0h1m2 0h1m3 0h1m1 0h2m1 0h1m3 0h4M0 22.5h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h7m1 0h2m1 0h1m1 0h2m1 0h3m1 0h1m2 0h3m1 0h1m1 0h1m1 0h1m1 0h1M0 23.5h1m1 0h1m1 0h1m3 0h1m1 0h2m2 0h1m1 0h1m2 0h2m3 0h1m2 0h4m2 0h1m1 0h2m3 0h3M1 24.5h2m1 0h5m1 0h1m3 0h4m1 0h7m3 0h4m3 0h6M1 25.5h2m6 0h3m3 0h2m1 0h1m1 0h1m12 0h1m3 0h1m1 0h1m1 0h1m2 0h1M2 26.5h3m1 0h2m2 0h3m3 0h1m1 0h3m2 0h1m1 0h1m1 0h1m1 0h2m1 0h3m2 0h2m3 0h2M0 27.5h2m6 0h1m2 0h3m2 0h1m1 0h1m4 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m7 0h1m2 0h1M1 28.5h3m2 0h6m1 0h5m2 0h1m1 0h1m1 0h2m2 0h1m3 0h1m2 0h1m2 0h1m1 0h1m1 0h3M0 29.5h4m4 0h1m1 0h1m3 0h1m1 0h1m7 0h1m1 0h4m6 0h1m1 0h1m2 0h2M0 30.5h7m2 0h1m1 0h2m1 0h4m2 0h1m2 0h4m1 0h1m1 0h2m3 0h1m3 0h1m2 0h3M2 31.5h4m4 0h1m1 0h1m2 0h2m7 0h2m3 0h2m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1M1 32.5h1m2 0h4m1 0h2m5 0h3m1 0h1m1 0h3m2 0h2m2 0h1m1 0h1m1 0h3m1 0h1m2 0h2M1 33.5h2m1 0h2m6 0h3m2 0h2m5 0h1m1 0h2m2 0h2m1 0h2m4 0h3m1 0h1M4 34.5h1m1 0h2m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m1 0h2m1 0h1m3 0h2m3 0h1m1 0h1m2 0h2m1 0h1M1 35.5h4m5 0h3m1 0h2m2 0h1m1 0h4m1 0h3m1 0h1m2 0h1m2 0h2m6 0h1M0 36.5h1m2 0h2m1 0h1m2 0h1m1 0h1m1 0h1m2 0h2m2 0h5m1 0h1m1 0h1m1 0h1m1 0h1m3 0h5m1 0h1M8 37.5h2m2 0h3m1 0h5m3 0h4m3 0h1m1 0h4m3 0h5M0 38.5h7m2 0h2m2 0h2m3 0h3m1 0h1m1 0h1m4 0h3m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1M0 39.5h1m5 0h1m1 0h1m1 0h4m3 0h1m2 0h1m3 0h1m3 0h3m3 0h3m3 0h4M0 40.5h1m1 0h3m1 0h1m1 0h4m4 0h1m1 0h8m1 0h1m1 0h13m1 0h2M0 41.5h1m1 0h3m1 0h1m1 0h2m2 0h1m2 0h2m1 0h2m2 0h1m1 0h2m2 0h2m5 0h3m1 0h1m1 0h1M0 42.5h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h1m2 0h2m3 0h1m1 0h3m3 0h3m1 0h2m2 0h1m2 0h1m1 0h1M0 43.5h1m5 0h1m2 0h6m1 0h3m1 0h1m2 0h2m1 0h1m3 0h1m1 0h3m1 0h1m1 0h2M0 44.5h7m1 0h1m1 0h1m2 0h1m1 0h3m1 0h2m4 0h1m1 0h1m1 0h2m1 0h1m4 0h7"/></svg>
+</div>
+    <div><div class="t1">WhatsApp central · aponte a câmera</div><div class="t2"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 97714-0964</div><div class="t3">@Tintaslaet · tintaslaet.com</div></div>
+    <span class="fer">Feriado sexta 20/11: 8h às 13h</span></div>
+</div>
+</div></body></html>
