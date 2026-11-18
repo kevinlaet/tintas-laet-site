@@ -12,7 +12,7 @@ body{font-family:'Montserrat',sans-serif;position:relative;color:#fff;background
 .foto{position:absolute;inset:0;background-size:cover;background-position:center}
 .t{font-weight:900;letter-spacing:-.025em;line-height:1.0}.t em{font-style:normal;color:#FFC107}
 .sub{font-family:'Poppins',sans-serif;font-weight:600;font-size:46px;line-height:1.3}
-.logo{position:absolute;top:250px;left:70px;height:120px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.45));z-index:5}
+.logo{position:absolute;top:240px;left:64px;height:190px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.45));z-index:5}
 .tarja{display:inline;background:#fff;color:#062B63;box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:6px 22px;border-radius:14px;line-height:1.42}
 .tarja.am{background:#FFC107}
 .zap{position:absolute;left:70px;right:70px;bottom:250px;display:flex;align-items:center;justify-content:center;gap:18px;background:#FFC107;color:#062B63;border-radius:999px;padding:30px;font-weight:900;font-size:60px;box-shadow:0 14px 34px rgba(0,0,0,.35)}
@@ -31,15 +31,15 @@ const A = (img, pos, titulo, sub = "") => pag(`${foto(img, pos)}${grad(baixo)}<i
 // B: tarja branca/amarela no alto (estilo texto do Instagram), espaço livre embaixo pra figurinha
 const B = (img, pos, linhas, cor = "") => pag(`${foto(img, pos)}${grad("linear-gradient(180deg,rgba(4,24,58,.35) 0%,rgba(4,24,58,0) 35%)")}
   <div style="position:absolute;left:60px;right:60px;top:300px;font-weight:900;font-size:92px;letter-spacing:-.02em">${linhas.map((l, i) => `<span class="tarja ${i === linhas.length - 1 ? cor : ""}">${l}</span>`).join("<br>")}</div>
-  <img src="${LOGO}" style="position:absolute;left:50%;transform:translateX(-50%);bottom:230px;height:110px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.55))">`);
+  <img src="${LOGO}" style="position:absolute;left:50%;transform:translateX(-50%);bottom:220px;height:200px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.55))">`);
 // C: título no alto com degradê, CTA WhatsApp embaixo
 const Cz = (img, pos, titulo, extra) => pag(`${foto(img, pos)}${grad(cima)}${grad("linear-gradient(180deg,rgba(4,24,58,0) 60%,rgba(4,24,58,.9) 100%)")}
-  <div style="position:absolute;left:70px;right:70px;top:300px"><div class="t" style="font-size:110px">${titulo}</div></div>${zap(extra)}`);
+  <img class="logo" src="${LOGO}"><div style="position:absolute;left:70px;right:70px;top:470px"><div class="t" style="font-size:110px">${titulo}</div></div>${zap(extra)}`);
 // D: repost de carrossel
 const D = (capa, titulo) => pag(`${grad("radial-gradient(ellipse 900px 700px at 50% 45%,#0D47A1 0%,#062B63 60%,#04183A 100%)")}
-  <div style="position:absolute;left:70px;right:70px;top:290px"><div style="display:inline-block;background:#FFC107;color:#062B63;font-weight:900;font-size:36px;letter-spacing:.12em;padding:12px 26px;border-radius:12px">POST NOVO</div>
+  <img class="logo" src="${LOGO}"><div style="position:absolute;left:70px;right:70px;top:470px"><div style="display:inline-block;background:#FFC107;color:#062B63;font-weight:900;font-size:36px;letter-spacing:.12em;padding:12px 26px;border-radius:12px">POST NOVO</div>
   <div class="t" style="font-size:100px;margin-top:26px">${titulo}</div></div>
-  <img src="${uri(capa)}" style="position:absolute;left:190px;top:820px;width:700px;border-radius:26px;box-shadow:0 34px 70px rgba(0,0,0,.55);transform:rotate(-3deg)">`);
+  <img src="${uri(capa)}" style="position:absolute;left:230px;top:900px;width:620px;border-radius:26px;box-shadow:0 34px 70px rgba(0,0,0,.55);transform:rotate(-3deg)">`);
 
 const S = {
   "seg-1": A(H + "/ia-seg-bastidor.png", "center 40%", "Bom dia da <em>Laet</em>.", "Prateleira cheia pra sua obra."),

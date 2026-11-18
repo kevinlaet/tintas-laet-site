@@ -5,7 +5,7 @@ eval(src.slice(0,src.indexOf("const S = {")).replace(/const /g,"var "));
 const DOZE="Parcele em até 12x sem juros (consulte as condições)";
 const selo=(a,b)=>`<div style="display:inline-flex;align-items:center;gap:22px;margin-top:34px;background:#FFC107;color:#062B63;border-radius:24px;padding:22px 34px;box-shadow:0 14px 30px rgba(0,0,0,.35)"><span style="font-weight:800;font-size:44px">${a}</span><span style="font-weight:900;font-size:76px">${b}</span></div>`;
 const topo=(img,pos,titulo,sub,extra)=>pag(`${foto(img,pos)}${grad(cima)}${grad("linear-gradient(180deg,rgba(4,24,58,0) 58%,rgba(4,24,58,.92) 100%)")}
-  <div style="position:absolute;left:70px;right:70px;top:290px"><div class="t" style="font-size:108px">${titulo}</div>${sub}</div>${zap(extra)}`);
+  <img class="logo" src="${LOGO}"><div style="position:absolute;left:70px;right:70px;top:470px"><div class="t" style="font-size:104px">${titulo}</div>${sub}</div>${zap(extra)}`);
 const subl=(t)=>`<div class="sub" style="margin-top:26px">${t}</div>`;
 // B com linha de apoio pequena embaixo das tarjas
 const Bs=(img,pos,linhas,apoio)=>B(img,pos,linhas,"am").replace("</body>",`<div style="position:absolute;left:60px;right:60px;top:${300+linhas.length*131+30}px;font-weight:800;font-size:50px">${[].concat(apoio).map(a=>`<span class="tarja">${a}</span>`).join("<br>")}</div></body>`);
@@ -26,6 +26,6 @@ const V={
  "dom-2": Bs(H+"/ia-dom-parede-nova.png","center 45%",["Manda sua","dúvida de","pintura."],["Responde aqui que vira post ↓"]),
 };
 (async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:1080,height:1920}});
- const out=_path.join(__dirname,"final-v3"); _fs.rmSync(out,{recursive:true,force:true}); _fs.mkdirSync(out,{recursive:true});
+ const out=_path.join(__dirname,"final-v3"); _fs.mkdirSync(out,{recursive:true});
  for(const [n,h] of Object.entries(V)){await p.setContent(h,{waitUntil:"networkidle"});await p.evaluate(()=>document.fonts.ready);await p.waitForTimeout(200);await p.screenshot({path:_path.join(out,n+".png")});}
  await b.close();console.log("ok",Object.keys(V).length);})();
