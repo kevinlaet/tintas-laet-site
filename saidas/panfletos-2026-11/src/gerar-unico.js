@@ -7,7 +7,7 @@ const QR = require('qrcode');
 const { chromium } = require(process.env.PW_MOD || 'playwright');
 const DIR = __dirname, OUT = path.resolve(DIR, '..');
 const args = process.argv.slice(2);
-const SEM_FERIADO = args.includes('--sem-feriado');
+const SEM_FERIADO = true; // Kevin pediu tirar o feriado (19/11)
 const I = {
   wa: '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>',
   pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/></svg>',
@@ -131,7 +131,7 @@ const CSS = `${BASE}
   background-size:64px 64px; -webkit-mask-image:radial-gradient(ellipse 900px 700px at 75% 50%, #000 0%, transparent 75%); mask-image:radial-gradient(ellipse 900px 700px at 75% 50%, #000 0%, transparent 75%); }
 .ring { position:absolute; left:990px; top:250px; width:760px; height:760px; border-radius:50%; border:2px solid rgba(255,224,130,.22); }
 .ring.b { left:1050px; top:310px; width:640px; height:640px; border-color:rgba(255,255,255,.10); }
-.v-logo { position:absolute; left:94px; top:96px; height:170px; }
+.v-logo { position:absolute; left:94px; top:110px; height:220px; }
 .v-urg { position:absolute; left:94px; top:308px; display:flex; align-items:center; gap:18px; background:#FFC107; color:#062B63; border-radius:60px; padding:16px 36px 16px 24px; font:800 38px/1 'Montserrat',sans-serif; letter-spacing:.04em; box-shadow:0 12px 30px rgba(0,0,0,.3); }
 .v-urg i { width:20px; height:20px; border-radius:50%; background:#C62828; box-shadow:0 0 0 7px rgba(198,40,40,.22); }
 .v-kick { position:absolute; left:98px; top:420px; font:800 50px/1 'Montserrat',sans-serif; letter-spacing:.28em; color:#FFE082; }
@@ -197,7 +197,7 @@ function frente(qr) {
 ${seloBrinde(1400, 110)}
 <div class="f-band"></div>
 <img class="f-prod" src="img/barrica-massa-corrida.png" alt="Massa Corrida Laet">
-<div class="f-tag"><div class="a">MASSA CORRIDA</div><div class="a2">SACO DE 23 KG</div><div class="b"><small>R$</small><span>37,90</span></div><div class="c">Enquanto durar o estoque</div></div>
+<div class="f-tag"><div class="a">MASSA CORRIDA</div><div class="a2">SACO DE 23 KG</div><div class="b"><small>R$</small><span>37,90</span></div></div>
 <div class="f-info">
   <div class="f-l1"><div class="n">6 LOJAS</div><div class="b">NO ABC E ZONA LESTE</div></div>
   <div class="f-l2">Mauá · Santo André · São Bernardo do Campo · São Paulo</div>
@@ -217,7 +217,6 @@ function verso(qr) {
   return `<div class="pg">
 <div class="v-hero"><div class="ring"></div><div class="ring b"></div>
   <img class="v-logo" src="img/logo-branco.png" alt="Tintas Laet">
-  <div class="v-urg"><i></i>ENQUANTO DURAR O ESTOQUE</div>
   <div class="v-kick">TINTA</div>
   <div class="v-nome">SUPER<br>PROFISSIONAL</div>
   <div class="v-sub"><div><span class="ck">${I.check}</span>Balde de 18 litros</div><div><span class="ck">${I.check}</span>Cobertura garantida</div></div>
