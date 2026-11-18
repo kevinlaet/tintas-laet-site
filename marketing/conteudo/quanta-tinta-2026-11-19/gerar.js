@@ -88,7 +88,7 @@ const S=[
   <img src="${LOGO}" style="position:absolute;top:40px;left:84px;height:170px">
   <div class="bl" style="top:250px"><div class="t" style="font-size:88px">Deu preguiça<br>da <em>conta</em>?</div>
   <div class="p" style="margin-top:30px;font-size:40px">Manda as medidas do cômodo no WhatsApp. A gente calcula e passa o orçamento.</div>
-  <div class="p" style="margin-top:26px;font-size:32px;color:#FFC107">12x sem juros acima de R$ 300 (consulte as condições)</div></div>
+  <div class="p" style="margin-top:26px;font-size:32px;color:#FFC107">Parcele em até 12x sem juros (consulte as condições)</div></div>
   <div style="position:absolute;left:84px;right:84px;bottom:120px;display:flex;align-items:center;justify-content:center;gap:18px;background:#FFC107;color:#062B63;border-radius:999px;padding:26px;font-weight:900;font-size:52px">${ZAP}(11) 97714-0964</div>
   <div class="rod" style="font-size:26px"><b>@tintaslaet</b> · tintaslaet.com · 6 lojas no ABC e Zona Leste</div>`),
 ];
