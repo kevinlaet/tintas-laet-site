@@ -260,16 +260,18 @@ ${guias}</div>`;
     await page.goto('file://' + src, { waitUntil: 'networkidle' }); await page.evaluate(() => document.fonts.ready); await page.waitForTimeout(400);
     await page.screenshot({ path: path.join(OUT, nome + '.png') }); console.log('✓', nome + '.png');
   }
-  // PDF: cada lado vira UMA página exata de 154 x 216 mm (A5 + 3 mm de sangria) e depois junta as duas
+  // PDF: cada lado vira UMA página de 154 x 216 mm feita da imagem achatada de 300 dpi.
+  // (PDF "vetorial" com sombras/brilhos aparecia com quadrados em volta no visualizador do iPhone.)
   const { execFileSync } = require('child_process');
   const partes = [];
-  for (const [src, nome] of [[pF, 'frente'], [pV, 'verso']]) {
-    await page.goto('file://' + src, { waitUntil: 'networkidle' }); await page.evaluate(() => document.fonts.ready);
-    await page.addStyleTag({ content: '@page { size:154mm 216mm; margin:0 } html { zoom:' + (154 / 25.4 * 96 / 1819) + ' } html,body { overflow:hidden }' });
-    await page.waitForTimeout(400);
+  for (const nome of ['panfleto-laet-frente', 'panfleto-laet-verso']) {
+    const img = path.join(OUT, nome + '.png');
+    const h = path.join(DIR, '_' + nome + '.html');
+    fs.writeFileSync(h, `<!DOCTYPE html><html><head><style>@page{size:154mm 216mm;margin:0}html,body{margin:0;padding:0}img{display:block;width:154mm;height:216mm}</style></head><body><img src="file://${img}"></body></html>`);
+    await page.goto('file://' + h, { waitUntil: 'networkidle' });
     const tmp = path.join(DIR, '_' + nome + '.pdf');
-    await page.pdf({ path: tmp, preferCSSPageSize: true, printBackground: true, margin: { top: 0, right: 0, bottom: 0, left: 0 }, displayHeaderFooter: false, pageRanges: '1' });
-    partes.push(tmp);
+    await page.pdf({ path: tmp, preferCSSPageSize: true, printBackground: true, margin: { top: 0, right: 0, bottom: 0, left: 0 }, pageRanges: '1' });
+    partes.push(tmp); fs.unlinkSync(h);
   }
   const final = path.join(OUT, 'panfleto-laet-frente-verso-A5.pdf');
   execFileSync('pdfunite', [...partes, final]);
