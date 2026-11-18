@@ -260,9 +260,20 @@ ${guias}</div>`;
     await page.goto('file://' + src, { waitUntil: 'networkidle' }); await page.evaluate(() => document.fonts.ready); await page.waitForTimeout(400);
     await page.screenshot({ path: path.join(OUT, nome + '.png') }); console.log('✓', nome + '.png');
   }
-  await page.goto('file://' + pA, { waitUntil: 'networkidle' }); await page.evaluate(() => document.fonts.ready); await page.waitForTimeout(400);
-  await page.pdf({ path: path.join(OUT, 'panfleto-laet-frente-verso-A5.pdf'), width: '154mm', height: '216mm', printBackground: true,
-    scale: 154 / (1819 * 25.4 / 96), margin: { top: 0, right: 0, bottom: 0, left: 0 }, displayHeaderFooter: false });
+  // PDF: cada lado vira UMA página exata de 154 x 216 mm (A5 + 3 mm de sangria) e depois junta as duas
+  const { execFileSync } = require('child_process');
+  const partes = [];
+  for (const [src, nome] of [[pF, 'frente'], [pV, 'verso']]) {
+    await page.goto('file://' + src, { waitUntil: 'networkidle' }); await page.evaluate(() => document.fonts.ready);
+    await page.addStyleTag({ content: '@page { size:154mm 216mm; margin:0 } html { zoom:' + (154 / 25.4 * 96 / 1819) + ' } html,body { overflow:hidden }' });
+    await page.waitForTimeout(400);
+    const tmp = path.join(DIR, '_' + nome + '.pdf');
+    await page.pdf({ path: tmp, preferCSSPageSize: true, printBackground: true, margin: { top: 0, right: 0, bottom: 0, left: 0 }, displayHeaderFooter: false, pageRanges: '1' });
+    partes.push(tmp);
+  }
+  const final = path.join(OUT, 'panfleto-laet-frente-verso-A5.pdf');
+  execFileSync('pdfunite', [...partes, final]);
+  partes.forEach(f => fs.unlinkSync(f));
   console.log('✓ panfleto-laet-frente-verso-A5.pdf');
   await browser.close();
 })();
