@@ -16,7 +16,7 @@ Central de marketing digital da Tintas Laet. Aqui ficam campanhas, conteúdo, m�
 - `marketing/` — campanhas, conteúdo, mídia paga
   - `catalogos/` — catálogos de cores em PDF prontos pra mandar ao cliente, das 11 linhas (`catalogo-<linha>.pdf`, gerados por `node scripts/catalogos-pdf/gerar.js`: cor da paleta oficial + preço do site; rodar de novo quando mudar preço). Os originais do Canva (Jul/2026) ficam em `catalogos/antigos-canva-2026-07/` — referência da paleta e fonte das capas, não apagar
   - `conteudo/<slug>-<data>/` — carrosséis e posts de feed de Instagram/Facebook
-  - `stories/<YYYY-MM>/<DD>-<slug>/` — stories de Instagram, agrupados por mês (meta é 2/dia, então nunca soltar story direto em `conteudo/`)
+  - `stories/<YYYY-MM>/<DD>-<slug>/` — stories de Instagram, agrupados por mês (meta: **no mínimo 3 por dia, sempre**, subindo às 6h30 — regra do Kevin, 18/11/2026; nunca soltar story direto em `conteudo/`). Pacote de vários dias pode ir em `stories/<YYYY-MM>/semana-<DD-DD>/`, com os arquivos nomeados por dia (`seg-1`, `sab-2`, `loja6-qui19`…) e um `stories.txt` com dia, horário e figurinha de cada um
   - `status-whatsapp/<slug>-<data>/` — peças no formato 9:16 pra Status do WhatsApp
   - `banco-de-midia/` — banco de imagens avulsas reutilizáveis (mascote, cimento queimado, sorteio, etc.)
   - `prova social/` — fotos reais de eventos, ganhadores de sorteio, equipe e clientes (uso em feed/stories de humanização)
@@ -133,7 +133,11 @@ Usar essas informações como base pra qualquer resposta ou decisão.
 - **Seladora:** pra **parede nova / reboco novo que chupa muita tinta**. É uma película inicial de um produto mais grosso e **mais barato que a tinta**: preenche os poros do reboco e economiza tinta.
 - **Emborrachada:** comunicar que **resolve até 100% do problema de infiltração** (laje, telhado, muro).
 - **Látex Vinil:** produto de combate, **sem a marca Laet** — não divulgar em folder/panfleto.
-- **Parcelamento 12x sem juros:** não vale pra toda compra — sempre com **"consulte as condições"**.
+- **Parcelamento 12x sem juros:** não vale pra toda compra — sempre com **"consulte as condições"**. **Sem valor mínimo de compra** (Kevin, 18/11/2026): "Parcele em até 12x sem juros (consulte as condições)".
+- **Pisos & Fachadas:** resiste ao tráfego de carros (garagem, calçada) e a chuva e sol; rende **até 300 m² por demão**.
+- **Epóxi Base Água:** "renove sem quebrar" — pinta azulejo de cozinha e banheiro **sem obra**; secagem rápida, sem cheiro forte. Rótulo: rende até 60 m²/demão (galão 3,6L) e até 15 m²/demão (900ml); limpeza só depois de 20 dias de cura, com pano macio, água e detergente neutro.
+- **Verniz Base Água** (nome oficial, nunca "Verniz Premium" em peça): fundo e acabamento no mesmo produto, **dispensa seladora**; resistente à chuva; madeira interna e externa. Rótulo: rende até 60 m²/demão (3,6L) e até 15 m²/demão (0,9L).
+- **Emborrachada — termo:** falar "tinta de borracha" / "película de borracha", nunca "tipo borracha".
 
 Pra qualquer tarefa visual (carrossel, post, landing page), consultar `identidade/design-guide.md` como referência de estilo.
 

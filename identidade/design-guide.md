@@ -80,6 +80,19 @@ Cards de ícone em fundo sólido sem foto (como o slide de bullets claro que foi
 
 ---
 
+## Stories — padrão aprovado em nov/2026 (pacotes 18–22 e 19–26/11)
+
+Vale por cima do "Template padrão" acima quando a peça é **story** (1080×1920). Referência: `marketing/stories/2026-11/semana-23/` (gerador `gerar.js`).
+
+- **Cores:** fundo/véu azul-marinho (`#062B63` → `#04183A`), destaque de palavra em amarelo `#FFC107`. Sem faixa creme no topo.
+- **Logo:** oficial branco, no topo à esquerda, ~190px de altura (tamanho padrão em todos; nunca pequeno).
+- **Texto:** gancho de **até 6 palavras**, título grande (~100px), no máximo 1 linha de apoio. Um foco por story, sem repetir mensagem no mesmo pacote. Nada de colchete/placeholder na arte.
+- **Figurinha** (enquete, quiz, caixinha, link, localização): deixar o **meio da tela livre** e dizer no `stories.txt` qual figurinha vai e onde.
+- **CTA:** botão amarelo com o WhatsApp; story de **loja específica** usa o WhatsApp **da loja**, com a legenda "WhatsApp da Loja N".
+- **Story de loja:** foto real da fachada **inteira** dentro de um quadro (placa e letreiro sem corte; sobra lateral com a própria foto desfocada), depois selo "LOJA N · CIDADE", bairro, endereço + horário do dia, botão do WhatsApp. Faixa amarela de oferta só quando a oferta vale pra aquela loja.
+- **Imagem:** foto real sempre que existir; IA só com cara de celular (luz natural, um pouco de bagunça real, sem rótulo inventado). Balde ou lata em cena = **embalagem da Tintas Laet** (editar com a embalagem de referência, nunca colar por cima). **Parede sempre lisa e bem pintada** — tinta e massa nunca podem parecer malfeitas.
+- Repost de carrossel: capa do post inclinada sobre fundo azul, selo "POST NOVO".
+
 ## Elementos-chave
 
 - Bordas: mínimas, sem ornamentos
