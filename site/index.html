@@ -24,6 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="images/hero-novo/sala-branca.webp" fetchpriority="high">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
@@ -203,6 +204,63 @@
     .banner-prev { left: 16px; }
     .banner-next { right: 16px; }
     @media (max-width: 768px) { .banner-arrow { display: none; } }
+
+    /* ──────── HERO: a parede que muda de cor ──────── */
+    .hero2 { --ink:#0B1F44; --ink-soft:rgba(11,31,68,.84); --ink-line:rgba(11,31,68,.4); --accent:#FFC107; --cta-bg:#062B63; --cta-ink:#fff;
+      position:relative; margin-top:100px; height:calc(100vh - 144px); height:calc(100svh - 144px); min-height:560px; max-height:900px; overflow:hidden; background:#ECEDEF; isolation:isolate; color:var(--ink); }
+    .hero2-stage { position:absolute; inset:0; z-index:0; overflow:hidden; }
+    .hero2-wall, .hero2-layer { position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; object-position:50% 100%; display:block; }
+    .hero2-layer { will-change:clip-path; }
+    .hero2-ring { position:absolute; z-index:2; border-radius:50%; border:2px solid rgba(255,255,255,.75); box-shadow:0 0 30px rgba(255,255,255,.5), inset 0 0 30px rgba(255,255,255,.25); pointer-events:none; transform:scale(0); }
+    .hero2-inner { position:absolute; inset:0; z-index:3; display:grid; grid-template-columns:minmax(0,780px); grid-template-areas:"copy" "actions" "." "picker"; grid-template-rows:auto auto 1fr auto; padding:clamp(24px,6vh,60px) max(22px,6vw) clamp(20px,4.5vh,42px); }
+    .hero2-copy { grid-area:copy; }
+    .hero2-actions { grid-area:actions; margin-top:clamp(18px,3.4vh,34px); }
+    .hero2-picker { grid-area:picker; min-width:0; }
+    .hero2-eyebrow { display:inline-flex; align-items:center; gap:9px; font:800 12px/1 'Montserrat',sans-serif; letter-spacing:.15em; text-transform:uppercase; padding:9px 15px; border-radius:999px; border:1.5px solid var(--ink-line); color:var(--ink); transition:color .5s, border-color .5s; }
+    .hero2-eyebrow::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--accent); transition:background .5s; }
+    .hero2-title { font:900 clamp(40px, min(5.6vw, 9.6vh), 84px)/.98 'Montserrat',sans-serif; letter-spacing:-.028em; margin-top:clamp(12px,2.2vh,22px); color:var(--ink); transition:color .5s; }
+    .hero2-title em { font-style:normal; position:relative; white-space:nowrap; }
+    .hero2-title em::after { content:""; position:absolute; left:-1.5%; right:-1.5%; bottom:.03em; height:.2em; background:var(--accent); border-radius:.1em; z-index:-1; transition:background .5s; }
+    .hero2-sub { font:500 clamp(15px,1.5vw,19px)/1.5 'Poppins',sans-serif; margin-top:clamp(10px,1.8vh,18px); max-width:30em; color:var(--ink-soft); transition:color .5s; }
+    .hero2-cta { display:flex; flex-wrap:wrap; gap:12px; }
+    .hero2-btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:0 24px; border-radius:14px; font:800 15px/1 'Montserrat',sans-serif; cursor:pointer; border:2px solid transparent; white-space:nowrap; transition:transform .2s, box-shadow .2s, background .5s, color .5s, border-color .5s; }
+    .hero2-btn:hover { transform:translateY(-2px); }
+    .hero2-btn:focus-visible { outline:3px solid var(--ink); outline-offset:3px; }
+    .hero2-btn svg { width:20px; height:20px; flex:none; }
+    .hero2-btn--main { background:var(--cta-bg); color:var(--cta-ink); box-shadow:0 12px 28px rgba(0,0,0,.26); }
+    .hero2-btn--ghost { color:var(--ink); border-color:var(--ink-line); }
+    .hero2-btn--ghost:hover { background:rgba(255,255,255,.14); }
+    .hero2-micro { margin-top:14px; font:600 12.5px/1.5 'Poppins',sans-serif; color:var(--ink-soft); transition:color .5s; }
+    .hero2-now { display:inline-flex; align-items:center; gap:10px; max-width:100%; background:rgba(255,255,255,.93); color:#0B1F44; border-radius:999px; padding:8px 18px 8px 8px; box-shadow:0 10px 26px rgba(0,0,0,.2); font:500 13px/1.25 'Poppins',sans-serif; }
+    .hero2-now i { width:28px; height:28px; border-radius:50%; flex:none; background:var(--now,#fff); box-shadow:inset 0 0 0 2px #fff, 0 0 0 1px rgba(0,0,0,.2); transition:background .5s; }
+    .hero2-now b { font:800 14px 'Montserrat',sans-serif; white-space:nowrap; }
+    .hero2-now span { color:#586174; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; }
+    .hero2-dock { position:relative; display:flex; gap:9px; align-items:flex-end; padding:24px 6px 10px; margin:0 -6px; overflow-x:auto; scrollbar-width:none; scroll-snap-type:x proximity; }
+    .hero2-dock::-webkit-scrollbar { display:none; }
+    .hero2-chip { flex:none; width:46px; height:104px; border-radius:12px 12px 10px 10px; border:1px solid rgba(0,0,0,.16); background:linear-gradient(180deg, var(--c) 0 79%, #fff 79% 100%); cursor:pointer; scroll-snap-align:center; box-shadow:0 8px 14px rgba(0,0,0,.22); transition:transform .38s cubic-bezier(.2,.9,.25,1.25), box-shadow .3s; }
+    .hero2-chip:hover { transform:translateY(-7px); }
+    .hero2-chip[aria-checked="true"] { transform:translateY(-16px); box-shadow:0 0 0 3px #fff, 0 0 0 4.5px rgba(0,0,0,.22), 0 20px 26px rgba(0,0,0,.3); }
+    .hero2-chip:focus-visible { outline:3px solid #0D47A1; outline-offset:4px; }
+    .hero2-progress { position:absolute; left:0; right:0; bottom:0; height:3px; z-index:4; overflow:hidden; pointer-events:none; transition:opacity .4s; }
+    .hero2-progress i { display:block; height:100%; transform:scaleX(0); transform-origin:left; background:var(--accent); }
+    .hero2-sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+    @media (max-width: 899px) {
+      .hero2::after { content:""; position:absolute; left:0; right:0; bottom:0; height:52%; z-index:1; pointer-events:none; background:linear-gradient(0deg, rgba(4,18,44,.9) 0%, rgba(4,18,44,.5) 55%, rgba(4,18,44,0) 100%); }
+      .hero2-wall, .hero2-layer { object-position:86% 100%; }
+      .hero2-inner { grid-template-columns:minmax(0,1fr); grid-template-areas:"copy" "." "picker" "actions"; grid-template-rows:auto 1fr auto auto; padding:22px 20px 66px; }
+      .hero2-title { font-size:clamp(38px,11.4vw,56px); }
+      .hero2-actions { margin-top:10px; }
+      .hero2-cta { flex-wrap:nowrap; }
+      .hero2-btn { min-height:50px; padding:0 14px; font-size:14px; }
+      .hero2-btn--main { flex:1.3; background:#FFC107; color:#212529; }
+      .hero2-btn--ghost { flex:1; color:#fff; border-color:rgba(255,255,255,.6); }
+      .hero2-micro { color:rgba(255,255,255,.88); margin-top:10px; font-size:11.5px; }
+      .hero2-micro b { display:none; }
+      .hero2-chip { width:40px; height:88px; }
+      .hero2-now span { display:none; }
+    }
+    @media (max-width: 899px) and (min-width: 560px) { .hero2-now span { display:inline; } }
+    @media (prefers-reduced-motion: reduce) { .hero2 * { transition:none !important; } }
 
     /* ──────── STRIP ──────── */
     .strip { background: var(--yellow); padding: 14px 0; overflow: hidden; }
@@ -691,71 +749,30 @@
 </nav>
 
 <!-- HERO BANNERS -->
-<section class="hero-banners" id="inicio">
-
-  <div class="banner-carousel" id="bannerCarousel">
-
-    <!-- Slide 1: A tinta certa -->
-    <div class="banner-slide">
-      <img src="images/hero-novo/banner-pintando.jpg" alt="Cliente pintando a parede com tinta Laet" class="banner-img" fetchpriority="high">
-      <div class="banner-scrim"></div>
-      <img src="images/embalagens/premiumlavavel-remove-bg-io.png" alt="" class="banner-can" aria-hidden="true">
-      <div class="banner-content">
-        <div class="banner-text banner-text-glass">
-          <span class="banner-eyebrow">Linha completa</span>
-          <h1 class="banner-title">A tinta certa<br>pra cada projeto</h1>
-          <p class="banner-sub">Mais de 200 cores, preço justo e qualidade garantida.</p>
-          <div class="banner-actions"><a href="#cores" class="banner-cta">🎨 Escolher minha cor</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 2: Entrega via app -->
-    <div class="banner-slide">
-      <img src="images/hero-novo/banner-app.jpg" alt="Carro e moto de entrega representando Uber e Lalamove" class="banner-img" loading="lazy" style="object-position:center 35%">
-      <div class="banner-scrim"></div>
-      <div class="banner-content">
-        <div class="banner-text banner-text-glass">
-          <span class="banner-eyebrow">Receba em casa</span>
-          <h1 class="banner-title">Entregas disponíveis<br>via app</h1>
-          <p class="banner-sub">Peça um Uber ou Lalamove pra buscar na loja e levar até você. A corrida é por conta do cliente.</p>
-          <div class="banner-actions">
-            <div class="banner-app-badges">
-            <span class="banner-app-badge banner-app-badge--uber">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5a2 2 0 0 1 2-1.4h10a2 2 0 0 1 2 1.4l2 5"/><path d="M3 13h18v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H6v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4z"/><circle cx="7.5" cy="17.5" r="1.2"/><circle cx="16.5" cy="17.5" r="1.2"/></svg>
-              Uber
-            </span>
-            <span class="banner-app-badge banner-app-badge--lalamove">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
-              Lalamove
-            </span>
-          </div>
-            <a href="https://wa.me/5511977140964?text=Olá! Como funciona pra pedir um Uber ou Lalamove pra buscar meu pedido na loja?" class="banner-cta" target="_blank" rel="noopener">💬 Como funciona</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 3: Lojas -->
-    <div class="banner-slide">
-      <img src="images/hero-novo/banner-leque.jpg" alt="Atendimento e escolha de cor em uma das lojas Tintas Laet" class="banner-img" loading="lazy" style="object-position:65% 25%">
-      <div class="banner-scrim"></div>
-      <div class="banner-content">
-        <div class="banner-text banner-text-glass">
-          <span class="banner-eyebrow">6 lojas</span>
-          <h1 class="banner-title">Perto de você,<br>no ABC e Zona Leste</h1>
-          <p class="banner-sub">Passe na loja mais próxima e leve a cor certa pra casa.</p>
-          <div class="banner-actions"><a href="#enderecos" class="banner-cta">📍 Encontrar loja mais próxima</a></div>
-        </div>
-      </div>
-    </div>
-
+<section class="hero2" id="inicio" aria-label="Escolha a cor da sua parede">
+  <div class="hero2-stage" id="heroStage" role="img" aria-label="Sala com a parede branca, pronta pra ganhar cor">
+    <img class="hero2-wall" src="images/hero-novo/sala-branca.webp" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">
   </div>
-
-  <div class="banner-hud" id="bannerHud" aria-label="Navegação dos banners"><div class="banner-hud-in"><span class="banner-count" id="bannerCount"><b>01</b> / 03</span><span id="bannerSegs" style="display:flex;gap:8px"></span></div></div>
-
-  <button class="banner-arrow banner-prev" onclick="bannerPrev()" aria-label="Anterior">&#8249;</button>
-  <button class="banner-arrow banner-next" onclick="bannerNext()" aria-label="Próximo">&#8250;</button>
+  <div class="hero2-inner">
+    <div class="hero2-copy">
+      <span class="hero2-eyebrow">Mais de 200 cores</span>
+      <h1 class="hero2-title">Mudou a cor,<br>mudou a <em>casa.</em></h1>
+      <p class="hero2-sub">Toque numa cor e veja ela na parede.</p>
+    </div>
+    <div class="hero2-actions">
+      <div class="hero2-cta">
+        <a class="hero2-btn hero2-btn--main" id="heroCta" href="https://wa.me/5511977140964?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20ajuda%20pra%20escolher%20a%20cor%20da%20minha%20parede." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.4-.7-2.4-1.4-3.3-3-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.1-.7z"/></svg>Quero essa cor</a>
+        <a class="hero2-btn hero2-btn--ghost" href="#cores">Ver todas as cores</a>
+      </div>
+      <p class="hero2-micro"><b>6 lojas no ABC e Zona Leste · </b>Até 12x sem juros (consulte as condições)</p>
+    </div>
+    <div class="hero2-picker" id="heroPicker">
+      <div class="hero2-now" id="heroNow"><i></i><b>Escolha uma cor</b><span>Toque numa cartela</span></div>
+      <div class="hero2-dock" id="heroDock" role="radiogroup" aria-label="Cor da parede"></div>
+    </div>
+  </div>
+  <div class="hero2-progress" aria-hidden="true"><i></i></div>
+  <span class="hero2-sr" id="heroLive" aria-live="polite"></span>
 </section>
 
 <!-- STRIP -->
@@ -1852,6 +1869,156 @@ document.querySelectorAll('.seller-card').forEach(card => {
     if (idx !== cur) { cur = idx; paint(); restart(); }
   });
   paint(); restart();
+})();
+
+/* ── Hero: a parede que muda de cor (cores EXATAS da cartela Premium Lavável; fotos medidas contra o catálogo) ── */
+(function () {
+  var root = document.getElementById('inicio');
+  var stage = document.getElementById('heroStage');
+  var dock = document.getElementById('heroDock');
+  if (!root || !stage || !dock) return;
+  var COLORS = [
+    { n: 'Algodão Egípcio', h: '#F4ECD7', s: 'algodao-egipcio', m: 'Claridade que acolhe' },
+    { n: 'Areia', h: '#DFD4C6', s: 'areia', m: 'Neutra, combina com tudo' },
+    { n: 'Amarelo Dourado', h: '#FFCE64', s: 'amarelo-dourado', m: 'Alegria que acorda a casa' },
+    { n: 'Magia', h: '#BD876F', s: 'magia', m: 'Terracota quente e acolhedora' },
+    { n: 'Romã', h: '#DD5047', s: 'roma', m: 'Pra quem gosta de cor forte' },
+    { n: 'Rosa Irlandesa', h: '#DBABAB', s: 'rosa-irlandesa', m: 'Delicada, sem exagero' },
+    { n: 'Fogo Violeta', h: '#6B24A2', s: 'fogo-violeta', m: 'Personalidade de sobra' },
+    { n: 'Azul Jazz', h: '#365A96', s: 'azul-jazz', m: 'Elegante e tranquila' },
+    { n: 'Azul Laet', h: '#95D0F6', s: 'azul-laet', m: 'O azul da nossa marca' },
+    { n: 'Pavão', h: '#3C8B8B', s: 'pavao', m: 'Verde-azulado cheio de charme' },
+    { n: 'Espaço Verde', h: '#588D82', s: 'espaco-verde', m: 'Calma pra dentro de casa' },
+    { n: 'Cinza Fumaça', h: '#81959F', s: 'cinza-fumaca', m: 'Moderna e fácil de combinar' }
+  ];
+  var ORDER = ['Magia', 'Azul Jazz', 'Amarelo Dourado', 'Espaço Verde', 'Rosa Irlandesa', 'Areia', 'Fogo Violeta', 'Azul Laet', 'Romã', 'Pavão', 'Cinza Fumaça', 'Algodão Egípcio'];
+  var byName = {}; COLORS.forEach(function (c) { byName[c.n] = c; });
+  var order = ORDER.map(function (n) { return byName[n]; });
+  var now = document.getElementById('heroNow'), cta = document.getElementById('heroCta'), live = document.getElementById('heroLive');
+  var picker = document.getElementById('heroPicker'), bar = root.querySelector('.hero2-progress i');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var saveData = navigator.connection && navigator.connection.saveData;
+  var cache = {}, current = null, seq = 0, auto = !reduce && !saveData, visible = true, hold = false, timer = null, ai = 0;
+
+  /* contraste (WCAG): texto e botão sempre legíveis sobre a cor da parede */
+  function lin(v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }
+  function lum(h) { return 0.2126 * lin(parseInt(h.substr(1, 2), 16)) + 0.7152 * lin(parseInt(h.substr(3, 2), 16)) + 0.0722 * lin(parseInt(h.substr(5, 2), 16)); }
+  function contrast(a, b) { var A = lum(a), B = lum(b); return (Math.max(A, B) + 0.05) / (Math.min(A, B) + 0.05); }
+  function ink(h) {
+    var dark = contrast(h, '#0B1F44') >= contrast(h, '#FFFFFF') * 1.15;
+    var yellow = contrast(h, '#FFC107') >= 2.2;
+    return {
+      fg: dark ? '#0B1F44' : '#FFFFFF',
+      soft: dark ? 'rgba(11,31,68,.86)' : 'rgba(255,255,255,.92)',
+      line: dark ? 'rgba(11,31,68,.4)' : 'rgba(255,255,255,.55)',
+      accent: yellow ? '#FFC107' : (dark ? '#0D47A1' : '#FFFFFF'),
+      cta: yellow ? '#FFC107' : '#062B63',
+      ctaInk: yellow ? '#212529' : '#FFFFFF'
+    };
+  }
+  function setInk(c) {
+    var k = ink(c.h), st = root.style;
+    st.setProperty('--ink', k.fg); st.setProperty('--ink-soft', k.soft); st.setProperty('--ink-line', k.line);
+    st.setProperty('--accent', k.accent); st.setProperty('--cta-bg', k.cta); st.setProperty('--cta-ink', k.ctaInk);
+  }
+
+  function url(c) { return 'images/hero-novo/sala-' + c.s + '.webp'; }
+  function load(c) {
+    if (!cache[c.s]) cache[c.s] = new Promise(function (res) {
+      var i = new Image(); i.decoding = 'async';
+      i.onload = function () { res(i); }; i.onerror = function () { res(null); }; i.src = url(c);
+    });
+    return cache[c.s];
+  }
+
+  /* cartelas (as 12 cores) */
+  COLORS.forEach(function (c, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'hero2-chip'; b.style.setProperty('--c', c.h);
+    b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', 'false');
+    b.setAttribute('aria-label', c.n + ': ' + c.m); b.title = c.n; b.tabIndex = i ? -1 : 0;
+    b.addEventListener('click', function () { choose(c, true, b); });
+    c.el = b; dock.appendChild(b);
+  });
+  dock.addEventListener('keydown', function (e) {
+    var k = e.key; if (k !== 'ArrowRight' && k !== 'ArrowLeft' && k !== 'ArrowDown' && k !== 'ArrowUp') return;
+    e.preventDefault();
+    var i = COLORS.indexOf(current || COLORS[0]);
+    i = (i + (k === 'ArrowRight' || k === 'ArrowDown' ? 1 : -1) + COLORS.length) % COLORS.length;
+    choose(COLORS[i], true, COLORS[i].el); COLORS[i].el.focus();
+  });
+
+  function setLabels(c) {
+    COLORS.forEach(function (x) { var on = x === c; x.el.setAttribute('aria-checked', on ? 'true' : 'false'); x.el.tabIndex = on ? 0 : -1; });
+    now.style.setProperty('--now', c.h);
+    now.querySelector('b').textContent = c.n; now.querySelector('span').textContent = c.m;
+    cta.href = 'https://wa.me/5511977140964?text=' + encodeURIComponent('Olá! Vim pelo site e gostei da cor ' + c.n + ' (cartela Premium Lavável). Pode me ajudar a escolher a tinta?');
+    stage.setAttribute('aria-label', 'Sala com a parede pintada na cor ' + c.n);
+    var w = dock.clientWidth;
+    if (dock.scrollWidth > w + 2) dock.scrollTo({ left: c.el.offsetLeft - (w - c.el.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+  }
+  function clean(top) { var all = stage.querySelectorAll('.hero2-layer'); for (var i = 0; i < all.length; i++) { if (all[i] === top) break; all[i].remove(); } }
+
+  /* a tinta "sai" da cartela tocada e toma a parede */
+  async function paint(c, fromEl) {
+    if (c === current) return;
+    var my = ++seq; current = c; setLabels(c);
+    var img = await load(c); if (my !== seq) return;
+    if (!img) { setInk(c); return; }
+    try { await img.decode(); } catch (e) {}
+    if (my !== seq) return;
+    var layer = new Image(); layer.className = 'hero2-layer'; layer.alt = ''; layer.setAttribute('aria-hidden', 'true'); layer.decoding = 'async'; layer.src = img.src;
+    stage.appendChild(layer);
+    if (reduce || !layer.animate) { setInk(c); clean(layer); return; }
+    var sr = stage.getBoundingClientRect(), cr = (fromEl || c.el).getBoundingClientRect();
+    var x = Math.min(Math.max(cr.left + cr.width / 2 - sr.left, 0), sr.width);
+    var y = Math.min(Math.max(cr.top + cr.height / 2 - sr.top, 0), sr.height);
+    var R = Math.hypot(Math.max(x, sr.width - x), Math.max(y, sr.height - y)) + 24, dur = 1050, ease = 'cubic-bezier(.22,.72,.2,1)';
+    var a = layer.animate([{ clipPath: 'circle(0px at ' + x + 'px ' + y + 'px)' }, { clipPath: 'circle(' + R + 'px at ' + x + 'px ' + y + 'px)' }], { duration: dur, easing: ease, fill: 'forwards' });
+    var ring = document.createElement('div'); ring.className = 'hero2-ring';
+    ring.style.cssText = 'left:' + (x - R) + 'px;top:' + (y - R) + 'px;width:' + (2 * R) + 'px;height:' + (2 * R) + 'px';
+    stage.appendChild(ring);
+    ring.animate([{ transform: 'scale(0)', opacity: 0.95 }, { transform: 'scale(1)', opacity: 0 }], { duration: dur, easing: ease, fill: 'forwards' }).onfinish = function () { ring.remove(); };
+    setTimeout(function () { if (my === seq) setInk(c); }, dur * 0.36);
+    a.onfinish = function () { layer.style.clipPath = 'none'; a.cancel(); clean(layer); if (my === seq) setInk(c); };
+  }
+
+  function choose(c, byUser, fromEl) {
+    if (byUser) {
+      stopAuto();
+      live.textContent = 'Parede na cor ' + c.n + '. ' + c.m;
+      if (typeof gtag === 'function') gtag('event', 'hero_cor', { cor: c.n });
+    }
+    paint(c, fromEl);
+  }
+
+  /* cores trocando sozinhas até a pessoa tocar */
+  function schedule() {
+    clearTimeout(timer); if (!auto) return;
+    if (bar && bar.animate) { bar.getAnimations().forEach(function (x) { x.cancel(); }); bar.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 3600, easing: 'linear' }); }
+    timer = setTimeout(function () {
+      if (auto && visible && !hold && !document.hidden) { ai = (ai + 1) % order.length; paint(order[ai], order[ai].el); }
+      schedule();
+    }, 3600);
+  }
+  function stopAuto() {
+    auto = false; clearTimeout(timer);
+    if (bar) { bar.getAnimations().forEach(function (x) { x.cancel(); }); bar.parentNode.style.opacity = 0; }
+  }
+  picker.addEventListener('mouseenter', function () { hold = true; });
+  picker.addEventListener('mouseleave', function () { hold = false; });
+  picker.addEventListener('focusin', function () { hold = true; });
+  picker.addEventListener('focusout', function () { hold = false; });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0.35 }).observe(root);
+
+  /* começa com a parede branca e já pinta a primeira cor; o resto carrega em segundo plano */
+  load(order[0]);
+  setTimeout(function () { paint(order[0], order[0].el); if (auto) schedule(); }, reduce ? 0 : 750);
+  if (!saveData) {
+    (window.requestIdleCallback || function (f) { setTimeout(f, 1500); })(function () {
+      var i = 1; (function next() { if (i >= order.length) return; load(order[i++]); setTimeout(next, 700); })();
+    });
+  }
 })();
 
 /* ── Leque de cores: abre ao entrar na tela ── */
