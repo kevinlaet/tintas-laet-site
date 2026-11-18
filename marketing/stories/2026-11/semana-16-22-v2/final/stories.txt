@@ -17,16 +17,20 @@ QUARTA 18
  qua-2  Dica. Sem figurinha.
  qua-3  QUIZ no meio: "Qual massa vai no banheiro?"  Opções: Massa corrida / Massa acrílica (CERTA)
 
-QUINTA 19 (depois das 19h, quando o carrossel 2 estiver no ar)
+QUINTA 19
+ qui-aviso  (À TARDE, antes do carrossel) Aviso do feriado: sexta 20/11 aberto 8h às 13h. Figurinha LINK do WhatsApp em cima do botão amarelo.
+ (depois das 19h, quando o carrossel 2 estiver no ar)
  qui-1  Repost do carrossel "Quanta tinta": compartilhe o post do feed ou figurinha LINK pro post.
  qui-2  Figurinha LINK do WhatsApp em cima do botão amarelo.
 
-SEXTA 20 (feriado — sem falar de horário)
+SEXTA 20 (feriado — lojas abertas das 8h às 13h)
+ sex-aviso  PRIMEIRO story do dia: "Feriado com loja aberta. Hoje até as 13h". Figurinha LINK do WhatsApp em cima do botão amarelo.
  sex-1  ENQUETE no meio: "Vai pintar no feriado?"  Opções: Sim, já comecei / Tô planejando
  sex-2  Dica. Sem figurinha.
  sex-3  Figurinha LINK do WhatsApp em cima do botão amarelo.
 
 SÁBADO 21
+ sab-aviso  PRIMEIRO story do dia: "Sábado normal: 8h às 14h". Sem figurinha. (Se quiser enxugar, pode pular o sab-1, que diz quase o mesmo.)
  sab-1  Sem figurinha.
  sab-2  Repost do carrossel das lojas (sai 11h45): compartilhe o post do feed por cima.
  sab-3  Figurinha LOCALIZAÇÃO (loja mais próxima) + LINK do WhatsApp em cima do botão amarelo.
@@ -35,5 +39,5 @@ DOMINGO 22
  dom-1  Cole o RESULTADO da enquete de segunda ou sexta (print do resultado) no meio, ou use a figurinha de enquete de novo mostrando o %.
  dom-2  CAIXINHA DE PERGUNTAS no meio: "Que post você quer ver?"
 
-Imagens: geradas por IA com cara de foto de celular (sem rótulo legível) em seg, ter-2/3, qua, qui-2, sex-1/2 e dom. Fotos reais da loja em sex-3, sab-1 e sab-3. Nenhuma arte diz "foto real".
+Imagens: geradas por IA com cara de foto de celular (sem rótulo legível) em seg, ter-2/3, qua, qui-2, sex-1/2 e dom. Fotos reais da loja em sex-3, sab-1 e sab-3. Nenhuma arte diz "foto real". Avisos de feriado usam fotos reais (fachada Loja 4, clientes na loja, interior).
 Parcelamento usado: "Parcele em até 12x sem juros (consulte as condições)".
