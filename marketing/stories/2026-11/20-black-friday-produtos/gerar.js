@@ -53,7 +53,7 @@ html,body { width:1080px; height:1920px; background:#000; }
   background:linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 55%,#D9D9D9 100%); -webkit-background-clip:text; background-clip:text; color:transparent;
   filter:drop-shadow(0 6px 0 rgba(0,0,0,.55)) drop-shadow(0 18px 28px rgba(0,0,0,.7)); padding-top:14px; }
 .laet { position:absolute; left:0; right:0; top:530px; z-index:8; display:flex; align-items:center; justify-content:center; gap:26px; }
-.laet i { width:150px; height:3px; background:${Y}; box-shadow:0 0 12px rgba(245,184,0,.8); }
+.laet i { width:110px; height:3px; background:${Y}; box-shadow:0 0 12px rgba(245,184,0,.8); }
 .laet b { font:400 92px/1 'Bebas Neue',sans-serif; color:${Y}; letter-spacing:.06em; transform:skewX(-9deg); padding-top:8px;
   text-shadow:0 0 22px rgba(245,184,0,.45), 0 6px 0 rgba(0,0,0,.5); }
 
@@ -78,7 +78,8 @@ html,body { width:1080px; height:1920px; background:#000; }
 .btn { position:absolute; left:50%; top:1670px; transform:translateX(-50%); z-index:9; background:${Y}; color:#0A0A0A; border-radius:22px; padding:18px 70px 17px;
   font:800 44px/1 'Montserrat',sans-serif; box-shadow:0 14px 30px rgba(0,0,0,.6), 0 0 30px rgba(245,184,0,.25); white-space:nowrap; }
 .l1 { position:absolute; left:0; right:0; top:1766px; z-index:9; text-align:center; font:700 26px/1 'Poppins',sans-serif; color:#fff; }
-.l2 { position:absolute; left:0; right:0; top:1806px; z-index:9; text-align:center; font:600 22px/1 'Poppins',sans-serif; color:rgba(255,255,255,.6); }
+.l2 { position:absolute; left:0; right:0; top:1802px; z-index:9; text-align:center; font:700 27px/1 'Poppins',sans-serif; color:#fff; }
+.l2 b { color:#F5B800; }
 `;
 
 // Pincelada seca amarela atrás do "BLACK FRIDAY" (SVG: forma + fibras nas pontas + textura), sem IA
@@ -136,7 +137,7 @@ ${DRIPS}
 <div class="logo"><img src="img/logo-branco.png" alt="Tintas Laet"></div>
 ${splash()}
 <div class="bf">BLACK FRIDAY</div>
-<div class="laet"><i></i><b>LAET</b><i></i></div>
+<div class="laet"><i></i><b>LAET · 27/11</b><i></i></div>
 <div class="halo"></div><div class="floor"></div>
 <img class="prod" src="img/${p.img}" style="width:${p.w}px;top:${p.top}px" alt="${p.nome}">
 <div class="nome" style="--fs:${fs_}px">${p.nome.toUpperCase()}</div>
@@ -145,7 +146,7 @@ ${splash()}
 <div class="ben">${p.ben}</div>
 <div class="btn">tintaslaet.com</div>
 <div class="l1">Parcele em até 12x sem juros (consulte as condições)</div>
-<div class="l2">Válido na Black Friday ou enquanto durar o estoque</div>
+<div class="l2">Preços válidos <b>somente em 27/11/2026</b></div>
 <div class="vig"></div><div class="grain"></div>
 </div></body></html>`;
 }
