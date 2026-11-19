@@ -303,6 +303,44 @@ html,body,.s { width:${W}px; height:${H}px; }
 <div class="rod">tintaslaet.com</div>` + foot;
 }
 
+
+// Carrossel v2 (Instagram aceita 10 fotos): 2 produtos por slide
+function slideDuo(par, idx) {
+  const col = (p, cx) => {
+    const fs_ = p.nome.length > 16 ? 60 : 70;
+    const img = p.img === 'combo' ? combo(cx, 740, 300).replace(/font:700 \d+px/g, 'font:700 15px')
+      : `<img src="img/${p.img}" style="position:absolute;left:${cx}px;transform:translateX(-50%);bottom:${1350 - 770}px;width:${Math.round(p.w * (p.slug === 'premium-lavavel' ? .74 : .70))}px;z-index:6;filter:drop-shadow(0 22px 26px rgba(0,0,0,.9))">`;
+    return `${img}
+<div class="cn" style="left:${cx - 260}px;font-size:${fs_}px">${p.nome.toUpperCase()}</div>
+<div class="cm" style="left:${cx - 260}px">${p.medida.toUpperCase()}</div>
+<div class="cl" style="left:${cx - 260}px">Na Black saiu por</div>
+<div class="cp" style="left:${cx - 260}px"><small>R$</small><span>${p.preco}</span></div>
+${p.extra ? `<div class="cx" style="left:${cx - 260}px">${p.extra}</div>` : ''}`;
+  };
+  return head('Duo', CSS_F + `
+.logo { top:56px; } .logo img { height:62px; }
+.pill { position:absolute; left:60px; top:78px; z-index:9; font:800 24px/1 'Montserrat',sans-serif; letter-spacing:.16em; color:${Y}; }
+.pg { position:absolute; right:60px; top:78px; z-index:9; font:700 24px/1 'Montserrat',sans-serif; color:rgba(255,255,255,.45); letter-spacing:.1em; }
+.halo { position:absolute; top:300px; width:520px; height:520px; z-index:3; border-radius:50%;
+  background:radial-gradient(ellipse, rgba(245,184,0,.17) 0%, rgba(245,184,0,.04) 50%, rgba(0,0,0,0) 72%); }
+.div { position:absolute; left:539px; top:250px; width:2px; height:860px; z-index:4; background:linear-gradient(180deg, rgba(245,184,0,0), rgba(245,184,0,.45), rgba(245,184,0,0)); }
+.cn, .cm, .cl, .cp, .cx { position:absolute; width:520px; text-align:center; z-index:9; }
+.cn { top:792px; white-space:nowrap; padding-top:8px; font-family:'Bebas Neue',sans-serif; font-weight:400; line-height:.9; letter-spacing:.02em; }
+.cm { top:866px; font:700 21px/1 'Montserrat',sans-serif; letter-spacing:.22em; color:rgba(255,255,255,.7); }
+.cl { top:918px; font:700 21px/1 'Poppins',sans-serif; color:rgba(255,255,255,.55); }
+.cp { top:944px; display:flex; justify-content:center; align-items:flex-start; gap:8px; }
+.cp small { font:800 36px/1 'Montserrat',sans-serif; color:${Y}; margin-top:30px; }
+.cp span { font:400 138px/.8 'Bebas Neue',sans-serif; color:${Y}; padding-top:18px; text-shadow:0 0 30px rgba(245,184,0,.22); }
+.cx { top:1086px; font:700 24px/1 'Poppins',sans-serif; color:#fff; }
+.selo { position:absolute; left:0; right:0; bottom:0; height:118px; z-index:12; background:${Y}; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; }
+.selo b { font:400 56px/1 'Bebas Neue',sans-serif; color:#0A0A0A; letter-spacing:.06em; padding-top:6px; font-weight:400; }
+.selo span { font:700 22px/1 'Montserrat',sans-serif; color:#0A0A0A; letter-spacing:.06em; }`).replace("'${fs}'", '66')
+  + `${NEON(1080, 1350)}<div class="pill">FOI ASSIM NA BLACK</div><div class="logo"><img src="img/logo-branco.png" alt="Tintas Laet"></div><div class="pg">${String(idx).padStart(2, '0')}/07</div>
+<div class="halo" style="left:10px"></div><div class="halo" style="left:550px"></div><div class="div"></div>
+${col(par[0], 280)}${col(par[1], 800)}
+<div class="selo"><b>BLACK FRIDAY ENCERRADA</b><span>Preços válidos só em 27/11/2026</span></div>` + foot;
+}
+
 function final11() {
   return pos(1080, 1350)
     .replace('</style>', `.h1 { font-size:104px !important; top:226px !important; }
@@ -332,10 +370,11 @@ function final11() {
     files.push(await shot(`bf-${String(i + 1).padStart(2, '0')}-${p.slug}`, story(p), 1080, 1920));
   }
   if (!so || so === 9) {
+    for (const f of fs.readdirSync(OUT)) if (/^bf-09-carrossel-\d+\.jpg$/.test(f)) fs.unlinkSync(path.join(OUT, f));
     files.push(await shot('bf-09-carrossel-01', capa(), 1080, 1350));
-    for (const [i, p] of P.entries()) files.push(await shot(`bf-09-carrossel-${String(i + 2).padStart(2, '0')}`, slideProd(p, i), 1080, 1350));
-    files.push(await shot('bf-09-carrossel-10', sorteio(1080, 1350), 1080, 1350));
-    files.push(await shot('bf-09-carrossel-11', final11(), 1080, 1350));
+    for (let k = 0; k < 4; k++) files.push(await shot(`bf-09-carrossel-0${k + 2}`, slideDuo([P[k * 2], P[k * 2 + 1]], k + 2), 1080, 1350));
+    files.push(await shot('bf-09-carrossel-06', sorteio(1080, 1350), 1080, 1350));
+    files.push(await shot('bf-09-carrossel-07', final11(), 1080, 1350));
   }
   if (!so || so === 10) files.push(await shot('bf-10-sorteio-story', sorteio(1080, 1920), 1080, 1920));
   if (so) { await browser.close(); return; }
@@ -343,7 +382,7 @@ function final11() {
   const sheet = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${FONTS}
 body{width:2400px;background:#111;padding:60px;color:#fff} h1{font:800 54px/1 'Montserrat',sans-serif;margin-bottom:12px} p{font:600 28px/1 'Poppins',sans-serif;color:#aaa;margin-bottom:40px}
 .g{display:grid;grid-template-columns:repeat(5,1fr);gap:30px;align-items:start} .c img{width:100%;display:block;border-radius:12px} .c span{display:block;margin-top:10px;font:600 20px/1 'Poppins',sans-serif;color:#ddd;text-align:center}
-</style></head><body><h1>Black Friday Laet · bf-01 a bf-10</h1><p>Stories 1080 x 1920 · bf-09 = carrossel de feed 1080 x 1350 (11 slides, post de 28/11) · preços só em 27/11/2026</p><div class="g">${cells}</div></body></html>`;
+</style></head><body><h1>Black Friday Laet · bf-01 a bf-10</h1><p>Stories 1080 x 1920 · bf-09 = carrossel de feed 1080 x 1350 (7 slides, post de 28/11) · preços só em 27/11/2026</p><div class="g">${cells}</div></body></html>`;
   const sp = path.join(DIR, 'folha-de-contato.html'); fs.writeFileSync(sp, sheet);
   await page.setViewportSize({ width: 2400, height: 1200 });
   await page.goto('file://' + sp, { waitUntil: 'networkidle' }); await page.waitForTimeout(500);

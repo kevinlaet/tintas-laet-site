@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Massa Corrida</title><style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Duo</title><style>
 @font-face { font-family:'Bebas Neue'; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
 @font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
 @font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
@@ -21,34 +21,36 @@ html,body { background:#000; }
 html,body,.s { width:1080px; height:1350px; }
 .logo { top:64px; } .logo img { height:74px; }
 
+.logo { top:56px; } .logo img { height:62px; }
 .pill { position:absolute; left:60px; top:78px; z-index:9; font:800 24px/1 'Montserrat',sans-serif; letter-spacing:.16em; color:#F5B800; }
 .pg { position:absolute; right:60px; top:78px; z-index:9; font:700 24px/1 'Montserrat',sans-serif; color:rgba(255,255,255,.45); letter-spacing:.1em; }
-.logo { top:56px; } .logo img { height:62px; }
-.halo { position:absolute; left:50%; top:230px; width:760px; height:620px; transform:translateX(-50%); z-index:3; border-radius:50%;
-  background:radial-gradient(ellipse, rgba(245,184,0,.18) 0%, rgba(245,184,0,.04) 50%, rgba(0,0,0,0) 72%); }
-.selo { position:absolute; right:70px; top:200px; z-index:12; width:230px; height:230px; border-radius:50%; transform:rotate(12deg);
-  border:4px solid #F5B800; background:#0A0A0A; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
-  box-shadow:0 0 0 8px rgba(10,10,10,.85), 0 0 0 10px rgba(245,184,0,.5), 0 18px 34px rgba(0,0,0,.7); }
-.selo .a { font:800 19px/1.15 'Montserrat',sans-serif; letter-spacing:.14em; color:#fff; }
-.selo .b { font:400 54px/.9 'Bebas Neue',sans-serif; color:#F5B800; letter-spacing:.03em; margin:6px 0 4px; padding-top:4px; }
-.selo .c { font:700 18px/1 'Montserrat',sans-serif; letter-spacing:.12em; color:rgba(255,255,255,.7); }
-.nome { position:absolute; left:0; right:0; top:880px; z-index:9; text-align:center; white-space:nowrap; padding-top:10px; font:400 96px/.9 'Bebas Neue',sans-serif; letter-spacing:.02em; }
-.med { position:absolute; left:0; right:0; top:972px; z-index:9; text-align:center; font:700 26px/1 'Montserrat',sans-serif; letter-spacing:.24em; color:rgba(255,255,255,.7); }
-.lbl { position:absolute; left:0; right:0; top:1010px; z-index:9; text-align:center; font:700 24px/1 'Poppins',sans-serif; color:rgba(255,255,255,.6); }
-.preco { position:absolute; left:0; right:0; top:1032px; z-index:9; display:flex; justify-content:center; align-items:flex-start; gap:10px; }
-.preco small { font:800 48px/1 'Montserrat',sans-serif; color:#F5B800; margin-top:38px; }
-.preco span { font:400 186px/.8 'Bebas Neue',sans-serif; color:#F5B800; padding-top:24px; }
-.sub { position:absolute; left:0; right:0; top:1206px; z-index:9; text-align:center; font:700 28px/1 'Poppins',sans-serif; color:#fff; }
-.band { position:absolute; left:0; right:0; bottom:0; height:76px; z-index:12; background:#F5B800; display:flex; align-items:center; justify-content:center; gap:18px; }
-.band span { font:400 50px/1 'Bebas Neue',sans-serif; color:#0A0A0A; letter-spacing:.05em; padding-top:6px; }
-.band i { width:10px; height:10px; border-radius:50%; background:#0A0A0A; }</style></head><body><div class="s"><svg class="neon" style="left:0;top:0" width="1080" height="1350" viewBox="0 0 1080 1350">
+.halo { position:absolute; top:300px; width:520px; height:520px; z-index:3; border-radius:50%;
+  background:radial-gradient(ellipse, rgba(245,184,0,.17) 0%, rgba(245,184,0,.04) 50%, rgba(0,0,0,0) 72%); }
+.div { position:absolute; left:539px; top:250px; width:2px; height:860px; z-index:4; background:linear-gradient(180deg, rgba(245,184,0,0), rgba(245,184,0,.45), rgba(245,184,0,0)); }
+.cn, .cm, .cl, .cp, .cx { position:absolute; width:520px; text-align:center; z-index:9; }
+.cn { top:792px; white-space:nowrap; padding-top:8px; font-family:'Bebas Neue',sans-serif; font-weight:400; line-height:.9; letter-spacing:.02em; }
+.cm { top:866px; font:700 21px/1 'Montserrat',sans-serif; letter-spacing:.22em; color:rgba(255,255,255,.7); }
+.cl { top:918px; font:700 21px/1 'Poppins',sans-serif; color:rgba(255,255,255,.55); }
+.cp { top:944px; display:flex; justify-content:center; align-items:flex-start; gap:8px; }
+.cp small { font:800 36px/1 'Montserrat',sans-serif; color:#F5B800; margin-top:30px; }
+.cp span { font:400 138px/.8 'Bebas Neue',sans-serif; color:#F5B800; padding-top:18px; text-shadow:0 0 30px rgba(245,184,0,.22); }
+.cx { top:1086px; font:700 24px/1 'Poppins',sans-serif; color:#fff; }
+.selo { position:absolute; left:0; right:0; bottom:0; height:118px; z-index:12; background:#F5B800; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; }
+.selo b { font:400 56px/1 'Bebas Neue',sans-serif; color:#0A0A0A; letter-spacing:.06em; padding-top:6px; font-weight:400; }
+.selo span { font:700 22px/1 'Montserrat',sans-serif; color:#0A0A0A; letter-spacing:.06em; }</style></head><body><div class="s"><svg class="neon" style="left:0;top:0" width="1080" height="1350" viewBox="0 0 1080 1350">
 <defs><filter id="g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
 <g filter="url(#g)" stroke="#F5B800" stroke-width="3" stroke-linecap="round" opacity=".75">
-<path d="M1090,270 L890,675"/><path d="M-10,1053 L190,648"/></g></svg><div class="pill">FOI ASSIM NA BLACK</div><div class="logo"><img src="img/logo-branco.png" alt="Tintas Laet"></div><div class="pg">02/11</div>
-<div class="halo"></div><div style="position:absolute;left:168.58615313225056px;top:370px;width:369.6px;height:460px;z-index:6;background:url('img/barrica.png') no-repeat;background-size:501.6px 501.6px;background-position:-65.60000000000001px -16px;filter:drop-shadow(0 28px 30px rgba(0,0,0,.9))"></div><div style="position:absolute;left:486.4421531322506px;top:440.40000000000003px;width:424.97169373549883px;height:395.59999999999997px;z-index:7;background:url('img/saco.png') no-repeat;background-size:469.9470997679814px 431.85568445475633px;background-position:-31.207424593967517px -19.275174013921113px;filter:drop-shadow(0 28px 30px rgba(0,0,0,.9))"></div><div style="position:absolute;left:168.58615313225056px;top:838px;width:369.6px;text-align:center;z-index:8;font:700 21px/1 Montserrat,sans-serif;letter-spacing:.2em;color:rgba(255,255,255,.55)">BARRICA</div><div style="position:absolute;left:486.4421531322506px;top:838px;width:424.97169373549883px;text-align:center;z-index:8;font:700 21px/1 Montserrat,sans-serif;letter-spacing:.2em;color:#F5B800">SACO 23 KG</div>
-<div class="selo"><div class="a">BLACK FRIDAY</div><div class="b">ENCERRADA</div><div class="c">27/11/2026</div></div>
-<div class="nome">MASSA CORRIDA</div><div class="med">SACO 23 KG</div>
-<div class="lbl">Na Black saiu por</div>
-<div class="preco"><small>R$</small><span>32,99</span></div>
-<div class="sub">Barrica: R$ 40,99</div>
-<div class="band"><i></i><span>BLACK FRIDAY ENCERRADA · PREÇOS VÁLIDOS SÓ EM 27/11</span><i></i></div><div class="grain"></div></div></body></html>
+<path d="M1090,270 L890,675"/><path d="M-10,1053 L190,648"/></g></svg><div class="pill">FOI ASSIM NA BLACK</div><div class="logo"><img src="img/logo-branco.png" alt="Tintas Laet"></div><div class="pg">02/07</div>
+<div class="halo" style="left:10px"></div><div class="halo" style="left:550px"></div><div class="div"></div>
+<div style="position:absolute;left:37.773578129728634px;top:440px;width:241.04347826086956px;height:300px;z-index:6;background:url('img/barrica.png') no-repeat;background-size:327.1304347826087px 327.1304347826087px;background-position:-42.78260869565217px -10.434782608695652px;filter:drop-shadow(0 28px 30px rgba(0,0,0,.9))"></div><div style="position:absolute;left:245.07096943407643px;top:488px;width:277.1554524361949px;height:258px;z-index:7;background:url('img/saco.png') no-repeat;background-size:306.48723897911833px 281.64501160092806px;background-position:-20.352668213457076px -12.570765661252901px;filter:drop-shadow(0 28px 30px rgba(0,0,0,.9))"></div><div style="position:absolute;left:37.773578129728634px;top:748px;width:241.04347826086956px;text-align:center;z-index:8;font:700 15px/1 Montserrat,sans-serif;letter-spacing:.2em;color:rgba(255,255,255,.55)">BARRICA</div><div style="position:absolute;left:245.07096943407643px;top:748px;width:277.1554524361949px;text-align:center;z-index:8;font:700 15px/1 Montserrat,sans-serif;letter-spacing:.2em;color:#F5B800">SACO 23 KG</div>
+<div class="cn" style="left:20px;font-size:70px">MASSA CORRIDA</div>
+<div class="cm" style="left:20px">SACO 23 KG</div>
+<div class="cl" style="left:20px">Na Black saiu por</div>
+<div class="cp" style="left:20px"><small>R$</small><span>32,99</span></div>
+<div class="cx" style="left:20px">Barrica: R$ 40,99</div><div style="position:absolute;left:557.7735781297287px;top:440px;width:241.04347826086956px;height:300px;z-index:6;background:url('img/barrica.png') no-repeat;background-size:327.1304347826087px 327.1304347826087px;background-position:-42.78260869565217px -10.434782608695652px;filter:drop-shadow(0 28px 30px rgba(0,0,0,.9))"></div><div style="position:absolute;left:765.0709694340766px;top:488px;width:277.1554524361949px;height:258px;z-index:7;background:url('img/saco.png') no-repeat;background-size:306.48723897911833px 281.64501160092806px;background-position:-20.352668213457076px -12.570765661252901px;filter:drop-shadow(0 28px 30px rgba(0,0,0,.9))"></div><div style="position:absolute;left:557.7735781297287px;top:748px;width:241.04347826086956px;text-align:center;z-index:8;font:700 15px/1 Montserrat,sans-serif;letter-spacing:.2em;color:rgba(255,255,255,.55)">BARRICA</div><div style="position:absolute;left:765.0709694340766px;top:748px;width:277.1554524361949px;text-align:center;z-index:8;font:700 15px/1 Montserrat,sans-serif;letter-spacing:.2em;color:#F5B800">SACO 23 KG</div>
+<div class="cn" style="left:540px;font-size:70px">MASSA ACRÍLICA</div>
+<div class="cm" style="left:540px">SACO 23 KG</div>
+<div class="cl" style="left:540px">Na Black saiu por</div>
+<div class="cp" style="left:540px"><small>R$</small><span>49,99</span></div>
+<div class="cx" style="left:540px">Barrica: R$ 57,99</div>
+<div class="selo"><b>BLACK FRIDAY ENCERRADA</b><span>Preços válidos só em 27/11/2026</span></div><div class="grain"></div></div></body></html>
