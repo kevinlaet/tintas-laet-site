@@ -252,7 +252,14 @@ html,body,.s { width:${W}px; height:${H}px; }
 .cards { position:absolute; left:0; right:0; top:${top}px; z-index:8; display:flex; justify-content:center; align-items:flex-start; gap:${st ? 40 : 60}px; }
 .card { width:${cw}px; background:#fff; border-radius:28px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,.75), 0 0 0 4px rgba(245,184,0,.9); }
 .card:first-child { transform:rotate(-3deg); } .card:last-child { transform:rotate(3deg); }
-.card .ph { height:${ch - (st ? 150 : 130)}px; background:#fff center/contain no-repeat; margin:${st ? 20 : 16}px; }
+.card .ph { --bk:${ch - (st ? 150 : 130)}px; height:${ch - (st ? 150 : 130)}px; background:#fff center/contain no-repeat; margin:${st ? 20 : 16}px; }
+.card .ph { position:relative; display:flex; justify-content:center; overflow:hidden; }
+.bk { position:relative; flex:none; width:var(--bk); height:var(--bk); }
+.bk img { position:absolute; inset:0; width:100%; height:100%; }
+/* etiqueta "PROTEÇÃO" colada sobre o "FLEXÍVEL", como no balde da loja */
+.stk { position:absolute; left:28.8%; top:39.2%; width:48%; height:8.6%; border-radius:3px; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(90deg,#E9690E,#F07E17 55%,#EC720F); color:#fff; font:800 calc(var(--bk) * .068) / 1 'Montserrat',sans-serif; letter-spacing:.01em;
+  text-shadow:0 1px 1px rgba(120,40,0,.35); box-shadow:0 1px 2px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.18); transform:rotate(-.6deg); }
 .card .nm { background:#0A0A0A; color:#fff; padding:${st ? '18px 16px 20px' : '14px 14px 16px'}; text-align:center; }
 .card .nm b { display:block; font:400 ${st ? 46 : 40}px/1 'Bebas Neue',sans-serif; letter-spacing:.02em; color:${Y}; padding-top:4px; }
 .card .nm span { display:block; margin-top:6px; font:700 ${st ? 23 : 20}px/1.2 'Poppins',sans-serif; color:rgba(255,255,255,.85); }
@@ -266,7 +273,7 @@ html,body,.s { width:${W}px; height:${H}px; }
 <div class="h1">ÚLTIMO SORTEIO<br><b>DO ANO!</b></div>
 <div class="glow"></div>
 <div class="cards">
- <div class="card"><div class="ph" style="background-image:url('img/emborrachada.jpg')"></div><div class="nm"><b>PROTEÇÃO EMBORRACHADA</b><span>Tinta 18 kg · Branca</span></div></div>
+ <div class="card"><div class="ph"><div class="bk"><img src="img/emborrachada-balde.png" alt="Proteção Emborrachada Laet"><div class="stk">PROTEÇÃO</div></div></div><div class="nm"><b>PROTEÇÃO EMBORRACHADA</b><span>Tinta 18 kg · Branca</span></div></div>
  <div class="card"><div class="ph" style="background-image:url('img/caixa.jpg')"></div><div class="nm"><b>SUPER CAIXA DE SOM</b><span>Mondial 250W</span></div></div>
 </div>
 <div class="mais">+</div>
