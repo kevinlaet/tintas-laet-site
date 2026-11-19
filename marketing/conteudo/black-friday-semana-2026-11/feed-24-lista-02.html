@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Lista 2</title><style>
+@font-face { font-family:'Bebas Neue'; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html,body { background:#000; }
+.s { position:relative; overflow:hidden; color:#fff;
+  background:radial-gradient(ellipse 760px 700px at 50% 42%, #1e1a10 0%, #0b0b0b 55%, #050505 100%); }
+.grain { position:absolute; inset:0; z-index:40; pointer-events:none; opacity:.08; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='260' height='260' filter='url(%23n)'/></svg>"); }
+.neon { position:absolute; z-index:2; pointer-events:none; }
+.logo { position:absolute; left:0; right:0; text-align:center; z-index:10; }
+.logo img { filter:drop-shadow(0 4px 12px rgba(0,0,0,.6)); }
+.bf { position:absolute; left:0; right:0; z-index:8; text-align:center; white-space:nowrap; transform:skewX(-8deg); padding-top:12px;
+  font:400 var(--bfs) / .9 'Bebas Neue',sans-serif; color:#fff; letter-spacing:.01em; }
+.bf b { color:#F5B800; font-weight:400; }
+.stroke { position:absolute; z-index:7; }
+
+html,body,.s { width:1080px; height:1350px; }
+.logo { top:64px; } .logo img { height:74px; }
+
+.rodape { position:absolute; left:0; right:0; bottom:54px; text-align:center; z-index:9; font:700 26px/1 'Montserrat',sans-serif; color:#fff; }
+.rodape i { font-style:normal; color:rgba(255,255,255,.4); margin:0 6px; }
+.kick { position:absolute; left:0; right:0; text-align:center; z-index:9; font:800 28px/1 'Montserrat',sans-serif; letter-spacing:.32em; color:#F5B800; padding-left:.32em; }
+.ttl { position:absolute; left:30px; right:30px; text-align:center; z-index:9; transform:skewX(-8deg); padding-top:12px; font-family:'Bebas Neue',sans-serif; font-weight:400; line-height:.86; }
+.ttl b { color:#F5B800; font-weight:400; }
+.pgn { position:absolute; right:60px; top:78px; z-index:9; font:700 24px/1 'Montserrat',sans-serif; color:rgba(255,255,255,.45); letter-spacing:.1em; }
+.pill { position:absolute; left:60px; top:78px; z-index:9; font:800 24px/1 'Montserrat',sans-serif; letter-spacing:.16em; color:#F5B800; }
+.halo { position:absolute; border-radius:50%; z-index:3; background:radial-gradient(ellipse, rgba(245,184,0,.2) 0%, rgba(245,184,0,.05) 50%, rgba(0,0,0,0) 72%); }
+
+.t2 { top:176px; font-size:120px; }
+.its { position:absolute; left:60px; right:60px; top:350px; z-index:9; display:flex; flex-direction:column; gap:22px; }
+.it { position:relative; height:270px; display:flex; align-items:center; gap:28px; padding:0 34px 0 30px; border:1.5px solid rgba(245,184,0,.35); border-radius:24px; background:rgba(255,255,255,.035); }
+.ck { flex:none; width:58px; height:58px; border-radius:12px; background:#F5B800; color:#0A0A0A; padding:11px; }
+.pi { flex:none; width:260px; height:240px; display:flex; align-items:center; justify-content:center; }
+.pi img { max-width:100%; max-height:100%; filter:drop-shadow(0 16px 18px rgba(0,0,0,.85)); }
+.tx span { display:block; font:800 22px/1 'Montserrat',sans-serif; letter-spacing:.2em; color:#F5B800; }
+.tx b { display:block; margin-top:8px; font:400 72px/.95 'Bebas Neue',sans-serif; letter-spacing:.02em; padding-top:6px; }
+.tx p { margin-top:8px; font:600 27px/1.25 'Poppins',sans-serif; color:rgba(255,255,255,.75); }
+</style></head><body><div class="s"><svg class="neon" style="left:0;top:0" width="1080" height="1350" viewBox="0 0 1080 1350">
+<defs><filter id="g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<g filter="url(#g)" stroke="#F5B800" stroke-width="3" stroke-linecap="round" opacity=".75">
+<path d="M1090,270 L890,675"/><path d="M-10,1053 L190,648"/></g></svg><div class="logo"><img src="img/logo-branco.png" alt="Tintas Laet"></div><div class="pgn">02/03</div>
+<div class="ttl t2">SUA LISTA <b>DA OBRA</b></div>
+<div class="its">
+<div class="it"><div class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div class="pi"><img src="img/barrica.png"></div><div class="tx"><span>1º · PREPARA</span><b>MASSA</b><p>Nivela e corrige a parede<br>antes de pintar.</p></div></div>
+<div class="it"><div class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div class="pi"><img src="img/lavavel.png" style="max-height:230px"></div><div class="tx"><span>2º · PINTA</span><b>TINTA</b><p>A cor nova da casa, do quarto<br>à fachada.</p></div></div>
+<div class="it"><div class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div class="pi"><img src="img/pisos.png"></div><div class="tx"><span>3º · RENOVA</span><b>PISO</b><p>Garagem, quintal e calçada<br>com cara de nova.</p></div></div>
+</div>
+<div class="rodape">@Tintaslaet <i>·</i> (11) 97714-0964 <i>·</i> tintaslaet.com</div><div class="grain"></div></div></body></html>

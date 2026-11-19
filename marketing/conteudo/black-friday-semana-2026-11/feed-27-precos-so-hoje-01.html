@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Hoje</title><style>
+@font-face { font-family:'Bebas Neue'; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html,body { background:#000; }
+.s { position:relative; overflow:hidden; color:#fff;
+  background:radial-gradient(ellipse 760px 700px at 50% 42%, #1e1a10 0%, #0b0b0b 55%, #050505 100%); }
+.grain { position:absolute; inset:0; z-index:40; pointer-events:none; opacity:.08; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='260' height='260' filter='url(%23n)'/></svg>"); }
+.neon { position:absolute; z-index:2; pointer-events:none; }
+.logo { position:absolute; left:0; right:0; text-align:center; z-index:10; }
+.logo img { filter:drop-shadow(0 4px 12px rgba(0,0,0,.6)); }
+.bf { position:absolute; left:0; right:0; z-index:8; text-align:center; white-space:nowrap; transform:skewX(-8deg); padding-top:12px;
+  font:400 var(--bfs) / .9 'Bebas Neue',sans-serif; color:#fff; letter-spacing:.01em; }
+.bf b { color:#F5B800; font-weight:400; }
+.stroke { position:absolute; z-index:7; }
+
+html,body,.s { width:1080px; height:1350px; }
+.logo { top:64px; } .logo img { height:74px; }
+
+.rodape { position:absolute; left:0; right:0; bottom:54px; text-align:center; z-index:9; font:700 26px/1 'Montserrat',sans-serif; color:#fff; }
+.rodape i { font-style:normal; color:rgba(255,255,255,.4); margin:0 6px; }
+.kick { position:absolute; left:0; right:0; text-align:center; z-index:9; font:800 28px/1 'Montserrat',sans-serif; letter-spacing:.32em; color:#F5B800; padding-left:.32em; }
+.ttl { position:absolute; left:30px; right:30px; text-align:center; z-index:9; transform:skewX(-8deg); padding-top:12px; font-family:'Bebas Neue',sans-serif; font-weight:400; line-height:.86; }
+.ttl b { color:#F5B800; font-weight:400; }
+.pgn { position:absolute; right:60px; top:78px; z-index:9; font:700 24px/1 'Montserrat',sans-serif; color:rgba(255,255,255,.45); letter-spacing:.1em; }
+.pill { position:absolute; left:60px; top:78px; z-index:9; font:800 24px/1 'Montserrat',sans-serif; letter-spacing:.16em; color:#F5B800; }
+.halo { position:absolute; border-radius:50%; z-index:3; background:radial-gradient(ellipse, rgba(245,184,0,.2) 0%, rgba(245,184,0,.05) 50%, rgba(0,0,0,0) 72%); }
+
+.h1 { top:204px; font-size:176px; }
+.band { position:absolute; left:0; right:0; top:560px; height:108px; z-index:12; background:#F5B800; display:flex; align-items:center; justify-content:center; gap:20px; box-shadow:0 0 50px rgba(245,184,0,.35); }
+.band span { font:400 84px/1 'Bebas Neue',sans-serif; color:#0A0A0A; letter-spacing:.04em; padding-top:8px; }
+.band i { width:13px; height:13px; border-radius:50%; background:#0A0A0A; }
+.fade { position:absolute; left:0; right:0; bottom:0; height:250px; z-index:8; background:linear-gradient(180deg, rgba(5,5,5,0), #050505 72%); }
+.arr { position:absolute; right:60px; bottom:58px; z-index:9; display:flex; align-items:center; gap:12px; font:700 26px/1 'Poppins',sans-serif; }
+.arr svg { width:40px; height:40px; color:#F5B800; }
+.dt { position:absolute; left:60px; bottom:62px; z-index:9; font:700 24px/1 'Montserrat',sans-serif; letter-spacing:.14em; color:rgba(255,255,255,.55); }
+</style></head><body><div class="s"><svg class="neon" style="left:0;top:0" width="1080" height="1350" viewBox="0 0 1080 1350">
+<defs><filter id="g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<g filter="url(#g)" stroke="#F5B800" stroke-width="3" stroke-linecap="round" opacity=".75">
+<path d="M1090,270 L890,675"/><path d="M-10,1053 L190,648"/></g></svg><div class="logo"><img src="img/logo-branco.png" alt="Tintas Laet"></div>
+<div class="kick" style="top:168px">BLACK FRIDAY LAET</div>
+<div class="ttl h1">PREÇOS<br><b>SÓ HOJE</b></div>
+<div class="band"><i></i><span>VÁLIDO SÓ NA SEXTA 27/11</span><i></i></div>
+<div class="halo" style="left:40px;top:740px;width:1000px;height:560px"></div><img src="img/gesso.png" style="position:absolute;left:100px;bottom:190px;width:300px;transform:translateX(-50%) rotate(-10deg);z-index:6;filter:drop-shadow(0 24px 28px rgba(0,0,0,.9))"><img src="img/pisos.png" style="position:absolute;left:310px;bottom:210px;width:330px;transform:translateX(-50%) rotate(-4deg);z-index:6;filter:drop-shadow(0 24px 28px rgba(0,0,0,.9))"><img src="img/standard.png" style="position:absolute;left:540px;bottom:220px;width:370px;transform:translateX(-50%) rotate(0deg);z-index:7;filter:drop-shadow(0 24px 28px rgba(0,0,0,.9))"><img src="img/lavavel.png" style="position:absolute;left:780px;bottom:210px;width:330px;transform:translateX(-50%) rotate(5deg);z-index:6;filter:drop-shadow(0 24px 28px rgba(0,0,0,.9))"><img src="img/epoxi.png" style="position:absolute;left:990px;bottom:190px;width:290px;transform:translateX(-50%) rotate(11deg);z-index:6;filter:drop-shadow(0 24px 28px rgba(0,0,0,.9))"><div class="fade"></div>
+<div class="dt">8 PRODUTOS · 6 LOJAS</div><div class="arr">Veja os preços <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="grain"></div></div></body></html>

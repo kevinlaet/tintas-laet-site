@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>É amanhã</title><style>
+@font-face { font-family:'Bebas Neue'; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html,body { background:#000; }
+.s { position:relative; overflow:hidden; color:#fff;
+  background:radial-gradient(ellipse 760px 700px at 50% 42%, #1e1a10 0%, #0b0b0b 55%, #050505 100%); }
+.grain { position:absolute; inset:0; z-index:40; pointer-events:none; opacity:.08; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='260' height='260' filter='url(%23n)'/></svg>"); }
+.neon { position:absolute; z-index:2; pointer-events:none; }
+.logo { position:absolute; left:0; right:0; text-align:center; z-index:10; }
+.logo img { filter:drop-shadow(0 4px 12px rgba(0,0,0,.6)); }
+.bf { position:absolute; left:0; right:0; z-index:8; text-align:center; white-space:nowrap; transform:skewX(-8deg); padding-top:12px;
+  font:400 var(--bfs) / .9 'Bebas Neue',sans-serif; color:#fff; letter-spacing:.01em; }
+.bf b { color:#F5B800; font-weight:400; }
+.stroke { position:absolute; z-index:7; }
+
+html,body,.s { width:1080px; height:1350px; }
+.logo { top:64px; } .logo img { height:74px; }
+
+.rodape { position:absolute; left:0; right:0; bottom:54px; text-align:center; z-index:9; font:700 26px/1 'Montserrat',sans-serif; color:#fff; }
+.rodape i { font-style:normal; color:rgba(255,255,255,.4); margin:0 6px; }
+.kick { position:absolute; left:0; right:0; text-align:center; z-index:9; font:800 28px/1 'Montserrat',sans-serif; letter-spacing:.32em; color:#F5B800; padding-left:.32em; }
+.ttl { position:absolute; left:30px; right:30px; text-align:center; z-index:9; transform:skewX(-8deg); padding-top:12px; font-family:'Bebas Neue',sans-serif; font-weight:400; line-height:.86; }
+.ttl b { color:#F5B800; font-weight:400; }
+.pgn { position:absolute; right:60px; top:78px; z-index:9; font:700 24px/1 'Montserrat',sans-serif; color:rgba(255,255,255,.45); letter-spacing:.1em; }
+.pill { position:absolute; left:60px; top:78px; z-index:9; font:800 24px/1 'Montserrat',sans-serif; letter-spacing:.16em; color:#F5B800; }
+.halo { position:absolute; border-radius:50%; z-index:3; background:radial-gradient(ellipse, rgba(245,184,0,.2) 0%, rgba(245,184,0,.05) 50%, rgba(0,0,0,0) 72%); }
+
+.a1 { top:168px; font-size:176px; }
+.sb { position:absolute; left:0; right:0; top:350px; text-align:center; z-index:9; font:600 32px/1.2 'Poppins',sans-serif; color:rgba(255,255,255,.85); }
+.sb b { color:#F5B800; }
+.brd { position:absolute; left:60px; right:60px; top:420px; z-index:9; display:flex; align-items:center; justify-content:center; gap:16px; background:#F5B800; color:#0A0A0A; border-radius:16px; padding:18px 20px; font:800 31px/1.1 'Montserrat',sans-serif; }
+.brd svg { width:40px; height:40px; flex:none; }
+.grid { position:absolute; left:60px; right:60px; top:528px; z-index:9; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:14px; }
+.lj { position:relative; border:1.5px solid rgba(255,255,255,.18); border-radius:18px; padding:24px 20px; background:rgba(255,255,255,.035); }
+.lj.br { border:3px solid #F5B800; background:rgba(245,184,0,.08); padding:28px 20px; }
+.gf { position:absolute; right:16px; bottom:22px; display:flex; align-items:center; gap:6px; background:#F5B800; color:#0A0A0A; border-radius:20px; padding:6px 12px; font:800 17px/1 'Montserrat',sans-serif; }
+.gf svg { width:20px; height:20px; }
+.t { display:flex; align-items:center; gap:10px; white-space:nowrap; }
+.n { background:#F5B800; color:#0A0A0A; font:400 36px/1 'Bebas Neue',sans-serif; padding:5px 10px 1px; border-radius:6px; letter-spacing:.03em; }
+.b { font:700 25px/1 'Montserrat',sans-serif; }
+.e { margin-top:12px; font:600 18px/1.2 'Poppins',sans-serif; color:rgba(255,255,255,.72); white-space:nowrap; }
+.w { margin-top:12px; display:flex; align-items:center; gap:8px; font:800 33px/1 'Montserrat',sans-serif; white-space:nowrap; }
+.w svg { width:32px; height:32px; color:#25D366; }
+.hr { position:absolute; left:0; right:0; top:1170px; text-align:center; z-index:9; font:600 24px/1.4 'Poppins',sans-serif; color:rgba(255,255,255,.62); }
+.hr b { color:#fff; }
+</style></head><body><div class="s"><div class="logo"><img src="img/logo-branco.png" alt="Tintas Laet"></div>
+<div class="ttl a1">É <b>AMANHÃ!</b></div>
+<div class="sb">Black Friday Laet · <b>sexta, 27/11</b> · nas 6 lojas</div>
+<div class="brd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8S10.5 3.5 8 4.2C6 4.8 6.6 8 12 8zm0 0s1.5-4.5 4-3.8C18 4.8 17.4 8 12 8z"/></svg>Brinde em compras acima de R$ 100 nas Lojas 3 e 6</div>
+<div class="grid"><div class="lj br"><div class="gf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8S10.5 3.5 8 4.2C6 4.8 6.6 8 12 8zm0 0s1.5-4.5 4-3.8C18 4.8 17.4 8 12 8z"/></svg>BRINDE</div>
+<div class="t"><span class="n">LOJA 3</span><span class="b">Jd. Santa Cecília</span></div><div class="e">Mauá · Av. Ayrton Senna da Silva, 235</div><div class="w"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 97749-8813</div></div><div class="lj br"><div class="gf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8S10.5 3.5 8 4.2C6 4.8 6.6 8 12 8zm0 0s1.5-4.5 4-3.8C18 4.8 17.4 8 12 8z"/></svg>BRINDE</div>
+<div class="t"><span class="n">LOJA 6</span><span class="b">Santa Terezinha</span></div><div class="e">São Bernardo do C. · Av. Luís Pequini, 899</div><div class="w"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 91875-5095</div></div><div class="lj">
+<div class="t"><span class="n">LOJA 1</span><span class="b">Vila Bela</span></div><div class="e">São Paulo · Av. Sapopemba, 25.723</div><div class="w"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 98082-0686</div></div><div class="lj">
+<div class="t"><span class="n">LOJA 2</span><span class="b">Jd. São João</span></div><div class="e">Mauá · Rua do Britador, 2</div><div class="w"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 97750-4434</div></div><div class="lj">
+<div class="t"><span class="n">LOJA 4</span><span class="b">Vila Luzita</span></div><div class="e">Santo André · Av. São Bernardo do Campo, 757</div><div class="w"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 94855-1977</div></div><div class="lj">
+<div class="t"><span class="n">LOJA 5</span><span class="b">Jd. Itapark</span></div><div class="e">Mauá · Av. Itapark, 4377</div><div class="w"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 1.9.7 2.6.6a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3z"/></svg>(11) 91433-4875</div></div></div>
+<div class="hr"><b>Seg a sex 8h às 18h · Sáb 8h às 14h</b><br>Parcele em até 12x sem juros (consulte as condições)</div>
+<div class="rodape">@Tintaslaet <i>·</i> (11) 97714-0964 <i>·</i> tintaslaet.com</div><div class="grain"></div></div></body></html>

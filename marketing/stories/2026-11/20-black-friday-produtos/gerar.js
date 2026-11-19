@@ -352,7 +352,8 @@ function final11() {
     .replace('<span>OBRIGADO, CLIENTE LAET</span>', '<span>OBRIGADO, CLIENTE LAET</span>');
 }
 
-(async () => {
+module.exports = { P, Y, FONTS, BASE, stroke, NEON, combo, slideDuo, head, foot, LOJAS, WA, CSS_F, capa };
+if (require.main === module) (async () => {
   fs.mkdirSync(OUT, { recursive: true });
   const browser = await chromium.launch(process.env.PW_EXEC ? { executablePath: process.env.PW_EXEC } : {});
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });

@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Vem aí</title><style>
+@font-face { font-family:'Bebas Neue'; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html,body { background:#000; }
+.s { position:relative; overflow:hidden; color:#fff;
+  background:radial-gradient(ellipse 760px 700px at 50% 42%, #1e1a10 0%, #0b0b0b 55%, #050505 100%); }
+.grain { position:absolute; inset:0; z-index:40; pointer-events:none; opacity:.08; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='260' height='260' filter='url(%23n)'/></svg>"); }
+.neon { position:absolute; z-index:2; pointer-events:none; }
+.logo { position:absolute; left:0; right:0; text-align:center; z-index:10; }
+.logo img { filter:drop-shadow(0 4px 12px rgba(0,0,0,.6)); }
+.bf { position:absolute; left:0; right:0; z-index:8; text-align:center; white-space:nowrap; transform:skewX(-8deg); padding-top:12px;
+  font:400 var(--bfs) / .9 'Bebas Neue',sans-serif; color:#fff; letter-spacing:.01em; }
+.bf b { color:#F5B800; font-weight:400; }
+.stroke { position:absolute; z-index:7; }
+
+html,body,.s { width:1080px; height:1350px; }
+.logo { top:64px; } .logo img { height:74px; }
+
+.rodape { position:absolute; left:0; right:0; bottom:54px; text-align:center; z-index:9; font:700 26px/1 'Montserrat',sans-serif; color:#fff; }
+.rodape i { font-style:normal; color:rgba(255,255,255,.4); margin:0 6px; }
+.kick { position:absolute; left:0; right:0; text-align:center; z-index:9; font:800 28px/1 'Montserrat',sans-serif; letter-spacing:.32em; color:#F5B800; padding-left:.32em; }
+.ttl { position:absolute; left:30px; right:30px; text-align:center; z-index:9; transform:skewX(-8deg); padding-top:12px; font-family:'Bebas Neue',sans-serif; font-weight:400; line-height:.86; }
+.ttl b { color:#F5B800; font-weight:400; }
+.pgn { position:absolute; right:60px; top:78px; z-index:9; font:700 24px/1 'Montserrat',sans-serif; color:rgba(255,255,255,.45); letter-spacing:.1em; }
+.pill { position:absolute; left:60px; top:78px; z-index:9; font:800 24px/1 'Montserrat',sans-serif; letter-spacing:.16em; color:#F5B800; }
+.halo { position:absolute; border-radius:50%; z-index:3; background:radial-gradient(ellipse, rgba(245,184,0,.2) 0%, rgba(245,184,0,.05) 50%, rgba(0,0,0,0) 72%); }
+
+.big { top:290px; font-size:236px; }
+.laet { position:absolute; left:0; right:0; top:790px; z-index:9; display:flex; align-items:center; justify-content:center; gap:26px; }
+.laet i { width:150px; height:3px; background:#F5B800; box-shadow:0 0 12px rgba(245,184,0,.8); }
+.laet b { font:400 104px/1 'Bebas Neue',sans-serif; color:#F5B800; letter-spacing:.08em; transform:skewX(-8deg); padding-top:8px; }
+.data { position:absolute; left:50%; top:950px; transform:translateX(-50%) rotate(-2deg); z-index:9; background:#F5B800; color:#0A0A0A; padding:20px 56px 12px; border-radius:10px; white-space:nowrap;
+  font:400 104px/1 'Bebas Neue',sans-serif; letter-spacing:.04em; box-shadow:0 0 50px rgba(245,184,0,.35), 0 20px 40px rgba(0,0,0,.6); }
+.olho { position:absolute; left:0; right:0; top:1130px; z-index:9; text-align:center; font:700 44px/1 'Poppins',sans-serif; color:#fff; }
+.olho b { color:#F5B800; }
+</style></head><body><div class="s"><svg class="neon" style="left:0;top:0" width="1080" height="1350" viewBox="0 0 1080 1350">
+<defs><filter id="g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<g filter="url(#g)" stroke="#F5B800" stroke-width="3" stroke-linecap="round" opacity=".75">
+<path d="M1090,270 L890,675"/><path d="M-10,1053 L190,648"/></g></svg>
+<div class="logo"><img src="img/logo-branco.png" alt="Tintas Laet"></div>
+<div class="halo" style="left:40px;top:250px;width:1000px;height:640px"></div>
+<div class="kick" style="top:240px">VEM AÍ</div>
+<div class="ttl big">BLACK<br>FRIDAY</div>
+<div class="laet"><i></i><b>LAET</b><i></i></div>
+<div class="data">SEXTA · 27/11</div>
+<div class="olho">Fique de olho. <b>Vem preço de Black.</b></div>
+<div class="rodape">@Tintaslaet <i>·</i> (11) 97714-0964 <i>·</i> tintaslaet.com</div><div class="grain"></div></div></body></html>
