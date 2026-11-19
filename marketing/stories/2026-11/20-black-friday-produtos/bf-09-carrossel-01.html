@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Capa</title><style>
+@font-face { font-family:'Bebas Neue'; src:url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:700; src:url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family:'Montserrat'; font-weight:800; src:url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:600; src:url('fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family:'Poppins'; font-weight:700; src:url('fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html,body { background:#000; }
+.s { position:relative; overflow:hidden; color:#fff;
+  background:radial-gradient(ellipse 760px 700px at 50% 42%, #1e1a10 0%, #0b0b0b 55%, #050505 100%); }
+.grain { position:absolute; inset:0; z-index:40; pointer-events:none; opacity:.08; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='260' height='260' filter='url(%23n)'/></svg>"); }
+.neon { position:absolute; z-index:2; pointer-events:none; }
+.logo { position:absolute; left:0; right:0; text-align:center; z-index:10; }
+.logo img { filter:drop-shadow(0 4px 12px rgba(0,0,0,.6)); }
+.bf { position:absolute; left:0; right:0; z-index:8; text-align:center; white-space:nowrap; transform:skewX(-8deg); padding-top:12px;
+  font:400 var(--bfs) / .9 'Bebas Neue',sans-serif; color:#fff; letter-spacing:.01em; }
+.bf b { color:#F5B800; font-weight:400; }
+.stroke { position:absolute; z-index:7; }
+
+html,body,.s { width:1080px; height:1350px; }
+.logo { top:64px; } .logo img { height:74px; }
+
+.tag { position:absolute; left:0; right:0; top:206px; text-align:center; z-index:9; font:800 28px/1 'Montserrat',sans-serif; letter-spacing:.32em; color:#F5B800; padding-left:.32em; }
+.h1 { position:absolute; left:40px; right:40px; top:250px; text-align:center; z-index:9; transform:skewX(-8deg); padding-top:12px; font:400 172px/.86 'Bebas Neue',sans-serif; }
+.h1 b { color:#F5B800; font-weight:400; }
+.glow { position:absolute; left:50%; top:780px; width:1100px; height:560px; transform:translateX(-50%); border-radius:50%; z-index:3;
+  background:radial-gradient(ellipse, rgba(245,184,0,.28) 0%, rgba(245,184,0,.06) 50%, rgba(0,0,0,0) 72%); }
+.fade { position:absolute; left:0; right:0; bottom:0; height:260px; z-index:8; background:linear-gradient(180deg, rgba(5,5,5,0), #050505 70%); }
+.arr { position:absolute; right:60px; bottom:58px; z-index:9; display:flex; align-items:center; gap:12px; font:700 26px/1 'Poppins',sans-serif; color:#fff; }
+.arr svg { width:40px; height:40px; color:#F5B800; }
+.data { position:absolute; left:60px; bottom:62px; z-index:9; font:700 26px/1 'Montserrat',sans-serif; letter-spacing:.14em; color:rgba(255,255,255,.6); }</style></head><body><div class="s"><svg class="neon" style="left:0;top:0" width="1080" height="1350" viewBox="0 0 1080 1350">
+<defs><filter id="g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<g filter="url(#g)" stroke="#F5B800" stroke-width="3" stroke-linecap="round" opacity=".75">
+<path d="M1090,270 L890,675"/><path d="M-10,1053 L190,648"/></g></svg><div class="logo"><img src="img/logo-branco.png" alt="Tintas Laet"></div>
+<div class="tag">OBRIGADO, CLIENTE LAET</div>
+<div class="h1">NOSSA BLACK<br>FOI UM <b>SUCESSO!</b></div>
+<svg class="stroke" style="left:340px;top:572px" width="400" height="24" viewBox="0 0 600 40" preserveAspectRatio="none">
+<defs><filter id="r" x="-5%" y="-50%" width="110%" height="200%"><feTurbulence type="fractalNoise" baseFrequency="0.02 0.5" numOctaves="3" seed="5" result="t"/>
+<feDisplacementMap in="SourceGraphic" in2="t" scale="10" xChannelSelector="R" yChannelSelector="G"/></filter></defs>
+<path filter="url(#r)" d="M8,14 C150,8 420,6 592,12 L590,28 C420,34 160,34 10,30 Z" fill="#F5B800"/></svg>
+<div class="glow"></div><img src="img/gesso.png" style="position:absolute;left:-60px;top:860px;width:300px;transform:rotate(-10deg);z-index:4;filter:drop-shadow(0 26px 26px rgba(0,0,0,.9))"><img src="img/pisos.png" style="position:absolute;left:135px;top:820px;width:330px;transform:rotate(-4deg);z-index:5;filter:drop-shadow(0 26px 26px rgba(0,0,0,.9))"><img src="img/standard.png" style="position:absolute;left:360px;top:800px;width:360px;transform:rotate(0deg);z-index:6;filter:drop-shadow(0 26px 26px rgba(0,0,0,.9))"><img src="img/lavavel.png" style="position:absolute;left:625px;top:820px;width:330px;transform:rotate(5deg);z-index:5;filter:drop-shadow(0 26px 26px rgba(0,0,0,.9))"><img src="img/epoxi.png" style="position:absolute;left:850px;top:860px;width:300px;transform:rotate(11deg);z-index:4;filter:drop-shadow(0 26px 26px rgba(0,0,0,.9))"><div class="fade"></div>
+<div class="data">BLACK FRIDAY · 27/11/2026</div>
+<div class="arr">Veja como foi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="grain"></div></div></body></html>
