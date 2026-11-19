@@ -240,45 +240,67 @@ ${p.extra ? `<div class="sub">${p.extra}</div>` : ''}
 // Sorteio: prêmios em cartões claros (as fotos têm fundo branco), sem inventar regras.
 function sorteio(W, H) {
   const st = H === 1920;
-  const cw = st ? 440 : 400, ch = st ? 560 : 420, top = st ? 760 : 545;
+  // medidas por formato
+  const M = st
+    ? { logo: 150, lh: 92, tag: 296, h1: 336, hs: 150, cards: 670, ch: 620, pb: 410, steps: 1360, sh: 300, nota: 1700, rod: 1800 }
+    : { logo: 56, lh: 66, tag: 176, h1: 206, hs: 112, cards: 430, ch: 470, pb: 300, steps: 940, sh: 220, nota: 1196, rod: 1276 };
+  const ICO = {
+    cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.2l2.1 10.2a1.6 1.6 0 0 0 1.6 1.3h8.4a1.6 1.6 0 0 0 1.6-1.2L21 8H6.1"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17.5" cy="19.5" r="1.4"/></svg>',
+    cupom: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v9H4z"/><path d="M8 11V4h8v7"/><path d="M10.5 7.5h3"/><path d="M9 15h6"/></svg>',
+    amigos: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.6 3-5.6 6-5.6s5.4 2 6 5.6"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 14.3c2.4.2 4 1.9 4.5 4.7"/></svg>',
+  };
+  const card = (cls, rot, badge, img, nome, info) => `<div class="card ${cls}" style="transform:rotate(${rot}deg)"><div class="bdg">${badge}</div><div class="ph">${img}</div><div class="nm"><b>${nome}</b><span>${info}</span></div></div>`;
+  const imgCaixa = `<div class="ph-in" style="background-image:url('img/caixa.jpg')"></div>`;
+  const imgEmb = `<div class="bk"><img src="img/emborrachada-balde.png" alt="Proteção Emborrachada Laet"><div class="stk">PROTEÇÃO</div></div>`;
   return head('Sorteio', BASE + `
 html,body,.s { width:${W}px; height:${H}px; }
-.logo { top:${st ? 150 : 64}px; } .logo img { height:${st ? 96 : 74}px; }
-.tag { position:absolute; left:0; right:0; top:${st ? 300 : 186}px; text-align:center; z-index:9; font:800 ${st ? 30 : 26}px/1 'Montserrat',sans-serif; letter-spacing:.32em; color:${Y}; padding-left:.32em; }
-.h1 { position:absolute; left:40px; right:40px; top:${st ? 344 : 222}px; text-align:center; z-index:9; transform:skewX(-8deg); padding-top:12px; font:400 ${st ? 178 : 150}px/.86 'Bebas Neue',sans-serif; }
+.logo { top:${M.logo}px; } .logo img { height:${M.lh}px; }
+.tag { position:absolute; left:0; right:0; top:${M.tag}px; text-align:center; z-index:9; font:800 ${st ? 28 : 24}px/1 'Montserrat',sans-serif; letter-spacing:.32em; color:${Y}; padding-left:.32em; }
+.h1 { position:absolute; left:30px; right:30px; top:${M.h1}px; text-align:center; z-index:9; transform:skewX(-8deg); padding-top:12px; font:400 ${M.hs}px/.88 'Bebas Neue',sans-serif; white-space:nowrap; }
 .h1 b { color:${Y}; font-weight:400; }
-.glow { position:absolute; left:50%; top:${top - 80}px; width:1100px; height:${ch + 200}px; transform:translateX(-50%); border-radius:50%; z-index:3;
-  background:radial-gradient(ellipse, rgba(245,184,0,.26) 0%, rgba(245,184,0,.05) 50%, rgba(0,0,0,0) 72%); }
-.cards { position:absolute; left:0; right:0; top:${top}px; z-index:8; display:flex; justify-content:center; align-items:flex-start; gap:${st ? 40 : 60}px; }
-.card { width:${cw}px; background:#fff; border-radius:28px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,.75), 0 0 0 4px rgba(245,184,0,.9); }
-.card:first-child { transform:rotate(-3deg); } .card:last-child { transform:rotate(3deg); }
-.card .ph { --bk:${ch - (st ? 150 : 130)}px; height:${ch - (st ? 150 : 130)}px; background:#fff center/contain no-repeat; margin:${st ? 20 : 16}px; }
-.card .ph { position:relative; display:flex; justify-content:center; overflow:hidden; }
-.bk { position:relative; flex:none; width:var(--bk); height:var(--bk); }
+.glow { position:absolute; left:50%; top:${M.cards - 60}px; width:1100px; height:${M.ch + 160}px; transform:translateX(-50%); border-radius:50%; z-index:3;
+  background:radial-gradient(ellipse, rgba(245,184,0,.24) 0%, rgba(245,184,0,.05) 50%, rgba(0,0,0,0) 72%); }
+.cards { position:absolute; left:${st ? 56 : 70}px; right:${st ? 56 : 70}px; top:${M.cards}px; z-index:8; display:flex; justify-content:space-between; align-items:flex-start; }
+.card { position:relative; width:${st ? 470 : 446}px; height:${M.ch}px; background:#fff; border-radius:26px; overflow:hidden; box-shadow:0 26px 54px rgba(0,0,0,.75), 0 0 0 4px rgba(245,184,0,.9); }
+.card.sec { box-shadow:0 26px 54px rgba(0,0,0,.75), 0 0 0 3px rgba(255,255,255,.55); }
+.bdg { position:absolute; left:0; right:0; top:0; z-index:3; background:${Y}; color:#0A0A0A; text-align:center; font:800 ${st ? 24 : 20}px/1 'Montserrat',sans-serif; letter-spacing:.14em; padding:${st ? 14 : 11}px 0 ${st ? 12 : 10}px; }
+.sec .bdg { background:#0A0A0A; color:${Y}; }
+.ph { position:absolute; left:0; right:0; top:${st ? 52 : 42}px; height:${M.pb}px; display:flex; justify-content:center; align-items:center; overflow:hidden; }
+.ph-in { width:100%; height:100%; background:#fff center/contain no-repeat; }
+.bk { position:relative; flex:none; width:${M.pb}px; height:${M.pb}px; --bk:${M.pb}px; }
 .bk img { position:absolute; inset:0; width:100%; height:100%; }
-/* etiqueta "PROTEÇÃO" colada sobre o "FLEXÍVEL", como no balde da loja */
 .stk { position:absolute; left:28.8%; top:39.2%; width:48%; height:8.6%; border-radius:3px; display:flex; align-items:center; justify-content:center;
-  background:linear-gradient(90deg,#E9690E,#F07E17 55%,#EC720F); color:#fff; font:800 calc(var(--bk) * .068) / 1 'Montserrat',sans-serif; letter-spacing:.01em;
+  background:linear-gradient(90deg,#E9690E,#F07E17 55%,#EC720F); color:#fff; font:800 calc(var(--bk) * .068) / 1 'Montserrat',sans-serif;
   text-shadow:0 1px 1px rgba(120,40,0,.35); box-shadow:0 1px 2px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.18); transform:rotate(-.6deg); }
-.card .nm { background:#0A0A0A; color:#fff; padding:${st ? '18px 16px 20px' : '14px 14px 16px'}; text-align:center; }
-.card .nm b { display:block; font:400 ${st ? 46 : 40}px/1 'Bebas Neue',sans-serif; letter-spacing:.02em; color:${Y}; padding-top:4px; }
-.card .nm span { display:block; margin-top:6px; font:700 ${st ? 23 : 20}px/1.2 'Poppins',sans-serif; color:rgba(255,255,255,.85); }
-.mais { position:absolute; left:50%; top:${top + ch / 2 - 48}px; width:96px; height:96px; transform:translateX(-50%); z-index:10; border-radius:50%; background:${Y}; color:#0A0A0A;
-  display:flex; align-items:center; justify-content:center; font:400 86px/1 'Bebas Neue',sans-serif; padding-top:6px; box-shadow:0 0 0 10px #0A0A0A, 0 14px 30px rgba(0,0,0,.6); }
-.cta { position:absolute; left:0; right:0; top:${st ? 1430 : 1060}px; text-align:center; z-index:9; }
-.cta span { display:inline-block; background:${Y}; color:#0A0A0A; font:400 ${st ? 96 : 76}px/1 'Bebas Neue',sans-serif; letter-spacing:.04em; padding:${st ? '18px 70px 10px' : '14px 60px 8px'}; border-radius:18px; box-shadow:0 0 40px rgba(245,184,0,.35); }
-.rod { position:absolute; left:0; right:0; top:${st ? 1790 : 1270}px; text-align:center; z-index:9; font:700 ${st ? 30 : 24}px/1 'Montserrat',sans-serif; }`)
+.nm { position:absolute; left:0; right:0; bottom:0; background:#0A0A0A; color:#fff; text-align:center; padding:${st ? '18px 18px 20px' : '13px 14px 15px'}; min-height:${st ? 150 : 124}px; display:flex; flex-direction:column; justify-content:center; }
+.nm b { display:block; font:400 ${st ? 44 : 36}px/1 'Bebas Neue',sans-serif; letter-spacing:.02em; color:${Y}; padding-top:4px; }
+.nm span em { font-style:normal; display:block; margin-top:4px; font-size:.86em; color:rgba(255,255,255,.65); line-height:1.2; }
+.nm span { display:block; margin-top:7px; font:600 ${st ? 22 : 18}px/1.25 'Poppins',sans-serif; color:rgba(255,255,255,.85); }
+.steps { position:absolute; left:${st ? 56 : 70}px; right:${st ? 56 : 70}px; top:${M.steps}px; z-index:9; }
+.steps h3 { text-align:center; font:800 ${st ? 30 : 24}px/1 'Montserrat',sans-serif; letter-spacing:.24em; color:#fff; margin-bottom:${st ? 28 : 20}px; padding-left:.24em; }
+.row { display:flex; justify-content:space-between; gap:${st ? 20 : 18}px; }
+.st { flex:1; text-align:center; position:relative; border:1.5px solid rgba(245,184,0,.35); border-radius:20px; background:rgba(255,255,255,.035); padding:${st ? '26px 16px 24px' : '18px 12px 16px'}; }
+.st .ic { width:${st ? 84 : 64}px; height:${st ? 84 : 64}px; margin:0 auto ${st ? 16 : 12}px; border-radius:50%; background:${Y}; color:#0A0A0A; padding:${st ? 19 : 14}px; position:relative; }
+.st .ic i { position:absolute; right:-8px; top:-8px; width:${st ? 34 : 28}px; height:${st ? 34 : 28}px; border-radius:50%; background:#fff; color:#0A0A0A; font:400 ${st ? 26 : 22}px/1 'Bebas Neue',sans-serif; font-style:normal; display:flex; align-items:center; justify-content:center; padding-top:3px; }
+.st p { font:700 ${st ? 26 : 21}px/1.22 'Poppins',sans-serif; color:#fff; }
+.nota { position:absolute; left:60px; right:60px; top:${M.nota}px; z-index:9; text-align:center; font:600 ${st ? 24 : 19}px/1.35 'Poppins',sans-serif; color:rgba(255,255,255,.62); }
+.nota b { color:${Y}; font-weight:700; }
+.rod { position:absolute; left:0; right:0; top:${M.rod}px; text-align:center; z-index:9; font:700 ${st ? 30 : 24}px/1 'Montserrat',sans-serif; }`)
   + `${NEON(W, H)}<div class="logo"><img src="img/logo-branco.png" alt="Tintas Laet"></div>
 <div class="tag">SORTEIO TINTAS LAET</div>
-<div class="h1">ÚLTIMO SORTEIO<br><b>DO ANO!</b></div>
+<div class="h1">ÚLTIMO SORTEIO${st ? '<br>' : ' '}<b>DO ANO!</b></div>
 <div class="glow"></div>
 <div class="cards">
- <div class="card"><div class="ph"><div class="bk"><img src="img/emborrachada-balde.png" alt="Proteção Emborrachada Laet"><div class="stk">PROTEÇÃO</div></div></div><div class="nm"><b>PROTEÇÃO EMBORRACHADA</b><span>Tinta 18 kg · Branca</span></div></div>
- <div class="card"><div class="ph" style="background-image:url('img/caixa.jpg')"></div><div class="nm"><b>SUPER CAIXA DE SOM</b><span>Mondial 250W</span></div></div>
+ ${card('main', -2, 'PRÊMIO PRINCIPAL', imgCaixa, '1 Super Caixa de Som', 'Mondial 250W')}
+ ${card('sec', 2, 'PRÊMIO DAS INDICAÇÕES', imgEmb, '1 Proteção Emborrachada', 'Tinta 18 kg · Branca<br><em>Sorteada entre os amigos indicados pelo ganhador</em>')}
 </div>
-<div class="mais">+</div>
-<div class="cta"><span>PARTICIPE!</span></div>
-<div class="rod">@Tintaslaet · tintaslaet.com</div>` + foot;
+<div class="steps"><h3>COMO PARTICIPAR</h3><div class="row">
+ <div class="st"><div class="ic">${ICO.cart}<i>1</i></div><p>Compre qualquer valor numa loja Tintas Laet</p></div>
+ <div class="st"><div class="ic">${ICO.cupom}<i>2</i></div><p>Preencha o cupom e coloque na urna</p></div>
+ <div class="st"><div class="ic">${ICO.amigos}<i>3</i></div><p>Indique até 10 amigos no cupom</p></div>
+</div></div>
+<div class="nota">Sorteio ao vivo no <b>@tintaslaet</b>. Data em breve.<br>Só cupom físico, nas lojas.</div>
+<div class="rod">tintaslaet.com</div>` + foot;
 }
 
 function final11() {
