@@ -10,7 +10,7 @@ const { chromium } = require(process.env.PW_MOD || 'playwright');
 const DIR = __dirname, OUT = path.join(DIR, 'saida');
 const PAL = JSON.parse(fs.readFileSync(path.join(DIR, 'paleta-oficial.json'), 'utf8')).linhas;
 
-const NAVY = '#062B63', BLUE = '#0D47A1', Y = '#FFC107', YD = '#B98A00', CREAM = '#F7F4EE', INK = '#1E2433';
+const NAVY = '#062B63', BLUE = '#0D47A1', Y = '#FFC107', YD = '#B98A00', CREAM = '#F4F7FC', INK = '#1E2433';
 
 // ------------------------------------------------------------------ dados
 // Textos só com fatos do site / aulas do Kevin (CLAUDE.md) / rótulos. Nenhum preço.
@@ -110,45 +110,83 @@ const CSS = `
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
 html,body { background:#888; }
 .pg { position:relative; width:816px; height:1145px; overflow:hidden; background:${CREAM}; color:${INK}; font-family:'Poppins',sans-serif; margin:0 0 20px; }
+/* malha de pontos "técnica" no canto superior direito e linhas finas de engenharia */
+.pg::before { content:''; position:absolute; right:0; top:0; width:420px; height:360px; z-index:0; pointer-events:none;
+  background-image:radial-gradient(rgba(13,71,161,.16) 1.1px, transparent 1.3px); background-size:14px 14px;
+  -webkit-mask-image:radial-gradient(ellipse 100% 100% at 100% 0%, #000 0%, transparent 70%); mask-image:radial-gradient(ellipse 100% 100% at 100% 0%, #000 0%, transparent 70%); }
+.pg > * { z-index:1; }
+.splash { position:absolute; pointer-events:none; z-index:2; }
+.nota1817 { display:flex; align-items:center; gap:10px; background:#fff; border:1px solid #DCE4F2; border-left:4px solid ${Y}; border-radius:10px; padding:9px 14px; font:500 11px/1.35 'Poppins',sans-serif; color:#3B4660; }
+.nota1817 b { color:${NAVY}; font-weight:700; }
+.nota1817 i { flex:none; width:16px; height:20px; background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 20'><path d='M8 0C8 0 1 8.5 1 12.8A7 7 0 0 0 15 12.8C15 8.5 8 0 8 0Z' fill='%230D47A1'/></svg>") center/contain no-repeat; }
 .abs { position:absolute; }
-.kick { font:800 10.5px/1 'Montserrat',sans-serif; letter-spacing:.3em; color:${YD}; text-transform:uppercase; }
-.kick.w { color:${Y}; }
+.kick { font:800 10.5px/1 'Montserrat',sans-serif; letter-spacing:.3em; color:${BLUE}; text-transform:uppercase; display:flex; align-items:center; gap:9px; }
+.kick::before { content:''; width:9px; height:9px; background:${Y}; border-radius:2px; transform:rotate(45deg); flex:none; }
+.kick.w { color:${Y}; } .kick.w::before { background:#fff; }
 .h { font:800 44px/1.02 'Montserrat',sans-serif; letter-spacing:-.02em; color:${NAVY}; }
 .h em { font-style:normal; color:${BLUE}; }
 .lead { font:400 14px/1.6 'Poppins',sans-serif; color:#4A5266; }
-.rule { height:3px; width:44px; background:${Y}; border-radius:2px; }
-.foot { position:absolute; left:48px; right:48px; bottom:40px; display:flex; justify-content:space-between; align-items:center; font:600 9.5px/1 'Poppins',sans-serif; color:#8A90A0; letter-spacing:.02em; }
-.foot b { font:800 11px/1 'Montserrat',sans-serif; color:${NAVY}; }
-.foot .n { display:inline-flex; width:24px; height:24px; border-radius:50%; background:${NAVY}; color:#fff; align-items:center; justify-content:center; font:800 10px/1 'Montserrat',sans-serif; }
-.card { background:#fff; border-radius:16px; box-shadow:0 1px 0 rgba(6,43,99,.06), 0 10px 30px rgba(6,43,99,.07); }
-.chip { display:inline-block; font:600 10.5px/1 'Poppins',sans-serif; color:${NAVY}; background:#EEF2F9; border-radius:30px; padding:6px 11px; margin:0 5px 6px 0; }
+.rule { height:4px; width:56px; background:linear-gradient(90deg, ${Y} 0 60%, ${BLUE} 60% 100%); border-radius:2px; }
+.foot { position:absolute; left:0; right:0; bottom:0; height:70px; padding:0 48px 12px; display:flex; justify-content:space-between; align-items:center; font:600 9.5px/1 'Poppins',sans-serif; color:rgba(255,255,255,.75); letter-spacing:.02em;
+  background:linear-gradient(90deg, ${NAVY} 0%, ${BLUE} 100%); }
+.foot::before { content:''; position:absolute; left:0; top:0; width:100%; height:4px; background:linear-gradient(90deg, ${Y} 0 22%, transparent 22%); }
+.foot b { font:800 11px/1 'Montserrat',sans-serif; color:#fff; }
+.foot .n { display:inline-flex; width:26px; height:26px; border-radius:6px; background:${Y}; color:${NAVY}; align-items:center; justify-content:center; font:800 11px/1 'Montserrat',sans-serif; }
+.card { background:#fff; border-radius:14px; border:1px solid #DCE4F2; box-shadow:0 1px 0 rgba(6,43,99,.04), 0 14px 32px rgba(13,71,161,.08); }
+.chip { display:inline-block; font:600 10.5px/1 'Poppins',sans-serif; color:${NAVY}; background:#E8EFFA; border:1px solid #D3DFF2; border-radius:30px; padding:6px 11px; margin:0 5px 6px 0; }
 .sz { display:flex; flex-wrap:wrap; gap:6px; }
-.sz span { font:700 10.5px/1 'Montserrat',sans-serif; color:${NAVY}; border:1.5px solid ${NAVY}; border-radius:6px; padding:6px 9px; }
+.sz span { font:700 10.5px/1 'Montserrat',sans-serif; color:#fff; background:${NAVY}; border:1.5px solid ${NAVY}; border-radius:6px; padding:6px 9px; }
 .lbl { font:800 9.5px/1 'Montserrat',sans-serif; letter-spacing:.2em; color:#8A90A0; text-transform:uppercase; margin:16px 0 8px; }
 `;
 let PAGE = 0;
+function splash(cx, cy, r, cor, seed, ang0 = 0, ang1 = 360, far = 1.3) {
+  let s = seed; const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+  const pts = []; const N = 22;
+  for (let i = 0; i < N; i++) { const a = i / N * Math.PI * 2; const rr = r * (.78 + rnd() * .34) * (rnd() < .18 ? 1.28 : 1); pts.push([Math.cos(a) * rr, Math.sin(a) * rr]); }
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 0; i < N; i++) { const p0 = pts[(i - 1 + N) % N], p1 = pts[i], p2 = pts[(i + 1) % N], p3 = pts[(i + 2) % N];
+    d += ` C${p1[0] + (p2[0] - p0[0]) / 6},${p1[1] + (p2[1] - p0[1]) / 6} ${p2[0] - (p3[0] - p1[0]) / 6},${p2[1] - (p3[1] - p1[1]) / 6} ${p2[0]},${p2[1]}`; }
+  let gotas = '';
+  for (let i = 0; i < 16; i++) { const a = (ang0 + rnd() * (ang1 - ang0)) * Math.PI / 180, dist = r * (1.15 + rnd() * far), gr = r * (.03 + rnd() * .1);
+    gotas += `<circle cx="${Math.cos(a) * dist}" cy="${Math.sin(a) * dist}" r="${gr}"/>`; }
+  for (let i = 0; i < 5; i++) { const a = (ang0 + rnd() * (ang1 - ang0)) * Math.PI / 180, l = r * (.5 + rnd() * .6), w = r * (.06 + rnd() * .05), x = Math.cos(a) * r * .8, y = Math.sin(a) * r * .8;
+    gotas += `<path d="M${x - Math.sin(a) * w},${y + Math.cos(a) * w} Q${x + Math.cos(a) * l * .7},${y + Math.sin(a) * l * .7} ${x + Math.cos(a) * l},${y + Math.sin(a) * l} Q${x + Math.cos(a) * l * .7},${y + Math.sin(a) * l * .7} ${x + Math.sin(a) * w},${y - Math.cos(a) * w} Z"/><circle cx="${x + Math.cos(a) * (l + w * 1.4)}" cy="${y + Math.sin(a) * (l + w * 1.4)}" r="${w * 1.15}"/>`; }
+  const S = r * 3.2;
+  return `<svg class="splash" style="left:${cx - S}px;top:${cy - S}px" width="${S * 2}" height="${S * 2}" viewBox="${-S} ${-S} ${S * 2} ${S * 2}">
+<defs><radialGradient id="sg${seed}" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".35" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+<g fill="${cor}"><path d="${d} Z"/>${gotas}</g><path d="${d} Z" fill="url(#sg${seed})"/></svg>`;
+}
 const foot = (secao) => `<div class="foot"><span><span class="n">${PAGE}</span>&nbsp;&nbsp;<b>Tintas Laet</b> · ${secao}</span><span>Parcele em até 12x sem juros (consulte as condições) · tintaslaet.com</span></div>`;
-const pg = (html, secao, bg) => { PAGE++; return `<section class="pg" style="${bg ? 'background:' + bg : ''}">${html}${secao ? foot(secao) : ''}</section>`; };
+const pg = (html, secao, bg) => { PAGE++;
+  const sp = secao ? splash(838, -6, 44, PAGE % 2 ? Y : BLUE, PAGE * 7 + 3, 95, 175) + splash(842, 1052, 30, PAGE % 2 ? BLUE : Y, PAGE * 11 + 5, 150, 250) : '';
+  return `<section class="pg" style="${bg ? 'background:' + bg : ''}">${sp}${html}${secao ? foot(secao) : ''}</section>`; };
 const ph = (src, css) => `<div class="abs" style="${css};background:url('img/${src}') center/cover no-repeat"></div>`;
 
 // ------------------------------------------------------------------ páginas
 function capa() {
-  const baldes = [['emb/pisos efachadas-remove-bg-io.png', 150, 150, -6], ['emb/premiumlavavel-remove-bg-io.png', 290, 168, 0], ['emb/profissional-remove-bg-io.png', 446, 186, 0], ['emb/standard-remove-bg-io.png', 600, 168, 0], ['emb/emborrachada-remove-bg-io.png', 718, 150, 6]];
-  const b = baldes.map(([s, cx, w, r]) => `<img class="abs" src="img/${s}" style="left:${cx - w / 2}px;bottom:${178}px;width:${w}px;transform:rotate(${r}deg);z-index:${w > 180 ? 4 : 3};filter:drop-shadow(0 16px 18px rgba(0,0,0,.35))">`).join('');
+  const baldes = [['emb/pisos efachadas-remove-bg-io.png', 150, 160, -7], ['emb/premiumlavavel-remove-bg-io.png', 292, 176, -2], ['emb/profissional-remove-bg-io.png', 444, 196, 0], ['emb/standard-remove-bg-io.png', 598, 176, 2], ['emb/emborrachada-remove-bg-io.png', 724, 160, 7]];
+  const b = baldes.map(([s, cx, w, r]) => `<img class="abs" src="img/${s}" style="left:${cx - w / 2}px;top:${560 + (196 - w) * .6}px;width:${w}px;transform:rotate(${r}deg);z-index:${w > 190 ? 6 : 5};filter:drop-shadow(0 18px 20px rgba(0,0,0,.45))">`).join('');
   return pg(`
-${ph('foto/sala-areia.webp', 'left:-380px;top:0;width:1250px;height:835px')}
-<div class="abs" style="left:0;top:0;width:816px;height:835px;background:linear-gradient(90deg, rgba(247,244,238,.92) 0%, rgba(247,244,238,.75) 40%, rgba(247,244,238,0) 68%)"></div>
+${ph('foto/sala-areia.webp', 'left:-300px;top:0;width:1170px;height:700px;clip-path:polygon(0 0,100% 0,100% 74%,0 92%)')}
+<div class="abs" style="left:0;top:0;width:816px;height:700px;background:linear-gradient(90deg, rgba(244,247,252,.94) 0%, rgba(244,247,252,.7) 42%, rgba(244,247,252,0) 70%);clip-path:polygon(0 0,100% 0,100% 74%,0 92%)"></div>
+<div class="abs" style="left:0;top:0;width:816px;height:1145px;background:linear-gradient(160deg, ${BLUE} 0%, ${NAVY} 60%, #041F4A 100%);clip-path:polygon(0 92%,100% 74%,100% 100%,0 100%);clip-path:polygon(0 644px,816px 518px,816px 1145px,0 1145px)"></div>
+<div class="abs" style="left:0;top:0;width:816px;height:1145px;background:${Y};clip-path:polygon(0 640px,816px 514px,816px 520px,0 646px)"></div>
+<div class="abs" style="left:0;top:520px;width:816px;height:625px;opacity:.18;background-image:radial-gradient(rgba(255,255,255,.9) 1px, transparent 1.2px);background-size:16px 16px;-webkit-mask-image:linear-gradient(180deg,#000,transparent 70%);mask-image:linear-gradient(180deg,#000,transparent 70%)"></div>
+${splash(444, 700, 135, Y, 41, 150, 390, .55)}
+${splash(120, 770, 44, '#5B9BF0', 17, 90, 300, .5)}
+${splash(705, 640, 40, '#fff', 29, 0, 360).replace('fill="#fff"', 'fill="#fff" opacity=".9"')}
 <img class="abs" src="img/logo-azul.png" style="left:40px;top:44px;height:118px">
 <div class="abs kick" style="left:56px;top:206px">Catálogo 2026 · Edição de balcão</div>
 <div class="abs h" style="left:54px;top:228px;width:640px;font-size:58px;line-height:1">Cores e produtos<br>para sua <em>obra</em></div>
 <div class="abs rule" style="left:56px;top:372px"></div>
 <div class="abs lead" style="left:56px;top:390px;width:310px;font-size:15px">Tintas, massas, ferramentas e um monte de cor pra deixar a casa do jeito que você sonhou.</div>
-<div class="abs" style="left:0;top:835px;width:816px;height:310px;background:${NAVY}"></div>
-<div class="abs" style="left:0;top:829px;width:816px;height:6px;background:${Y}"></div>
 ${b}
-<div class="abs" style="left:48px;right:48px;bottom:56px;display:flex;justify-content:space-between;align-items:center;color:#fff">
-  <div style="font:800 15px/1.2 'Montserrat',sans-serif">6 lojas no ABC<br>e Zona Leste de SP</div>
-  <div style="text-align:right;font:600 12px/1.5 'Poppins',sans-serif;color:rgba(255,255,255,.8)">Parcele em até 12x sem juros (consulte as condições)<br><b style="color:${Y};font:800 15px/1.4 'Montserrat',sans-serif">tintaslaet.com</b></div>
+<div class="abs" style="left:48px;right:48px;top:852px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;z-index:7">
+${[['7', 'cartelas de cores'], ['61', 'produtos neste catálogo'], ['6', 'lojas no ABC e Zona Leste']].map(([n, t]) => `<div style="border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:14px 16px;background:rgba(255,255,255,.06)"><div style="font:400 40px/1 'Bebas Neue',sans-serif;color:${Y};letter-spacing:.02em">${n}</div><div style="font:600 11.5px/1.3 'Poppins',sans-serif;color:rgba(255,255,255,.85);margin-top:4px">${t}</div></div>`).join('')}
+</div>
+<div class="abs" style="left:48px;right:48px;bottom:52px;display:flex;justify-content:space-between;align-items:flex-end;color:#fff;z-index:7">
+  <div style="font:600 12px/1.5 'Poppins',sans-serif;color:rgba(255,255,255,.8)">Parcele em até 12x sem juros<br>(consulte as condições)</div>
+  <div style="font:800 22px/1 'Montserrat',sans-serif;color:${Y}">tintaslaet.com</div>
 </div>`, '');
 }
 
@@ -196,11 +234,29 @@ function escolher() {
 
 // cores: amostra uniforme + ordem por claridade (fica bonito e equilibrado)
 const lum = h => { const n = parseInt(h.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255; return .299 * r + .587 * g + .114 * b; };
-function pick(linha, n) {
+// Degradê harmônico: Branco primeiro, depois neutros (claro -> escuro), depois por família de cor
+// (amarelo -> laranja -> vermelho -> rosa -> roxo -> azul -> verde-água -> verde), cada família do claro pro escuro.
+function hsl(hex) {
+  const n = parseInt(hex.slice(1), 16); let r = (n >> 16) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255;
+  const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, d = mx - mn;
+  let h = 0, s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
+  if (d) { if (mx === r) h = ((g - b) / d) % 6; else if (mx === g) h = (b - r) / d + 2; else h = (r - g) / d + 4; h *= 60; if (h < 0) h += 360; }
+  return { h, s, l };
+}
+function degrade(lista) {
+  const neutro = [], cor = [];
+  lista.forEach(c => { const x = hsl(c.hex); (x.s < .14 || (x.l > .9 && x.s < .35) ? neutro : cor).push({ ...c, ...x }); });
+  neutro.sort((a, b) => b.l - a.l);
+  cor.forEach(c => { c.k = Math.floor(((75 - c.h + 360) % 360) / 24); });
+  cor.sort((a, b) => a.k - b.k || b.l - a.l);
+  return [...neutro, ...cor];
+}
+const BRANCO = { nome: 'Branco', hex: '#FFFFFF' };
+const NOTA_18_17 = `<div class="nota1817"><i></i><span>Brancas e cores claras <b>18L</b>, cores médias e fortes <b>17L</b>. Diferença devido ao espaço necessário no balde para adição de pigmentos.</span></div>`;
+function pick(linha) {
   const rem = new Set(PAL[linha].removidas_do_site || []);
-  const c = PAL[linha].cores.filter(x => x.hex && !rem.has(x.nome));
-  if (c.length <= n) return c;
-  const out = []; for (let i = 0; i < n; i++) out.push(c[Math.floor(i * c.length / n)]); return out;
+  const c = PAL[linha].cores.filter(x => x.hex && !rem.has(x.nome) && !/^branco$/i.test(x.nome));
+  return degrade([BRANCO, ...c]);
 }
 const sw = (c, h) => `<div><div style="height:${h}px;border-radius:10px;background:${c.hex};box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)"></div><div style="font:600 10.5px/1.2 'Poppins',sans-serif;color:${NAVY};margin-top:6px;min-height:26px">${c.nome}</div></div>`;
 const AVISO = `<div style="font:500 10px/1.3 'Poppins',sans-serif;color:#8A90A0">As cores impressas podem variar. Confira no leque da loja.</div>`;
@@ -340,6 +396,9 @@ ${P.map(([t, d], i) => `<div class="card" style="padding:18px 14px;height:320px"
 
 function lojas(qr) {
   return pg(`
+<div class="abs" style="left:0;top:0;width:816px;height:1145px;background:linear-gradient(160deg, ${BLUE} 0%, ${NAVY} 55%, #041F4A 100%)"></div>
+${splash(820, 30, 60, Y, 77, 90, 180)}${splash(-10, 760, 34, '#5B9BF0', 53, -80, 80)}
+<div class="abs" style="right:0;top:0;width:460px;height:420px;opacity:.2;background-image:radial-gradient(rgba(255,255,255,.9) 1px, transparent 1.2px);background-size:16px 16px;-webkit-mask-image:radial-gradient(ellipse at 100% 0%,#000,transparent 70%);mask-image:radial-gradient(ellipse at 100% 0%,#000,transparent 70%)"></div>
 <img class="abs" src="img/logo-branco.png" style="left:40px;top:44px;height:104px">
 <div class="abs kick w" style="left:56px;top:178px">Venha nos visitar</div>
 <div class="abs h" style="left:54px;top:200px;color:#fff;font-size:46px">Nossas <em style="color:${Y}">6 lojas</em></div>
@@ -393,12 +452,13 @@ function topo(ids, compacto) {
   </div></div>`; }).join('')}</div>`;
 }
 function corPage(ids, titulo, sub, linha, n, cols, h, nota) {
-  const c = pick(linha, n);
+  const c = pick(linha);
   return pg(`${topo(ids)}
 <div class="abs kick" style="left:48px;top:388px">Cores</div>
 <div class="abs" style="left:48px;top:406px;font:800 22px/1.1 'Montserrat',sans-serif;color:${NAVY}">${titulo}</div>
-<div class="abs lead" style="left:48px;top:436px;width:700px;font-size:12.5px">${sub}</div>
-<div class="abs" style="left:48px;top:476px;width:720px;display:grid;grid-template-columns:repeat(${cols},1fr);gap:12px 12px">${c.map(x => sw(x, h)).join('')}</div>
+<div class="abs lead" style="left:48px;top:436px;width:720px;font-size:12.5px">${sub}</div>
+<div class="abs" style="left:48px;top:462px;width:720px">${NOTA_18_17}</div>
+<div class="abs" style="left:48px;top:506px;width:720px;display:grid;grid-template-columns:repeat(${cols},1fr);gap:12px 12px">${c.map(x => sw(x, h)).join('')}</div>
 <div class="abs" style="left:48px;right:48px;top:1056px;display:flex;justify-content:space-between">${AVISO}<div style="font:600 10px/1.3 'Poppins',sans-serif;color:${NAVY}">${nota}</div></div>`, 'Cores');
 }
 function aberturaCores() {
@@ -483,7 +543,7 @@ function madeiraCimento() {
 <div class="abs" style="left:48px;top:604px;width:720px;height:1px;background:#E3DED3"></div>
 <div class="abs kick" style="left:48px;top:628px">Cores</div>
 <div class="abs" style="left:48px;top:646px;font:800 20px/1.1 'Montserrat',sans-serif;color:${NAVY}">Efeito Cimento Queimado</div>
-<div class="abs" style="left:48px;top:684px;width:720px;display:grid;grid-template-columns:repeat(8,1fr);gap:12px">${CIMENTO.map(c => sw(c, 58)).join('')}</div>
+<div class="abs" style="left:48px;top:684px;width:720px;display:grid;grid-template-columns:repeat(8,1fr);gap:12px">${degrade(CIMENTO).map(c => sw(c, 58)).join('')}</div>
 <div class="abs" style="left:48px;right:48px;top:1056px;display:flex;justify-content:space-between">${AVISO}<div style="font:600 10px/1.3 'Poppins',sans-serif;color:${NAVY}">3 tons · 15 cores</div></div>`, 'Cores');
 }
 function complKit() {
@@ -509,15 +569,14 @@ ${cards.map(([n, img, t, tam]) => `<div class="card" style="height:392px;overflo
 // cartela completa: amostras menores (10 por linha) pra caber a linha inteira numa página
 const swc = c => `<div><div style="height:34px;border-radius:7px;background:${c.hex};box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)"></div><div style="font:600 8.4px/1.15 'Poppins',sans-serif;color:${NAVY};margin-top:4px;min-height:19px">${c.nome}</div></div>`;
 function corCompleta(ids, titulo, sub, linha, nota, compacto) {
-  const rem = new Set(PAL[linha].removidas_do_site || []);
-  const c = PAL[linha].cores.filter(x => x.hex && !rem.has(x.nome));
+  const c = pick(linha);
   const t0 = compacto ? 270 : 388;
   return pg(`${topo(ids, compacto)}
 <div class="abs kick" style="left:48px;top:${t0}px">Cores</div>
 <div class="abs" style="left:48px;top:${t0 + 18}px;font:800 22px/1.1 'Montserrat',sans-serif;color:${NAVY}">${titulo}</div>
-<div class="abs lead" style="left:48px;top:${t0 + 48}px;width:700px;font-size:12px">${sub}</div>
-<div class="abs" style="left:48px;top:${t0 + 80}px;width:720px;display:grid;grid-template-columns:repeat(10,1fr);gap:6px 8px">${c.map(swc).join('')}</div>
-<div class="abs" style="left:48px;right:48px;top:1056px;display:flex;justify-content:space-between">${AVISO}<div style="font:600 10px/1.3 'Poppins',sans-serif;color:${NAVY}">${c.length} ${nota}</div></div>`, 'Cores');
+<div class="abs" style="left:48px;top:${t0 + 44}px;width:720px">${NOTA_18_17}</div>
+<div class="abs" style="left:48px;top:${t0 + 100}px;width:720px;display:grid;grid-template-columns:repeat(10,1fr);gap:4px 8px">${c.map(swc).join('')}</div>
+<div class="abs" style="left:48px;right:48px;top:1056px;display:flex;justify-content:space-between">${AVISO}<div style="font:600 10px/1.3 'Poppins',sans-serif;color:${NAVY}">Branco + ${c.length - 1} ${nota}</div></div>`, 'Cores');
 }
 
 (async () => {
@@ -525,12 +584,12 @@ function corCompleta(ids, titulo, sub, linha, nota, compacto) {
   const qr = (await QR.toString('https://wa.me/5511977140964?text=' + encodeURIComponent('Olá! Vi o catálogo da Tintas Laet na loja e quero saber mais.'), { type: 'svg', margin: 0, errorCorrectionLevel: 'M', color: { dark: NAVY, light: '#FFFFFF' } })).replace('<svg ', '<svg width="150" height="150" ');
   const pages = [
     capa(), escolher(),
-    corPage(['super-profissional', 'direto-no-gesso'], 'Cartela Super Profissional e Direto no Gesso', 'As 34 cores da cartela. Mesmas cores nas duas tintas.', 'super-profissional', 34, 8, 62, '34 cores'),
+    corPage(['super-profissional', 'direto-no-gesso'], 'Cartela Super Profissional e Direto no Gesso', 'As 34 cores da cartela. Mesmas cores nas duas tintas.', 'super-profissional', 35, 8, 58, 'Branco + 34 cores'),
     corCompleta(['premium-lavavel', 'emborrachada'], 'Paleta Grande Laet · todas as cores', 'Todas as cores da Paleta Grande, usada na Premium Lavável e na Emborrachada.', 'paleta-grande', 'cores', true),
     corCompleta(['standard'], 'Cartela 1ª Linha Standard · todas as cores', 'Todas as cores da 1ª Linha Standard.', 'standard', 'cores', false),
-    corPage(['piso-fachada'], 'Cartela Pisos & Fachadas', 'As 13 cores da linha.', 'piso-fachada', 13, 5, 120, '13 cores'),
-    corPage(['esmalte', 'epoxi'], 'Cartela Esmalte Ecológico e Epóxi Base Água', 'As 32 cores, das claras às fortes. A Epóxi vem branca; pra deixar colorida, é só adicionar o Corante Premium.', 'esmalte-ecologico', 32, 8, 62, '32 cores'),
-    corPage(['latex-vinil'], 'Cartela Latex Vinil', 'As 18 cores da linha.', 'latex-vinil', 18, 6, 110, '18 cores'),
+    corPage(['piso-fachada'], 'Cartela Pisos & Fachadas', 'As 13 cores da linha.', 'piso-fachada', 14, 7, 96, 'Branco + 13 cores'),
+    corPage(['esmalte', 'epoxi'], 'Cartela Esmalte Ecológico e Epóxi Base Água', 'As 32 cores, das claras às fortes. A Epóxi vem branca; pra deixar colorida, é só adicionar o Corante Premium.', 'esmalte-ecologico', 33, 8, 58, 'Branco + 32 cores'),
+    corPage(['latex-vinil'], 'Cartela Latex Vinil', 'As 18 cores da linha.', 'latex-vinil', 19, 7, 90, 'Branco + 18 cores'),
     madeiraCimento(), massas(), complKit(),
     ferramentas(FERR_A, 'Rolos e refis', 'Com cabo, já sai pintando. O refil encaixa no cabo reforçado.', 'Ferramentas', 4, 136),
     ferramentas(FERR_B, 'Proteger, aplicar e lixar', 'Tudo o que faz a pintura sair limpa e bem acabada.', 'Acessórios', 4, 162),
