@@ -408,7 +408,7 @@ ${LOJAS.map(([n, b, c, e, w]) => `<div style="border:1.5px solid rgba(255,255,25
   const els = await page.$$('.pg'); const jpgs = [];
   for (let i = 0; i < els.length; i++) {
     const f = path.join(OUT, `pagina-${String(i + 1).padStart(2, '0')}.jpg`);
-    await els[i].screenshot({ path: f, type: 'jpeg', quality: 92 }); jpgs.push(f);
+    await els[i].screenshot({ path: f, type: 'jpeg', quality: 84 }); jpgs.push(f);
   }
   console.log('✓', jpgs.length, 'páginas');
   // PDF: cada página = 1 imagem achatada de 300 dpi em 216 x 303 mm
