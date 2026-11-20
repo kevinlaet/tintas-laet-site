@@ -1,12 +1,12 @@
 CATÁLOGO-REVISTA TINTAS LAET 2026 (sem preço)
 
-Formato: A4 retrato (210 x 297 mm) + 3 mm de sangria em cada lado = 216 x 303 mm. 20 páginas (grampo).
+Formato: A4 retrato (210 x 297 mm) + 3 mm de sangria em cada lado = 216 x 303 mm. 16 páginas (grampo).
 Margem de segurança: nenhum texto a menos de 5 mm do corte.
 Resolução: cada página renderizada a 300 dpi (2550 x 3578 px).
 
 Arquivos:
 - catalogo-laet-A4-com-sangria.pdf  -> mandar pra gráfica (pedir corte em A4, já tem a sangria)
-- paginas/pagina-01.jpg ... 20       -> prévia/imagem de cada página
+- paginas/pagina-01.jpg ... 16       -> prévia/imagem de cada página
 - fonte/catalogo.html                -> página editável (abre no navegador)
 - fonte/gerar.js                     -> gera tudo de novo: node gerar.js (precisa de Playwright + qrcode)
 - fonte/img, fonte/fonts, fonte/paleta-oficial.json -> fotos, embalagens, fontes e cores oficiais
