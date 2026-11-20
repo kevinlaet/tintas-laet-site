@@ -147,9 +147,8 @@ ${b}
 }
 
 function indice() {
-  const it = [['03', 'Como escolher a tinta certa'], ['04', 'Cores Super Profissional e Direto no Gesso'], ['05', 'Cores Premium Lavável e Emborrachada'], ['06', 'Cores Standard'], ['07', 'Cores Pisos & Fachadas e Esmalte'],
-    ['08', 'Tintas para cada parede'], ['09', 'Interior: Super Profissional e Standard'], ['10', 'Premium Lavável e Direto no Gesso'], ['11', 'Emborrachada e Latex Vinil'], ['12', 'Piso, fachada e azulejo'], ['13', 'Madeira e metal'],
-    ['14', 'Massas e texturas'], ['15', 'Efeito Cimento Queimado e Kit Pintura'], ['16', 'Complementos'], ['17', 'Rolos e refis'], ['18', 'Para proteger, aplicar e lixar'], ['19', 'Passo a passo da pintura'], ['20', 'Nossas lojas']];
+  const it = [['03', 'Como escolher a tinta certa'], ['04', 'A lata certa, na cor certa'], ['05', 'Super Profissional e Direto no Gesso'], ['06', 'Premium Lavável e Emborrachada'], ['07', '1ª Linha Standard'], ['08', 'Pisos & Fachadas'], ['09', 'Esmalte Ecológico Base Água'], ['10', 'Latex Vinil'],
+    ['11', 'Epóxi Base Água e Verniz Base Água'], ['12', 'Massas e texturas'], ['13', 'Efeito Cimento Queimado'], ['14', 'Complementos'], ['15', 'Kit Pintura'], ['16', 'Rolos e refis'], ['17', 'Proteger, aplicar e lixar'], ['18', 'Passo a passo da pintura'], ['19', 'Dúvidas de balcão'], ['20', 'Nossas lojas']];
   return pg(`
 ${ph('foto/banner-leque.jpg', 'left:0;top:0;width:816px;height:420px;background-position:60% 40%')}
 <div class="abs kick" style="left:48px;top:464px">Nesta edição</div>
@@ -359,26 +358,132 @@ ${LOJAS.map(([n, b, c, e, w]) => `<div style="border:1.5px solid rgba(255,255,25
 </div>`, '', NAVY);
 }
 
+// ---------- v2 (20/11): páginas de cor com a lata no topo ----------
+const T = id => TINTAS.find(x => x.id === id);
+function topo(ids) {
+  if (ids.length === 1) {
+    const t = T(ids[0]);
+    return `<div class="abs card" style="left:48px;top:58px;width:720px;height:300px;overflow:hidden">
+  <div class="abs" style="left:0;top:0;width:250px;height:300px;background:linear-gradient(180deg,#fff,#F2F4F8)"></div>
+  <div class="abs" style="left:18px;top:18px;width:214px;height:264px;display:flex;align-items:center;justify-content:center"><img src="img/${t.img}" style="max-width:100%;max-height:100%;filter:drop-shadow(0 12px 14px rgba(6,43,99,.18))"></div>
+  <div class="abs" style="left:278px;top:30px;width:418px">
+    <div class="kick">${t.tag}</div>
+    <div style="font:800 28px/1.08 'Montserrat',sans-serif;color:${NAVY};margin-top:8px;letter-spacing:-.015em">${t.nome}</div>
+    <div class="rule" style="margin:12px 0"></div>
+    <div style="font:400 12.5px/1.55 'Poppins',sans-serif;color:#4A5266">${t.txt}</div>
+    <div class="lbl" style="margin:12px 0 7px">Tamanhos</div><div class="sz">${t.tam.map(x => `<span>${x}</span>`).join('')}</div>
+  </div></div>`;
+  }
+  return `<div class="abs" style="left:48px;top:58px;width:720px;display:grid;grid-template-columns:1fr 1fr;gap:14px">${ids.map(id => { const t = T(id); return `<div class="card" style="height:300px;position:relative;overflow:hidden">
+  <div class="abs" style="left:0;top:0;width:140px;height:300px;background:linear-gradient(180deg,#fff,#F2F4F8)"></div>
+  <div class="abs" style="left:12px;top:16px;width:118px;height:268px;display:flex;align-items:center;justify-content:center"><img src="img/${t.img}" style="max-width:100%;max-height:100%;filter:drop-shadow(0 10px 12px rgba(6,43,99,.18))"></div>
+  <div class="abs" style="left:156px;top:24px;right:16px">
+    <div class="kick" style="font-size:9px;letter-spacing:.2em">${t.tag}</div>
+    <div style="font:800 18px/1.1 'Montserrat',sans-serif;color:${NAVY};margin-top:7px">${t.nome}</div>
+    <div class="rule" style="margin:9px 0;width:32px"></div>
+    <div style="font:400 11px/1.5 'Poppins',sans-serif;color:#4A5266">${t.txt}</div>
+    <div class="sz" style="margin-top:10px;gap:4px">${t.tam.map(x => `<span style="font-size:9.5px;padding:5px 7px">${x}</span>`).join('')}</div>
+  </div></div>`; }).join('')}</div>`;
+}
+function corPage(ids, titulo, sub, linha, n, cols, h, nota) {
+  const c = pick(linha, n);
+  return pg(`${topo(ids)}
+<div class="abs kick" style="left:48px;top:388px">Cores</div>
+<div class="abs" style="left:48px;top:406px;font:800 22px/1.1 'Montserrat',sans-serif;color:${NAVY}">${titulo}</div>
+<div class="abs lead" style="left:48px;top:436px;width:700px;font-size:12.5px">${sub}</div>
+<div class="abs" style="left:48px;top:476px;width:720px;display:grid;grid-template-columns:repeat(${cols},1fr);gap:12px 12px">${c.map(x => sw(x, h)).join('')}</div>
+<div class="abs" style="left:48px;right:48px;top:1056px;display:flex;justify-content:space-between">${AVISO}<div style="font:600 10px/1.3 'Poppins',sans-serif;color:${NAVY}">${nota}</div></div>`, 'Cores');
+}
+function aberturaCores() {
+  const L = [['Super Profissional e Direto no Gesso', '34 cores'], ['Premium Lavável e Emborrachada', 'Paleta Grande'], ['1ª Linha Standard', '+80 cores'], ['Pisos & Fachadas', '13 cores'], ['Esmalte Ecológico Base Água', '32 cores'], ['Latex Vinil', '18 cores']];
+  return pg(`
+${ph('foto/sala-azul-laet.webp', 'left:0;top:0;width:816px;height:610px;background-position:72% 50%')}
+<div class="abs kick" style="left:48px;top:652px">Tintas e cores</div>
+<div class="abs h" style="left:46px;top:674px;width:600px;font-size:52px">A lata certa, <em>na cor certa</em></div>
+<div class="abs rule" style="left:48px;top:806px"></div>
+<div class="abs lead" style="left:48px;top:826px;width:330px">Nas próximas páginas, cada tinta aparece junto da cartela dela. Gostou de uma cor? Mostra a página no balcão que a gente acha no leque.</div>
+<div class="abs" style="left:420px;top:822px;width:348px">${L.map(([a, b]) => `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #E3DED3;font:600 12px/1.2 'Poppins',sans-serif;color:${NAVY}"><span>${a}</span><b style="font:800 11px/1.2 'Montserrat',sans-serif;color:${YD}">${b}</b></div>`).join('')}</div>`, 'Cores');
+}
+function brancos() {
+  return pg(`
+<div class="abs kick" style="left:48px;top:62px">Só no branco e no incolor</div>
+${prodBloco(T('epoxi'), 92)}
+${prodBloco(T('verniz'), 562)}`, 'Epóxi e verniz');
+}
+function cimento2() {
+  return pg(`
+${ph('foto/usando-cimento-queimado.png', 'left:0;top:0;width:400px;height:1145px;background-position:50% 50%')}
+<div class="abs kick" style="left:440px;top:72px">Efeito decorativo</div>
+<div class="abs h" style="left:438px;top:94px;width:330px;font-size:42px">Efeito Cimento <em>Queimado</em></div>
+<div class="abs rule" style="left:440px;top:206px"></div>
+<div class="abs lead" style="left:440px;top:226px;width:320px">Acabamento moderno, com cara de cimento queimado, e aplicação fácil. Vai em parede e teto, dentro e fora de casa.</div>
+<div class="abs card" style="left:440px;top:350px;width:328px;height:330px;display:flex;align-items:center;justify-content:center"><img src="img/emb/efeitocimentoqueimado.png" style="width:260px"></div>
+<div class="abs" style="left:440px;top:712px;width:328px">
+  <div class="lbl" style="margin-top:0">Tamanhos</div><div class="sz"><span>5kg</span><span>20kg</span></div>
+  <div class="lbl">Cores</div><div style="font:600 13px/1.4 'Poppins',sans-serif;color:${NAVY}">15 cores. Peça o mostruário no balcão.</div>
+  <div class="lbl">Aplique com</div><div><span class="chip">Desempenadeira Decorativa INOX</span><span class="chip">Espátula de Silicone</span></div>
+</div>`, 'Efeito Cimento Queimado');
+}
+function kit() {
+  return pg(`
+${ph('foto/banner-pintando.jpg', 'left:0;top:0;width:816px;height:470px;background-position:50% 35%')}
+<div class="abs kick" style="left:48px;top:510px">Pra começar já</div>
+<div class="abs h" style="left:46px;top:532px;width:600px">Kit Pintura <em>5 itens</em></div>
+<div class="abs lead" style="left:48px;top:592px;width:620px">Tudo o que você precisa pra começar a pintar, num kit só. É só escolher a tinta.</div>
+<div class="abs card" style="left:48px;top:650px;width:720px;height:380px;overflow:hidden">
+  <div class="abs" style="left:0;top:0;width:300px;height:380px;background:linear-gradient(180deg,#fff,#F2F4F8)"></div>
+  <div class="abs" style="left:24px;top:24px;width:252px;height:332px;display:flex;align-items:center;justify-content:center"><img src="img/ferr/kit-5-itens.jfif" style="max-width:100%;max-height:100%"></div>
+  <div class="abs" style="left:330px;top:40px;width:360px">
+    <div class="lbl" style="margin-top:0">Vem no kit</div>
+    ${['Rolo 23cm', 'Cabo para rolo 23cm', 'Rolo com cabo P', 'Pincel M', 'Bandeja G'].map((x, i) => `<div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid #EEE9DF"><span style="font:400 26px/1 'Bebas Neue',sans-serif;color:${Y};width:26px">${i + 1}</span><span style="font:700 15px/1.2 'Montserrat',sans-serif;color:${NAVY}">${x}</span></div>`).join('')}
+    <div class="sz" style="margin-top:18px"><span>Kit 5 itens</span></div>
+  </div></div>`, 'Kit Pintura');
+}
+function passos2() {
+  const P = [['Proteja', 'Forre o chão com lona preta ou papelão e passe fita crepe no rodapé e nas tomadas.'],
+    ['Prepare', 'Parede velha que esfarela: Fundo Preparador. Parede nova ou reboco novo: Seladora.'],
+    ['Nivele', 'Dentro de casa, Massa Corrida. Fora ou onde pega respingo de água, Massa Acrílica. Depois, lixa.'],
+    ['Pinte', 'Comece pelos cantos com a trincha e termine com o rolo. Duas demãos, respeitando o tempo de secagem.'],
+    ['Capriche', 'Tire a fita com a tinta ainda fresca e limpe as ferramentas logo depois.']];
+  return pg(`
+<div class="abs kick" style="left:48px;top:62px">Passo a passo</div>
+<div class="abs h" style="left:46px;top:84px;width:600px">Pintura bem feita em <em>5 passos</em></div>
+<div class="abs" style="left:48px;top:210px;width:720px">${P.map(([t, d], i) => `<div class="card" style="display:flex;gap:26px;align-items:center;padding:34px 34px;margin-bottom:18px">
+ <div style="font:400 76px/1 'Bebas Neue',sans-serif;color:${Y};width:64px;flex:none">${String(i + 1).padStart(2, '0')}</div>
+ <div><div style="font:800 22px/1.1 'Montserrat',sans-serif;color:${NAVY}">${t}</div><div style="font:400 13.5px/1.55 'Poppins',sans-serif;color:#4A5266;margin-top:6px">${d}</div></div></div>`).join('')}</div>`, 'Passo a passo');
+}
+function duvidas() {
+  const Q = [['Massa Corrida ou Massa Acrílica?', 'Massa Corrida é só pra área de dentro e seca. Banheiro, cozinha e área de fora pedem Massa Acrílica.'],
+    ['Seladora ou Fundo Preparador?', 'Parede nova, que chupa muita tinta: Seladora. Parede velha, que esfarela ou descasca: Fundo Preparador.'],
+    ['Precisa de fundo no gesso?', 'Com a Tinta Direto no Gesso, não. Ela vai direto no gesso e no drywall.'],
+    ['Laje com infiltração?', 'Tinta Emborrachada, a nossa tinta de borracha. Resolve até 100% do problema de infiltração.'],
+    ['Dá pra pintar azulejo?', 'Dá, com a Epóxi Base Água. Renova sem quebrar e sem cheiro forte.'],
+    ['A Standard pode diluir?', 'Pode, em até 20%. Ela é concentrada e grossa.']];
+  return pg(`
+<div class="abs kick" style="left:48px;top:62px">Dúvidas de balcão</div>
+<div class="abs h" style="left:46px;top:84px;width:600px">O que mais <em>perguntam</em> pra gente</div>
+<div class="abs" style="left:48px;top:250px;width:720px;display:grid;grid-template-columns:1fr 1fr;gap:16px">${Q.map(([q, a]) => `<div class="card" style="padding:24px 24px;height:230px;border-top:4px solid ${Y}">
+ <div style="font:800 17px/1.2 'Montserrat',sans-serif;color:${NAVY}">${q}</div><div style="font:400 13px/1.6 'Poppins',sans-serif;color:#4A5266;margin-top:12px">${a}</div></div>`).join('')}</div>
+<div class="abs" style="left:48px;top:1000px;width:720px;font:600 13px/1.4 'Poppins',sans-serif;color:${NAVY}">Ficou outra dúvida? Chama no WhatsApp <b>(11) 97714-0964</b> ou fala com a gente no balcão.</div>`, 'Dúvidas');
+}
+
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
   const qr = (await QR.toString('https://wa.me/5511977140964?text=' + encodeURIComponent('Olá! Vi o catálogo da Tintas Laet na loja e quero saber mais.'), { type: 'svg', margin: 0, errorCorrectionLevel: 'M', color: { dark: NAVY, light: '#FFFFFF' } })).replace('<svg ', '<svg width="150" height="150" ');
   const pages = [
-    capa(), indice(), escolher(),
-    cores('Super Profissional<br>e Direto no Gesso', 'As 34 cores da cartela. Mesmas cores nas duas linhas.', 'Super Profissional · Direto no Gesso', 'super-profissional', 34, 6, 92, 34),
-    cores('Premium Lavável<br>e Emborrachada', 'Uma seleção da Paleta Grande Laet. Peça o leque completo no balcão.', 'Premium Lavável · Emborrachada', 'paleta-grande', 36, 6, 92, 107),
-    cores('Standard', 'Uma seleção das cores da 1ª Linha Standard. Peça o leque completo no balcão.', '1ª Linha Standard', 'standard', 36, 6, 92, 83),
-    cores4(),
-    abertura(),
-    dupla('super-profissional', 'standard', 'Tintas', 'Tintas · interior'),
-    dupla('premium-lavavel', 'direto-no-gesso', 'Tintas', 'Tintas · dentro e fora'),
-    dupla('emborrachada', 'latex-vinil', 'Tintas', 'Tintas · proteção e economia'),
-    dupla('piso-fachada', 'epoxi', 'Tintas', 'Tintas · piso, fachada e azulejo'),
-    dupla('esmalte', 'verniz', 'Tintas', 'Tintas · madeira e metal'),
-    massas(), cimento(), complementos(),
+    capa(), indice(), escolher(), aberturaCores(),
+    corPage(['super-profissional', 'direto-no-gesso'], 'Cartela Super Profissional e Direto no Gesso', 'As 34 cores da cartela. Mesmas cores nas duas tintas.', 'super-profissional', 34, 8, 62, '34 cores'),
+    corPage(['premium-lavavel', 'emborrachada'], 'Paleta Grande Laet', 'Uma seleção da Paleta Grande, usada na Premium Lavável e na Emborrachada. Peça o leque completo no balcão.', 'paleta-grande', 40, 8, 62, 'Paleta Grande · seleção'),
+    corPage(['standard'], 'Cartela 1ª Linha Standard', 'Uma seleção das mais de 80 cores da Standard. Peça o leque completo no balcão.', 'standard', 40, 8, 62, '1ª Linha Standard · seleção'),
+    corPage(['piso-fachada'], 'Cartela Pisos & Fachadas', 'As 13 cores da linha.', 'piso-fachada', 13, 5, 120, '13 cores'),
+    corPage(['esmalte'], 'Cartela Esmalte Ecológico', 'As 32 cores, das claras às fortes. Acabamento brilhante.', 'esmalte-ecologico', 32, 8, 70, '32 cores'),
+    corPage(['latex-vinil'], 'Cartela Latex Vinil', 'As 18 cores da linha.', 'latex-vinil', 18, 6, 110, '18 cores'),
+    brancos(), massas(), cimento2(), complementos(), kit(),
     ferramentas(FERR_A, 'Rolos e refis', 'Com cabo, já sai pintando. O refil encaixa no cabo reforçado.', 'Ferramentas', 4, 136),
     ferramentas(FERR_B, 'Proteger, aplicar e lixar', 'Tudo o que faz a pintura sair limpa e bem acabada.', 'Acessórios', 4, 162),
-    passos(), lojas(qr),
+    passos2(), duvidas(), lojas(qr),
   ];
+
   if (pages.length % 4) throw new Error('páginas não múltiplas de 4: ' + pages.length);
   const html = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Catálogo Tintas Laet 2026</title><style>${CSS}</style></head><body>${pages.join('\n')}</body></html>`;
   const src = path.join(DIR, 'catalogo.html'); fs.writeFileSync(src, html);
@@ -405,6 +510,20 @@ ${LOJAS.map(([n, b, c, e, w]) => `<div style="border:1.5px solid rgba(255,255,25
     return out;
   });
   console.log(prob.length ? 'ATENÇÃO:\n' + prob.join('\n') : '✓ margens e preço ok');
+  const sob = await page.evaluate(() => {
+    const o = [];
+    document.querySelectorAll('.pg').forEach((pg, i) => {
+      const r0 = pg.getBoundingClientRect();
+      pg.querySelectorAll('.abs *').forEach(e => {
+        if (e.closest('.foot') || e.children.length || !e.textContent.trim()) return;
+        const box = e.closest('.abs').getBoundingClientRect();
+        if (box.top - r0.top > 1040) return;
+        if (e.getBoundingClientRect().bottom - r0.top > 1050) o.push('p' + (i + 1) + ': invade rodape ' + e.textContent.trim().slice(0, 25));
+      });
+    });
+    return o;
+  });
+  console.log(sob.length ? sob.join('\n') : 'OK nada invade o rodape');
   const els = await page.$$('.pg'); const jpgs = [];
   for (let i = 0; i < els.length; i++) {
     const f = path.join(OUT, `pagina-${String(i + 1).padStart(2, '0')}.jpg`);
