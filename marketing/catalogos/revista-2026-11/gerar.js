@@ -366,7 +366,8 @@ ${LOJAS.map(([n, b, c, e, w]) => `<div style="border:1.5px solid rgba(255,255,25
 
 // ---------- v2 (20/11): páginas de cor com a lata no topo ----------
 const T = id => TINTAS.find(x => x.id === id);
-function topo(ids) {
+function topo(ids, compacto) {
+  if (compacto) return topo(ids).replace(/height:300px/g, 'height:190px').replace(/height:268px/g, 'height:160px').replace(/height:264px/g, 'height:154px').replace(/<div style="font:400 11px\/1.5 'Poppins',sans-serif;color:#4A5266">[^<]*<\/div>/g, '').replace(/<div style="font:400 12.5px\/1.55 'Poppins',sans-serif;color:#4A5266">[^<]*<\/div>/g, '');
   if (ids.length === 1) {
     const t = T(ids[0]);
     return `<div class="abs card" style="left:48px;top:58px;width:720px;height:300px;overflow:hidden">
@@ -505,14 +506,28 @@ ${cards.map(([n, img, t, tam]) => `<div class="card" style="height:392px;overflo
 </div>`, 'Complementos e kit');
 }
 
+// cartela completa: amostras menores (10 por linha) pra caber a linha inteira numa página
+const swc = c => `<div><div style="height:34px;border-radius:7px;background:${c.hex};box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)"></div><div style="font:600 8.4px/1.15 'Poppins',sans-serif;color:${NAVY};margin-top:4px;min-height:19px">${c.nome}</div></div>`;
+function corCompleta(ids, titulo, sub, linha, nota, compacto) {
+  const rem = new Set(PAL[linha].removidas_do_site || []);
+  const c = PAL[linha].cores.filter(x => x.hex && !rem.has(x.nome));
+  const t0 = compacto ? 270 : 388;
+  return pg(`${topo(ids, compacto)}
+<div class="abs kick" style="left:48px;top:${t0}px">Cores</div>
+<div class="abs" style="left:48px;top:${t0 + 18}px;font:800 22px/1.1 'Montserrat',sans-serif;color:${NAVY}">${titulo}</div>
+<div class="abs lead" style="left:48px;top:${t0 + 48}px;width:700px;font-size:12px">${sub}</div>
+<div class="abs" style="left:48px;top:${t0 + 80}px;width:720px;display:grid;grid-template-columns:repeat(10,1fr);gap:6px 8px">${c.map(swc).join('')}</div>
+<div class="abs" style="left:48px;right:48px;top:1056px;display:flex;justify-content:space-between">${AVISO}<div style="font:600 10px/1.3 'Poppins',sans-serif;color:${NAVY}">${c.length} ${nota}</div></div>`, 'Cores');
+}
+
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
   const qr = (await QR.toString('https://wa.me/5511977140964?text=' + encodeURIComponent('Olá! Vi o catálogo da Tintas Laet na loja e quero saber mais.'), { type: 'svg', margin: 0, errorCorrectionLevel: 'M', color: { dark: NAVY, light: '#FFFFFF' } })).replace('<svg ', '<svg width="150" height="150" ');
   const pages = [
     capa(), escolher(),
     corPage(['super-profissional', 'direto-no-gesso'], 'Cartela Super Profissional e Direto no Gesso', 'As 34 cores da cartela. Mesmas cores nas duas tintas.', 'super-profissional', 34, 8, 62, '34 cores'),
-    corPage(['premium-lavavel', 'emborrachada'], 'Paleta Grande Laet', 'Uma seleção da Paleta Grande, usada na Premium Lavável e na Emborrachada. Peça o leque completo no balcão.', 'paleta-grande', 40, 8, 62, 'Paleta Grande · seleção'),
-    corPage(['standard'], 'Cartela 1ª Linha Standard', 'Uma seleção das mais de 80 cores da Standard. Peça o leque completo no balcão.', 'standard', 40, 8, 62, '1ª Linha Standard · seleção'),
+    corCompleta(['premium-lavavel', 'emborrachada'], 'Paleta Grande Laet · todas as cores', 'Todas as cores da Paleta Grande, usada na Premium Lavável e na Emborrachada.', 'paleta-grande', 'cores', true),
+    corCompleta(['standard'], 'Cartela 1ª Linha Standard · todas as cores', 'Todas as cores da 1ª Linha Standard.', 'standard', 'cores', false),
     corPage(['piso-fachada'], 'Cartela Pisos & Fachadas', 'As 13 cores da linha.', 'piso-fachada', 13, 5, 120, '13 cores'),
     corPage(['esmalte', 'epoxi'], 'Cartela Esmalte Ecológico e Epóxi Base Água', 'As 32 cores, das claras às fortes. A Epóxi vem branca; pra deixar colorida, é só adicionar o Corante Premium.', 'esmalte-ecologico', 32, 8, 62, '32 cores'),
     corPage(['latex-vinil'], 'Cartela Latex Vinil', 'As 18 cores da linha.', 'latex-vinil', 18, 6, 110, '18 cores'),
