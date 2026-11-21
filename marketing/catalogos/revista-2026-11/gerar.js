@@ -164,25 +164,27 @@ const ph = (src, css) => `<div class="abs" style="${css};background:url('img/${s
 
 // ------------------------------------------------------------------ páginas
 function capa() {
-  // capa limpa, estilo revista: foto grande, logo, título, latas com respiro embaixo
-  const baldes = [['emb/pisos efachadas-remove-bg-io.png', 168, 132], ['emb/premiumlavavel-remove-bg-io.png', 298, 140], ['emb/profissional-remove-bg-io.png', 438, 150], ['emb/standard-remove-bg-io.png', 576, 140], ['emb/emborrachada-remove-bg-io.png', 704, 132]];
-  const b = baldes.map(([s, cx, w]) => `<img class="abs" src="img/${s}" style="left:${cx - w / 2}px;bottom:${238 + (150 - w) * .15}px;width:${w}px;z-index:5;filter:drop-shadow(0 14px 14px rgba(6,43,99,.22))">`).join('');
+  const baldes = [['emb/pisos efachadas-remove-bg-io.png', 104, 176, -6, 4], ['emb/premiumlavavel-remove-bg-io.png', 254, 196, -2, 5], ['emb/profissional-remove-bg-io.png', 408, 222, 0, 6], ['emb/standard-remove-bg-io.png', 562, 196, 2, 5], ['emb/emborrachada-remove-bg-io.png', 712, 176, 6, 4]];
+  const b = baldes.map(([s, cx, w, r, z]) => `<img class="abs" src="img/${s}" style="left:${cx - w / 2}px;top:${730 + (222 - w) * .6}px;width:${w}px;transform:rotate(${r}deg);z-index:${z};filter:drop-shadow(0 18px 20px rgba(0,0,0,.45))">`).join('');
   return pg(`
-${ph('foto/sala-areia.webp', 'left:-330px;top:0;width:1200px;height:800px;background-position:50% 50%')}
-<div class="abs" style="left:0;top:0;width:816px;height:800px;background:linear-gradient(90deg, rgba(247,245,240,.88) 0%, rgba(247,245,240,.55) 38%, rgba(247,245,240,0) 62%)"></div>
-<div class="abs" style="left:0;top:540px;width:816px;height:262px;background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.75) 70%, #FFFFFF 100%)"></div>
-<div class="abs" style="left:0;top:800px;width:816px;height:345px;background:#FFFFFF"></div>
-<img class="abs" src="img/logo-azul.png" style="left:40px;top:40px;height:112px">
-<div class="abs" style="left:56px;top:212px;font:800 10.5px/1 'Montserrat',sans-serif;letter-spacing:.32em;color:${BLUE}">CATÁLOGO 2026</div>
-<div class="abs h" style="left:54px;top:236px;width:700px;font-size:60px;line-height:1.02">Cores e produtos<br>para sua <em>obra</em></div>
-<div class="abs" style="left:56px;top:384px;width:56px;height:4px;border-radius:2px;background:${Y}"></div>
-<div class="abs" style="left:110px;top:886px;width:596px;height:26px;border-radius:50%;background:radial-gradient(ellipse, rgba(6,43,99,.16) 0%, rgba(6,43,99,0) 70%);z-index:4"></div>
+${ph('foto/sala-areia.webp', 'left:-300px;top:0;width:1170px;height:700px;clip-path:polygon(0 0,100% 0,100% 74%,0 92%)')}
+<div class="abs" style="left:0;top:0;width:816px;height:700px;background:linear-gradient(90deg, rgba(244,247,252,.94) 0%, rgba(244,247,252,.7) 42%, rgba(244,247,252,0) 70%);clip-path:polygon(0 0,100% 0,100% 74%,0 92%)"></div>
+<div class="abs" style="left:0;top:0;width:816px;height:1145px;background:linear-gradient(160deg, ${BLUE} 0%, ${NAVY} 60%, #041F4A 100%);clip-path:polygon(0 92%,100% 74%,100% 100%,0 100%);clip-path:polygon(0 644px,816px 518px,816px 1145px,0 1145px)"></div>
+<div class="abs" style="left:0;top:0;width:816px;height:1145px;background:${Y};clip-path:polygon(0 640px,816px 514px,816px 520px,0 646px)"></div>
+<div class="abs" style="left:0;top:520px;width:816px;height:625px;opacity:.18;background-image:radial-gradient(rgba(255,255,255,.9) 1px, transparent 1.2px);background-size:16px 16px;-webkit-mask-image:linear-gradient(180deg,#000,transparent 70%);mask-image:linear-gradient(180deg,#000,transparent 70%)"></div>
+${splash(408, 860, 150, Y, 41, 150, 390, .5)}
+${splash(70, 940, 46, '#5B9BF0', 17, 150, 330, .5)}
+${splash(740, 700, 34, '#fff', 29, 0, 360).replace('fill="#fff"', 'fill="#fff" opacity=".9"')}
+<img class="abs" src="img/logo-azul.png" style="left:40px;top:44px;height:118px">
+<div class="abs kick" style="left:56px;top:206px">Catálogo 2026 · Edição de balcão</div>
+<div class="abs h" style="left:54px;top:228px;width:640px;font-size:58px;line-height:1">Cores e produtos<br>para sua <em>obra</em></div>
+<div class="abs rule" style="left:56px;top:372px"></div>
+<div class="abs lead" style="left:56px;top:390px;width:310px;font-size:15px">Tintas, massas, ferramentas e um monte de cor pra deixar a casa do jeito que você sonhou.</div>
 ${b}
-<div class="abs" style="left:48px;right:48px;top:1030px;height:1px;background:#E1E6EF"></div>
-<div class="abs" style="left:48px;right:48px;top:1052px;display:flex;justify-content:space-between;align-items:center">
-  <div style="font:500 12px/1.4 'Poppins',sans-serif;color:#4A5266">Parcele em até 12x sem juros (consulte as condições)</div>
-  <div style="font:800 18px/1 'Montserrat',sans-serif;color:${NAVY}">tintaslaet.com</div>
-</div>`, '', '#FFFFFF');
+<div class="abs" style="left:48px;right:48px;bottom:52px;display:flex;justify-content:space-between;align-items:flex-end;color:#fff;z-index:7">
+  <div style="font:600 12px/1.5 'Poppins',sans-serif;color:rgba(255,255,255,.8)">Parcele em até 12x sem juros<br>(consulte as condições)</div>
+  <div style="font:800 22px/1 'Montserrat',sans-serif;color:${Y}">tintaslaet.com</div>
+</div>`, '');
 }
 
 function indice() {
