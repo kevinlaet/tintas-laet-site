@@ -176,7 +176,7 @@ ${splash(408, 860, 150, Y, 41, 150, 390, .5)}
 ${splash(70, 940, 46, '#5B9BF0', 17, 150, 330, .5)}
 ${splash(740, 700, 34, '#fff', 29, 0, 360).replace('fill="#fff"', 'fill="#fff" opacity=".9"')}
 <img class="abs" src="img/logo-azul.png" style="left:40px;top:44px;height:118px">
-<div class="abs kick" style="left:56px;top:206px">Catálogo 2026 · Edição de balcão</div>
+<div class="abs kick" style="left:56px;top:206px">Catálogo Tintas Laet · Edição de balcão</div>
 <div class="abs h" style="left:54px;top:228px;width:640px;font-size:58px;line-height:1">Cores e produtos<br>para sua <em>obra</em></div>
 <div class="abs rule" style="left:56px;top:372px"></div>
 <div class="abs lead" style="left:56px;top:390px;width:310px;font-size:15px">Tintas, massas, ferramentas e um monte de cor pra deixar a casa do jeito que você sonhou.</div>
@@ -595,7 +595,7 @@ function corCompleta(ids, titulo, sub, linha, nota, compacto) {
 
 
   if (pages.length % 4) throw new Error('páginas não múltiplas de 4: ' + pages.length);
-  const html = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Catálogo Tintas Laet 2026</title><style>${CSS}</style></head><body>${pages.join('\n')}</body></html>`;
+  const html = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Catálogo Tintas Laet</title><style>${CSS}</style></head><body>${pages.join('\n')}</body></html>`;
   const src = path.join(DIR, 'catalogo.html'); fs.writeFileSync(src, html);
 
   const browser = await chromium.launch(process.env.PW_EXEC ? { executablePath: process.env.PW_EXEC } : {});
