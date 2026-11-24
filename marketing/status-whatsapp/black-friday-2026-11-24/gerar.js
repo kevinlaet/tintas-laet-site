@@ -1,7 +1,7 @@
-// Status do WhatsApp (1080x1920) da Black Friday · sexta 27/11/2026 · um pacote por loja (6 lojas x 5 imagens).
+// Status do WhatsApp (1080x1920) da Black Friday · sexta 27/11/2026 · UM pacote só, igual pra todas as lojas (6 imagens).
 // Mesmo visual do carrossel encarte (../../conteudo/black-friday-carrossel-2026-11-24/gerar-encarte.js), reaproveitado
-// daqui: o miolo de cada slide entra no meio do 9:16; rodapé com site + Instagram. Endereço e WhatsApp DA LOJA só no
-// último status (05), pedido do Kevin 24/11. Brinde (lojas 3 e 6) em todos.
+// daqui. 01–05 sem citar loja nenhuma (rodapé: responde o status + site + Instagram). Lojas, endereços e brinde só no
+// último status (06-lojas), pedido do Kevin 24/11.
 // Topo (160px) e base (200px) livres por causa da barra do WhatsApp.
 const _fs = require("fs"), _path = require("path");
 const SRC = _path.join(__dirname, "../../conteudo/black-friday-carrossel-2026-11-24/gerar-encarte.js");
@@ -28,32 +28,41 @@ const INSTA = '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" str
 
 const CSS9 = CSS.replace("html,body{width:1080px;height:1350px;", "html,body{width:1080px;height:1920px;")
   .replace("at 50% 44%,rgba(245,184,0,.22)", "at 50% 34%,rgba(245,184,0,.22)").replace(/at 50% 44%/g, "at 50% 34%");
-const rodape = (n, final) => { const l = LOJAS[n]; return `<div style="position:absolute;left:60px;right:60px;bottom:200px;display:flex;flex-direction:column;gap:20px">
-  ${l.brinde ? `<div style="display:flex;align-items:center;justify-content:center;gap:12px;border:3px solid #F5B800;border-radius:18px;height:72px;font-size:28px;font-weight:600"><span class="am" style="font-size:34px;display:flex">${PRESENTE}</span>Nesta loja, compra acima de R$ 100 ganha brinde</div>` : ""}
-  <div style="display:flex;gap:20px">
+const BOTOES = `<div style="display:flex;gap:20px">
     <div style="flex:1;height:96px;border-radius:20px;background:#F5B800;color:#0A0A0F;display:flex;align-items:center;justify-content:center;gap:14px;font-family:'Montserrat';font-weight:900;font-size:38px;letter-spacing:-.02em">${GLOBO}tintaslaet.com</div>
-    <div style="flex:1;height:96px;border-radius:20px;background:#fff;color:#0A0A0F;display:flex;align-items:center;justify-content:center;gap:14px;font-family:'Montserrat';font-weight:900;font-size:38px;letter-spacing:-.02em">${INSTA}@tintaslaet</div></div>
-  ${final ? `<div style="border-radius:22px;background:linear-gradient(180deg,#1E1E27,#141419);border:2px solid rgba(245,184,0,.3);padding:22px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px">
-    <div style="min-width:0"><div style="display:inline-block;background:#F5B800;color:#0A0A0F;font-family:'Montserrat';font-weight:900;font-size:22px;letter-spacing:.1em;padding:6px 14px 4px;border-radius:8px;white-space:nowrap">LOJA ${n} · ${l.cidade.toUpperCase()}</div>
-      <div class="m" style="font-size:40px;margin-top:10px;white-space:nowrap;text-transform:none;letter-spacing:-.02em">${l.bairro}</div>
-      <div style="font-size:24px;font-weight:500;color:rgba(255,255,255,.75);margin-top:2px">${l.end}</div></div>
-    <div style="flex:none;text-align:right"><div style="font-size:20px;font-weight:600;color:rgba(255,255,255,.7)">WhatsApp da loja</div><div class="am" style="font-family:'Montserrat';font-weight:900;font-size:32px;white-space:nowrap;margin-top:4px">${l.zap}</div></div></div>` : ""}
-  <div style="text-align:center;font-size:18px;font-weight:500;line-height:1.45;color:rgba(255,255,255,.6)">${LEGAL}</div></div>`; };
-const pagina = (miolo, n, capa, final) => `<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@500;600&display=swap" rel="stylesheet"><style>${CSS9}</style></head><body>
-<div class="bg"></div><div class="raios"></div><div class="grao"></div><div style="position:absolute;left:0;top:${capa ? 122 : final ? 150 : 210}px;width:1080px;height:1350px;${capa ? "transform:scale(.92);transform-origin:50% 0" : ""}">${miolo}</div>${rodape(n, final)}</body></html>`;
+    <div style="flex:1;height:96px;border-radius:20px;background:#fff;color:#0A0A0F;display:flex;align-items:center;justify-content:center;gap:14px;font-family:'Montserrat';font-weight:900;font-size:38px;letter-spacing:-.02em">${INSTA}@tintaslaet</div></div>`;
+const LEG = `<div style="text-align:center;font-size:18px;font-weight:500;line-height:1.45;color:rgba(255,255,255,.6)">${LEGAL}</div>`;
+// rodapé único (serve pra qualquer loja): responde o status + site + Instagram
+const rodape = `<div style="position:absolute;left:60px;right:60px;bottom:200px;display:flex;flex-direction:column;gap:20px">
+  <div style="text-align:center;font-size:28px;font-weight:600">Responde este status que a gente <span class="am">te atende</span></div>${BOTOES}${LEG}</div>`;
+const fundo = `<div class="bg"></div><div class="raios"></div><div class="grao"></div>`;
+const html = (c) => `<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@500;600&display=swap" rel="stylesheet"><style>${CSS9}</style></head><body>${fundo}${c}</body></html>`;
+const pagina = (miolo, capa) => html(`<div style="position:absolute;left:0;top:${capa ? 122 : 200}px;width:1080px;height:1350px;${capa ? "transform:scale(.92);transform-origin:50% 0" : ""}">${miolo}</div>${rodape}`);
 
-const MIOLO = { "01-capa": capa, "02-massas": massas, "03-vinil-gesso": dupla("vinil", "gesso"), "04-standard-lavavel": dupla("standard", "lavavel"), "05-epoxi-pisos": dupla("epoxi", "pisos") };
+// último status: as 6 lojas (bairro, endereço, WhatsApp de cada) + brinde das lojas 3 e 6
+const lojas = html(`<div class="fita" style="top:184px;transform:rotate(-2.5deg)">${rep("BLACK FRIDAY LAET • SÓ SEXTA 27/11")}</div>
+  <img class="logo" src="${IMG.logo}" style="left:60px;top:300px;height:84px">${selo(948, 346, 92, "SÓ SEXTA", "27/11", 10)}
+  <div class="m" style="position:absolute;left:60px;top:420px;font-size:92px;line-height:.9">Vem pra <span class="am">loja</span></div>
+  <div style="position:absolute;left:60px;top:520px;font-size:28px;font-weight:600;color:rgba(255,255,255,.75)">6 lojas Laet no ABC e Zona Leste</div>
+  <div style="position:absolute;left:60px;right:60px;top:580px;display:flex;flex-direction:column;gap:12px">
+  ${Object.entries(LOJAS).map(([n, l]) => `<div style="height:118px;border-radius:20px;padding:0 26px;display:flex;align-items:center;justify-content:space-between;gap:16px;${l.brinde ? "background:#F5B800;color:#0A0A0F" : "background:linear-gradient(180deg,#1E1E27,#141419);border:2px solid rgba(245,184,0,.22)"}">
+    <div style="min-width:0"><div style="font-family:'Montserrat';font-weight:900;font-size:19px;letter-spacing:.1em;${l.brinde ? "" : "color:#F5B800"}">LOJA ${n} · ${l.cidade.toUpperCase()}${l.brinde ? " · COM BRINDE" : ""}</div>
+      <div style="font-family:'Montserrat';font-weight:900;font-size:34px;letter-spacing:-.02em;margin-top:2px;white-space:nowrap">${l.bairro}</div>
+      <div style="font-size:20px;font-weight:500;opacity:.78;white-space:nowrap">${l.end}</div></div>
+    <div style="flex:none;text-align:right"><div style="font-size:17px;font-weight:600;opacity:.7">WhatsApp</div><div style="font-family:'Montserrat';font-weight:900;font-size:27px;white-space:nowrap">${l.zap}</div></div></div>`).join("")}</div>
+  <div style="position:absolute;left:60px;right:60px;bottom:200px;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;align-items:center;justify-content:center;gap:12px;border:3px solid #F5B800;border-radius:18px;height:72px;font-size:27px;font-weight:600"><span class="am" style="font-size:32px;display:flex">${PRESENTE}</span>Lojas 3 e 6: compra acima de R$ 100 ganha brinde</div>${BOTOES}${LEG}</div>`);
+
+const STATUS = { "01-capa": pagina(capa, true), "02-massas": pagina(massas), "03-vinil-gesso": pagina(dupla("vinil", "gesso")), "04-standard-lavavel": pagina(dupla("standard", "lavavel")), "05-epoxi-pisos": pagina(dupla("epoxi", "pisos")), "06-lojas": lojas };
 const PEDIDO = { corrida: "32,99", acrilica: "49,99", vinil: "64,99", gesso: "139,99", standard: "159,99", lavavel: "229,99", epoxi: "99,99", pisos: "149,99" };
 for (const [k, v] of Object.entries(PEDIDO)) if (P[k].preco !== v) throw new Error("PREÇO ERRADO " + k);
 if (P.corrida.barrica !== "40,99" || P.acrilica.barrica !== "57,99") throw new Error("PREÇO BARRICA ERRADO");
 (async () => {
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
-  for (const n of Object.keys(LOJAS)) {
-    const out = _path.join(__dirname, `loja-${n}`); _fs.mkdirSync(out, { recursive: true });
-    for (const [nome, m] of Object.entries(MIOLO)) {
-      await p.setContent(pagina(m, n, nome === "01-capa", nome.startsWith("05")), { waitUntil: "networkidle" }); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(150);
-      await p.screenshot({ path: _path.join(out, nome + ".png") });
-    }
+  const out = _path.join(__dirname, "todas-as-lojas"); _fs.mkdirSync(out, { recursive: true });
+  for (const [nome, h] of Object.entries(STATUS)) {
+    await p.setContent(h, { waitUntil: "networkidle" }); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(200);
+    await p.screenshot({ path: _path.join(out, nome + ".png") });
   }
-  await b.close(); console.log("ok, 6 lojas x 5 status, preços conferidos");
+  await b.close(); console.log("ok, 6 status iguais pra todas as lojas, preços conferidos");
 })();
