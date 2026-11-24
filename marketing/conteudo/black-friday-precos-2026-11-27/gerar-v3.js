@@ -12,7 +12,7 @@ const P = {
   acrilica: { nome: "Massa Acrílica", tam: "Saco 23kg", de: "69,90", preco: "49,99", extra: ["Barrica", "57,99", "77,90"], img: "barrica+plastico.png" },
   gesso:    { nome: "Direto no Gesso", tam: "18L branca", de: "179,90", preco: "139,99", img: "direto no gesso-remove-bg-io.png" },
   epoxi:    { nome: "Epóxi Base Água", tam: "3,6L branco", de: "135,00", preco: "99,99", img: "epoxibaseagua.png" },
-  pisos:    { nome: "Premium Pisos", tam: "17L · 13 cores", de: "219,90", preco: "149,99", img: "pisos efachadas-remove-bg-io.png" },
+  pisos:    { nome: "Premium Pisos", tam: "17L · 13 cores do catálogo", de: "219,90", preco: "149,99", img: "pisos efachadas-remove-bg-io.png" },
   standard: { nome: "Standard", tam: "18L branca", de: "219,90", preco: "159,99", img: "standard-remove-bg-io.png" },
   lavavel:  { nome: "Premium Lavável", tam: "18L branca", de: "299,90", preco: "229,99", img: "premiumlavavel-remove-bg-io.png" },
   vinil:    { nome: "Básica Interna Vinil", tam: "18L branca", de: "79,90", preco: "64,99", img: "vinil-remove-bg-io.png" },
@@ -53,8 +53,8 @@ body{background:#0A0A0F;color:#fff;font-family:'Poppins',sans-serif;position:rel
 .pag{position:absolute;right:56px;font-family:'Montserrat';font-weight:800;color:rgba(255,255,255,.4);z-index:8}`;
 const pag = (W, H, c) => `<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet"><style>${CSS(W, H)}</style></head><body><div class="bg"></div>${c}<div class="leque" style="left:0;right:0;bottom:0;height:12px"></div></body></html>`;
 const rep = (t, n = 10) => `<span>${(t + "  ·  ").repeat(n)}</span>`;
-const LEGAL = `Válido <b>só na sexta 27/11</b> · preços para tinta branca · parcele em até 12x sem juros (consulte as condições)`;
-const legal = (bottom, fs = 19) => `<div class="legal" style="bottom:${bottom}px;font-size:${fs}px">${LEGAL}</div>`;
+const LEGAL = `Válido <b>só na sexta 27/11</b> · preço da cor branca (Pisos: cores do catálogo) · parcele em até 12x sem juros (consulte as condições)`;
+const legal = (bottom, fs = 19) => `<div class="legal" style="bottom:${bottom - 16}px;font-size:${fs}px;white-space:normal;padding:0 90px;line-height:1.4">${LEGAL}</div>`;
 const cta = (bottom, w = 720, fs = 32) => `<div class="cta" style="left:50%;transform:translateX(-50%);width:${w}px;bottom:${bottom}px;padding:22px 0;font-size:${fs}px">${ZAP}Chama no WhatsApp ou passa na loja</div>`;
 const tag = (preco, fs) => `<div class="tag"><small style="font-size:${Math.round(fs*0.34)}px;margin-top:${Math.round(fs*0.12)}px">R$</small><b style="font-size:${fs}px">${preco}</b></div>`;
 
