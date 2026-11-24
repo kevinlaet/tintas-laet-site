@@ -44,3 +44,5 @@ scripts/cores/extracao/saida-*.json
 # Catálogo de produtos: saídas regeráveis (PDF e imagens de montagem)
 /marketing/catalogos/catalogo-produtos/build/
 /marketing/catalogos/catalogo-produtos/*.pdf
+/marketing/catalogos/catalogo-v7-final/build/
+/marketing/catalogos/catalogo-v7-final/*.pdf
