@@ -1,5 +1,5 @@
-# Pincelada amarela "de verdade" feita por código (sem IA): faixa contínua que atravessa os 6 slides.
-# Gera faixa.png (6480x1350, fundo transparente). Cerdas = ruído 1D no sentido transversal; bordas e final
+# Pincelada amarela "de verdade" feita por código (sem IA): faixa contínua que atravessa os 5 slides.
+# Gera faixa.png (5400x1350, fundo transparente). Cerdas = ruído 1D no sentido transversal; bordas e final
 # "secos" = cerdas acabando em comprimentos diferentes; relevo da tinta iluminado (difusa + brilho) pra parecer
 # tinta molhada e lisa, sem falha nem descascado.
 import numpy as np
@@ -8,7 +8,7 @@ import os, sys
 
 rng = np.random.default_rng(27)
 S = 2                       # supersampling
-W, H = 6480, 1350
+W, H = 5400, 1350
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "faixa.png")
 AM = np.array([0xF5, 0xB8, 0x00], float) / 255
 
@@ -74,11 +74,11 @@ def traco(x0, x1, centro, espessura, seco_ini=0.03, seco_fim=0.16, dy=0):
     return full_rgb, full_a
 
 # Trajeto: capa grossa e baixa (atrás das latas) -> desce pra faixa de vitrine dos slides 2–5 -> acaba seca no 6.
-def centro(x): return ease(860, 640, 700, 1150, x) + 10 * np.sin(x / 520)
-def esp(x): return ease(400, 250, 700, 1150, x)
+def centro(x): return ease(880, 598, 760, 1170, x) + 10 * np.sin(x / 520)
+def esp(x): return ease(380, 232, 760, 1170, x)
 
-camadas = [traco(-120, 3020, centro, esp, seco_ini=.0, seco_fim=.07),
-           traco(2720, 5470, centro, lambda x: esp(x) * .97, seco_ini=.02, seco_fim=.13, dy=6)]
+camadas = [traco(-120, 2700, centro, esp, seco_ini=.0, seco_fim=.07),
+           traco(2560, 5330, centro, lambda x: esp(x) * .97, seco_ini=.02, seco_fim=.13, dy=6)]
 rgb = np.zeros((H, W, 3)); a = np.zeros((H, W))
 for c, al in camadas:                     # "por cima": o segundo traço cobre o fim do primeiro
     rgb = c * al[..., None] + rgb * (1 - al[..., None]); a = al + a * (1 - al)

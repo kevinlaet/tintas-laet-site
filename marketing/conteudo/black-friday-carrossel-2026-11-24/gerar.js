@@ -1,5 +1,5 @@
-// Carrossel Black Friday Laet · sexta 27/11/2026 · 6 slides 1080x1350.
-// Faixa de tinta contínua (faixa.png, feita por pincelada.py) atravessa os 6 slides. Embalagens = fotos reais.
+// Carrossel Black Friday Laet · sexta 27/11/2026 · 5 slides 1080x1350 (capa + 4 de preço com CTA).
+// Faixa de tinta contínua (faixa.png, feita por pincelada.py) atravessa os 5 slides. Embalagens = fotos reais.
 const { chromium } = require("playwright"); const fs = require("fs"), path = require("path");
 const D = __dirname, E = D + "/emb/";
 const uri = (p) => "data:image/png;base64," + fs.readFileSync(p).toString("base64");
@@ -29,26 +29,28 @@ const PRESENTE = '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" 
 
 const CSS = `*{margin:0;padding:0;box-sizing:border-box}html,body{width:1080px;height:1350px;overflow:hidden}
 body{background:#0A0A0F;color:#fff;font-family:'Poppins',sans-serif;position:relative}
-.faixa{position:absolute;inset:0;background-size:6480px 1350px;background-repeat:no-repeat}
+.faixa{position:absolute;inset:0;background-size:5400px 1350px;background-repeat:no-repeat}
 .vin{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 16%,rgba(0,0,0,0) 82%,rgba(0,0,0,.5) 100%)}
 .grao{position:absolute;inset:0;background-image:${GRAO};opacity:.07;mix-blend-mode:overlay}
 .logo{position:absolute;left:80px;top:80px;height:64px;z-index:9}
 .t{font-family:'Montserrat',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.92}
 .am{color:#F5B800}
-.nome{position:absolute;left:0;right:0;top:180px;height:112px;display:flex;align-items:flex-end;font-family:'Montserrat';font-weight:800;text-transform:uppercase;font-size:40px;line-height:1.02;letter-spacing:-.01em}
+.nome{position:absolute;left:0;right:0;top:160px;height:112px;display:flex;align-items:flex-end;font-family:'Montserrat';font-weight:800;text-transform:uppercase;font-size:40px;line-height:1.02;letter-spacing:-.01em}
 .lata{position:absolute;left:50%;transform:translateX(-50%);filter:drop-shadow(0 18px 22px rgba(0,0,0,.45)) drop-shadow(0 2px 3px rgba(0,0,0,.35))}
 .refl{position:absolute;left:50%;transform:translateX(-50%) scaleY(-1);opacity:.16;-webkit-mask-image:linear-gradient(0deg,#000 0%,transparent 22%);mask-image:linear-gradient(0deg,#000 0%,transparent 22%)}
 .sombra{position:absolute;left:50%;transform:translateX(-50%);height:30px;border-radius:50%;background:radial-gradient(ellipse,rgba(40,25,0,.75) 0%,rgba(40,25,0,.35) 45%,transparent 72%)}
-.preco{position:absolute;left:0;top:782px;display:flex;align-items:flex-start;font-family:'Bebas Neue',sans-serif;color:#F5B800;line-height:.82}
-.preco .rs{font-size:46px;margin:12px 8px 0 0}.preco .int{font-size:176px;letter-spacing:-.01em}.preco .cent{font-size:76px;margin-top:8px}
-.tam{position:absolute;left:0;top:952px;font-size:24px;font-weight:500;color:rgba(255,255,255,.68)}
-.ben{position:absolute;left:0;right:10px;font-size:26px;font-weight:500;line-height:1.3}
+.preco{position:absolute;left:0;top:756px;display:flex;align-items:flex-start;font-family:'Bebas Neue',sans-serif;color:#F5B800;line-height:.82}
+.preco .rs{font-size:46px;margin:12px 8px 0 0}.preco .int{font-size:168px;letter-spacing:-.01em}.preco .cent{font-size:76px;margin-top:8px}
+.tam{position:absolute;left:0;top:916px;font-size:24px;font-weight:500;color:rgba(255,255,255,.68)}
+.ben{position:absolute;left:0;right:0;font-size:24px;font-weight:500;line-height:1.3}
 .rod{position:absolute;left:80px;right:80px;bottom:80px;font-size:17px;font-weight:500;line-height:1.45;color:rgba(255,255,255,.58)}
-.salva{position:absolute;left:80px;top:1160px;display:flex;align-items:center;gap:10px;font-size:22px;font-weight:600;color:#FFE082}`;
+.cta{position:absolute;left:80px;right:80px;top:1066px;height:84px;border-radius:999px;background:#F5B800;color:#0A0A0F;display:flex;align-items:center;justify-content:center;gap:16px;font-family:'Montserrat';font-weight:800;font-size:32px;letter-spacing:-.01em}
+.contato{position:absolute;left:80px;right:80px;top:1162px;text-align:center;font-size:21px;font-weight:600;color:rgba(255,255,255,.92)}
+.salva{position:absolute;left:80px;top:1150px;display:flex;align-items:center;gap:10px;font-size:22px;font-weight:600;color:#FFE082}`;
+const CTA = `<div class="cta">${ZAP}Chama no WhatsApp ou passa na loja</div><div class="contato">(11) 97714-0964 · @tintaslaet · tintaslaet.com</div>`;
 const pag = (i, c) => `<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@800&family=Poppins:wght@500;600&display=swap" rel="stylesheet"><style>${CSS}</style></head><body>
 <div class="faixa" style="background-image:url('${FAIXA}');background-position:${-i * 1080}px 0"></div><div class="vin"></div><div class="grao"></div>
 <img class="logo" src="${IMG.logo}">${c}
-<div class="salva">${SALVAR}<span>Salva pra lembrar na sexta</span></div>
 <div class="rod">${LEGAL}</div></body></html>`;
 
 const preco = (v, top) => { const [a, b] = v.split(","); return `<div class="preco"${top ? ` style="top:${top}px"` : ""}><span class="rs">R$</span><span class="int">${a}</span><span class="cent">,${b}</span></div>`; };
@@ -56,22 +58,24 @@ const preco = (v, top) => { const [a, b] = v.split(","); return `<div class="pre
 const lata = (img, h, cx, base, z = 2) => `<div class="sombra" style="left:${cx}px;top:${base - 18}px;width:${Math.round(h * .72)}px;z-index:${z}"></div>
   <img class="refl" src="${IMG[img]}" style="left:${cx}px;top:${base}px;height:${h}px;z-index:${z}">
   <img class="lata" src="${IMG[img]}" style="left:${cx}px;top:${base - h}px;height:${h}px;z-index:${z + 1}">`;
-const BASE = 748;
+const BASE = 708;
 const coluna = (k, x) => { const p = P[k]; return `<div style="position:absolute;left:${x}px;top:0;width:440px;height:1350px">
   <div class="nome">${p.nome}</div>${lata(p.img, p.h || 420, 220, BASE)}
-  ${preco(p.preco)}<div class="tam">${p.tam}</div><div class="ben" style="top:996px">${p.ben}</div></div>`; };
-const dupla = (i, a, b) => pag(i, coluna(a, 80) + coluna(b, 560));
+  ${preco(p.preco)}<div class="tam">${p.tam}</div><div class="ben" style="top:952px">${p.ben}</div></div>`; };
+const dupla = (i, a, b) => pag(i, coluna(a, 80) + coluna(b, 560) + CTA);
 
-const capa = pag(0, `<div class="t" style="position:absolute;left:80px;top:178px;font-size:136px">Black<br>Friday<br><span class="am">Laet</span></div>
-  <div style="position:absolute;left:80px;top:566px;font-size:30px;font-weight:500;color:rgba(255,255,255,.88)">Sexta, 27/11 · Preços que só valem nesse dia</div>
-  ${lata("lavavel", 318, 282, 1028, 2)}${lata("standard", 318, 798, 1028, 2)}${lata("emborrachada", 392, 540, 1034, 5)}
-  <div style="position:absolute;right:80px;top:1160px;font-size:22px;font-weight:600;color:#fff;display:flex;align-items:center;gap:10px">Arrasta e veja os preços <span style="color:#F5B800;font-size:28px;line-height:1">→</span></div>`);
+const capa = pag(0, `<div class="t" style="position:absolute;left:0;right:0;top:178px;text-align:center;font-size:164px">Black<br><span class="am">Friday</span></div>
+  <div style="position:absolute;left:0;right:0;top:500px;text-align:center;font-family:'Montserrat';font-weight:800;font-size:44px;letter-spacing:.04em;text-transform:uppercase">Só sexta, 27/11</div>
+  <div style="position:absolute;left:0;right:0;top:560px;text-align:center;font-size:26px;font-weight:500;color:rgba(255,255,255,.75)">Preços que só valem nesse dia</div>
+  ${lata("lavavel", 300, 300, 1040, 2)}${lata("standard", 300, 780, 1040, 2)}${lata("emborrachada", 372, 540, 1046, 5)}
+  <div class="salva" style="top:1150px">${SALVAR}<span>Salva pra lembrar na sexta</span></div>
+  <div style="position:absolute;right:80px;top:1150px;font-size:22px;font-weight:600;color:#fff;display:flex;align-items:center;gap:10px">Arrasta e veja os preços <span style="color:#F5B800;font-size:28px;line-height:1">→</span></div>`);
 
 const massas = pag(1, `${["corrida", "acrilica"].map((k, j) => { const p = P[k]; return `<div style="position:absolute;left:${80 + j * 480}px;top:0;width:440px;height:1350px">
-    <div class="nome" style="top:150px">${p.nome}</div>${preco(p.preco)}<div class="tam">${p.tam}</div>
-    <div style="position:absolute;left:0;top:992px;display:flex;align-items:baseline;gap:10px"><span style="font-size:24px;font-weight:500;color:rgba(255,255,255,.68)">Barrica</span><span style="font-family:'Bebas Neue';font-size:50px;color:#fff;line-height:1">R$ ${p.barrica}</span></div>
-    <div class="ben" style="top:1052px;font-size:24px">${p.ben}</div></div>`; }).join("")}
-  ${lata("barrica", 400, 478, BASE, 2)}${lata("saco", 236, 668, BASE + 6, 4)}`);
+    <div class="nome" style="top:140px">${p.nome}</div>${preco(p.preco)}<div class="tam">${p.tam}</div>
+    <div style="position:absolute;left:0;top:950px;display:flex;align-items:baseline;gap:10px"><span style="font-size:24px;font-weight:500;color:rgba(255,255,255,.68)">Barrica</span><span style="font-family:'Bebas Neue';font-size:50px;color:#fff;line-height:1">R$ ${p.barrica}</span></div>
+    <div class="ben" style="top:1012px;font-size:22px;white-space:nowrap">${p.ben}</div></div>`; }).join("")}
+  ${lata("barrica", 400, 478, BASE, 2)}${lata("saco", 236, 668, BASE + 6, 4)}${CTA}`);
 
 const lojas = pag(5, `<div style="position:absolute;right:96px;top:70px;width:220px;height:250px">${CARTELA.map((c, j) => `<div style="position:absolute;left:84px;bottom:0;width:58px;height:236px;border-radius:9px;background:#F4F2EC;box-shadow:0 8px 18px rgba(0,0,0,.45);transform-origin:50% 92%;transform:rotate(${-34 + j * 11}deg);overflow:hidden"><div style="height:176px;background:${c}"></div></div>`).join("")}
     <div style="position:absolute;left:96px;bottom:8px;width:34px;height:34px;border-radius:50%;background:#2a2a30;border:3px solid #F4F2EC"></div></div>
@@ -85,7 +89,7 @@ const lojas = pag(5, `<div style="position:absolute;right:96px;top:70px;width:22
   <div style="position:absolute;left:80px;right:80px;top:1006px;height:92px;border-radius:999px;background:#F5B800;color:#0A0A0F;display:flex;align-items:center;justify-content:center;gap:16px;font-family:'Montserrat';font-weight:800;font-size:34px;letter-spacing:-.01em">${ZAP}Chama no WhatsApp ou passa na loja</div>
   <div style="position:absolute;left:80px;right:80px;top:1110px;text-align:center;font-size:22px;font-weight:600">(11) 97714-0964 · @tintaslaet · tintaslaet.com</div>`.replace('<div class="salva">', ""));
 
-const SLIDES = { "01": capa, "02": massas, "03": dupla(2, "vinil", "gesso"), "04": dupla(3, "standard", "lavavel"), "05": dupla(4, "epoxi", "pisos"), "06": lojas };
+const SLIDES = { "01": capa, "02": massas, "03": dupla(2, "vinil", "gesso"), "04": dupla(3, "standard", "lavavel"), "05": dupla(4, "epoxi", "pisos") };
 
 // conferência dos preços contra a lista do pedido
 const PEDIDO = { corrida: "32,99", acrilica: "49,99", vinil: "64,99", gesso: "139,99", standard: "159,99", lavavel: "229,99", epoxi: "99,99", pisos: "149,99" };
