@@ -1174,6 +1174,81 @@
     }
    ]
   },
+  "epoxi-base-agua": {
+   "titulo": "Epóxi Base Água",
+   "usada_por": [
+    "epoxi-base-agua"
+   ],
+   "referencia": "Lista de 16 cores e ordem: Kevin, 24/11/2026. Hex: mesmo da linha esmalte-ecologico (mesma cartela). Branco = #FFFFFF.",
+   "observacao": "Areia Bege não existe na cartela do Esmalte: hex provisório, marcar [CONFERIR HEX] até chegar a cartela do fabricante.",
+   "cores": [
+    {
+     "nome": "Branco",
+     "hex": "#FFFFFF"
+    },
+    {
+     "nome": "Laranja Suave",
+     "hex": "#FFAA69"
+    },
+    {
+     "nome": "Marfim",
+     "hex": "#FAF1C6"
+    },
+    {
+     "nome": "Rosa Big-Big",
+     "hex": "#EC9493"
+    },
+    {
+     "nome": "Pérola",
+     "hex": "#FFDEBF"
+    },
+    {
+     "nome": "Areia Bege",
+     "hex": "#DFD4C6",
+     "conferir": "hex provisório (tom do 'Areia' da Paleta Grande); confirmar na cartela do fabricante"
+    },
+    {
+     "nome": "Cinza Claro",
+     "hex": "#BCC1BA"
+    },
+    {
+     "nome": "Crômio",
+     "hex": "#D5D8CF"
+    },
+    {
+     "nome": "Gelo",
+     "hex": "#DADEC3"
+    },
+    {
+     "nome": "Platina",
+     "hex": "#B4B8AA"
+    },
+    {
+     "nome": "Verde Uva",
+     "hex": "#9FBB93"
+    },
+    {
+     "nome": "Camurça",
+     "hex": "#C4A286"
+    },
+    {
+     "nome": "Amarelo",
+     "hex": "#F4BC4F"
+    },
+    {
+     "nome": "Azul Cadeirante",
+     "hex": "#5A99E6"
+    },
+    {
+     "nome": "Verde Casual",
+     "hex": "#77A48F"
+    },
+    {
+     "nome": "Argila",
+     "hex": "#BA8A76"
+    }
+   ]
+  },
   "piso-fachada": {
    "titulo": "Pisos & Fachadas",
    "usada_por": [

@@ -32,3 +32,8 @@ Detalhe completo das rodadas de correção: `_memoria/correcao-cores-2026-09-24.
 - O PDF da Premium escreve "Vermelho B 10"; os demais escrevem "Vermelho D 10" (mesma cor `#966565`). Mestre usa D 10.
 - Preto, Chumbo e Cinza foram retirados de Standard, Premium e Emborrachada no site em 24/09; seguem no mestre como referência.
 - Sem catálogo de referência: Efeito Cimento Queimado, Spray, Corante.
+
+**24/11/2026 · Epóxi Base Água ganha cartela própria (16 cores)**
+- Pedido do Kevin: o Epóxi passa a ter SÓ estas 16 cores, nesta ordem: Branco, Laranja Suave, Marfim, Rosa Big-Big, Pérola, Areia Bege, Cinza Claro, Crômio, Gelo, Platina, Verde Uva, Camurça, Amarelo, Azul Cadeirante, Verde Casual, Argila.
+- Antes: o site dizia "disponível somente na cor branca" (sem cartela). Agora: linha nova `epoxi-base-agua` no mestre e cartela no `site/produto.html`.
+- Hex: os da linha `esmalte-ecologico` (mesma cartela). Branco = `#FFFFFF`. Areia Bege não está na cartela do Esmalte: `#DFD4C6` provisório, marcado para conferir.
