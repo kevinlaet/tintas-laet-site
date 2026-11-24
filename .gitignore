@@ -40,3 +40,7 @@ scripts/cores/extracao/saida-*.json
 # Orçamentos gerados (têm nome e WhatsApp de cliente) — ficam só na máquina, nunca no repo
 /saidas/orcamentos/
 /saidas/apresentacoes/
+
+# Catálogo de produtos: saídas regeráveis (PDF e imagens de montagem)
+/marketing/catalogos/catalogo-produtos/build/
+/marketing/catalogos/catalogo-produtos/*.pdf
