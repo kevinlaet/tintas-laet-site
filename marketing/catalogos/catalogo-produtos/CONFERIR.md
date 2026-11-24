@@ -1,4 +1,6 @@
-# Catálogo de Produtos Laet · o que ficou [CONFERIR]
+# Catálogo de Produtos Laet (v7, 9 páginas) · o que ficou [CONFERIR]
+
+Na v7 os dados que faltam NÃO aparecem no PDF (o campo some, em vez de ficar vazio ou em vermelho). Quando você confirmar, eles entram.
 
 Fonte usada: dossiê de produtos, aulas do Kevin, rótulos e o site no ar (o "catálogo Laet v7" não chegou).
 Cores: nome e hex do site tintaslaet.com (iguais à paleta oficial). Quadradinho 26 x 15 mm em todas as cartelas.
@@ -14,7 +16,6 @@ Cores: nome e hex do site tintaslaet.com (iguais à paleta oficial). Quadradinho
 - Massa Acrílica: rendimento.
 - Seladora: uso e rendimento.
 - Fundo Preparador: uso e rendimento.
-- Pisos & Fachadas: o site lista 18L e 3,6L Branca; você disse que essa linha não tem branca. Confirmar.
 
 ## Cores
 - Areia Bege (Epóxi): hex provisório #DFD4C6. Falta a cartela do fabricante.
@@ -25,4 +26,5 @@ Cores: nome e hex do site tintaslaet.com (iguais à paleta oficial). Quadradinho
 
 ## Fora do catálogo
 - Cobertura Absoluta e Semi Brilho Premium: sem dados técnicos confirmados, por isso não entraram.
+- Pisos & Fachadas: saiu só 17L e 3,4L nas 13 cores (você disse que essa linha não tem branca). O site ainda lista 18L e 3,6L Branca: corrigir lá também?
 - QR code do WhatsApp: espaço reservado na última página.

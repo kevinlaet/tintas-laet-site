@@ -1,4 +1,4 @@
-// Catálogo Técnico de Produtos Laet · A4 retrato com 3 mm de sangria (216x303 mm) · 8 páginas.
+// Catálogo Técnico de Produtos Laet · A4 retrato com 3 mm de sangria (216x303 mm) · 9 páginas (v7).
 // Rodar: NODE_PATH=$(npm root -g) node marketing/catalogos/catalogo-produtos/gerar.js
 // Saída: catalogo-produtos-laet-impressao.pdf (fotos em resolução cheia) e catalogo-produtos-laet-whatsapp.pdf (leve).
 // Dados: dossiê de produtos, aulas do Kevin (CLAUDE.md), rótulos e site. O que não está confirmado sai "[CONFERIR]" em vermelho.
@@ -56,7 +56,7 @@ const P = {
   pisos: { nome: "Pisos & Fachadas", img: "pisos",
     desc: "Aguenta o tráfego de carro, a chuva e o sol. Pra garagem, calçada e fachada, com acabamento bonito por muito tempo.",
     uso: "Interno e externo", acab: "Fosco", rend: { n: "300", pre: "Rende até", pos: "m² por demão", obs: "" },
-    disp: ["17L · 13 cores", "3,4L · 13 cores", `18L e 3,6L · Branca ${CONF()}`],
+    disp: ["17L · 13 cores", "3,4L · 13 cores"],
     cores: { lista: todas("piso-fachada"), mais: "" } },
   standard: { nome: "1ª Linha Standard", sub: "Acrílico concentrado", img: "standard",
     desc: "Tinta de baixo custo, mas concentrada, grossa e com bom poder de cobertura. Pode ser diluída em até 20%. Antimofo.",
@@ -88,7 +88,7 @@ const P = {
     cores: { lista: [{ nome: "Incolor (Natural)", hex: "#DC9A3D" }, { nome: "Mogno", hex: "#82380F" }, { nome: "Imbuia", hex: "#4A2B1A" }], mais: "", titulo: "Tonalidades" } },
   corrida: { nome: "Massa Corrida", img: "barrica",
     desc: "Nivela e corrige a parede antes de pintar. Fácil de lixar. Só pra área interna e seca, como quarto e sala.",
-    uso: "Interno (área seca)", rend: { n: "50", pre: "Rende até", pos: "m²", obs: CONF("embalagem") },
+    uso: "Interno (área seca)", rend: { n: "50", pre: "Rende até", pos: "m²", obs: "" },
     disp: ["1,5kg", "5kg", "Saco 23kg", "Barrica 23kg"] },
   acrilica: { nome: "Massa Acrílica", img: "saco",
     desc: "Pra parede de dentro e de fora e pra lugares que pegam respingo de água, como banheiro e cozinha. Fácil de lixar.",
@@ -112,232 +112,191 @@ const I = {
   site: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>',
 };
 
+// ---------- v7 (24/11): mesma organização do rascunho v6 do Kevin (9 páginas, cada produto seguido da cartela dele),
+// tudo vetorial (texto nítido), dentro do brand book (identidade/design-guide.md): azul #0D47A1 / #062B63, amarelo #FFC107,
+// cards #FFFFFF sobre #F0F2F5, cantos 4–8px, Montserrat ExtraBold/Bold, Poppins, Bebas Neue nos números.
+// Sem respingo falso, sem campo vazio: o que não está confirmado simplesmente não aparece (lista em CONFERIR.md).
+
 // ---------- componentes ----------
-const spec = (ic, rot, val) => `<div class="spec"><span class="ic">${I[ic]}</span><div><div class="sr">${rot}</div><div class="sv">${val}</div></div></div>`;
-const rendimento = (p) => p.rend ? `<div class="spec"><span class="ic">${I.rend}</span><div><div class="sr">Rendimento</div><div class="rv"><span class="rp">${p.rend.pre}</span> <b>${p.rend.n}</b> <span class="rp">${p.rend.pos}</span></div>${p.rend.obs ? `<div class="ro">${p.rend.obs}</div>` : ""}</div></div>`
-  : spec("rend", "Rendimento", CONF());
-const specs = (p, comAcab = true) => `<div class="specs">${spec("uso", "Uso", p.uso || CONF())}${comAcab ? spec("acab", "Acabamento", p.acab || CONF()) : ""}${rendimento(p)}</div>`;
+const spec = (ic, rot, val) => !val ? "" : `<div class="spec"><span class="ic">${I[ic]}</span><div><div class="sr">${rot}</div><div class="sv">${val}</div></div></div>`;
+const rendimento = (p) => !p.rend ? "" : `<div class="spec"><span class="ic">${I.rend}</span><div><div class="sr">Rendimento</div><div class="rv"><span class="rp">${p.rend.pre}</span> <b>${p.rend.n}</b> <span class="rp">${p.rend.pos}</span></div>${p.rend.obs ? `<div class="ro">${p.rend.obs}</div>` : ""}</div></div>`;
+const specs = (p) => `<div class="specs">${spec("uso", p.onde ? "Onde usar" : "Uso", p.onde || p.uso)}${spec("acab", "Acabamento", p.acab)}${rendimento(p)}</div>`;
 const disp = (p) => `<div class="disp"><span class="dr">Disponível em</span>${p.disp.map((d) => `<span class="chip">${d}</span>`).join("")}</div>`;
-const cartela = (c, cols, tam = 9.2) => !c ? "" : `<div class="cart">${c.titulo ? `<div class="ct">${c.titulo}</div>` : `<div class="ct">Cores</div>`}
-  <div class="cg" style="grid-template-columns:repeat(${cols},${tam}mm)">${c.lista.map((x) => `<div class="sw"><div class="q" style="background:${x.hex};width:${tam}mm;height:${tam}mm${x.hex.toUpperCase() === "#FFFFFF" ? ";box-shadow:inset 0 0 0 .25mm #CBD3DF" : ""}"></div><div class="qn">${x.nome}</div></div>`).join("")}</div>
-  ${c.mais ? `<div class="mais">${c.mais}</div>` : ""}</div>`;
-const lata = (img, h, extra = "") => `<div class="lata" style="${extra}"><img src="IMG/${img}.png" style="height:${h}mm"><div class="chao"></div></div>`;
+const lata = (img, h) => `<div class="lata"><img src="IMG/${img}.png" style="height:${h}mm"><div class="chao"></div></div>`;
 const nome = (p, fs = 15) => `<div class="pn" style="font-size:${fs}pt">${p.nome}</div>${p.sub ? `<div class="ps">${p.sub}</div>` : ""}`;
 
-const cabecalho = (linha, nomeLinha, n) => `<div class="band"><div class="bi">
-  <div class="bl"><span>${nomeLinha.startsWith("Cartela") ? "Tintas Laet" : "Linha"}</span></div><div class="bt">${nomeLinha}</div><div class="bar"></div></div>
+const cabecalho = (nomeLinha, n) => `<div class="band"><div class="bi"><div class="bl">${nomeLinha.startsWith("Cartela") ? "Tintas Laet" : "Linha"}</div><div class="bt">${nomeLinha}</div><div class="bar"></div></div>
   <img class="blogo" src="IMG/logo-branco.png"></div>${rodape(n)}`;
 const rodape = (n) => `<div class="rod"><div class="rl"><span>${I.site}tintaslaet.com</span><span>${I.insta}@tintaslaet</span><span>${I.zap}(11) 97714-0964</span></div><div class="rn">${String(n).padStart(2, "0")}</div></div>`;
-const AVISO = `<div class="aviso">As cores impressas ou na tela podem variar um pouco da cor real. Confira na cartela da loja.</div>`;
 
-// ---------- cartelas: nome e hex do SITE no ar (origin/main:site/produto.html), cartelas iguais juntas ----------
+// cartão de produto (horizontal): foto da lata | texto | extra opcional à direita
+const card = (p, o = {}) => `<div class="pcard${o.premium ? " prem" : ""}"><div class="pimg">${lata(p.img, o.lata || 31)}${o.premium ? '<span class="selo">Linha Premium</span>' : ""}</div>
+  <div class="ptx">${nome(p, o.premium ? 15 : 14)}<div class="pd">${p.desc}</div>${specs(p)}${disp(p)}${p.nota ? `<div class="pnota">${p.nota}</div>` : ""}${o.after || ""}</div>${o.extra || ""}</div>`;
+
+// ---------- cartelas: nome e hex do SITE no ar (origin/main:site/produto.html) ----------
 const SITE = (() => { const s = execFileSync("git", ["-C", R, "show", "origin/main:site/produto.html"], { encoding: "utf8", maxBuffer: 1e8 });
   const i = s.indexOf("const produtos = {"); let d = 0, j = s.indexOf("{", i), k = j; for (; k < s.length; k++) { if (s[k] === "{") d++; else if (s[k] === "}") { d--; if (!d) break; } }
   return eval("(" + s.slice(j, k + 1) + ")"); })();
 const coresSite = (id) => (SITE[id].cores || []).map((c) => ({ nome: c.nome, hex: c.hex.toUpperCase() }));
-const nomesDe = (id) => new Set(coresSite(id).map((c) => c.nome));
-const marca = (lista, cond, txt) => lista.map((c) => (cond(c) ? { ...c, marca: txt } : c));
-const stdTem = nomesDe("standard"), spTem = nomesDe("super-profissional");
-const EPOXI = coresSite("epoxi-base-agua");
-// ordem por família de tom (como cartela de loja): branco, amarelos, laranjas, vermelhos, rosas, roxos, azuis, verdes, neutros/marrons, cinzas
 const hsl = (hex) => { const n = parseInt(hex.slice(1), 16), r = (n >> 16) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255;
   const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, d = mx - mn; let h = 0, s2 = 0;
   if (d) { s2 = d / (1 - Math.abs(2 * l - 1)); h = mx === r ? 60 * (((g - b) / d) % 6) : mx === g ? 60 * ((b - r) / d + 2) : 60 * ((r - g) / d + 4); }
   return { h: (h + 360) % 360, s: s2, l }; };
+// ordem de cartela de loja: branco, amarelos, laranjas, vermelhos, rosas, roxos, azuis, verdes, beges/marrons, cinzas
 const familia = (hex) => { const { h, s, l } = hsl(hex);
-  if (hex.toUpperCase() === "#FFFFFF") return 0;
-  if (s < 0.16 || (s < 0.3 && l < 0.55)) return l > 0.62 && h > 15 && h < 75 ? 9 : 10;       // neutros quentes / cinzas
-  if (h >= 15 && h < 50 && l < 0.5) return 9;                                                   // marrons
+  if (hex === "#FFFFFF") return 0;
+  if (s < 0.16 || (s < 0.3 && l < 0.55)) return l > 0.62 && h > 15 && h < 75 ? 9 : 10;
+  if (h >= 15 && h < 50 && l < 0.5) return 9;
   if (h >= 48 && h < 75) return 1; if (h >= 22 && h < 48) return 2; if (h < 12 || h >= 350) return l > 0.72 ? 4 : 3;
   if (h >= 12 && h < 22) return 3; if (h >= 300 && h < 350) return 4; if (h >= 250 && h < 300) return 5;
   if (h >= 185 && h < 250) return 6; return 8; };
 const ordenar = (lista) => lista.map((c, i) => ({ c, f: familia(c.hex), l: hsl(c.hex).l, i })).sort((a, b) => a.f - b.f || b.l - a.l || a.i - b.i).map((x) => x.c);
-const tag = (lista, cond, txt) => lista.map((c) => (cond(c) ? { ...c, tag: txt } : c));
+const spTem = new Set(coresSite("super-profissional").map((c) => c.nome));
 const CARTELAS = {
-  grande: { titulo: "Cartela Paleta Grande", usada: "Vale para: <b>Emborrachada</b>, <b>Premium Lavável</b> e <b>1ª Linha Standard</b>",
-    lista: ordenar(tag(coresSite("premium-lavavel"), (c) => c.nome !== "Branco" && !stdTem.has(c.nome), "Não tem na Standard")) },
-  gesso: { titulo: "Cartela Profissional e Gesso", usada: "Vale para: <b>Super Profissional</b> e <b>Direto no Gesso</b>",
-    lista: ordenar(tag(coresSite("direto-no-gesso"), (c) => c.nome !== "Branco" && !spTem.has(c.nome), "Só Direto no Gesso")) },
-  esmalte: { titulo: "Cartela Esmalte e Epóxi", usada: "<b>Esmalte Ecológico</b>: todas, menos Areia Bege · <b>Epóxi</b>: só as 16 marcadas",
-    // primeiro as 16 do Epóxi na ordem do Kevin; depois as que são só do Esmalte (por tom)
-    lista: [...EPOXI.map((c) => ({ ...c, tag: c.nome === "Areia Bege" ? "Só Epóxi" : "Também no Epóxi", conf: c.nome === "Areia Bege" })),
-            ...ordenar(coresSite("esmalte-ecologico").filter((c) => !EPOXI.some((e) => e.nome === c.nome)))] },
-  vinil: { titulo: "Cartela Básica Interna Vinil", usada: "Vale para: <b>Básica Interna Vinil</b>", lista: ordenar(coresSite("latex-vinil")) },
-  pisos: { titulo: "Cartela Pisos & Fachadas", usada: "Vale para: <b>Pisos & Fachadas</b>", lista: ordenar(coresSite("piso-fachada")) },
-  verniz: { titulo: "Verniz Base Água · tonalidades", lista: coresSite("verniz-premium") },
+  grande: { titulo: "Cartela Paleta Grande", usada: "Emborrachada e Premium Lavável", lista: ordenar(coresSite("premium-lavavel")) },
+  pisos: { titulo: "Cartela Pisos & Fachadas", usada: "Pisos & Fachadas", lista: ordenar(coresSite("piso-fachada")) },
+  // Epóxi: as 16 na ordem que o Kevin passou (24/11)
+  epoxi: { titulo: "Cartela Epóxi Base Água", usada: "Epóxi Base Água", lista: coresSite("epoxi-base-agua").map((c) => (c.nome === "Areia Bege" ? { ...c, conf: true } : c)) },
+  standard: { titulo: "Cartela 1ª Linha Standard", usada: "1ª Linha Standard", lista: ordenar(coresSite("standard")) },
+  vinil: { titulo: "Cartela Básica Interna Vinil", usada: "Básica Interna Vinil", lista: ordenar(coresSite("latex-vinil")) },
+  gesso: { titulo: "Cartela Profissional e Gesso", usada: "Super Profissional e Direto no Gesso",
+    lista: ordenar(coresSite("direto-no-gesso")).map((c) => (c.nome !== "Branco" && !spTem.has(c.nome) ? { ...c, tag: "Só Direto no Gesso" } : c)) },
+  esmalte: { titulo: "Cartela Esmalte Ecológico", usada: "Esmalte Ecológico", lista: ordenar(coresSite("esmalte-ecologico")) },
 };
-const QW = 26, QH = 15, COLS = 7;           // quadradinho EXATO 26 x 15 mm (pedido do Kevin), 7 por linha
-const cart = (c, ini = 0, fim = c.lista.length, cont = false, nota = true) => `<div class="cart2">
-  <div class="c2h"><div class="c2t">${c.titulo}${cont ? ' <span class="c2c">(continuação)</span>' : ""}</div>${c.usada && !cont ? `<div class="c2u">${c.usada}</div>` : ""}</div>
-  <div class="c2g">${c.lista.slice(ini, fim).map((x) => `<div class="s2"><div class="q2" style="background:${x.hex}${x.hex === "#FFFFFF" ? ";box-shadow:inset 0 0 0 .3mm #C9D2DE" : ""}">${x.tag ? `<span class="qtag${x.tag !== "" ? " forte" : ""}">${x.tag}</span>` : ""}${x.conf ? `<span class="qconf">[CONFERIR HEX]</span>` : ""}</div><div class="n2">${x.nome}</div></div>`).join("")}</div>
-  ${nota ? `<div class="c2n"><span></span><span>Cores aproximadas. Confira na loja antes de comprar.</span></div>` : ""}</div>`;
-const refCor = (t) => `<div class="cart"><div class="ct">Cores</div><div class="sv" style="font-weight:500">${t}</div></div>`;
+const sw = (x) => `<div class="s2"><div class="q2" style="background:${x.hex}${x.hex === "#FFFFFF" ? ";box-shadow:inset 0 0 0 .3mm #C9D2DE" : ""}">${x.tag ? `<span class="qtag">${x.tag}</span>` : ""}${x.conf ? `<span class="qconf">[CONFERIR HEX]</span>` : ""}</div><div class="n2">${x.nome}</div></div>`;
+const cart = (c, ini = 0, fim = c.lista.length, cont = false) => `<div class="cart2">
+  <div class="c2h"><div class="c2t">${c.titulo}${cont ? ' <span class="c2c">continuação</span>' : ` <span class="c2c">· ${c.lista.length} cores</span>`}</div>${cont ? "" : `<div class="c2u">Vale para: <b>${c.usada}</b></div>`}</div>
+  <div class="c2g">${c.lista.slice(ini, fim).map(sw).join("")}</div>
+  ${fim >= c.lista.length ? `<div class="c2n">Cores aproximadas. Confira na loja antes de comprar.</div>` : ""}</div>`;
+const tons = (c) => `<div class="tons"><div class="ct">Tonalidades</div><div class="tg">${c.map(sw).join("")}</div><div class="c2n" style="text-align:left;margin-top:.8mm">Cores aproximadas. Confira na loja.</div></div>`;
 
-// ---------- páginas (8) ----------
-const capaFaixas = ["Romã", "Lícor de Laranja", "Amarelo Dourado", "Mistura de Mostarda", "Verde Primavera", "Ilha de Esmeralda", "Pavão", "Céu Sagrado", "Paraíso do Mar", "Azul Jazz", "Lilás Laet", "Fogo Violeta", "Flamingo Real", "Rosa Gloss", "Areia", "Cinza Fumaça"].map((n) => cor("paleta-grande", n));
+// ---------- páginas (9) ----------
+const pg = (n, linha, corpo, cls = "") => `<div class="page">${cabecalho(linha, n)}<div class="corpo ${cls}">${corpo}</div></div>`;
+const FAIXAS = ["Romã", "Lícor de Laranja", "Amarelo Dourado", "Amarelo C 07", "Verde Primavera", "Ilha de Esmeralda", "Pavão", "Céu Sagrado", "Paraíso do Mar", "Lilás Laet", "Fogo Violeta", "Flamingo Real", "Rosa Gloss", "Doce da Bisa", "Areia", "Pitada Casual"].map((n) => cor("paleta-grande", n));
 const capa = `<div class="page capa">
-  <div class="cfx">${capaFaixas.map((c) => `<div style="background:${c.hex};height:126mm"></div>`).join("")}</div>
-  <div class="cvel"></div>
-  <img class="clogo" src="IMG/logo-cor.png">
-  <div class="ctit"><div class="ck">Tintas, massas e complementos</div><div class="cm">Catálogo<br>de Produtos</div><div class="cbar"></div></div>
-  <div class="clatas">${[["epoxi", 46, 38], ["lavavel", 62, 70], ["emborrachada", 76, 108], ["pisos", 62, 146], ["standard", 50, 178]].map(([k, h, x]) => `<div class="cl" style="left:${x}mm;z-index:${h}"><img src="IMG/${k}.png" style="height:${h}mm"><div class="chao"></div></div>`).join("")}</div>
-  <div class="cpe">tintaslaet.com · @tintaslaet</div></div>`;
+  <img class="clogo" src="IMG/logo-branco.png">
+  <div class="ctit"><div class="cm">Catálogo de Produtos</div><div class="cbar"></div><div class="ck">Tintas · Esmaltes · Vernizes · Epóxi · Massas</div></div>
+  <div class="cfx">${FAIXAS.map((c, i) => `<div style="background:${c.hex};height:${112 + [0, 6, 2, 8, 3, 7, 1, 5][i % 8]}mm"></div>`).join("")}</div>
+  <div class="clatas">${[["epoxi", 50, 34], ["lavavel", 66, 70], ["emborrachada", 82, 108], ["pisos", 66, 146], ["standard", 54, 182]].map(([k, h, x]) => `<div class="cl" style="left:${x}mm;z-index:${h}"><img src="IMG/${k}.png" style="height:${h}mm"><div class="chao"></div></div>`).join("")}</div>
+  <div class="cpe"><span>tintaslaet.com</span><span>@tintaslaet</span><span>(11) 97714-0964</span></div></div>`;
 
-// cartão de produto (página premium: 2x2)
-const cartao = (p, ref, selo = true) => `<div class="pc"><div class="pimg">${lata(p.img, 40)}${selo ? '<span class="selo">Linha Premium</span>' : ""}</div>
-  <div class="ptx">${nome(p, 13.5)}<div class="pd">${p.desc}</div>${specs(p)}${disp(p)}${refCor(ref)}</div></div>`;
-const pg = (n, linha, corpo) => `<div class="page">${cabecalho("", linha, n)}<div class="corpo">${corpo}</div></div>`;
-const linhaRow = (p, ref, lataH = 33, extra = "", premium = false) => `<div class="row${premium ? " prem" : ""}"><div class="rimg">${lata(p.img, lataH)}${premium ? '<span class="selo">Linha Premium</span>' : ""}</div><div class="rtx">${nome(p, premium ? 14.5 : 13)}<div class="pd">${p.desc}</div>${specs(p)}${disp(p)}${ref ? refCor(ref) : ""}${extra}</div></div>`;
-const p2 = pg(2, "Premium e Nobres", linhaRow(P.emborrachada, "Cartela <b>Paleta Grande</b>, páginas 3 e 4", 44, "", true) + linhaRow(P.lavavel, "Cartela <b>Paleta Grande</b>, páginas 3 e 4", 44, "", true)
-  + linhaRow(P.pisos, "Cartela <b>Pisos & Fachadas</b>, página 4", 44, "", true) + linhaRow(P.epoxi, "16 cores: cartela <b>Esmalte Ecológico e Epóxi</b>, página 7", 42, "", true));
-const G = CARTELAS.grande, corte = COLS * 9;   // 9 fileiras na pág. 3, o resto na 4
-const p3 = pg(3, "Cartela de Cores", cart(G, 0, corte, false, false));
-const p4 = pg(4, "Cartela de Cores", cart(G, corte, G.lista.length, true) + cart(CARTELAS.pisos));
+const G = CARTELAS.grande, S = CARTELAS.standard;
+const p2 = pg(2, "Premium e Nobres", card(P.emborrachada, { premium: true, lata: 35 }) + card(P.lavavel, { premium: true, lata: 35 }) + cart(G, 0, 42));
+const p3 = pg(3, "Premium e Nobres", cart(G, 42, G.lista.length, true));
+const p4 = pg(4, "Premium e Nobres", card(P.pisos, { premium: true, lata: 34 }) + cart(CARTELAS.pisos) + card(P.epoxi, { premium: true, lata: 32 }) + cart(CARTELAS.epoxi));
+const p5 = pg(5, "Acrílicas", card(P.standard) + cart(S, 0, 56));
+const p6 = pg(6, "Acrílicas", cart(S, 56, S.lista.length, true) + card(P.vinil) + cart(CARTELAS.vinil));
+const p7 = pg(7, "Profissional & Gesso", card(P.profissional) + card(P.gesso) + cart(CARTELAS.gesso));
+const p8 = pg(8, "Madeiras & Metais", card(P.esmalte) + cart(CARTELAS.esmalte) + card(P.verniz, { after: tons(coresSite("verniz-premium")) }));
 
-const p5 = pg(5, "Acrílicas", linhaRow(P.standard, "Cartela <b>Paleta Grande</b>, páginas 3 e 4 (as que não têm na Standard estão marcadas)")
-  + linhaRow(P.profissional, "Cartela <b>Super Profissional e Direto no Gesso</b>, página 6") + linhaRow(P.vinil, "Cartela abaixo") + cart(CARTELAS.vinil));
-const p6 = pg(6, "Gesso & Drywall", linhaRow(P.gesso, "Cartela abaixo", 34) + `<div class="dica" style="margin:3mm 0 1mm"><b>Dica de balcão</b>Gesso e drywall novos: limpa o pó, aplica a Direto no Gesso e pronto. Não precisa passar fundo antes.</div>` + cart(CARTELAS.gesso));
-const tons = (c) => `<div class="cart"><div class="ct">Tonalidades</div><div class="tons">${c.lista.map((x) => `<div class="s2"><div class="q2" style="background:${x.hex}"></div><div class="n2">${x.nome}</div></div>`).join("")}</div><div class="c2n" style="margin-top:.3mm"><span>Cores aproximadas. Confira na loja antes de comprar.</span></div></div>`;
-const p7 = pg(7, "Madeiras & Metais", linhaRow(P.esmalte, "") + linhaRow(P.verniz, "", 34, tons(CARTELAS.verniz)) + cart(CARTELAS.esmalte));
-
-const massa = (p) => `<div class="mc"><div class="mimg">${lata(p.img, 34)}</div><div class="mtx">${nome(p, 12)}<div class="pd">${p.desc}</div>${specs(p, false)}${disp(p)}</div></div>`;
-const LOJAS = [[1, "Vila Bela (Sapopemba)", "São Paulo"], [2, "Jardim São João", "Mauá"], [3, "Jardim Santa Cecília", "Mauá"], [4, "Vila Luzita", "Santo André"], [5, "Jardim Itapark", "Mauá"], [6, "Santa Terezinha", "São Bernardo do Campo"]];
-const p8 = `<div class="page">${cabecalho("", "Massas & Complementos", 8)}<div class="corpo"><div class="g2m">${["corrida", "acrilica", "seladora", "fundo"].map((k) => massa(P[k])).join("")}</div></div>
-  <div class="lojasbox"><div class="lbt">Nossas lojas</div>
-    <div class="lbg">${LOJAS.map(([n, b, c]) => `<div class="lbj"><span>Loja ${n}</span><b>${b}</b><i>${c}</i></div>`).join("")}</div>
+const massa = (p) => `<div class="mc"><div class="mimg">${lata(p.img, 30)}</div><div class="mtx">${nome(p, 12)}<div class="pd">${p.desc}</div>${specs(p)}${disp(p)}</div></div>`;
+const LOJAS = [
+  [1, "Vila Bela (Sapopemba)", "São Paulo", "Av. Sapopemba, 25.723", "(11) 98082-0686"],
+  [2, "Jardim São João", "Mauá", "Rua do Britador, 2", "(11) 97750-4434"],
+  [3, "Jardim Santa Cecília", "Mauá", "Av. Ayrton Senna da Silva, 235", "(11) 97749-8813"],
+  [4, "Vila Luzita", "Santo André", "Av. São Bernardo do Campo, 757", "(11) 94855-1977"],
+  [5, "Jardim Itapark", "Mauá", "Av. Itapark, 4377", "(11) 91433-4875"],
+  [6, "Santa Terezinha", "São Bernardo do Campo", "Av. Luís Pequini, 899", "(11) 91875-5095"]];
+const p9 = `<div class="page">${cabecalho("Massas & Complementos", 9)}<div class="corpo"><div class="g2m">${["corrida", "acrilica", "seladora", "fundo"].map((k) => massa(P[k])).join("")}</div></div>
+  <div class="lojasbox"><div class="lbt">Nossas lojas</div><div class="lbs">6 lojas no ABC e na Zona Leste de São Paulo · Parcele em até 12x sem juros (consulte as condições)</div>
+    <div class="lbg">${LOJAS.map(([n, b, c, e, z]) => `<div class="lbj"><span>Loja ${n} · ${c}</span><b>${b}</b><i>${e}</i><em>${I.zap}${z}</em></div>`).join("")}</div>
     <div class="lbc"><div class="lbci">
       <div class="ci"><span>${I.zap}</span><div><small>WhatsApp</small>(11) 97714-0964</div></div>
       <div class="ci"><span>${I.insta}</span><div><small>Instagram</small>@tintaslaet</div></div>
       <div class="ci"><span>${I.site}</span><div><small>Site</small>tintaslaet.com</div></div></div>
       <div class="qr"><div>QR CODE<br>DO WHATSAPP</div><small>espaço reservado</small></div></div></div></div>`;
-const PAGINAS = [capa, p2, p3, p4, p5, p6, p7, p8];
+const PAGINAS = [capa, p2, p3, p4, p5, p6, p7, p8, p9];
 
 // ---------- estilo ----------
 const CSS = `@page{size:216mm 303mm;margin:0}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-body{font-family:'Poppins',sans-serif;color:#1B2433}
-.page{position:relative;width:216mm;height:303mm;overflow:hidden;background:#FAFAF7;page-break-after:always}
-.conf{color:#E53935;font-weight:700;font-family:'Poppins'}.confn{font-weight:500;font-size:.85em}
-/* cabeçalho de linha (sai na sangria) */
-.band{position:absolute;left:0;top:0;right:0;height:43mm;background:linear-gradient(120deg,#0D47A1 0%,#0B3C8C 55%,#062B63 100%)}
-.band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.6mm;background:linear-gradient(90deg,#FFC107 0 26%,#FFE082 26% 30%,transparent 30%)}
-.bi{position:absolute;left:18mm;top:12mm}
-.bl span{display:inline-block;font-family:'Poppins';font-weight:600;font-size:9pt;letter-spacing:.22em;text-transform:uppercase;color:#FFE082}
-.bt{font-family:'Montserrat';font-weight:800;font-size:27pt;letter-spacing:-.01em;text-transform:uppercase;color:#fff;line-height:1.05;margin-top:1mm}
-.bar{width:16mm;height:1.6mm;background:#FFC107;border-radius:1mm;margin-top:2.6mm}
-.blogo{position:absolute;right:18mm;top:13.5mm;height:17mm}
-.rod{position:absolute;left:18mm;right:18mm;bottom:12mm;display:flex;align-items:center;justify-content:space-between;border-top:.3mm solid #D5DDEA;padding-top:2.6mm;font-size:7.6pt;color:#4A5568}
+body{font-family:'Poppins',sans-serif;color:#212529}
+.page{position:relative;width:216mm;height:303mm;overflow:hidden;background:#F0F2F5;page-break-after:always}
+.conf{color:#E53935;font-weight:700}
+/* cabeçalho (sai na sangria) */
+.band{position:absolute;left:0;top:0;right:0;height:37mm;background:linear-gradient(115deg,#0D47A1 0%,#0B3D8F 60%,#062B63 100%)}
+.band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.4mm;background:#FFC107}
+.bi{position:absolute;left:17mm;top:11mm}
+.bl{font-family:'Montserrat';font-weight:700;font-size:8.5pt;letter-spacing:.2em;text-transform:uppercase;color:#FFE082}
+.bt{font-family:'Montserrat';font-weight:800;font-size:25pt;text-transform:uppercase;color:#fff;line-height:1.05;margin-top:.8mm;letter-spacing:-.005em}
+.bar{display:none}
+.blogo{position:absolute;right:17mm;top:10.5mm;height:15.5mm}
+.rod{position:absolute;left:17mm;right:17mm;bottom:11mm;display:flex;align-items:center;justify-content:space-between;border-top:.3mm solid #CDD5E1;padding-top:2.4mm;font-size:7.6pt;color:#4A5568}
 .rl{display:flex;gap:6mm}.rl span{display:flex;align-items:center;gap:1.4mm}.rl svg{width:3.4mm;height:3.4mm;color:#0D47A1}
-.rn{font-family:'Bebas Neue';font-size:14pt;color:#0D47A1;letter-spacing:.04em}
-.aviso{position:absolute;left:18mm;right:18mm;bottom:19.5mm;font-size:6.6pt;color:#7A8597;text-align:right}
-.corpo{position:absolute;left:16mm;right:16mm;top:48mm;bottom:22mm}
-/* produto */
+.rn{font-family:'Bebas Neue';font-size:13pt;color:#fff;background:#0D47A1;border-radius:1.2mm;padding:.2mm 2.2mm 0}
+.corpo{position:absolute;left:15mm;right:15mm;top:44mm;bottom:21mm}
+/* cartão de produto */
+.pcard{display:flex;gap:5mm;align-items:stretch;background:#fff;border-radius:2mm;box-shadow:0 .5mm 2mm rgba(6,43,99,.08);padding:3.4mm;margin-bottom:3.4mm}
+.pimg{position:relative;flex:none;width:40mm;border-radius:1.6mm;background:radial-gradient(ellipse 70% 75% at 50% 42%,#FFFFFF 0%,#F0F2F5 70%,#E4E9F1 100%);display:flex;align-items:flex-end;justify-content:center;padding:3mm 0 3.2mm;min-height:38mm}
+.pcard.prem .pimg{width:44mm}
 .lata{position:relative;display:flex;justify-content:center;align-items:flex-end}
-.lata img{position:relative;z-index:2;filter:drop-shadow(0 1.2mm 1.2mm rgba(6,43,99,.18))}
-.chao{position:absolute;bottom:-1.6mm;left:50%;transform:translateX(-50%);width:80%;height:4mm;border-radius:50%;background:radial-gradient(ellipse,rgba(6,24,58,.38) 0%,rgba(6,24,58,.14) 45%,transparent 72%);z-index:1}
+.lata img{position:relative;z-index:2;filter:drop-shadow(0 1mm 1mm rgba(6,43,99,.2))}
+.chao{position:absolute;bottom:-1.4mm;left:50%;transform:translateX(-50%);width:82%;height:3.6mm;border-radius:50%;background:radial-gradient(ellipse,rgba(6,24,58,.4) 0%,rgba(6,24,58,.14) 45%,transparent 72%);z-index:1}
+.selo{position:absolute;z-index:5;left:2mm;top:2mm;font-family:'Montserrat';font-weight:700;font-size:5.8pt;letter-spacing:.14em;text-transform:uppercase;color:#062B63;background:#FFC107;border-radius:1mm;padding:.6mm 1.8mm .5mm}
+.ptx{flex:1;min-width:0;padding-top:.6mm}
 .pn{font-family:'Montserrat';font-weight:800;text-transform:uppercase;color:#0D47A1;letter-spacing:-.005em;line-height:1.05}
-.ps{font-family:'Poppins';font-weight:600;font-size:8pt;color:#1976D2;margin-top:.6mm;letter-spacing:.02em}
-.pd{font-size:8.6pt;line-height:1.45;color:#2D3748;margin-top:2mm}
-.specs{display:flex;gap:4mm;margin-top:3mm;flex-wrap:wrap}
+.ps{font-family:'Montserrat';font-weight:700;font-size:8pt;color:#1976D2;margin-top:.5mm}
+.pd{font-size:8.6pt;line-height:1.42;color:#2D3748;margin-top:1.4mm}
+.pnota{font-size:7pt;color:#5A6577;margin-top:1.4mm}
+.specs{display:flex;gap:5mm;margin-top:2.4mm;flex-wrap:wrap}
 .spec{display:flex;gap:1.6mm;align-items:flex-start;min-width:0}
-.ic{flex:none;width:6.2mm;height:6.2mm;border-radius:50%;background:#E8EEF8;color:#0D47A1;display:flex;align-items:center;justify-content:center}.ic svg{width:3.8mm;height:3.8mm}
-.sr{font-size:6.2pt;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#7A8597}
-.sv{font-size:8.2pt;font-weight:600;color:#1B2433;line-height:1.25}
-.rv{color:#0D47A1;line-height:1}.rv b{font-family:'Bebas Neue';font-weight:400;font-size:17pt;letter-spacing:.01em;vertical-align:-.06em}.rp{font-size:7.6pt;font-weight:600;color:#1B2433}
+.ic{flex:none;width:6mm;height:6mm;border-radius:50%;background:#E3EBF7;color:#0D47A1;display:flex;align-items:center;justify-content:center}.ic svg{width:3.6mm;height:3.6mm}
+.sr{font-family:'Montserrat';font-weight:700;font-size:5.8pt;letter-spacing:.12em;text-transform:uppercase;color:#7A8597}
+.sv{font-size:8.2pt;font-weight:600;color:#212529;line-height:1.25}
+.rv{color:#0D47A1;line-height:1}.rv b{font-family:'Bebas Neue';font-weight:400;font-size:17pt;vertical-align:-.06em}.rp{font-size:7.6pt;font-weight:600;color:#212529}
 .ro{font-size:6.8pt;color:#5A6577;margin-top:.4mm}
-.disp{display:flex;flex-wrap:wrap;align-items:center;gap:1.4mm;margin-top:3mm}
-.dr{font-size:6.2pt;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#7A8597;margin-right:1mm}
-.chip{font-size:7.4pt;font-weight:600;color:#062B63;background:#fff;border:.3mm solid #C9D5E8;border-radius:5mm;padding:.5mm 2.4mm}
-.cart{margin-top:3.2mm}.ct{font-size:6.2pt;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#7A8597;margin-bottom:1.4mm}
-.cg{display:grid;column-gap:1.6mm;row-gap:1.8mm}
-.sw{min-width:0}.q{border-radius:1.2mm}
-.qn{font-size:5.3pt;line-height:1.15;color:#3A4556;margin-top:.7mm;overflow-wrap:break-word;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.mais{font-size:7pt;font-weight:600;color:#1976D2;margin-top:1.6mm}
-/* página premium: 2x2 */
-.g2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6mm;height:100%}
-.pc{background:#fff;border-radius:4mm;border:.3mm solid #E3E8F0;box-shadow:0 1mm 3mm rgba(6,43,99,.06);padding:5mm;display:flex;flex-direction:column;overflow:hidden}
-.pimg{position:relative;height:48mm;flex:none;border-radius:3mm;background:radial-gradient(ellipse 70% 80% at 50% 45%,#FFFFFF 0%,#EEF3FA 70%,#E3EAF5 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:4mm}
-.selo{position:absolute;left:3mm;top:3mm;font-size:6pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#062B63;border:.3mm solid #FFC107;background:rgba(255,224,130,.35);border-radius:4mm;padding:.5mm 2.2mm}
-.ptx{padding-top:3.6mm;min-height:0}
-.ptx .specs{gap:3mm}
-/* premium grande: 2 por página */
-.pb{display:flex;gap:7mm;height:50%;padding:1mm 0 6mm}.pb + .pb{border-top:.3mm solid #E3E8F0;padding-top:6mm}
-.pbimg{position:relative;flex:none;width:68mm;border-radius:4mm;background:radial-gradient(ellipse 70% 80% at 50% 45%,#FFFFFF 0%,#EEF3FA 70%,#E3EAF5 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:7mm}
-.pbimg img{max-width:60mm;object-fit:contain}
-.pbtx{flex:1;min-width:0;padding-top:1mm}.pbtx .ps{font-size:9pt}.pbtx .specs{gap:4.5mm}
-.pbtx .dica{margin-top:3mm;padding:2.2mm 3.4mm;font-size:7.8pt}
-/* linhas (acrílicas, madeiras) */
-.row{display:flex;gap:6mm;padding:2.6mm 0;border-bottom:.3mm solid #E3E8F0}.row.prem{padding:2.2mm 0}.row:last-child{border-bottom:0}
-.rimg{position:relative;flex:none;width:40mm;height:40mm;border-radius:3mm;background:radial-gradient(ellipse 70% 80% at 50% 45%,#FFFFFF 0%,#EEF3FA 70%,#E3EAF5 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:4mm}
-.rtx{flex:1;min-width:0}.rtx .specs{margin-top:1.8mm}.rtx .disp{margin-top:1.8mm}.rtx .cart{margin-top:1.8mm}.rtx .pd{margin-top:1.2mm;font-size:8.2pt}.rtx .ct{margin-bottom:.6mm}
-/* gesso */
-.hero{display:flex;gap:8mm;align-items:stretch}
-.himg{flex:none;width:76mm;height:112mm;border-radius:4mm;background:radial-gradient(ellipse 70% 80% at 50% 45%,#FFFFFF 0%,#EEF3FA 70%,#E3EAF5 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:7mm}
-.htx{flex:1;padding-top:3mm}.htx .ps{font-size:9.5pt}
-.dica{margin-top:5mm;background:#FFF6D6;border-left:1.4mm solid #FFC107;border-radius:0 2.5mm 2.5mm 0;padding:3mm 4mm;font-size:8.4pt;line-height:1.45;color:#3A3220}.dica b{display:block;font-family:'Montserrat';font-weight:800;font-size:7.4pt;letter-spacing:.08em;text-transform:uppercase;color:#062B63;margin-bottom:.6mm}
-.hero + .cart{margin-top:8mm}.hero + .cart .qn{font-size:6.2pt}
-/* massas */
-.g2m{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:73mm;gap:4mm}.mc .chip{font-size:6.8pt;padding:.4mm 1.8mm}.mc .disp{gap:1mm}.mc .dr{width:100%;margin-bottom:.2mm}
-.mc{background:#fff;border-radius:4mm;border:.3mm solid #E3E8F0;padding:5mm;display:flex;gap:4mm}
-.mimg{flex:none;width:26mm;border-radius:3mm;background:radial-gradient(ellipse 70% 80% at 50% 45%,#FFFFFF 0%,#EEF3FA 70%,#E3EAF5 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:4mm}
-.mimg img{max-width:27mm;object-fit:contain}
-.mtx{flex:1;min-width:0}.mtx .specs{flex-direction:column;gap:2mm}
-.qual{position:absolute;left:18mm;right:18mm;top:233mm;background:#062B63;border-radius:4mm;padding:4.5mm 6mm;color:#fff}
-.qt{font-family:'Montserrat';font-weight:800;font-size:11pt;text-transform:uppercase;margin-bottom:2.4mm}.qt::after{content:"";display:inline-block;width:8mm;height:1.2mm;background:#FFC107;border-radius:1mm;margin-left:3mm;vertical-align:middle}
-.qrow{display:flex;justify-content:space-between;align-items:center;font-size:8.4pt;padding:1.3mm 0;border-top:.25mm solid rgba(255,255,255,.14)}.qrow b{color:#FFC107;font-weight:600}
-.page:has(.qual) .rod{bottom:12mm}
-.row.prem .rimg{width:46mm;height:48mm}
-.tons{display:grid;grid-template-columns:repeat(3,26mm);gap:3mm}
-/* cartelas 26x15 */
-.cart2{margin-top:4mm;break-inside:avoid}.corpo > .cart2:first-child{margin-top:0}
-.c2h{display:flex;align-items:baseline;justify-content:space-between;gap:4mm;border-bottom:.35mm solid #0D47A1;padding-bottom:1.2mm;margin-bottom:2mm}
-.c2t{font-family:'Montserrat';font-weight:800;font-size:12pt;text-transform:uppercase;color:#0D47A1;letter-spacing:-.005em}.c2c{font-family:'Poppins';font-weight:500;font-size:8pt;text-transform:none;color:#7A8597}
-.c2u{font-size:8pt;font-weight:500;color:#2D3748;text-align:right}.c2u b{color:#0D47A1;font-weight:700}
-.c2g{display:grid;grid-template-columns:repeat(7,26mm);column-gap:.33mm;row-gap:1.1mm;justify-content:space-between}
-.q2{position:relative;width:26mm;height:15mm;border-radius:1.4mm}.qtag{position:absolute;left:.9mm;top:.9mm;font-size:5.2pt;font-weight:600;line-height:1;color:#062B63;background:rgba(255,255,255,.9);border-radius:.8mm;padding:.5mm .9mm .4mm}.qtag.forte{background:#062B63;color:#fff}
-.qconf{position:absolute;left:1mm;bottom:1mm;font-size:5.6pt;font-weight:700;color:#E53935;background:rgba(255,255,255,.85);border-radius:.8mm;padding:0 .8mm}
-.n2{font-family:'Poppins';font-size:6.2pt;font-weight:500;line-height:1.15;color:#2D3748;margin-top:.6mm;height:3.4mm;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.n2 b{color:#1976D2;font-weight:700}
-.c2n{display:flex;justify-content:space-between;gap:4mm;margin-top:1.8mm;font-size:6.8pt;color:#5A6577}.c2n span:last-child{font-weight:600;color:#062B63}
-.g2r{display:grid;grid-template-columns:1fr 1fr;gap:6mm;margin-bottom:2mm}.g2r .pc{height:92mm}
-.lojasbox{position:absolute;left:0;right:0;bottom:0;height:102mm;background:linear-gradient(160deg,#0D47A1 0%,#0A3A86 45%,#062B63 100%);color:#fff;padding:8mm 18mm 0}
-.lbt{font-family:'Montserrat';font-weight:800;font-size:17pt;text-transform:uppercase}.lbt::after{content:"";display:inline-block;width:10mm;height:1.4mm;background:#FFC107;border-radius:1mm;margin-left:3mm;vertical-align:middle}
-.lbg{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-top:4mm}
-.lbj{background:rgba(255,255,255,.08);border:.3mm solid rgba(255,255,255,.16);border-radius:3mm;padding:2.6mm 3.4mm;display:flex;flex-direction:column}
-.lbj span{font-family:'Bebas Neue';font-size:11pt;letter-spacing:.06em;color:#FFC107}.lbj b{font-family:'Montserrat';font-weight:800;font-size:9.5pt}.lbj i{font-style:normal;font-size:7.6pt;color:rgba(255,255,255,.78)}
-.lbc{display:flex;justify-content:space-between;align-items:center;margin-top:5mm}.lbci{display:flex;gap:7mm}
-.lbc .ci{font-size:11pt}.lbc .ci span{width:8.5mm;height:8.5mm}.lbc .qr{width:34mm;height:34mm}
+.disp{display:flex;flex-wrap:wrap;align-items:center;gap:1.4mm;margin-top:2.4mm}
+.dr{font-family:'Montserrat';font-weight:700;font-size:5.8pt;letter-spacing:.12em;text-transform:uppercase;color:#7A8597;margin-right:1mm}
+.chip{font-size:7.4pt;font-weight:600;color:#062B63;background:#F0F2F5;border-radius:1mm;padding:.6mm 2.2mm}
+/* cartelas 26 x 15 mm */
+.cart2{margin:.5mm 0 3.4mm}
+.c2h{display:flex;align-items:baseline;justify-content:space-between;gap:4mm;margin-bottom:1.8mm}
+.c2t{font-family:'Montserrat';font-weight:800;font-size:11pt;text-transform:uppercase;color:#0D47A1;letter-spacing:-.005em}.c2t::before{content:"";display:inline-block;width:1.4mm;height:3.4mm;background:#FFC107;border-radius:.5mm;margin-right:2mm;vertical-align:-.3mm}
+.c2c{font-family:'Poppins';font-weight:500;font-size:8pt;text-transform:none;color:#5A6577}
+.c2u{font-size:7.8pt;color:#4A5568;text-align:right}.c2u b{color:#0D47A1;font-weight:600}
+.c2g{display:grid;grid-template-columns:repeat(7,26mm);justify-content:space-between;row-gap:1.4mm}
+.q2{position:relative;width:26mm;height:15mm;border-radius:1.2mm}
+.n2{font-size:6.2pt;font-weight:500;line-height:1.15;color:#2D3748;margin-top:.7mm;height:3.4mm;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.qtag{position:absolute;left:.9mm;top:.9mm;font-size:5.2pt;font-weight:600;line-height:1;color:#fff;background:#062B63;border-radius:.8mm;padding:.5mm .9mm .4mm}
+.qconf{position:absolute;left:1mm;bottom:1mm;font-size:5.6pt;font-weight:700;color:#E53935;background:rgba(255,255,255,.88);border-radius:.8mm;padding:0 .8mm}
+.c2n{font-size:6.8pt;font-weight:600;color:#062B63;text-align:right;margin-top:1.4mm}
+.tons{margin-top:1.8mm}.ct{font-family:'Montserrat';font-weight:700;font-size:5.8pt;letter-spacing:.12em;text-transform:uppercase;color:#7A8597;margin-bottom:1.4mm}
+.tg{display:grid;grid-template-columns:repeat(3,26mm);gap:3mm}
+/* massas + lojas */
+.g2m{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:66mm;gap:4mm}
+.mc{background:#fff;border-radius:2mm;box-shadow:0 .5mm 2mm rgba(6,43,99,.08);padding:3.6mm;display:flex;gap:3.6mm}
+.mimg{flex:none;width:25mm;border-radius:1.6mm;background:radial-gradient(ellipse 70% 75% at 50% 42%,#FFFFFF 0%,#F0F2F5 70%,#E4E9F1 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:3.5mm}
+.mimg img{max-width:22mm;object-fit:contain}
+.mtx{flex:1;min-width:0}.mtx .specs{flex-direction:column;gap:1.6mm}.mtx .pd{font-size:8pt}
+.mc .chip{font-size:6.8pt;padding:.5mm 1.6mm}.mc .disp{gap:1mm}.mc .dr{width:100%;margin-bottom:.2mm}
+.lojasbox{position:absolute;left:0;right:0;bottom:0;height:116mm;background:linear-gradient(160deg,#0D47A1 0%,#0A3A86 45%,#062B63 100%);color:#fff;padding:9mm 17mm 0}
+.lojasbox::before{content:"";position:absolute;left:0;right:0;top:0;height:1.4mm;background:#FFC107}
+.lbt{font-family:'Montserrat';font-weight:800;font-size:18pt;text-transform:uppercase}
+.lbs{font-size:8.4pt;color:#FFE082;margin-top:1mm}
+.lbg{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-top:4.5mm}
+.lbj{background:rgba(255,255,255,.08);border:.3mm solid rgba(255,255,255,.16);border-radius:1.6mm;padding:2.8mm 3.2mm;display:flex;flex-direction:column;gap:.4mm}
+.lbj span{font-family:'Montserrat';font-weight:700;font-size:6.4pt;letter-spacing:.1em;text-transform:uppercase;color:#FFC107}
+.lbj b{font-family:'Montserrat';font-weight:800;font-size:9.4pt}.lbj i{font-style:normal;font-size:7.4pt;color:rgba(255,255,255,.82)}
+.lbj em{font-style:normal;font-size:7.8pt;font-weight:600;display:flex;align-items:center;gap:1.2mm;margin-top:.6mm}.lbj em svg{width:3.2mm;height:3.2mm;color:#FFC107}
+.lbc{display:flex;justify-content:space-between;align-items:center;margin-top:6mm}.lbci{display:flex;gap:7mm}
+.ci{display:flex;align-items:center;gap:2.6mm;font-family:'Montserrat';font-weight:800;font-size:11pt}.ci span{width:8.5mm;height:8.5mm;border-radius:50%;background:#FFC107;color:#062B63;display:flex;align-items:center;justify-content:center}.ci svg{width:4.8mm;height:4.8mm}
+.ci small{display:block;font-family:'Poppins';font-weight:500;font-size:6.8pt;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.qr{width:32mm;height:32mm;border:.5mm dashed rgba(255,255,255,.7);border-radius:2mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:'Montserrat';font-weight:800;font-size:8pt;line-height:1.3}.qr small{font-family:'Poppins';font-weight:500;font-size:6.4pt;color:rgba(255,255,255,.7);margin-top:1.4mm}
 /* capa */
-.capa{background:#FAFAF7}
-.cfx{position:absolute;left:0;right:0;bottom:0;height:150mm;display:flex;align-items:flex-end}.cfx div{flex:1;border-radius:2.2mm 2.2mm 0 0;margin:0 .45mm}
-.cvel{position:absolute;left:0;right:0;bottom:0;height:150mm;background:linear-gradient(180deg,#FAFAF7 0%,rgba(250,250,247,.0) 28%,rgba(250,250,247,0) 62%,rgba(250,250,247,.15) 100%)}
-.clogo{position:absolute;left:21mm;top:25mm;height:30mm}
-.ctit{position:absolute;left:21mm;top:76mm}
-.ck{font-size:10pt;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#1976D2}
-.cm{font-family:'Montserrat';font-weight:800;font-size:46pt;line-height:.98;letter-spacing:-.02em;color:#0D47A1;margin-top:3mm}
-.cbar{width:22mm;height:2.2mm;background:#FFC107;border-radius:1mm;margin-top:6mm}
-.clatas{position:absolute;left:0;right:0;bottom:30mm;height:90mm}
-.cl{position:absolute;bottom:0;transform:translateX(-50%)}.cl img{display:block;filter:drop-shadow(0 2mm 2.4mm rgba(0,0,0,.28))}.cl .chao{bottom:-2mm;width:90%;height:5mm;background:radial-gradient(ellipse,rgba(0,0,0,.45) 0%,rgba(0,0,0,.16) 45%,transparent 72%)}
-.capa::after{content:"";position:absolute;left:0;right:0;bottom:0;height:30mm;background:#062B63}
-.cpe{position:absolute;left:0;right:0;bottom:13mm;text-align:center;color:#fff;font-weight:600;font-size:10pt;letter-spacing:.08em;z-index:3}
-/* contracapa */
-.contra{background:linear-gradient(160deg,#0D47A1 0%,#0A3A86 45%,#062B63 100%);color:#fff}
-.ccfx{position:absolute;left:0;right:0;top:0;height:6mm;display:flex}.ccfx div{flex:1}
-.clogo2{position:absolute;left:21mm;top:26mm;height:24mm}
-.ctt{position:absolute;left:21mm;top:68mm;font-family:'Montserrat';font-weight:800;font-size:30pt;text-transform:uppercase;letter-spacing:-.01em}
-.cts{position:absolute;left:21mm;top:84mm;font-size:10.5pt;color:#FFE082;font-weight:500}
-.lojas{position:absolute;left:21mm;right:21mm;top:98mm;display:grid;grid-template-columns:1fr 1fr;gap:4.5mm}
-.lj{background:rgba(255,255,255,.08);border:.3mm solid rgba(255,255,255,.16);border-radius:3.5mm;padding:4.5mm 5mm}
-.ljn{font-family:'Bebas Neue';font-size:13pt;letter-spacing:.06em;color:#FFC107}
-.ljb{font-family:'Montserrat';font-weight:800;font-size:12.5pt;margin-top:.6mm}.ljc{font-size:9pt;color:rgba(255,255,255,.78);margin-top:.4mm}
-.cont{position:absolute;left:21mm;right:21mm;top:196mm;display:flex;justify-content:space-between;align-items:center}
-.cl1{display:flex;flex-direction:column;gap:5mm}
-.ci{display:flex;align-items:center;gap:3.4mm;font-family:'Montserrat';font-weight:800;font-size:14pt}.ci span{width:10mm;height:10mm;border-radius:50%;background:#FFC107;color:#062B63;display:flex;align-items:center;justify-content:center}.ci svg{width:5.6mm;height:5.6mm}
-.ci small{display:block;font-family:'Poppins';font-weight:500;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
-.qr{width:46mm;height:46mm;border:.6mm dashed rgba(255,255,255,.7);border-radius:3mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:'Montserrat';font-weight:800;font-size:9pt;line-height:1.3}.qr small{font-family:'Poppins';font-weight:500;font-size:6.8pt;color:rgba(255,255,255,.7);margin-top:2mm}
-.cav{position:absolute;left:21mm;right:21mm;bottom:16mm;font-size:7.4pt;color:rgba(255,255,255,.65)}`;
+.capa{background:linear-gradient(170deg,#0D47A1 0%,#0B3E92 55%,#062B63 100%)}
+.clogo{position:absolute;left:50%;transform:translateX(-50%);top:24mm;height:46mm}
+.ctit{position:absolute;left:0;right:0;top:80mm;text-align:center;color:#fff}
+.cm{font-family:'Montserrat';font-weight:800;font-size:30pt;text-transform:uppercase;letter-spacing:-.005em}
+.cbar{width:22mm;height:1.6mm;background:#FFC107;border-radius:1mm;margin:4mm auto 4mm}
+.ck{font-family:'Montserrat';font-weight:700;font-size:9pt;letter-spacing:.24em;text-transform:uppercase;color:#FFE082}
+.cfx{position:absolute;left:0;right:0;bottom:22mm;display:flex;align-items:flex-end;gap:.9mm;padding:0 .9mm}.cfx div{flex:1;border-radius:6mm 6mm 0 0}
+.clatas{position:absolute;left:0;right:0;bottom:30mm;height:100mm}
+.cl{position:absolute;bottom:0;transform:translateX(-50%)}.cl img{display:block;filter:drop-shadow(0 2mm 2.4mm rgba(0,0,0,.3))}.cl .chao{bottom:-2mm;width:92%;height:5mm;background:radial-gradient(ellipse,rgba(0,0,0,.5) 0%,rgba(0,0,0,.18) 45%,transparent 72%)}
+.cpe{position:absolute;left:0;right:0;bottom:0;height:22mm;background:#062B63;display:flex;align-items:center;justify-content:center;gap:9mm;color:#fff;font-weight:600;font-size:9.5pt;letter-spacing:.04em;z-index:3}
+.cpe::before{content:"";position:absolute;left:0;right:0;top:0;height:1.4mm;background:#FFC107}`;
 
-const HTML = (img) => `<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"><style>${CSS}</style></head><body>
+const HTML = (img) => `<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"><style>${CSS}</style></head><body>
 ${PAGINAS.join("\n")}</body></html>`.replace(/IMG\//g, img + "/");
 
 (async () => {
