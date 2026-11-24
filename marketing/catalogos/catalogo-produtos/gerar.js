@@ -2,7 +2,8 @@
 // Rodar: NODE_PATH=$(npm root -g) node marketing/catalogos/catalogo-produtos/gerar.js
 // Saída: catalogo-produtos-laet-impressao.pdf (fotos em resolução cheia) e catalogo-produtos-laet-whatsapp.pdf (leve).
 // Dados: dossiê de produtos, aulas do Kevin (CLAUDE.md), rótulos e site. O que não está confirmado sai "[CONFERIR]" em vermelho.
-// Cores: SEMPRE de identidade/cores/paleta-oficial.json (regra /cores). Sem preço nenhum.
+// Cores das cartelas: nome e hex do site no ar (origin/main:site/produto.html), iguais ao mestre identidade/cores/paleta-oficial.json
+// (regra /cores). Cartelas iguais juntas (pedido do Kevin, 24/11). Quadradinho 26 x 15 mm. Sem preço nenhum.
 const { chromium } = require("playwright"); const fs = require("fs"), path = require("path");
 const { execFileSync } = require("child_process");
 const R = path.resolve(__dirname, "../../.."), D = __dirname, B = path.join(D, "build");
@@ -76,11 +77,11 @@ const P = {
     uso: "Interno", acab: null, rend: null,
     disp: ["18L · Branca e cores", "3,6L · Branca e cores"], cores: { lista: [BRANCO, ...todas("super-profissional")], mais: "" } },
   esmalte: { nome: "Esmalte Ecológico", sub: "Base água", img: "esmalte",
-    desc: "Base água, com baixo odor e boa cobertura. Pinta ferro, madeira, parede e teto, dentro e fora de casa.",
+    desc: "Base água, baixo odor e boa cobertura. Pinta ferro, madeira, parede e teto.",
     uso: "Interno e externo", acab: "Brilhante", rend: null,
     disp: ["18L · Branca", "3,6L · Branca e cores", "900ml · Branca e cores"], cores: { lista: todas("esmalte-ecologico"), mais: "" } },
   verniz: { nome: "Verniz Base Água", img: "verniz",
-    desc: "Fundo e acabamento no mesmo produto: dispensa seladora. Realça os veios da madeira e resiste à chuva. Pra portas, janelas e móveis.",
+    desc: "Fundo e acabamento no mesmo produto: dispensa seladora. Realça os veios da madeira e resiste à chuva.",
     uso: "Interno e externo", acab: "Brilhante", rend: { n: "60", pre: "Rende até", pos: "m² por demão", obs: "galão 3,6L · 900ml até 15 m²" },
     disp: ["18L", "3,6L", "900ml"],
     // tons de madeira (não são cor de tinta da paleta): hex do site
@@ -129,52 +130,74 @@ const cabecalho = (linha, nomeLinha, n) => `<div class="band"><div class="bi">
 const rodape = (n) => `<div class="rod"><div class="rl"><span>${I.site}tintaslaet.com</span><span>${I.insta}@tintaslaet</span><span>${I.zap}(11) 97714-0964</span></div><div class="rn">${String(n).padStart(2, "0")}</div></div>`;
 const AVISO = `<div class="aviso">As cores impressas ou na tela podem variar um pouco da cor real. Confira na cartela da loja.</div>`;
 
-// ---------- páginas ----------
+// ---------- cartelas: nome e hex do SITE no ar (origin/main:site/produto.html), cartelas iguais juntas ----------
+const SITE = (() => { const s = execFileSync("git", ["-C", R, "show", "origin/main:site/produto.html"], { encoding: "utf8", maxBuffer: 1e8 });
+  const i = s.indexOf("const produtos = {"); let d = 0, j = s.indexOf("{", i), k = j; for (; k < s.length; k++) { if (s[k] === "{") d++; else if (s[k] === "}") { d--; if (!d) break; } }
+  return eval("(" + s.slice(j, k + 1) + ")"); })();
+const coresSite = (id) => (SITE[id].cores || []).map((c) => ({ nome: c.nome, hex: c.hex.toUpperCase() }));
+const nomesDe = (id) => new Set(coresSite(id).map((c) => c.nome));
+const marca = (lista, cond, txt) => lista.map((c) => (cond(c) ? { ...c, marca: txt } : c));
+const stdTem = nomesDe("standard"), spTem = nomesDe("super-profissional");
+const EPOXI = coresSite("epoxi-base-agua");
+const CARTELAS = {
+  grande: { titulo: "Paleta Grande", usada: "Emborrachada · Premium Lavável · 1ª Linha Standard",
+    lista: marca(coresSite("premium-lavavel"), (c) => c.nome !== "Branco" && !stdTem.has(c.nome), "★"), legenda: "★ Não tem na 1ª Linha Standard" },
+  gesso: { titulo: "Super Profissional e Direto no Gesso", usada: "Super Profissional · Direto no Gesso",
+    lista: marca(coresSite("direto-no-gesso"), (c) => c.nome !== "Branco" && !spTem.has(c.nome), "★"), legenda: "★ Só na Direto no Gesso" },
+  esmalte: { titulo: "Esmalte Ecológico e Epóxi Base Água", usada: "Esmalte Ecológico · Epóxi Base Água",
+    // primeiro as 16 do Epóxi na ordem do Kevin; depois as que são só do Esmalte
+    lista: [...EPOXI.map((c) => ({ ...c, marca: "●", nome: c.nome === "Areia Bege" ? "Areia Bege" : c.nome, conf: c.nome === "Areia Bege" })),
+            ...coresSite("esmalte-ecologico").filter((c) => !EPOXI.some((e) => e.nome === c.nome))],
+    legenda: "● Tem no Epóxi Base Água (as outras são só do Esmalte) · Areia Bege só no Epóxi" },
+  vinil: { titulo: "Básica Interna Vinil", lista: coresSite("latex-vinil") },
+  pisos: { titulo: "Pisos & Fachadas", lista: coresSite("piso-fachada") },
+  verniz: { titulo: "Verniz Base Água · tonalidades", lista: coresSite("verniz-premium") },
+};
+const QW = 26, QH = 15, COLS = 7;           // quadradinho EXATO 26 x 15 mm (pedido do Kevin), 7 por linha
+const cart = (c, ini = 0, fim = c.lista.length, cont = false, nota = true) => `<div class="cart2">
+  <div class="c2h"><div class="c2t">${c.titulo}${cont ? ' <span class="c2c">(continuação)</span>' : ""}</div>${c.usada && !cont ? `<div class="c2u">${c.usada}</div>` : ""}</div>
+  <div class="c2g">${c.lista.slice(ini, fim).map((x) => `<div class="s2"><div class="q2" style="background:${x.hex}${x.hex === "#FFFFFF" ? ";box-shadow:inset 0 0 0 .3mm #C9D2DE" : ""}">${x.conf ? `<span class="qconf">[CONFERIR HEX]</span>` : ""}</div><div class="n2">${x.marca ? `<b>${x.marca}</b> ` : ""}${x.nome}</div></div>`).join("")}</div>
+  ${nota ? `<div class="c2n">${c.legenda ? `<span>${c.legenda}</span>` : "<span></span>"}<span>Cores aproximadas. Confira na loja antes de comprar.</span></div>` : ""}</div>`;
+const refCor = (t) => `<div class="cart"><div class="ct">Cores</div><div class="sv" style="font-weight:500">${t}</div></div>`;
+
+// ---------- páginas (8) ----------
 const capaFaixas = ["Romã", "Lícor de Laranja", "Amarelo Dourado", "Mistura de Mostarda", "Verde Primavera", "Ilha de Esmeralda", "Pavão", "Céu Sagrado", "Paraíso do Mar", "Azul Jazz", "Lilás Laet", "Fogo Violeta", "Flamingo Real", "Rosa Gloss", "Areia", "Cinza Fumaça"].map((n) => cor("paleta-grande", n));
 const capa = `<div class="page capa">
-  <div class="cfx">${capaFaixas.map((c, i) => `<div style="background:${c.hex};height:126mm"></div>`).join("")}</div>
+  <div class="cfx">${capaFaixas.map((c) => `<div style="background:${c.hex};height:126mm"></div>`).join("")}</div>
   <div class="cvel"></div>
   <img class="clogo" src="IMG/logo-cor.png">
   <div class="ctit"><div class="ck">Tintas, massas e complementos</div><div class="cm">Catálogo<br>de Produtos</div><div class="cbar"></div></div>
   <div class="clatas">${[["epoxi", 46, 38], ["lavavel", 62, 70], ["emborrachada", 76, 108], ["pisos", 62, 146], ["standard", 50, 178]].map(([k, h, x]) => `<div class="cl" style="left:${x}mm;z-index:${h}"><img src="IMG/${k}.png" style="height:${h}mm"><div class="chao"></div></div>`).join("")}</div>
   <div class="cpe">tintaslaet.com · @tintaslaet</div></div>`;
 
-const premium = (p) => `<div class="pb"><div class="pbimg">${lata(p.img, 84)}<span class="selo">Linha Premium</span></div>
-  <div class="pbtx">${nome(p, 21)}<div class="pd" style="font-size:9.2pt">${p.desc}</div>${specs(p)}${disp(p)}
-  ${p.cores ? cartela({ ...p.cores, lista: p.cores.lista.slice(0, 18) }, p.cores.lista.length > 13 ? 9 : 7, 10) : `<div class="cart"><div class="ct">Cores</div><div class="sv">${CONF(p.coresConf)}</div></div>`}
-  ${p.onde ? `<div class="cart"><div class="ct">Onde usar</div><div class="sv">${p.onde}</div></div>` : ""}
-  ${p.dica ? `<div class="dica"><b>Como limpar</b>${p.dica}</div>` : ""}</div></div>`;
-const pg2 = `<div class="page">${cabecalho("premium", "Premium e Nobres", 2)}<div class="corpo">${premium(P.emborrachada)}${premium(P.lavavel)}</div>${AVISO}</div>`;
-const pg2b = `<div class="page">${cabecalho("premium", "Premium e Nobres", 3)}<div class="corpo">${premium(P.pisos)}${premium(P.epoxi)}</div>${AVISO}</div>`;
+// cartão de produto (página premium: 2x2)
+const cartao = (p, ref, selo = true) => `<div class="pc"><div class="pimg">${lata(p.img, 40)}${selo ? '<span class="selo">Linha Premium</span>' : ""}</div>
+  <div class="ptx">${nome(p, 13.5)}<div class="pd">${p.desc}</div>${specs(p)}${disp(p)}${refCor(ref)}</div></div>`;
+const pg = (n, linha, corpo) => `<div class="page">${cabecalho("", linha, n)}<div class="corpo">${corpo}</div></div>`;
+const linhaRow = (p, ref, lataH = 33, extra = "", premium = false) => `<div class="row${premium ? " prem" : ""}"><div class="rimg">${lata(p.img, lataH)}${premium ? '<span class="selo">Linha Premium</span>' : ""}</div><div class="rtx">${nome(p, premium ? 14.5 : 13)}<div class="pd">${p.desc}</div>${specs(p)}${disp(p)}${ref ? refCor(ref) : ""}${extra}</div></div>`;
+const p2 = pg(2, "Premium e Nobres", linhaRow(P.emborrachada, "Cartela <b>Paleta Grande</b>, páginas 3 e 4", 44, "", true) + linhaRow(P.lavavel, "Cartela <b>Paleta Grande</b>, páginas 3 e 4", 44, "", true)
+  + linhaRow(P.pisos, "Cartela <b>Pisos & Fachadas</b>, página 4", 44, "", true) + linhaRow(P.epoxi, "16 cores: cartela <b>Esmalte Ecológico e Epóxi</b>, página 7 (marcadas com ●)", 42, "", true));
+const G = CARTELAS.grande, corte = COLS * 9;   // 9 fileiras na pág. 3, o resto na 4
+const p3 = pg(3, "Premium e Nobres · Cores", cart(G, 0, corte, false, false));
+const p4 = pg(4, "Premium e Nobres · Cores", cart(G, corte, G.lista.length, true) + cart(CARTELAS.pisos));
 
-const linhaRow = (p, cols, lataH = 50, tam = 9) => `<div class="row"><div class="rimg">${lata(p.img, lataH)}</div>
-  <div class="rtx">${nome(p, 15)}<div class="pd">${p.desc}</div>${specs(p)}${disp(p)}${cartela(p.cores, cols, tam)}</div></div>`;
-const pg3 = `<div class="page">${cabecalho("acrilicas", "Acrílicas", 4)}<div class="corpo">${linhaRow(P.standard, 12, 44, 8.6)}${linhaRow(P.profissional, 12, 44, 8.6)}${linhaRow(P.vinil, 12, 44, 8.6)}</div>${AVISO}</div>`;
+const p5 = pg(5, "Acrílicas", linhaRow(P.standard, "Cartela <b>Paleta Grande</b> (as marcadas com ★ não têm na Standard), páginas 3 e 4")
+  + linhaRow(P.profissional, "Cartela <b>Super Profissional e Direto no Gesso</b>, página 6") + linhaRow(P.vinil, "Cartela abaixo") + cart(CARTELAS.vinil));
+const p6 = pg(6, "Gesso & Drywall", linhaRow(P.gesso, "Cartela abaixo", 34) + `<div class="dica" style="margin:3mm 0 1mm"><b>Dica de balcão</b>Gesso e drywall novos: limpa o pó, aplica a Direto no Gesso e pronto. Não precisa passar fundo antes.</div>` + cart(CARTELAS.gesso));
+const tons = (c) => `<div class="cart"><div class="ct">Tonalidades</div><div class="tons">${c.lista.map((x) => `<div class="s2"><div class="q2" style="background:${x.hex}"></div><div class="n2">${x.nome}</div></div>`).join("")}</div><div class="c2n" style="margin-top:.3mm"><span>Cores aproximadas. Confira na loja antes de comprar.</span></div></div>`;
+const p7 = pg(7, "Madeiras & Metais", linhaRow(P.esmalte, "") + linhaRow(P.verniz, "", 34, tons(CARTELAS.verniz)) + cart(CARTELAS.esmalte));
 
-const pg4 = `<div class="page">${cabecalho("gesso", "Gesso & Drywall", 5)}<div class="corpo">
-  <div class="hero"><div class="himg">${lata(P.gesso.img, 92)}</div><div class="htx">${nome(P.gesso, 22)}<div class="pd" style="font-size:10.5pt">${P.gesso.desc}</div>${specs(P.gesso)}${disp(P.gesso)}
-    <div class="dica"><b>Dica de balcão</b> Gesso e drywall novos: limpa o pó, aplica a Direto no Gesso e pronto. Não precisa passar fundo antes.</div></div></div>
-  ${cartela({ ...P.gesso.cores, titulo: "Cartela de cores" }, 9, 15.5)}</div>${AVISO}</div>`;
-
-const pg5 = `<div class="page">${cabecalho("madeiras", "Madeiras & Metais", 6)}<div class="corpo">${linhaRow(P.esmalte, 10, 50, 11.2)}
-  <div class="row"><div class="rimg">${lata(P.verniz.img, 52)}</div><div class="rtx">${nome(P.verniz, 15)}<div class="pd">${P.verniz.desc}</div>${specs(P.verniz)}${disp(P.verniz)}${cartela(P.verniz.cores, 3, 22)}</div></div></div>${AVISO}</div>`;
-
-const massa = (p) => `<div class="mc"><div class="mimg">${lata(p.img, 40)}</div><div class="mtx">${nome(p, 13)}<div class="pd">${p.desc}</div>${specs(p, false)}${disp(p)}</div></div>`;
-const QUAL = [["Parede velha que esfarela ou descasca", "Fundo Preparador"], ["Parede nova ou reboco novo que chupa tinta", "Seladora"], ["Corrigir parede de quarto e sala (área seca)", "Massa Corrida"], ["Banheiro, cozinha ou área externa", "Massa Acrílica"]];
-const pg6 = `<div class="page">${cabecalho("massas", "Massas & Complementos", 7)}<div class="corpo g2m">${["corrida", "acrilica", "seladora", "fundo"].map((k) => massa(P[k])).join("")}</div>
-  <div class="qual"><div class="qt">Qual usar na sua parede?</div>${QUAL.map(([a, b]) => `<div class="qrow"><span>${a}</span><b>${b}</b></div>`).join("")}</div></div>`;
-
+const massa = (p) => `<div class="mc"><div class="mimg">${lata(p.img, 34)}</div><div class="mtx">${nome(p, 12)}<div class="pd">${p.desc}</div>${specs(p, false)}${disp(p)}</div></div>`;
 const LOJAS = [[1, "Vila Bela (Sapopemba)", "São Paulo"], [2, "Jardim São João", "Mauá"], [3, "Jardim Santa Cecília", "Mauá"], [4, "Vila Luzita", "Santo André"], [5, "Jardim Itapark", "Mauá"], [6, "Santa Terezinha", "São Bernardo do Campo"]];
-const contra = `<div class="page contra"><div class="ccfx">${capaFaixas.map((c) => `<div style="background:${c.hex}"></div>`).join("")}</div>
-  <img class="clogo2" src="IMG/logo-branco.png">
-  <div class="ctt">Nossas lojas</div><div class="cts">6 lojas no ABC e na Zona Leste de São Paulo</div>
-  <div class="lojas">${LOJAS.map(([n, b, c]) => `<div class="lj"><div class="ljn">Loja ${n}</div><div class="ljb">${b}</div><div class="ljc">${c}</div></div>`).join("")}</div>
-  <div class="cont"><div class="cl1">
-    <div class="ci"><span>${I.zap}</span><div><small>WhatsApp</small>(11) 97714-0964</div></div>
-    <div class="ci"><span>${I.insta}</span><div><small>Instagram</small>@tintaslaet</div></div>
-    <div class="ci"><span>${I.site}</span><div><small>Site</small>tintaslaet.com</div></div></div>
-    <div class="qr"><div>QR CODE<br>DO WHATSAPP</div><small>espaço reservado</small></div></div>
-  <div class="cav">As cores impressas ou na tela podem variar um pouco da cor real. Confira na cartela da loja.</div></div>`;
+const p8 = `<div class="page">${cabecalho("", "Massas & Complementos", 8)}<div class="corpo"><div class="g2m">${["corrida", "acrilica", "seladora", "fundo"].map((k) => massa(P[k])).join("")}</div></div>
+  <div class="lojasbox"><div class="lbt">Nossas lojas</div>
+    <div class="lbg">${LOJAS.map(([n, b, c]) => `<div class="lbj"><span>Loja ${n}</span><b>${b}</b><i>${c}</i></div>`).join("")}</div>
+    <div class="lbc"><div class="lbci">
+      <div class="ci"><span>${I.zap}</span><div><small>WhatsApp</small>(11) 97714-0964</div></div>
+      <div class="ci"><span>${I.insta}</span><div><small>Instagram</small>@tintaslaet</div></div>
+      <div class="ci"><span>${I.site}</span><div><small>Site</small>tintaslaet.com</div></div></div>
+      <div class="qr"><div>QR CODE<br>DO WHATSAPP</div><small>espaço reservado</small></div></div></div></div>`;
+const PAGINAS = [capa, p2, p3, p4, p5, p6, p7, p8];
 
 // ---------- estilo ----------
 const CSS = `@page{size:216mm 303mm;margin:0}
@@ -195,7 +218,7 @@ body{font-family:'Poppins',sans-serif;color:#1B2433}
 .rl{display:flex;gap:6mm}.rl span{display:flex;align-items:center;gap:1.4mm}.rl svg{width:3.4mm;height:3.4mm;color:#0D47A1}
 .rn{font-family:'Bebas Neue';font-size:14pt;color:#0D47A1;letter-spacing:.04em}
 .aviso{position:absolute;left:18mm;right:18mm;bottom:19.5mm;font-size:6.6pt;color:#7A8597;text-align:right}
-.corpo{position:absolute;left:18mm;right:18mm;top:51mm;bottom:25mm}
+.corpo{position:absolute;left:16mm;right:16mm;top:48mm;bottom:22mm}
 /* produto */
 .lata{position:relative;display:flex;justify-content:center;align-items:flex-end}
 .lata img{position:relative;z-index:2;filter:drop-shadow(0 1.2mm 1.2mm rgba(6,43,99,.18))}
@@ -219,9 +242,9 @@ body{font-family:'Poppins',sans-serif;color:#1B2433}
 .qn{font-size:5.3pt;line-height:1.15;color:#3A4556;margin-top:.7mm;overflow-wrap:break-word;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .mais{font-size:7pt;font-weight:600;color:#1976D2;margin-top:1.6mm}
 /* página premium: 2x2 */
-.g2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6mm}
+.g2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6mm;height:100%}
 .pc{background:#fff;border-radius:4mm;border:.3mm solid #E3E8F0;box-shadow:0 1mm 3mm rgba(6,43,99,.06);padding:5mm;display:flex;flex-direction:column;overflow:hidden}
-.pimg{position:relative;height:66mm;flex:none;border-radius:3mm;background:radial-gradient(ellipse 70% 80% at 50% 45%,#FFFFFF 0%,#EEF3FA 70%,#E3EAF5 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:4mm}
+.pimg{position:relative;height:48mm;flex:none;border-radius:3mm;background:radial-gradient(ellipse 70% 80% at 50% 45%,#FFFFFF 0%,#EEF3FA 70%,#E3EAF5 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:4mm}
 .selo{position:absolute;left:3mm;top:3mm;font-size:6pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#062B63;border:.3mm solid #FFC107;background:rgba(255,224,130,.35);border-radius:4mm;padding:.5mm 2.2mm}
 .ptx{padding-top:3.6mm;min-height:0}
 .ptx .specs{gap:3mm}
@@ -232,9 +255,9 @@ body{font-family:'Poppins',sans-serif;color:#1B2433}
 .pbtx{flex:1;min-width:0;padding-top:1mm}.pbtx .ps{font-size:9pt}.pbtx .specs{gap:4.5mm}
 .pbtx .dica{margin-top:3mm;padding:2.2mm 3.4mm;font-size:7.8pt}
 /* linhas (acrílicas, madeiras) */
-.row{display:flex;gap:6mm;padding:3mm 0;border-bottom:.3mm solid #E3E8F0}.row:last-child{border-bottom:0}
-.rimg{flex:none;width:44mm;height:56mm;border-radius:3mm;background:radial-gradient(ellipse 70% 80% at 50% 45%,#FFFFFF 0%,#EEF3FA 70%,#E3EAF5 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:4mm}
-.rtx{flex:1;min-width:0}.rtx .specs{margin-top:2.4mm}.rtx .disp{margin-top:2.4mm}.rtx .cart{margin-top:2.6mm}.rtx .pd{margin-top:1.4mm}
+.row{display:flex;gap:6mm;padding:2.6mm 0;border-bottom:.3mm solid #E3E8F0}.row.prem{padding:2.2mm 0}.row:last-child{border-bottom:0}
+.rimg{position:relative;flex:none;width:40mm;height:40mm;border-radius:3mm;background:radial-gradient(ellipse 70% 80% at 50% 45%,#FFFFFF 0%,#EEF3FA 70%,#E3EAF5 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:4mm}
+.rtx{flex:1;min-width:0}.rtx .specs{margin-top:1.8mm}.rtx .disp{margin-top:1.8mm}.rtx .cart{margin-top:1.8mm}.rtx .pd{margin-top:1.2mm;font-size:8.2pt}.rtx .ct{margin-bottom:.6mm}
 /* gesso */
 .hero{display:flex;gap:8mm;align-items:stretch}
 .himg{flex:none;width:76mm;height:112mm;border-radius:4mm;background:radial-gradient(ellipse 70% 80% at 50% 45%,#FFFFFF 0%,#EEF3FA 70%,#E3EAF5 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:7mm}
@@ -242,15 +265,34 @@ body{font-family:'Poppins',sans-serif;color:#1B2433}
 .dica{margin-top:5mm;background:#FFF6D6;border-left:1.4mm solid #FFC107;border-radius:0 2.5mm 2.5mm 0;padding:3mm 4mm;font-size:8.4pt;line-height:1.45;color:#3A3220}.dica b{display:block;font-family:'Montserrat';font-weight:800;font-size:7.4pt;letter-spacing:.08em;text-transform:uppercase;color:#062B63;margin-bottom:.6mm}
 .hero + .cart{margin-top:8mm}.hero + .cart .qn{font-size:6.2pt}
 /* massas */
-.g2m{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:84mm;gap:6mm;bottom:auto}
+.g2m{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:73mm;gap:4mm}.mc .chip{font-size:6.8pt;padding:.4mm 1.8mm}.mc .disp{gap:1mm}.mc .dr{width:100%;margin-bottom:.2mm}
 .mc{background:#fff;border-radius:4mm;border:.3mm solid #E3E8F0;padding:5mm;display:flex;gap:4mm}
-.mimg{flex:none;width:30mm;border-radius:3mm;background:radial-gradient(ellipse 70% 80% at 50% 45%,#FFFFFF 0%,#EEF3FA 70%,#E3EAF5 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:4mm}
+.mimg{flex:none;width:26mm;border-radius:3mm;background:radial-gradient(ellipse 70% 80% at 50% 45%,#FFFFFF 0%,#EEF3FA 70%,#E3EAF5 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:4mm}
 .mimg img{max-width:27mm;object-fit:contain}
 .mtx{flex:1;min-width:0}.mtx .specs{flex-direction:column;gap:2mm}
 .qual{position:absolute;left:18mm;right:18mm;top:233mm;background:#062B63;border-radius:4mm;padding:4.5mm 6mm;color:#fff}
 .qt{font-family:'Montserrat';font-weight:800;font-size:11pt;text-transform:uppercase;margin-bottom:2.4mm}.qt::after{content:"";display:inline-block;width:8mm;height:1.2mm;background:#FFC107;border-radius:1mm;margin-left:3mm;vertical-align:middle}
 .qrow{display:flex;justify-content:space-between;align-items:center;font-size:8.4pt;padding:1.3mm 0;border-top:.25mm solid rgba(255,255,255,.14)}.qrow b{color:#FFC107;font-weight:600}
 .page:has(.qual) .rod{bottom:12mm}
+.row.prem .rimg{width:46mm;height:48mm}
+.tons{display:grid;grid-template-columns:repeat(3,26mm);gap:3mm}
+/* cartelas 26x15 */
+.cart2{margin-top:4mm;break-inside:avoid}.corpo > .cart2:first-child{margin-top:0}
+.c2h{display:flex;align-items:baseline;justify-content:space-between;gap:4mm;border-bottom:.35mm solid #0D47A1;padding-bottom:1.2mm;margin-bottom:2mm}
+.c2t{font-family:'Montserrat';font-weight:800;font-size:11pt;text-transform:uppercase;color:#0D47A1;letter-spacing:-.005em}.c2c{font-family:'Poppins';font-weight:500;font-size:8pt;text-transform:none;color:#7A8597}
+.c2u{font-size:7.4pt;font-weight:600;color:#1976D2;text-align:right}
+.c2g{display:grid;grid-template-columns:repeat(7,26mm);column-gap:.33mm;row-gap:1.1mm;justify-content:space-between}
+.q2{position:relative;width:26mm;height:15mm;border-radius:1.4mm}.qconf{position:absolute;left:1mm;bottom:1mm;font-size:5.6pt;font-weight:700;color:#E53935;background:rgba(255,255,255,.85);border-radius:.8mm;padding:0 .8mm}
+.n2{font-family:'Poppins';font-size:6.2pt;font-weight:500;line-height:1.15;color:#2D3748;margin-top:.6mm;height:3.4mm;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.n2 b{color:#1976D2;font-weight:700}
+.c2n{display:flex;justify-content:space-between;gap:4mm;margin-top:1.8mm;font-size:6.8pt;color:#5A6577}.c2n span:last-child{font-weight:600;color:#062B63}
+.g2r{display:grid;grid-template-columns:1fr 1fr;gap:6mm;margin-bottom:2mm}.g2r .pc{height:92mm}
+.lojasbox{position:absolute;left:0;right:0;bottom:0;height:102mm;background:linear-gradient(160deg,#0D47A1 0%,#0A3A86 45%,#062B63 100%);color:#fff;padding:8mm 18mm 0}
+.lbt{font-family:'Montserrat';font-weight:800;font-size:17pt;text-transform:uppercase}.lbt::after{content:"";display:inline-block;width:10mm;height:1.4mm;background:#FFC107;border-radius:1mm;margin-left:3mm;vertical-align:middle}
+.lbg{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-top:4mm}
+.lbj{background:rgba(255,255,255,.08);border:.3mm solid rgba(255,255,255,.16);border-radius:3mm;padding:2.6mm 3.4mm;display:flex;flex-direction:column}
+.lbj span{font-family:'Bebas Neue';font-size:11pt;letter-spacing:.06em;color:#FFC107}.lbj b{font-family:'Montserrat';font-weight:800;font-size:9.5pt}.lbj i{font-style:normal;font-size:7.6pt;color:rgba(255,255,255,.78)}
+.lbc{display:flex;justify-content:space-between;align-items:center;margin-top:5mm}.lbci{display:flex;gap:7mm}
+.lbc .ci{font-size:11pt}.lbc .ci span{width:8.5mm;height:8.5mm}.lbc .qr{width:34mm;height:34mm}
 /* capa */
 .capa{background:#FAFAF7}
 .cfx{position:absolute;left:0;right:0;bottom:0;height:150mm;display:flex;align-items:flex-end}.cfx div{flex:1;border-radius:2.2mm 2.2mm 0 0;margin:0 .45mm}
@@ -282,7 +324,7 @@ body{font-family:'Poppins',sans-serif;color:#1B2433}
 .cav{position:absolute;left:21mm;right:21mm;bottom:16mm;font-size:7.4pt;color:rgba(255,255,255,.65)}`;
 
 const HTML = (img) => `<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"><style>${CSS}</style></head><body>
-${[capa, pg2, pg2b, pg3, pg4, pg5, pg6, contra].join("\n")}</body></html>`.replace(/IMG\//g, img + "/");
+${PAGINAS.join("\n")}</body></html>`.replace(/IMG\//g, img + "/");
 
 (async () => {
   const b = await chromium.launch(); const p = await b.newPage();
