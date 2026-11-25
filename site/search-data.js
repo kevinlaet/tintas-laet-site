@@ -20,6 +20,7 @@ const LAET_SEARCH_INDEX = [
   { id: 'standard', nome: 'Tinta 1ª Linha Standard', categoria: 'Tintas Alta Qualidade' },
   { id: 'latex-vinil', nome: 'Latex Vinil 18L', categoria: 'Tintas' },
   { id: 'direto-no-gesso', nome: 'Tinta Direto no Gesso', categoria: 'Tintas' },
+  { id: 'direto-no-gesso-standard', nome: 'Tinta Direto no Gesso Standard — Mais Cobertura', categoria: 'Tintas' },
   { id: 'premium-lavavel', nome: 'Tinta Premium Lavável', categoria: 'Tintas Alta Qualidade' },
   { id: 'kit-pintura', nome: 'Kit Pintura 5 itens', categoria: 'Ferramentas' },
   { id: 'rolo-anti-respingo-5cm', nome: 'Rolo Anti-Respingo 5cm', categoria: 'Ferramentas' },
