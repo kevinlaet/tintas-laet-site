@@ -174,8 +174,8 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .ct{font-variant:normal}.cdot{color:#1976D2;margin:0 .6mm}.ccont{font-weight:700}
 .cn{font-size:7.6pt;color:#5A6577;white-space:nowrap}
 .cg{display:grid;grid-template-columns:repeat(7,26mm);justify-content:space-between;row-gap:1.4mm}
-.q{width:26mm;height:15mm;border-radius:1.6mm;box-shadow:0 .35mm .9mm rgba(6,43,99,.14),inset 0 0 0 .15mm rgba(0,0,0,.06)}
-.q.clara{box-shadow:0 .35mm .9mm rgba(6,43,99,.12),inset 0 0 0 .2mm #D5DCE6}
+.q{width:26mm;height:15mm;border-radius:1.6mm;box-shadow:inset 0 0 0 .15mm rgba(0,0,0,.08)}  /* sem sombra por fora: a cor ocupa exatamente 26 x 15 mm */
+.q.clara{box-shadow:inset 0 0 0 .2mm #C9D2DE}
 .qn{font-size:6.4pt;font-weight:500;color:#2D3748;text-align:center;margin-top:.9mm;line-height:1.1;height:2.9mm;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .caviso{font-size:7.2pt;color:#5A6577;text-align:right;margin-top:1.6mm}
 .parc{flex:none;border-radius:3.2mm;background:linear-gradient(160deg,#0C3A80,#062B63);color:#FFC107;font-weight:600;font-size:8.6pt;padding:3.1mm 6mm;box-shadow:0 1mm 2.4mm rgba(6,43,99,.18)}
