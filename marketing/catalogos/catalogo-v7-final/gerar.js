@@ -59,7 +59,7 @@ const P = {
     specs: [["Uso", "Interno (área seca)"]], disp: ["1,5 kg", "5 kg", "Saco 23 kg", "Barrica 23 kg"] },
   acrilica: { nome: "Massa Acrílica", img: "massas", h: 34, desc: "Para parede de dentro e de fora e para lugares que pegam respingo de água, como banheiro e cozinha. Fácil de lixar.",
     specs: [["Uso", "Interno e externo"]], disp: ["1,5 kg", "5 kg", "Saco 23 kg", "Barrica 23 kg"] },
-  cimento: { nome: "Efeito Cimento Queimado", sub: "Acabamento decorativo", leque: true, desc: "Acabamento moderno de cimento queimado, com aplicação fácil. Para paredes e tetos, dentro e fora de casa.",
+  cimento: { nome: "Efeito Cimento Queimado", sub: "Acabamento decorativo", img: "cimento", h: 37, desc: "Acabamento moderno de cimento queimado, com aplicação fácil. Para paredes e tetos, dentro e fora de casa.",
     specs: [["Uso", "Interno e externo"]], disp: ["5 kg", "20 kg"] },
   seladora: { nome: "Seladora", img: "seladora", h: 34, desc: "Para parede nova ou reboco novo que chupa muita tinta. Preenche os poros do reboco e faz você gastar menos tinta.",
     specs: [], disp: ["18 L", "3,6 L"] },
