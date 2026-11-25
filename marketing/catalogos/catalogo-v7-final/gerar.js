@@ -6,6 +6,7 @@
 //  - cartelas 26 x 15 mm, hex da paleta oficial (identidade/cores/paleta-oficial.json da versão publicada);
 //  - 3 mm de sangria em todo fundo que encosta na borda.
 // Rodar: NODE_PATH=$(npm root -g) node marketing/catalogos/catalogo-v7-final/gerar.js
+// 10 páginas (múltiplo de 2 pra gráfica): capa, 7 de produto, Massas & Complementos e lojas.
 // Saída: catalogo-laet-grafica.pdf (216 x 303 mm, com sangria) e catalogo-laet-whatsapp.pdf (A4, leve).
 const { chromium } = require("playwright"); const fs = require("fs"), path = require("path");
 const { execFileSync } = require("child_process");
@@ -19,7 +20,7 @@ const QR = require(path.join("/tmp/claude-0/-home-user/0c1c38fb-c8d2-50cb-ae85-b
 const INCOLOR = { nome: "Incolor (Natural)", listrado: true };
 const C = {
   grande: linha("paleta-grande"), standard: linha("standard"), super: linha("super-profissional"), vinil: linha("latex-vinil"),
-  esmalte: [INCOLOR, ...linha("esmalte-ecologico")], pisos: linha("piso-fachada"),
+  esmalte: [{ nome: "Branco", hex: "#FFFFFF" }, ...linha("esmalte-ecologico")], pisos: linha("piso-fachada"),
   epoxi: linha("epoxi-base-agua").map((c) => ({ ...c, hex: { "Laranja Suave": "#FFC79F", "Amarelo": "#F8D48F" }[c.nome] || c.hex })),  // mais claros: Kevin 25/11 (provisório)
   verniz: [INCOLOR, { nome: "Mogno", hex: "#82380F" }, { nome: "Imbuia", hex: "#4A2B1A" }],  // tons de madeira: hex do site
 };
@@ -48,10 +49,22 @@ const P = {
     specs: [["Uso", "Interno"], ["Acabamento", "Fosco"], ["Rendimento", "Rende em média 100 m² por demão · balde 18 L"]], disp: ["18 L · Branca e cores"] },
   esmalte: { nome: "Esmalte Ecológico", sub: "Base água", img: "esmalte", h: 35, desc: "Base água, baixo odor e boa cobertura. Pinta ferro, madeira, parede e teto.",
     specs: [["Uso", "Interno e externo"], ["Acabamento", "Brilhante"]], disp: ["18 L · Branca", "3,6 L · Branca e cores", "900 ml · Branca e cores"],
-    nota: "O 18 L sai só na Branca. Incolor / Natural é o quadradinho listrado." },
+    nota: "O 18 L sai só na Branca." },
   verniz: { nome: "Verniz Base Água", img: "verniz", h: 41, desc: "Fundo e acabamento no mesmo produto: dispensa seladora. Realça os veios da madeira e resiste à chuva.",
     specs: [["Uso", "Interno e externo"], ["Acabamento", "Brilhante"], ["Rendimento", "Rende até 60 m² por demão no 3,6 L"]], disp: ["18 L", "3,6 L", "900 ml"] },
 };
+Object.assign(P, {
+  corrida: { nome: "Massa Corrida", img: "barrica", h: 37, desc: "Nivela e corrige a parede antes de pintar. Fácil de lixar. Só para área interna e seca, como quarto e sala.",
+    specs: [["Uso", "Interno (área seca)"], ["Rendimento", "Rende até 50 m²"]], disp: ["1,5 kg", "5 kg", "Saco 23 kg", "Barrica 23 kg"] },
+  acrilica: { nome: "Massa Acrílica", img: "saco", h: 30, desc: "Para parede de dentro e de fora e para lugares que pegam respingo de água, como banheiro e cozinha. Fácil de lixar.",
+    specs: [["Uso", "Interno e externo"]], disp: ["5 kg", "Saco 23 kg", "Barrica 23 kg"] },
+  seladora: { nome: "Seladora", img: "seladora", h: 36, desc: "Para parede nova ou reboco novo que chupa muita tinta. Preenche os poros do reboco e faz você gastar menos tinta.",
+    specs: [], disp: ["18 L", "3,6 L"] },
+  fundo: { nome: "Fundo Preparador", img: "fundo", h: 36, desc: "Para reboco fraco e parede velha que esfarela ou descasca. Firma a superfície antes da tinta.",
+    specs: [], disp: ["18 L", "3,6 L", "900 ml"] },
+});
+const QUAL = [["Parede velha que esfarela ou descasca", "Fundo Preparador"], ["Parede nova ou reboco novo que chupa tinta", "Seladora"],
+  ["Corrigir parede de quarto e sala (área seca)", "Massa Corrida"], ["Banheiro, cozinha ou área externa", "Massa Acrílica"]];
 const LOJAS = [
   [1, "Vila Bela", "São Paulo", "Av. Sapopemba, 25.723", "(11) 98082-0686"], [2, "Jardim São João", "Mauá", "Rua do Britador, 2", "(11) 97750-4434"],
   [3, "Jardim Santa Cecília", "Mauá", "Av. Ayrton Senna da Silva, 235", "(11) 97749-8813"], [4, "Vila Luzita", "Santo André", "Av. São Bernardo do Campo, 757", "(11) 94855-1977"],
@@ -98,17 +111,19 @@ const p6 = pagina(6, "Acrílicas", cartela("CARTELA 1ª LINHA STANDARD", "84 cor
   + card(P.profissional) + card(P.gesso) + cartela("CARTELA SUPER PROFISSIONAL E DIRETO NO GESSO", "34 cores", "Vale para as duas linhas · as mesmas 34 cores", SP.slice(0, 14), false));
 const p7 = pagina(7, "Profissional e Gesso", cartela("CARTELA SUPER PROFISSIONAL E DIRETO NO GESSO", "34 cores", "", SP.slice(14), true, true) + `<div class="div"></div>` + secao("Acrílicas")
   + card(P.vinil) + cartela("CARTELA BÁSICA INTERNA VINIL", "18 cores", "Vale para: Básica Interna Vinil · só no 18 L", C.vinil) + parcele);
-const p8 = pagina(8, "Madeiras & Metais", card(P.esmalte) + cartela("CARTELA ESMALTE ECOLÓGICO", "32 cores + Incolor listrado", "Vale para: Esmalte Ecológico · cores no 3,6 L e no 900 ml", C.esmalte)
+const p8 = pagina(8, "Madeiras & Metais", card(P.esmalte) + cartela("CARTELA ESMALTE ECOLÓGICO", "32 cores + Branco", "Vale para: Esmalte Ecológico · cores no 3,6 L e no 900 ml", C.esmalte)
   + card(P.verniz) + cartela("CARTELA VERNIZ BASE ÁGUA", "3 tonalidades", "Os 3 tamanhos em Incolor, Mogno e Imbuia. Incolor é o quadradinho listrado.", C.verniz, false).replace('<div class="ch">', '<div class="ch dupla">'));
 
+const p9 = pagina(9, "Massas & Complementos", card(P.corrida) + card(P.acrilica) + card(P.seladora) + card(P.fundo)
+  + `<div class="qual"><div class="qt">Qual usar na sua parede?</div>${QUAL.map(([a, b]) => `<div class="qr2"><span>${a}</span><b>${b}</b></div>`).join("")}</div>`);
 const ZAP = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.4-.7-2.4-1.4-3.3-3-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.1-.7z"/></svg>';
-const p9 = (qr) => `<div class="page lojas"><div class="bleedbg"></div><div class="topo am"></div><img class="liq liql" src="LIQ/liq-lojas.png"><div class="liqfade fl"></div><div class="trim">
+const p10 = (qr) => `<div class="page lojas"><div class="bleedbg"></div><div class="topo am"></div><img class="liq liql" src="LIQ/liq-lojas.png"><div class="liqfade fl"></div><div class="trim">
   <img class="llogo" src="${IMG("logo-branco")}"><div class="ltit">Nossas Lojas</div><div class="lu"></div><div class="lhr">Segunda a sexta 8h às 18h <i>·</i> Sábado 8h às 14h</div>
   <div class="lg">${LOJAS.map(([n, b, c, e, z]) => `<div class="lj"><span class="lchip">Loja ${n}</span><div class="lb">${b}</div><div class="lc">${c}</div><div class="le">${e}</div><div class="lz">WhatsApp ${z}</div></div>`).join("")}</div>
   <div class="lct"><div class="lbx"><small>WhatsApp central</small>(11) 97714-0964</div><div class="lbx"><small>Instagram</small>@tintaslaet</div><div class="lbx"><small>Site das lojas</small>tintaslaet.com/lojas</div>
     <div class="qr">${qr}</div></div>
   <div class="lpar">Parcele em até 12x sem juros (consulte as condições).</div>
-  <div class="pnum">09</div></div></div>`;
+  <div class="pnum">10</div></div></div>`;
 
 // ---------- estilo (mm; trim = A4 210 x 297, sangria = var(--b)) ----------
 const CSS = (b) => `@page{size:${210 + 2 * b}mm ${297 + 2 * b}mm;margin:0}
@@ -167,6 +182,12 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .parc.alta{position:relative;height:25mm;overflow:hidden;padding-top:3.4mm}
 .parc.alta .cerca{position:absolute;left:0;right:0;bottom:0;height:12mm}
 .div{flex:none;height:.25mm;background:#D3DAE4;margin:.8mm 0 3.6mm}
+/* guia "qual usar" */
+.qual{flex:none;border-radius:3.2mm;background:#fff;box-shadow:0 1mm 2.4mm rgba(6,43,99,.12);padding:4.2mm 6mm 3.4mm;margin-top:.6mm}
+.qt{font-family:'Montserrat';font-weight:800;font-size:11pt;color:#062B63;text-transform:uppercase;margin-bottom:2mm}
+.qt::after{content:"";display:inline-block;width:9mm;height:1mm;border-radius:.5mm;background:#FFC107;margin-left:3mm;vertical-align:middle}
+.qr2{display:flex;justify-content:space-between;align-items:center;font-size:8.4pt;color:#2D3748;padding:1.7mm 0;border-top:.25mm solid #E2E7EF}
+.qr2 b{font-family:'Montserrat';font-weight:700;color:#0D47A1}
 /* tinta líquida (tinta-liquida.py) */
 .liq{position:absolute;left:0;width:100%;object-fit:cover}
 .liqc{top:${b + 131}mm;height:${172 - b}mm}.liql{top:${b + 207}mm;height:${90 + b}mm}
@@ -223,7 +244,7 @@ body.txt img.flat{visibility:visible!important;position:absolute;left:0;top:0;wi
 body.txt .trim{z-index:1}
 .sheet{position:relative;overflow:hidden;page-break-after:always}.sheet .page{page-break-after:auto}`;
 const HTML = (b, img, qr, modo = "", flat = null, corte = 0) => `<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet"><style>${CSS(b)}${MODOS}${corte ? `@page{size:210mm 297mm;margin:0}.sheet{width:210mm;height:297mm}.sheet .page{margin:-${corte}mm 0 0 -${corte}mm}` : ""}</style></head><body class="${modo}">
-${[capa, p2, p3, p4, p5, p6, p7, p8, p9(qr)].map((pg, i) => { if (flat) pg = pg.replace(/^<div class="page([^"]*)">/, `<div class="page$1"><img class="flat" src="${flat[i]}">`); return corte ? `<div class="sheet">${pg}</div>` : pg; }).join("\n")}</body></html>`.replace(/IMG\//g, img + "/").replace(/LIQ\//g, path.join(D, "build") + "/");
+${[capa, p2, p3, p4, p5, p6, p7, p8, p9, p10(qr)].map((pg, i) => { if (flat) pg = pg.replace(/^<div class="page([^"]*)">/, `<div class="page$1"><img class="flat" src="${flat[i]}">`); return corte ? `<div class="sheet">${pg}</div>` : pg; }).join("\n")}</body></html>`.replace(/IMG\//g, img + "/").replace(/LIQ\//g, path.join(D, "build") + "/");
 
 (async () => {
   // embalagens + logos: alta (gráfica) e leve (WhatsApp)
