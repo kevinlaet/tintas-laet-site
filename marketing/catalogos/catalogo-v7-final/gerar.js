@@ -19,7 +19,8 @@ const QR = require(path.join("/tmp/claude-0/-home-user/0c1c38fb-c8d2-50cb-ae85-b
 const INCOLOR = { nome: "Incolor (Natural)", listrado: true };
 const C = {
   grande: linha("paleta-grande"), standard: linha("standard"), super: linha("super-profissional"), vinil: linha("latex-vinil"),
-  esmalte: [INCOLOR, ...linha("esmalte-ecologico")], pisos: linha("piso-fachada"), epoxi: linha("epoxi-base-agua"),
+  esmalte: [INCOLOR, ...linha("esmalte-ecologico")], pisos: linha("piso-fachada"),
+  epoxi: linha("epoxi-base-agua").map((c) => ({ ...c, hex: { "Laranja Suave": "#FFC79F", "Amarelo": "#F8D48F" }[c.nome] || c.hex })),  // mais claros: Kevin 25/11 (provisório)
   verniz: [INCOLOR, { nome: "Mogno", hex: "#82380F" }, { nome: "Imbuia", hex: "#4A2B1A" }],  // tons de madeira: hex do site
 };
 const CONTAGEM = { grande: 110, standard: 84, super: 34, vinil: 18, esmalte: 33, pisos: 13, epoxi: 16, verniz: 3 };
@@ -82,14 +83,14 @@ const pagina = (n, titulo, corpo) => `<div class="page"><div class="bleedbg"></d
 const capa = `<div class="page capa"><div class="bleedbg"></div><div class="topo am"></div><div class="trim">
   <img class="clogo" src="${IMG("logo-branco")}"><div class="cu"></div>
   <div class="ctit">Catálogo de Produtos</div><div class="csub">Tintas · Esmaltes · Vernizes · Epóxi</div></div>
-  ${cerca(100, "cc")}<div class="chao"></div>
+  <img class="liq liqc" src="LIQ/liq-capa.png"><div class="liqfade fc"></div><div class="chao"></div>
   <div class="trim"><div class="latas">${[["epoxi", 50, 30], ["lavavel", 62, 67], ["emborrachada", 74, 105], ["pisos", 62, 143], ["standard", 52, 180]].map(([k, h, x]) =>
     `<div class="cl" style="left:${x}mm;z-index:${h}"><div class="ls2" style="width:${h * 0.95}mm"></div><div class="ls1" style="width:${h * 0.7}mm"></div><img src="${IMG(k)}" style="height:${h}mm"><img class="refl" src="${IMG(k)}" style="height:${h}mm"></div>`).join("")}</div>
   <div class="cpe">tintaslaet.com <i>·</i> @tintaslaet</div></div></div>`;
 
 const G = C.grande, S = C.standard, SP = C.super;
 const p2 = pagina(2, "Premium e Nobres", card(P.emborrachada) + card(P.lavavel) + cartela("CARTELA PALETA GRANDE", "110 cores", "Vale para: Emborrachada e Premium Lavável", G.slice(0, 42), false) + parcele);
-const p3 = pagina(3, "Premium e Nobres", cartela("CARTELA PALETA GRANDE", "110 cores", "", G.slice(42), true, true) + `<div class="parc alta">Parcele em até 12x sem juros (consulte as condições).${cerca(100)}</div>`);
+const p3 = pagina(3, "Premium e Nobres", cartela("CARTELA PALETA GRANDE", "110 cores", "", G.slice(42), true, true) + `<div class="parc alta">Parcele em até 12x sem juros (consulte as condições).<img class="liqs" src="LIQ/liq-faixa.png"></div>`);
 const p4 = pagina(4, "Premium e Nobres", card(P.pisos) + cartela("CARTELA PISOS & FACHADAS", "13 cores", "Vale para: Pisos & Fachadas", C.pisos)
   + card(P.epoxi) + cartela("CARTELA EPÓXI BASE ÁGUA", "16 cores", "Vale para: Epóxi Base Água · ordem combinada", C.epoxi));
 const p5 = pagina(5, "Acrílicas", card(P.standard) + cartela("CARTELA 1ª LINHA STANDARD", "84 cores", "Cores deste produto, nos dois tamanhos.", S.slice(0, 63), false));
@@ -101,7 +102,7 @@ const p8 = pagina(8, "Madeiras & Metais", card(P.esmalte) + cartela("CARTELA ESM
   + card(P.verniz) + cartela("CARTELA VERNIZ BASE ÁGUA", "3 tonalidades", "Os 3 tamanhos em Incolor, Mogno e Imbuia. Incolor é o quadradinho listrado.", C.verniz, false).replace('<div class="ch">', '<div class="ch dupla">'));
 
 const ZAP = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.4-.7-2.4-1.4-3.3-3-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.1-.7z"/></svg>';
-const p9 = (qr) => `<div class="page lojas"><div class="bleedbg"></div><div class="topo am"></div>${cerca(100, "cl9")}<div class="trim">
+const p9 = (qr) => `<div class="page lojas"><div class="bleedbg"></div><div class="topo am"></div><img class="liq liql" src="LIQ/liq-lojas.png"><div class="liqfade fl"></div><div class="trim">
   <img class="llogo" src="${IMG("logo-branco")}"><div class="ltit">Nossas Lojas</div><div class="lu"></div><div class="lhr">Segunda a sexta 8h às 18h <i>·</i> Sábado 8h às 14h</div>
   <div class="lg">${LOJAS.map(([n, b, c, e, z]) => `<div class="lj"><span class="lchip">Loja ${n}</span><div class="lb">${b}</div><div class="lc">${c}</div><div class="le">${e}</div><div class="lz">WhatsApp ${z}</div></div>`).join("")}</div>
   <div class="lct"><div class="lbx"><small>WhatsApp central</small>(11) 97714-0964</div><div class="lbx"><small>Instagram</small>@tintaslaet</div><div class="lbx"><small>Site das lojas</small>tintaslaet.com/lojas</div>
@@ -141,14 +142,14 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .ctx{flex:1;min-width:0;padding:5mm 7mm 4.6mm 1mm;display:flex;flex-direction:column;justify-content:center}
 .pn{font-family:'Montserrat';font-weight:800;font-size:16pt;line-height:1.05;text-transform:uppercase;letter-spacing:-.005em}
 .ps{font-style:italic;font-weight:600;font-size:9pt;color:#FFC107;margin-top:.6mm}
-.pd{font-size:8.4pt;line-height:1.42;color:rgba(255,255,255,.92);margin-top:1.6mm}
+.pd{font-size:8.4pt;line-height:1.42;color:#EAEFF7;margin-top:1.6mm}
 .specs{display:flex;gap:6mm;margin-top:2.2mm}
 .sr{font-family:'Montserrat';font-weight:700;font-size:6.6pt;letter-spacing:.06em;text-transform:uppercase;color:#FFC107}
 .sv{font-size:8.2pt;font-weight:500;line-height:1.3;color:#fff}
 .disp{display:flex;align-items:center;flex-wrap:wrap;gap:1.5mm;margin-top:2.4mm}
 .dr{font-family:'Montserrat';font-weight:700;font-size:6.6pt;letter-spacing:.06em;text-transform:uppercase;color:#FFC107;margin-right:1.4mm}
 .chip{font-weight:600;font-size:7.6pt;color:#062B63;background:#fff;border-radius:1.8mm;padding:.7mm 2.4mm .5mm;box-shadow:0 .3mm .6mm rgba(0,0,0,.18)}
-.pnota{font-size:7.4pt;color:rgba(255,255,255,.76);margin-top:2mm}
+.pnota{font-size:7.4pt;color:#C3CDDD;margin-top:2mm}
 /* cartela */
 .cart{flex:none;margin-bottom:2.8mm}
 .ch{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:4mm;row-gap:.6mm;margin-bottom:3mm;position:relative;padding-bottom:1.8mm}
@@ -166,6 +167,13 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .parc.alta{position:relative;height:25mm;overflow:hidden;padding-top:3.4mm}
 .parc.alta .cerca{position:absolute;left:0;right:0;bottom:0;height:12mm}
 .div{flex:none;height:.25mm;background:#D3DAE4;margin:.8mm 0 3.6mm}
+/* tinta líquida (tinta-liquida.py) */
+.liq{position:absolute;left:0;width:100%;object-fit:cover}
+.liqc{top:${b + 131}mm;height:${172 - b}mm}.liql{top:${b + 207}mm;height:${90 + b}mm}
+.liqfade{position:absolute;left:0;right:0}
+.liqfade.fc{top:${b + 130}mm;height:28mm;background:linear-gradient(180deg,#0A3C8C 0%,rgba(10,60,140,.85) 25%,rgba(10,60,140,0) 100%)}
+.liqfade.fl{top:${b + 206}mm;height:22mm;background:linear-gradient(180deg,#0B3F92 0%,rgba(11,63,146,.8) 30%,rgba(11,63,146,0) 100%)}
+.liqs{position:absolute;left:0;right:0;bottom:0;width:100%;height:12mm;object-fit:cover}
 /* cerca de cores (pontas arredondadas, leve volume como paleta de tinta) */
 .cerca{display:flex;align-items:flex-end;gap:.5mm}
 .cerca div{flex:1;border-radius:50mm 50mm 0 0/12mm 12mm 0 0;background:linear-gradient(90deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 35%,rgba(0,0,0,0) 70%,rgba(0,0,0,.10) 100%),var(--c);box-shadow:inset 0 .4mm 0 rgba(255,255,255,.25)}
@@ -196,7 +204,7 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .lj{height:40mm;border-radius:3.2mm;background:linear-gradient(160deg,rgba(6,30,75,.78),rgba(6,30,75,.58));border:.25mm solid rgba(255,255,255,.12);box-shadow:0 1mm 2.4mm rgba(0,10,35,.25);padding:4mm 4.2mm}
 .lchip{display:inline-block;text-transform:uppercase;letter-spacing:.04em;font-family:'Montserrat';font-weight:800;font-size:6.8pt;color:#062B63;background:#FFC107;border-radius:1.6mm;padding:.8mm 2.2mm .6mm}
 .lb{font-weight:600;font-size:11pt;color:#fff;margin-top:3.6mm;line-height:1.1}.lc{font-weight:500;font-size:7.6pt;color:#FFC107;margin-top:.5mm}
-.le{font-size:7.3pt;color:rgba(255,255,255,.82);margin-top:2.2mm}.lz{display:flex;align-items:center;gap:1.2mm;font-weight:600;font-size:8.2pt;color:#fff;margin-top:2.4mm}.lz svg{width:3.3mm;height:3.3mm;color:#25D366;flex:none}
+.le{font-size:7.3pt;color:#D2DAE8;margin-top:2.2mm}.lz{display:flex;align-items:center;gap:1.2mm;font-weight:600;font-size:8.2pt;color:#fff;margin-top:2.4mm}.lz svg{width:3.3mm;height:3.3mm;color:#25D366;flex:none}
 .lct{position:absolute;left:10mm;right:10mm;top:164mm;display:grid;grid-template-columns:1fr 1fr 1fr 31mm;gap:3.6mm;align-items:start}
 .lbx{height:16mm;border-radius:3.2mm;background:linear-gradient(160deg,rgba(6,30,75,.78),rgba(6,30,75,.58));border:.25mm solid rgba(255,255,255,.12);padding:3mm 4mm;font-weight:600;font-size:9.2pt;color:#fff}
 .lbx small{display:block;font-family:'Montserrat';font-weight:700;font-size:6.2pt;letter-spacing:.05em;text-transform:uppercase;color:#FFC107;margin-bottom:.8mm}
@@ -204,8 +212,18 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .lpar{position:absolute;left:0;right:0;top:200mm;text-align:center;font-size:8.4pt;font-weight:500;color:#FFE082}
 .pnum{position:absolute;right:10mm;bottom:6mm;font-family:'Bebas Neue';font-size:12pt;letter-spacing:.04em;color:#fff;background:#062B63;border-radius:3mm;padding:.5mm 3.2mm .2mm;line-height:1.1}`;
 
-const HTML = (b, img, qr) => `<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700;800&family=Poppins:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet"><style>${CSS(b)}</style></head><body>
-${[capa, p2, p3, p4, p5, p6, p7, p8, p9(qr)].join("\n")}</body></html>`.replace(/IMG\//g, img + "/");
+const MODOS = `
+@font-face{font-family:"Montserrat";font-weight:700;src:url("file://${D}/fontes/Montserrat-Bold.ttf")}
+@font-face{font-family:"Montserrat";font-weight:800;src:url("file://${D}/fontes/Montserrat-ExtraBold.ttf")}
+body.bg *,body.bg *::before,body.bg *::after{color:transparent!important;-webkit-text-fill-color:transparent!important;text-shadow:none!important}
+body.txt *{background:transparent!important;box-shadow:none!important;filter:none!important;border-color:transparent!important}
+body.txt *::before,body.txt *::after{visibility:hidden!important}
+body.txt img,body.txt svg,body.txt .q{visibility:hidden!important}
+body.txt img.flat{visibility:visible!important;position:absolute;left:0;top:0;width:100%;height:100%;z-index:0}
+body.txt .trim{z-index:1}
+.sheet{position:relative;overflow:hidden;page-break-after:always}.sheet .page{page-break-after:auto}`;
+const HTML = (b, img, qr, modo = "", flat = null, corte = 0) => `<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet"><style>${CSS(b)}${MODOS}${corte ? `@page{size:210mm 297mm;margin:0}.sheet{width:210mm;height:297mm}.sheet .page{margin:-${corte}mm 0 0 -${corte}mm}` : ""}</style></head><body class="${modo}">
+${[capa, p2, p3, p4, p5, p6, p7, p8, p9(qr)].map((pg, i) => { if (flat) pg = pg.replace(/^<div class="page([^"]*)">/, `<div class="page$1"><img class="flat" src="${flat[i]}">`); return corte ? `<div class="sheet">${pg}</div>` : pg; }).join("\n")}</body></html>`.replace(/IMG\//g, img + "/").replace(/LIQ\//g, path.join(D, "build") + "/");
 
 (async () => {
   // embalagens + logos: alta (gráfica) e leve (WhatsApp)
@@ -220,9 +238,31 @@ for f in glob.glob(d + "/emb/*.png") + [logos + "/logo-branco.png", logos + "/lo
     l = i.copy(); l.thumbnail((640, 640), Image.LANCZOS); l.save(d + "/build/leve/" + n, optimize=True)
 `, D, path.join(R, "saidas/banners-loja6-2026-11/assets")]);
   const qr = await QR.toString("https://wa.me/5511977140964", { type: "svg", margin: 0, errorCorrectionLevel: "M", color: { dark: "#062B63", light: "#FFFFFF" } });
-  const b = await chromium.launch(); const p = await b.newPage();
-  for (const [bleed, img, arq] of [[3, "alta", "catalogo-laet-grafica.pdf"], [0, "leve", "catalogo-laet-whatsapp.pdf"]]) {
-    const h = path.join(D, "build", `catalogo-${img}.html`); fs.writeFileSync(h, HTML(bleed, path.join(D, "build", img), qr));
+  // tinta líquida
+  for (const [n, w, h, seed] of [["liq-capa", 2551, 1988, 11], ["liq-lojas", 2551, 1099, 23], ["liq-faixa", 2244, 142, 5]])
+    if (!fs.existsSync(path.join(D, "build", n + ".png"))) execFileSync("python3", ["-I", path.join(D, "tinta-liquida.py"), w, h, path.join(D, "build", n + ".png"), seed, "cheio"].map(String));
+  const b = await chromium.launch();
+  // 1) fundo de cada página como imagem 300 dpi, sem transparência (é o que some com os "quadrados" no iPhone)
+  const ctx = await b.newContext({ deviceScaleFactor: 300 / 96, viewport: { width: 817, height: 1146 } }); const pb = await ctx.newPage();
+  const hb = path.join(D, "build", "fundo.html"); fs.writeFileSync(hb, HTML(3, path.join(D, "build", "alta"), qr, "bg"));
+  await pb.goto("file://" + hb, { waitUntil: "networkidle" }); await pb.evaluate(() => document.fonts.ready); await pb.waitForTimeout(800);
+  fs.mkdirSync(path.join(D, "build/fundo"), { recursive: true });
+  const els = await pb.$$(".page"); const alta = [];
+  for (let i = 0; i < els.length; i++) { const f = path.join(D, "build/fundo", `p${i + 1}.png`); await els[i].screenshot({ path: f }); alta.push(f); }
+  await ctx.close();
+  execFileSync("python3", ["-I", "-c", `
+import sys
+from PIL import Image
+for f in sys.argv[1:]:
+    i = Image.open(f).convert("RGB")
+    i.save(f[:-4] + ".jpg", quality=95, subsampling=0, dpi=(300, 300))
+    l = i.resize((i.width // 2, i.height // 2), Image.LANCZOS); l.save(f[:-4] + "-leve.jpg", quality=84, dpi=(150, 150))
+`, ...alta]);
+  // 2) texto vetorial por cima
+  const p = await b.newPage();
+  for (const [arq, sufixo, corte] of [["catalogo-laet-grafica.pdf", ".jpg", 0], ["catalogo-laet-whatsapp.pdf", "-leve.jpg", 3]]) {
+    const flat = alta.map((f) => f.replace(/\.png$/, sufixo));
+    const h = path.join(D, "build", `catalogo-${corte ? "leve" : "alta"}.html`); fs.writeFileSync(h, HTML(3, path.join(D, "build", "alta"), qr, "txt", flat, corte));
     await p.goto("file://" + h, { waitUntil: "networkidle" }); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(500);
     await p.pdf({ path: path.join(D, arq), preferCSSPageSize: true, printBackground: true });
     console.log("ok", arq, (fs.statSync(path.join(D, arq)).size / 1e6).toFixed(1) + " MB");
