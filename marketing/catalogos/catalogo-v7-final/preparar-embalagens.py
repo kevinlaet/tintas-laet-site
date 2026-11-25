@@ -8,7 +8,7 @@ EMB = {"emborrachada": "emborrachada-remove-bg-io.png", "lavavel": "premiumlavav
        "epoxi": "epoxibaseagua.png", "standard": "standard-remove-bg-io.png", "profissional": "profissional-remove-bg-io.png",
        "gesso": "direto no gesso-remove-bg-io.png", "vinil": "vinil-remove-bg-io.png", "esmalte": "esmalteecologico-removebg-preview.png",
        "verniz": "verniz-premium-remove-bg-io.png", "barrica": "barrica-remove-bg-io.png", "saco": "massaplastico.png",
-       "seladora": "seladora-removebg-preview.png", "fundo": "fundo_preparador-removebg-preview.png"}
+       "seladora": "seladora-removebg-preview.png", "gessostd": "direto no gesso standard.png", "cobertura": "cobertura absoluta-limpa.png", "massas": "barrica+plastico.png", "fundo": "fundo_preparador-removebg-preview.png"}
 def sangrar(rgb, a, passes=6):
     rgb = rgb.copy(); ok = a > 200
     for _ in range(passes):

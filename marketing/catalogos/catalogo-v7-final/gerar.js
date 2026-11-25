@@ -28,41 +28,43 @@ const CONTAGEM = { grande: 110, standard: 84, super: 34, vinil: 18, esmalte: 33,
 for (const [k, n] of Object.entries(CONTAGEM)) if (C[k].length !== n) throw new Error(`cartela ${k}: ${C[k].length} cores, rascunho tem ${n}`);
 const CERCA = ["Mistura de Mostarda", "Tangerina", "Curry Dourado", "Amarelo Laet", "Verde Piscina", "Mar de Arruda", "Mar Aberto", "Céu Sagrado", "Caixa Seca", "Lilás Delicado", "Flamingo Real", "Rosa Gloss", "Chá Quente", "Lícor Doce", "Ovelha"].map((n) => cor("paleta-grande", n));
 
-// ---------- produtos: texto IGUAL ao rascunho v7 ----------
+// ---------- produtos (correções do Kevin 25/11: nobres / econômicas / revenda, 17 L e 3,4 L, Gesso Standard, Cobertura) ----------
+const T17 = "18 L / 17 L · Branca e cores", T34 = "3,6 L / 3,4 L · Branca e cores";
+const NOTA17 = "17 L e 3,4 L: cores médias e fortes.";
 const P = {
-  emborrachada: { nome: "Emborrachada", sub: "Tinta de borracha", img: "emborrachada", desc: "Seca e vira uma película de borracha que protege laje, telhado, muro e fachada. Aguenta sol e chuva.",
-    specs: [["Uso", "Externo: laje, telhado, muro e fachada"], ["Rendimento", "Rende até 200 m² · balde 18 L"]], disp: ["18 L · Branca e cores", "3,6 L · Branca e cores"] },
+  emborrachada: { nome: "Emborrachada", sub: "Tinta que vira borracha", img: "emborrachada", desc: "Seca e vira uma película de borracha que protege laje, telhado, muro e fachada. Aguenta sol e chuva.",
+    specs: [["Uso", "Externo: laje, telhado, muro e fachada"], ["Rendimento", "Rende até 200 m² · balde 18 L"]], disp: [T17, T34], nota: NOTA17 },
   lavavel: { nome: "Premium Lavável", img: "lavavel", desc: "Cobre bem, tem baixo odor e é fácil de limpar. Antimofo e antifungos, para parede de dentro e de fora.",
-    specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"], ["Rendimento", "Rende até 200 m² · balde 18 L"]], disp: ["18 L · Branca e cores", "3,6 L · Branca e cores", "900 ml · Branca"],
-    nota: "O 900 ml sai só na Branca, sem as cores da cartela." },
+    specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"], ["Rendimento", "Rende até 200 m² · balde 18 L"]], disp: [T17, T34, "900 ml · Branca e cores"], nota: NOTA17 },
+  cobertura: { nome: "Cobertura Absoluta", img: "cobertura", h: 38, desc: "Da linha nobre da Laet, com a mesma cartela de cores da Emborrachada e da Premium Lavável.",
+    specs: [], disp: [T17, T34], nota: NOTA17 },
   pisos: { nome: "Pisos & Fachadas", img: "pisos", desc: "Aguenta o tráfego de carro, a chuva e o sol. Para garagem, calçada e fachada.",
     specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"], ["Rendimento", "Rende até 300 m² por demão"]], disp: ["17 L · 13 cores", "3,4 L · 13 cores"] },
   epoxi: { nome: "Epóxi Base Água", sub: "Renove sem quebrar", img: "epoxi", h: 37, desc: "Pinta azulejo de cozinha e banheiro sem quebrar nada. Seca rápido, sem cheiro forte, e forma uma película resistente, fácil de limpar.",
-    specs: [["Rendimento", "Rende até 60 m² por demão no 3,6 L · 900 ml até 15 m²"]], disp: ["3,6 L", "900 ml"] },
+    specs: [["Acabamento", "Acetinado"], ["Rendimento", "Rende até 60 m² por demão no 3,6 L · 900 ml até 15 m²"]], disp: ["3,6 L", "900 ml"] },
   standard: { nome: "1ª Linha Standard", sub: "Acrílico concentrado", img: "standard", desc: "Tinta de baixo custo, concentrada, grossa e com bom poder de cobertura. Pode ser diluída em até 20%. Antimofo.",
-    specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"]], disp: ["18 L · Branca e cores", "3,6 L · Branca e cores"] },
-  profissional: { nome: "Super Profissional", img: "profissional", desc: "Acrílica de ótima qualidade, cobre bem e tem antimofo. Indicada para parede de dentro de casa.",
-    specs: [["Uso", "Interno"], ["Rendimento", "Rende até 330 m² por demão"]], disp: ["18 L · Branca e cores", "3,6 L · Branca e cores"] },
-  gesso: { nome: "Direto no Gesso", sub: "Gesso e drywall", img: "gesso", desc: "Vai direto no gesso e no drywall: não precisa de fundo preparador. Prática, econômica e com bom acabamento.",
-    specs: [["Uso", "Interno"]], disp: ["18 L · Branca e cores", "3,6 L · Branca e cores"], nota: "Dica: gesso e drywall novos, limpe o pó e aplique. Não precisa de fundo." },
-  vinil: { nome: "Básica Interna Vinil", sub: "Látex Vinil", img: "vinil", desc: "A opção mais econômica para parede interna e seca. Espere 8 horas entre uma demão e outra. Não use em área externa nem em parede úmida.",
-    specs: [["Uso", "Interno"], ["Acabamento", "Fosco"], ["Rendimento", "Rende em média 100 m² por demão · balde 18 L"]], disp: ["18 L · Branca e cores"] },
+    specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"]], disp: [T17, T34], nota: NOTA17 },
+  gessostd: { nome: "Direto no Gesso Standard", sub: "Mais cobertura", img: "gessostd", desc: "Vai direto no gesso e no drywall, sem fundo preparador, e cobre mais. Sem cheiro e com propriedades antimofo.",
+    specs: [["Uso", "Interno"], ["Rendimento", "Rende até 200 m² por demão"]], disp: [T17, T34], nota: NOTA17 },
+  profissional: { nome: "Super Profissional", img: "profissional", desc: "Acrílica de ótima qualidade, cobre bem e tem propriedades antimofo. Indicada para parede de dentro de casa.",
+    specs: [["Uso", "Interno"], ["Rendimento", "Rende até 330 m² por demão"]], disp: [T17, T34], nota: NOTA17 },
+  gesso: { nome: "Direto no Gesso Profissional", sub: "Gesso e drywall", img: "gesso", desc: "Vai direto no gesso e no drywall: não precisa de fundo preparador. Prática, econômica e com bom acabamento.",
+    specs: [["Uso", "Interno"], ["Rendimento", "Rende até 200 m² por demão"]], disp: [T17, T34], nota: NOTA17 },
   esmalte: { nome: "Esmalte Ecológico", sub: "Base água", img: "esmalte", h: 35, desc: "Base água, baixo odor e boa cobertura. Pinta ferro, madeira, parede e teto.",
-    specs: [["Uso", "Interno e externo"], ["Acabamento", "Brilhante"]], disp: ["18 L · Branca", "3,6 L · Branca e cores", "900 ml · Branca e cores"],
-    nota: "O 18 L sai só na Branca." },
+    specs: [["Uso", "Interno e externo"], ["Acabamento", "Brilhante"]], disp: [T17, T34, "900 ml · Branca e cores"], nota: NOTA17 },
   verniz: { nome: "Verniz Base Água", img: "verniz", h: 41, desc: "Fundo e acabamento no mesmo produto: dispensa seladora. Realça os veios da madeira e resiste à chuva.",
     specs: [["Uso", "Interno e externo"], ["Acabamento", "Brilhante"], ["Rendimento", "Rende até 60 m² por demão no 3,6 L"]], disp: ["18 L", "3,6 L", "900 ml"] },
-};
-Object.assign(P, {
-  corrida: { nome: "Massa Corrida", img: "barrica", h: 37, desc: "Nivela e corrige a parede antes de pintar. Fácil de lixar. Só para área interna e seca, como quarto e sala.",
-    specs: [["Uso", "Interno (área seca)"], ["Rendimento", "Rende até 50 m²"]], disp: ["1,5 kg", "5 kg", "Saco 23 kg", "Barrica 23 kg"] },
-  acrilica: { nome: "Massa Acrílica", img: "saco", h: 30, desc: "Para parede de dentro e de fora e para lugares que pegam respingo de água, como banheiro e cozinha. Fácil de lixar.",
+  corrida: { nome: "Massa Corrida", img: "massas", h: 34, desc: "Nivela e corrige a parede antes de pintar. Fácil de lixar. Só para área interna e seca, como quarto e sala.",
+    specs: [["Uso", "Interno (área seca)"]], disp: ["1,5 kg", "5 kg", "Saco 23 kg", "Barrica 23 kg"] },
+  acrilica: { nome: "Massa Acrílica", img: "massas", h: 34, desc: "Para parede de dentro e de fora e para lugares que pegam respingo de água, como banheiro e cozinha. Fácil de lixar.",
     specs: [["Uso", "Interno e externo"]], disp: ["5 kg", "Saco 23 kg", "Barrica 23 kg"] },
-  seladora: { nome: "Seladora", img: "seladora", h: 36, desc: "Para parede nova ou reboco novo que chupa muita tinta. Preenche os poros do reboco e faz você gastar menos tinta.",
+  seladora: { nome: "Seladora", img: "seladora", h: 34, desc: "Para parede nova ou reboco novo que chupa muita tinta. Preenche os poros do reboco e faz você gastar menos tinta.",
     specs: [], disp: ["18 L", "3,6 L"] },
-  fundo: { nome: "Fundo Preparador", img: "fundo", h: 36, desc: "Para reboco fraco e parede velha que esfarela ou descasca. Firma a superfície antes da tinta.",
+  fundo: { nome: "Fundo Preparador", img: "fundo", h: 34, desc: "Para reboco fraco e parede velha que esfarela ou descasca. Firma a superfície antes da tinta.",
     specs: [], disp: ["18 L", "3,6 L", "900 ml"] },
-});
+  vinil: { nome: "Látex Vinil", sub: "Marca de revenda", img: "vinil", h: 38, desc: "A opção mais econômica para parede interna e seca. Espere 8 horas entre uma demão e outra. Não use em área externa nem em parede úmida.",
+    specs: [["Uso", "Interno"], ["Acabamento", "Fosco"], ["Rendimento", "Rende em média 100 m² · balde 18 L"]], disp: ["18 L · Branca e cores"] },
+};
 const QUAL = [["Parede velha que esfarela ou descasca", "Fundo Preparador"], ["Parede nova ou reboco novo que chupa tinta", "Seladora"],
   ["Corrigir parede de quarto e sala (área seca)", "Massa Corrida"], ["Banheiro, cozinha ou área externa", "Massa Acrílica"]];
 const LOJAS = [
@@ -77,46 +79,50 @@ const sw = (x) => `<div class="sw"><div class="q${x.hex === "#FFFFFF" || x.listr
 const cartela = (titulo, n, nota, lista, fim = true, cont = false) => `<div class="cart">
   <div class="ch"><div class="ct">${titulo} <span class="cdot">·</span> ${n}${cont ? ' <span class="ccont">(continuação)</span>' : ""}</div>${nota ? `<div class="cn">${nota}</div>` : ""}</div>
   <div class="cg">${lista.map(sw).join("")}</div>${fim ? '<div class="caviso">Cores aproximadas. Confira na loja antes de comprar.</div>' : ""}</div>`;
-const card = (p) => `<div class="card"><span class="tick"></span>
+const card = (p, cls = "") => `<div class="card ${cls}"><span class="tick"></span>
   <div class="palco"><div class="luz"></div><div class="som2" style="width:${(p.h || 40) * 0.78}mm"></div><div class="som1" style="width:${(p.h || 40) * 0.62}mm"></div>
     <img src="${IMG(p.img)}" style="height:${p.h || 40}mm"></div>
   <div class="ctx"><div class="pn">${p.nome}</div>${p.sub ? `<div class="ps">${p.sub}</div>` : ""}<div class="pd">${p.desc}</div>
-    <div class="specs">${p.specs.map(([r, v]) => `<div class="sp"><div class="sr">${r}</div><div class="sv">${v}</div></div>`).join("")}</div>
+    ${p.specs.length ? `<div class="specs">${p.specs.map(([r, v]) => `<div class="sp"><div class="sr">${r}</div><div class="sv">${v}</div></div>`).join("")}</div>` : ""}
     <div class="disp"><span class="dr">Disponível em</span>${p.disp.map((d) => `<span class="chip">${d}</span>`).join("")}</div>
     ${p.nota ? `<div class="pnota">${p.nota}</div>` : ""}</div></div>`;
-const secao = (titulo) => `<div class="sec"><div class="sl">Linha</div><div class="st">${titulo}</div><div class="su"></div></div>`;
-const cerca = (alt, cls = "") => `<div class="cerca ${cls}">${CERCA.map((h, i) => `<div style="--c:${h};height:${alt - [3, 1, 4, 0, 2, 3, 0, 1, 4, 2, 0, 3, 1, 4, 2][i] * 1.6}%"></div>`).join("")}</div>`;
+const secao = (titulo, rot = "Linha") => `<div class="sec"><div class="sl">${rot}</div><div class="st">${titulo}</div><div class="su"></div></div>`;
 const parcele = `<div class="parc">Parcele em até 12x sem juros (consulte as condições).</div>`;
 const pagina = (n, titulo, corpo) => `<div class="page"><div class="bleedbg"></div><div class="topo"></div><div class="trim">
   ${secao(titulo).replace('class="sec"', 'class="sec hd"')}<img class="hlogo" src="${IMG("logo-azul")}">
   <div class="corpo">${corpo}</div>
   <div class="rod"><span>tintaslaet.com</span><i>·</i><span>@tintaslaet</span><i>·</i><span>(11) 97714-0964</span><b>${String(n).padStart(2, "0")}</b></div></div></div>`;
+const div = `<div class="div"></div>`;
 
-// ---------- páginas ----------
+// ---------- páginas (10) ----------
 const capa = `<div class="page capa"><div class="bleedbg"></div><div class="topo am"></div><div class="trim">
   <img class="clogo" src="${IMG("logo-branco")}"><div class="cu"></div>
   <div class="ctit">Catálogo de Produtos</div><div class="csub">Tintas · Esmaltes · Vernizes · Epóxi</div></div>
   <img class="liq liqc" src="LIQ/liq-capa.png"><div class="liqfade fc"></div><div class="chao"></div>
-  <div class="trim"><div class="latas">${[["epoxi", 50, 30], ["lavavel", 62, 67], ["emborrachada", 74, 105], ["pisos", 62, 143], ["standard", 52, 180]].map(([k, h, x]) =>
+  <div class="trim"><div class="latas">${[["epoxi", 44, 22], ["lavavel", 56, 52], ["emborrachada", 70, 87], ["cobertura", 66, 126], ["pisos", 56, 162], ["standard", 46, 191]].map(([k, h, x]) =>
     `<div class="cl" style="left:${x}mm;z-index:${h}"><div class="ls2" style="width:${h * 0.95}mm"></div><div class="ls1" style="width:${h * 0.7}mm"></div><img src="${IMG(k)}" style="height:${h}mm"><img class="refl" src="${IMG(k)}" style="height:${h}mm"></div>`).join("")}</div>
   <div class="cpe">tintaslaet.com <i>·</i> @tintaslaet</div></div></div>`;
 
-const G = C.grande, S = C.standard, SP = C.super;
-const p2 = pagina(2, "Premium e Nobres", card(P.emborrachada) + card(P.lavavel) + cartela("CARTELA PALETA GRANDE", "110 cores", "Vale para: Emborrachada e Premium Lavável", G.slice(0, 42), false) + parcele);
-const p3 = pagina(3, "Premium e Nobres", cartela("CARTELA PALETA GRANDE", "110 cores", "", G.slice(42), true, true) + `<div class="parc alta">Parcele em até 12x sem juros (consulte as condições).<img class="liqs" src="LIQ/liq-faixa.png"></div>`);
-const p4 = pagina(4, "Premium e Nobres", card(P.pisos) + cartela("CARTELA PISOS & FACHADAS", "13 cores", "Vale para: Pisos & Fachadas", C.pisos)
+const G = C.grande, S = C.standard, SP = C.super, ES = C.esmalte;
+const VG = "Vale para: Emborrachada, Premium Lavável e Cobertura Absoluta";
+const VS = "Vale para: 1ª Linha Standard e Direto no Gesso Standard";
+const VP = "Vale para: Super Profissional e Direto no Gesso Profissional · as mesmas 34 cores";
+const CG = [28, 110], CS = [42, 84], CE = [14, 33];   // onde cada cartela quebra de página (ajustado medindo)
+const p2 = pagina(2, "Nobre", card(P.emborrachada) + card(P.lavavel) + card(P.cobertura) + cartela("CARTELA PALETA GRANDE", "110 cores", VG, G.slice(0, CG[0]), false));
+const p3 = pagina(3, "Nobre", cartela("CARTELA PALETA GRANDE", "110 cores", VG, G.slice(CG[0]), true, true));
+const p4 = pagina(4, "Nobre", card(P.pisos) + cartela("CARTELA PISOS & FACHADAS", "13 cores", "Vale para: Pisos & Fachadas", C.pisos)
   + card(P.epoxi) + cartela("CARTELA EPÓXI BASE ÁGUA", "16 cores", "Vale para: Epóxi Base Água · ordem combinada", C.epoxi));
-const p5 = pagina(5, "Acrílicas", card(P.standard) + cartela("CARTELA 1ª LINHA STANDARD", "84 cores", "Cores deste produto, nos dois tamanhos.", S.slice(0, 63), false));
-const p6 = pagina(6, "Acrílicas", cartela("CARTELA 1ª LINHA STANDARD", "84 cores", "", S.slice(63), true, true) + `<div class="div"></div>` + secao("Profissional e Gesso")
-  + card(P.profissional) + card(P.gesso) + cartela("CARTELA SUPER PROFISSIONAL E DIRETO NO GESSO", "34 cores", "Vale para as duas linhas · as mesmas 34 cores", SP.slice(0, 14), false));
-const p7 = pagina(7, "Profissional e Gesso", cartela("CARTELA SUPER PROFISSIONAL E DIRETO NO GESSO", "34 cores", "", SP.slice(14), true, true) + `<div class="div"></div>` + secao("Acrílicas")
-  + card(P.vinil) + cartela("CARTELA BÁSICA INTERNA VINIL", "18 cores", "Vale para: Básica Interna Vinil · só no 18 L", C.vinil) + parcele);
-const p8 = pagina(8, "Madeiras & Metais", card(P.esmalte) + cartela("CARTELA ESMALTE ECOLÓGICO", "32 cores + Branco", "Vale para: Esmalte Ecológico · cores no 3,6 L e no 900 ml", C.esmalte)
-  + card(P.verniz) + cartela("CARTELA VERNIZ BASE ÁGUA", "3 tonalidades", "Os 3 tamanhos em Incolor, Mogno e Imbuia. Incolor é o quadradinho listrado.", C.verniz, false).replace('<div class="ch">', '<div class="ch dupla">'));
-
-const p9 = pagina(9, "Massas & Complementos", card(P.corrida) + card(P.acrilica) + card(P.seladora) + card(P.fundo)
+const p5 = pagina(5, "Nobre", card(P.standard) + card(P.gessostd) + cartela("CARTELA 1ª LINHA STANDARD", "84 cores", VS, S.slice(0, CS[0]), false));
+const p6 = pagina(6, "Nobre", cartela("CARTELA 1ª LINHA STANDARD", "84 cores", VS, S.slice(CS[0]), true, true) + div + secao("Econômica")
+  + card(P.profissional) + card(P.gesso));
+const p7 = pagina(7, "Econômica", cartela("CARTELA PROFISSIONAL E GESSO", "34 cores", VP, SP) + div + secao("Madeiras & Metais")
+  + card(P.esmalte) + cartela("CARTELA ESMALTE ECOLÓGICO", "32 cores + Branco", "Vale para: Esmalte Ecológico · todos os tamanhos", ES.slice(0, CE[0]), false));
+const p8 = pagina(8, "Madeiras & Metais", cartela("CARTELA ESMALTE ECOLÓGICO", "32 cores + Branco", "", ES.slice(CE[0]), true, true)
+  + card(P.verniz) + cartela("CARTELA VERNIZ BASE ÁGUA", "3 tonalidades", "Os 3 tamanhos em Incolor, Mogno e Imbuia. Incolor é o quadradinho listrado.", C.verniz, false).replace('<div class="ch">', '<div class="ch dupla">')
+  + div + secao("Massas & Complementos")
   + `<div class="qual"><div class="qt">Qual usar na sua parede?</div>${QUAL.map(([a, b]) => `<div class="qr2"><span>${a}</span><b>${b}</b></div>`).join("")}</div>`);
-const ZAP = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.4-.7-2.4-1.4-3.3-3-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.1-.7z"/></svg>';
+const p9 = pagina(9, "Massas & Complementos", `<div class="g2c">${["corrida", "acrilica", "seladora", "fundo"].map((k) => card(P[k], "meia")).join("")}</div>`
+  + div + secao("Látex Vinil", "Também vendemos") + card(P.vinil, "revenda") + cartela("CARTELA LÁTEX VINIL", "18 cores", "Vale para: Látex Vinil · só no 18 L", C.vinil));
 const p10 = (qr) => `<div class="page lojas"><div class="bleedbg"></div><div class="topo am"></div><img class="liq liql" src="LIQ/liq-lojas.png"><div class="liqfade fl"></div><div class="trim">
   <img class="llogo" src="${IMG("logo-branco")}"><div class="ltit">Nossas Lojas</div><div class="lu"></div><div class="lhr">Segunda a sexta 8h às 18h <i>·</i> Sábado 8h às 14h</div>
   <div class="lg">${LOJAS.map(([n, b, c, e, z]) => `<div class="lj"><span class="lchip">Loja ${n}</span><div class="lb">${b}</div><div class="lc">${c}</div><div class="le">${e}</div><div class="lz">WhatsApp ${z}</div></div>`).join("")}</div>
@@ -136,7 +142,7 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .topo{position:absolute;left:0;right:0;top:0;height:${b + 2.6}mm;background:#062B63;border-bottom:.9mm solid #FFC107}
 .topo.am{height:${b + 1.4}mm;background:#FFC107;border:0}
 /* cabeçalho */
-.sec{margin:0 0 4.5mm}.sl{font-family:'Montserrat';font-weight:700;font-size:7pt;letter-spacing:.32em;text-transform:uppercase;color:#1976D2}
+.sec{margin:0 0 3.6mm}.sl{font-family:'Montserrat';font-weight:700;font-size:7pt;letter-spacing:.32em;text-transform:uppercase;color:#1976D2}
 .st{font-family:'Montserrat';font-weight:800;font-size:17pt;line-height:1.05;text-transform:uppercase;color:#062B63;letter-spacing:-.005em;margin-top:.6mm}
 .su{width:9mm;height:1.1mm;border-radius:.6mm;background:#FFC107;margin-top:1.6mm}
 .sec.hd{position:absolute;left:10mm;top:8.5mm;margin:0}
@@ -145,7 +151,7 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .rod{position:absolute;left:10mm;right:10mm;bottom:6.5mm;height:6.5mm;border-top:.25mm solid #D3DAE4;display:flex;align-items:flex-end;gap:2mm;font-size:7.6pt;color:#4A5568}
 .rod i{font-style:normal;color:#AAB4C3}.rod b{margin-left:auto;font-family:'Bebas Neue';font-weight:400;font-size:12pt;letter-spacing:.04em;color:#fff;background:#062B63;border-radius:3mm;padding:.5mm 3.2mm .2mm;line-height:1.1;transform:translateY(.6mm)}
 /* cartão de produto */
-.card{position:relative;flex:none;display:flex;min-height:45mm;border-radius:3.2mm;background:linear-gradient(160deg,#0C3A80 0%,#082F6B 45%,#062B63 100%);box-shadow:0 1.4mm 3.2mm rgba(6,43,99,.20),0 .3mm .6mm rgba(6,43,99,.12);color:#fff;margin-bottom:3.4mm;overflow:hidden}
+.card{position:relative;flex:none;display:flex;min-height:45mm;border-radius:3.2mm;background:linear-gradient(160deg,#0C3A80 0%,#082F6B 45%,#062B63 100%);box-shadow:0 1.4mm 3.2mm rgba(6,43,99,.20),0 .3mm .6mm rgba(6,43,99,.12);color:#fff;margin-bottom:3mm;overflow:hidden}
 .card::after{content:"";position:absolute;inset:0;border-radius:3.2mm;box-shadow:inset 0 .25mm 0 rgba(255,255,255,.10);pointer-events:none}
 .tick{position:absolute;left:3mm;top:5mm;width:1.1mm;height:7mm;border-radius:.6mm;background:#FFC107;z-index:3}
 .palco{position:relative;flex:none;width:52mm;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4.2mm}
@@ -154,7 +160,7 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .som2,.som1{position:absolute;left:50%;transform:translateX(-50%);border-radius:50%;z-index:2}
 .som2{bottom:2.2mm;height:4.6mm;background:radial-gradient(ellipse at center,rgba(0,8,25,.55) 0%,rgba(0,8,25,.25) 45%,transparent 72%)}
 .som1{bottom:3.4mm;height:1.8mm;background:radial-gradient(ellipse at center,rgba(0,5,18,.85) 0%,rgba(0,5,18,.45) 50%,transparent 78%)}
-.ctx{flex:1;min-width:0;padding:5mm 7mm 4.6mm 1mm;display:flex;flex-direction:column;justify-content:center}
+.ctx{flex:1;min-width:0;padding:4.2mm 7mm 3.9mm 1mm;display:flex;flex-direction:column;justify-content:center}
 .pn{font-family:'Montserrat';font-weight:800;font-size:16pt;line-height:1.05;text-transform:uppercase;letter-spacing:-.005em}
 .ps{font-style:italic;font-weight:600;font-size:9pt;color:#FFC107;margin-top:.6mm}
 .pd{font-size:8.4pt;line-height:1.42;color:#EAEFF7;margin-top:1.6mm}
@@ -164,7 +170,7 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .disp{display:flex;align-items:center;flex-wrap:wrap;gap:1.5mm;margin-top:2.4mm}
 .dr{font-family:'Montserrat';font-weight:700;font-size:6.6pt;letter-spacing:.06em;text-transform:uppercase;color:#FFC107;margin-right:1.4mm}
 .chip{font-weight:600;font-size:7.6pt;color:#062B63;background:#fff;border-radius:1.8mm;padding:.7mm 2.4mm .5mm;box-shadow:0 .3mm .6mm rgba(0,0,0,.18)}
-.pnota{font-size:7.4pt;color:#C3CDDD;margin-top:2mm}
+.pnota{font-size:7.2pt;color:#C3CDDD;margin-top:1.4mm}
 /* cartela */
 .cart{flex:none;margin-bottom:2.8mm}
 .ch{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:4mm;row-gap:.6mm;margin-bottom:3mm;position:relative;padding-bottom:1.8mm}
@@ -173,7 +179,7 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .ct{font-family:'Montserrat';font-weight:800;font-size:10.4pt;color:#062B63;text-transform:none;white-space:nowrap}
 .ct{font-variant:normal}.cdot{color:#1976D2;margin:0 .6mm}.ccont{font-weight:700}
 .cn{font-size:7.6pt;color:#5A6577;white-space:nowrap}
-.cg{display:grid;grid-template-columns:repeat(7,26mm);justify-content:space-between;row-gap:1.4mm}
+.cg{display:grid;grid-template-columns:repeat(7,26mm);justify-content:space-between;row-gap:1.05mm}
 .q{width:26mm;height:15mm;border-radius:1.6mm;box-shadow:inset 0 0 0 .15mm rgba(0,0,0,.08)}  /* sem sombra por fora: a cor ocupa exatamente 26 x 15 mm */
 .q.clara{box-shadow:inset 0 0 0 .2mm #C9D2DE}
 .qn{font-size:6.4pt;font-weight:500;color:#2D3748;text-align:center;margin-top:.9mm;line-height:1.1;height:2.9mm;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -181,7 +187,12 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .parc{flex:none;border-radius:3.2mm;background:linear-gradient(160deg,#0C3A80,#062B63);color:#FFC107;font-weight:600;font-size:8.6pt;padding:3.1mm 6mm;box-shadow:0 1mm 2.4mm rgba(6,43,99,.18)}
 .parc.alta{position:relative;height:25mm;overflow:hidden;padding-top:3.4mm}
 .parc.alta .cerca{position:absolute;left:0;right:0;bottom:0;height:12mm}
-.div{flex:none;height:.25mm;background:#D3DAE4;margin:.8mm 0 3.6mm}
+.div{flex:none;height:.25mm;background:#D3DAE4;margin:.6mm 0 3mm}
+/* meia largura (massas) e revenda */
+.g2c{display:grid;grid-template-columns:1fr 1fr;column-gap:4mm;flex:none}
+.card.meia{min-height:52mm}.card.meia .palco{width:34mm}.card.meia .ctx{padding:4.6mm 4.6mm 4mm 0}.card.meia .pn{font-size:12.5pt}.card.meia .pd{font-size:7.8pt}
+.card.meia .chip{font-size:7pt;padding:.6mm 1.8mm .4mm}.card.meia .disp{gap:1.1mm}.card.meia .dr{width:100%;margin-bottom:.3mm}
+.card.revenda{background:linear-gradient(160deg,#4A5260 0%,#3A414D 50%,#2E343E 100%)}.card.revenda .tick{background:#AAB4C3}.card.revenda .ps{color:#D3DAE4}.card.revenda .sr,.card.revenda .dr{color:#D3DAE4}
 /* guia "qual usar" */
 .qual{flex:none;border-radius:3.2mm;background:#fff;box-shadow:0 1mm 2.4mm rgba(6,43,99,.12);padding:4.2mm 6mm 3.4mm;margin-top:.6mm}
 .qt{font-family:'Montserrat';font-weight:800;font-size:11pt;color:#062B63;text-transform:uppercase;margin-bottom:2mm}
