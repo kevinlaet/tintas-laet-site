@@ -24,6 +24,7 @@ const C = {
   epoxi: linha("epoxi-base-agua").map((c) => ({ ...c, hex: { "Laranja Suave": "#FFC79F", "Amarelo": "#F8D48F" }[c.nome] || c.hex })),  // mais claros: Kevin 25/11 (provisório)
   verniz: [INCOLOR, { nome: "Mogno", hex: "#82380F" }, { nome: "Imbuia", hex: "#4A2B1A" }],  // tons de madeira: hex do site
 };
+C.cimento = [{ nome: "Rosé", hex: "#FCEBD9" }, { nome: "Amarelo Laet 2", hex: "#FAF29D" }, { nome: "Bala de Iogurte", hex: "#F6ACCF" }, { nome: "Cinza Claro", hex: "#B4B4AA" }, { nome: "Verde Uva", hex: "#8BAD8A" }, { nome: "Azul Céu", hex: "#719DBA" }, { nome: "Concreto", hex: "#92927A" }, { nome: "Caixa Mágica", hex: "#8586C6" }, { nome: "Cinza Padrão", hex: "#898883" }, { nome: "Azeitona Passada", hex: "#8E7B43" }, { nome: "Pavão", hex: "#318889" }, { nome: "Jeans", hex: "#606D73" }, { nome: "Chumbo", hex: "#605F5A" }, { nome: "Dois Amores", hex: "#A63A3B" }, { nome: "Marrom Turco", hex: "#423529" }];  // do site (sem catálogo de referência)
 const CONTAGEM = { grande: 110, standard: 84, super: 34, vinil: 18, esmalte: 33, pisos: 13, epoxi: 16, verniz: 3 };
 for (const [k, n] of Object.entries(CONTAGEM)) if (C[k].length !== n) throw new Error(`cartela ${k}: ${C[k].length} cores, rascunho tem ${n}`);
 const CERCA = ["Mistura de Mostarda", "Tangerina", "Curry Dourado", "Amarelo Laet", "Verde Piscina", "Mar de Arruda", "Mar Aberto", "Céu Sagrado", "Caixa Seca", "Lilás Delicado", "Flamingo Real", "Rosa Gloss", "Chá Quente", "Lícor Doce", "Ovelha"].map((n) => cor("paleta-grande", n));
@@ -57,7 +58,9 @@ const P = {
   corrida: { nome: "Massa Corrida", img: "massas", h: 34, desc: "Nivela e corrige a parede antes de pintar. Fácil de lixar. Só para área interna e seca, como quarto e sala.",
     specs: [["Uso", "Interno (área seca)"]], disp: ["1,5 kg", "5 kg", "Saco 23 kg", "Barrica 23 kg"] },
   acrilica: { nome: "Massa Acrílica", img: "massas", h: 34, desc: "Para parede de dentro e de fora e para lugares que pegam respingo de água, como banheiro e cozinha. Fácil de lixar.",
-    specs: [["Uso", "Interno e externo"]], disp: ["5 kg", "Saco 23 kg", "Barrica 23 kg"] },
+    specs: [["Uso", "Interno e externo"]], disp: ["1,5 kg", "5 kg", "Saco 23 kg", "Barrica 23 kg"] },
+  cimento: { nome: "Efeito Cimento Queimado", sub: "Acabamento decorativo", leque: true, desc: "Acabamento moderno de cimento queimado, com aplicação fácil. Para paredes e tetos, dentro e fora de casa.",
+    specs: [["Uso", "Interno e externo"]], disp: ["5 kg", "20 kg"] },
   seladora: { nome: "Seladora", img: "seladora", h: 34, desc: "Para parede nova ou reboco novo que chupa muita tinta. Preenche os poros do reboco e faz você gastar menos tinta.",
     specs: [], disp: ["18 L", "3,6 L"] },
   fundo: { nome: "Fundo Preparador", img: "fundo", h: 34, desc: "Para reboco fraco e parede velha que esfarela ou descasca. Firma a superfície antes da tinta.",
@@ -81,11 +84,11 @@ const cartela = (titulo, n, nota, lista, fim = true, cont = false) => `<div clas
   <div class="cg">${lista.map(sw).join("")}</div>${fim ? '<div class="caviso">Cores aproximadas. Confira na loja antes de comprar.</div>' : ""}</div>`;
 const card = (p, cls = "") => `<div class="card ${cls}"><span class="tick"></span>
   <div class="palco"><div class="luz"></div><div class="som2" style="width:${(p.h || 40) * 0.78}mm"></div><div class="som1" style="width:${(p.h || 40) * 0.62}mm"></div>
-    <img src="${IMG(p.img)}" style="height:${p.h || 40}mm"></div>
+    ${p.leque ? `<div class="leq">${C.cimento.filter((_, i) => i % 2 === 0).map((c, i, a) => `<span style="background:${c.hex};transform:rotate(${-48 + i * (96 / (a.length - 1))}deg)"></span>`).join("")}<i></i></div>` : `<img src="${IMG(p.img)}" style="height:${p.h || 40}mm">`}</div>
   <div class="ctx"><div class="pn">${p.nome}</div>${p.sub ? `<div class="ps">${p.sub}</div>` : ""}<div class="pd">${p.desc}</div>
     ${p.specs.length ? `<div class="specs">${p.specs.map(([r, v]) => `<div class="sp"><div class="sr">${r}</div><div class="sv">${v}</div></div>`).join("")}</div>` : ""}
     <div class="disp"><span class="dr">Disponível em</span>${p.disp.map((d) => `<span class="chip">${d}</span>`).join("")}</div>
-    ${p.nota ? `<div class="pnota">${p.nota}</div>` : ""}</div></div>`;
+    ${p.nota ? `<div class="pnota">${p.nota}</div>` : ""}${p.tons ? `<div class="tons"><div class="sr">Tonalidades</div><div class="tg">${p.tons.map(sw).join("")}</div><div class="pnota" style="margin-top:.6mm">Incolor é o quadradinho listrado. Cores aproximadas.</div></div>` : ""}</div></div>`;
 const secao = (titulo, rot = "Linha") => `<div class="sec"><div class="sl">${rot}</div><div class="st">${titulo}</div><div class="su"></div></div>`;
 const parcele = `<div class="parc">Parcele em até 12x sem juros (consulte as condições).</div>`;
 const pagina = (n, titulo, corpo) => `<div class="page"><div class="bleedbg"></div><div class="topo"></div><div class="trim">
@@ -107,7 +110,7 @@ const G = C.grande, S = C.standard, SP = C.super, ES = C.esmalte;
 const VG = "Vale para: Emborrachada, Premium Lavável e Cobertura Absoluta";
 const VS = "Vale para: 1ª Linha Standard e Direto no Gesso Standard";
 const VP = "Vale para: Super Profissional e Direto no Gesso Profissional · as mesmas 34 cores";
-const CG = [28, 110], CS = [42, 84], CE = [14, 33];   // onde cada cartela quebra de página (ajustado medindo)
+const CG = [28, 110], CS = [49, 84], CE = [21, 33], CP = 0;   // onde cada cartela quebra de página (ajustado medindo)
 const p2 = pagina(2, "Nobre", card(P.emborrachada) + card(P.lavavel) + card(P.cobertura) + cartela("CARTELA PALETA GRANDE", "110 cores", VG, G.slice(0, CG[0]), false));
 const p3 = pagina(3, "Nobre", cartela("CARTELA PALETA GRANDE", "110 cores", VG, G.slice(CG[0]), true, true));
 const p4 = pagina(4, "Nobre", card(P.pisos) + cartela("CARTELA PISOS & FACHADAS", "13 cores", "Vale para: Pisos & Fachadas", C.pisos)
@@ -118,9 +121,8 @@ const p6 = pagina(6, "Nobre", cartela("CARTELA 1ª LINHA STANDARD", "84 cores", 
 const p7 = pagina(7, "Econômica", cartela("CARTELA PROFISSIONAL E GESSO", "34 cores", VP, SP) + div + secao("Madeiras & Metais")
   + card(P.esmalte) + cartela("CARTELA ESMALTE ECOLÓGICO", "32 cores + Branco", "Vale para: Esmalte Ecológico · todos os tamanhos", ES.slice(0, CE[0]), false));
 const p8 = pagina(8, "Madeiras & Metais", cartela("CARTELA ESMALTE ECOLÓGICO", "32 cores + Branco", "", ES.slice(CE[0]), true, true)
-  + card(P.verniz) + cartela("CARTELA VERNIZ BASE ÁGUA", "3 tonalidades", "Os 3 tamanhos em Incolor, Mogno e Imbuia. Incolor é o quadradinho listrado.", C.verniz, false).replace('<div class="ch">', '<div class="ch dupla">')
-  + div + secao("Massas & Complementos")
-  + `<div class="qual"><div class="qt">Qual usar na sua parede?</div>${QUAL.map(([a, b]) => `<div class="qr2"><span>${a}</span><b>${b}</b></div>`).join("")}</div>`);
+  + card({ ...P.verniz, tons: C.verniz })
+  + card(P.cimento) + cartela("CARTELA EFEITO CIMENTO QUEIMADO", "15 cores", "Vale para: Efeito Cimento Queimado", C.cimento));
 const p9 = pagina(9, "Massas & Complementos", `<div class="g2c">${["corrida", "acrilica", "seladora", "fundo"].map((k) => card(P[k], "meia")).join("")}</div>`
   + div + secao("Látex Vinil", "Também vendemos") + card(P.vinil, "revenda") + cartela("CARTELA LÁTEX VINIL", "18 cores", "Vale para: Látex Vinil · só no 18 L", C.vinil));
 const p10 = (qr) => `<div class="page lojas"><div class="bleedbg"></div><div class="topo am"></div><img class="liq liql" src="LIQ/liq-lojas.png"><div class="liqfade fl"></div><div class="trim">
@@ -142,12 +144,12 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .topo{position:absolute;left:0;right:0;top:0;height:${b + 2.6}mm;background:#062B63;border-bottom:.9mm solid #FFC107}
 .topo.am{height:${b + 1.4}mm;background:#FFC107;border:0}
 /* cabeçalho */
-.sec{margin:0 0 3.6mm}.sl{font-family:'Montserrat';font-weight:700;font-size:7pt;letter-spacing:.32em;text-transform:uppercase;color:#1976D2}
+.sec{margin:0 0 3mm}.sl{font-family:'Montserrat';font-weight:700;font-size:7pt;letter-spacing:.32em;text-transform:uppercase;color:#1976D2}
 .st{font-family:'Montserrat';font-weight:800;font-size:17pt;line-height:1.05;text-transform:uppercase;color:#062B63;letter-spacing:-.005em;margin-top:.6mm}
 .su{width:9mm;height:1.1mm;border-radius:.6mm;background:#FFC107;margin-top:1.6mm}
 .sec.hd{position:absolute;left:10mm;top:8.5mm;margin:0}
 .hlogo{position:absolute;right:10mm;top:7.2mm;height:14.5mm}
-.corpo{position:absolute;left:10mm;right:10mm;top:26mm;bottom:14.5mm;display:flex;flex-direction:column}
+.corpo{position:absolute;left:10mm;right:10mm;top:25.5mm;bottom:14.3mm;display:flex;flex-direction:column}
 .rod{position:absolute;left:10mm;right:10mm;bottom:6.5mm;height:6.5mm;border-top:.25mm solid #D3DAE4;display:flex;align-items:flex-end;gap:2mm;font-size:7.6pt;color:#4A5568}
 .rod i{font-style:normal;color:#AAB4C3}.rod b{margin-left:auto;font-family:'Bebas Neue';font-weight:400;font-size:12pt;letter-spacing:.04em;color:#fff;background:#062B63;border-radius:3mm;padding:.5mm 3.2mm .2mm;line-height:1.1;transform:translateY(.6mm)}
 /* cartão de produto */
@@ -172,8 +174,8 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .chip{font-weight:600;font-size:7.6pt;color:#062B63;background:#fff;border-radius:1.8mm;padding:.7mm 2.4mm .5mm;box-shadow:0 .3mm .6mm rgba(0,0,0,.18)}
 .pnota{font-size:7.2pt;color:#C3CDDD;margin-top:1.4mm}
 /* cartela */
-.cart{flex:none;margin-bottom:2.8mm}
-.ch{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:4mm;row-gap:.6mm;margin-bottom:3mm;position:relative;padding-bottom:1.8mm}
+.cart{flex:none;margin-bottom:2.4mm}
+.ch{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:4mm;row-gap:.6mm;margin-bottom:2.4mm;position:relative;padding-bottom:1.6mm}
 .ch::after{content:"";position:absolute;left:0;bottom:0;width:9mm;height:1mm;border-radius:.5mm;background:#FFC107}
 .ch.dupla{flex-direction:column;gap:.6mm}
 .ct{font-family:'Montserrat';font-weight:800;font-size:10.4pt;color:#062B63;text-transform:none;white-space:nowrap}
@@ -182,17 +184,22 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .cg{display:grid;grid-template-columns:repeat(7,26mm);justify-content:space-between;row-gap:1.05mm}
 .q{width:26mm;height:15mm;border-radius:1.6mm;box-shadow:inset 0 0 0 .15mm rgba(0,0,0,.08)}  /* sem sombra por fora: a cor ocupa exatamente 26 x 15 mm */
 .q.clara{box-shadow:inset 0 0 0 .2mm #C9D2DE}
-.qn{font-size:6.4pt;font-weight:500;color:#2D3748;text-align:center;margin-top:.9mm;line-height:1.1;height:2.9mm;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.caviso{font-size:7.2pt;color:#5A6577;text-align:right;margin-top:1.6mm}
+.qn{font-size:6.4pt;font-weight:500;color:#2D3748;text-align:center;margin-top:.7mm;line-height:1.05;height:2.6mm;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.caviso{font-size:7.2pt;color:#5A6577;text-align:right;margin-top:1.1mm}
 .parc{flex:none;border-radius:3.2mm;background:linear-gradient(160deg,#0C3A80,#062B63);color:#FFC107;font-weight:600;font-size:8.6pt;padding:3.1mm 6mm;box-shadow:0 1mm 2.4mm rgba(6,43,99,.18)}
 .parc.alta{position:relative;height:25mm;overflow:hidden;padding-top:3.4mm}
 .parc.alta .cerca{position:absolute;left:0;right:0;bottom:0;height:12mm}
-.div{flex:none;height:.25mm;background:#D3DAE4;margin:.6mm 0 3mm}
+.div{flex:none;height:.25mm;background:#D3DAE4;margin:.4mm 0 2.4mm}
 /* meia largura (massas) e revenda */
 .g2c{display:grid;grid-template-columns:1fr 1fr;column-gap:4mm;flex:none}
 .card.meia{min-height:52mm}.card.meia .palco{width:34mm}.card.meia .ctx{padding:4.6mm 4.6mm 4mm 0}.card.meia .pn{font-size:12.5pt}.card.meia .pd{font-size:7.8pt}
 .card.meia .chip{font-size:7pt;padding:.6mm 1.8mm .4mm}.card.meia .disp{gap:1.1mm}.card.meia .dr{width:100%;margin-bottom:.3mm}
 .card.revenda{background:linear-gradient(160deg,#4A5260 0%,#3A414D 50%,#2E343E 100%)}.card.revenda .tick{background:#AAB4C3}.card.revenda .ps{color:#D3DAE4}.card.revenda .sr,.card.revenda .dr{color:#D3DAE4}
+/* leque de cores (produto sem foto real) */
+.leq{position:relative;z-index:3;width:40mm;height:36mm}
+.leq span{position:absolute;left:50%;bottom:2mm;width:9mm;height:30mm;margin-left:-4.5mm;border-radius:1.6mm;transform-origin:50% 92%;box-shadow:0 .4mm 1mm rgba(0,0,0,.35),inset 0 0 0 .2mm rgba(255,255,255,.25)}
+.leq i{position:absolute;left:50%;bottom:2.6mm;width:3.4mm;height:3.4mm;margin-left:-1.7mm;border-radius:50%;background:#E8ECF2;box-shadow:0 .3mm .6mm rgba(0,0,0,.4)}
+.tons{margin-top:2.2mm}.tons .tg{display:flex;gap:2.4mm;margin-top:1mm}.tons .qn{color:#E3E9F3}
 /* guia "qual usar" */
 .qual{flex:none;border-radius:3.2mm;background:#fff;box-shadow:0 1mm 2.4mm rgba(6,43,99,.12);padding:4.2mm 6mm 3.4mm;margin-top:.6mm}
 .qt{font-family:'Montserrat';font-weight:800;font-size:11pt;color:#062B63;text-transform:uppercase;margin-bottom:2mm}
