@@ -37,7 +37,7 @@ const P = {
     specs: [["Uso", "Externo: laje, telhado, muro e fachada"], ["Rendimento", "Rende até 200 m² · balde 18 L"]], disp: [T17, T34], nota: NOTA17 },
   lavavel: { nome: "Premium Lavável", img: "lavavel", desc: "Cobre bem, tem baixo odor e é fácil de limpar. Antimofo e antifungos, para parede de dentro e de fora.",
     specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"], ["Rendimento", "Rende até 200 m² · balde 18 L"]], disp: [T17, T34, "900 ml · Branca e cores"], nota: NOTA17 },
-  cobertura: { nome: "Cobertura Absoluta", img: "cobertura", h: 38, desc: "Da linha nobre da Laet, com a mesma cartela de cores da Emborrachada e da Premium Lavável.",
+  cobertura: { nome: "Cobertura Absoluta", sub: "Ultra Premium", img: "cobertura", h: 36, desc: "Alto poder de cobertura e totalmente lavável, como diz o rótulo. Tem a mesma cartela de cores da Emborrachada e da Premium Lavável.",
     specs: [], disp: [T17, T34], nota: NOTA17 },
   pisos: { nome: "Pisos & Fachadas", img: "pisos", desc: "Aguenta o tráfego de carro, a chuva e o sol. Para garagem, calçada e fachada.",
     specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"], ["Rendimento", "Rende até 300 m² por demão"]], disp: ["17 L · 13 cores", "3,4 L · 13 cores"] },
