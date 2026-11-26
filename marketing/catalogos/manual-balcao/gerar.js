@@ -76,7 +76,7 @@ const P = [
     s: [["Acabamento", "Brilhante"], ["Uso", "Interno e externo"], ["Rendimento", "3,6 L: até 60 m² por demão\n900 ml: até 15 m² por demão"], ["Diluição", "Até 10% de água"],
         ["Secagem", "Toque 30 min · demãos 2h · final 4h · cura total: mín. 20 dias"], ["Demãos", "3 demãos: a 1ª sela, as outras 2 cobrem e dão acabamento · repintura: 1 a 2"], ["Ferramenta", "Pincel, rolo de espuma ou pistola (limpa com água)"], ["Cartela", "Verniz · Incolor (Natural), Mogno e Imbuia · 18 L, 3,6 L, 900 ml / 800 ml"]],
     fale: "\"Não precisa de fundo: a 1ª demão já sela, as outras duas dão o acabamento.\"",
-    atencao: ["Não aplicar em madeira úmida nem com chuva."] },
+    atencao: ["PROIBIDO aplicar em cima de verniz ou tinta à base de solvente. Só sobre base água ou madeira virgem.", "Não aplicar em madeira úmida nem com chuva."] },
   { k: "cimento", linha: DECO, nome: "Efeito Cimento Queimado", sub: "Acabamento decorativo",
     serve: "Massa decorativa com cara de cimento queimado. Pode ser polida pra ganhar alto brilho. Antimofo.",
     s: [["Acabamento", "Fosco (polido: alto brilho)"], ["Uso", "Interno e externo (fórmula nova)"], ["Rendimento", "5 kg: média de 10 m² por demão\n23 kg: média de 40 m² por demão"], ["Diluição", "Até 10% de água"], ["Secagem", "Toque 2h · entre demãos 6h · cura total 36h"],
@@ -206,6 +206,7 @@ const p5 = pagina("Preparar a superfície e aplicar", "Antes de pintar", `
 
 const p6 = pagina("O que não pode acontecer", "Erros que geram reclamação", `<div class="erros">${[
   ["Esmalte base água em cima de esmalte base solvente", "NÃO pode. Não adere e solta."],
+  ["Verniz base água em cima de produto base solvente", "Proibido. Só sobre base água ou madeira virgem."],
   ["Massa Corrida em banheiro, cozinha ou área externa", "É só área interna e seca. Lá fora e com água: Massa Acrílica."],
   ["Dizer que Massa Acrílica resolve umidade", "Nunca. Ela aguenta respingo, não trata umidade."],
   ["Látex Vinil em área externa ou parede úmida", "Descasca e mancha. Só interno e seco, 8h entre demãos."],
