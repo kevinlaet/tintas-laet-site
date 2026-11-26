@@ -123,7 +123,7 @@ const p6 = pagina(6, "Nobre", cartela("CARTELA 1ª LINHA STANDARD", "84 cores", 
 const p7 = pagina(7, "Econômica", cartela("CARTELA PROFISSIONAL E GESSO", "34 cores", VP, SP) + div + secao("Madeiras & Metais")
   + card(P.esmalte) + cartela("CARTELA ESMALTE ECOLÓGICO", "32 cores + Branco", "Vale para: Esmalte Ecológico · todos os tamanhos", ES.slice(0, CE[0]), false));
 const p8 = pagina(8, "Madeiras & Metais", cartela("CARTELA ESMALTE ECOLÓGICO", "32 cores + Branco", "", ES.slice(CE[0]), true, true)
-  + card({ ...P.verniz, tons: C.verniz })
+  + card(P.verniz) + cartela("CARTELA VERNIZ BASE ÁGUA", "3 tonalidades", "Vale para: Verniz Base Água · Incolor é o quadradinho listrado", C.verniz)
   + card(P.cimento) + cartela("CARTELA EFEITO CIMENTO QUEIMADO", "15 cores", "Vale para: Efeito Cimento Queimado", C.cimento));
 const p9 = pagina(9, "Massas & Complementos", `<div class="g2c">${["corrida", "acrilica", "seladora", "fundo"].map((k) => card(P[k], "meia")).join("")}</div>`
   + div + secao("Látex Vinil", "Também vendemos") + card(P.vinil, "revenda") + cartela("CARTELA LÁTEX VINIL", "18 cores", "Vale para: Látex Vinil · só no 18 L", C.vinil));
