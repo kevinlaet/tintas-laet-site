@@ -112,22 +112,23 @@ const G = C.grande, S = C.standard, SP = C.super, ES = C.esmalte;
 const VG = "Vale para: Emborrachada, Premium Lavável e Cobertura Absoluta";
 const VS = "Vale para: 1ª Linha Standard e Direto no Gesso Standard";
 const VP = "Vale para: Super Profissional e Direto no Gesso Profissional · as mesmas 34 cores";
-const CG = [28, 110], CS = [49, 84], CE = [21, 33], CP = 0;   // onde cada cartela quebra de página (ajustado medindo)
-const p2 = pagina(2, "Nobre", card(P.emborrachada) + card(P.lavavel) + card(P.cobertura) + cartela("CARTELA PALETA GRANDE", "110 cores", VG, G.slice(0, CG[0]), false));
-const p3 = pagina(3, "Nobre", cartela("CARTELA PALETA GRANDE", "110 cores", VG, G.slice(CG[0]), true, true));
-const p4 = pagina(4, "Nobre", card(P.pisos) + cartela("CARTELA PISOS & FACHADAS", "13 cores", "Vale para: Pisos & Fachadas", C.pisos)
+const CG = 56, CS = 21;   // onde as cartelas grandes quebram de página (12 páginas, com respiro)
+const solta = (h) => h.replace('<div class="cart">', '<div class="cart solta">');
+const faixa = `<div class="parc alta">Parcele em até 12x sem juros (consulte as condições).<img class="liqs" src="LIQ/liq-faixa.png"></div>`;
+const p2 = pagina(2, "Nobre", card(P.emborrachada) + card(P.lavavel) + card(P.cobertura) + faixa);
+const p3 = pagina(3, "Nobre", solta(cartela("CARTELA PALETA GRANDE", "110 cores", VG, G.slice(0, CG), false)));
+const p4 = pagina(4, "Nobre", solta(cartela("CARTELA PALETA GRANDE", "110 cores", VG, G.slice(CG), true, true)));
+const p5 = pagina(5, "Nobre", card(P.pisos) + cartela("CARTELA PISOS & FACHADAS", "13 cores", "Vale para: Pisos & Fachadas", C.pisos)
   + card(P.epoxi) + cartela("CARTELA EPÓXI BASE ÁGUA", "16 cores", "Vale para: Epóxi Base Água · ordem combinada", C.epoxi));
-const p5 = pagina(5, "Nobre", card(P.standard) + card(P.gessostd) + cartela("CARTELA 1ª LINHA STANDARD", "84 cores", VS, S.slice(0, CS[0]), false));
-const p6 = pagina(6, "Nobre", cartela("CARTELA 1ª LINHA STANDARD", "84 cores", VS, S.slice(CS[0]), true, true) + div + secao("Econômica")
-  + card(P.profissional) + card(P.gesso));
-const p7 = pagina(7, "Econômica", cartela("CARTELA PROFISSIONAL E GESSO", "34 cores", VP, SP) + div + secao("Madeiras & Metais")
-  + card(P.esmalte) + cartela("CARTELA ESMALTE ECOLÓGICO", "32 cores + Branco", "Vale para: Esmalte Ecológico · todos os tamanhos", ES.slice(0, CE[0]), false));
-const p8 = pagina(8, "Madeiras & Metais", cartela("CARTELA ESMALTE ECOLÓGICO", "32 cores + Branco", "", ES.slice(CE[0]), true, true)
-  + card(P.verniz) + cartela("CARTELA VERNIZ BASE ÁGUA", "3 tonalidades", "Vale para: Verniz Base Água · Incolor é o quadradinho listrado", C.verniz)
-  + card(P.cimento) + cartela("CARTELA EFEITO CIMENTO QUEIMADO", "15 cores", "Vale para: Efeito Cimento Queimado", C.cimento));
-const p9 = pagina(9, "Massas & Complementos", `<div class="g2c">${["corrida", "acrilica", "seladora", "fundo"].map((k) => card(P[k], "meia")).join("")}</div>`
+const p6 = pagina(6, "Nobre", card(P.standard) + card(P.gessostd) + cartela("CARTELA 1ª LINHA STANDARD", "84 cores", VS, S.slice(0, CS), false));
+const p7 = pagina(7, "Nobre", solta(cartela("CARTELA 1ª LINHA STANDARD", "84 cores", VS, S.slice(CS), true, true)));
+const p8 = pagina(8, "Econômica", card(P.profissional) + card(P.gesso) + cartela("CARTELA PROFISSIONAL E GESSO", "34 cores", VP, SP));
+const p9 = pagina(9, "Madeiras & Metais", card(P.esmalte) + solta(cartela("CARTELA ESMALTE ECOLÓGICO", "32 cores + Branco", "Vale para: Esmalte Ecológico · todos os tamanhos", ES)));
+const p10 = pagina(10, "Madeiras & Metais", card(P.verniz) + cartela("CARTELA VERNIZ BASE ÁGUA", "3 tonalidades", "Vale para: Verniz Base Água · Incolor é o quadradinho listrado", C.verniz)
+  + div + secao("Efeitos Decorativos") + card(P.cimento) + cartela("CARTELA EFEITO CIMENTO QUEIMADO", "15 cores", "Vale para: Efeito Cimento Queimado", C.cimento));
+const p11 = pagina(11, "Massas & Complementos", `<div class="g2c">${["corrida", "acrilica", "seladora", "fundo"].map((k) => card(P[k], "meia")).join("")}</div>`
   + div + secao("Látex Vinil", "Também vendemos") + card(P.vinil, "revenda") + cartela("CARTELA LÁTEX VINIL", "18 cores", "Vale para: Látex Vinil · só no 18 L", C.vinil));
-const p10 = (qr) => `<div class="page lojas"><div class="bleedbg"></div><div class="topo am"></div><img class="liq liql" src="LIQ/liq-lojas.png"><div class="liqfade fl"></div><div class="trim">
+const p12 = (qr) => `<div class="page lojas"><div class="bleedbg"></div><div class="topo am"></div><img class="liq liql" src="LIQ/liq-lojas.png"><div class="liqfade fl"></div><div class="trim">
   <img class="llogo" src="${IMG("logo-branco")}"><div class="ltit">Nossas Lojas</div><div class="lu"></div><div class="lhr">Segunda a sexta 8h às 18h <i>·</i> Sábado 8h às 14h</div>
   <div class="lg">${LOJAS.map(([n, b, c, e, z]) => `<div class="lj"><span class="lchip">Loja ${n}</span><div class="lb">${b}</div><div class="lc">${c}</div><div class="le">${e}</div><div class="lz">WhatsApp ${z}</div></div>`).join("")}</div>
   <div class="lct"><div class="lbx"><small>WhatsApp central</small>(11) 97714-0964</div><div class="lbx"><small>Instagram</small>@tintaslaet</div><div class="lbx"><small>Site das lojas</small>tintaslaet.com/lojas</div>
@@ -151,7 +152,7 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .su{width:9mm;height:1.1mm;border-radius:.6mm;background:#FFC107;margin-top:1.6mm}
 .sec.hd{position:absolute;left:10mm;top:8.5mm;margin:0}
 .hlogo{position:absolute;right:10mm;top:7.2mm;height:14.5mm}
-.corpo{position:absolute;left:10mm;right:10mm;top:25.5mm;bottom:14.3mm;display:flex;flex-direction:column}
+.corpo{position:absolute;left:10mm;right:10mm;top:25.5mm;bottom:14.3mm;display:flex;flex-direction:column;justify-content:space-evenly}
 .rod{position:absolute;left:10mm;right:10mm;bottom:6.5mm;height:6.5mm;border-top:.25mm solid #D3DAE4;display:flex;align-items:flex-end;gap:2mm;font-size:7.6pt;color:#4A5568}
 .rod i{font-style:normal;color:#AAB4C3}.rod b{margin-left:auto;font-family:'Bebas Neue';font-weight:400;font-size:12pt;letter-spacing:.04em;color:#fff;background:#062B63;border-radius:3mm;padding:.5mm 3.2mm .2mm;line-height:1.1;transform:translateY(.6mm)}
 /* cartão de produto */
@@ -208,6 +209,7 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .qt::after{content:"";display:inline-block;width:9mm;height:1mm;border-radius:.5mm;background:#FFC107;margin-left:3mm;vertical-align:middle}
 .qr2{display:flex;justify-content:space-between;align-items:center;font-size:8.4pt;color:#2D3748;padding:1.7mm 0;border-top:.25mm solid #E2E7EF}
 .qr2 b{font-family:'Montserrat';font-weight:700;color:#0D47A1}
+.cart.solta .cg{row-gap:4.6mm}.cart.solta .ch{margin-bottom:4mm}
 /* tinta líquida (tinta-liquida.py) */
 .liq{position:absolute;left:0;width:100%;object-fit:cover}
 .liqc{top:${b + 131}mm;height:${172 - b}mm}.liql{top:${b + 219}mm;height:${78 + b}mm}
@@ -264,7 +266,7 @@ body.txt img.flat{visibility:visible!important;position:absolute;left:0;top:0;wi
 body.txt .trim{z-index:1}
 .sheet{position:relative;overflow:hidden;page-break-after:always}.sheet .page{page-break-after:auto}`;
 const HTML = (b, img, qr, modo = "", flat = null, corte = 0) => `<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet"><style>${CSS(b)}${MODOS}${corte ? `@page{size:210mm 297mm;margin:0}.sheet{width:210mm;height:297mm}.sheet .page{margin:-${corte}mm 0 0 -${corte}mm}` : ""}</style></head><body class="${modo}">
-${[capa, p2, p3, p4, p5, p6, p7, p8, p9, p10(qr)].map((pg, i) => { if (flat) pg = pg.replace(/^<div class="page([^"]*)">/, `<div class="page$1"><img class="flat" src="${flat[i]}">`); return corte ? `<div class="sheet">${pg}</div>` : pg; }).join("\n")}</body></html>`.replace(/IMG\//g, img + "/").replace(/LIQ\//g, path.join(D, "build") + "/");
+${[capa, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12(qr)].map((pg, i) => { if (flat) pg = pg.replace(/^<div class="page([^"]*)">/, `<div class="page$1"><img class="flat" src="${flat[i]}">`); return corte ? `<div class="sheet">${pg}</div>` : pg; }).join("\n")}</body></html>`.replace(/IMG\//g, img + "/").replace(/LIQ\//g, path.join(D, "build") + "/");
 
 (async () => {
   // embalagens + logos: alta (gráfica) e leve (WhatsApp)
