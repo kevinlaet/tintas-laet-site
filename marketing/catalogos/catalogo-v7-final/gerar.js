@@ -22,7 +22,7 @@ const C = {
   grande: linha("paleta-grande"), standard: linha("standard"), super: linha("super-profissional"), vinil: linha("latex-vinil"),
   esmalte: [{ nome: "Branco", hex: "#FFFFFF" }, ...linha("esmalte-ecologico")], pisos: linha("piso-fachada"),
   epoxi: linha("epoxi-base-agua").map((c) => ({ ...c, hex: { "Laranja Suave": "#FFC79F", "Amarelo": "#F8D48F" }[c.nome] || c.hex })),  // mais claros: Kevin 25/11 (provisório)
-  verniz: [INCOLOR, { nome: "Mogno", hex: "#82380F" }, { nome: "Imbuia", hex: "#4A2B1A" }],  // tons de madeira: hex do site
+  verniz: [INCOLOR, { nome: "Mogno", hex: "#9E4A22" }, { nome: "Imbuia", hex: "#4A2B1A" }],  // tons de madeira: hex do site
 };
 C.cimento = [{ nome: "Rosé", hex: "#FCEBD9" }, { nome: "Amarelo Laet 2", hex: "#FAF29D" }, { nome: "Bala de Iogurte", hex: "#F6ACCF" }, { nome: "Cinza Claro", hex: "#B4B4AA" }, { nome: "Verde Uva", hex: "#8BAD8A" }, { nome: "Azul Céu", hex: "#719DBA" }, { nome: "Concreto", hex: "#92927A" }, { nome: "Caixa Mágica", hex: "#8586C6" }, { nome: "Cinza Padrão", hex: "#898883" }, { nome: "Azeitona Passada", hex: "#8E7B43" }, { nome: "Pavão", hex: "#318889" }, { nome: "Jeans", hex: "#606D73" }, { nome: "Chumbo", hex: "#605F5A" }, { nome: "Dois Amores", hex: "#A63A3B" }, { nome: "Marrom Turco", hex: "#423529" }];  // do site (sem catálogo de referência)
 const CONTAGEM = { grande: 110, standard: 84, super: 34, vinil: 18, esmalte: 33, pisos: 13, epoxi: 16, verniz: 3 };
