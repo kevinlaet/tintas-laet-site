@@ -46,3 +46,5 @@ scripts/cores/extracao/saida-*.json
 /marketing/catalogos/catalogo-produtos/*.pdf
 /marketing/catalogos/catalogo-v7-final/build/
 /marketing/catalogos/catalogo-v7-final/*.pdf
+/marketing/catalogos/manual-balcao/build/
+/marketing/catalogos/manual-balcao/*.pdf
