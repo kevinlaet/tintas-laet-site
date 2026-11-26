@@ -14,75 +14,75 @@ const P = [
   { k: "cobertura", linha: NOBRE, nome: "Cobertura Absoluta", sub: "Ultra Premium · a que mais cobre",
     serve: "Para quem quer a maior cobertura possível e fechar a pintura com menos demãos. Totalmente lavável.",
     s: [["Acabamento", "Fosco"], ["Uso", "Interno e externo"], ["Rendimento", "18 L: até 350 m² acabado\n3,6 L: até 70 m² acabado"], ["Diluição", "Obrigatória: mínimo 10% e máximo 30% de água"],
-        ["Secagem", "Toque 2h · entre demãos 4h · final 12h"], ["Ferramenta", "Rolo de lã de pelos médios ou trincha"], ["Superfícies", "Massa corrida preparada, repintura, concreto, blocos, texturas, reboco e fibrocimento"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L"]],
+        ["Secagem", "Toque 2h · demãos 4h · final 12h · cura total: mín. 20 dias"], ["Cartela", "Paleta Grande"], ["Ferramenta", "Rolo de lã de pelos médios ou trincha"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L"]],
     fale: "\"É a que mais cobre da Laet. Você fecha a parede com menos demãos.\"",
-    atencao: ["A diluição é OBRIGATÓRIA (10% a 30%). Sem diluir, não aplica direito.", "Não aplicar com sol batendo, em parede sem preparo, muito quente ou úmida."] },
-  { k: "emborrachada", linha: NOBRE, nome: "Emborrachada", sub: "Tinta que vira borracha",
-    serve: "Seca e vira uma película de borracha: impermeabiliza e ajuda a diminuir a temperatura. Laje, telhado, muro e fachada.",
-    s: [["Acabamento", "Semibrilho"], ["Uso", "Interno e externo"], ["Rendimento", "18 L: média de 200 m² por demão\n3,6 L: média de 40 m² por demão"], ["Diluição", "20% de água só na 1ª demão (pra penetrar)"],
-        ["Secagem", "Toque 1h · entre demãos 4h · final 12h"], ["Demãos", "3 a 4 demãos pra impermeabilizar"], ["Cobre", "Trincas e fissuras de até 0,2 mm"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L"]],
-    fale: "\"É tinta que vira borracha. Resolve até 100% do problema de infiltração na laje, no telhado e no muro.\"",
-    atencao: ["Pra impermeabilizar, oriente 3 a 4 demãos. Uma demão só não resolve.", "Fale \"tinta que vira borracha\", nunca \"tipo borracha\"."] },
+    atencao: ["A diluição é OBRIGATÓRIA (10% a 30%). Sem diluir, não aplica direito.", "Superfícies: massa corrida preparada, repintura, concreto, blocos, texturas, reboco e fibrocimento. Nunca com sol batendo ou parede úmida."] },
   { k: "lavavel", linha: NOBRE, nome: "Premium Lavável", sub: "Fácil de limpar",
     serve: "Cobertura excelente, baixo odor, antimofo e antifungos. Para parede de dentro e de fora que precisa ser lavada.",
     s: [["Acabamento", "Fosco"], ["Uso", "Interno e externo"], ["Rendimento", "18 L: 200 m² por demão · 3,6 L: 40 m²\n900 ml: 10 m² por demão"], ["Diluição", "Até 10% de água"],
-        ["Secagem", "Toque 1h · entre demãos 4h · final 12h"], ["Como lavar", "Sabão neutro, água corrente e bucha macia"], ["Cores", "Paleta Grande (mesma da Emborrachada e Cobertura)"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L · 900 ml / 800 ml"]],
+        ["Secagem", "Toque 1h · demãos 4h · final 12h · cura total: mín. 20 dias"], ["Como lavar", "Sabão neutro, água corrente e bucha macia"], ["Cartela", "Paleta Grande (mesma da Emborrachada e Cobertura)"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L · 900 ml / 800 ml"]],
     fale: "\"Sujou, lava. Sabão neutro, água e bucha macia, sem medo.\"",
     atencao: ["17 L, 3,4 L e 800 ml são as embalagens das cores médias e fortes."] },
+  { k: "emborrachada", linha: NOBRE, nome: "Emborrachada", sub: "Tinta que vira borracha",
+    serve: "Seca e vira uma película de borracha: impermeabiliza e ajuda a diminuir a temperatura. Laje, telhado, muro e fachada.",
+    s: [["Acabamento", "Semibrilho"], ["Uso", "Interno e externo"], ["Rendimento", "18 L: média de 200 m² por demão\n3,6 L: média de 40 m² por demão"], ["Diluição", "20% de água só na 1ª demão (pra penetrar)"],
+        ["Secagem", "Toque 1h · demãos 4h · final 12h · cura total: mín. 20 dias"], ["Demãos", "3 a 4 demãos pra impermeabilizar"], ["Cobre", "Fissuras de até 0,2 mm"], ["Cartela", "Paleta Grande"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L"]],
+    fale: "\"É tinta que vira borracha. Resolve até 100% do problema de infiltração na laje, no telhado e no muro.\"",
+    atencao: ["Trincas, rachaduras, buracos e entradas de água TÊM que ser tratados e reparados antes da tinta.", "Pra impermeabilizar, oriente 3 a 4 demãos. Uma demão só não resolve."] },
   { k: "pisos", linha: NOBRE, nome: "Pisos & Fachadas", sub: "Aguenta carro, chuva e sol",
     serve: "Para garagem, calçada, quadra e fachada. Resiste ao tráfego de carro e ao tempo.",
-    s: [["Acabamento", "Fosco"], ["Uso", "Interno e externo"], ["Rendimento", "Até 300 m² por demão"], ["Diluição", "Até 10% de água"],
-        ["Secagem", "Toque 1h · entre demãos 4h · final 12h"], ["Cores", "13 cores (não tem branca)"], ["Tamanhos", "17 L · 3,4 L"]],
+    s: [["Acabamento", "Fosco"], ["Uso", "Interno e externo"], ["Rendimento", "17 L: até 300 m² por demão\n3,4 L: até 60 m² por demão"], ["Diluição", "Até 10% de água"],
+        ["Secagem", "Toque 1h · demãos 4h · final 12h · cura total: mín. 20 dias"], ["Cartela", "Pisos & Fachadas · 13 cores"], ["Tamanhos", "17 L · 3,4 L"]],
     fale: "\"Pode passar o carro em cima. Foi feita pra garagem e calçada.\"",
-    atencao: ["Essa linha não tem branca: são 13 cores do catálogo."] },
+    atencao: ["A tinta branca dessa linha é mais cara que as coloridas. Consulte!"] },
   { k: "epoxi", linha: NOBRE, nome: "Epóxi Base Água", sub: "Renove sem quebrar",
     serve: "Pinta azulejo, pastilha, PVC, alvenaria, madeira, metais (ferro, galvanizado e alumínio) sem obra. Resiste a água, umidade, mofo e limpeza frequente.",
     s: [["Acabamento", "Acetinado"], ["Uso", "Interno e externo"], ["Rendimento", "3,6 L: até 60 m² por demão\n900 ml: até 15 m² por demão"], ["Diluição", "Até 10% de água em todas as demãos"],
-        ["Secagem", "Toque 1h · entre demãos 3h · final 5h"], ["Demãos", "2 a 3 demãos"], ["Ferramenta", "Rolo de lã pra epóxi, espuma, trincha, pincel ou pistola"], ["Tamanhos", "3,6 L · 900 ml · 16 cores"]],
+        ["Secagem", "Toque 1h · demãos 3h · final 5h · cura total: mín. 20 dias"], ["Demãos", "2 a 3 demãos"], ["Ferramenta", "Rolo de lã padrão ou pra epóxi, espuma, trincha, pincel ou pistola"], ["Cartela", "Epóxi · 16 cores · 3,6 L e 900 ml"]],
     fale: "\"Renova o azulejo da cozinha e do banheiro sem quebrar nada. Sem cheiro forte.\"",
-    atencao: ["Antes: limpeza profunda com removedor de gordura e, se brilhante, lixar.", "Limpar a pintura só após 20 dias: pano macio, água e detergente neutro."] },
+    atencao: ["DESENGORDURAR antes: o mais indicado é o Bate-Pedra. Superfície brilhante: lixar.", "Chão de box: indique epóxi BASE SOLVENTE. O base água dura menos com o uso constante.", "A durabilidade depende da superfície, dos produtos de limpeza e da frequência de uso e limpeza."] },
   { k: "standard", linha: NOBRE, nome: "1ª Linha Standard", sub: "Acrílico concentrado",
     serve: "Tinta de baixo custo, mas concentrada, grossa e com bom poder de cobertura. Antimofo e baixo odor.",
     s: [["Acabamento", "Fosco"], ["Uso", "Interno e externo"], ["Rendimento", "18 L: até 300 m² por demão\n3,6 L: média de 60 m² por demão"], ["Diluição", "Até 20% de água"],
-        ["Secagem", "Toque 1h · entre demãos 4h · final 12h"], ["Cores", "84 cores (cartela Standard)"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L"]],
+        ["Secagem", "Toque 1h · demãos 4h · final 12h · cura total: mín. 20 dias"], ["Cartela", "1ª Linha Standard · 84 cores"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L"]],
     fale: "\"Preço baixo, mas é grossa e rende: dá pra diluir até 20%.\"",
     atencao: ["É a de melhor custo-benefício pra quem quer economizar sem levar tinta fraca."] },
   { k: "gessostd", linha: NOBRE, nome: "Direto no Gesso Standard", sub: "Mais cobertura",
     serve: "Vai direto no gesso e no drywall, sem fundo preparador, e cobre mais que a Profissional. Sem cheiro e antimofo.",
-    s: [["Uso", "Interno"], ["Rendimento", "Até 240 m² por demão"], ["Diluição", "Até 10% de água"], ["Secagem", "Toque 1h · entre demãos 4h · final 12h"],
-        ["Superfícies", "Gesso, drywall, molduras e gesso 3D"], ["Cores", "Mesmas cores da 1ª Linha Standard"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L"]],
+    s: [["Uso", "Interno"], ["Rendimento", "18 L: até 240 m² por demão\n3,6 L: até 48 m² por demão"], ["Diluição", "Até 10% de água"], ["Secagem", "Toque 1h · demãos 4h · final 12h · cura total: mín. 20 dias"],
+        ["Superfícies", "Gesso, drywall, molduras e gesso 3D"], ["Cartela", "1ª Linha Standard"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L"]],
     fale: "\"Não precisa de fundo preparador. E essa cobre mais.\"",
     atencao: ["Só uso interno."] },
   { k: "profissional", linha: ECO, nome: "Super Profissional", sub: "Econômica para dentro de casa",
     serve: "Acrílica de ótima qualidade, com propriedades antimofo, secagem rápida e baixo odor. Para parede interna.",
     s: [["Acabamento", "Fosco"], ["Uso", "Interno"], ["Rendimento", "18 L: até 330 m² por demão\n(média de 250 m²) · 3,6 L: média de 50 m²"], ["Diluição", "Até 10% de água"],
-        ["Secagem", "Toque 1h · entre demãos 4h · final 12h"], ["Cores", "34 cores (mesma cartela da Direto no Gesso Profissional)"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L"]],
+        ["Secagem", "Toque 1h · demãos 4h · final 12h · cura total: mín. 20 dias"], ["Cartela", "Profissional e Gesso · 34 cores"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L"]],
     fale: "\"Rende até 330 m² com a parede preparada e selada. Na média, uns 250 m² por demão.\"",
     atencao: ["Os 330 m² são com a parede preparada e selada. Se a parede chupa muita tinta, ofereça a Seladora."] },
   { k: "gesso", linha: ECO, nome: "Direto no Gesso Profissional", sub: "Gesso e drywall",
     serve: "Vai direto no gesso e no drywall: não necessita de fundo preparador. Prática, econômica e antimofo.",
-    s: [["Acabamento", "Fosco"], ["Uso", "Interno"], ["Rendimento", "Até 240 m² por demão"], ["Diluição", "Até 10% de água"],
-        ["Secagem", "Toque 1h · entre demãos 4h · final 12h"], ["Superfícies", "Gesso, drywall, molduras e gesso 3D"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L"]],
+    s: [["Acabamento", "Fosco"], ["Uso", "Interno"], ["Rendimento", "18 L: até 240 m² por demão\n3,6 L: até 48 m² por demão"], ["Diluição", "Até 10% de água"],
+        ["Secagem", "Toque 1h · demãos 4h · final 12h · cura total: mín. 20 dias"], ["Superfícies", "Gesso, drywall, molduras e gesso 3D"], ["Cartela", "Profissional e Gesso · 34 cores"]],
     fale: "\"Gesso novo? Limpa o pó e aplica. Não precisa passar fundo antes.\"",
     atencao: ["Só uso interno."] },
   { k: "esmalte", linha: MADEIRA, nome: "Esmalte Ecológico", sub: "Base água",
     serve: "Sem solventes, baixo odor e alta resistência. Totalmente lavável, alto brilho, antimofo e secagem rápida.",
     s: [["Acabamento", "Alto brilho"], ["Uso", "Interno e externo"], ["Rendimento", "18 L: até 300 m² · 3,6 L: 50 m²\n900 ml: 10 m² (por demão)"], ["Diluição", "Até 15% de água"],
-        ["Secagem", "Toque 30 min · entre demãos 4h · final 6h"], ["Superfícies", "Madeira, metal e alvenaria"], ["Ferramenta", "Rolo de lã de poliéster, espuma ou lã mista; pistola 30/35 lb/pol²"], ["Tamanhos", "18 L / 17 L · 3,6 L / 3,4 L · 900 ml"]],
+        ["Secagem", "Toque 30 min · demãos 4h · final 6h · cura total: mín. 20 dias"], ["Superfícies", "Madeira, metal e alvenaria"], ["Ferramenta", "Rolo de lã de poliéster, espuma ou lã mista; pistola 30/35 lb/pol²"], ["Cartela", "Esmalte Ecológico · 32 cores + Branco · 18 L / 17 L · 3,6 L / 3,4 L · 900 ml"]],
     fale: "\"É esmalte à base de água: quase sem cheiro e lava com água.\"",
-    atencao: ["NÃO pode ser aplicado em cima de esmalte à base de solvente.", "O 18 L sai só na Branca."] },
+    atencao: ["NÃO pode ser aplicado em cima de esmalte à base de solvente."] },
   { k: "verniz", linha: MADEIRA, nome: "Verniz Base Água", sub: "Fundo e acabamento juntos",
-    serve: "Dispensa seladora. Realça os veios da madeira e resiste à chuva. Portas, janelas e móveis, dentro e fora.",
+    serve: "Dispensa fundo e seladora. Realça os veios da madeira e resiste à chuva. Portas, janelas e móveis, dentro e fora.",
     s: [["Acabamento", "Brilhante"], ["Uso", "Interno e externo"], ["Rendimento", "3,6 L: até 60 m² por demão\n900 ml: até 15 m² por demão"], ["Diluição", "Até 10% de água"],
-        ["Secagem", "Toque 30 min · entre demãos 2h · final 4h"], ["Demãos", "Madeira nova: 3 · repintura: 1 a 2"], ["Ferramenta", "Pincel, rolo de espuma ou pistola (limpa com água)"], ["Tons", "Incolor (Natural), Mogno e Imbuia · 18 L, 3,6 L, 900 ml / 800 ml"]],
-    fale: "\"Não precisa de seladora: ele já é fundo e acabamento.\"",
+        ["Secagem", "Toque 30 min · demãos 2h · final 4h · cura total: mín. 20 dias"], ["Demãos", "3 demãos: a 1ª sela, as outras 2 cobrem e dão acabamento · repintura: 1 a 2"], ["Ferramenta", "Pincel, rolo de espuma ou pistola (limpa com água)"], ["Cartela", "Verniz · Incolor (Natural), Mogno e Imbuia · 18 L, 3,6 L, 900 ml / 800 ml"]],
+    fale: "\"Não precisa de fundo: a 1ª demão já sela, as outras duas dão o acabamento.\"",
     atencao: ["Não aplicar em madeira úmida nem com chuva."] },
   { k: "cimento", linha: DECO, nome: "Efeito Cimento Queimado", sub: "Acabamento decorativo",
     serve: "Massa decorativa com cara de cimento queimado. Pode ser polida pra ganhar alto brilho. Antimofo.",
-    s: [["Acabamento", "Fosco (polido: alto brilho)"], ["Uso", "Interno e externo (fórmula nova)"], ["Diluição", "Até 10% de água"], ["Secagem", "Toque 2h · entre demãos 6h · cura total 36h"],
-        ["Ferramenta", "Aplicador de massa, desempenadeira e espátula de inox"], ["Cores", "15 cores"], ["Tamanhos", "5 kg · 20 kg"]],
+    s: [["Acabamento", "Fosco (polido: alto brilho)"], ["Uso", "Interno e externo (fórmula nova)"], ["Rendimento", "5 kg: média de 10 m² por demão\n23 kg: média de 40 m² por demão"], ["Diluição", "Até 10% de água"], ["Secagem", "Toque 2h · entre demãos 6h · cura total 36h"],
+        ["Ferramenta", "Aplicador de massa, desempenadeira e espátula de inox"], ["Cartela", "Cimento Queimado · 15 cores · 5 kg e 23 kg"]],
     fale: "\"Dá o visual de cimento queimado sem obra. Quer brilho? É só polir.\"",
-    atencao: ["A bula antiga diz \"uso interno\": está desatualizada. A fórmula nova é interna e externa.", "Não passar rendimento: o da bula está errado."] },
+    atencao: ["O rendimento depende totalmente da forma de aplicar e da superfície.", "A bula antiga diz \"uso interno\": está desatualizada. A fórmula nova é interna e externa."] },
   { k: "massas", linha: COMP, nome: "Massa Corrida", sub: "Só área interna e seca",
     serve: "Nivela e corrige a parede antes de pintar. Fácil de lixar. Quarto e sala.",
     s: [["Uso", "Interno, só área seca"], ["Rendimento", "Depende da superfície"], ["Tamanhos", "1,5 kg · 5 kg · saco 23 kg · barrica 23 kg"]],
@@ -92,10 +92,10 @@ const P = [
     serve: "Nivela parede de dentro e de fora e lugares que pegam respingo de água, como banheiro e cozinha.",
     s: [["Uso", "Interno e externo"], ["Rendimento", "Depende da superfície"], ["Tamanhos", "1,5 kg · 5 kg · saco 23 kg · barrica 23 kg"]],
     fale: "\"Pra banheiro, cozinha e área de fora.\"",
-    atencao: ["NUNCA diga que resolve ou resiste à umidade. Senão o cliente usa pra tratar umidade e o problema volta."] },
+    atencao: ["NUNCA diga que resolve ou resiste à umidade. Senão o cliente usa pra tratar umidade e o problema volta.", "Com umidade, é preciso tratar e preparar antes. Só depois aplicar a massa."] },
   { k: "seladora", linha: COMP, nome: "Seladora (Selador Acrílico)", sub: "Parede nova",
     serve: "Para parede nova ou reboco novo que chupa muita tinta. Preenche os poros e é mais barata que a tinta: economiza tinta.",
-    s: [["Preparo", "Pronta pra uso: só misturar bem"], ["Quando", "Toda superfície nova"], ["Tamanhos", "18 L · 3,6 L"]],
+    s: [["Preparo", "Pronta pra uso: só misturar bem"], ["Quando", "Reboco novo, paredes com cores fortes, paredes preparadas, etc."], ["Tamanhos", "18 L · 3,6 L"]],
     fale: "\"Passa a seladora antes e você gasta bem menos tinta.\"",
     atencao: ["Não é a mesma coisa que Fundo Preparador (veja abaixo)."] },
   { k: "fundo", linha: COMP, nome: "Fundo Preparador", sub: "Parede fraca",
@@ -106,7 +106,7 @@ const P = [
   { k: "vinil", linha: SEC, nome: "Látex Vinil", sub: "Opção secundária (não é marca Laet)",
     serve: "A opção mais barata, só pra parede interna e seca. Ofereça só quando o cliente pedir o mais barato possível.",
     s: [["Acabamento", "Fosco"], ["Uso", "Só interno"], ["Rendimento", "Em média 100 m² (18 L)"], ["Diluição", "Pronta pra uso"],
-        ["Secagem", "Toque 5h · entre demãos 8h · final 16h"], ["Ferramenta", "Rolo de lã de carneiro ou pincel"], ["Tamanhos", "18 L · Branca e 18 cores"]],
+        ["Secagem", "Toque 5h · demãos 8h · final 16h · cura total: mín. 20 dias"], ["Ferramenta", "Rolo de lã de carneiro ou pincel"], ["Cartela", "Látex Vinil · 18 cores · só 18 L (não tem 3,6 L nem 900 ml)"]],
     fale: "\"Ela é a mais simples. Pra durar mais, eu te indico a Standard.\"",
     atencao: ["8 horas entre demãos é obrigatório.", "Nunca em área externa, banheiro ou parede úmida: descasca e mancha."] },
 ];
@@ -130,11 +130,12 @@ const SITUACOES = [
 ];
 const RENDE = [
   ["Cobertura Absoluta", "até 350 m² acabado", "até 70 m² acabado", "—"], ["Emborrachada", "200 m²/demão", "40 m²/demão", "—"],
-  ["Premium Lavável", "200 m²/demão", "40 m²/demão", "10 m²/demão"], ["Pisos & Fachadas", "até 300 m²/demão (17 L)", "—", "—"],
+  ["Premium Lavável", "200 m²/demão", "40 m²/demão", "10 m²/demão"], ["Pisos & Fachadas", "até 300 m²/demão (17 L)", "até 60 m²/demão (3,4 L)", "não tem"],
   ["1ª Linha Standard", "até 300 m²/demão", "60 m²/demão", "—"], ["Super Profissional", "até 330 m²/demão (média 250)", "50 m²/demão", "—"],
-  ["Direto no Gesso (Std e Prof.)", "até 240 m²/demão", "—", "—"], ["Esmalte Ecológico", "até 300 m²/demão", "50 m²/demão", "10 m²/demão"],
+  ["Direto no Gesso (Std e Prof.)", "até 240 m²/demão", "até 48 m²/demão", "não tem"], ["Esmalte Ecológico", "até 300 m²/demão", "50 m²/demão", "10 m²/demão"],
   ["Epóxi Base Água", "—", "até 60 m²/demão", "até 15 m²/demão"], ["Verniz Base Água", "—", "até 60 m²/demão", "até 15 m²/demão"],
-  ["Látex Vinil", "média 100 m²", "—", "—"],
+  ["Látex Vinil", "média 100 m²", "não tem", "não tem"],
+  ["Efeito Cimento Queimado", "23 kg: média 40 m²", "5 kg: média 10 m²", "—"],
 ];
 
 // ---------- HTML ----------
@@ -164,9 +165,9 @@ const p2 = pagina("Como usar este manual", "Comece aqui", `
   <div class="h2">Regras de ouro</div>
   <div class="ouro">${[
     ["Cor média ou forte tem embalagem menor", "18 L vira 17 L, 3,6 L vira 3,4 L e 900 ml vira 800 ml. É normal: a cor leva mais pigmento."],
-    ["Parcelamento", "Sempre: \"Parcele em até 12x sem juros (consulte as condições)\". Não tem valor mínimo de compra."],
+    ["Parcelamento", "Sempre: \"Parcele em até 12x sem juros (consulte as condições)\". Massa corrida, texturizados e Látex Vinil: consulte as condições."],
     ["Não prometa o que não está aqui", "Não sabe o rendimento ou uso de um produto? Não chute. Pergunte antes."],
-    ["Cor na tela é aproximada", "Sempre mostre a cartela física da loja antes de fechar a cor."],
+    ["Cor é sempre aproximada", "Na tela e também na cartela física: ela não tem a tinta aplicada na parede, então a cor real pode parecer diferente."],
     ["Ordem certa da pintura", "1º Fundo Preparador ou Seladora · 2º Massa · 3º Tinta."],
   ].map(([a, b]) => `<div class="oc"><b>${a}</b><span>${b}</span></div>`).join("")}</div>`);
 
@@ -184,7 +185,7 @@ const p4 = pagina("Quanta tinta o cliente precisa", "Conta de balcão", `
   <div class="h2">Rendimento de cada produto</div>
   <div class="rt"><div class="rh"><span>Produto</span><span>18 L / balde</span><span>3,6 L / galão</span><span>900 ml</span></div>
     ${RENDE.map((r) => `<div class="rr">${r.map((c) => `<span>${c}</span>`).join("")}</div>`).join("")}</div>
-  <div class="nota">O rendimento muda com o estado da parede: parede nova, áspera ou que chupa tinta rende menos. Massas não têm rendimento fixo: depende da superfície.</div>`);
+  <div class="nota"><b>Regra:</b> galão 3,6 / 3,4 L rende o balde ÷ 5 · 900 / 850 ml rende o galão ÷ 4. O rendimento muda com o estado da parede: parede nova, áspera ou que chupa tinta rende menos. Massas não têm rendimento fixo: depende da superfície.</div>`);
 
 const p5 = pagina("Preparar a superfície e aplicar", "Antes de pintar", `
   <div class="dois"><div class="cx"><div class="h3">Preparação</div>
@@ -198,10 +199,10 @@ const p5 = pagina("Preparar a superfície e aplicar", "Antes de pintar", `
     <div class="li">Evitar chuva nos <b>primeiros 20 dias</b>: pingos podem manchar. Se acontecer, enxágue sem esfregar; se ficar, mais uma demão.</div>
     <div class="li">Não pintar com umidade do ar acima de <b>80%</b>, nem abaixo de <b>10 °C</b> ou acima de <b>40 °C</b>.</div>
     <div class="li">Evitar retoque isolado depois de seco.</div>
-    <div class="li">Limpar a pintura só depois de <b>20 dias</b> (cura total).</div>
+    <div class="li"><b>Cura total das tintas: no mínimo 20 dias.</b> Limpar a pintura só depois disso.</div>
     <div class="li">Cores fortes podem desbotar com maresia e tempo, sem perder a proteção.</div></div></div>
   <div class="h2">Ferramenta certa</div>
-  <div class="ferr">${[["Tintas acrílicas", "Rolo de lã de carneiro, rolo anti-respingo, pincel"], ["Esmalte", "Rolo de lã de poliéster, espuma ou lã mista · pistola 30/35 lb/pol²"], ["Epóxi", "Rolo de lã pra epóxi, espuma, trincha, pincel ou pistola"], ["Cimento Queimado", "Aplicador de massa, desempenadeira e espátulas de inox"], ["Textura lisa / design", "Rolo de textura, cabelo de anjo, espátula, desempenadeira"], ["Grafiato", "Desempenadeira de aço, inox ou PVC"]].map(([a, b]) => `<div class="fc"><b>${a}</b><span>${b}</span></div>`).join("")}</div>`);
+  <div class="ferr">${[["Tintas acrílicas", "Rolo de lã de carneiro, rolo anti-respingo, pincel"], ["Esmalte", "Rolo de lã de poliéster, espuma ou lã mista · pistola 30/35 lb/pol²"], ["Epóxi", "Rolo de lã pra epóxi, espuma, trincha, pincel ou pistola"], ["Cimento Queimado", "Aplicador de massa, desempenadeira e espátulas de inox"], ["Textura lisa / design", "Rolo de textura, cabelo de anjo, espátula, desempenadeira"], ["Grafiato", "Desempenadeira de PVC (obrigatória)"]].map(([a, b]) => `<div class="fc"><b>${a}</b><span>${b}</span></div>`).join("")}</div>`);
 
 const p6 = pagina("O que não pode acontecer", "Erros que geram reclamação", `<div class="erros">${[
   ["Esmalte base água em cima de esmalte base solvente", "NÃO pode. Não adere e solta."],
@@ -213,7 +214,10 @@ const p6 = pagina("O que não pode acontecer", "Erros que geram reclamação", `
   ["Epóxi em azulejo engordurado ou brilhante", "Limpeza profunda com removedor de gordura e lixar antes."],
   ["Parede esfarelando sem Fundo Preparador", "A tinta solta depois. Primeiro firma, depois pinta."],
   ["Verniz em madeira úmida ou com chuva", "Esperar a madeira secar."],
-  ["Prometer cor exata pela foto do celular", "Cor na tela é aproximada. Mostre a cartela física."],
+  ["Prometer cor exata", "Tela e cartela física são aproximadas: a tinta na parede pode parecer diferente."],
+  ["Epóxi base água no chão do box", "Indique epóxi base solvente: o base água dura menos com o uso constante."],
+  ["Grafiato sem desempenadeira de PVC", "A desempenadeira de PVC é obrigatória no grafiato."],
+  ["Emborrachada em cima de trinca ou buraco sem reparo", "Trincas, rachaduras, buracos e entradas de água precisam ser tratados antes."],
   ["Afirmar entrega feita pela loja", "Hoje a entrega é por aplicativo, pedida pelo cliente."],
 ].map(([a, b]) => `<div class="er"><b>${a}</b><span>${b}</span></div>`).join("")}</div>`);
 
@@ -231,7 +235,7 @@ const fim = pagina("Segurança e contatos", "Importante", `<div class="dois"><di
     <div class="li"><b>Instagram:</b> @tintaslaet</div>
     <div class="li"><b>Site:</b> tintaslaet.com</div>
     <div class="li"><b>SAC do fabricante (rótulo):</b> (11) 95318-9216 · (11) 94891-0470</div>
-    <div class="li"><b>Dúvida que não está aqui?</b> Pergunte antes de responder o cliente.</div></div></div>`);
+    <div class="li"><b>Dúvida que não está aqui?</b> Pergunte antes de responder o cliente.</div></div></div><div class="assina">Desenvolvido por Kevin Laet</div>`);
 
 const PAGS = [capa, p2, p3, p4, p5, p6, ...fichasPgs, fim];
 if (PAGS.length % 2) PAGS.push(pagina("Anotações", "Espaço livre", `<div class="linhas">${"<div></div>".repeat(22)}</div>`));
@@ -246,7 +250,7 @@ html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}body{font-fa
 .hd{position:absolute;left:12mm;top:9mm}.sl{font-family:'Montserrat';font-weight:700;font-size:7pt;letter-spacing:.3em;text-transform:uppercase;color:#1976D2}
 .st{font-family:'Montserrat';font-weight:800;font-size:17pt;text-transform:uppercase;color:#062B63;margin-top:.6mm;line-height:1.05}.su{width:9mm;height:1.1mm;background:#FFC107;border-radius:.6mm;margin-top:1.6mm}
 .hlogo{position:absolute;right:12mm;top:8mm;height:14mm}
-.corpo{position:absolute;left:12mm;right:12mm;top:28mm;bottom:16mm}
+.corpo{position:absolute;left:12mm;right:12mm;top:28mm;bottom:16mm;display:flex;flex-direction:column;gap:4mm}
 .rod{position:absolute;left:12mm;right:12mm;bottom:7mm;height:6mm;border-top:.25mm solid #D3DAE4;display:flex;align-items:flex-end;justify-content:space-between;font-size:7.4pt;color:#4A5568}
 .rod b{font-family:'Bebas Neue';font-weight:400;font-size:12pt;color:#fff;background:#062B63;border-radius:3mm;padding:.4mm 3.2mm .1mm}
 .h2{font-family:'Montserrat';font-weight:800;font-size:11pt;color:#062B63;text-transform:uppercase;margin:6mm 0 2.6mm}.h2::after{content:"";display:inline-block;width:8mm;height:1mm;background:#FFC107;margin-left:3mm;vertical-align:middle}
@@ -268,10 +272,10 @@ html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}body{font-fa
 .dois{display:grid;grid-template-columns:1fr 1fr;gap:4mm}.cx{background:#fff;border-radius:3mm;padding:5mm}
 .li{font-size:8.8pt;line-height:1.45;padding:1.6mm 0 1.6mm 4mm;border-bottom:.25mm solid #E6EAF0;position:relative}.li::before{content:"";position:absolute;left:0;top:3.4mm;width:1.6mm;height:1.6mm;border-radius:50%;background:#FFC107}
 .ferr{display:grid;grid-template-columns:1fr 1fr;gap:2.6mm}.fc{background:#0D3D86;color:#fff;border-radius:3mm;padding:3.4mm 4mm;font-size:8.4pt}.fc b{display:block;color:#FFC107;font-family:'Montserrat';font-weight:800;font-size:8.2pt;text-transform:uppercase}
-.erros .er{display:grid;grid-template-columns:1.05fr 1fr;gap:5mm;align-items:center;background:#fff;border-left:1.6mm solid #C62828;border-radius:0 2.6mm 2.6mm 0;padding:3.6mm 5mm;margin-bottom:2.2mm}
+.erros .er{display:grid;grid-template-columns:1.05fr 1fr;gap:5mm;align-items:center;background:#fff;border-left:1.6mm solid #C62828;border-radius:0 2.6mm 2.6mm 0;padding:2.6mm 5mm;margin-bottom:1.6mm}
 .er b{font-family:'Montserrat';font-weight:700;font-size:9pt;color:#062B63}.er span{font-size:8.8pt}
 /* ficha */
-.ficha{display:flex;gap:5mm;background:#fff;border-radius:3.2mm;padding:4.4mm;height:122mm;margin-bottom:5mm;overflow:hidden}
+.ficha{display:flex;gap:5mm;background:#fff;border-radius:3.2mm;padding:4.4mm;flex:1 1 auto;min-height:0;overflow:hidden}
 .fl{flex:none;width:42mm;display:flex;flex-direction:column;gap:3mm}
 .foto{height:52mm;border-radius:2.4mm;background:#E8EEF7;display:flex;align-items:center;justify-content:center;padding:3mm}.foto img{max-width:100%;max-height:100%;object-fit:contain}
 .tag{text-align:center;font-family:'Montserrat';font-weight:800;font-size:7.6pt;text-transform:uppercase;color:#062B63;background:#FFC107;border-radius:1.6mm;padding:1.4mm}
@@ -288,6 +292,7 @@ html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}body{font-fa
 .csub{position:absolute;left:25mm;right:25mm;top:142mm;text-align:center;font-size:11pt;color:#FFE082;line-height:1.4}
 .cind{position:absolute;left:35mm;right:35mm;top:170mm}.cind div{background:#062B63;color:#fff;border-left:1.6mm solid #FFC107;border-radius:0 2.4mm 2.4mm 0;padding:4mm 6mm;margin-bottom:3mm;font-weight:600;font-size:10.5pt}
 .cfoot{position:absolute;left:0;right:0;bottom:16mm;text-align:center;color:#C9D5EA;font-size:8.6pt}
+.assina{position:absolute;left:0;right:0;bottom:0;text-align:right;font-size:6.6pt;color:#9AA5B5}
 .linhas div{height:9.5mm;border-bottom:.3mm solid #C9D2DE}`;
 
 const HTML = (b, img) => `<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet"><style>${CSS(b)}</style></head><body>${PAGS.join("\n")}</body></html>`.replace(/IMG\//g, img + "/");
