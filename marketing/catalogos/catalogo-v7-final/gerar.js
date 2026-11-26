@@ -32,29 +32,31 @@ const CERCA = ["Mistura de Mostarda", "Tangerina", "Curry Dourado", "Amarelo Lae
 // ---------- produtos (correções do Kevin 25/11: nobres / econômicas / revenda, 17 L e 3,4 L, Gesso Standard, Cobertura) ----------
 const T17 = "18 L / 17 L · Branca e cores", T34 = "3,6 L / 3,4 L · Branca e cores";
 const NOTA17 = "17 L e 3,4 L: cores médias e fortes.";
+const NOTA800 = "17 L, 3,4 L e 800 ml: cores médias e fortes.";
 const P = {
-  emborrachada: { nome: "Emborrachada", sub: "Tinta que vira borracha", img: "emborrachada", desc: "Seca e vira uma película de borracha que protege laje, telhado, muro e fachada. Aguenta sol e chuva.",
-    specs: [["Uso", "Externo: laje, telhado, muro e fachada"], ["Rendimento", "Rende até 200 m² · balde 18 L"]], disp: [T17, T34], nota: NOTA17 },
-  lavavel: { nome: "Premium Lavável", img: "lavavel", desc: "Cobre bem, tem baixo odor e é fácil de limpar. Antimofo e antifungos, para parede de dentro e de fora.",
-    specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"], ["Rendimento", "Rende até 200 m² · balde 18 L"]], disp: [T17, T34, "900 ml · Branca e cores"], nota: NOTA17 },
-  cobertura: { nome: "Cobertura Absoluta", sub: "Ultra Premium", img: "cobertura", h: 36, desc: "Alto poder de cobertura e totalmente lavável, como diz o rótulo. Tem a mesma cartela de cores da Emborrachada e da Premium Lavável.",
-    specs: [], disp: [T17, T34], nota: NOTA17 },
+  emborrachada: { nome: "Emborrachada", sub: "Tinta que vira borracha com ótima cobertura", img: "emborrachada", desc: "Seca e vira uma película de borracha que ajuda na diminuição da temperatura e impermeabiliza a superfície, protegendo lajes, telhados, muros e fachadas.",
+    specs: [["Uso", "Interno e externo"], ["Acabamento", "Semibrilho"], ["Rendimento", "Rende até 200 m² por demão · balde 18 L"]], disp: [T17, T34], nota: NOTA17 },
+  lavavel: { nome: "Premium Lavável", img: "lavavel", desc: "Cobertura excelente, baixo odor, antimofo e antifungos, para parede de dentro e de fora. Lave sem medo com sabão neutro, água corrente e bucha macia.",
+    specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"], ["Rendimento", "Rende até 200 m² por demão · balde 18 L"]], disp: [T17, T34, "900 ml / 800 ml · Branca e cores"], nota: NOTA800 },
+  cobertura: { nome: "Cobertura Absoluta", sub: "Ultra Premium", img: "cobertura", h: 36, desc: "O mais alto poder de cobertura e totalmente lavável! Para quem busca a maior cobertura possível, fechando a pintura com facilidade e agilidade.",
+    specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"], ["Rendimento", "Rende até 350 m² acabado no 18 L · 3,6 L até 70 m² acabado"]], disp: [T17, T34], nota: NOTA17 },
   pisos: { nome: "Pisos & Fachadas", img: "pisos", desc: "Aguenta o tráfego de carro, a chuva e o sol. Para garagem, calçada e fachada.",
     specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"], ["Rendimento", "Rende até 300 m² por demão"]], disp: ["17 L · 13 cores", "3,4 L · 13 cores"] },
   epoxi: { nome: "Epóxi Base Água", sub: "Renove sem quebrar", img: "epoxi", h: 37, desc: "Pinta azulejo de cozinha e banheiro sem quebrar nada. Seca rápido, sem cheiro forte, e forma uma película resistente, fácil de limpar.",
-    specs: [["Acabamento", "Acetinado"], ["Rendimento", "Rende até 60 m² por demão no 3,6 L · 900 ml até 15 m²"]], disp: ["3,6 L", "900 ml"] },
+    specs: [["Acabamento", "Acetinado"], ["Rendimento", "Rende até 60 m² por demão no 3,6 L · 900 ml até 15 m²"]], disp: ["3,6 L", "900 ml"],
+    nota: "Antes de pintar: é necessária limpeza profunda com removedor de gordura." },
   standard: { nome: "1ª Linha Standard", sub: "Acrílico concentrado", img: "standard", desc: "Tinta de baixo custo, concentrada, grossa e com bom poder de cobertura. Pode ser diluída em até 20%. Antimofo.",
-    specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"]], disp: [T17, T34], nota: NOTA17 },
+    specs: [["Uso", "Interno e externo"], ["Acabamento", "Fosco"], ["Rendimento", "Rende até 300 m² por demão"]], disp: [T17, T34], nota: NOTA17 },
   gessostd: { nome: "Direto no Gesso Standard", sub: "Mais cobertura", img: "gessostd", desc: "Vai direto no gesso e no drywall, sem fundo preparador, e cobre mais. Sem cheiro e com propriedades antimofo.",
     specs: [["Uso", "Interno"], ["Rendimento", "Rende até 200 m² por demão"]], disp: [T17, T34], nota: NOTA17 },
   profissional: { nome: "Super Profissional", img: "profissional", desc: "Acrílica de ótima qualidade, cobre bem e tem propriedades antimofo. Indicada para parede de dentro de casa.",
     specs: [["Uso", "Interno"], ["Rendimento", "Rende até 330 m² por demão"]], disp: [T17, T34], nota: NOTA17 },
   gesso: { nome: "Direto no Gesso Profissional", sub: "Gesso e drywall", img: "gesso", desc: "Vai direto no gesso e no drywall: não precisa de fundo preparador. Prática, econômica e com bom acabamento.",
     specs: [["Uso", "Interno"], ["Rendimento", "Rende até 200 m² por demão"]], disp: [T17, T34], nota: NOTA17 },
-  esmalte: { nome: "Esmalte Ecológico", sub: "Base água", img: "esmalte", h: 35, desc: "Base água, baixo odor e boa cobertura. Pinta ferro, madeira, parede e teto.",
+  esmalte: { nome: "Esmalte Ecológico", sub: "Base água", img: "esmalte", h: 35, desc: "Sem solventes, baixo odor e alta resistência. Pinta ferro, madeira, parede e teto.",
     specs: [["Uso", "Interno e externo"], ["Acabamento", "Brilhante"]], disp: [T17, T34, "900 ml · Branca e cores"], nota: NOTA17 },
   verniz: { nome: "Verniz Base Água", img: "verniz", h: 41, desc: "Fundo e acabamento no mesmo produto: dispensa seladora. Realça os veios da madeira e resiste à chuva.",
-    specs: [["Uso", "Interno e externo"], ["Acabamento", "Brilhante"], ["Rendimento", "Rende até 60 m² por demão no 3,6 L"]], disp: ["18 L", "3,6 L", "900 ml"] },
+    specs: [["Uso", "Interno e externo"], ["Acabamento", "Brilhante"], ["Rendimento", "Rende até 60 m² por demão no 3,6 L"]], disp: ["18 L", "3,6 L", "900 ml / 800 ml"], nota: "800 ml: cores médias e fortes." },
   corrida: { nome: "Massa Corrida", img: "massas", h: 34, desc: "Nivela e corrige a parede antes de pintar. Fácil de lixar. Só para área interna e seca, como quarto e sala.",
     specs: [["Uso", "Interno (área seca)"]], disp: ["1,5 kg", "5 kg", "Saco 23 kg", "Barrica 23 kg"] },
   acrilica: { nome: "Massa Acrílica", img: "massas", h: 34, desc: "Para parede de dentro e de fora e para lugares que pegam respingo de água, como banheiro e cozinha. Fácil de lixar.",
@@ -65,7 +67,7 @@ const P = {
     specs: [], disp: ["18 L", "3,6 L"] },
   fundo: { nome: "Fundo Preparador", img: "fundo", h: 34, desc: "Para reboco fraco e parede velha que esfarela ou descasca. Firma a superfície antes da tinta.",
     specs: [], disp: ["18 L", "3,6 L", "900 ml"] },
-  vinil: { nome: "Látex Vinil", sub: "Marca de revenda", img: "vinil", h: 38, desc: "A opção mais econômica para parede interna e seca. Espere 8 horas entre uma demão e outra. Não use em área externa nem em parede úmida.",
+  vinil: { nome: "Látex Vinil", sub: "Opções secundárias", img: "vinil", h: 38, desc: "A opção mais econômica para parede interna e seca. Espere 8 horas entre uma demão e outra. Não use em área externa nem em parede úmida.",
     specs: [["Uso", "Interno"], ["Acabamento", "Fosco"], ["Rendimento", "Rende em média 100 m² · balde 18 L"]], disp: ["18 L · Branca e cores"] },
 };
 const QUAL = [["Parede velha que esfarela ou descasca", "Fundo Preparador"], ["Parede nova ou reboco novo que chupa tinta", "Seladora"],
@@ -131,7 +133,7 @@ const p10 = (qr) => `<div class="page lojas"><div class="bleedbg"></div><div cla
   <div class="lct"><div class="lbx"><small>WhatsApp central</small>(11) 97714-0964</div><div class="lbx"><small>Instagram</small>@tintaslaet</div><div class="lbx"><small>Site das lojas</small>tintaslaet.com/lojas</div>
     <div class="qr">${qr}</div></div>
   <div class="lpar">Parcele em até 12x sem juros (consulte as condições).</div>
-  <div class="pnum">10</div></div></div>`;
+</div></div>`;
 
 // ---------- estilo (mm; trim = A4 210 x 297, sangria = var(--b)) ----------
 const CSS = (b) => `@page{size:${210 + 2 * b}mm ${297 + 2 * b}mm;margin:0}
@@ -199,7 +201,7 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .leq{position:relative;z-index:3;width:40mm;height:36mm}
 .leq span{position:absolute;left:50%;bottom:2mm;width:9mm;height:30mm;margin-left:-4.5mm;border-radius:1.6mm;transform-origin:50% 92%;box-shadow:0 .4mm 1mm rgba(0,0,0,.35),inset 0 0 0 .2mm rgba(255,255,255,.25)}
 .leq i{position:absolute;left:50%;bottom:2.6mm;width:3.4mm;height:3.4mm;margin-left:-1.7mm;border-radius:50%;background:#E8ECF2;box-shadow:0 .3mm .6mm rgba(0,0,0,.4)}
-.tons{margin-top:2.2mm}.tons .tg{display:flex;gap:2.4mm;margin-top:1mm}.tons .qn{color:#E3E9F3}
+.tons{margin-top:2.2mm}.tons .tg{display:inline-flex;gap:2.4mm;margin-top:1mm;background:#fff;border-radius:2mm;padding:2.2mm 2.6mm 1.6mm}.tons .qn{color:#2D3748}
 /* guia "qual usar" */
 .qual{flex:none;border-radius:3.2mm;background:#fff;box-shadow:0 1mm 2.4mm rgba(6,43,99,.12);padding:4.2mm 6mm 3.4mm;margin-top:.6mm}
 .qt{font-family:'Montserrat';font-weight:800;font-size:11pt;color:#062B63;text-transform:uppercase;margin-bottom:2mm}
@@ -208,10 +210,10 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .qr2 b{font-family:'Montserrat';font-weight:700;color:#0D47A1}
 /* tinta líquida (tinta-liquida.py) */
 .liq{position:absolute;left:0;width:100%;object-fit:cover}
-.liqc{top:${b + 131}mm;height:${172 - b}mm}.liql{top:${b + 207}mm;height:${90 + b}mm}
+.liqc{top:${b + 131}mm;height:${172 - b}mm}.liql{top:${b + 219}mm;height:${78 + b}mm}
 .liqfade{position:absolute;left:0;right:0}
 .liqfade.fc{top:${b + 130}mm;height:28mm;background:linear-gradient(180deg,#0A3C8C 0%,rgba(10,60,140,.85) 25%,rgba(10,60,140,0) 100%)}
-.liqfade.fl{top:${b + 206}mm;height:22mm;background:linear-gradient(180deg,#0B3F92 0%,rgba(11,63,146,.8) 30%,rgba(11,63,146,0) 100%)}
+.liqfade.fl{top:${b + 218}mm;height:22mm;background:linear-gradient(180deg,#0B3F92 0%,rgba(11,63,146,.8) 30%,rgba(11,63,146,0) 100%)}
 .liqs{position:absolute;left:0;right:0;bottom:0;width:100%;height:12mm;object-fit:cover}
 /* cerca de cores (pontas arredondadas, leve volume como paleta de tinta) */
 .cerca{display:flex;align-items:flex-end;gap:.5mm}
@@ -236,19 +238,19 @@ body{font-family:'Poppins',sans-serif;color:#212529;-webkit-font-smoothing:antia
 .lojas .bleedbg{background:radial-gradient(ellipse 90% 50% at 50% 22%,#1658B8 0%,#0D47A1 45%,#0A3C8C 75%,#073170 100%)}
 .cerca.cl9{position:absolute;left:0;right:0;top:${b + 207}mm;bottom:0;gap:.6mm}
 .llogo{position:absolute;left:50%;transform:translateX(-50%);top:10mm;width:64mm}
-.ltit{position:absolute;left:0;right:0;top:50mm;text-align:center;font-family:'Bebas Neue';font-size:30pt;line-height:1;color:#fff}
-.lu{position:absolute;left:50%;transform:translateX(-50%);top:62mm;width:16mm;height:1.2mm;border-radius:.6mm;background:#FFC107}
-.lhr{position:absolute;left:0;right:0;top:65.5mm;text-align:center;font-size:7.8pt;color:#FFE082;font-weight:500}.lhr i{font-style:normal;margin:0 1.4mm}
-.lg{position:absolute;left:10mm;right:10mm;top:74mm;display:grid;grid-template-columns:repeat(3,1fr);gap:3.6mm}
-.lj{height:40mm;border-radius:3.2mm;background:linear-gradient(160deg,rgba(6,30,75,.78),rgba(6,30,75,.58));border:.25mm solid rgba(255,255,255,.12);box-shadow:0 1mm 2.4mm rgba(0,10,35,.25);padding:4mm 4.2mm}
-.lchip{display:inline-block;text-transform:uppercase;letter-spacing:.04em;font-family:'Montserrat';font-weight:800;font-size:6.8pt;color:#062B63;background:#FFC107;border-radius:1.6mm;padding:.8mm 2.2mm .6mm}
-.lb{font-weight:600;font-size:11pt;color:#fff;margin-top:3.6mm;line-height:1.1}.lc{font-weight:500;font-size:7.6pt;color:#FFC107;margin-top:.5mm}
-.le{font-size:7.3pt;color:#D2DAE8;margin-top:2.2mm}.lz{display:flex;align-items:center;gap:1.2mm;font-weight:600;font-size:8.2pt;color:#fff;margin-top:2.4mm}.lz svg{width:3.3mm;height:3.3mm;color:#25D366;flex:none}
-.lct{position:absolute;left:10mm;right:10mm;top:164mm;display:grid;grid-template-columns:1fr 1fr 1fr 31mm;gap:3.6mm;align-items:start}
-.lbx{height:16mm;border-radius:3.2mm;background:linear-gradient(160deg,rgba(6,30,75,.78),rgba(6,30,75,.58));border:.25mm solid rgba(255,255,255,.12);padding:3mm 4mm;font-weight:600;font-size:9.2pt;color:#fff}
-.lbx small{display:block;font-family:'Montserrat';font-weight:700;font-size:6.2pt;letter-spacing:.05em;text-transform:uppercase;color:#FFC107;margin-bottom:.8mm}
+.ltit{position:absolute;left:0;right:0;top:48mm;text-align:center;font-family:'Bebas Neue';font-size:30pt;line-height:1;color:#fff}
+.lu{position:absolute;left:50%;transform:translateX(-50%);top:60.5mm;width:16mm;height:1.2mm;border-radius:.6mm;background:#FFC107}
+.lhr{position:absolute;left:0;right:0;top:64mm;text-align:center;font-size:10pt;color:#FFE082;font-weight:500}.lhr i{font-style:normal;margin:0 1.4mm}
+.lg{position:absolute;left:10mm;right:10mm;top:73mm;display:grid;grid-template-columns:repeat(2,1fr);gap:3.6mm}
+.lj{height:30mm;border-radius:3.2mm;background:linear-gradient(160deg,rgba(6,30,75,.78),rgba(6,30,75,.58));border:.25mm solid rgba(255,255,255,.12);box-shadow:0 1mm 2.4mm rgba(0,10,35,.25);padding:4mm 4.2mm}
+.lchip{display:inline-block;text-transform:uppercase;letter-spacing:.04em;font-family:'Montserrat';font-weight:800;font-size:8pt;color:#062B63;background:#FFC107;border-radius:1.6mm;padding:.9mm 2.6mm .7mm;float:right}
+.lb{font-weight:700;font-size:14pt;color:#fff;margin-top:0;line-height:1.1}.lc{font-weight:600;font-size:9.6pt;color:#FFC107;margin-top:.5mm}
+.le{font-size:9.6pt;color:#D2DAE8;margin-top:1.6mm}.lz{display:flex;align-items:center;gap:1.2mm;font-weight:700;font-size:11pt;color:#fff;margin-top:1.4mm}.lz svg{width:3.3mm;height:3.3mm;color:#25D366;flex:none}
+.lct{position:absolute;left:10mm;right:10mm;top:177mm;display:grid;grid-template-columns:1fr 1fr 1fr 31mm;gap:3.6mm;align-items:start}
+.lbx{height:18mm;border-radius:3.2mm;background:linear-gradient(160deg,rgba(6,30,75,.78),rgba(6,30,75,.58));border:.25mm solid rgba(255,255,255,.12);padding:3mm 4mm;font-weight:700;font-size:11pt;color:#fff}
+.lbx small{display:block;font-family:'Montserrat';font-weight:700;font-size:7.4pt;letter-spacing:.05em;text-transform:uppercase;color:#FFC107;margin-bottom:.8mm}
 .qr{width:31mm;height:31mm;border-radius:3.2mm;background:#fff;padding:2.6mm;box-shadow:0 1mm 2.4mm rgba(0,10,35,.3)}.qr svg{display:block;width:100%;height:100%}
-.lpar{position:absolute;left:0;right:0;top:200mm;text-align:center;font-size:8.4pt;font-weight:500;color:#FFE082}
+.lpar{position:absolute;left:0;right:0;top:205mm;text-align:center;font-size:10pt;font-weight:500;color:#FFE082}
 .pnum{position:absolute;right:10mm;bottom:6mm;font-family:'Bebas Neue';font-size:12pt;letter-spacing:.04em;color:#fff;background:#062B63;border-radius:3mm;padding:.5mm 3.2mm .2mm;line-height:1.1}`;
 
 const MODOS = `
